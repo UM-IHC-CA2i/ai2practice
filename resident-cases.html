@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Walkthrough &mdash; Radiology Residents &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background:#F8FAFC;">
+
+<div class="cw-topbar">
+  <a href="residents.html" class="cw-brand">AI-Ready <span>Case Walkthrough</span></a>
+  <a href="residents.html" class="cw-back">&larr; Back to Residents</a>
+</div>
+
+<div id="cw-landing">
+  <div class="cw-landing" id="cw-landing-content"></div>
+</div>
+
+<div class="cw-layout" id="cw-dashboard" style="display:none;">
+  <div class="cw-sidebar" id="cw-sidebar"></div>
+  <div class="cw-main" id="cw-main"></div>
+</div>
+
+<script src="js/cases.js"></script>
+<script>
+  CaseEngine.init({
+    dataUrl: 'data/resident-cases.json',
+    backUrl: 'residents.html',
+    backLabel: 'Residents',
+    courseTitle: 'AI in Radiology: All Three Competency Risks',
+    courseDesc: 'Navigate never-skilling, deskilling, and mis-skilling through interactive radiology cases. Compare your diagnostic performance with and without AI assistance across subspecialties and difficulty levels.',
+    courseMeta: [
+      { label: 'Duration', value: '20 – 25 min' },
+      { label: 'Level', value: 'Radiology Residents' },
+      { label: 'Format', value: 'Interactive Cases' },
+      { label: 'Risk Types', value: 'All Three' }
+    ],
+    objectives: [
+      'Distinguish between never-skilling, deskilling, and mis-skilling as AI competency risks',
+      'Experience AI dependency effects across radiology subspecialties',
+      'Recognize your own vulnerability to each competency risk pattern',
+      'Build strategies for maintaining independent competency during residency'
+    ],
+    caseTypes: ['never-skilling', 'mis-skilling', 'deskilling'],
+    levels: [
+      { id: 'medical_student', name: 'Medical Student', desc: 'Pre-residency, building foundational skills' },
+      { id: 'radiology_resident', name: 'Radiology Resident', desc: 'In residency training, developing specialty skills' },
+      { id: 'attending', name: 'Attending', desc: 'Board-certified, practicing independently' },
+      { id: 'other', name: 'Other', desc: 'Non-radiology physician, technologist, or other learner' }
+    ],
+    pathologies: [
+      { id: 'pneumothorax', name: 'Pneumothorax', difficulty: 'Easy' },
+      { id: 'pleural_effusion', name: 'Pleural Effusion', difficulty: 'Medium' },
+      { id: 'consolidation', name: 'Consolidation', difficulty: 'Medium' },
+      { id: 'cardiomegaly', name: 'Cardiomegaly', difficulty: 'Medium' },
+      { id: 'rib_fractures', name: 'Rib Fractures', difficulty: 'Medium' },
+      { id: 'lung_nodules', name: 'Lung Nodules', difficulty: 'Hard' },
+      { id: 'mammography', name: 'Mammography', difficulty: 'Hard' },
+      { id: 'stroke_triage', name: 'Stroke Triage', difficulty: 'Hard' },
+      { id: 'mediastinal', name: 'Mediastinal', difficulty: 'Hard' }
+    ]
+  });
+</script>
+</body>
+</html>

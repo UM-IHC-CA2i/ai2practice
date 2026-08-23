@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Tracker &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page-hero page-hero--amber">
+  <div class="page-hero-inner">
+    <h1>AI Tool Tracker</h1>
+    <p>
+      FDA-cleared CXR AI tools: what they detect, how they perform,
+      and where trainees are most at risk.
+    </p>
+  </div>
+</div>
+
+<div class="page-content-wide">
+
+  <div class="callout callout-yellow">
+    <div class="callout-title">About this data</div>
+    <p class="mb-0">
+      Performance metrics from published validation studies. Real-world performance may differ.
+      Educational reference, not product evaluation. Updated August 2026.
+      See <a href="https://aicentral.acr.org" target="_blank" rel="noopener">ACR AI Central</a> for a comprehensive registry.
+    </p>
+  </div>
+
+  <h2>FDA-Cleared CXR AI Tools</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Manufacturer</th>
+          <th>Pathologies</th>
+          <th>Mode</th>
+          <th>Training Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Annalise CXR</strong></td>
+          <td>Annalise.ai</td>
+          <td>124 findings (broadest)</td>
+          <td>Answer-delivery</td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lunit INSIGHT CXR</strong></td>
+          <td>Lunit Inc.</td>
+          <td>10+ abnormalities</td>
+          <td>Answer-delivery + heatmap</td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>qXR</strong></td>
+          <td>Qure.ai</td>
+          <td>29+ abnormalities</td>
+          <td>Answer-delivery + triage</td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>VUNO Med</strong></td>
+          <td>VUNO Inc.</td>
+          <td>6+ major findings</td>
+          <td>Answer-delivery</td>
+          <td><span class="badge badge-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>BriefCase CXR</strong></td>
+          <td>Aidoc</td>
+          <td>PTX triage, critical findings</td>
+          <td>Triage</td>
+          <td><span class="badge badge-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Red Dot</strong></td>
+          <td>Behold.ai</td>
+          <td>Normal vs. abnormal</td>
+          <td>Triage (binary)</td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="feature-block feature-block--blue" style="margin-top:24px;">
+    <h3>Understanding Risk Levels</h3>
+    <p>
+      <span class="badge badge-high">High</span> = Finding-level diagnoses (answer-delivery). AI provides specific findings. Highest never-skilling risk because the trainee's cognitive work is replaced.
+    </p>
+    <p>
+      <span class="badge badge-medium">Medium</span> = Triage or limited findings. AI handles detection/prioritization but the trainee still interprets. Moderate risk.
+    </p>
+    <p class="mb-0">
+      <span class="badge badge-low">Low</span> = Binary classification (normal vs. abnormal). The trainee must identify all specific findings. Lowest risk to independent skill development.
+    </p>
+  </div>
+
+  <h2>Performance by Pathology</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Pathology</th>
+          <th>Sensitivity</th>
+          <th>Specificity</th>
+          <th>Reliability</th>
+          <th>Never-Skilling Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>PTX (moderate-large)</strong></td>
+          <td>90&ndash;97%</td>
+          <td>92&ndash;98%</td>
+          <td><span class="badge badge-low">Reliable</span></td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>PTX (small/subtle)</strong></td>
+          <td>65&ndash;80%</td>
+          <td>85&ndash;95%</td>
+          <td><span class="badge badge-medium">Variable</span></td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Consolidation</strong></td>
+          <td>85&ndash;95%</td>
+          <td>80&ndash;92%</td>
+          <td><span class="badge badge-low">Reliable</span></td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pleural effusion</strong></td>
+          <td>88&ndash;96%</td>
+          <td>90&ndash;96%</td>
+          <td><span class="badge badge-low">Reliable</span></td>
+          <td><span class="badge badge-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lung nodules</strong></td>
+          <td>70&ndash;90%</td>
+          <td>75&ndash;90%</td>
+          <td><span class="badge badge-medium">Variable</span></td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cardiomegaly</strong></td>
+          <td>85&ndash;95%</td>
+          <td>80&ndash;92%</td>
+          <td><span class="badge badge-medium">Variable</span></td>
+          <td><span class="badge badge-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Rib fractures</strong></td>
+          <td>60&ndash;85%</td>
+          <td>75&ndash;90%</td>
+          <td><span class="badge badge-medium">Variable</span></td>
+          <td><span class="badge badge-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mediastinal</strong></td>
+          <td>40&ndash;65%</td>
+          <td>Variable</td>
+          <td><span class="badge badge-high">Unreliable</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bone lesions</strong></td>
+          <td>30&ndash;55%</td>
+          <td>Variable</td>
+          <td><span class="badge badge-high">Unreliable</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Risk Mapping</h2>
+
+  <p style="color:var(--gray-600);margin-bottom:20px;">
+    Highest risk: pathologies where AI is good enough to replace search but not good enough to catch everything.
+  </p>
+
+  <div class="feature-block feature-block--rose">
+    <h3 style="margin-top:0;">Highest Risk: AI is good but imperfect</h3>
+    <p class="mb-0">
+      <strong>Lung nodules, subtle pneumothorax, small consolidations.</strong>
+      AI detects most (80&ndash;95%) so trainees stop searching independently, but it misses the subtle
+      cases that require independent skill. The gap between AI's good-enough performance and 100%
+      is where never-skilling creates real patient harm.
+    </p>
+  </div>
+
+  <div class="feature-block feature-block--blue">
+    <h3 style="margin-top:0;">Moderate Risk: AI creates miscalibration</h3>
+    <p class="mb-0">
+      <strong>Cardiomegaly, rib fractures, effusions.</strong>
+      AI is generally good but has systematic biases (e.g., overcalling cardiomegaly on AP films,
+      false-positive fractures at costochondral junctions). Primary risk: mis-skilling from absorbed errors.
+    </p>
+  </div>
+
+  <div class="feature-block feature-block--teal">
+    <h3 style="margin-top:0;">Lower Risk: AI has limited coverage</h3>
+    <p class="mb-0">
+      <strong>Mediastinal abnormalities, bone lesions, soft tissue.</strong>
+      Trainees must maintain independent assessment here. However, there is a risk of false completeness
+      &mdash; believing a clean AI report means a normal study when AI simply does not evaluate these areas.
+    </p>
+  </div>
+
+  <h2>Key Questions About Your Department's AI</h2>
+
+  <details>
+    <summary>What pathologies does the AI detect?</summary>
+    <div class="details-content">
+      <p class="mb-0">Every AI tool has a defined detection list. Anything not on it is your responsibility alone. Know the boundaries of what your department's AI covers.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What is the false-negative rate for subtle findings?</summary>
+    <div class="details-content">
+      <p class="mb-0">Published sensitivity often reflects clear-cut cases. Subtle findings &mdash; small nodules, early architectural distortion, tiny pneumothoraces &mdash; may have significantly lower detection rates.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Triage mode or answer-delivery mode?</summary>
+    <div class="details-content">
+      <p class="mb-0">Triage preserves more of the trainee's diagnostic reasoning. Answer-delivery replaces more cognitive work. Know which mode your department's AI operates in &mdash; this determines the never-skilling risk level.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Any known false-positive patterns?</summary>
+    <div class="details-content">
+      <p class="mb-0">Systematic false positives create mis-skilling risk. If the AI consistently overcalls certain findings, trainees may internalize those error patterns. Ask your attendings about known biases in your department's AI tools.</p>
+    </div>
+  </details>
+
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

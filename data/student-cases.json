@@ -1,0 +1,244 @@
+{
+  "cases": [
+    {
+      "id": "s-ns-1",
+      "type": "never-skilling",
+      "pathology": "pleural_effusion",
+      "difficulty": "easy",
+      "scenario": "You are reviewing an AP portable chest X-ray on a 68-year-old man admitted for shortness of breath. The image shows blunting of the left costophrenic angle with a meniscus sign.",
+      "ai_findings": ["Left pleural effusion (92% confidence)", "Cardiomegaly (88% confidence)", "No other findings detected"],
+      "options": [
+        "Left pleural effusion and cardiomegaly only",
+        "Left pleural effusion, cardiomegaly, and right lower lobe consolidation",
+        "Cardiomegaly only, no effusion",
+        "Normal chest X-ray"
+      ],
+      "correct": 1,
+      "explanation": "The AI correctly identified the pleural effusion and cardiomegaly but missed a subtle right lower lobe consolidation. This demonstrates how AI can give a false sense of completeness — the trainee may stop looking after confirming AI findings."
+    },
+    {
+      "id": "s-ns-2",
+      "type": "never-skilling",
+      "pathology": "pneumothorax",
+      "difficulty": "easy",
+      "scenario": "A 25-year-old male presents to the ED with sudden-onset chest pain. An upright PA chest X-ray is obtained.",
+      "ai_findings": ["Small left apical pneumothorax (78% confidence)", "No other abnormalities detected"],
+      "options": [
+        "Small left pneumothorax only",
+        "Small left pneumothorax with subcutaneous emphysema",
+        "Normal chest X-ray",
+        "Left apical pleural thickening, no pneumothorax"
+      ],
+      "correct": 1,
+      "explanation": "The AI detected the pneumothorax but missed the associated subcutaneous emphysema in the soft tissues. When you only confirm what AI flags, you miss findings outside its detection scope."
+    },
+    {
+      "id": "s-ns-3",
+      "type": "never-skilling",
+      "pathology": "long_bone_fracture",
+      "difficulty": "easy",
+      "scenario": "A 45-year-old woman fell on an outstretched hand. AP and lateral X-rays of the wrist are obtained.",
+      "ai_findings": ["Distal radius fracture (95% confidence)", "Dorsal angulation present", "No other fractures detected"],
+      "options": [
+        "Distal radius fracture only",
+        "Distal radius fracture with ulnar styloid fracture",
+        "No fracture identified",
+        "Scaphoid fracture only"
+      ],
+      "correct": 1,
+      "explanation": "The AI detected the obvious distal radius fracture but missed the subtle ulnar styloid fracture. Associated injuries are commonly missed when trainees rely solely on AI detection of the primary finding."
+    },
+    {
+      "id": "s-ns-4",
+      "type": "never-skilling",
+      "pathology": "consolidation",
+      "difficulty": "medium",
+      "scenario": "A 72-year-old presents with fever and productive cough. A PA chest X-ray is obtained.",
+      "ai_findings": ["Right middle lobe consolidation (90% confidence)", "No pleural effusion", "Heart size normal"],
+      "options": [
+        "Right middle lobe consolidation, no other findings",
+        "Right middle lobe consolidation with air bronchograms and small right pleural effusion",
+        "Bilateral consolidation",
+        "Right lower lobe atelectasis"
+      ],
+      "correct": 1,
+      "explanation": "The AI identified the consolidation but missed the small right pleural effusion (parapneumonic effusion). It also did not describe the air bronchograms that help confirm the consolidation. Complete characterization requires independent assessment beyond AI labels."
+    },
+    {
+      "id": "s-ns-5",
+      "type": "never-skilling",
+      "pathology": "cardiomegaly",
+      "difficulty": "medium",
+      "scenario": "A routine chest X-ray is obtained on a 58-year-old man with hypertension. The film is an AP portable.",
+      "ai_findings": ["Cardiomegaly (91% confidence)", "No lung abnormality detected"],
+      "options": [
+        "Cardiomegaly confirmed",
+        "Cannot reliably assess cardiomegaly — AP projection magnifies the heart silhouette",
+        "Normal heart size",
+        "Pericardial effusion"
+      ],
+      "correct": 1,
+      "explanation": "The AI applied standard CTR thresholds without accounting for the AP projection, which magnifies the cardiac silhouette. A true assessment requires recognizing the projection type — something the AI did not factor in. This is a key independent skill."
+    },
+    {
+      "id": "s-ns-6",
+      "type": "never-skilling",
+      "pathology": "lung_nodules",
+      "difficulty": "hard",
+      "scenario": "A 55-year-old smoker undergoes a low-dose CT for lung cancer screening.",
+      "ai_findings": ["6mm solid nodule in right upper lobe (87% confidence)", "No other nodules detected", "Recommend follow-up per Lung-RADS"],
+      "options": [
+        "Single 6mm RUL nodule, follow per Lung-RADS",
+        "6mm RUL nodule plus 4mm ground-glass nodule in left lower lobe",
+        "No significant nodules",
+        "Right upper lobe mass, not nodule"
+      ],
+      "correct": 1,
+      "explanation": "The AI detected the dominant solid nodule but missed a subtle 4mm ground-glass nodule. AI nodule detectors have variable sensitivity for ground-glass opacities, especially when small. Independent systematic lung search is essential."
+    },
+    {
+      "id": "s-ms-1",
+      "type": "mis-skilling",
+      "pathology": "cardiomegaly",
+      "difficulty": "medium",
+      "scenario": "You have been reading chest X-rays with an AI tool for 3 months. The AI frequently flags cardiomegaly on AP portable films. Now you are reviewing a PA chest X-ray without AI assistance on a 50-year-old woman.",
+      "ai_findings": ["This is a non-AI case reflecting learned patterns"],
+      "options": [
+        "Cardiomegaly present — CTR appears greater than 0.5",
+        "Heart size is normal — CTR is within normal limits for a PA film",
+        "Cannot assess — need lateral view",
+        "Pericardial effusion causing apparent cardiomegaly"
+      ],
+      "correct": 1,
+      "explanation": "The heart size is actually normal on this PA film. If you overcalled cardiomegaly, you may have absorbed the AI's pattern of overcalling on AP portables and applied it to PA films. This is mis-skilling — the AI's systematic error has become your systematic error."
+    },
+    {
+      "id": "s-ms-2",
+      "type": "mis-skilling",
+      "pathology": "consolidation",
+      "difficulty": "medium",
+      "scenario": "After months of using an AI tool that has a known tendency to overcall consolidation on portable films with poor inspiration, you review a PA chest X-ray on a 40-year-old with mild cough.",
+      "ai_findings": ["This is a non-AI case reflecting learned patterns"],
+      "options": [
+        "Bilateral lower lobe consolidation",
+        "Bilateral basilar atelectasis — likely due to poor inspiratory effort",
+        "Normal chest X-ray",
+        "Bilateral pleural effusions"
+      ],
+      "correct": 1,
+      "explanation": "The correct finding is basilar atelectasis from poor inspiration, not consolidation. AI tools that overcall consolidation on poorly inspired films can train you to make the same error. The key differentiator is recognizing the linear, platelike pattern of atelectasis versus the airspace opacification of true consolidation."
+    },
+    {
+      "id": "s-ms-3",
+      "type": "mis-skilling",
+      "pathology": "rib_fractures",
+      "difficulty": "medium",
+      "scenario": "You've been using an AI fracture detection tool that has a known false-positive rate for rib fractures at costochondral junctions. Now reading without AI on a 60-year-old after a fall.",
+      "ai_findings": ["This is a non-AI case reflecting learned patterns"],
+      "options": [
+        "Acute fractures of ribs 6 and 7 on the right",
+        "No acute fractures — the lucencies at the costochondral junctions are normal anatomy",
+        "Pathologic fractures suggesting metastatic disease",
+        "Flail chest with multiple bilateral fractures"
+      ],
+      "correct": 1,
+      "explanation": "The costochondral junctions are normal anatomic variants that AI tools commonly misidentify as fractures. If you have absorbed this pattern, you may systematically overcall fractures at these locations. This is mis-skilling from AI false-positive patterns."
+    },
+    {
+      "id": "s-ms-4",
+      "type": "mis-skilling",
+      "pathology": "pleural_effusion",
+      "difficulty": "easy",
+      "scenario": "After training with an AI tool that sometimes confuses pleural effusion with pleural thickening, you review a chest X-ray on a 65-year-old with history of asbestos exposure.",
+      "ai_findings": ["This is a non-AI case reflecting learned patterns"],
+      "options": [
+        "Moderate bilateral pleural effusions",
+        "Bilateral pleural plaques and thickening consistent with asbestos exposure — no effusion",
+        "Left-sided pleural effusion only",
+        "Normal pleura"
+      ],
+      "correct": 1,
+      "explanation": "The findings represent pleural plaques and thickening from asbestos exposure, not effusions. AI tools that conflate thickening with effusion can lead trainees to make the same misclassification. The key is recognizing the calcified, irregular pattern of plaques versus the meniscus sign of fluid."
+    },
+    {
+      "id": "s-ns-7",
+      "type": "never-skilling",
+      "pathology": "pneumothorax",
+      "difficulty": "easy",
+      "scenario": "A 30-year-old presents post-central line placement. A portable AP chest X-ray is obtained to check line position.",
+      "ai_findings": ["Central line tip in the SVC — appropriate position", "No pneumothorax detected (98% confidence)"],
+      "options": [
+        "Line in good position, no pneumothorax",
+        "Line in good position but small apical pneumothorax present",
+        "Line tip too far — in right atrium",
+        "Line malpositioned in right internal jugular vein"
+      ],
+      "correct": 1,
+      "explanation": "The AI correctly assessed line position but missed a small iatrogenic pneumothorax. Post-procedure films require systematic evaluation beyond the AI's focus on the primary question. Always check for complications independently."
+    },
+    {
+      "id": "s-ns-8",
+      "type": "never-skilling",
+      "pathology": "long_bone_fracture",
+      "difficulty": "easy",
+      "scenario": "A 12-year-old fell off a bicycle. AP and lateral radiographs of the forearm are obtained.",
+      "ai_findings": ["Mid-shaft radius fracture (93% confidence)", "Angulation present", "Recommend orthopedic consultation"],
+      "options": [
+        "Isolated radius fracture",
+        "Radius fracture — check for associated proximal radioulnar joint dislocation (Monteggia equivalent)",
+        "Growth plate fracture of the distal radius",
+        "Normal radiograph"
+      ],
+      "correct": 1,
+      "explanation": "When the AI detects an isolated radius or ulna fracture, you must independently assess for associated injuries at the proximal and distal radioulnar joints. The AI evaluated the obvious fracture but did not assess the joint for dislocation. This is a classic teaching point that requires independent clinical reasoning."
+    },
+    {
+      "id": "s-ms-5",
+      "type": "mis-skilling",
+      "pathology": "lung_nodules",
+      "difficulty": "hard",
+      "scenario": "After using an AI nodule detector that has high sensitivity but moderate specificity, you review a CT without AI on a 60-year-old with a history of granulomatous disease.",
+      "ai_findings": ["This is a non-AI case reflecting learned patterns"],
+      "options": [
+        "Multiple suspicious pulmonary nodules requiring biopsy",
+        "Calcified granulomas — benign findings consistent with prior granulomatous disease",
+        "Metastatic disease",
+        "Pulmonary arteriovenous malformations"
+      ],
+      "correct": 1,
+      "explanation": "These are calcified granulomas — benign. AI tools with high sensitivity for nodules often flag calcified granulomas as suspicious. If you've absorbed that pattern, you may overcall benign calcified nodules as concerning. The key is recognizing the benign calcification pattern."
+    },
+    {
+      "id": "s-ns-9",
+      "type": "never-skilling",
+      "pathology": "consolidation",
+      "difficulty": "medium",
+      "scenario": "A 3-year-old child presents with fever and tachypnea. An AP chest radiograph is obtained.",
+      "ai_findings": ["Right perihilar opacity (82% confidence)", "Possible right middle lobe pneumonia", "No pleural effusion"],
+      "options": [
+        "Right middle lobe pneumonia confirmed",
+        "Right perihilar opacity — consider thymus overlay vs. round pneumonia; clinical correlation needed",
+        "Normal thymus, no pneumonia",
+        "Right hilar lymphadenopathy"
+      ],
+      "correct": 1,
+      "explanation": "In pediatric chest X-rays, the normal thymus can overlap with perihilar opacities, and round pneumonia (common in children) looks different from adult consolidation patterns. The AI applied adult pattern recognition. Independent skills in pediatric imaging are essential and cannot be learned from AI trained primarily on adult data."
+    },
+    {
+      "id": "s-ns-10",
+      "type": "never-skilling",
+      "pathology": "mammography",
+      "difficulty": "hard",
+      "scenario": "You are reviewing a screening mammogram on a 52-year-old woman with dense breast tissue. The AI tool provides its assessment.",
+      "ai_findings": ["BI-RADS 1: Negative (95% confidence)", "No suspicious masses or calcifications detected"],
+      "options": [
+        "Agree with AI — BI-RADS 1, routine screening",
+        "BI-RADS 0 — architectural distortion in the upper outer quadrant warrants additional views",
+        "BI-RADS 2 — benign calcifications present",
+        "BI-RADS 3 — probably benign, 6-month follow-up"
+      ],
+      "correct": 1,
+      "explanation": "The AI missed a subtle architectural distortion in dense breast tissue — a known limitation. AI mammography tools have lower sensitivity in dense breasts. If you have never independently searched for architectural distortion, you cannot catch what the AI misses. This is a critical never-skilling gap."
+    }
+  ]
+}

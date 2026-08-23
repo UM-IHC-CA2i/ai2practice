@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment &mdash; Radiology Residents &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="page-hero page-hero--accent">
+  <div class="page-hero-inner">
+    <h1>Resident Assessment</h1>
+    <p>15 questions covering all three competency risks. Score 80% or higher to earn a certificate.</p>
+  </div>
+</div>
+
+<div class="page-content">
+
+  <div id="assessment-section">
+
+    <div class="progress-bar" style="margin-bottom:24px;">
+      <div class="progress-fill" id="quiz-progress" style="width:0%"></div>
+    </div>
+
+    <div class="quiz-container">
+
+      <!-- Q1 -->
+      <div class="quiz-question" data-correct="1">
+        <div class="q-number">Question 1 of 15</div>
+        <div class="q-text">An R2 has used AI nodule detection on every chest CT for 12 months. When moonlighting without AI, she misses a 9mm spiculated nodule she has never independently searched for. This is:</div>
+        <button class="quiz-option" data-idx="0">Deskilling</button>
+        <button class="quiz-option" data-idx="1">Never-skilling</button>
+        <button class="quiz-option" data-idx="2">Mis-skilling</button>
+        <button class="quiz-option" data-idx="3">Automation bias</button>
+        <div class="quiz-explanation">
+          <strong>Never-skilling.</strong> The resident never built independent nodule search patterns. AI did the searching from day one.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question" data-correct="2">
+        <div class="q-number">Question 2 of 15</div>
+        <div class="q-text">An attending mammographer has read independently for 15 years. After 2 years of AI-assisted CAD, her unassisted accuracy has dropped. This is:</div>
+        <button class="quiz-option" data-idx="0">Never-skilling</button>
+        <button class="quiz-option" data-idx="1">Mis-skilling</button>
+        <button class="quiz-option" data-idx="2">Deskilling</button>
+        <button class="quiz-option" data-idx="3">Automation bias</button>
+        <div class="quiz-explanation">
+          <strong>Deskilling.</strong> The attending had well-established skills that eroded through disuse. The cognitive architecture exists but has weakened.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question" data-correct="0">
+        <div class="q-number">Question 3 of 15</div>
+        <div class="q-text">After 6 months with an AI tool that overcalls consolidation on poorly inspired films, a resident starts overcalling consolidation on well-inspired films without AI. This is:</div>
+        <button class="quiz-option" data-idx="0">Mis-skilling</button>
+        <button class="quiz-option" data-idx="1">Deskilling</button>
+        <button class="quiz-option" data-idx="2">Never-skilling</button>
+        <button class="quiz-option" data-idx="3">A normal learning curve error</button>
+        <div class="quiz-explanation">
+          <strong>Mis-skilling.</strong> The AI's systematic error pattern has been internalized. The resident now makes the same error independently.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question" data-correct="1">
+        <div class="q-number">Question 4 of 15</div>
+        <div class="q-text">In the Dratsch et al. mammography study, when AI provided incorrect BI-RADS suggestions, experienced radiologists' accuracy dropped from approximately:</div>
+        <button class="quiz-option" data-idx="0">90% to 70%</button>
+        <button class="quiz-option" data-idx="1">82% to 46%</button>
+        <button class="quiz-option" data-idx="2">75% to 55%</button>
+        <button class="quiz-option" data-idx="3">95% to 80%</button>
+        <div class="quiz-explanation">
+          Experienced radiologists' accuracy dropped from <strong>82% to 46%</strong>. Inexperienced readers dropped as low as 20%.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question" data-correct="2">
+        <div class="q-number">Question 5 of 15</div>
+        <div class="q-text">The "calibration paradox" refers to:</div>
+        <button class="quiz-option" data-idx="0">AI systems becoming less accurate over time</button>
+        <button class="quiz-option" data-idx="1">Trainees overestimating their AI knowledge</button>
+        <button class="quiz-option" data-idx="2">Effective AI oversight requires the independent skills that AI prevents you from developing</button>
+        <button class="quiz-option" data-idx="3">AI confidence scores being miscalibrated</button>
+        <div class="quiz-explanation">
+          To oversee AI, you need <strong>calibration</strong> &mdash; knowing when AI is right vs. wrong. But calibration develops through <strong>independent practice</strong>, the exact process AI disrupts.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="quiz-question" data-correct="0">
+        <div class="q-number">Question 6 of 15</div>
+        <div class="q-text">In Ke et al.'s framework, at which level should trainees first encounter AI with deliberately embedded errors?</div>
+        <button class="quiz-option" data-idx="0">Level 2 &mdash; Adversarial Calibration</button>
+        <button class="quiz-option" data-idx="1">Level 0 &mdash; Full Independence</button>
+        <button class="quiz-option" data-idx="2">Level 1 &mdash; Reference-Augmented</button>
+        <button class="quiz-option" data-idx="3">Level 3 &mdash; Supervised Collaboration</button>
+        <div class="quiz-explanation">
+          <strong>Level 2 (Adversarial Calibration)</strong> involves deliberate errors. Trainees must detect, explain, and correct them.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="quiz-question" data-correct="3">
+        <div class="q-number">Question 7 of 15</div>
+        <div class="q-text">Which training phase (Ke et al.) maps to R1-R2 in radiology residency?</div>
+        <button class="quiz-option" data-idx="0">Phase 2 &mdash; Guided Integration</button>
+        <button class="quiz-option" data-idx="1">Phase 3 &mdash; Supervised Collaboration</button>
+        <button class="quiz-option" data-idx="2">No specific mapping exists</button>
+        <button class="quiz-option" data-idx="3">Phase 1 &mdash; AI-Free Foundational Competency</button>
+        <div class="quiz-explanation">
+          <strong>Phase 1</strong> maps to R1-R2. Build independent pattern recognition before AI exposure.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="quiz-question" data-correct="1">
+        <div class="q-number">Question 8 of 15</div>
+        <div class="q-text">Which subspecialty has the HIGHEST risk across all three AI competency threats?</div>
+        <button class="quiz-option" data-idx="0">Neuroimaging</button>
+        <button class="quiz-option" data-idx="1">Mammography</button>
+        <button class="quiz-option" data-idx="2">Chest X-ray</button>
+        <button class="quiz-option" data-idx="3">MSK</button>
+        <div class="quiz-explanation">
+          <strong>Mammography</strong> has high risk across all three categories because its AI tools provide answer-delivery, operate in a high-stakes screening context, and have known systematic biases.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="quiz-question" data-correct="2">
+        <div class="q-number">Question 9 of 15</div>
+        <div class="q-text">A resident consistently agrees with AI's "normal" reading without independent review. An attending later finds a subtle finding the AI missed. This in-the-moment behavior is:</div>
+        <button class="quiz-option" data-idx="0">Never-skilling</button>
+        <button class="quiz-option" data-idx="1">Deskilling</button>
+        <button class="quiz-option" data-idx="2">Automation bias</button>
+        <button class="quiz-option" data-idx="3">Mis-skilling</button>
+        <div class="quiz-explanation">
+          <strong>Automation bias</strong> &mdash; uncritically accepting AI output in the moment.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="quiz-question" data-correct="1">
+        <div class="q-number">Question 10 of 15</div>
+        <div class="q-text">The Pesapane et al. study found that explainable AI (XAI) with saliency heatmaps reduced automation bias from 36.1% to:</div>
+        <button class="quiz-option" data-idx="0">25.3%</button>
+        <button class="quiz-option" data-idx="1">17.8%</button>
+        <button class="quiz-option" data-idx="2">28.5%</button>
+        <button class="quiz-option" data-idx="3">10.2%</button>
+        <div class="quiz-explanation">
+          XAI with heatmaps reduced automation bias from 36.1% to <strong>17.8%</strong>.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="quiz-question" data-correct="0">
+        <div class="q-number">Question 11 of 15</div>
+        <div class="q-text">The key difference between deskilling and never-skilling is:</div>
+        <button class="quiz-option" data-idx="0">Deskilling involves erosion of existing skills; never-skilling means the skill was never built</button>
+        <button class="quiz-option" data-idx="1">Deskilling is permanent; never-skilling is reversible</button>
+        <button class="quiz-option" data-idx="2">Deskilling only affects attendings; never-skilling only affects trainees</button>
+        <button class="quiz-option" data-idx="3">There is no meaningful difference</button>
+        <div class="quiz-explanation">
+          <strong>Deskilling</strong> means existing cognitive architecture has weakened from disuse. <strong>Never-skilling</strong> means the architecture was never built.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="quiz-question" data-correct="3">
+        <div class="q-number">Question 12 of 15</div>
+        <div class="q-text">Adenoma detection rate dropped from 28.4% to 22.4% after AI-assisted tools were removed (Budzyn et al.). This finding demonstrates:</div>
+        <button class="quiz-option" data-idx="0">Never-skilling</button>
+        <button class="quiz-option" data-idx="1">Mis-skilling</button>
+        <button class="quiz-option" data-idx="2">AI superiority</button>
+        <button class="quiz-option" data-idx="3">Potential deskilling &mdash; performance declined after AI exposure was removed</button>
+        <div class="quiz-explanation">
+          This suggests <strong>deskilling</strong> &mdash; practitioners showed reduced performance when the tool was removed.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="quiz-question" data-correct="1">
+        <div class="q-number">Question 13 of 15</div>
+        <div class="q-text">Which strategy best protects against deskilling during residency?</div>
+        <button class="quiz-option" data-idx="0">Avoiding all AI tools</button>
+        <button class="quiz-option" data-idx="1">Regular AI-free reading sessions with periodic competency checks</button>
+        <button class="quiz-option" data-idx="2">Using only the most accurate AI tools</button>
+        <button class="quiz-option" data-idx="3">Increasing AI exposure to build familiarity</button>
+        <div class="quiz-explanation">
+          Regular <strong>AI-free reading sessions</strong> maintain independent skills while still allowing AI integration.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="quiz-question" data-correct="0">
+        <div class="q-number">Question 14 of 15</div>
+        <div class="q-text">An AI tool has a known false-positive rate for rib fractures at costochondral junctions. After extensive use, a resident starts overcalling fractures at these locations without AI. The best description is:</div>
+        <button class="quiz-option" data-idx="0">Mis-skilling &mdash; the AI's false-positive pattern has been absorbed into the resident's reasoning</button>
+        <button class="quiz-option" data-idx="1">Never-skilling &mdash; the resident never learned rib anatomy</button>
+        <button class="quiz-option" data-idx="2">Automation bias &mdash; the resident is following AI in the moment</button>
+        <button class="quiz-option" data-idx="3">Deskilling &mdash; the resident's anatomy knowledge has eroded</button>
+        <div class="quiz-explanation">
+          <strong>Mis-skilling.</strong> The AI's systematic false-positive pattern has been internalized. The error persists without AI.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="quiz-question" data-correct="2">
+        <div class="q-number">Question 15 of 15</div>
+        <div class="q-text">Decision attribution &mdash; documenting when you agree with, override, or supplement AI &mdash; primarily helps with:</div>
+        <button class="quiz-option" data-idx="0">Meeting ACGME requirements</button>
+        <button class="quiz-option" data-idx="1">Improving AI system accuracy</button>
+        <button class="quiz-option" data-idx="2">Building calibration and revealing patterns of uncritical AI acceptance</button>
+        <button class="quiz-option" data-idx="3">Reducing medicolegal liability</button>
+        <div class="quiz-explanation">
+          Decision attribution builds <strong>calibration</strong> &mdash; the ability to know when AI is right vs. wrong.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Submit -->
+    <div class="text-center mt-md">
+      <button class="btn btn-primary btn-lg" id="submit-quiz-btn" disabled>Submit Assessment</button>
+      <p id="submit-hint" style="font-size:0.82rem;color:var(--gray-400);margin-top:10px;">Answer all 15 questions to submit.</p>
+    </div>
+
+    <!-- Results -->
+    <div id="quiz-results" class="quiz-results" style="display:none;">
+      <div class="quiz-score" id="quiz-score">0%</div>
+      <div class="quiz-score-label"><span id="quiz-correct-count">0</span> / <span id="quiz-total-count">15</span> correct</div>
+      <div class="quiz-status" id="quiz-status">--</div>
+
+      <div id="cert-section" style="display:none;margin-top:20px;">
+        <p style="color:var(--gray-600);">Enter your name to generate a completion certificate.</p>
+        <div class="cert-form">
+          <input type="text" id="cert-name" placeholder="Your full name">
+          <button class="btn btn-primary" onclick="generateCertificate()">Generate Certificate (PDF)</button>
+        </div>
+      </div>
+
+      <div id="retry-section" style="display:none;margin-top:20px;">
+        <p style="color:var(--gray-600);">You need 80% to earn a certificate. Review the material and try again.</p>
+        <button class="btn btn-outline" id="retry-btn">Retake Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--gray-200);">
+    <a href="residents.html" class="btn btn-outline">&larr; Back to Residents</a>
+  </div>
+
+</div>
+
+<script src="js/shared.js"></script>
+<script src="js/assessment.js"></script>
+<script>
+  AssessmentEngine.init({ trackLabel: 'Radiology Resident' });
+</script>
+</body>
+</html>

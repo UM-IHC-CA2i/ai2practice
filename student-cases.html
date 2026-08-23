@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Walkthrough &mdash; Medical Students &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background:#F8FAFC;">
+
+<div class="cw-topbar">
+  <a href="students.html" class="cw-brand">AI-Ready <span>Case Walkthrough</span></a>
+  <a href="students.html" class="cw-back">&larr; Back to Medical Students</a>
+</div>
+
+<div id="cw-landing">
+  <div class="cw-landing" id="cw-landing-content"></div>
+</div>
+
+<div class="cw-layout" id="cw-dashboard" style="display:none;">
+  <div class="cw-sidebar" id="cw-sidebar"></div>
+  <div class="cw-main" id="cw-main"></div>
+</div>
+
+<script src="js/cases.js"></script>
+<script>
+  CaseEngine.init({
+    dataUrl: 'data/student-cases.json',
+    backUrl: 'students.html',
+    backLabel: 'Medical Students',
+    courseTitle: 'AI in Radiology: Never-Skilling & Mis-Skilling',
+    courseDesc: 'Experience how AI dependency affects your diagnostic accuracy through interactive radiology case walkthroughs. You will read cases with AI assistance, then try the same types of cases without AI to see how your independent skills compare.',
+    courseMeta: [
+      { label: 'Duration', value: '15 – 20 min' },
+      { label: 'Level', value: 'Medical Students' },
+      { label: 'Format', value: 'Interactive Cases' },
+      { label: 'Risk Types', value: 'Never- & Mis-Skilling' }
+    ],
+    objectives: [
+      'Identify never-skilling and mis-skilling as distinct AI-related competency risks',
+      'Experience the performance gap between AI-assisted and independent reading',
+      'Recognize how AI errors can become absorbed into your diagnostic patterns',
+      'Develop strategies for building independent skills alongside AI tools'
+    ],
+    caseTypes: ['never-skilling', 'mis-skilling'],
+    levels: [
+      { id: 'medical_student', name: 'Medical Student', desc: 'Pre-residency, building foundational skills' },
+      { id: 'radiology_resident', name: 'Radiology Resident', desc: 'In residency training, developing specialty skills' },
+      { id: 'attending', name: 'Attending', desc: 'Board-certified, practicing independently' },
+      { id: 'other', name: 'Other', desc: 'Non-radiology physician, technologist, or other learner' }
+    ],
+    pathologies: [
+      { id: 'long_bone_fracture', name: 'Long Bone Fractures', difficulty: 'Easy' },
+      { id: 'pleural_effusion', name: 'Pleural Effusion', difficulty: 'Easy' },
+      { id: 'pneumothorax', name: 'Pneumothorax', difficulty: 'Easy' },
+      { id: 'consolidation', name: 'Consolidation / Pneumonia', difficulty: 'Medium' },
+      { id: 'cardiomegaly', name: 'Cardiomegaly', difficulty: 'Medium' },
+      { id: 'rib_fractures', name: 'Rib Fractures', difficulty: 'Medium' },
+      { id: 'lung_nodules', name: 'Lung Nodules', difficulty: 'Hard' },
+      { id: 'mammography', name: 'Mammography', difficulty: 'Hard' }
+    ]
+  });
+</script>
+</body>
+</html>

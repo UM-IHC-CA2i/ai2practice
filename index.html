@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ══════════════════════════════════════════
+   CURRICULUM SECTION — Minimal Dots (V5)
+   ══════════════════════════════════════════ */
+.cur-section {
+  padding: 72px 40px 80px;
+  background: #fff;
+}
+.cur-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.cur-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.cur-header h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 6px;
+}
+.cur-header p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gray-400);
+  font-size: 1.05rem;
+}
+.cur-col-labels {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr;
+  gap: 0 40px;
+  margin-bottom: 24px;
+}
+.cur-col-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+}
+.cur-col-label--student {
+  text-align: right;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.cur-col-label--resident {
+  text-align: left;
+  color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+.cur-timeline {
+  position: relative;
+}
+.cur-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gray-200);
+  transform: translateX(-50%);
+}
+.cur-row {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr;
+  gap: 0 40px;
+  align-items: start;
+  margin-bottom: 32px;
+  position: relative;
+}
+.cur-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin: 6px auto 0;
+  z-index: 2;
+  position: relative;
+  box-shadow: 0 0 0 3px #fff;
+}
+.cur-row[data-domain="1"] .cur-dot { background: #0B1D3A; }
+.cur-row[data-domain="2"] .cur-dot { background: #0EA5E9; }
+.cur-row[data-domain="3"] .cur-dot { background: #059669; }
+.cur-row[data-domain="4"] .cur-dot { background: #F59E0B; }
+.cur-row[data-domain="5"] .cur-dot { background: #F43F5E; }
+.cur-row[data-domain="6"] .cur-dot { background: #7C3AED; }
+.cur-row[data-domain="7"] .cur-dot { background: #4F46E5; }
+.cur-row[data-domain="8"] .cur-dot { background: #F97316; }
+.cur-card {
+  padding: 4px 0;
+}
+.cur-card--student { text-align: right; }
+.cur-card-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.cur-card--student .cur-card-title { color: var(--primary); }
+.cur-card--resident .cur-card-title { color: var(--accent-dark); }
+.cur-card ul { margin: 0; padding: 0; list-style: none; }
+.cur-card li {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 2px;
+  position: relative;
+}
+.cur-card li:last-child { margin-bottom: 0; }
+.cur-card--resident li { padding-left: 14px; }
+.cur-card--resident li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gray-200);
+}
+.cur-card--student li { padding-right: 14px; }
+.cur-card--student li::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gray-200);
+}
+.cur-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+@media (max-width: 768px) {
+  .cur-col-labels, .cur-row { grid-template-columns: 1fr; gap: 8px; }
+  .cur-col-labels > div:nth-child(2) { display: none; }
+  .cur-col-label--student, .cur-col-label--resident { text-align: left; }
+  .cur-card--student { text-align: left; }
+  .cur-card--student li { padding-right: 0; padding-left: 14px; }
+  .cur-card--student li::after { display: none; }
+  .cur-card--student li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--gray-200); }
+  .cur-timeline::before { display: none; }
+  .cur-dot { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <h1>Radiology Training <br><span class="light">in the Age of AI</span></h1>
+    <p class="hero-desc">
+      Understanding how artificial intelligence changes the approach to radiology training &mdash;
+      and what educators, residents, and students can do about it.
+    </p>
+  </div>
+</section>
+
+<!-- ── Colorblock Row ── -->
+<div class="colorblock-row"><div class="colorblock-inner">
+  <a href="students.html" class="colorblock colorblock--1"><h3>Medical Students</h3><p>Never-skilling &amp; mis-skilling</p><span class="colorblock-arrow">&rarr;</span></a>
+  <a href="residents.html" class="colorblock colorblock--2"><h3>Residents</h3><p>All three competency risks</p><span class="colorblock-arrow">&rarr;</span></a>
+  <a href="about.html" class="colorblock colorblock--3"><h3>About Us</h3><p>Meet the committee</p><span class="colorblock-arrow">&rarr;</span></a>
+  <a href="student-assessment.html" class="colorblock colorblock--4"><h3>Assessment</h3><p>Earn your certificate</p><span class="colorblock-arrow">&rarr;</span></a>
+</div></div>
+
+<!-- ══════════════════════════════════════════
+     CURRICULUM — Minimal Dots (V5)
+     ══════════════════════════════════════════ -->
+<section class="cur-section" id="curriculum">
+  <div class="cur-inner">
+    <div class="cur-header">
+      <h2>AI Curriculum</h2>
+      <p>A structured path through AI literacy for medical students and radiology residents</p>
+    </div>
+
+    <div class="cur-col-labels">
+      <div class="cur-col-label cur-col-label--student">Medical Student</div>
+      <div></div>
+      <div class="cur-col-label cur-col-label--resident">Radiology Resident</div>
+    </div>
+
+    <div class="cur-timeline">
+
+      <div class="cur-row" data-domain="1">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">What is AI & How Does It Work?</div>
+          <ul>
+            <li>AI, ML, and deep learning basics</li>
+            <li>Neural networks and CNNs</li>
+            <li>Why AI makes mistakes and overfitting</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">What is AI & How Does It Work?</div>
+          <ul>
+            <li>AI, ML, and deep learning foundations</li>
+            <li>Neural networks and CNNs</li>
+            <li>Overfitting, generalizability, and error analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="2">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">AI Development & Implementation</div>
+          <ul>
+            <li>Idea &rarr; dataset &rarr; model &rarr; clinical tool</li>
+            <li>Data quality, training, and validation</li>
+            <li>Environmental and computational concerns</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">AI Development & Implementation</div>
+          <ul>
+            <li>Idea &rarr; dataset &rarr; model &rarr; clinical tool</li>
+            <li>Data quality, training, and validation</li>
+            <li>Environmental and computational concerns</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="3">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">AI + Radiology Pathology</div>
+          <ul>
+            <li>Detection, segmentation, and classification</li>
+            <li>Prediction, reporting, and LLMs</li>
+            <li>Overview across imaging modalities</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">AI + Radiology Pathology</div>
+          <ul>
+            <li>Subspecialty-specific AI applications</li>
+            <li>Neuro, MSK, body, and chest examples</li>
+            <li>Reporting tools and LLM integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="4">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">AI + Radiology Workflow</div>
+          <ul>
+            <li>Acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+            <li>Where AI fits in the imaging pipeline</li>
+            <li>AI in other areas of medicine</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">AI + Radiology Workflow</div>
+          <ul>
+            <li>PACS/RIS, DICOM, and worklist integration</li>
+            <li>AI triage and reporting workflows</li>
+            <li>Human-AI collaboration models</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="5">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">Using AI Safely</div>
+          <ul>
+            <li>Never-skilling, deskilling, mis-skilling</li>
+            <li>Recognizing AI errors</li>
+            <li>Appropriate skepticism</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">Using AI Safely</div>
+          <ul>
+            <li>Never-skilling, deskilling, mis-skilling</li>
+            <li>AI failure modes and edge cases</li>
+            <li>Building safe AI habits into practice</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="6">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">Evaluating AI</div>
+          <ul>
+            <li>Sensitivity, specificity, PPV, NPV</li>
+            <li>Understanding performance metrics</li>
+            <li>Interpreting AI study results</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">Evaluating AI</div>
+          <ul>
+            <li>AUC, calibration, and model performance</li>
+            <li>External validation and generalizability</li>
+            <li>Critical appraisal of AI literature</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="7">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">AI Ethics & Professionalism</div>
+          <ul>
+            <li>Bias in AI systems</li>
+            <li>Privacy and data protection</li>
+            <li>Transparency and accountability</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">AI Ethics & Professionalism</div>
+          <ul>
+            <li>Bias and explainability</li>
+            <li>Liability and accountability</li>
+            <li>Patient safety considerations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="8">
+        <div class="cur-card cur-card--student">
+          <div class="cur-card-title">Future of AI</div>
+          <ul>
+            <li>How AI may change medicine</li>
+            <li>How AI may change radiology</li>
+            <li>Emerging AI applications</li>
+          </ul>
+        </div>
+        <div class="cur-dot"></div>
+        <div class="cur-card cur-card--resident">
+          <div class="cur-card-title">Future of AI</div>
+          <ul>
+            <li>The evolving radiologist's role</li>
+            <li>Impact on training, workflow, and research</li>
+            <li>IR, radiation oncology, and beyond</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cur-cta">
+      <a href="students.html" class="btn btn-accent btn-lg">Start Learning</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     THE THREE RISKS
+     ══════════════════════════════════════════ -->
+<section class="section section--white" id="risks">
+  <div class="section-inner">
+    <h2 class="mt-0 section-heading--primary">Three Ways AI Compromises Clinical Competency</h2>
+    <p class="section-subdesc">
+      Drawing from Ke et al.'s framework (<em>Nature Medicine</em>, 2026), three distinct
+      mechanisms by which AI can undermine clinical skills.
+    </p>
+
+    <div class="risk-cards">
+
+      <!-- Never-Skilling -->
+      <div class="risk-card risk-card--never">
+        <div class="risk-card-header">
+          <h3>Never-Skilling</h3>
+          <p>Skills that were never built</p>
+        </div>
+        <div class="risk-card-body">
+          <p>
+            <strong>Never-skilling</strong> is the failure to develop foundational competencies because AI
+            substitutes for the cognitive effort required to build them. The skill was never built in the first
+            place.
+          </p>
+          <p>
+            The result is <strong>false proficiency</strong> &mdash; AI-assisted performance appears adequate,
+            but unaided performance is far below standard.
+          </p>
+          <div class="risk-card-example">
+            <div class="example-title">Radiology Example</div>
+            <p>
+              An R1 uses AI nodule triage on every chest CT for six months. When the system goes down,
+              she reports a CT as normal. Due to her dependence on the AI system, she never developed the skills to catch chest nodules in the first place.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deskilling -->
+      <div class="risk-card risk-card--de">
+        <div class="risk-card-header">
+          <h3>Deskilling</h3>
+          <p>Existing skills that erode from disuse</p>
+        </div>
+        <div class="risk-card-body">
+          <p>
+            <strong>Deskilling</strong> is the erosion of existing competencies through disuse. An established
+            skill weakens because prolonged AI reliance removes the practice needed to maintain it. Unlike
+            never-skilling, the cognitive foundation exists but has been degraded.
+          </p>
+          <p>
+            Deskilling is more easily reversible with deliberate practice because the foundational pathways
+            were already built; however, without intervention, the erosion continues.
+          </p>
+          <div class="risk-card-example">
+            <div class="example-title">Radiology Example</div>
+            <p>
+              An attending mammographer has read independently for 15 years. After 2 years of AI-assisted
+              CAD, her unassisted accuracy has dropped. Skills she once had &mdash; pattern recognition for
+              subtle architectural distortion &mdash; have weakened from disuse.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mis-Skilling -->
+      <div class="risk-card risk-card--mis">
+        <div class="risk-card-header">
+          <h3>Mis-Skilling</h3>
+          <p>Wrong patterns learned from AI errors</p>
+        </div>
+        <div class="risk-card-body">
+          <p>
+            <strong>Mis-skilling</strong> occurs when trainees develop incorrect patterns of thinking by repeatedly accepting AI errors without questioning them. Over time, these errors can become part of the trainee's own diagnostic reasoning, even when the AI is no longer being used.
+          </p>
+          <p>
+            Unlike automation bias, which occurs when a clinician accepts an AI recommendation in a specific moment, mis-skilling can persist after the AI is no longer present.
+          </p>
+          <div class="risk-card-example">
+            <div class="example-title">Radiology Example</div>
+            <p>
+              A chest AI tool that consistently overcalls cardiomegaly on CXRs. After seeing this repeatedly, a resident begins to overcall cardiomegaly on PA films as well.
+              When reviewing future CXRs without AI, the resident still overcalls cardiomegaly. The AI's error has influenced the trainee's own interpretation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROBLEM & PURPOSE
+     ══════════════════════════════════════════ -->
+<!-- <section class="section section--white" id="problem">
+  <div class="section-inner">
+    <h2 class="mt-0 section-heading--accent">Rethinking Radiology Training in the Age of AI</h2>
+
+    <div class="two-col two-col--wide-left">
+      <div>
+        <p>
+          Consider a second-year radiology resident whose department uses an AI nodule detector on every chest CT. For most of her training, the routine has been the same: open the study, check the AI flags, review the findings it identifies, and dictate the report. She does well. Her evaluations are positive, and her attending considers her above average.
+        </p>
+        <p>
+          One day, the system goes down for maintenance. Without the AI there to flag suspicious findings, she misses a 6 mm nodule she normally would have caught within her routine.
+        </p>
+        <p>
+          The resident's training and incorporation of AI has made her too dependent on the AI tool; so much so that she has not developed the clinical competencies needed to find the nodule independently.
+        </p>
+        <p>
+          This is an example of never-skilling, one of three ways AI can affect trainee development. The other two are deskilling and miss-skilling. As AI becomes a routine part of clinical practice and medical education, radiology may be particularly vulnerable to all three. When trainees rely on AI throughout their training, they may never develop certain skills in the first place—or gradually lose skills they once had.
+        </p>
+        <p>
+          That does not mean AI should be removed from training or clinical practice. Instead, clinicians and trainees especially will need to be more intentional about how and when we use it. AI can make better radiologists, but only if steps are taken to ensure trainees still have opportunities to develop the skills they will need when the AI is wrong or unavailable.
+        </p>
+      </div>
+
+      <div>
+        <div class="callout callout-teal">
+          <div class="callout-title">Why is Radiology vulnerable?</div>
+          <p>
+            Surgeons develop motor skills that AI cannot replicate. Internists rely on history-taking
+            and physical examination that remain outside AI's reach. Radiology is different because much of the specialty depends on visual pattern recognition and using those findings to develop a differential diagnosis. These are skills that AI is increasingly capable of performing.
+          </p>
+          <p>
+            Developing and utilizing these skills requires heavy cognitive load, which makes it tempting to offload some of the load onto an AI tool. Over time, this can lead to overreliance.
+          </p>
+          <p>
+            Additionally, most FDA-approved tools for AI are focused on radiology. For radiology trainees, with all of these AI tools, the concern is that they may never fully develop the clinicial skills needed to practice independently. This puts radiology trainees at particular risk of never-skilling and makes it important to think carefully about when and how AI is incorporated into training.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+     ══════════════════════════════════════════ -->
+<section class="section section--blue-light" id="about">
+  <div class="section-inner-narrow">
+    <h2 class="mt-0">About This Site</h2>
+    <p> This site remains under development as of <strong>August 23, 2026</strong> and is being prepared as an educational tool and accompanying manuscript by members of the <strong>Committee on Data Science &amp; AI of the AAR/RRA</strong>. </p>
+
+    <p> Additional information about the organizers and contributors is available on our <a href="about.html">About Us &amp; Organizers</a> page. </p>
+
+    <p> A potential citation for this work is provided below: </p>
+
+    <p> <strong>Shinjer Li, BS; Committee Members (in order); Florence Doo, MD.</strong> <i>[Title variant].</i> <i>Academic Radiology.</i> </p>
+  </div>
+</section>
+
+<script src="js/shared.js"></script>
+<script>
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const stars = [];
+  const STAR_COUNT = 90;
+  const CONNECT = 130;
+
+  function resize() {
+    canvas.width = canvas.offsetWidth * devicePixelRatio;
+    canvas.height = canvas.offsetHeight * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  }
+
+  function init() {
+    resize();
+    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * cw,
+        y: Math.random() * ch,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        r: Math.random() * 2.2 + 0.8,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.008 + Math.random() * 0.015
+      });
+    }
+  }
+
+  function draw() {
+    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    ctx.clearRect(0, 0, cw, ch);
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      s.x += s.vx; s.y += s.vy; s.pulse += s.pulseSpeed;
+      if (s.x < -20) s.x = cw + 20;
+      if (s.x > cw + 20) s.x = -20;
+      if (s.y < -20) s.y = ch + 20;
+      if (s.y > ch + 20) s.y = -20;
+      for (let j = i + 1; j < stars.length; j++) {
+        const b = stars[j];
+        const dx = s.x - b.x, dy = s.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT) {
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = 'rgba(200,210,230,' + ((1 - dist / CONNECT) * 0.15) + ')';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+      const glow = 0.4 + Math.sin(s.pulse) * 0.25;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r + 6, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,210,230,' + (glow * 0.06) + ')';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,215,240,' + glow + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+})();
+</script>
+</body>
+</html>

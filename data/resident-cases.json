@@ -1,0 +1,244 @@
+{
+  "cases": [
+    {
+      "id": "r-ns-1",
+      "type": "never-skilling",
+      "pathology": "lung_nodules",
+      "difficulty": "hard",
+      "scenario": "You are an R2 reading a chest CT on a 62-year-old smoker. The AI nodule detector is running.",
+      "ai_findings": ["8mm spiculated nodule in right upper lobe (94% confidence)", "4mm nodule in left lower lobe (72% confidence)", "Lung-RADS 4B recommended"],
+      "options": [
+        "Two nodules as AI described — RUL 8mm and LLL 4mm",
+        "Three nodules — RUL 8mm, LLL 4mm, and 5mm ground-glass nodule in the right middle lobe",
+        "Single RUL nodule — LLL finding is a vessel",
+        "Diffuse micronodularity suggesting miliary pattern"
+      ],
+      "correct": 1,
+      "explanation": "The AI missed a 5mm ground-glass nodule in the right middle lobe. Ground-glass nodules are frequently missed by AI tools designed for solid nodules. Systematic lung evaluation beyond AI flags is essential. Without this independent skill, you will miss GGOs throughout your career."
+    },
+    {
+      "id": "r-ns-2",
+      "type": "never-skilling",
+      "pathology": "mammography",
+      "difficulty": "hard",
+      "scenario": "You are reviewing a diagnostic mammogram with tomosynthesis on a 48-year-old woman recalled for an asymmetry.",
+      "ai_findings": ["Focal asymmetry in the right upper outer quadrant (88% confidence)", "BI-RADS 4A recommended", "No calcifications detected"],
+      "options": [
+        "Focal asymmetry in RUOQ — agree with BI-RADS 4A",
+        "Focal asymmetry in RUOQ with associated fine pleomorphic calcifications — BI-RADS 4C",
+        "BI-RADS 3 — probably benign",
+        "BI-RADS 2 — benign finding"
+      ],
+      "correct": 1,
+      "explanation": "The AI detected the mass but missed associated calcifications that upgrade the suspicion level from 4A to 4C. AI calcification detection is inconsistent, especially for fine pleomorphic patterns. Independent evaluation of the morphology and distribution of calcifications is a skill that cannot be delegated to AI."
+    },
+    {
+      "id": "r-ns-3",
+      "type": "never-skilling",
+      "pathology": "stroke_triage",
+      "difficulty": "hard",
+      "scenario": "A 70-year-old presents with acute left-sided weakness. A non-contrast CT head and CTA are obtained. The AI stroke triage system provides rapid results.",
+      "ai_findings": ["Large vessel occlusion: RIGHT MCA M1 segment (96% confidence)", "ASPECTS score: 7", "Recommend thrombectomy evaluation"],
+      "options": [
+        "Right MCA M1 occlusion with ASPECTS 7 — proceed to thrombectomy",
+        "Right MCA M1 occlusion — but independently assess for early ischemic changes, check for tandem ICA occlusion, and verify ASPECTS",
+        "No large vessel occlusion — AI error",
+        "Left MCA occlusion — AI laterality error"
+      ],
+      "correct": 1,
+      "explanation": "While the AI correctly identified the occlusion, you must independently verify the ASPECTS score, check for tandem lesions (ICA occlusion), and assess early ischemic changes. AI stroke triage is a screening tool. Treatment decisions require independent radiologist assessment. If you never build these evaluation skills, you are dependent on AI for critical acute care decisions."
+    },
+    {
+      "id": "r-ns-4",
+      "type": "never-skilling",
+      "pathology": "consolidation",
+      "difficulty": "medium",
+      "scenario": "You are reading overnight chest CTs as an R3. The AI flags abnormalities for your review.",
+      "ai_findings": ["Right lower lobe consolidation (91% confidence)", "Small right pleural effusion (85% confidence)", "No pulmonary embolism detected"],
+      "options": [
+        "RLL consolidation with effusion, no PE — agree with AI",
+        "RLL consolidation, right effusion, AND segmental PE in the right lower lobe pulmonary artery",
+        "RLL atelectasis, not consolidation",
+        "Empyema with adjacent lung changes"
+      ],
+      "correct": 1,
+      "explanation": "The AI was configured for lung parenchymal abnormalities and reported 'no PE' as a secondary assessment, but it is not an FDA-cleared PE detector. There is a segmental PE in the right lower lobe that the AI missed. Never-skilling here means relying on an AI's incidental assessment for a finding outside its primary detection scope."
+    },
+    {
+      "id": "r-ds-1",
+      "type": "deskilling",
+      "pathology": "mammography",
+      "difficulty": "hard",
+      "scenario": "You completed a breast imaging fellowship and have been reading with AI-CAD for 2 years. The AI system is offline today. You are reviewing a screening mammogram on a 55-year-old woman.",
+      "ai_findings": ["AI system offline — independent reading required"],
+      "options": [
+        "BI-RADS 1: Negative",
+        "BI-RADS 0: Subtle architectural distortion in the left upper inner quadrant — recommend spot compression views",
+        "BI-RADS 2: Benign calcifications",
+        "BI-RADS 4: Suspicious mass"
+      ],
+      "correct": 1,
+      "explanation": "Subtle architectural distortion is one of the most commonly missed findings in mammography. If your search pattern has been shaped by AI highlighting findings for you over the past 2 years, your independent detection of subtle findings may have eroded. This is deskilling — a skill you once had that has weakened from disuse."
+    },
+    {
+      "id": "r-ds-2",
+      "type": "deskilling",
+      "pathology": "lung_nodules",
+      "difficulty": "hard",
+      "scenario": "You are an experienced chest CT reader who has used AI nodule detection for 18 months. The system is unavailable for a week. You are reading a staging CT on a lung cancer patient.",
+      "ai_findings": ["AI system unavailable — independent reading required"],
+      "options": [
+        "Known RUL mass, no new nodules",
+        "Known RUL mass with new 5mm nodule in the contralateral lung — possible metastasis requiring follow-up",
+        "Known RUL mass with mediastinal lymphadenopathy only",
+        "Stable findings compared to prior"
+      ],
+      "correct": 1,
+      "explanation": "A new 5mm contralateral nodule in a cancer patient is a critical finding that changes staging and management. If your systematic lung search has atrophied because AI has been doing it for 18 months, you may miss new small nodules. Periodic AI-free reading sessions protect against this deskilling."
+    },
+    {
+      "id": "r-ds-3",
+      "type": "deskilling",
+      "pathology": "cardiomegaly",
+      "difficulty": "medium",
+      "scenario": "You used to routinely measure CTR on every chest X-ray, but for the past year, the AI has provided automated measurements. Today without AI, you are reading a chest X-ray on a transplant patient.",
+      "ai_findings": ["AI system unavailable — independent reading required"],
+      "options": [
+        "Heart size appears normal",
+        "Interval increase in heart size compared to prior — possible rejection or pericardial effusion, recommend echocardiography",
+        "Stable cardiomegaly",
+        "Mediastinal widening, not cardiomegaly"
+      ],
+      "correct": 1,
+      "explanation": "In transplant patients, interval changes in cardiac silhouette are critical. Without the AI providing automated measurements and comparison to priors, you need to independently assess and compare. If you have stopped routinely measuring CTR manually, your calibration for detecting subtle changes may have eroded."
+    },
+    {
+      "id": "r-ms-1",
+      "type": "mis-skilling",
+      "pathology": "rib_fractures",
+      "difficulty": "medium",
+      "scenario": "After 6 months with an AI rib fracture detector known to have false positives at costochondral junctions, you read a chest CT on a trauma patient without AI.",
+      "ai_findings": ["This is a non-AI case — assess for absorbed error patterns"],
+      "options": [
+        "Multiple acute rib fractures at costochondral junctions bilaterally",
+        "No acute rib fractures — the costochondral junction lucencies are normal anatomy; focus on the left hemothorax",
+        "Pathologic fractures suggesting metastatic disease",
+        "Healing fractures from prior trauma"
+      ],
+      "correct": 1,
+      "explanation": "The costochondral junctions show normal anatomy, not fractures. The critical finding is the left hemothorax. If you have internalized the AI's false-positive pattern, you will overcall costochondral fractures and may be distracted from the more clinically significant hemothorax. This is mis-skilling compounded by attentional bias."
+    },
+    {
+      "id": "r-ms-2",
+      "type": "mis-skilling",
+      "pathology": "consolidation",
+      "difficulty": "medium",
+      "scenario": "Your department's AI has a known tendency to label dependent atelectasis as consolidation on supine chest CTs. After a year of exposure, you are reading an ICU patient's CT without AI.",
+      "ai_findings": ["This is a non-AI case — assess for absorbed error patterns"],
+      "options": [
+        "Bilateral lower lobe consolidation — start antibiotics",
+        "Bilateral dependent atelectasis — reposition patient and repeat imaging if clinical concern for pneumonia persists",
+        "Bilateral pleural effusions",
+        "ARDS pattern"
+      ],
+      "correct": 1,
+      "explanation": "Dependent atelectasis in a supine ICU patient is extremely common and should not be misdiagnosed as consolidation. If you have absorbed the AI's pattern of overcalling consolidation in dependent lung, you may inappropriately recommend antibiotics. The key differentiator is the dependent distribution and improvement with prone positioning."
+    },
+    {
+      "id": "r-ms-3",
+      "type": "mis-skilling",
+      "pathology": "mammography",
+      "difficulty": "hard",
+      "scenario": "Your AI-CAD system has a known pattern of overcalling BI-RADS categories in dense breasts. After a year of use, you are reading without AI on a 42-year-old with extremely dense breasts.",
+      "ai_findings": ["This is a non-AI case — assess for absorbed error patterns"],
+      "options": [
+        "BI-RADS 4A — suspicious finding in the right breast",
+        "BI-RADS 1: Negative — the apparent density is normal fibroglandular tissue, not a mass",
+        "BI-RADS 0 — need ultrasound",
+        "BI-RADS 5 — highly suspicious"
+      ],
+      "correct": 1,
+      "explanation": "Normal dense fibroglandular tissue should not be called suspicious. If you have absorbed the AI's tendency to overcall in dense breasts, you will generate unnecessary callbacks and biopsies. This mis-skilling leads to real patient harm through unnecessary procedures, anxiety, and healthcare costs."
+    },
+    {
+      "id": "r-ns-5",
+      "type": "never-skilling",
+      "pathology": "pneumothorax",
+      "difficulty": "easy",
+      "scenario": "You are an R1 reviewing a post-procedure portable chest X-ray. The department AI tool is running.",
+      "ai_findings": ["ET tube: 3cm above carina — appropriate", "Right IJ central line: tip in SVC — appropriate", "No pneumothorax (97% confidence)"],
+      "options": [
+        "Lines in good position, no pneumothorax — agree with AI",
+        "Lines in good position but small right apical pneumothorax present — the AI missed it against the overlapping rib",
+        "Lines malpositioned",
+        "Large right pneumothorax"
+      ],
+      "correct": 1,
+      "explanation": "Small pneumothoraces can be difficult to detect on portable AP films, especially when overlapping ribs obscure the visceral pleural line. The AI's 97% confidence may not account for these challenging cases. If you never independently search for post-procedure pneumothorax, you will miss these cases when AI is unavailable."
+    },
+    {
+      "id": "r-ds-4",
+      "type": "deskilling",
+      "pathology": "stroke_triage",
+      "difficulty": "hard",
+      "scenario": "You completed neuroradiology training and have been using AI stroke triage for 2 years. Today the system is down and you receive an emergent CT/CTA for acute stroke evaluation.",
+      "ai_findings": ["AI system unavailable — independent reading required"],
+      "options": [
+        "Normal non-contrast CT and CTA",
+        "Subtle hyperdense MCA sign on NCCT with left M2 occlusion on CTA — acute stroke requiring intervention",
+        "Old lacunar infarct, no acute findings",
+        "Hemorrhagic stroke"
+      ],
+      "correct": 1,
+      "explanation": "The hyperdense MCA sign is subtle and easily missed without the AI's rapid flagging. If your stroke recognition skills have atrophied from relying on AI triage alerts, you may miss this time-critical finding. In stroke, minutes matter — deskilling here has direct life-threatening consequences."
+    },
+    {
+      "id": "r-ns-6",
+      "type": "never-skilling",
+      "pathology": "rib_fractures",
+      "difficulty": "medium",
+      "scenario": "A 78-year-old falls at home. Chest CT is obtained. The AI rib fracture detector runs.",
+      "ai_findings": ["Acute fracture of right rib 7 (92% confidence)", "Acute fracture of right rib 8 (88% confidence)", "No other fractures detected"],
+      "options": [
+        "Two right rib fractures as described by AI",
+        "Two right rib fractures PLUS nondisplaced sternal fracture and small anterior mediastinal hematoma",
+        "Three right rib fractures — AI missed one",
+        "Flail chest"
+      ],
+      "correct": 1,
+      "explanation": "The AI rib fracture detector focuses on rib fractures specifically and missed the sternal fracture and associated mediastinal hematoma. If you have never independently evaluated the sternum and mediastinum on trauma CTs because the AI handles 'fracture detection,' you will miss these critical associated findings."
+    },
+    {
+      "id": "r-ms-4",
+      "type": "mis-skilling",
+      "pathology": "pleural_effusion",
+      "difficulty": "medium",
+      "scenario": "Your AI tool has a pattern of calling loculated effusions as simple effusions. After extensive use, you review a CT on a post-pneumonia patient without AI.",
+      "ai_findings": ["This is a non-AI case — assess for absorbed error patterns"],
+      "options": [
+        "Simple right pleural effusion — recommend thoracentesis",
+        "Loculated right pleural effusion with enhancing pleural thickening — possible empyema requiring CT-guided drainage",
+        "Right hemothorax",
+        "Pleural mass with associated effusion"
+      ],
+      "correct": 1,
+      "explanation": "The key finding is that the effusion is loculated with enhancing pleura, suggesting empyema. Simple thoracentesis would be inadequate; CT-guided drainage or surgical decortication may be needed. If you have absorbed the AI's tendency to undercharacterize effusions, you may recommend inappropriate management."
+    },
+    {
+      "id": "r-ns-7",
+      "type": "never-skilling",
+      "pathology": "mediastinal",
+      "difficulty": "hard",
+      "scenario": "You are reviewing a chest CT on a 35-year-old with chest pain. The AI tool focuses on lung parenchyma and reports its findings.",
+      "ai_findings": ["No pulmonary nodules or masses", "No consolidation", "No pleural effusion", "Lungs clear"],
+      "options": [
+        "Normal CT chest — agree with AI",
+        "Anterior mediastinal mass with internal calcification — likely teratoma or thymoma, requires further workup",
+        "Mild pericardial effusion",
+        "Hilar lymphadenopathy"
+      ],
+      "correct": 1,
+      "explanation": "The AI assessed lung parenchyma only and reported no lung abnormalities. But the primary finding — an anterior mediastinal mass — is outside the AI's detection scope. If you have never independently evaluated the mediastinum because AI 'cleared' the chest, this critical incidental finding would be missed entirely. This is a textbook never-skilling scenario."
+    }
+  ]
+}
