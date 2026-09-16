@@ -122,8 +122,8 @@
 
 .team-intro {
   text-align: center;
-  max-width: 560px;
-  margin: 0 auto 40px;
+  max-width: 660px;
+  margin: 0 auto 12px;
 }
 
 .team-intro h2 {
@@ -137,95 +137,72 @@
   color: var(--gray-400);
 }
 
-.team-showcase {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
+.team-headshot-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  font-style: italic;
+  margin-bottom: 32px;
 }
 
-.team-showcase-card {
+/* Roster table */
+.roster-table {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 32px 28px;
-  width: 260px;
-  text-align: center;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--gray-200);
-  position: relative;
-  transition: box-shadow var(--transition), transform var(--transition);
-}
-
-.team-showcase-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-}
-
-.team-showcase-photo {
-  width: 140px;
-  height: 180px;
-  border-radius: var(--radius);
   overflow: hidden;
-  margin: 0 auto 18px;
-  background: var(--gray-100);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--gray-100);
+  border: 1px solid var(--gray-200);
 }
 
-.team-showcase-photo-placeholder {
-  color: var(--gray-400);
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.team-showcase-role {
-  display: inline-block;
-  padding: 3px 12px;
-  border-radius: 10px;
-  font-size: 0.65rem;
+.roster-table thead th {
+  background: var(--primary);
+  color: var(--white);
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+  padding: 14px 20px;
+  text-align: left;
 }
 
-.team-showcase-role--chair {
-  background: var(--accent-light);
-  color: var(--accent-dark);
+.roster-table tbody tr {
+  transition: background var(--transition);
 }
 
-.team-showcase-role--lead {
-  background: var(--mint-light);
-  color: var(--mint-dark);
+.roster-table tbody tr:hover {
+  background: #f0f5fc;
 }
 
-.team-showcase-role--member {
-  background: var(--gray-100);
-  color: var(--gray-400);
+.roster-table tbody tr + tr td {
+  border-top: 1px solid var(--gray-100);
 }
 
-.team-showcase-name {
-  font-size: 1.1rem;
+.roster-table td {
+  padding: 14px 20px;
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.roster-name {
   font-weight: 700;
   color: var(--gray-900);
-  margin-bottom: 4px;
 }
 
-.team-showcase-title {
-  font-size: 0.82rem;
-  color: var(--gray-600);
-  line-height: 1.4;
-}
-
-.team-showcase-inst {
-  font-size: 0.72rem;
+.roster-note {
+  display: block;
+  font-size: 0.75rem;
   color: var(--gray-400);
-  margin-top: 6px;
-  font-weight: 500;
+  margin-top: 2px;
+  font-style: italic;
 }
+
 
 /* Contributing Institutions (below team) */
 .section--institutions {
@@ -300,8 +277,9 @@
   .about-hero-inner { grid-template-columns: 1fr; gap: 28px; }
   .about-hero-text h1 { font-size: 1.8rem; }
   .about-hero-logo-item img { height: 100px; }
-  .team-showcase-card { width: 220px; }
-  .team-showcase-photo { width: 120px; height: 155px; }
+  .roster-table { font-size: 0.82rem; }
+  .roster-table thead th,
+  .roster-table td { padding: 10px 12px; }
   .institution-grid { gap: 32px; }
   .institution-card { width: 160px; }
   .institution-card img { height: 80px; }
@@ -339,31 +317,92 @@
   <div class="section-inner">
     <div class="team-intro">
       <h2 class="mt-0">Committee Members</h2>
-      <!-- <p>The people behind this resource</p> -->
+      <p>AAR/RRA Committee on Data Science &amp; AI</p>
     </div>
-    <div class="team-showcase">
+    <div class="team-headshot-note">Headshots will be added later.</div>
 
-      <div class="team-showcase-card">
-        <div class="team-showcase-photo">
-          <div class="team-showcase-photo-placeholder">Photo</div>
-        </div>
-        <span class="team-showcase-role team-showcase-role--chair">Chair</span>
-        <div class="team-showcase-name">Dr. Florence Doo</div>
-        <div class="team-showcase-title">MD</div>
-        <div class="team-showcase-inst">UMB</div>
-      </div>
+    <table class="roster-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Institution / Position</th>
+        </tr>
+      </thead>
+      <tbody>
 
-      <div class="team-showcase-card">
-        <div class="team-showcase-photo">
-          <div class="team-showcase-photo-placeholder">Photo</div>
-        </div>
-        <span class="team-showcase-role team-showcase-role--lead">Lead Developer</span>
-        <div class="team-showcase-name">Shinjer Li</div>
-        <div class="team-showcase-title">M2 Medical Student</div>
-        <div class="team-showcase-inst">EVMS at ODU</div>
-      </div>
+        <tr>
+          <td><span class="roster-name">Flo Doo</span></td>
+          <td>Chair</td>
+          <td>Univ. of Maryland Institute for Health Computing &mdash; Assistant Prof &amp; Co-Lead of AI-Enabled Medical Imaging, Center for Applied AI (CA2i)</td>
+        </tr>
 
-    </div>
+        <tr>
+          <td><span class="roster-name">Katherine Andriole, PhD</span></td>
+          <td>Member, TBD</td>
+          <td>UCLA (David Geffen School of Medicine) &mdash; Associate Dean for Health AI Strategy and Innovation; Director, UCLA Center for AI and SMART Health; Professor of Radiological Sciences</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Peter Chang, MD</span></td>
+          <td>Member, TBD</td>
+          <td>UC Irvine &mdash; Co-Director, Center for AI in Diagnostic Medicine</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Lars Grimm, MD, MHS</span></td>
+          <td>Member, TBD</td>
+          <td>Duke University &mdash; Associate Professor of Radiology</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Marta Heilbrun, MD</span></td>
+          <td>Member, TBD</td>
+          <td>Intermountain Healthcare &mdash; Associate Medical Director, Imaging Services Quality &amp; Patient Safety</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Elizabeth Krupinski, PhD</span></td>
+          <td>Member, TBD</td>
+          <td>Emory University &mdash; Vice Chair for Research, Radiology</td>
+        </tr>
+
+        <tr>
+          <td>
+            <span class="roster-name">Michail Klontzas, MD, PhD</span>
+            <span class="roster-note">International member; EuSoMII leader</span>
+          </td>
+          <td>Member, TBD</td>
+          <td>University of Crete (School of Medicine, Dept. of Radiology); also affiliated with Karolinska Institute</td>
+        </tr>
+
+        <tr>
+          <td>
+            <span class="roster-name">Raisa Amiruddin, MBBS</span>
+            <span class="roster-note">Trainee member; upcoming resident</span>
+          </td>
+          <td>Member, TBD</td>
+          <td>Children&rsquo;s Hospital of Philadelphia (CHOP) Research Institute &mdash; Radiology Research Scholar, Global Radiology Outreach and Education</td>
+        </tr>
+
+        <tr>
+          <td>
+            <span class="roster-name">Shinjer Li</span>
+            <span class="roster-note">Trainee member; medical student, M2</span>
+          </td>
+          <td>Member, TBD</td>
+          <td>Eastern Virginia Medical School &mdash; Medical Student (Class of 2029)</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Nadja Kadom, MD</span></td>
+          <td>Observing / Guest</td>
+          <td>Emory University / CHOA &mdash; Director of Pediatric Neuroradiology (President of AAR RRA)</td>
+        </tr>
+
+      </tbody>
+    </table>
+
   </div>
 </section>
 
@@ -383,12 +422,32 @@
         <div class="institution-card-name">Radiology Research Alliance</div>
       </div>
       <div class="institution-card">
-        <div class="institution-card-placeholder">EVMS<br>Logo</div>
-        <div class="institution-card-name">Eastern Virginia Medical School</div>
+        <div class="institution-card-placeholder">UCLA<br>Logo</div>
+        <div class="institution-card-name">UCLA David Geffen School of Medicine</div>
       </div>
       <div class="institution-card">
-        <div class="institution-card-placeholder">UMB<br>Logo</div>
-        <div class="institution-card-name">UMB</div>
+        <div class="institution-card-placeholder">UCI<br>Logo</div>
+        <div class="institution-card-name">UC Irvine</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">Duke<br>Logo</div>
+        <div class="institution-card-name">Duke University</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">IHC<br>Logo</div>
+        <div class="institution-card-name">Intermountain Healthcare</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">Emory<br>Logo</div>
+        <div class="institution-card-name">Emory University</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">UoC<br>Logo</div>
+        <div class="institution-card-name">University of Crete</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">CHOP<br>Logo</div>
+        <div class="institution-card-name">Children&rsquo;s Hospital of Philadelphia</div>
       </div>
     </div>
   </div>
