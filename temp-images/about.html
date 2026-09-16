@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us &mdash; ATLAS</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ═══════════════════════════════════════════════
+   ABOUT PAGE
+   Edit this color to change the hero background.
+   Current: slightly darker than the homepage
+   About Us button green (#059669).
+   ═══════════════════════════════════════════════ */
+:root {
+  --about-hero-bg: #2E6B9E;
+}
+
+/* Hero */
+.about-hero {
+  background: var(--about-hero-bg);
+  color: var(--white);
+  padding: 88px 40px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -60px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+}
+
+.about-hero::after {
+  content: '';
+  position: absolute;
+  left: 15%;
+  bottom: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.03) 0%, transparent 70%);
+}
+
+.about-hero-inner {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.about-hero-text h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 4px;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.about-hero-text .hero-acronym {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.about-hero-text p {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.75;
+  font-style: italic;
+  margin: 0;
+  max-width: 440px;
+}
+
+/* Hero right — AAR on top, RRA below */
+.about-hero-logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.about-hero-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-hero-logo-item img {
+  height: 140px;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+
+.about-hero-logo-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+}
+
+/* Team */
+.section--team {
+  background: linear-gradient(180deg, #E8F0F8 0%, #F2F6FB 100%);
+}
+
+.team-intro {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 12px;
+}
+
+.team-intro h2 {
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+  color: var(--primary);
+}
+
+.team-intro p {
+  font-size: 0.88rem;
+  color: var(--gray-400);
+}
+
+.team-headshot-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  font-style: italic;
+  margin-bottom: 32px;
+}
+
+/* Roster table */
+.roster-table {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.roster-table thead th {
+  background: var(--primary);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 20px;
+  text-align: left;
+}
+
+.roster-table tbody tr {
+  transition: background var(--transition);
+}
+
+.roster-table tbody tr:hover {
+  background: #f0f5fc;
+}
+
+.roster-table tbody tr + tr td {
+  border-top: 1px solid var(--gray-100);
+}
+
+.roster-table td {
+  padding: 14px 20px;
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.roster-name {
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.roster-note {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+
+/* Contributing Institutions (below team) */
+.section--institutions {
+  background: var(--white);
+}
+
+.institutions-intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.institutions-intro h2 {
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+  color: var(--primary);
+}
+
+.institutions-intro p {
+  font-size: 0.88rem;
+  color: var(--gray-400);
+}
+
+.institution-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.institution-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+}
+
+.institution-card img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.institution-card-placeholder {
+  width: 120px;
+  height: 100px;
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.institution-card-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .about-hero { padding: 56px 20px 48px; }
+  .about-hero-inner { grid-template-columns: 1fr; gap: 28px; }
+  .about-hero-text h1 { font-size: 1.8rem; }
+  .about-hero-logo-item img { height: 100px; }
+  .roster-table { font-size: 0.82rem; }
+  .roster-table thead th,
+  .roster-table td { padding: 10px 12px; }
+  .institution-grid { gap: 32px; }
+  .institution-card { width: 160px; }
+  .institution-card img { height: 80px; }
+  .institution-card-placeholder { width: 100px; height: 80px; }
+}
+</style>
+</head>
+<body>
+
+<div class="about-hero">
+  <div class="about-hero-inner">
+    <div class="about-hero-text">
+      <h1>About Us</h1>
+      <div class="hero-acronym">RAISE &mdash; Radiology AI Skills & Education </div>
+      <p>
+        An educational resource developed by the Committee on Data Science &amp; AI
+        of the AAR/RRA to help trainees navigate the integration of AI into radiology practice.
+      </p>
+    </div>
+    <div class="about-hero-logos">
+      <div class="about-hero-logo-item">
+        <img src="images/aar-logo.jpg" alt="Association of Academic Radiology">
+        <div class="about-hero-logo-label">Association of Academic Radiology</div>
+      </div>
+      <div class="about-hero-logo-item">
+        <img src="images/rra-logo.webp" alt="Radiology Research Alliance">
+        <div class="about-hero-logo-label">Radiology Research Alliance</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Team Section -->
+<section class="section section--team">
+  <div class="section-inner">
+    <div class="team-intro">
+      <h2 class="mt-0">Committee Members</h2>
+      <p>AAR/RRA Committee on Data Science &amp; AI</p>
+    </div>
+    <div class="team-headshot-note">Headshots will be added later.</div>
+
+    <table class="roster-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Institution / Position</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><span class="roster-name">Flo Doo</span></td>
+          <td>Chair</td>
+          <td>Univ. of Maryland Institute for Health Computing &mdash; Assistant Prof &amp; Co-Lead of AI-Enabled Medical Imaging, Center for Applied AI (CA2i)</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Katherine Andriole, PhD</span></td>
+          <td>Member, TBD</td>
+          <td>UCLA (David Geffen School of Medicine) &mdash; Associate Dean for Health AI Strategy and Innovation; Director, UCLA Center for AI and SMART Health; Professor of Radiological Sciences</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Peter Chang, MD</span></td>
+          <td>Member, TBD</td>
+          <td>UC Irvine &mdash; Co-Director, Center for AI in Diagnostic Medicine</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Lars Grimm, MD, MHS</span></td>
+          <td>Member, TBD</td>
+          <td>Duke University &mdash; Associate Professor of Radiology</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Marta Heilbrun, MD</span></td>
+          <td>Member, TBD</td>
+          <td>Intermountain Healthcare &mdash; Associate Medical Director, Imaging Services Quality &amp; Patient Safety</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Elizabeth Krupinski, PhD</span></td>
+          <td>Member, TBD</td>
+          <td>Emory University &mdash; Vice Chair for Research, Radiology</td>
+        </tr>
+
+        <tr>
+          <td>
+            <span class="roster-name">Michail Klontzas, MD, PhD</span>
+            <span class="roster-note">International member; EuSoMII leader</span>
+          </td>
+          <td>Member, TBD</td>
+          <td>University of Crete (School of Medicine, Dept. of Radiology); also affiliated with Karolinska Institute</td>
+        </tr>
+
+        <tr>
+          <td>
+            <span class="roster-name">Raisa Amiruddin, MBBS</span>
+            <span class="roster-note">Trainee member; upcoming resident</span>
+          </td>
+          <td>Member, TBD</td>
+          <td>Children&rsquo;s Hospital of Philadelphia (CHOP) Research Institute &mdash; Radiology Research Scholar, Global Radiology Outreach and Education</td>
+        </tr>
+
+        <tr>
+          <td>
+            <span class="roster-name">Shinjer Li</span>
+            <span class="roster-note">Trainee member; medical student, M2</span>
+          </td>
+          <td>Member, TBD</td>
+          <td>Eastern Virginia Medical School &mdash; Medical Student (Class of 2029)</td>
+        </tr>
+
+        <tr>
+          <td><span class="roster-name">Nadja Kadom, MD</span></td>
+          <td>Observing / Guest</td>
+          <td>Emory University / CHOA &mdash; Director of Pediatric Neuroradiology (President of AAR RRA)</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</section>
+
+<!-- Contributing Institutions -->
+<section class="section section--institutions">
+  <div class="section-inner">
+    <div class="institutions-intro">
+      <h2 class="mt-0">Contributing Institutions</h2>
+    </div>
+    <div class="institution-grid">
+      <div class="institution-card">
+        <img src="images/aar-logo.jpg" alt="AAR">
+        <div class="institution-card-name">Association of Academic Radiology</div>
+      </div>
+      <div class="institution-card">
+        <img src="images/rra-logo.webp" alt="RRA">
+        <div class="institution-card-name">Radiology Research Alliance</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">UCLA<br>Logo</div>
+        <div class="institution-card-name">UCLA David Geffen School of Medicine</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">UCI<br>Logo</div>
+        <div class="institution-card-name">UC Irvine</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">Duke<br>Logo</div>
+        <div class="institution-card-name">Duke University</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">IHC<br>Logo</div>
+        <div class="institution-card-name">Intermountain Healthcare</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">Emory<br>Logo</div>
+        <div class="institution-card-name">Emory University</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">UoC<br>Logo</div>
+        <div class="institution-card-name">University of Crete</div>
+      </div>
+      <div class="institution-card">
+        <div class="institution-card-placeholder">CHOP<br>Logo</div>
+        <div class="institution-card-name">Children&rsquo;s Hospital of Philadelphia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/shared.js"></script>
+</body>
+</html>
