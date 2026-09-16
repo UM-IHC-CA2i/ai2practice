@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research 1: Setting Up Your AI Research Environment &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+.les-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 24px 0;
+}
+.les-step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0D9488;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.les-step-body {
+  flex: 1;
+  min-width: 0;
+}
+.les-step-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 6px;
+}
+.les-step-body p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin: 0 0 8px;
+}
+.les-step-body ol, .les-step-body ul {
+  padding-left: 20px;
+  margin: 6px 0 0;
+}
+.les-step-body li {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.les-code {
+  display: inline;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: #0D9488;
+}
+.les-time-est {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #CCFBF1;
+  color: #0D9488;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.les-prereq {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid #0D9488;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.les-prereq-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0D9488;
+  margin-bottom: 8px;
+}
+.les-prereq ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.les-prereq li {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.les-deliverable {
+  background: var(--offwhite);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.les-deliverable-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.les-deliverable ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.les-deliverable li {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.les-deliverable li strong {
+  color: var(--gray-900);
+}
+.les-why {
+  background: #F0FDFA;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 12px 0 0;
+}
+.les-why-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0D9488;
+  margin-bottom: 4px;
+}
+.les-why p {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #0D9488;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Research 1 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #0D9488;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">R1</div>
+    <div>
+      <h1>Setting Up Your AI Research Environment</h1>
+      <p>GitHub, Google Colab, Python, and your first data analysis</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <!-- ── Overview ── -->
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <div class="les-time-est">Estimated time: 45&ndash;60 minutes</div>
+    <p>
+      Before you can evaluate an AI model or conduct research on AI in radiology, you need to know how to work with data programmatically. Spreadsheets work for small tasks, but AI research requires tools that can handle large datasets, reproduce analyses exactly, and share work with collaborators.
+    </p>
+    <p>
+      In this module, you will set up a research environment used by AI researchers worldwide: <strong>GitHub</strong> for version control and collaboration, <strong>Google Colab</strong> for running code in the cloud, and <strong>Python</strong> for data analysis. By the end, you will have analyzed a real-format radiology AI dataset and committed your work to your own GitHub repository.
+    </p>
+    <p>
+      No prior programming experience is required. Every step is guided.
+    </p>
+  </section>
+
+  <!-- ── Prerequisites ── -->
+  <div class="les-prereq">
+    <div class="les-prereq-label">What you need before starting</div>
+    <ul>
+      <li>A computer with internet access and a web browser (Chrome recommended)</li>
+      <li>A personal email address (for creating accounts)</li>
+      <li>Completion of Lesson 1 (the three AI competency risks)</li>
+    </ul>
+  </div>
+
+  <!-- ── Step 1: GitHub ── -->
+  <section class="les-section" id="step-1">
+    <h2>Walkthrough</h2>
+
+    <div class="les-step">
+      <div class="les-step-num">1</div>
+      <div class="les-step-body">
+        <h3>Create a GitHub Account</h3>
+        <p>
+          GitHub is the standard platform for sharing code and data in research. Your GitHub account serves as a portfolio of your computational work, and every change you make is tracked with timestamps and your username.
+        </p>
+        <ol>
+          <li>Go to <a href="https://github.com/join" target="_blank" rel="noopener">github.com/join</a></li>
+          <li>Create an account with your preferred email</li>
+          <li>Choose a professional username (you may use this on publications or CVs)</li>
+          <li>Complete the email verification</li>
+        </ol>
+        <p>If you already have a GitHub account, skip to Step 2.</p>
+        <div class="les-why">
+          <div class="les-why-label">Why this matters for AI research</div>
+          <p>Every published AI study links to a GitHub repository containing code and data. Learning GitHub now means you can access, reproduce, and build on published research rather than relying on others' summaries.</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- ── Step 2: Fork ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">2</div>
+      <div class="les-step-body">
+        <h3>Fork the Starter Repository</h3>
+        <p>
+          Forking creates your own copy of a repository. Changes you make to your fork do not affect the original, so you can experiment freely.
+        </p>
+        <ol>
+          <li>Go to the starter repository: <a href="https://github.com/UM-IHC-CA2i/Bootcamp-AI-for-Medical-Imaging" target="_blank" rel="noopener">github.com/UM-IHC-CA2i/Bootcamp-AI-for-Medical-Imaging</a></li>
+          <li>Click the <strong>Fork</strong> button in the top-right corner</li>
+          <li>On the "Create a new fork" page, keep the defaults and click <strong>Create fork</strong></li>
+          <li>You now have your own copy at <span class="les-code">github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+        </ol>
+        <p>Your fork is linked to your account and timestamped, creating a verifiable record of your work.</p>
+        <div class="les-why">
+          <div class="les-why-label">Why this matters for AI research</div>
+          <p>Forking is how researchers build on each others' work. When a paper publishes their AI model code, you fork it to run their experiments yourself. This is the foundation of reproducible science.</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- ── Step 3: Colab ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">3</div>
+      <div class="les-step-body">
+        <h3>Open the Notebook in Google Colab</h3>
+        <p>
+          Google Colab is a free, cloud-based environment for running Python code. It requires no installation &mdash; everything runs in your browser. It is the same tool used by researchers at Google, Stanford, and major AI labs.
+        </p>
+        <ol>
+          <li>Go to <a href="https://colab.research.google.com" target="_blank" rel="noopener">colab.research.google.com</a> (sign in with a Google account if prompted)</li>
+          <li>Click <strong>Open notebook</strong></li>
+          <li>Select the <strong>GitHub</strong> tab</li>
+          <li>Paste your fork URL: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click <span class="les-code">lesson-notebooks/Research_Module_1.ipynb</span> to open it</li>
+        </ol>
+        <p>
+          You should now see the notebook with code cells and instructions. Each cell can be run independently by clicking the play button or pressing <span class="les-code">Shift + Enter</span>.
+        </p>
+      </div>
+    </div>
+
+  <!-- ── Step 4: Run the notebook ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">4</div>
+      <div class="les-step-body">
+        <h3>Work Through the Notebook</h3>
+        <p>
+          The notebook teaches you Python from scratch and then uses it to explore a dataset of 60 radiology studies. Work through it in order &mdash; each section builds on the last.
+        </p>
+        <p><strong>Part 1 &mdash; Python Basics:</strong></p>
+        <ul>
+          <li>Variables and types (strings, numbers, booleans)</li>
+          <li>Lists and how to access items</li>
+          <li>For loops to repeat actions</li>
+          <li>Functions to write reusable code</li>
+          <li>Conditionals (if/else) for decisions</li>
+        </ul>
+        <p><strong>Part 2 &mdash; Loading Data:</strong></p>
+        <ul>
+          <li><strong>Load the dataset</strong> directly from your GitHub fork</li>
+          <li><strong>Explore it</strong> with <span class="les-code">.head()</span>, <span class="les-code">.shape</span>, and <span class="les-code">value_counts()</span></li>
+          <li><strong>Create a bar chart</strong> showing studies by modality</li>
+        </ul>
+        <p>
+          <strong>Important:</strong> In the cell that loads data, replace <span class="les-code">YOUR-USERNAME</span> with your actual GitHub username.
+        </p>
+      </div>
+    </div>
+
+  <!-- ── Step 5: Your Turn ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">5</div>
+      <div class="les-step-body">
+        <h3>Complete the &ldquo;Your Turn&rdquo; Tasks</h3>
+        <p>
+          Part 3 of the notebook contains four short tasks that apply what you learned. Each produces unique output based on your choices:
+        </p>
+        <ul>
+          <li><strong>Task 1:</strong> Create variables with your name and favorite modality</li>
+          <li><strong>Task 2:</strong> Write a for loop to print body regions</li>
+          <li><strong>Task 3:</strong> Use <span class="les-code">value_counts()</span> to count AI-flagged studies</li>
+          <li><strong>Task 4:</strong> Create a bar chart of studies by body region</li>
+        </ul>
+        <div class="les-why">
+          <div class="les-why-label">Why this matters for AI research</div>
+          <p>These basic skills &mdash; storing values, looping through data, counting categories, and making charts &mdash; are the building blocks of every AI research analysis. In the next module, you will use them to calculate real evaluation metrics.</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- ── Step 6: Download ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">6</div>
+      <div class="les-step-body">
+        <h3>Download Your Completed Notebook</h3>
+        <p>
+          Once you have completed all four tasks and run the completion record cell at the bottom, download your notebook from Colab:
+        </p>
+        <ol>
+          <li>In Colab, go to <strong>File &rarr; Download &rarr; Download .ipynb</strong></li>
+          <li>The file will save to your computer's Downloads folder</li>
+        </ol>
+      </div>
+    </div>
+
+  <!-- ── Step 7: Upload ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">7</div>
+      <div class="les-step-body">
+        <h3>Upload and Commit to GitHub</h3>
+        <p>
+          Now upload your completed notebook to your forked repository on GitHub:
+        </p>
+        <ol>
+          <li>Go to your forked repository: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click the <strong>Code</strong> tab at the top of the page</li>
+          <li>Click <strong>Add file</strong>, then select <strong>Upload files</strong></li>
+          <li>Drag and drop your downloaded <span class="les-code">.ipynb</span> file into the upload area</li>
+          <li>In the commit message box, type: <span class="les-code">Completed Research Module 1</span></li>
+          <li>Make sure <strong>&ldquo;Commit directly to the main branch&rdquo;</strong> is selected</li>
+          <li>Click <strong>Commit changes</strong></li>
+        </ol>
+        <p>
+          Your commit is now permanently recorded on GitHub with your username, timestamp, and the exact changes you made.
+        </p>
+      </div>
+    </div>
+
+  <!-- ── Step 8: PR ── -->
+
+    <div class="les-step">
+      <div class="les-step-num">8</div>
+      <div class="les-step-body">
+        <h3>Submitting Your Work (After All Modules)</h3>
+        <p>
+          After you have completed and uploaded <strong>all 5 research modules</strong>, submit your work for review by opening a pull request:
+        </p>
+        <ol>
+          <li>Go to your fork: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click the <strong>Contribute</strong> button near the top of the page</li>
+          <li>Click <strong>Open pull request</strong></li>
+          <li>Add a title (e.g., <span class="les-code">Completed all research modules</span>) and click <strong>Create pull request</strong></li>
+        </ol>
+        <p>
+          This sends your work to the instructor for review. If you need to withdraw your submission, you can close the pull request at any time from the same page.
+        </p>
+        <div class="les-why">
+          <div class="les-why-label">Why pull requests matter</div>
+          <p>Pull requests are how researchers and developers propose changes for review. Your instructor can see exactly what you changed, leave comments, and verify your work &mdash; all in one place. This is the same process used in open-source software and collaborative research.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Deliverables ── -->
+  <section class="les-section" id="deliverables">
+    <h2>What to Submit</h2>
+    <div class="les-deliverable">
+      <div class="les-deliverable-label">Verification checklist</div>
+      <ol>
+        <li><strong>GitHub fork URL</strong> &mdash; Share the link to your forked repository (e.g., <span class="les-code">github.com/your-username/Bootcamp-AI-for-Medical-Imaging</span>)</li>
+        <li><strong>Completed notebook</strong> &mdash; Your fork should contain the notebook with all cells executed and all four "Your Turn" tasks completed</li>
+        <li><strong>Commit history</strong> &mdash; At least one commit showing your completed work, with your username and timestamp</li>
+        <li><strong>Checkpoint quiz</strong> &mdash; Pass the checkpoint quiz below to unlock the next module</li>
+      </ol>
+    </div>
+
+    <div class="les-teaching">
+      <div class="les-teaching-label">How your work is verified</div>
+      <p>
+        Your instructor will review your pull request on GitHub, which contains all your uploaded notebooks. Each commit is tied to your GitHub account and timestamped, creating an authentic record. You must also pass the checkpoint quiz below, which includes questions that can only be answered by running the notebook.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Key Concepts ── -->
+  <section class="les-section" id="concepts">
+    <h2>Key Concepts Introduced</h2>
+
+    <div class="les-definition">
+      <p><strong>Version Control (Git/GitHub)</strong> &mdash; A system that tracks every change to a set of files over time. Each change is recorded as a "commit" with a timestamp, author, and description. This allows researchers to reproduce any prior state of their work and collaborate without overwriting each other's changes.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Jupyter Notebook</strong> &mdash; An interactive document that combines code, output, and text in a single file. Researchers use notebooks to document their analysis step-by-step, making it easy for others to follow and reproduce their work. Google Colab is a cloud-hosted version of Jupyter.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Variable</strong> &mdash; A named container that stores a value. In Python, you create one with <code>x = 5</code>. Variables can hold numbers, text, lists, or more complex data structures. They are the basic building blocks of any program.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>pandas DataFrame</strong> &mdash; A table of data in Python, similar to a spreadsheet. Each column has a name, each row is a record. Commands like <code>.head()</code>, <code>.shape</code>, and <code>.value_counts()</code> let you quickly understand what the data contains without scrolling through every row.</p>
+    </div>
+  </section>
+
+  <!-- ── Looking Ahead ── -->
+  <section class="les-section les-intro" id="next">
+    <h2>Looking Ahead</h2>
+    <p>
+      You now have a working research environment and foundational Python skills. In <strong>Research Module 2</strong>, you will use these tools to perform real data science &mdash; calculating AI accuracy metrics, building charts, and evaluating how well an AI system performs across different imaging modalities.
+    </p>
+  </section>
+
+  <!-- ── Checkpoint Quiz ── -->
+  <section id="ckpt-section">
+    <div class="ckpt-section-header">
+      <div class="ckpt-lock-icon">&#10003;</div>
+      <h2>Checkpoint Quiz</h2>
+    </div>
+    <p class="ckpt-section-desc">
+      Answer these questions to unlock the next module. Some questions require answers from your notebook &mdash; you must complete the notebook to answer them.
+    </p>
+
+    <!-- Q1: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="0" data-answer="60" data-tolerance="0">
+      <div class="ckpt-q-num">Question 1 of 5</div>
+      <div class="ckpt-q-text">How many rows (studies) are in the dataset? Check your notebook's <code>df.shape</code> output.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        The dataset contains <strong>60</strong> rows. <code>df.shape</code> returns <code>(60, 7)</code>, meaning 60 rows and 7 columns.
+      </div>
+    </div>
+
+    <!-- Q2: MC concept -->
+    <div class="ckpt-question" data-type="mc" data-q="1" data-correct="2">
+      <div class="ckpt-q-num">Question 2 of 5</div>
+      <div class="ckpt-q-text">What does "forking" a GitHub repository do?</div>
+      <button class="quiz-option" data-idx="0">Downloads the files to your computer</button>
+      <button class="quiz-option" data-idx="1">Deletes the original repository</button>
+      <button class="quiz-option" data-idx="2">Creates your own copy linked to your account</button>
+      <button class="quiz-option" data-idx="3">Sends a message to the repository owner</button>
+      <div class="quiz-explanation">
+        <strong>Forking creates your own copy</strong> of a repository under your GitHub account. Changes to your fork do not affect the original, but your fork retains a link to it.
+      </div>
+    </div>
+
+    <!-- Q3: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="2" data-answer="4" data-tolerance="0">
+      <div class="ckpt-q-num">Question 3 of 5</div>
+      <div class="ckpt-q-text">How many imaging modalities are in the dataset? Check the output of <code>df['modality'].value_counts()</code>.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        There are <strong>4</strong> modalities: CR (X-ray), CT, MR, and US (Ultrasound).
+      </div>
+    </div>
+
+    <!-- Q4: MC concept -->
+    <div class="ckpt-question" data-type="mc" data-q="3" data-correct="1">
+      <div class="ckpt-q-num">Question 4 of 5</div>
+      <div class="ckpt-q-text">In Python, what does <code>len(modalities)</code> return if <code>modalities = ['CR', 'CT', 'MR', 'US']</code>?</div>
+      <button class="quiz-option" data-idx="0">US</button>
+      <button class="quiz-option" data-idx="1">4</button>
+      <button class="quiz-option" data-idx="2">0</button>
+      <button class="quiz-option" data-idx="3">An error</button>
+      <div class="quiz-explanation">
+        <code>len()</code> returns the <strong>number of items</strong> in a list. This list has 4 items, so <code>len(modalities)</code> returns <strong>4</strong>.
+      </div>
+    </div>
+
+    <!-- Q5: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="4" data-answer="7" data-tolerance="0">
+      <div class="ckpt-q-num">Question 5 of 5</div>
+      <div class="ckpt-q-text">How many columns does the dataset have? Check your notebook's <code>df.shape</code> output.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        <code>df.shape</code> returns <code>(60, 7)</code>. The second number is the column count: <strong>7</strong> columns (study_id, modality, body_region, finding, ai_flagged, ai_confidence, radiologist_confirmed).
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="ckpt-submit-row">
+      <button id="ckpt-submit-btn" disabled>Check Answers</button>
+      <span id="ckpt-submit-hint">Answer all 5 questions to check.</span>
+    </div>
+
+    <!-- Results -->
+    <div id="ckpt-results">
+      <div class="quiz-score" id="ckpt-score"></div>
+      <div class="quiz-score-label"><span id="ckpt-correct-count"></span> of <span id="ckpt-total-count"></span> correct</div>
+      <div class="quiz-status" id="ckpt-status"></div>
+      <div id="ckpt-pass-msg">You have passed the checkpoint. The next module is now unlocked.</div>
+      <div id="ckpt-retry-section">
+        <p style="font-size:0.85rem; color:var(--gray-500); margin-bottom:12px;">Review the explanations above, then try again. You need 80% to pass.</p>
+        <button id="ckpt-retry-btn">Try Again</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="lesson-5.html" class="btn btn-outline" id="les-prev">&larr; Back to Clinical</a>
+  <a href="research-2.html" class="btn btn-accent" id="les-next">Next: Data Science &amp; Evaluation &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+<script src="../js/checkpoint.js"></script>
+<script>
+CheckpointQuiz.init({
+  lessonKey: 'research-1',
+  passThreshold: 0.8
+});
+</script>
+</body>
+</html>

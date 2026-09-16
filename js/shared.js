@@ -3,8 +3,9 @@
 
   var NAV_ITEMS = [
     { href: 'index.html', label: 'Home' },
-    { href: 'students.html', label: 'Medical Students' },
-    { href: 'residents.html', label: 'Residents' },
+    { href: 'course-select.html?track=student', label: 'Medical Students' },
+    { href: 'course-select.html?track=resident', label: 'Residents' },
+    { href: 'research.html', label: 'AI Research' },
     { href: 'tracker.html', label: 'AI Tracker' },
     { href: 'about.html', label: 'About Us' }
   ];
@@ -28,11 +29,15 @@
         '<ul class="nav-links">' +
           NAV_ITEMS.map(function(item) {
             var isActive = cur === item.href;
-            if (!isActive && item.href === 'students.html') {
-              isActive = cur === 'student-cases.html' || cur === 'student-assessment.html';
+            var search = window.location.search || '';
+            if (!isActive && item.href === 'course-select.html?track=student') {
+              isActive = cur === 'students.html' || cur === 'student-cases.html' || cur === 'student-assessment.html' || (cur === 'course-select.html' && search.indexOf('track=student') !== -1);
             }
-            if (!isActive && item.href === 'residents.html') {
-              isActive = cur === 'resident-cases.html' || cur === 'resident-assessment.html';
+            if (!isActive && item.href === 'course-select.html?track=resident') {
+              isActive = cur === 'residents.html' || cur === 'resident-cases.html' || cur === 'resident-assessment.html' || (cur === 'course-select.html' && search.indexOf('track=resident') !== -1);
+            }
+            if (!isActive && item.href === 'research.html') {
+              isActive = cur === 'research.html' || cur.indexOf('research-') === 0;
             }
             if (!isActive && item.href === 'about.html') {
               isActive = cur === 'about.html';
@@ -68,6 +73,7 @@
           '<li><a href="index.html">Home</a></li>' +
           '<li><a href="students.html">Students</a></li>' +
           '<li><a href="residents.html">Residents</a></li>' +
+          '<li><a href="research.html">AI Research</a></li>' +
           '<li><a href="tracker.html">AI Tracker</a></li>' +
           '<li><a href="about.html">About Us</a></li>' +
         '</ul>' +

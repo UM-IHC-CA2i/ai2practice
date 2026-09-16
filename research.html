@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Research &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.res-hero {
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 60%, #065F53 100%);
+  color: #fff;
+  padding: 88px 40px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.res-hero::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -60px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+}
+.res-hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.res-hero-inner h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.res-hero-inner p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.res-content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.res-content h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 12px;
+}
+
+.res-content p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+.res-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 32px 0 40px;
+}
+
+.res-module {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #F0FDFA;
+  border: 1px solid #CCFBF1;
+  border-left: 3px solid #0D9488;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+}
+
+.res-module-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #0D9488;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.res-module-info h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F766E;
+  margin: 0 0 3px;
+}
+
+.res-module-info p {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.res-involve {
+  background: var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin: 40px 0;
+}
+
+.res-involve h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 10px;
+}
+
+.res-involve p {
+  font-size: 0.9rem;
+  margin: 0 0 12px;
+}
+
+.res-involve ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.res-involve li {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.res-involve a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.res-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+</style>
+</head>
+<body>
+
+<div class="res-hero">
+  <div class="res-hero-inner">
+    <h1>AI Research Track</h1>
+    <p>A hands-on path for building AI research skills in radiology</p>
+  </div>
+</div>
+
+<div class="res-content">
+
+  <h2>What Is the Research Track?</h2>
+  <p>
+    The research track is an optional extension of the clinical AI curriculum. It is designed for medical students and radiology residents who want to go beyond understanding AI as a clinical tool and learn how to contribute to AI research in radiology.
+  </p>
+  <p>
+    Across five modules, learners walk through setting up a development environment, working with research data, building and evaluating AI models, and designing their own research project. Each module is self-paced and builds on the last.
+  </p>
+
+  <h2>The Five Modules</h2>
+  <div class="res-modules">
+    <div class="res-module">
+      <div class="res-module-num">1</div>
+      <div class="res-module-info">
+        <h4>How Do I Set Up the Tools I Need to Do AI Research?</h4>
+        <p>GitHub, Python, command line, and Jupyter notebooks</p>
+      </div>
+    </div>
+    <div class="res-module">
+      <div class="res-module-num">2</div>
+      <div class="res-module-info">
+        <h4>How Do I Work with and Understand Research Data?</h4>
+        <p>Data cleaning, visualization, statistics, bias, leakage, and train/test splits</p>
+      </div>
+    </div>
+    <div class="res-module">
+      <div class="res-module-num">3</div>
+      <div class="res-module-info">
+        <h4>How Do I Build and Run My Own AI?</h4>
+        <p>Basic ML, neural networks, classification, segmentation, NLP, LLMs, and generative AI</p>
+      </div>
+    </div>
+    <div class="res-module">
+      <div class="res-module-num">4</div>
+      <div class="res-module-info">
+        <h4>How Do I Know Whether an AI Actually Works?</h4>
+        <p>Evaluation metrics, error analysis, bias, calibration, validation, and generalizability</p>
+      </div>
+    </div>
+    <div class="res-module">
+      <div class="res-module-num">5</div>
+      <div class="res-module-info">
+        <h4>How Do I Design My Own AI Research Project?</h4>
+        <p>Research questions, datasets, hypotheses, experiments, analysis, interpretation, and GitHub</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-involve">
+    <h3>Get Involved</h3>
+    <p>
+      If you are interested in contributing to AI research in radiology, we encourage you to complete the research track modules and then reach out to us with your project ideas. We are looking for:
+    </p>
+    <ul>
+      <li>Medical students and residents interested in AI-focused research projects</li>
+      <li>Completed module exercises or project proposals</li>
+      <li>Collaborators with clinical questions that could benefit from AI methods</li>
+    </ul>
+    <p>
+      To submit a project idea or get in touch, please contact us at
+      <a href="mailto:ai-ready@radiology.edu">ai-ready@radiology.edu</a>.
+    </p>
+  </div>
+
+  <div class="res-cta">
+    <a href="course-select.html" class="btn btn-accent btn-lg">Start Course</a>
+  </div>
+
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

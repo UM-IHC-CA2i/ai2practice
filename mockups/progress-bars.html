@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Bar Mockups &mdash; 5 Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0B1D3A;
+  --primary-dark: #06132A;
+  --accent: #0EA5E9;
+  --accent-dark: #0284C7;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-600: #475569;
+  --gray-900: #0F172A;
+  --heading: 'Lexend', system-ui, sans-serif;
+  --serif: 'Lora', Georgia, serif;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --teal: #0D9488;
+
+  --c1: #0B1D3A;
+  --c2: #0284C7;
+  --c3: #0EA5E9;
+  --c4: #7C3AED;
+  --c5: #4F46E5;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #F8FAFC; color: var(--gray-900); font-family: var(--heading); font-size: 16px; line-height: 1.7; }
+
+.page-header {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 32px 20px;
+}
+.page-header h1 { font-size: 1.6rem; font-weight: 800; margin: 0 0 4px; }
+.page-header p { font-size: 0.88rem; opacity: 0.6; margin: 0; font-family: var(--serif); font-style: italic; }
+
+.mockup-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px 80px;
+}
+
+.mockup-label {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.mockup-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 4px;
+}
+
+.mockup-desc {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  margin: 0 0 20px;
+}
+
+.mockup-box {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 56px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.fake-content {
+  padding: 40px;
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 0.85rem;
+  font-style: italic;
+  border-top: 1px solid var(--gray-200);
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════
+   OPTION A — Top Horizontal Segmented Bar
+   ═══════════════════════════════════════════ */
+.pbar-a {
+  display: flex;
+  align-items: stretch;
+  background: var(--primary);
+}
+.pbar-a-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 8px;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  text-align: center;
+}
+.pbar-a-item:hover {
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.05);
+}
+.pbar-a-item.active {
+  color: #fff;
+  border-bottom-color: var(--accent);
+  background: rgba(255,255,255,0.08);
+}
+.pbar-a-item.completed {
+  color: rgba(255,255,255,0.7);
+}
+.pbar-a-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.pbar-a-item.active .pbar-a-num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.pbar-a-item.completed .pbar-a-num {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* ═══════════════════════════════════════════
+   OPTION B — Top Dot-and-Line Stepper
+   ═══════════════════════════════════════════ */
+.pbar-b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 32px;
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+}
+.pbar-b-step {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+.pbar-b-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  position: relative;
+}
+.pbar-b-step:hover .pbar-b-dot { background: var(--gray-400); color: #fff; }
+.pbar-b-step.active .pbar-b-dot { background: var(--accent); color: #fff; box-shadow: 0 0 0 4px rgba(14,165,233,0.2); }
+.pbar-b-step.completed .pbar-b-dot { background: var(--c1); color: #fff; }
+
+.pbar-b-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  margin-left: 6px;
+  color: var(--gray-400);
+  white-space: nowrap;
+}
+.pbar-b-step.active .pbar-b-label { color: var(--accent-dark); font-weight: 700; }
+.pbar-b-step.completed .pbar-b-label { color: var(--gray-600); }
+
+.pbar-b-line {
+  width: 40px;
+  height: 2px;
+  background: var(--gray-200);
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+.pbar-b-line.done { background: var(--c1); }
+
+/* ═══════════════════════════════════════════
+   OPTION C — Vertical Sidebar Rail
+   ═══════════════════════════════════════════ */
+.opt-c-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+}
+.pbar-c {
+  background: var(--primary);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+.pbar-c-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+.pbar-c-item:hover {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.04);
+}
+.pbar-c-item.active {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border-left-color: var(--accent);
+}
+.pbar-c-item.completed {
+  color: rgba(255,255,255,0.6);
+}
+.pbar-c-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.pbar-c-item.active .pbar-c-num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.pbar-c-item.completed .pbar-c-num {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+}
+.pbar-c-content {
+  padding: 40px;
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 0.85rem;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+/* ═══════════════════════════════════════════
+   OPTION D — Slim Top Progress with Colored Segments
+   ═══════════════════════════════════════════ */
+.pbar-d-wrapper {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  padding: 16px 32px 14px;
+}
+.pbar-d-track {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.pbar-d-seg {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--gray-200);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.pbar-d-seg:hover { opacity: 0.8; }
+.pbar-d-seg.done-1 { background: var(--c1); }
+.pbar-d-seg.done-2 { background: var(--c2); }
+.pbar-d-seg.active-3 { background: var(--c3); animation: pulse-seg 2s ease-in-out infinite; }
+.pbar-d-seg.todo { background: var(--gray-200); }
+
+@keyframes pulse-seg { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+.pbar-d-labels {
+  display: flex;
+}
+.pbar-d-label {
+  flex: 1;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.2s;
+  padding: 0 2px;
+}
+.pbar-d-label:hover { color: var(--gray-600); }
+.pbar-d-label.active { color: var(--accent-dark); font-weight: 700; }
+.pbar-d-label.completed { color: var(--gray-600); }
+
+/* ═══════════════════════════════════════════
+   OPTION E — Floating Pill Bar
+   ═══════════════════════════════════════════ */
+.pbar-e-container {
+  position: relative;
+  min-height: 200px;
+  background: #fff;
+}
+.pbar-e {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--gray-200);
+}
+.pbar-e-pills {
+  display: flex;
+  gap: 6px;
+  background: var(--gray-100);
+  border-radius: 100px;
+  padding: 4px;
+}
+.pbar-e-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.pbar-e-pill:hover {
+  color: var(--gray-600);
+  background: rgba(255,255,255,0.6);
+}
+.pbar-e-pill.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14,165,233,0.25);
+}
+.pbar-e-pill.completed {
+  color: var(--gray-600);
+}
+.pbar-e-pill-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: currentColor;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.pbar-e-pill .pbar-e-pill-num { background: var(--gray-400); }
+.pbar-e-pill.active .pbar-e-pill-num { background: rgba(255,255,255,0.3); }
+.pbar-e-pill.completed .pbar-e-pill-num { background: var(--c1); color: #fff; }
+.pbar-e-content {
+  padding: 40px;
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 0.85rem;
+  font-style: italic;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Progress Bar Mockups</h1>
+  <p>5 options for in-lesson navigation &mdash; lesson 3 is shown as active, 1&ndash;2 completed</p>
+</div>
+
+<div class="mockup-wrapper">
+
+<!-- ═══════════════════════════════════════════
+     OPTION A — Top Horizontal Segmented Bar
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Option A</div>
+<h2 class="mockup-title">Top Horizontal Segmented Bar</h2>
+<p class="mockup-desc">Dark navy bar sits below the lesson topbar. Each lesson is a clickable segment with number circle and short title. Active lesson highlighted with blue accent underline.</p>
+
+<div class="mockup-box">
+  <div class="pbar-a">
+    <a class="pbar-a-item completed">
+      <span class="pbar-a-num">1</span>
+      Never-Skilling
+    </a>
+    <a class="pbar-a-item completed">
+      <span class="pbar-a-num">2</span>
+      AI 101
+    </a>
+    <a class="pbar-a-item active">
+      <span class="pbar-a-num">3</span>
+      Radiology 101
+    </a>
+    <a class="pbar-a-item">
+      <span class="pbar-a-num">4</span>
+      AI Evaluation
+    </a>
+    <a class="pbar-a-item">
+      <span class="pbar-a-num">5</span>
+      Future of AI
+    </a>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     OPTION B — Dot-and-Line Stepper
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Option B</div>
+<h2 class="mockup-title">Top Dot-and-Line Stepper</h2>
+<p class="mockup-desc">Horizontal stepper with numbered dots connected by lines. Completed dots fill dark, active dot pulses blue, future dots are gray. Labels sit beside each dot.</p>
+
+<div class="mockup-box">
+  <div class="pbar-b">
+    <a class="pbar-b-step completed">
+      <span class="pbar-b-dot">1</span>
+      <span class="pbar-b-label">Never-Skilling</span>
+    </a>
+    <div class="pbar-b-line done"></div>
+    <a class="pbar-b-step completed">
+      <span class="pbar-b-dot">2</span>
+      <span class="pbar-b-label">AI 101</span>
+    </a>
+    <div class="pbar-b-line done"></div>
+    <a class="pbar-b-step active">
+      <span class="pbar-b-dot">3</span>
+      <span class="pbar-b-label">Radiology 101</span>
+    </a>
+    <div class="pbar-b-line"></div>
+    <a class="pbar-b-step">
+      <span class="pbar-b-dot">4</span>
+      <span class="pbar-b-label">AI Evaluation</span>
+    </a>
+    <div class="pbar-b-line"></div>
+    <a class="pbar-b-step">
+      <span class="pbar-b-dot">5</span>
+      <span class="pbar-b-label">Future of AI</span>
+    </a>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     OPTION C — Vertical Sidebar Rail
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Option C</div>
+<h2 class="mockup-title">Vertical Sidebar Rail</h2>
+<p class="mockup-desc">Persistent dark sidebar on the left with numbered steps. Active step gets a blue left border and filled dot. Content occupies the rest of the screen width.</p>
+
+<div class="mockup-box">
+  <div class="opt-c-layout">
+    <nav class="pbar-c">
+      <a class="pbar-c-item completed">
+        <span class="pbar-c-num">1</span>
+        Never-Skilling
+      </a>
+      <a class="pbar-c-item completed">
+        <span class="pbar-c-num">2</span>
+        AI 101
+      </a>
+      <a class="pbar-c-item active">
+        <span class="pbar-c-num">3</span>
+        Radiology 101
+      </a>
+      <a class="pbar-c-item">
+        <span class="pbar-c-num">4</span>
+        AI Evaluation
+      </a>
+      <a class="pbar-c-item">
+        <span class="pbar-c-num">5</span>
+        Future of AI
+      </a>
+    </nav>
+    <div class="pbar-c-content">(Lesson content goes here)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     OPTION D — Slim Colored Progress Segments
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Option D</div>
+<h2 class="mockup-title">Slim Colored Progress Segments</h2>
+<p class="mockup-desc">Minimal top bar with thin colored segments (one per lesson) and small labels below. Completed segments fill with their lesson color, active segment pulses. Very compact.</p>
+
+<div class="mockup-box">
+  <div class="pbar-d-wrapper">
+    <div class="pbar-d-track">
+      <div class="pbar-d-seg done-1"></div>
+      <div class="pbar-d-seg done-2"></div>
+      <div class="pbar-d-seg active-3"></div>
+      <div class="pbar-d-seg todo"></div>
+      <div class="pbar-d-seg todo"></div>
+    </div>
+    <div class="pbar-d-labels">
+      <a class="pbar-d-label completed">Never-Skilling</a>
+      <a class="pbar-d-label completed">AI 101</a>
+      <a class="pbar-d-label active">Radiology 101</a>
+      <a class="pbar-d-label">AI Evaluation</a>
+      <a class="pbar-d-label">Future of AI</a>
+    </div>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     OPTION E — Floating Pill Bar
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Option E</div>
+<h2 class="mockup-title">Floating Pill Bar</h2>
+<p class="mockup-desc">Centered rounded-pill tab bar that sticks to the top on scroll. Active lesson is a blue pill, completed lessons show dark number dots, inactive are gray. Light and modern.</p>
+
+<div class="mockup-box">
+  <div class="pbar-e-container">
+    <div class="pbar-e">
+      <div class="pbar-e-pills">
+        <a class="pbar-e-pill completed">
+          <span class="pbar-e-pill-num">1</span>
+          Never-Skilling
+        </a>
+        <a class="pbar-e-pill completed">
+          <span class="pbar-e-pill-num">2</span>
+          AI 101
+        </a>
+        <a class="pbar-e-pill active">
+          <span class="pbar-e-pill-num">3</span>
+          Radiology 101
+        </a>
+        <a class="pbar-e-pill">
+          <span class="pbar-e-pill-num">4</span>
+          AI Evaluation
+        </a>
+        <a class="pbar-e-pill">
+          <span class="pbar-e-pill-num">5</span>
+          Future of AI
+        </a>
+      </div>
+    </div>
+    <div class="pbar-e-content">(Lesson content goes here)</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

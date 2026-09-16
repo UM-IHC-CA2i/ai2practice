@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3: How Can I Use AI in Radiology? &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+/* ── Wider content for this lesson ── */
+.les-content--wide {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 36px 40px 48px;
+}
+
+/* ══════════════════════════════════════════
+   WORKFLOW COMPONENT
+   ══════════════════════════════════════════ */
+.rw-box {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  margin: 24px 0 32px;
+}
+
+/* Chevron strip */
+.rw-strip { display: flex; padding: 24px 24px 20px; }
+.rw-step { flex: 1; cursor: pointer; min-width: 0; user-select: none; }
+.rw-shape {
+  padding: 14px 8px 12px 22px;
+  min-height: 62px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+  transition: all 0.2s;
+}
+.rw-step:first-child .rw-shape {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+  border-radius: 8px 0 0 8px; padding-left: 14px;
+}
+.rw-step:last-child .rw-shape {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 14px 50%);
+  border-radius: 0 8px 8px 0;
+}
+.rw-step:nth-child(1) .rw-shape { background: #D1E8D5; }
+.rw-step:nth-child(2) .rw-shape { background: #D1E5F7; }
+.rw-step:nth-child(3) .rw-shape { background: #DBE9F2; }
+.rw-step:nth-child(4) .rw-shape { background: #C9DFF5; }
+.rw-step:nth-child(5) .rw-shape { background: #D8D0F0; }
+.rw-step:nth-child(6) .rw-shape { background: #C9DFF5; }
+.rw-step:nth-child(7) .rw-shape { background: #D1E8D5; }
+.rw-step:hover .rw-shape { filter: brightness(0.92); }
+.rw-step.active .rw-shape { background: var(--primary) !important; filter: none; }
+.rw-step.active .rw-num { background: rgba(255,255,255,0.25); color: #fff; }
+.rw-step.active .rw-label { color: #fff; }
+.rw-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.68rem; font-weight: 800; color: var(--primary);
+}
+.rw-label {
+  font-size: 0.68rem; font-weight: 600; color: var(--primary);
+  text-align: center; line-height: 1.2;
+}
+
+/* Detail panel */
+.rw-detail {
+  overflow: hidden; max-height: 0;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0 28px;
+}
+.rw-detail.open {
+  max-height: 2000px;
+  padding: 4px 28px 28px;
+}
+
+/* ── Callout layout (Variation D) ── */
+.rw-callout {
+  border-left: 4px solid var(--accent);
+  padding-left: 24px;
+}
+.rw-callout h3 {
+  font-size: 1.15rem; font-weight: 700; color: var(--primary); margin: 0 0 10px;
+}
+.rw-callout p {
+  font-size: 0.92rem; color: var(--slate); line-height: 1.8; margin: 0 0 12px;
+}
+.rw-callout p:last-child { margin-bottom: 0; }
+
+/* Aside box (used sparingly) */
+.rw-aside {
+  margin: 14px 0; padding: 12px 16px;
+  background: var(--gray-100); border-radius: 8px;
+  font-size: 0.82rem; color: var(--gray-600); line-height: 1.6;
+}
+
+/* Media row */
+.rw-media-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.rw-media-thumb:has(> a) { border: none; padding: 4px; background: transparent; }
+.rw-media-thumb a:hover img { opacity: 0.85; }
+.rw-media-thumb {
+  flex: 1; min-width: 160px;
+  border: 2px dashed var(--gray-200); border-radius: 8px;
+  padding: 20px 12px; text-align: center; background: var(--offwhite);
+  overflow: hidden;
+}
+.rw-media-thumb img,
+.rw-media-thumb video,
+.rw-media-thumb iframe { max-width: 100%; border-radius: 6px; display: block; margin: 0 auto; }
+.rw-media-thumb .tag {
+  font-size: 0.6rem; font-weight: 700; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.rw-media-thumb .desc { font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; }
+
+/* Links */
+.rw-links { margin-top: 14px; }
+.rw-links a {
+  font-size: 0.85rem; color: var(--accent); text-decoration: none;
+  font-weight: 500; margin-right: 20px;
+}
+.rw-links a:hover { text-decoration: underline; }
+
+/* ══════════════════════════════════════════
+   INTERPRETATION AI SECTION (prominent)
+   ══════════════════════════════════════════ */
+.rw-interp {
+  margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+.rw-interp-title {
+  font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px;
+}
+.rw-interp-desc {
+  font-size: 0.85rem; color: var(--gray-400); margin-bottom: 14px;
+}
+.rw-interp-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.rw-interp-card {
+  padding: 14px 10px; border: 1px solid var(--gray-200); border-radius: 10px;
+  text-align: center; cursor: pointer; transition: all 0.2s; background: #fff;
+}
+.rw-interp-card:hover { border-color: var(--accent); background: var(--accent-light); }
+.rw-interp-card.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.rw-interp-card .cnum {
+  font-size: 0.62rem; font-weight: 700; color: var(--gray-400); margin-bottom: 2px;
+}
+.rw-interp-card.active .cnum { color: rgba(255,255,255,0.5); }
+.rw-interp-card .cname { font-size: 0.8rem; font-weight: 600; }
+
+.rw-interp-expand {
+  overflow: hidden; max-height: 0; transition: max-height 0.35s ease;
+}
+.rw-interp-expand.open { max-height: 600px; }
+.rw-interp-expand-inner {
+  margin-top: 12px; padding: 18px 20px;
+  background: var(--offwhite); border-radius: 10px;
+  border-left: 4px solid var(--primary);
+}
+.rw-interp-expand-inner h4 {
+  font-size: 0.95rem; font-weight: 700; color: var(--primary); margin: 0 0 6px;
+}
+.rw-interp-expand-inner p {
+  font-size: 0.88rem; color: var(--slate); line-height: 1.7; margin: 0 0 10px;
+}
+.rw-interp-expand-inner p:last-child { margin-bottom: 0; }
+.rw-interp-media {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.rw-interp-media .rw-media-thumb { min-width: 140px; padding: 14px 10px; }
+
+@media (max-width: 800px) {
+  .les-content--wide { padding: 24px 16px 36px; }
+  .rw-strip { flex-wrap: wrap; gap: 4px; padding: 16px 16px 12px; }
+  .rw-shape { clip-path: none !important; border-radius: 6px !important; padding: 8px !important; min-height: 48px; }
+  .rw-detail.open { padding: 4px 16px 20px; }
+  .rw-interp-grid { grid-template-columns: repeat(2, 1fr); }
+  .rw-media-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #0EA5E9;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Lesson 3 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #0EA5E9;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">03</div>
+    <div>
+      <h1>How Can I Use AI in Radiology?</h1>
+      <p>Following an imaging study from order to follow-up &mdash; and where AI fits in</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content--wide">
+
+  <section class="les-section" id="overview">
+    <h2>The Radiology Workflow</h2>
+    <p>
+      Most people think of radiology as "reading images," but that is only one piece of a much larger process.
+      Every imaging study follows a path from the moment a clinician decides a patient needs a scan
+      to the moment the results change that patient's care. AI tools are being used at every stage of this path.
+    </p>
+    <p>
+      Click through the steps below to see how each one works and where AI is making an impact.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       INTERACTIVE WORKFLOW
+       ══════════════════════════════════════════ -->
+  <div class="rw-box">
+    <div class="rw-strip" id="rw-strip"></div>
+    <div class="rw-detail" id="rw-detail"></div>
+  </div>
+
+  <section class="les-section les-section--student" id="student-content">
+    <h2>Key Takeaways for Medical Students</h2>
+    <p>
+      As a medical student, you interact with this workflow every time you order imaging on the wards
+      or review a radiology report. Knowing how the pipeline works helps you order the right study,
+      understand what the radiologist's report is telling you, and recognize when you need to pick up the phone
+      and call radiology directly.
+    </p>
+
+    <div class="les-case les-case--blue" style="margin-top: 20px;">
+      <div class="les-case-label les-case-label--blue">Think About It</div>
+      <p>
+        When you look at the workflow above, which steps do you interact with directly as a medical student?
+        Which ones happen behind the scenes? Understanding this helps you see where communication
+        breakdowns can occur &mdash; and where AI might help or hinder your learning.
+      </p>
+    </div>
+  </section>
+
+  <section class="les-section les-section--resident" id="resident-content">
+    <h2>Key Takeaways for Radiology Residents</h2>
+    <p>
+      As a radiology resident, you are directly involved in protocoling, interpretation, reporting,
+      and communicating results. AI tools are already embedded in many of these steps at academic
+      medical centers. Understanding where AI sits in your daily workflow &mdash; and what skills
+      it might be quietly substituting for &mdash; is essential for your development.
+    </p>
+
+    <div class="les-case les-case--blue" style="margin-top: 20px;">
+      <div class="les-case-label les-case-label--blue">Think About It</div>
+      <p>
+        Consider the interpretation step: if an AI tool flags every pneumothorax on your chest CT worklist,
+        are you getting enough practice detecting them yourself? How would you know if your pattern recognition
+        for this finding was never fully developed?
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav" style="max-width: 1060px;">
+  <a href="lesson-2.html" class="btn btn-outline" id="les-prev">&larr; Prev: What is AI?</a>
+  <a href="lesson-4.html" class="btn btn-accent" id="les-next">Next: Evaluate AI &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+<script>
+(function() {
+
+var STEPS = [
+  {
+    name: 'Order', num: '1',
+    title: 'Placing the Order',
+    text: '<p>Every imaging study starts with a clinical question. A patient presents with symptoms &mdash; chest pain, a new cough, abdominal tenderness &mdash; and the care team must decide: does this patient need imaging, and if so, what kind?</p>' +
+          '<p>Getting the order right means choosing the correct modality, the right contrast protocol, and the right body region for the clinical question. An incorrect order wastes time, delays diagnosis, and can expose patients to unnecessary radiation or contrast risks. Watch the two videos below to understand the step-by-step process for ordering diagnostic imaging and why getting the clinical indication correct is critical for patient care and appropriate utilization.</p>',
+    media: [
+      { ytId: 'zBJGv2OBOUU', desc: 'How to Order Diagnostic Imaging' },
+      { ytId: 'x7edw-UyBRw', desc: 'Getting the Indication Correct' }
+    ],
+    callout: {
+      label: 'ACR Appropriateness Criteria',
+      url: 'https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria',
+      text: 'The American College of Radiology maintains evidence-based guidelines that match clinical conditions to the most appropriate imaging studies. These criteria are the gold standard for ordering decisions and are built into many hospital order-entry systems as clinical decision support.'
+    },
+    links: [
+      { label: 'Choosing Wisely &mdash; Imaging', url: 'https://www.choosingwisely.org/clinician-lists/#imaging' }
+    ]
+  },
+  {
+    name: 'Protocol', num: '2',
+    title: 'Protocoling, Scheduling, and Triage',
+    text: '<p>Once an imaging order is placed, three things need to happen before the scanner runs: the study gets protocoled, scheduled, and triaged. These are distinct activities, but they overlap and often happen simultaneously.</p>' +
+          '<p><strong>Protocoling</strong> is where a radiologist or radiology PA decides exactly how the study should be performed. For a CT, that means choosing whether to use IV contrast, what phases to acquire (non-contrast, arterial, portal venous, delayed), and what body region to cover. The wrong protocol can mean repeating a study or missing a diagnosis entirely &mdash; this is a skill that radiology residents spend years developing.</p>' +
+          '<p><strong>Scheduling</strong> involves the logistics of getting the patient scanned. Does the patient need to be fasting? Is contrast involved, and if so, are their kidneys functioning well enough? Does the patient have metal implants that rule out MRI? A patient who shows up unprepared gets sent home and rescheduled, delaying diagnosis by days or weeks.</p>' +
+          '<p><strong>Triage</strong> determines reading priority. A stat portable chest X-ray from the emergency department gets read before a routine outpatient knee MRI. The worklist is constantly reshuffled based on clinical urgency, and getting this wrong has real consequences for patient outcomes.</p>',
+    media: [
+      { type: 'IMAGE', desc: 'CT protocol selection screen' },
+      { type: 'IMAGE', desc: 'MRI safety screening form' }
+    ],
+    links: [
+      { label: 'ACR Manual on Contrast Media', url: 'https://www.acr.org/Clinical-Resources/Contrast-Manual' },
+      { label: 'ACR MRI Safety Resources', url: 'https://www.acr.org/Clinical-Resources/Radiology-Safety/MR-Safety' },
+      { label: 'CT Protocol Basics (Radiopaedia)', url: 'https://radiopaedia.org/articles/ct-protocols' }
+    ]
+  },
+  {
+    name: 'Acquisition', num: '3',
+    title: 'Acquiring the Images',
+    text: '<p>The technologist performs the study. This varies enormously by modality &mdash; positioning a patient for a two-view chest X-ray is nothing like running a cardiac MRI sequence. The technologist\'s skill directly affects image quality, and poor images make interpretation harder or impossible.</p>' +
+          '<p>CT uses ionizing radiation and excels at anatomy. MRI uses magnetic fields and is better for soft tissue contrast. Ultrasound is portable, real-time, and operator-dependent. Nuclear medicine shows physiology, not anatomy. These differences drive when and why each gets ordered.</p>',
+    media: [
+      { type: 'IMAGE', desc: 'CT scanner in operation' },
+      { type: 'VIDEO', desc: 'How a CT scan works' },
+      { type: 'IMAGE', desc: 'Modality comparison chart' }
+    ],
+    links: [
+      { label: 'Imaging Modalities Overview', url: 'https://radiopaedia.org/articles/imaging-modalities' }
+    ]
+  },
+  {
+    name: 'PACS', num: '4',
+    title: 'Picture Archiving and Communication System',
+    text: '<p>After images are acquired, they need to go somewhere. PACS is the system that stores, retrieves, and displays medical images. Every image a scanner produces is sent to PACS in <strong>DICOM format</strong> (Digital Imaging and Communications in Medicine) &mdash; the universal standard that packages the pixel data with patient demographics, study information, and technical parameters into a single file.</p>' +
+          '<p><strong>Hanging protocols</strong> control how images are displayed on the radiologist\'s workstation. A chest CT might automatically arrange axial, coronal, and sagittal views across multiple monitors with lung and soft tissue windows. These layouts are customized by modality, body part, and radiologist preference &mdash; and getting them right directly affects reading speed and accuracy.</p>' +
+          '<p><strong>Worklist management</strong> is how studies are organized for reading. The worklist shows what needs to be read, in what order, and by whom. AI triage tools can reprioritize the worklist by flagging urgent findings (like a large pneumothorax or intracranial hemorrhage) and moving those studies to the top.</p>' +
+          '<p>PACS is also where AI tools plug into the reading workflow. Most FDA-cleared radiology AI runs in the background, processes images as they arrive, and pushes results back into PACS as overlays, annotations, or secondary capture images that appear alongside the original study.</p>',
+    media: [
+      { type: 'IMAGE', desc: 'PACS workstation with hanging protocols' },
+      { type: 'IMAGE', desc: 'DICOM viewer showing study metadata' }
+    ],
+    links: [
+      { label: 'DICOM Standard Overview', url: 'https://www.dicomstandard.org/' },
+      { label: 'IHE Radiology Profiles', url: 'https://www.ihe.net/ihe_domains/radiology/' },
+      { label: 'ACR Informatics Resources', url: 'https://www.acr.org/Practice-Management-Quality-Informatics/Informatics' }
+    ]
+  },
+  {
+    name: 'Interpret', num: '5',
+    title: 'Reading the Images',
+    text: '<p>A radiologist sits down at a workstation, pulls up the images, reviews the clinical history, and systematically works through the study. On a chest X-ray, that might mean checking the airway, bones, cardiac silhouette, diaphragm, and soft tissues &mdash; the ABCDE approach.</p>' +
+          '<p>The discipline is the systematic search. Beginners tend to jump to the obvious finding and stop looking. Experienced readers follow their checklist every time, because the second finding you miss is often the one that matters most. This is called "satisfaction of search" error &mdash; one of the most common mistakes in radiology.</p>',
+    media: [
+      { type: 'IMAGE', desc: 'PACS workstation view' },
+      { type: 'VIDEO', desc: 'Systematic CXR reading' },
+      { type: 'IMAGE', desc: 'Satisfaction of search example' }
+    ],
+    links: [
+      { label: 'Chest X-ray Approach (Radiopaedia)', url: 'https://radiopaedia.org/articles/chest-radiograph' },
+      { label: 'Common Interpretation Errors', url: '#' }
+    ],
+    interp: [
+      {
+        name: 'Detection', num: '1',
+        desc: '<p>Spotting that something is there. Is there a nodule on this chest CT? A fracture on this wrist X-ray? Detection is the first and most fundamental step &mdash; you can\'t diagnose what you don\'t see.</p><p>AI detection tools highlight suspicious areas on the image, but a reader who leans on highlights instead of learning to scan the whole image develops a blind spot that only shows up when the AI is turned off.</p>',
+        media: [{ type: 'IMAGE', desc: 'AI nodule detection overlay' }]
+      },
+      {
+        name: 'Segmentation', num: '2',
+        desc: '<p>Drawing boundaries around a structure. Outlining a tumor to measure its volume, tracing the border of a cardiac chamber, or isolating a vertebral body for bone density. Manual segmentation is tedious and time-consuming &mdash; AI handles this well.</p><p>But clinicians still need to know <em>what</em> they are measuring and <em>why</em> the measurement matters clinically.</p>',
+        media: [{ type: 'IMAGE', desc: 'Cardiac segmentation output' }]
+      },
+      {
+        name: 'Classification', num: '3',
+        desc: '<p>Putting a finding into a category. Is this breast lesion BI-RADS 3 or BI-RADS 4? Is this lung nodule solid or ground-glass? Classification systems standardize how findings are described and drive follow-up recommendations.</p><p>AI can suggest a category, but the categories are only useful if you understand the criteria behind them and can override the AI when it gets one wrong.</p>',
+        media: [{ type: 'IMAGE', desc: 'BI-RADS classification example' }]
+      },
+      {
+        name: 'Quantification', num: '4',
+        desc: '<p>Measuring things. Aortic diameter. Tumor longest axis. Liver fat fraction. Ejection fraction. Quantification turns images into numbers that guide clinical decisions.</p><p>AI is fast and consistent here, but the clinical interpretation of those numbers &mdash; is 4.5 cm concerning? &mdash; still requires a trained reader who understands the context.</p>',
+        media: [{ type: 'IMAGE', desc: 'Automated measurement output' }]
+      },
+      {
+        name: 'Registration', num: '5',
+        desc: '<p>Lining up images from different times or modalities. Comparing today\'s CT to last year\'s to see if a nodule has grown, or overlaying PET onto CT to match metabolic activity with anatomy.</p><p>Registration makes comparison studies reliable instead of eyeballed, which is especially important for tracking disease over time.</p>',
+        media: [{ type: 'IMAGE', desc: 'CT-to-CT registration comparison' }]
+      },
+      {
+        name: 'Reconstruction', num: '6',
+        desc: '<p>Building better images from raw scanner data. Deep learning reconstruction algorithms can produce diagnostic-quality CT from lower radiation doses or faster MRI scans.</p><p>The tradeoff: reconstructed images can sometimes create artificial textures that look like real findings. Readers need to know when they are looking at reconstructed data.</p>',
+        media: [{ type: 'IMAGE', desc: 'Standard vs. DLR reconstruction' }]
+      },
+      {
+        name: 'Enhancement', num: '7',
+        desc: '<p>Making images clearer after acquisition. Denoising, contrast boosting, or generating synthetic contrast-enhanced images from non-contrast scans.</p><p>These are post-processing tools. They improve what you can see, but they are not a substitute for acquiring the right study with the right protocol in the first place.</p>',
+        media: [{ type: 'IMAGE', desc: 'Before/after noise reduction' }]
+      },
+      {
+        name: 'Prediction', num: '8',
+        desc: '<p>Estimating what happens next. Which lung nodules will become cancer? Which stroke patients will benefit from thrombectomy? Predictive models extract features from images that human readers cannot quantify on their own.</p><p>This is one area where AI genuinely extends what is possible, rather than just automating what radiologists already do.</p>',
+        media: [{ type: 'IMAGE', desc: 'Risk stratification output' }]
+      }
+    ]
+  },
+  {
+    name: 'Reporting', num: '6',
+    title: 'Writing the Report',
+    text: '<p>The radiologist dictates or types a structured report: clinical history, technique, findings organized by anatomy, and an impression that answers the clinical question. The impression drives clinical decisions &mdash; most referring physicians read only that section.</p>' +
+          '<p>Reports use standardized classification systems (BI-RADS, Lung-RADS, TI-RADS) that dictate follow-up. If a report says "BI-RADS 4," that triggers a biopsy recommendation. Knowing what these categories mean helps you act on reports correctly.</p>',
+    media: [
+      { type: 'IMAGE', desc: 'Sample structured report' },
+      { type: 'IMAGE', desc: 'Report structure breakdown' }
+    ],
+    links: [
+      { label: 'Structured Reporting Standards', url: '#' }
+    ]
+  },
+  {
+    name: 'Follow-up', num: '7',
+    title: 'Communication and Follow-up',
+    text: '<p>A report in the system does not help anyone if nobody reads it. Critical findings &mdash; pulmonary embolism, aortic dissection, tension pneumothorax &mdash; need to be communicated directly and immediately to the treating physician. This is not optional; it is a professional and legal responsibility.</p>' +
+          '<p>The other half is tracking recommendations. If a report says "recommend 3-month follow-up CT for lung nodule," someone needs to make sure that scan actually gets scheduled. Patients who fall through the cracks are a major source of diagnostic delay and malpractice claims.</p>',
+    media: [
+      { type: 'IMAGE', desc: 'Critical results notification flow' },
+      { type: 'VIDEO', desc: 'Closing the loop' }
+    ],
+    links: [
+      { label: 'ACR Communication Guidelines', url: 'https://www.acr.org/Clinical-Resources/Reporting-and-Data-Systems' }
+    ]
+  }
+];
+
+var strip = document.getElementById('rw-strip');
+var detail = document.getElementById('rw-detail');
+var activeIdx = -1;
+
+function mediaPlaceholder(m) {
+  if (m.ytId) {
+    return '<a href="https://www.youtube.com/watch?v=' + m.ytId + '" target="_blank" rel="noopener" style="display:block;text-decoration:none;">' +
+      '<div style="position:relative;"><img src="https://img.youtube.com/vi/' + m.ytId + '/hqdefault.jpg" alt="' + m.desc + '" style="width:100%;border-radius:6px;display:block;">' +
+      '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">' +
+      '<div style="width:0;height:0;border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent #fff;margin-left:3px;"></div></div></div>' +
+      '<div class="desc" style="margin-top:6px;font-weight:600;color:var(--primary);font-size:0.78rem;">' + m.desc + '</div></a>';
+  }
+  return '<div class="tag">' + m.type + '</div><div class="desc">' + m.desc + '</div>';
+}
+
+function buildDetail(s) {
+  var html = '<div class="rw-callout"><h3>' + s.title + '</h3>';
+  html += s.text;
+  if (s.aside) {
+    html += '<div class="rw-aside">' + s.aside + '</div>';
+  }
+  html += '<div class="rw-media-row">';
+  s.media.forEach(function(m) {
+    html += '<div class="rw-media-thumb">' + mediaPlaceholder(m) + '</div>';
+  });
+  html += '</div>';
+  if (s.callout) {
+    html += '<div style="margin:16px 0;padding:16px 20px;background:linear-gradient(135deg,#EFF6FF,#F0F9FF);border:1px solid #BAE6FD;border-radius:10px;border-left:4px solid var(--accent);">';
+    html += '<div style="font-weight:700;color:var(--primary);font-size:0.95rem;margin-bottom:6px;">' + s.callout.label + '</div>';
+    html += '<p style="font-size:0.85rem;color:var(--slate);line-height:1.6;margin:0 0 10px;">' + s.callout.text + '</p>';
+    html += '<a href="' + s.callout.url + '" target="_blank" style="display:inline-block;padding:8px 18px;background:var(--accent);color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">Visit ACR Appropriateness Criteria &rarr;</a>';
+    html += '</div>';
+  }
+  if (s.links && s.links.length) {
+    html += '<div class="rw-links">';
+    s.links.forEach(function(l) {
+      html += '<a href="' + l.url + '" target="_blank">' + l.label + '</a>';
+    });
+    html += '</div>';
+  }
+  if (s.interp) {
+    html += '<div class="rw-interp">';
+    html += '<div class="rw-interp-title">AI Applications in Image Interpretation</div>';
+    html += '<div class="rw-interp-desc">AI tools assist with each of these subtasks. Click any to learn more.</div>';
+    html += '<div class="rw-interp-grid" id="rw-interp-grid">';
+    s.interp.forEach(function(sub, i) {
+      html += '<div class="rw-interp-card" data-idx="' + i + '"><div class="cnum">' + sub.num + '</div><div class="cname">' + sub.name + '</div></div>';
+    });
+    html += '</div>';
+    html += '<div class="rw-interp-expand" id="rw-interp-expand"></div>';
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+STEPS.forEach(function(s, i) {
+  var el = document.createElement('div');
+  el.className = 'rw-step';
+  el.innerHTML = '<div class="rw-shape"><span class="rw-num">' + s.num + '</span><span class="rw-label">' + s.name + '</span></div>';
+  el.addEventListener('click', function() {
+    strip.querySelectorAll('.rw-step').forEach(function(c) { c.classList.remove('active'); });
+    if (activeIdx === i) {
+      detail.classList.remove('open');
+      detail.innerHTML = '';
+      activeIdx = -1;
+      return;
+    }
+    el.classList.add('active');
+    activeIdx = i;
+    detail.innerHTML = buildDetail(s);
+    detail.classList.add('open');
+    wireInterp(s);
+  });
+  strip.appendChild(el);
+});
+
+function wireInterp(step) {
+  if (!step.interp) return;
+  var grid = document.getElementById('rw-interp-grid');
+  var expand = document.getElementById('rw-interp-expand');
+  var activeCard = -1;
+
+  grid.querySelectorAll('.rw-interp-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var idx = parseInt(card.getAttribute('data-idx'));
+      grid.querySelectorAll('.rw-interp-card').forEach(function(c) { c.classList.remove('active'); });
+
+      if (activeCard === idx) {
+        expand.classList.remove('open');
+        expand.innerHTML = '';
+        activeCard = -1;
+        return;
+      }
+      card.classList.add('active');
+      activeCard = idx;
+      var sub = step.interp[idx];
+      var html = '<div class="rw-interp-expand-inner"><h4>' + sub.name + '</h4>';
+      html += sub.desc;
+      if (sub.media && sub.media.length) {
+        html += '<div class="rw-interp-media">';
+        sub.media.forEach(function(m) {
+          html += '<div class="rw-media-thumb">' + mediaPlaceholder(m) + '</div>';
+        });
+        html += '</div>';
+      }
+      html += '</div>';
+      expand.innerHTML = html;
+      expand.classList.add('open');
+    });
+  });
+}
+
+})();
+</script>
+</body>
+</html>

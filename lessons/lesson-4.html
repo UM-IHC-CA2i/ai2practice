@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 4: Evaluating AI &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+/* ── Section question headers ── */
+.ev-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.ev-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.ev-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+.ev-header p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* ── Metrics table ── */
+.ev-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.88rem;
+}
+.ev-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid;
+}
+.ev-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: top;
+  line-height: 1.6;
+  color: var(--slate);
+}
+.ev-table tr:last-child td { border-bottom: none; }
+.ev-table .ev-metric-name {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* Blue table variant */
+.ev-table--blue th {
+  color: #0284C7;
+  border-color: #0EA5E9;
+  background: #F0F7FF;
+}
+.ev-table--blue tr:hover td { background: #FAFCFF; }
+
+/* ── Image/video placeholder ── */
+.ev-placeholder {
+  border: 2px dashed var(--gray-300);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  margin: 24px 0;
+  background: var(--offwhite);
+}
+.ev-placeholder-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-400);
+  margin-bottom: 6px;
+}
+.ev-placeholder-desc {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-style: italic;
+  font-family: var(--serif);
+}
+.ev-placeholder-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+@media (max-width: 600px) {
+  .ev-placeholder-row { grid-template-columns: 1fr; }
+}
+
+/* ── Colored section dividers ── */
+.ev-section--blue { border-top: 4px solid #0EA5E9; padding-top: 32px; }
+.ev-section--teal { border-top: 4px solid #0D9488; padding-top: 32px; }
+.ev-section--purple { border-top: 4px solid #7C3AED; padding-top: 32px; }
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #7C3AED;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Lesson 4 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #7C3AED;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">04</div>
+    <div>
+      <h1>Can I Trust This AI?</h1>
+      <p>Does it work? Will it work here? Should we use it?</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <!-- ── Introduction ── -->
+  <section class="les-section" id="intro">
+    <h2>Three Questions</h2>
+    <p>
+      AI papers and product brochures love big numbers. "97% accuracy." "AUROC of 0.98." But a single number does not tell you whether you should actually use a tool on your patients. The honest answer usually lives in what the brochure leaves out.
+    </p>
+    <p>
+      This lesson walks you through three questions that, taken together, give you a much more complete picture of whether an AI tool is worth using. They build on each other:
+    </p>
+    <ul>
+      <li><strong>Does it work?</strong> &mdash; What do the performance numbers actually mean?</li>
+      <li><strong>Will it work here?</strong> &mdash; Will it hold up on your patients, your scanners, and your workflow?</li>
+      <li><strong>Should we use it?</strong> &mdash; Even if it works, is it the right thing to do?</li>
+    </ul>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Overview diagram: three questions as a progression / flowchart</div>
+    </div>
+
+    <h3>The Evaluation Framework</h3>
+
+    <div style="margin: 28px 0; text-align: center;">
+      <img src="images/evaluation.png" alt="AI evaluation framework showing prevalence-independent and prevalence-dependent metrics" style="max-width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+      <p style="font-size: 0.82rem; color: var(--gray-500); font-family: var(--serif); font-style: italic; margin-top: 10px;">
+        Evaluating a commercial CXR AI tool on 2,206 real-world radiographs from 7 scanner manufacturers across 2 hospital sites, compared against 8 radiologist readers.
+        <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+      </p>
+    </div>
+
+    <p>
+      This figure illustrates a critical distinction in AI evaluation. When we compare AI predictions against radiologist interpretations on real-world radiographs, we can calculate the familiar confusion matrix &mdash; true positives, false positives, false negatives, and true negatives. From those four numbers, we derive two categories of performance metrics. <strong>Prevalence-independent metrics</strong> &mdash; sensitivity, specificity, and AUROC &mdash; tell you how well the AI discriminates between abnormal and normal cases, and these remain relatively stable regardless of how common the disease is in your population. They answer: "Can this AI tell the difference?" But they do not tell you what happens when you actually deploy the tool.
+    </p>
+    <p>
+      <strong>Prevalence-dependent metrics</strong> &mdash; precision (PPV), false discovery rate, F1, and MCC &mdash; tell you what the AI's predictions mean in practice. An AI with 90% sensitivity and 90% specificity sounds excellent, but if the disease prevalence is only 1%, its precision drops to roughly 8% &mdash; meaning over 90% of its positive flags are false alarms. At 30% prevalence, the same AI's precision jumps to 79%. Same model, same sensitivity, same specificity, dramatically different real-world behavior. This is why AUROC can "look great" in a research paper while the tool generates an unmanageable number of false positives in your department. Evaluating AI requires both types of metrics, and the prevalence-dependent ones are the ones that reflect what actually happens at your institution.
+    </p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       QUESTION 1: DOES IT WORK?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section ev-section--blue" id="does-it-work">
+    <div class="ev-header">
+      <div class="ev-num" style="background: #0EA5E9;">01</div>
+      <div>
+        <h2>Does it work?</h2>
+        <p>Measuring performance</p>
+      </div>
+    </div>
+
+    <p>
+      When someone tells you an AI tool "works," the first thing you should ask is: by what measure? There are several ways to quantify how well a model performs, and each one tells you something different. None of them alone is enough.
+    </p>
+
+    <h3>Key Metrics at a Glance</h3>
+
+    <table class="ev-table ev-table--blue">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>What it tells you</th>
+          <th>Plain-language example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ev-metric-name">Sensitivity</td>
+          <td>How good is it at catching real problems?</td>
+          <td>95% &rarr; catches 95 of 100 true pneumothoraces, misses 5</td>
+        </tr>
+        <tr>
+          <td class="ev-metric-name">Specificity</td>
+          <td>How good is it at leaving normal cases alone?</td>
+          <td>90% &rarr; correctly clears 90 of 100 normals, falsely flags 10</td>
+        </tr>
+        <tr>
+          <td class="ev-metric-name">PPV</td>
+          <td>When it flags something, how often is it right?</td>
+          <td>Depends on how common the disease is in your population</td>
+        </tr>
+        <tr>
+          <td class="ev-metric-name">NPV</td>
+          <td>When it says "normal," how often is it right?</td>
+          <td>High NPV &rarr; you can trust a negative result</td>
+        </tr>
+        <tr>
+          <td class="ev-metric-name">AUROC</td>
+          <td>Overall ability to separate sick from healthy</td>
+          <td>1.0 = perfect, 0.5 = coin flip. Most AI papers report this</td>
+        </tr>
+        <tr>
+          <td class="ev-metric-name">Calibration</td>
+          <td>Does its confidence match reality?</td>
+          <td>"80% confident" should mean it is right ~80% of the time</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Confusion matrix diagram &mdash; showing TP, FP, FN, TN and how sensitivity/specificity/PPV/NPV map to each cell</div>
+    </div>
+
+    <h3>Sensitivity and Specificity</h3>
+    <p>
+      These two are the foundation. Sensitivity asks: of everyone who is actually sick, how many did the AI catch? Specificity asks the opposite: of everyone who is actually healthy, how many did the AI leave alone?
+    </p>
+    <p>
+      There is almost always a tradeoff. Cranking up sensitivity (catching more true positives) usually means more false positives, which lowers specificity. Where you set that threshold depends on the clinical context. For a screening tool looking for cancer, you probably want very high sensitivity even at the cost of more false alarms. For a triage tool that bumps studies to the top of the worklist, false positives are annoying but not dangerous.
+    </p>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">ROC curve showing the sensitivity/specificity tradeoff at different thresholds</div>
+    </div>
+
+    <h3>PPV, NPV, and Why Prevalence Matters</h3>
+    <p>
+      Here is where things get tricky. PPV and NPV depend not just on how good the model is, but on how common the disease is in the population you are screening. A tool with 95% sensitivity and 95% specificity sounds great &mdash; but if the disease only affects 1 in 1,000 people, the vast majority of "positive" results will be false positives. The PPV drops to around 2%.
+    </p>
+    <p>
+      This is one of the most common blind spots in AI evaluation. A model validated in a high-prevalence academic center (where sick patients are concentrated) will look much less impressive when deployed in a low-prevalence outpatient clinic.
+    </p>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Table or chart showing how PPV changes with disease prevalence (e.g., 50%, 10%, 1%, 0.1%) at fixed sensitivity/specificity</div>
+    </div>
+
+    <h3>AUROC</h3>
+    <p>
+      AUROC is the number you will see in virtually every AI paper. It summarizes the model's ability to distinguish positive from negative cases across all possible thresholds. The problem is that a high AUROC does not guarantee useful performance at any specific operating point.
+    </p>
+    <p>
+      Two models can have the same AUROC but behave very differently in practice &mdash; one might be great at catching rare diseases but terrible at avoiding false alarms, while the other has the opposite profile. Always look beyond the headline number to see what the sensitivity and specificity actually are at the threshold being used clinically.
+    </p>
+
+    <div class="ev-placeholder-row">
+      <div class="ev-placeholder">
+        <div class="ev-placeholder-label">Video</div>
+        <div class="ev-placeholder-desc">Short explainer on how to read an ROC curve</div>
+      </div>
+      <div class="ev-placeholder">
+        <div class="ev-placeholder-label">Image</div>
+        <div class="ev-placeholder-desc">Example: two different ROC curves with the same AUROC but different clinical profiles</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       QUESTION 2: WILL IT WORK HERE?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section ev-section--teal" id="will-it-work">
+    <div class="ev-header">
+      <div class="ev-num" style="background: #0D9488;">02</div>
+      <div>
+        <h2>Will it work here?</h2>
+        <p>Understanding limitations</p>
+      </div>
+    </div>
+
+    <p>
+      Strong numbers in a paper are a starting point, not a guarantee. The performance a model achieves in the study that validated it will almost always be better than what you see in real life. The question is <em>how much</em> worse it gets, and whether it still does something useful.
+    </p>
+
+    <h3>Bias and Generalizability</h3>
+    <p>
+      Most AI models are trained on data from a handful of institutions, often large academic centers with specific patient demographics and scanner hardware. A chest X-ray AI trained on PA films from young, thin patients at a single site may struggle with AP portable studies on older, obese, or intubated patients at a community hospital.
+    </p>
+    <p>
+      Bias in AI is not always about race or gender (though those matter). It can also be about body habitus, scanner manufacturer, image acquisition protocol, or disease prevalence. Any systematic difference between the training data and your patient population is a potential source of failure.
+    </p>
+
+    <div class="les-case les-case--blue">
+      <div class="les-case-label les-case-label--blue">Think about it</div>
+      <p>
+        A pulmonary embolism detection AI reports 96% sensitivity in its validation study. You look closer and see the dataset was 80% from a single European academic center, included only contrast-enhanced CT angiograms, and excluded patients with BMI above 40. Your ED population is 40% obese, and your technologists sometimes run suboptimal bolus timing. Do you still trust the 96%?
+      </p>
+    </div>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Side-by-side comparison: AI performance on training institution data vs. external site data</div>
+    </div>
+
+    <h3>External Validation</h3>
+    <p>
+      Internal validation means the model was tested on held-out data from the same institution where it was trained. The patients, scanners, and protocols are all familiar. External validation means it was tested at sites that had nothing to do with its development &mdash; different scanners, different demographics, different workflows.
+    </p>
+    <p>
+      If an AI tool has only been validated internally, treat its performance numbers with real skepticism. External validation is the minimum standard for trusting that a tool will work beyond its home turf. Even then, your institution might differ in ways that neither the internal nor external validation sites captured.
+    </p>
+    <ul>
+      <li><strong>Internal validation:</strong> tested on held-out data from the same source &mdash; necessary but not sufficient</li>
+      <li><strong>External validation:</strong> tested at independent institutions &mdash; the minimum bar for deployment</li>
+      <li><strong>Prospective validation:</strong> tested in real-time clinical workflow &mdash; the gold standard, but rare</li>
+    </ul>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Diagram: internal vs. external vs. prospective validation pipeline</div>
+    </div>
+
+    <h3>Dataset Shift</h3>
+    <p>
+      Even a well-validated model can degrade over time. Scanners get replaced. Imaging protocols change. The patient population shifts. A model trained on 2020 data may not perform the same way in 2026 because the world it was built for no longer exists.
+    </p>
+    <p>
+      This is why AI tools need ongoing monitoring after deployment. You cannot validate a tool once and assume it will keep working forever. Some institutions run periodic performance audits; most do not, and that is a problem.
+    </p>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Video</div>
+      <div class="ev-placeholder-desc">Explainer on real-world examples of dataset shift in radiology</div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       QUESTION 3: SHOULD WE USE IT?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section ev-section--purple" id="should-we-use-it">
+    <div class="ev-header">
+      <div class="ev-num" style="background: #7C3AED;">03</div>
+      <div>
+        <h2>Should we use it?</h2>
+        <p>Clinical and ethical considerations</p>
+      </div>
+    </div>
+
+    <p>
+      A tool can have strong numbers and generalize well, and you should still think carefully about whether to use it. Performance metrics tell you what the AI <em>can</em> do. These questions are about what it <em>should</em> do, and what happens to people when it gets things wrong.
+    </p>
+
+    <h3>Clinical Utility</h3>
+    <p>
+      Does this tool actually change what you do in a way that helps patients? A model with a high AUROC that does not change management, does not speed up care, and does not catch things you were already catching has statistical performance but no clinical value. "It works" and "it is useful" are not the same thing.
+    </p>
+    <p>
+      Ask: if I took this tool away tomorrow, what would patients lose? If the answer is "nothing," the tool is not providing clinical utility &mdash; no matter how good the numbers look.
+    </p>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Flowchart: statistical performance vs. clinical utility &mdash; when does a high AUROC actually help patients?</div>
+    </div>
+
+    <h3>Automation Bias</h3>
+    <p>
+      This connects directly to what we covered in Lesson 1. When an AI tool is always running in the background, it is tempting to defer to its judgment &mdash; especially when you are tired, rushed, or uncertain. Automation bias is the tendency to accept AI output without critically evaluating it yourself.
+    </p>
+    <p>
+      The risk is different depending on experience level:
+    </p>
+    <ul>
+      <li><strong>For trainees:</strong> if the AI does the pattern recognition for you, you may never develop the skill yourself. This is the never-skilling risk.</li>
+      <li><strong>For experienced clinicians:</strong> if you stop looking carefully because the AI is "probably right," your own detection skills can atrophy. This is deskilling.</li>
+      <li><strong>For everyone:</strong> if the AI has a systematic bias (like overcalling a specific finding), you can absorb that bias into your own reasoning. This is mis-skilling.</li>
+    </ul>
+
+    <div class="les-case les-case--rose">
+      <div class="les-case-label les-case-label--rose">Clinical Scenario</div>
+      <p>
+        An AI chest X-ray tool flags a subtle right lower lobe opacity as a possible pneumonia. The radiologist glances at it, sees the AI highlight, and dictates "right lower lobe airspace opacity, likely pneumonia." Without the AI flag, she would have looked more carefully and noticed that the "opacity" is actually a skin fold overlying the lung field. The AI was wrong, and the radiologist accepted it because the highlight made it look convincing.
+      </p>
+    </div>
+
+    <div class="les-teaching">
+      <div class="les-teaching-label">Teaching Point</div>
+      <p>
+        Automation bias is not a personal failing &mdash; it is a predictable consequence of working alongside a system that is right most of the time. The more accurate the AI, the harder it is to maintain the discipline to verify its output independently. Study design, training, and institutional culture all play a role in managing this risk.
+      </p>
+    </div>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Image</div>
+      <div class="ev-placeholder-desc">Example: AI highlight on a chest X-ray vs. the actual finding (or non-finding)</div>
+    </div>
+
+    <h3>Accountability and Oversight</h3>
+    <p>
+      When an AI tool contributes to a wrong diagnosis, who is responsible? The developer who built it? The hospital that purchased and deployed it? The radiologist who signed the report? Right now, the legal answer in most jurisdictions is that the physician who makes the final clinical decision bears responsibility &mdash; regardless of what the AI recommended.
+    </p>
+    <p>
+      This raises a practical question: if you are legally responsible for the decision, you need to be able to evaluate the AI's output independently. That means maintaining the clinical skills to disagree with the AI when it is wrong &mdash; which brings us back to the never-skilling, deskilling, and mis-skilling risks from Lesson 1.
+    </p>
+    <ul>
+      <li>The level of human oversight should match the stakes &mdash; a worklist triage tool needs less oversight than a diagnostic tool</li>
+      <li>Fully autonomous AI (no human review) is rare in radiology, but the trend is toward increasing automation</li>
+      <li>Transparency from the vendor &mdash; disclosing training data, known limitations, and failure modes &mdash; is essential for informed use</li>
+    </ul>
+
+    <div class="ev-placeholder-row">
+      <div class="ev-placeholder">
+        <div class="ev-placeholder-label">Figure</div>
+        <div class="ev-placeholder-desc">Levels of AI autonomy in radiology: assist &rarr; augment &rarr; automate</div>
+      </div>
+      <div class="ev-placeholder">
+        <div class="ev-placeholder-label">Video</div>
+        <div class="ev-placeholder-desc">Discussion: accountability and AI in clinical practice</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Summary ── -->
+  <section class="les-section" id="summary">
+    <h2>Putting It All Together</h2>
+    <p>
+      The next time you encounter an AI tool &mdash; in a paper, a product demo, or your clinical workflow &mdash; run it through these three questions:
+    </p>
+    <ol>
+      <li><strong>Does it work?</strong> Look at sensitivity, specificity, PPV/NPV, and AUROC. Check the confidence intervals. Ask about calibration.</li>
+      <li><strong>Will it work here?</strong> Check for external validation. Ask what patient populations and scanners were used. Consider whether your practice differs in ways that matter.</li>
+      <li><strong>Should we use it?</strong> Ask whether it changes clinical management in a way that helps patients. Think about automation bias, accountability, and what happens when it fails.</li>
+    </ol>
+    <p>
+      Most AI papers and product sheets focus almost entirely on the first question. The second gets some attention. The third is usually left out entirely. Your job is to ask all three.
+    </p>
+
+    <div class="ev-placeholder">
+      <div class="ev-placeholder-label">Figure</div>
+      <div class="ev-placeholder-desc">Summary visual: the three questions as a checklist or decision framework</div>
+    </div>
+  </section>
+
+  <!-- ── Track-specific callouts ── -->
+  <section class="les-section les-section--student" id="student-content">
+    <div class="les-case les-case--blue" style="margin-top: 8px;">
+      <div class="les-case-label les-case-label--blue">For Medical Students</div>
+      <p>
+        You will not be asked to deploy AI tools anytime soon, but you will read papers that use these metrics and see AI outputs during clinical rotations. Being able to look at a reported AUROC and ask "but what was the prevalence in that dataset?" puts you ahead of most people in the room.
+      </p>
+    </div>
+  </section>
+
+  <section class="les-section les-section--resident" id="resident-content">
+    <div class="les-case les-case--blue" style="margin-top: 8px;">
+      <div class="les-case-label les-case-label--blue">For Radiology Residents</div>
+      <p>
+        Your department may already use AI triage or detection tools. Think about a specific tool you have encountered: can you answer all three questions about it? If not, that gap in your understanding is worth investigating &mdash; especially question two. The published performance of that tool was almost certainly measured on a different patient population than the one walking through your ED.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="lesson-3.html" class="btn btn-outline" id="les-prev">&larr; Prev: AI in Radiology</a>
+  <a href="lesson-5.html" class="btn btn-accent" id="les-next">Next: Future of AI &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+</body>
+</html>

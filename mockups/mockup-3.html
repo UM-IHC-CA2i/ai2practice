@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup 3 — Split + Amber Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0B1D3A;
+  --accent: #0EA5E9;
+  --accent-dark: #0284C7;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-900: #0F172A;
+  --heading: 'Lexend', system-ui, sans-serif;
+  --serif: 'Lora', Georgia, serif;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --research-accent: #D97706;
+  --research-bg: #FFFBEB;
+  --research-border: rgba(217,119,6,0.2);
+  --research-dot: #D97706;
+  --research-label-bg: #D97706;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fff; color: var(--gray-900); font-family: var(--heading); font-size: 16px; line-height: 1.7; }
+
+.mock-label {
+  background: #D97706;
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.cur-section { padding: 72px 40px 80px; background: #fff; }
+.cur-inner { max-width: 1200px; margin: 0 auto; }
+.cur-header { text-align: center; margin-bottom: 48px; }
+.cur-header h2 { font-size: 2.1rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
+.cur-header p { font-family: var(--serif); font-style: italic; color: var(--gray-400); font-size: 1.05rem; }
+
+/* Three column: clinical 2 cols + solid divider + research */
+.cur-body { display: grid; grid-template-columns: 2fr auto 1fr; gap: 0; }
+
+/* Solid gradient divider line */
+.cur-divider {
+  width: 3px;
+  background: linear-gradient(180deg, var(--research-accent) 0%, rgba(217,119,6,0.15) 100%);
+  margin: 0 32px;
+  border-radius: 2px;
+}
+
+/* Clinical side */
+.cur-lanes-head { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 0; padding: 0 48px; }
+.cur-lane-label { text-align: center; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 10px; border-radius: var(--radius) var(--radius) 0 0; color: #fff; }
+.cur-lane-label--stu { background: var(--primary); }
+.cur-lane-label--res { background: var(--accent-dark); }
+
+.cur-flow { position: relative; padding: 0 48px; }
+.cur-flow::before {
+  content: '';
+  position: absolute;
+  left: 17px; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, #0B1D3A 0%, #0284C7 25%, #0EA5E9 50%, #7C3AED 75%, #4F46E5 100%);
+  border-radius: 2px;
+}
+
+.cur-step { position: relative; margin-bottom: 24px; }
+.cur-step:last-child { margin-bottom: 0; }
+.cur-step-dot {
+  position: absolute; left: -43px; top: 50%; transform: translateY(-38%);
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; font-size: 0.82rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2;
+}
+.cur-step-name { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; text-align: center; }
+.cur-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cur-lane { background: var(--gray-100); border-radius: var(--radius); padding: 12px 16px; }
+.cur-lane ul { margin: 0; padding-left: 16px; list-style: disc; }
+.cur-lane li { font-size: 0.8rem; line-height: 1.55; margin-bottom: 2px; }
+.cur-lane li:last-child { margin-bottom: 0; }
+
+.dot-1 { background: #0B1D3A; }
+.dot-2 { background: #0284C7; }
+.dot-3 { background: #0EA5E9; }
+.dot-4 { background: #7C3AED; }
+.dot-5 { background: #4F46E5; }
+
+/* Research side — amber-tinted cards with left border accent */
+.cur-research {}
+.cur-research-head {
+  text-align: center; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 10px; border-radius: var(--radius) var(--radius) 0 0;
+  color: #fff; background: var(--research-label-bg); margin-bottom: 0;
+}
+.cur-research-subtitle {
+  text-align: center; font-size: 0.72rem; color: var(--gray-400);
+  font-family: var(--serif); font-style: italic; padding: 6px 0 0;
+}
+
+.cur-rstep { margin-bottom: 12px; }
+.cur-rstep:last-child { margin-bottom: 0; }
+.cur-rstep-card {
+  background: var(--research-bg);
+  border-left: 3px solid var(--research-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 10px 14px;
+}
+.cur-rstep-card h4 {
+  font-size: 0.78rem; font-weight: 700; color: var(--research-accent);
+  margin: 0 0 4px; display: flex; align-items: center; gap: 8px;
+}
+.cur-rstep-card h4 span {
+  width: 20px; height: 20px; border-radius: 50%; background: var(--research-dot);
+  color: #fff; font-size: 0.6rem; font-weight: 800;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.cur-rstep-card ul { margin: 0; padding-left: 14px; list-style: disc; }
+.cur-rstep-card li { font-size: 0.76rem; line-height: 1.5; margin-bottom: 1px; }
+.cur-rstep-card li:last-child { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .cur-body { grid-template-columns: 1fr; }
+  .cur-divider { display: none; }
+  .cur-lanes-head, .cur-flow { padding: 0; }
+  .cur-flow::before, .cur-step-dot { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="mock-label">Mockup 3 &mdash; Layout B (split with solid gradient divider) &bull; Amber / gold research track</div>
+
+<section class="cur-section">
+<div class="cur-inner">
+  <div class="cur-header">
+    <h2>AI Curriculum</h2>
+    <p>A structured path through AI literacy for medical students and radiology residents</p>
+  </div>
+
+  <div class="cur-body">
+
+    <div class="cur-clinical">
+      <div class="cur-lanes-head">
+        <div class="cur-lane-label cur-lane-label--stu">Medical Student</div>
+        <div class="cur-lane-label cur-lane-label--res">Radiology Resident</div>
+      </div>
+      <div class="cur-flow">
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-1">1</div>
+          <div class="cur-step-name">Never-Skilling</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Never-skilling, deskilling, mis-skilling</li>
+              <li>AI errors and appropriate skepticism</li>
+              <li>Cases</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Never-skilling, deskilling, mis-skilling</li>
+              <li>Real-world radiology examples</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-2">2</div>
+          <div class="cur-step-name">AI 101</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Types of AI: deep learning, neural networks, ML</li>
+              <li>LLM vs. image model vs. NLP</li>
+              <li>Types of data and how AI is made</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Same + classification, segmentation, object detection</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-3">3</div>
+          <div class="cur-step-name">Radiology 101</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+              <li>Cases</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Brief touch on acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+              <li>Examples of workflow AIs</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-4">4</div>
+          <div class="cur-step-name">AI Evaluation</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Bias and transparency</li>
+              <li>Basic sensitivity, specificity, PPV/NPV</li>
+              <li>Cases</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Use figure from Dr. Doo</li>
+              <li>Consider more advanced topics</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-5">5</div>
+          <div class="cur-step-name">Future of AI</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>How AI may change medicine and radiology</li>
+              <li>How AI may change the radiologist's role</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Impact on training, workflow, research, and practice</li>
+              <li>Explore IR, RadOnc, and beyond</li>
+            </ul></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cur-divider"></div>
+
+    <div class="cur-research">
+      <div class="cur-research-head">Research Track</div>
+      <div class="cur-research-subtitle">Hands-on AI research skills</div>
+      <div style="padding-top: 10px;">
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>1</span> Setup</h4>
+            <ul>
+              <li>GitHub, Python, command line</li>
+              <li>Jupyter notebooks</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>2</span> Research Data</h4>
+            <ul>
+              <li>Data cleaning and visualization</li>
+              <li>Statistics, bias, leakage</li>
+              <li>Train/test splits</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>3</span> Build Your Own AI</h4>
+            <ul>
+              <li>Basic ML and neural networks</li>
+              <li>Modifying existing models</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>4</span> Image AI</h4>
+            <ul>
+              <li>Classification, segmentation, object detection</li>
+              <li>Quantification</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>5</span> Text &amp; Language</h4>
+            <ul>
+              <li>NLP and LLMs</li>
+              <li>Structured data extraction</li>
+              <li>Generative AI</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>6</span> Does It Work?</h4>
+            <ul>
+              <li>Evaluation metrics and error analysis</li>
+              <li>Bias, calibration, validation</li>
+              <li>Generalizability</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-card">
+            <h4><span>7</span> Design Your Project</h4>
+            <ul>
+              <li>Research questions, hypotheses, experiments</li>
+              <li>Datasets, analysis, interpretation</li>
+              <li>GitHub</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</body>
+</html>

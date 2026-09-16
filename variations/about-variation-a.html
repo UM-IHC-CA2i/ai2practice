@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* ── About Page: Variation A ──
+   Blue-light logo band → white team section with portrait rectangles
+   Uses section backgrounds like the rest of the site */
+
+.about-logo-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+  flex-wrap: wrap;
+}
+
+.about-logo-band img {
+  height: 140px;
+  width: auto;
+  object-fit: contain;
+}
+
+.about-desc {
+  text-align: center;
+  max-width: 620px;
+  margin: 28px auto 0;
+}
+
+.about-desc p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gray-600);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+}
+
+.team-headshot {
+  width: 180px;
+  height: 230px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 18px;
+  border: 3px solid var(--gray-200);
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.team-headshot:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.team-headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-headshot-placeholder {
+  color: var(--gray-400);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.team-title {
+  font-size: 0.82rem;
+  color: var(--gray-900);
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .about-logo-band { gap: 36px; }
+  .about-logo-band img { height: 100px; }
+  .team-grid { gap: 32px; }
+  .team-member { width: 160px; }
+  .team-headshot { width: 150px; height: 195px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Variation A:
+     page-hero → section--blue-light logos → section--white team grid
+     Portrait rectangles, big logos, black affiliations -->
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>About Us</h1>
+    <p>Committee on Data Science &amp; AI of the AAR/RRA</p>
+  </div>
+</div>
+
+<!-- Logo Section -->
+<section class="section section--blue-light">
+  <div class="section-inner">
+    <div class="about-logo-band">
+      <img src="../images/aar-logo.jpg" alt="Association of Academic Radiology">
+      <img src="../images/rra-logo.webp" alt="Radiology Research Alliance">
+    </div>
+    <div class="about-desc">
+      <p>
+        This educational resource is being developed by members of the Committee on Data Science &amp; AI
+        of the Association of Academic Radiology (AAR) and the Radiology Research Alliance (RRA).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="section section--white">
+  <div class="section-inner">
+    <h2 class="mt-0 section-heading--primary" style="text-align:center;">Committee Members</h2>
+    <p class="section-subdesc" style="text-align:center;margin:0 auto 0;">
+      Radiology educators and trainees working to integrate AI responsibly into medical training.
+    </p>
+    <div class="team-grid">
+
+      <div class="team-member">
+        <div class="team-headshot">
+          <div class="team-headshot-placeholder">Photo</div>
+        </div>
+        <div class="team-name">Shinjer Li</div>
+        <div class="team-title">M2 Medical Student<br>EVMS at ODU</div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-headshot">
+          <div class="team-headshot-placeholder">Photo</div>
+        </div>
+        <div class="team-name">Dr. Florence Doo</div>
+        <div class="team-title">XXXX</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

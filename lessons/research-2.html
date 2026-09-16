@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research 2: Data Science and AI Evaluation &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+.les-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 24px 0;
+}
+.les-step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0D9488;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.les-step-body {
+  flex: 1;
+  min-width: 0;
+}
+.les-step-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 6px;
+}
+.les-step-body p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin: 0 0 8px;
+}
+.les-step-body ol, .les-step-body ul {
+  padding-left: 20px;
+  margin: 6px 0 0;
+}
+.les-step-body li {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.les-code {
+  display: inline;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: #0D9488;
+}
+.les-time-est {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #CCFBF1;
+  color: #0D9488;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.les-prereq {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid #0D9488;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.les-prereq-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0D9488;
+  margin-bottom: 8px;
+}
+.les-prereq ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.les-prereq li {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.les-why {
+  background: #F0FDFA;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 12px 0 0;
+}
+.les-why-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0D9488;
+  margin-bottom: 4px;
+}
+.les-why p {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #0D9488;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Research 2 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #0D9488;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">R2</div>
+    <div>
+      <h1>Data Science and AI Evaluation</h1>
+      <p>Loading data, descriptive statistics, visualization with seaborn, statistical testing, and AI evaluation metrics</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <!-- ── Overview ── -->
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <div class="les-time-est">Estimated time: 90&ndash;120 minutes</div>
+    <p>
+      This module is a comprehensive introduction to data science for medical research. You will start by loading multiple data types (CSV datasets, medical images, and JSON), then build up from descriptive statistics through publication-quality visualizations and statistical testing, and finally apply everything to evaluate an AI diagnostic tool.
+    </p>
+    <p>
+      By the end, you will be able to calculate summary statistics, run t-tests and chi-square tests, create box plots and heatmaps with seaborn, build ROC curves, and detect performance disparities across subgroups &mdash; the complete toolkit for reading and producing AI research.
+    </p>
+  </section>
+
+  <!-- ── Prerequisites ── -->
+  <div class="les-prereq">
+    <div class="les-prereq-label">What you need before starting</div>
+    <ul>
+      <li>Research Module 1 completed (GitHub account, forked repo, Python basics)</li>
+      <li>Comfort with <span class="les-code">df.head()</span>, <span class="les-code">.shape</span>, and <span class="les-code">value_counts()</span></li>
+    </ul>
+  </div>
+
+  <!-- ── Walkthrough ── -->
+  <section class="les-section" id="walkthrough">
+    <h2>Walkthrough</h2>
+
+    <div class="les-step">
+      <div class="les-step-num">1</div>
+      <div class="les-step-body">
+        <h3>Open the R2 Notebook</h3>
+        <ol>
+          <li>Go to <a href="https://colab.research.google.com" target="_blank" rel="noopener">colab.research.google.com</a></li>
+          <li>Click <strong>Open notebook</strong>, then select the <strong>GitHub</strong> tab</li>
+          <li>Paste your fork URL: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click <span class="les-code">lesson-notebooks/Research_Module_2.ipynb</span> to open it</li>
+          <li>Replace <span class="les-code">YOUR-USERNAME</span> with your GitHub username in the setup cell</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">2</div>
+      <div class="les-step-body">
+        <h3>Part 1: Loading Different Data Types</h3>
+        <p>Research data comes in many formats. You will load:</p>
+        <ul>
+          <li><strong>CSV</strong> &mdash; Tabular data (AI findings + patient demographics)</li>
+          <li><strong>Image</strong> &mdash; A chest X-ray from your GitHub repository</li>
+          <li><strong>JSON</strong> &mdash; Structured AI-generated report text</li>
+        </ul>
+        <p>You will also merge two DataFrames using a shared key, a common research operation.</p>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">3</div>
+      <div class="les-step-body">
+        <h3>Parts 2&ndash;3: DataFrames and Descriptive Statistics</h3>
+        <p>Learn to explore and summarize your data:</p>
+        <ul>
+          <li><strong>DataFrame inspection</strong> &mdash; <span class="les-code">.head()</span>, <span class="les-code">.info()</span>, <span class="les-code">.describe()</span>, filtering, groupby</li>
+          <li><strong>Central tendency</strong> &mdash; Mean, median, mode</li>
+          <li><strong>Spread</strong> &mdash; Standard deviation, variance, IQR, percentiles</li>
+          <li><strong>Summary tables</strong> &mdash; Statistics grouped by modality or body region</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">4</div>
+      <div class="les-step-body">
+        <h3>Part 4: Data Visualization with Seaborn</h3>
+        <p>Create publication-quality plots:</p>
+        <ul>
+          <li>Histograms with KDE overlays</li>
+          <li>Box plots and violin plots</li>
+          <li>Grouped bar charts and count plots</li>
+          <li>Correlation heatmaps</li>
+          <li>Scatter plots with regression lines</li>
+          <li>Pair plots for multi-variable exploration</li>
+          <li>3D scatter plots</li>
+          <li>Styled summary tables</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">5</div>
+      <div class="les-step-body">
+        <h3>Part 5: Statistical Testing</h3>
+        <p>Determine whether differences are real or due to chance:</p>
+        <ul>
+          <li><strong>t-tests</strong> &mdash; Compare mean AI confidence across groups (flagged vs. not, confirmed vs. not, male vs. female)</li>
+          <li><strong>p-values</strong> &mdash; Interpret statistical significance</li>
+          <li><strong>Chi-square test</strong> &mdash; Test whether AI flagging depends on modality</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">6</div>
+      <div class="les-step-body">
+        <h3>Part 6: AI Evaluation Metrics</h3>
+        <p>Apply your skills to formally evaluate the AI system:</p>
+        <ul>
+          <li><strong>Confusion matrix</strong> &mdash; TP, FP, FN, TN</li>
+          <li><strong>Sensitivity, Specificity, PPV, NPV</strong></li>
+          <li><strong>Threshold analysis</strong> &mdash; How changing the confidence cutoff shifts sensitivity and specificity</li>
+          <li><strong>ROC curve and AUC</strong></li>
+          <li><strong>Subgroup analysis</strong> &mdash; Performance broken down by modality</li>
+        </ul>
+        <div class="les-why">
+          <div class="les-why-label">Why this matters</div>
+          <p>These metrics appear in every FDA submission and published AI validation study. Subgroup disparities are how <strong>mis-skilling</strong> happens &mdash; if AI performs poorly on MSK imaging but trainees trust it equally across modalities, they internalize incorrect patterns.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">7</div>
+      <div class="les-step-body">
+        <h3>Part 7: Optional &mdash; LLM-Assisted Interpretation</h3>
+        <p>Learn to use a large language model (ChatGPT, Claude) as a drafting assistant for interpreting your results. The notebook provides a template prompt you can copy.</p>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">8</div>
+      <div class="les-step-body">
+        <h3>Complete Your Turn Tasks and Commit</h3>
+        <p>Three independent tasks:</p>
+        <ul>
+          <li><strong>Task 1:</strong> Pick a body region and calculate all four metrics for it</li>
+          <li><strong>Task 2:</strong> Recommend a confidence threshold for clinical use</li>
+          <li><strong>Task 3:</strong> Write a 3&ndash;5 sentence interpretation (optionally LLM-assisted)</li>
+        </ul>
+        <p>When done:</p>
+        <ol>
+          <li>In Colab, go to <strong>File &rarr; Download &rarr; Download .ipynb</strong></li>
+          <li>Go to your fork: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click the <strong>Code</strong> tab, then <strong>Add file &rarr; Upload files</strong></li>
+          <li>Drag and drop your downloaded <span class="les-code">.ipynb</span> file</li>
+          <li>Type the commit message: <span class="les-code">Completed Research Module 2</span></li>
+          <li>Make sure <strong>&ldquo;Commit directly to the main branch&rdquo;</strong> is selected</li>
+          <li>Click <strong>Commit changes</strong></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key Concepts ── -->
+  <section class="les-section" id="concepts">
+    <h2>Key Concepts</h2>
+
+    <div class="les-definition">
+      <p><strong>Descriptive Statistics</strong> &mdash; Numerical summaries of data. <em>Central tendency</em> (mean, median, mode) tells you the typical value. <em>Spread</em> (standard deviation, IQR) tells you how much values vary. These appear in the "Table 1" of every research paper.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>t-test</strong> &mdash; A statistical test that compares the means of two groups and determines whether the difference is statistically significant. Used when comparing continuous measurements (e.g., AI confidence scores) between two conditions.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>p-value</strong> &mdash; The probability of observing a difference as large as (or larger than) the one measured, assuming there is truly no difference. By convention, p &lt; 0.05 is considered statistically significant. A small p-value does not tell you the size or clinical importance of the effect.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Seaborn</strong> &mdash; A Python visualization library built on matplotlib that produces publication-quality statistical graphics. Supports histograms, box plots, violin plots, heatmaps, regression plots, and pair plots with minimal code.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Confusion Matrix</strong> &mdash; A 2x2 table that categorizes every AI prediction into four outcomes: True Positive, False Positive, False Negative, True Negative. All evaluation metrics (sensitivity, specificity, PPV, NPV) are derived from these four numbers.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Sensitivity and Specificity</strong> &mdash; Sensitivity = TP / (TP + FN), the proportion of real findings the AI caught. Specificity = TN / (TN + FP), the proportion of normal studies correctly identified. These trade off against each other as the confidence threshold changes.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>ROC Curve and AUC</strong> &mdash; The ROC curve plots sensitivity against (1 - specificity) at every threshold. AUC (Area Under the Curve) summarizes overall discriminative performance: 1.0 is perfect, 0.5 is random. AUC is the most common metric in radiology AI papers.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Subgroup Analysis</strong> &mdash; Evaluating AI performance separately for different modalities, body regions, or populations. Overall accuracy can mask significant disparities. FDA guidance increasingly requires subgroup reporting for AI diagnostic tools.</p>
+    </div>
+  </section>
+
+  <!-- ── Looking Ahead ── -->
+  <section class="les-section les-intro" id="next">
+    <h2>Looking Ahead</h2>
+    <p>
+      You can now evaluate AI tools quantitatively and detect performance disparities. In <strong>Research Module 3</strong>, you will build and run your own machine learning models &mdash; starting with simple classifiers on tabular data and progressing to image classification with pre-trained neural networks.
+    </p>
+  </section>
+
+  <!-- ── Checkpoint Quiz ── -->
+  <section id="ckpt-section">
+    <div class="ckpt-section-header">
+      <div class="ckpt-lock-icon">&#10003;</div>
+      <h2>Checkpoint Quiz</h2>
+    </div>
+    <p class="ckpt-section-desc">
+      Answer these questions to unlock the next module. Some require answers from your notebook.
+    </p>
+
+    <!-- Q1: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="0" data-answer="29" data-tolerance="0">
+      <div class="ckpt-q-num">Question 1 of 5</div>
+      <div class="ckpt-q-text">How many <strong>True Positives</strong> (TP) are in the overall confusion matrix? Check your notebook output.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        There are <strong>29</strong> True Positives &mdash; cases where the AI correctly flagged a real finding that the radiologist confirmed.
+      </div>
+    </div>
+
+    <!-- Q2: MC concept -->
+    <div class="ckpt-question" data-type="mc" data-q="1" data-correct="0">
+      <div class="ckpt-q-num">Question 2 of 5</div>
+      <div class="ckpt-q-text">If you raise the AI's confidence threshold from 0.50 to 0.90, what happens?</div>
+      <button class="quiz-option" data-idx="0">Sensitivity decreases, specificity increases</button>
+      <button class="quiz-option" data-idx="1">Both sensitivity and specificity increase</button>
+      <button class="quiz-option" data-idx="2">Sensitivity increases, specificity decreases</button>
+      <button class="quiz-option" data-idx="3">Neither changes</button>
+      <div class="quiz-explanation">
+        A <strong>higher threshold</strong> means the AI flags fewer studies. It catches fewer true findings (lower sensitivity) but produces fewer false alarms (higher specificity). This is the fundamental trade-off.
+      </div>
+    </div>
+
+    <!-- Q3: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="2" data-answer="80.6|81|80.6%" data-tolerance="0">
+      <div class="ckpt-q-num">Question 3 of 5</div>
+      <div class="ckpt-q-text">What is the overall <strong>sensitivity</strong> of the AI system? Enter as a percentage (e.g., 75.0).</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a percentage">
+      <div class="quiz-explanation">
+        The overall sensitivity is <strong>80.6%</strong>. This means the AI correctly identified about 4 out of every 5 real findings.
+      </div>
+    </div>
+
+    <!-- Q4: MC concept -->
+    <div class="ckpt-question" data-type="mc" data-q="3" data-correct="2">
+      <div class="ckpt-q-num">Question 4 of 5</div>
+      <div class="ckpt-q-text">Why is subgroup analysis important when evaluating an AI tool?</div>
+      <button class="quiz-option" data-idx="0">It makes the overall AUC number higher</button>
+      <button class="quiz-option" data-idx="1">It is only needed for research publications</button>
+      <button class="quiz-option" data-idx="2">Overall performance can mask significant disparities across populations or modalities</button>
+      <button class="quiz-option" data-idx="3">It reduces the number of false positives</button>
+      <div class="quiz-explanation">
+        An AI tool with 85% overall sensitivity might have 95% sensitivity for chest X-rays but only 60% for ultrasound. Without subgroup analysis, this disparity is invisible. <strong>This is how mis-skilling happens</strong> &mdash; clinicians trust the AI equally across contexts where it performs unequally.
+      </div>
+    </div>
+
+    <!-- Q5: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="4" data-answer="50|50.0|50.0%" data-tolerance="0">
+      <div class="ckpt-q-num">Question 5 of 5</div>
+      <div class="ckpt-q-text">What is the overall <strong>specificity</strong> of the AI system? Enter as a percentage (e.g., 75.0).</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a percentage">
+      <div class="quiz-explanation">
+        The overall specificity is <strong>50.0%</strong>. This means the AI correctly identified only half of the truly normal studies, producing many false positives.
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="ckpt-submit-row">
+      <button id="ckpt-submit-btn" disabled>Check Answers</button>
+      <span id="ckpt-submit-hint">Answer all 5 questions to check.</span>
+    </div>
+
+    <!-- Results -->
+    <div id="ckpt-results">
+      <div class="quiz-score" id="ckpt-score"></div>
+      <div class="quiz-score-label"><span id="ckpt-correct-count"></span> of <span id="ckpt-total-count"></span> correct</div>
+      <div class="quiz-status" id="ckpt-status"></div>
+      <div id="ckpt-pass-msg">You have passed the checkpoint. The next module is now unlocked.</div>
+      <div id="ckpt-retry-section">
+        <p style="font-size:0.85rem; color:var(--gray-500); margin-bottom:12px;">Review the explanations above, then try again. You need 80% to pass.</p>
+        <button id="ckpt-retry-btn">Try Again</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="research-1.html" class="btn btn-outline" id="les-prev">&larr; Previous</a>
+  <a href="research-3.html" class="btn btn-accent" id="les-next">Next: ML &amp; Image Processing &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+<script src="../js/checkpoint.js"></script>
+<script>
+CheckpointQuiz.init({
+  lessonKey: 'research-2',
+  passThreshold: 0.8
+});
+</script>
+</body>
+</html>

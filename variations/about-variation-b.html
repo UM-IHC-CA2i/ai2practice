@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* ── About Page: Variation B ──
+   Dark hero with logos inside → feature-block cards for each member
+   More structured, uses the site's card/block patterns */
+
+.hero-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-logos img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+.about-mission-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  margin-bottom: 40px;
+  border-left: 4px solid var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.about-mission-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.about-mission-card p {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.team-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.team-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.team-header .team-count {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.team-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.team-headshot {
+  width: 120px;
+  height: 155px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--gray-200);
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-headshot-placeholder {
+  color: var(--gray-400);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-info {
+  flex: 1;
+}
+
+.team-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+.team-title {
+  font-size: 0.85rem;
+  color: var(--gray-900);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .hero-logos { gap: 32px; }
+  .hero-logos img { height: 80px; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card { padding: 20px; gap: 16px; }
+  .team-headshot { width: 100px; height: 130px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Variation B:
+     Dark section hero with white-inverted logos → mission card → team cards
+     Uses feature-block and card patterns from the rest of the site -->
+
+<section class="section section--dark" style="padding-top:100px;padding-bottom:56px;">
+  <div class="section-inner" style="text-align:center;">
+    <p class="section-eyebrow">About Us</p>
+    <h2 class="mt-0" style="font-size:2.4rem;">Committee on Data Science &amp; AI</h2>
+    <p style="max-width:520px;margin:0 auto;">
+      An initiative of the Association of Academic Radiology and the Radiology Research Alliance.
+    </p>
+    <div class="hero-logos">
+      <img src="../images/aar-logo.jpg" alt="Association of Academic Radiology">
+      <img src="../images/rra-logo.webp" alt="Radiology Research Alliance">
+    </div>
+  </div>
+</section>
+
+<section class="section section--light">
+  <div class="section-inner">
+
+    <div class="about-mission-card">
+      <h3>Our Mission</h3>
+      <p>
+        This educational resource is being developed by members of the Committee on Data Science &amp; AI
+        of the Association of Academic Radiology (AAR) and the Radiology Research Alliance (RRA).
+        Our goal is to help radiology trainees and educators navigate the risks that AI poses to clinical
+        skill development.
+      </p>
+    </div>
+
+    <div class="team-header">
+      <h2 class="section-heading--primary">Committee Members</h2>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-headshot">
+          <div class="team-headshot-placeholder">Photo</div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Shinjer Li</div>
+          <div class="team-title">M2 Medical Student<br>EVMS at ODU</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-headshot">
+          <div class="team-headshot-placeholder">Photo</div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Dr. Florence Doo</div>
+          <div class="team-title">XXXX</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

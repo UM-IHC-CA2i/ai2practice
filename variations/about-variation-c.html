@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* ── About Page: Variation C ──
+   page-hero → white logos section → teal-light team section
+   Portrait grid centered, colored accent dividers, org cards */
+
+.about-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.about-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-logo-item img {
+  height: 130px;
+  width: auto;
+  object-fit: contain;
+}
+
+.about-logo-item span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.about-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.about-desc-block {
+  text-align: center;
+  max-width: 640px;
+  margin: 24px auto 0;
+}
+
+.about-desc-block p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 12px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 210px;
+}
+
+.team-headshot {
+  width: 180px;
+  height: 230px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 18px;
+  border: 3px solid var(--white);
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.team-headshot:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.team-headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-headshot-placeholder {
+  color: var(--gray-400);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.team-title {
+  font-size: 0.82rem;
+  color: var(--gray-900);
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .about-logo-row { gap: 40px; }
+  .about-logo-item img { height: 90px; }
+  .team-grid { gap: 32px; }
+  .team-member { width: 160px; }
+  .team-headshot { width: 150px; height: 195px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Variation C:
+     page-hero--accent → white section with logos + accent divider + desc
+     → teal-light section with portrait team grid
+     Uses colored section backgrounds and accent divider for visual breaks -->
+
+<div class="page-hero page-hero--accent">
+  <div class="page-hero-inner">
+    <h1>About Us</h1>
+    <p>Committee on Data Science &amp; AI of the AAR/RRA</p>
+  </div>
+</div>
+
+<!-- Logos + Description -->
+<section class="section section--white">
+  <div class="section-inner">
+    <div class="about-logo-row">
+      <div class="about-logo-item">
+        <img src="../images/aar-logo.jpg" alt="Association of Academic Radiology">
+      </div>
+      <div class="about-logo-item">
+        <img src="../images/rra-logo.webp" alt="Radiology Research Alliance">
+      </div>
+    </div>
+    <div style="margin-top:28px;">
+      <div class="about-divider"></div>
+    </div>
+    <div class="about-desc-block">
+      <p>
+        This educational resource is being developed by members of the Committee on Data Science &amp; AI
+        of the Association of Academic Radiology (AAR) and the Radiology Research Alliance (RRA).
+        Our goal is to help radiology trainees and educators navigate the integration of AI into
+        clinical training.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="section section--blue-light">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p class="section-eyebrow" style="margin-bottom:8px;">Our Team</p>
+      <h2 class="mt-0 section-heading--primary">Committee Members</h2>
+      <p class="section-subdesc" style="text-align:center;margin:0 auto;">
+        Radiology educators and trainees working to integrate AI responsibly into medical training.
+      </p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-member">
+        <div class="team-headshot">
+          <div class="team-headshot-placeholder">Photo</div>
+        </div>
+        <div class="team-name">Shinjer Li</div>
+        <div class="team-title">M2 Medical Student<br>EVMS at ODU</div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-headshot">
+          <div class="team-headshot-placeholder">Photo</div>
+        </div>
+        <div class="team-name">Dr. Florence Doo</div>
+        <div class="team-title">XXXX</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

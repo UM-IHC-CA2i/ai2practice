@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research 3: Machine Learning and Image Processing &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+.les-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 24px 0;
+}
+.les-step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0D9488;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.les-step-body {
+  flex: 1;
+  min-width: 0;
+}
+.les-step-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 6px;
+}
+.les-step-body p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin: 0 0 8px;
+}
+.les-step-body ol, .les-step-body ul {
+  padding-left: 20px;
+  margin: 6px 0 0;
+}
+.les-step-body li {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.les-code {
+  display: inline;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: #0D9488;
+}
+.les-time-est {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #CCFBF1;
+  color: #0D9488;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.les-prereq {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid #0D9488;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.les-prereq-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0D9488;
+  margin-bottom: 8px;
+}
+.les-prereq ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.les-prereq li {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.les-deliverable {
+  background: var(--offwhite);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.les-deliverable-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.les-deliverable ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.les-deliverable li {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.les-deliverable li strong {
+  color: var(--gray-900);
+}
+.les-why {
+  background: #F0FDFA;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 12px 0 0;
+}
+.les-why-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0D9488;
+  margin-bottom: 4px;
+}
+.les-why p {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #0D9488;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Research 3 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #0D9488;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">R3</div>
+    <div>
+      <h1>Machine Learning and Image Processing</h1>
+      <p>ML classifiers, pre-trained neural networks, hand landmark detection, and image segmentation</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <!-- ── Overview ── -->
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <div class="les-time-est">Estimated time: 90&ndash;120 minutes</div>
+    <p>
+      This module takes you from zero to running real AI models. You will build machine learning classifiers on your radiology dataset, learn how computers represent images, run a pre-trained neural network to classify everyday photos, and use Google's MediaPipe to detect and segment hands in your own images.
+    </p>
+    <p>
+      Everything runs in Google Colab &mdash; no installation, no GPU required.
+    </p>
+  </section>
+
+  <!-- ── Prerequisites ── -->
+  <div class="les-prereq">
+    <div class="les-prereq-label">What you need before starting</div>
+    <ul>
+      <li>Research Modules 1 and 2 completed (Python, pandas, evaluation metrics)</li>
+      <li>Your forked GitHub repository with the radiology dataset</li>
+      <li>A phone or camera to take photos of objects and your hand</li>
+    </ul>
+  </div>
+
+  <!-- ── Walkthrough ── -->
+  <section class="les-section" id="walkthrough">
+    <h2>Walkthrough</h2>
+
+    <div class="les-step">
+      <div class="les-step-num">1</div>
+      <div class="les-step-body">
+        <h3>Open the R3 Notebook</h3>
+        <ol>
+          <li>Go to <a href="https://colab.research.google.com" target="_blank" rel="noopener">colab.research.google.com</a></li>
+          <li>Click <strong>Open notebook</strong>, then select the <strong>GitHub</strong> tab</li>
+          <li>Paste your fork URL: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click <span class="les-code">lesson-notebooks/Research_Module_3.ipynb</span> to open it</li>
+          <li>Replace <span class="les-code">YOUR-USERNAME</span> with your GitHub username in the setup cell</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">2</div>
+      <div class="les-step-body">
+        <h3>Part 1: Build ML Classifiers</h3>
+        <p>You will train two classifiers on the radiology dataset to predict whether a radiologist will confirm an AI finding:</p>
+        <ul>
+          <li><strong>Logistic regression</strong> &mdash; a simple linear classifier</li>
+          <li><strong>Decision tree</strong> &mdash; learns a flowchart of yes/no questions</li>
+        </ul>
+        <p>You will learn how to encode categorical features, split data into training and test sets, and compare model accuracy.</p>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">3</div>
+      <div class="les-step-body">
+        <h3>Part 2: Image Basics</h3>
+        <p>Load a chest X-ray from your GitHub repository and learn how images are stored as pixel arrays. Practice resizing, converting to grayscale, and adjusting brightness and contrast.</p>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">4</div>
+      <div class="les-step-body">
+        <h3>Part 3: Pre-Trained Classification</h3>
+        <p>Load <strong>MobileNetV2</strong>, a neural network trained on 1.2 million images, and use it to classify photos in one line of code. Then upload your own photos and see what it predicts.</p>
+        <div class="les-why">
+          <div class="les-why-label">Why this matters</div>
+          <p>This is the same transfer learning approach behind radiology AI tools. Models pre-trained on large datasets are fine-tuned on medical images. Understanding how a general model works helps you understand the medical models you evaluated in Module 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">5</div>
+      <div class="les-step-body">
+        <h3>Part 4: Hand Landmarks, Segmentation, and Measurement</h3>
+        <p>Use Google's <strong>MediaPipe Hand Landmarker</strong> to detect 21 landmark points on your hand, create a segmentation mask that isolates the hand from the background, and measure each finger's length from the landmark coordinates. This is the same principle behind measuring tumor diameters or vertebral heights from AI-detected landmarks in clinical imaging.</p>
+      </div>
+    </div>
+
+    <div class="les-step">
+      <div class="les-step-num">6</div>
+      <div class="les-step-body">
+        <h3>Complete Your Turn Tasks and Commit</h3>
+        <p>Three tasks:</p>
+        <ul>
+          <li><strong>Task 1:</strong> Train a Random Forest classifier and compare accuracy to the other models</li>
+          <li><strong>Task 2:</strong> Classify 3 objects you photograph with MobileNetV2</li>
+          <li><strong>Task 3:</strong> Photograph both hands, compare finger lengths and segmentation masks side by side</li>
+        </ul>
+        <p>When done:</p>
+        <ol>
+          <li>In Colab, go to <strong>File &rarr; Download &rarr; Download .ipynb</strong></li>
+          <li>Go to your fork: <span class="les-code">https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging</span></li>
+          <li>Click the <strong>Code</strong> tab, then <strong>Add file &rarr; Upload files</strong></li>
+          <li>Type the commit message: <span class="les-code">Completed Research Module 3</span></li>
+          <li>Click <strong>Commit changes</strong></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key Concepts ── -->
+  <section class="les-section" id="concepts">
+    <h2>Key Concepts</h2>
+
+    <div class="les-definition">
+      <p><strong>Supervised Learning</strong> &mdash; A type of machine learning where you provide labeled examples (input + correct answer) and the model learns to predict the answer for new inputs. Both logistic regression and decision trees are supervised classifiers.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Train/Test Split</strong> &mdash; Dividing your data so the model learns from one portion (training set) and is evaluated on a held-out portion (test set). Testing on training data gives artificially high performance because the model has memorized the answers.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Pre-Trained Model</strong> &mdash; A neural network that has already been trained on a large dataset (e.g., ImageNet with 1.2 million images). You can use it directly or fine-tune it on a smaller, specialized dataset. This approach is called <strong>transfer learning</strong>.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Image Segmentation</strong> &mdash; Labeling every pixel in an image as belonging to a specific class (e.g., hand vs. background, tumor vs. normal tissue). Unlike classification, which assigns one label to the whole image, segmentation produces a pixel-level map.</p>
+    </div>
+
+    <div class="les-definition">
+      <p><strong>Convex Hull</strong> &mdash; The smallest convex polygon that encloses a set of points. In this module, we use the convex hull of hand landmark points to approximate the outline of the hand for segmentation.</p>
+    </div>
+  </section>
+
+  <!-- ── Looking Ahead ── -->
+  <section class="les-section les-intro" id="next">
+    <h2>Looking Ahead</h2>
+    <p>
+      You can now build classifiers, work with images, and run pre-trained AI models. In <strong>Research Module 4</strong>, you will explore advanced AI topics including natural language processing and how large language models can be applied to radiology report analysis.
+    </p>
+  </section>
+
+  <!-- ── Checkpoint Quiz ── -->
+  <section id="ckpt-section">
+    <div class="ckpt-section-header">
+      <div class="ckpt-lock-icon">&#10003;</div>
+      <h2>Checkpoint Quiz</h2>
+    </div>
+    <p class="ckpt-section-desc">
+      Answer these questions to unlock the next module. Some require answers from your notebook.
+    </p>
+
+    <!-- Q1: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="0" data-answer="12" data-tolerance="0">
+      <div class="ckpt-q-num">Question 1 of 5</div>
+      <div class="ckpt-q-text">After the 80/20 train-test split, how many samples are in the <strong>test set</strong>? Check the output of <code>train_test_split</code> in your notebook.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        With 60 total samples and a 20% test split, the test set has <strong>12</strong> samples (60 &times; 0.2 = 12).
+      </div>
+    </div>
+
+    <!-- Q2: MC concept -->
+    <div class="ckpt-question" data-type="mc" data-q="1" data-correct="1">
+      <div class="ckpt-q-num">Question 2 of 5</div>
+      <div class="ckpt-q-text">Why do we split data into separate training and test sets?</div>
+      <button class="quiz-option" data-idx="0">To make the dataset smaller and faster to process</button>
+      <button class="quiz-option" data-idx="1">To measure how well the model performs on data it has never seen</button>
+      <button class="quiz-option" data-idx="2">To remove outliers from the dataset</button>
+      <button class="quiz-option" data-idx="3">To balance the number of positive and negative examples</button>
+      <div class="quiz-explanation">
+        <strong>The test set simulates new, unseen data.</strong> If you evaluate on training data, the model appears to perform well because it has memorized the answers. Testing on held-out data reveals true generalization ability.
+      </div>
+    </div>
+
+    <!-- Q3: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="2" data-answer="1000" data-tolerance="0">
+      <div class="ckpt-q-num">Question 3 of 5</div>
+      <div class="ckpt-q-text">How many output classes does the MobileNetV2 model (trained on ImageNet) have? Check your notebook output.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        MobileNetV2 was trained on ImageNet, which contains <strong>1,000</strong> object categories. The model outputs a probability for each of these classes.
+      </div>
+    </div>
+
+    <!-- Q4: MC concept -->
+    <div class="ckpt-question" data-type="mc" data-q="3" data-correct="0">
+      <div class="ckpt-q-num">Question 4 of 5</div>
+      <div class="ckpt-q-text">What is the difference between image classification and image segmentation?</div>
+      <button class="quiz-option" data-idx="0">Classification labels the whole image; segmentation labels every pixel</button>
+      <button class="quiz-option" data-idx="1">Classification is for photos; segmentation is for medical images</button>
+      <button class="quiz-option" data-idx="2">Classification requires more training data than segmentation</button>
+      <button class="quiz-option" data-idx="3">Segmentation is faster than classification</button>
+      <div class="quiz-explanation">
+        <strong>Classification</strong> answers "what is in this image?" with a single label. <strong>Segmentation</strong> answers "where is each object?" by labeling every pixel. In radiology, segmentation is used to outline tumors, measure organ volumes, and isolate regions of interest.
+      </div>
+    </div>
+
+    <!-- Q5: Fill-in from notebook -->
+    <div class="ckpt-question" data-type="fill" data-q="4" data-answer="21" data-tolerance="0">
+      <div class="ckpt-q-num">Question 5 of 5</div>
+      <div class="ckpt-q-text">How many landmark points does MediaPipe detect on each hand? Check your notebook output.</div>
+      <input type="text" class="ckpt-input" placeholder="Enter a number">
+      <div class="quiz-explanation">
+        MediaPipe Hands detects <strong>21</strong> landmark points per hand: 4 per finger (tip, DIP, PIP, MCP) plus the wrist.
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="ckpt-submit-row">
+      <button id="ckpt-submit-btn" disabled>Check Answers</button>
+      <span id="ckpt-submit-hint">Answer all 5 questions to check.</span>
+    </div>
+
+    <!-- Results -->
+    <div id="ckpt-results">
+      <div class="quiz-score" id="ckpt-score"></div>
+      <div class="quiz-score-label"><span id="ckpt-correct-count"></span> of <span id="ckpt-total-count"></span> correct</div>
+      <div class="quiz-status" id="ckpt-status"></div>
+      <div id="ckpt-pass-msg">You have passed the checkpoint. The next module is now unlocked.</div>
+      <div id="ckpt-retry-section">
+        <p style="font-size:0.85rem; color:var(--gray-500); margin-bottom:12px;">Review the explanations above, then try again. You need 80% to pass.</p>
+        <button id="ckpt-retry-btn">Try Again</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="research-2.html" class="btn btn-outline" id="les-prev">&larr; Previous</a>
+  <a href="research-4.html" class="btn btn-accent" id="les-next">Next: Advanced AI &amp; NLP &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+<script src="../js/checkpoint.js"></script>
+<script>
+CheckpointQuiz.init({
+  lessonKey: 'research-3',
+  passThreshold: 0.8
+});
+</script>
+</body>
+</html>

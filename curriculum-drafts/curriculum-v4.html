@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Ready — Curriculum V4: Dark Theme</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* V4 — Dark Theme: navy background, frosted glass cards, glowing spine */
+.cur-section {
+  padding: 72px 40px 80px;
+  background: linear-gradient(180deg, #0B1D3A 0%, #0F2847 50%, #0B1D3A 100%);
+  position: relative;
+  overflow: hidden;
+}
+.cur-section::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cur-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.cur-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.cur-header h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 6px;
+}
+.cur-header p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.05rem;
+}
+
+/* Column labels */
+.cur-col-labels {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0 24px;
+  max-width: 1000px;
+  margin: 0 auto 12px;
+}
+.cur-col-label {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: var(--radius-lg);
+  color: #fff;
+}
+.cur-col-label--student { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
+.cur-col-label--resident { background: rgba(14,165,233,0.2); border: 1px solid rgba(14,165,233,0.3); }
+
+/* Timeline */
+.cur-timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.cur-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(14,165,233,0.4), rgba(52,211,153,0.4), rgba(14,165,233,0.4));
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* Domain row */
+.cur-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0 24px;
+  align-items: start;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+/* Badge */
+.cur-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  z-index: 2;
+  margin: 0 auto;
+  position: relative;
+}
+.cur-badge::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+.cur-badge-label {
+  position: absolute;
+  top: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.45);
+}
+
+/* Glass cards */
+.cur-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  transition: background 0.2s, transform 0.2s;
+}
+.cur-card:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+.cur-card--student { border-left: 3px solid rgba(255,255,255,0.3); }
+.cur-card--resident { border-left: 3px solid rgba(14,165,233,0.5); }
+
+.cur-card ul { margin: 0; padding-left: 16px; list-style: disc; }
+.cur-card li {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+  margin-bottom: 3px;
+}
+.cur-card li:last-child { margin-bottom: 0; }
+.cur-card li::marker { color: rgba(255,255,255,0.35); }
+
+/* Domain colors */
+.cur-row[data-domain="1"] .cur-badge { background: #0EA5E9; box-shadow: 0 0 20px rgba(14,165,233,0.3); }
+.cur-row[data-domain="2"] .cur-badge { background: #059669; box-shadow: 0 0 20px rgba(5,150,105,0.3); }
+.cur-row[data-domain="3"] .cur-badge { background: #F59E0B; box-shadow: 0 0 20px rgba(245,158,11,0.3); }
+.cur-row[data-domain="4"] .cur-badge { background: #F43F5E; box-shadow: 0 0 20px rgba(244,63,94,0.3); }
+.cur-row[data-domain="5"] .cur-badge { background: #7C3AED; box-shadow: 0 0 20px rgba(124,58,237,0.3); }
+.cur-row[data-domain="6"] .cur-badge { background: #4F46E5; box-shadow: 0 0 20px rgba(79,70,229,0.3); }
+.cur-row[data-domain="7"] .cur-badge { background: #F97316; box-shadow: 0 0 20px rgba(249,115,22,0.3); }
+.cur-row[data-domain="8"] .cur-badge { background: #0EA5E9; box-shadow: 0 0 20px rgba(14,165,233,0.3); }
+
+.cur-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+.cur-cta .btn {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .cur-col-labels, .cur-row { grid-template-columns: 1fr; gap: 10px; }
+  .cur-col-labels > div:nth-child(2) { display: none; }
+  .cur-timeline::before { display: none; }
+  .cur-badge { margin: 0 auto 8px; }
+  .cur-badge-label { position: static; transform: none; display: block; text-align: center; margin-bottom: 8px; }
+}
+</style>
+</head>
+<body>
+
+<section class="cur-section" id="curriculum">
+  <div class="cur-inner">
+    <div class="cur-header">
+      <h2>AI Curriculum</h2>
+      <p>A structured path through AI literacy for medical students and radiology residents</p>
+    </div>
+
+    <div class="cur-col-labels">
+      <div class="cur-col-label cur-col-label--student">Medical Student</div>
+      <div></div>
+      <div class="cur-col-label cur-col-label--resident">Radiology Resident</div>
+    </div>
+
+    <div class="cur-timeline">
+
+      <div class="cur-row" data-domain="1">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>AI, ML, and deep learning basics</li>
+            <li>Neural networks and CNNs</li>
+            <li>Why AI makes mistakes and overfitting</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">1</div>
+          <span class="cur-badge-label">What is AI?</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>AI, ML, and deep learning foundations</li>
+            <li>Neural networks and CNNs</li>
+            <li>Overfitting, generalizability, and error analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="2">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>Idea &rarr; dataset &rarr; model &rarr; clinical tool</li>
+            <li>Data quality, training, and validation</li>
+            <li>Environmental and computational concerns</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">2</div>
+          <span class="cur-badge-label">AI Development</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>Idea &rarr; dataset &rarr; model &rarr; clinical tool</li>
+            <li>Data quality, training, and validation</li>
+            <li>Environmental and computational concerns</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="3">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>Detection, segmentation, and classification</li>
+            <li>Prediction, reporting, and LLMs</li>
+            <li>Overview across imaging modalities</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">3</div>
+          <span class="cur-badge-label">AI + Pathology</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>Subspecialty-specific AI applications</li>
+            <li>Neuro, MSK, body, and chest examples</li>
+            <li>Reporting tools and LLM integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="4">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>Acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+            <li>Where AI fits in the imaging pipeline</li>
+            <li>AI in other areas of medicine</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">4</div>
+          <span class="cur-badge-label">AI + Workflow</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>PACS/RIS, DICOM, and worklist integration</li>
+            <li>AI triage and reporting workflows</li>
+            <li>Human-AI collaboration models</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="5">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>Never-skilling, deskilling, mis-skilling</li>
+            <li>Recognizing AI errors</li>
+            <li>Appropriate skepticism</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">5</div>
+          <span class="cur-badge-label">Using AI Safely</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>Never-skilling, deskilling, mis-skilling</li>
+            <li>AI failure modes and edge cases</li>
+            <li>Building safe AI habits into practice</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="6">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>Sensitivity, specificity, PPV, NPV</li>
+            <li>Understanding performance metrics</li>
+            <li>Interpreting AI study results</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">6</div>
+          <span class="cur-badge-label">Evaluating AI</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>AUC, calibration, and model performance</li>
+            <li>External validation and generalizability</li>
+            <li>Critical appraisal of AI literature</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="7">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>Bias in AI systems</li>
+            <li>Privacy and data protection</li>
+            <li>Transparency and accountability</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">7</div>
+          <span class="cur-badge-label">Ethics</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>Bias and explainability</li>
+            <li>Liability and accountability</li>
+            <li>Patient safety considerations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cur-row" data-domain="8">
+        <div class="cur-card cur-card--student">
+          <ul>
+            <li>How AI may change medicine</li>
+            <li>How AI may change radiology</li>
+            <li>Emerging AI applications</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="cur-badge">8</div>
+          <span class="cur-badge-label">Future of AI</span>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <ul>
+            <li>The evolving radiologist's role</li>
+            <li>Impact on training, workflow, and research</li>
+            <li>IR, radiation oncology, and beyond</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cur-cta">
+      <a href="students.html" class="btn btn-accent btn-lg">Start Learning</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

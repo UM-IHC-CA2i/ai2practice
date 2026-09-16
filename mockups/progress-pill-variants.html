@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pill Bar Variants &mdash; Completion States</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0B1D3A;
+  --accent: #0EA5E9;
+  --accent-dark: #0284C7;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-600: #475569;
+  --gray-900: #0F172A;
+  --heading: 'Lexend', system-ui, sans-serif;
+  --serif: 'Lora', Georgia, serif;
+  --teal: #0D9488;
+  --mint: #34D399;
+  --mint-dark: #059669;
+  --c1: #0B1D3A;
+  --c2: #0284C7;
+  --c3: #0EA5E9;
+  --c4: #7C3AED;
+  --c5: #4F46E5;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #F8FAFC; color: var(--gray-900); font-family: var(--heading); font-size: 16px; line-height: 1.7; }
+
+.page-header {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 32px 20px;
+}
+.page-header h1 { font-size: 1.6rem; font-weight: 800; margin: 0 0 4px; }
+.page-header p { font-size: 0.88rem; opacity: 0.6; margin: 0; font-family: var(--serif); font-style: italic; }
+
+.mockup-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px 80px;
+}
+
+.mockup-label {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.mockup-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 4px;
+}
+
+.mockup-desc {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.mockup-box {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 56px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.state-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.state-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.state-tag--idle { color: var(--gray-400); border-color: var(--gray-200); background: var(--gray-100); }
+.state-tag--active { color: var(--accent-dark); border-color: #BAE6FD; background: #E0F2FE; }
+.state-tag--done { color: var(--mint-dark); border-color: #A7F3D0; background: #D1FAE5; }
+
+.fake-content {
+  padding: 40px;
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 0.85rem;
+  font-style: italic;
+  border-top: 1px solid var(--gray-200);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Shared pill container ── */
+.pill-bar {
+  display: flex;
+  justify-content: center;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--gray-200);
+}
+.pill-tray {
+  display: flex;
+  gap: 6px;
+  background: var(--gray-100);
+  border-radius: 100px;
+  padding: 4px;
+}
+
+/* ═══════════════════════════════════════════
+   VARIANT 1 — Checkmark Badge
+   Completed pills get a small green check circle
+   overlaid on the number. Clean, minimal.
+   ═══════════════════════════════════════════ */
+.v1-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+}
+.v1-pill:hover { color: var(--gray-600); background: rgba(255,255,255,0.6); }
+
+.v1-pill.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14,165,233,0.25);
+}
+
+.v1-pill.completed { color: var(--gray-600); }
+
+.v1-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.v1-pill .v1-num { background: var(--gray-300); color: #fff; }
+.v1-pill.active .v1-num { background: rgba(255,255,255,0.3); color: #fff; }
+.v1-pill.completed .v1-num { background: var(--mint-dark); color: #fff; }
+
+.v1-check {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--mint-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #fff;
+}
+.v1-check svg { width: 6px; height: 6px; }
+
+/* ═══════════════════════════════════════════
+   VARIANT 2 — Filled vs Outline
+   Idle pills have outlined number rings.
+   Active is solid blue pill. Completed is
+   solid green pill with check replacing number.
+   ═══════════════════════════════════════════ */
+.v2-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.v2-pill:hover { color: var(--gray-600); background: rgba(255,255,255,0.6); }
+
+.v2-pill.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14,165,233,0.25);
+}
+
+.v2-pill.completed {
+  color: var(--mint-dark);
+  font-weight: 700;
+}
+
+.v2-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.v2-pill .v2-num {
+  background: transparent;
+  border: 2px solid var(--gray-300);
+  color: var(--gray-400);
+}
+.v2-pill.active .v2-num {
+  background: rgba(255,255,255,0.3);
+  border: none;
+  color: #fff;
+}
+.v2-pill.completed .v2-num {
+  background: var(--mint-dark);
+  border: none;
+  color: #fff;
+}
+
+.v2-check { width: 10px; height: 10px; }
+
+/* ═══════════════════════════════════════════
+   VARIANT 3 — Strikethrough Title
+   Completed titles get a subtle strikethrough
+   and muted color. Number turns green. Minimal.
+   ═══════════════════════════════════════════ */
+.v3-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.v3-pill:hover { color: var(--gray-600); background: rgba(255,255,255,0.6); }
+
+.v3-pill.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14,165,233,0.25);
+}
+
+.v3-pill.completed { color: var(--gray-400); }
+.v3-pill.completed .v3-label { text-decoration: line-through; }
+
+.v3-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.v3-pill .v3-num { background: var(--gray-300); color: #fff; }
+.v3-pill.active .v3-num { background: rgba(255,255,255,0.3); color: #fff; }
+.v3-pill.completed .v3-num { background: var(--mint-dark); color: #fff; }
+
+/* ═══════════════════════════════════════════
+   VARIANT 4 — Bottom Border Indicator
+   Completed pills get a green bottom accent
+   line. Active gets blue. Idle gets nothing.
+   Numbers use per-lesson colors.
+   ═══════════════════════════════════════════ */
+.v4-tray {
+  display: flex;
+  gap: 2px;
+  background: var(--gray-100);
+  border-radius: 14px;
+  padding: 4px;
+}
+
+.v4-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 10px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+}
+.v4-pill::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 20%;
+  right: 20%;
+  height: 2.5px;
+  border-radius: 2px;
+  background: transparent;
+  transition: all 0.2s;
+}
+.v4-pill:hover { color: var(--gray-600); background: rgba(255,255,255,0.5); }
+
+.v4-pill.active {
+  background: #fff;
+  color: var(--accent-dark);
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.v4-pill.active::after {
+  background: var(--accent);
+  left: 15%;
+  right: 15%;
+}
+
+.v4-pill.completed { color: var(--gray-600); }
+.v4-pill.completed::after {
+  background: var(--mint-dark);
+  left: 25%;
+  right: 25%;
+}
+
+.v4-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  color: #fff;
+}
+.v4-n1 { background: var(--c1); }
+.v4-n2 { background: var(--c2); }
+.v4-n3 { background: var(--c3); }
+.v4-n4 { background: var(--c4); }
+.v4-n5 { background: var(--c5); }
+
+/* ═══════════════════════════════════════════
+   VARIANT 5 — Green Pill Swap
+   Completed pills become soft green background
+   with check icon replacing the number entirely.
+   Active is blue. Idle is default gray.
+   ═══════════════════════════════════════════ */
+.v5-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.v5-pill:hover { color: var(--gray-600); background: rgba(255,255,255,0.6); }
+
+.v5-pill.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14,165,233,0.25);
+}
+
+.v5-pill.completed {
+  background: #D1FAE5;
+  color: var(--mint-dark);
+}
+
+.v5-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.v5-pill .v5-num { background: var(--gray-300); color: #fff; }
+.v5-pill.active .v5-num { background: rgba(255,255,255,0.3); color: #fff; }
+.v5-pill.completed .v5-num { background: var(--mint-dark); color: #fff; }
+
+.v5-check { width: 11px; height: 11px; }
+
+/* ═══════════════════════════════════════════
+   RESEARCH TRACK APPENDIX (shared across all)
+   ═══════════════════════════════════════════ */
+.research-divider {
+  width: 1px;
+  background: var(--gray-200);
+  margin: 4px 2px;
+  align-self: stretch;
+}
+.research-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  align-self: center;
+  padding: 0 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Pill Bar Variants &mdash; Completion States</h1>
+  <p>5 variations on Option E showing idle / active / completed states. Lesson 3 active, 1&ndash;2 completed, 4&ndash;5 idle.</p>
+</div>
+
+<div class="mockup-wrapper">
+
+<!-- Legend -->
+<div style="margin-bottom: 40px;">
+  <div class="state-row">
+    <span class="state-tag state-tag--idle">Idle &mdash; not yet visited</span>
+    <span class="state-tag state-tag--active">Active &mdash; currently viewing</span>
+    <span class="state-tag state-tag--done">Completed &mdash; scrolled through and hit Next</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 1 — Checkmark Badge
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 1</div>
+<h2 class="mockup-title">Checkmark Badge</h2>
+<p class="mockup-desc">Completed pills keep their number but the circle turns green and a small check badge appears on the top-right corner. Subtle &mdash; doesn't change the pill shape or size.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="pill-tray">
+      <a class="v1-pill completed">
+        <span class="v1-num">1
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        Never-Skilling
+      </a>
+      <a class="v1-pill completed">
+        <span class="v1-num">2
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        AI 101
+      </a>
+      <a class="v1-pill active">
+        <span class="v1-num">3</span>
+        Radiology 101
+      </a>
+      <a class="v1-pill">
+        <span class="v1-num">4</span>
+        AI Evaluation
+      </a>
+      <a class="v1-pill">
+        <span class="v1-num">5</span>
+        Future of AI
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 1 + RESEARCH
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 1 + Research</div>
+<h2 class="mockup-title">Checkmark Badge with Research Track</h2>
+<p class="mockup-desc">Same as Variant 1 but with research modules appended after a thin divider. Research pills use teal numbers. Shown with research module 1 active.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="pill-tray">
+      <a class="v1-pill completed">
+        <span class="v1-num">1
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        Never-Skilling
+      </a>
+      <a class="v1-pill completed">
+        <span class="v1-num">2
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        AI 101
+      </a>
+      <a class="v1-pill completed">
+        <span class="v1-num">3
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        Radiology 101
+      </a>
+      <a class="v1-pill completed">
+        <span class="v1-num">4
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        AI Evaluation
+      </a>
+      <a class="v1-pill completed">
+        <span class="v1-num">5
+          <span class="v1-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        Future of AI
+      </a>
+      <div class="research-divider"></div>
+      <a class="v1-pill active" style="background: var(--teal); box-shadow: 0 2px 8px rgba(13,148,136,0.25);">
+        <span class="v1-num" style="background: rgba(255,255,255,0.3);">1</span>
+        Setup
+      </a>
+      <a class="v1-pill">
+        <span class="v1-num" style="background: var(--teal);">2</span>
+        Data
+      </a>
+      <a class="v1-pill">
+        <span class="v1-num" style="background: var(--teal);">3</span>
+        Build AI
+      </a>
+      <a class="v1-pill">
+        <span class="v1-num" style="background: var(--teal);">4</span>
+        Evaluate
+      </a>
+      <a class="v1-pill">
+        <span class="v1-num" style="background: var(--teal);">5</span>
+        Project
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Research module content goes here)</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 2 — Filled vs Outline
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 2</div>
+<h2 class="mockup-title">Check Replaces Number</h2>
+<p class="mockup-desc">Completed pills replace the number entirely with a green check circle. Active is solid blue. Idle numbers are outlined rings instead of filled &mdash; clear three-state distinction.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="pill-tray">
+      <a class="v2-pill completed">
+        <span class="v2-num"><svg class="v2-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Never-Skilling
+      </a>
+      <a class="v2-pill completed">
+        <span class="v2-num"><svg class="v2-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        AI 101
+      </a>
+      <a class="v2-pill active">
+        <span class="v2-num">3</span>
+        Radiology 101
+      </a>
+      <a class="v2-pill">
+        <span class="v2-num">4</span>
+        AI Evaluation
+      </a>
+      <a class="v2-pill">
+        <span class="v2-num">5</span>
+        Future of AI
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 3 — Strikethrough Title
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 3</div>
+<h2 class="mockup-title">Strikethrough + Green Number</h2>
+<p class="mockup-desc">Completed lesson titles get a strikethrough and the number turns green. Very minimal &mdash; no extra icons, just text treatment. Good if you want something lightweight.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="pill-tray">
+      <a class="v3-pill completed">
+        <span class="v3-num">1</span>
+        <span class="v3-label">Never-Skilling</span>
+      </a>
+      <a class="v3-pill completed">
+        <span class="v3-num">2</span>
+        <span class="v3-label">AI 101</span>
+      </a>
+      <a class="v3-pill active">
+        <span class="v3-num">3</span>
+        <span class="v3-label">Radiology 101</span>
+      </a>
+      <a class="v3-pill">
+        <span class="v3-num">4</span>
+        <span class="v3-label">AI Evaluation</span>
+      </a>
+      <a class="v3-pill">
+        <span class="v3-num">5</span>
+        <span class="v3-label">Future of AI</span>
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 4 — Bottom Border Indicator
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 4</div>
+<h2 class="mockup-title">Per-Lesson Color Dots + Underline Indicator</h2>
+<p class="mockup-desc">Each lesson keeps its own dot color (navy, blue, sky, purple, indigo). Active gets a blue underline on white card. Completed gets a short green underline. Idle has no underline. Clean tab-like feel.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="v4-tray">
+      <a class="v4-pill completed">
+        <span class="v4-num v4-n1">1</span>
+        Never-Skilling
+      </a>
+      <a class="v4-pill completed">
+        <span class="v4-num v4-n2">2</span>
+        AI 101
+      </a>
+      <a class="v4-pill active">
+        <span class="v4-num v4-n3">3</span>
+        Radiology 101
+      </a>
+      <a class="v4-pill">
+        <span class="v4-num v4-n4">4</span>
+        AI Evaluation
+      </a>
+      <a class="v4-pill">
+        <span class="v4-num v4-n5">5</span>
+        Future of AI
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 5 — Green Pill Swap
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 5</div>
+<h2 class="mockup-title">Green Pill Background</h2>
+<p class="mockup-desc">Completed pills become soft green with a check replacing the number. Active is blue pill. Idle is plain text with gray number. High visual contrast between all three states &mdash; you can instantly see how far through the course you are.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="pill-tray">
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Never-Skilling
+      </a>
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        AI 101
+      </a>
+      <a class="v5-pill active">
+        <span class="v5-num">3</span>
+        Radiology 101
+      </a>
+      <a class="v5-pill">
+        <span class="v5-num">4</span>
+        AI Evaluation
+      </a>
+      <a class="v5-pill">
+        <span class="v5-num">5</span>
+        Future of AI
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Lesson content goes here)</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT 5 + RESEARCH
+     ═══════════════════════════════════════════ -->
+<div class="mockup-label">Variant 5 + Research</div>
+<h2 class="mockup-title">Green Pill Background with Research Track</h2>
+<p class="mockup-desc">All 5 clinical lessons completed (green pills), now on research module 2. Research uses teal active pill instead of blue. Divider separates the two tracks.</p>
+
+<div class="mockup-box">
+  <div class="pill-bar">
+    <div class="pill-tray">
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Never-Skilling
+      </a>
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        AI 101
+      </a>
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Radiology 101
+      </a>
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        AI Evaluation
+      </a>
+      <a class="v5-pill completed">
+        <span class="v5-num"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Future of AI
+      </a>
+      <div class="research-divider"></div>
+      <a class="v5-pill completed" style="background: #D1FAE5; color: var(--mint-dark);">
+        <span class="v5-num" style="background: var(--mint-dark);"><svg class="v5-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Setup
+      </a>
+      <a class="v5-pill active" style="background: var(--teal); box-shadow: 0 2px 8px rgba(13,148,136,0.25);">
+        <span class="v5-num" style="background: rgba(255,255,255,0.3);">2</span>
+        Data
+      </a>
+      <a class="v5-pill">
+        <span class="v5-num" style="background: var(--teal);">3</span>
+        Build AI
+      </a>
+      <a class="v5-pill">
+        <span class="v5-num" style="background: var(--teal);">4</span>
+        Evaluate
+      </a>
+      <a class="v5-pill">
+        <span class="v5-num" style="background: var(--teal);">5</span>
+        Project
+      </a>
+    </div>
+  </div>
+  <div class="fake-content">(Research module content goes here)</div>
+</div>
+
+</div>
+</body>
+</html>

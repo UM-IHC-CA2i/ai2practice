@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2: What is AI? &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+.les-figure {
+  margin: 24px auto;
+  max-width: 680px;
+  text-align: center;
+}
+.les-figure img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--gray-200);
+}
+.les-figure figcaption {
+  font-size: 0.92rem;
+  color: var(--gray-500);
+  margin-top: 8px;
+  /* font-style: italic; */
+  font-family: var(--serif);
+}
+.les-figure-source {
+  font-size: 0.92rem;
+  color: var(--gray-500);
+  font-style: normal;
+}
+.les-video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+  align-items: start;
+}
+.les-video-grid .les-video-card {
+  margin: 0;
+}
+.les-video-guide {
+  font-size: 0.88rem;
+  color: var(--slate);
+  line-height: 1.7;
+  margin: 12px 0 6px;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+}
+@media (max-width: 700px) {
+  .les-video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Data Type Explorer ── */
+.dt-explorer {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.dt-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--gray-200);
+  background: var(--gray-100);
+}
+
+.dt-tab {
+  flex: 1;
+  padding: 14px 8px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--heading);
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.dt-tab:hover {
+  color: var(--gray-600);
+  background: rgba(255,255,255,0.5);
+}
+
+.dt-tab.active {
+  color: var(--accent-dark);
+  background: var(--white);
+  border-bottom-color: var(--accent);
+}
+
+.dt-tab-icon {
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.dt-panel {
+  display: none;
+  padding: 28px;
+  animation: dtFadeIn 0.25s ease;
+}
+
+.dt-panel.active {
+  display: block;
+}
+
+@keyframes dtFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dt-panel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dt-panel-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.dt-panel-icon--blue { background: #DBEAFE; color: #1D4ED8; }
+.dt-panel-icon--teal { background: #CCFBF1; color: #0D9488; }
+.dt-panel-icon--amber { background: #FEF3C7; color: #92400E; }
+.dt-panel-icon--rose { background: #FFE4E6; color: #BE123C; }
+
+.dt-panel-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 4px;
+}
+
+.dt-panel-subtitle {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.dt-panel-desc {
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.dt-preview {
+  background: var(--gray-100);
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dt-preview-icon {
+  font-size: 2.2rem;
+  opacity: 0.3;
+  margin-bottom: 8px;
+}
+
+.dt-preview-label {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  font-style: italic;
+}
+
+.dt-preview--report {
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--gray-600);
+  border: 2px dashed transparent;
+  border-color: var(--gray-200);
+  background: #FAFBFC;
+}
+
+.dt-preview--table {
+  padding: 0;
+  overflow: hidden;
+}
+
+.dt-preview--table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.dt-preview--table th {
+  background: var(--gray-200);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--gray-700);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dt-preview--table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-600);
+}
+
+.dt-preview--table tr:last-child td {
+  border-bottom: none;
+}
+
+.dt-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dt-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+}
+
+.dt-badge--teal {
+  background: #CCFBF1;
+  color: #0D9488;
+}
+
+.dt-badge--purple {
+  background: #EDE9FE;
+  color: #7C3AED;
+}
+
+.dt-examples {
+  margin-top: 16px;
+}
+
+.dt-examples h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-400);
+  margin: 0 0 10px;
+}
+
+.dt-examples ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dt-examples li {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+  padding: 6px 0 6px 20px;
+  position: relative;
+}
+
+.dt-examples li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  border: 2px solid var(--accent);
+}
+
+.dt-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dt-image-slot {
+  background: var(--gray-100);
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.dt-image-slot-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  margin-top: 6px;
+}
+
+.dt-image-slot-icon {
+  font-size: 1.6rem;
+  opacity: 0.25;
+}
+
+@media (max-width: 600px) {
+  .dt-tabs { flex-wrap: wrap; }
+  .dt-tab { flex: 1 1 50%; }
+  .dt-image-grid { grid-template-columns: 1fr; }
+  .dt-panel { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #0284C7;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Lesson 2 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #0284C7;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">02</div>
+    <div>
+      <h1>What is AI?</h1>
+      <p>Types of AI, data types, and how AI is made</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">This lesson covers the fundamentals of artificial intelligence &mdash; what types of AI exist, what kinds of data they use, and how AI models are built. Understanding these distinctions will help you evaluate which AI tools are relevant to your practice and how they work under the hood.</p>
+  </section>
+
+  <section class="les-section" id="video-intro">
+    <h2>Introduction to AI</h2>
+    <p>Start with this accessible overview of what artificial intelligence is, how it works, and why it matters in healthcare and beyond.</p>
+
+    <a class="les-video-card" href="https://www.youtube.com/watch?v=dx_Ruw8vufI" target="_blank" rel="noopener">
+      <div class="les-video-thumb">
+        <img src="https://img.youtube.com/vi/dx_Ruw8vufI/hqdefault.jpg" alt="AI Simply Explained">
+        <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+      </div>
+      <div class="les-video-info">
+        <div class="les-video-yt-icon"></div>
+        <span>AI Simply Explained In 12 Minutes</span>
+        <small>Watch on YouTube</small>
+      </div>
+    </a>
+  </section>
+
+  <section class="les-section" id="ai-landscape">
+    <h2>The AI Landscape</h2>
+
+    <figure class="les-figure">
+      <img src="images/types-of-AI.png" alt="Venn diagram showing the relationship between AI, Machine Learning, Deep Learning, and NLP">
+      <figcaption>Figure 1. The landscape of Artificial Intelligence.<br><span class="les-figure-source">Source: <em>[citation needed]</em></span></figcaption>
+    </figure>
+
+    <p><strong>Artificial intelligence (AI)</strong> is the umbrella term for any computer system that performs tasks we would normally say require human intelligence. The terms below are often used interchangeably, but they describe categories of different sizes that only partly overlap. Working from the outside in:</p>
+
+    <ul>
+      <li><strong>Machine learning (ML)</strong> &mdash; systems that learn patterns from data
+          instead of following rules a programmer wrote by hand.
+        <ul>
+          <li><a href="https://developers.google.com/machine-learning/intro-to-ml/supervised" target="_blank" rel="noopener noreferrer">Supervised learning</a>
+              &mdash; learns from labelled examples.
+              <em>Example:</em> a model trained on graded retinal photographs to
+              <a href="https://doi.org/10.1001/jama.2016.17216" target="_blank" rel="noopener noreferrer">detect diabetic retinopathy</a>.</li>
+          <li><a href="https://developers.google.com/machine-learning/intro-to-ml/what-is-ml" target="_blank" rel="noopener noreferrer">Unsupervised learning</a>
+              &mdash; finds structure in unlabelled data.
+              <em>Example:</em> clustering ICU data to identify
+              <a href="https://doi.org/10.1001/jama.2019.5791" target="_blank" rel="noopener noreferrer">four distinct sepsis phenotypes</a>.</li>
+          <li><a href="https://cloud.google.com/discover/what-is-reinforcement-learning" target="_blank" rel="noopener noreferrer">Reinforcement learning</a>
+              &mdash; learns by trial and error from feedback.
+              <em>Example:</em> the
+              <a href="https://doi.org/10.1038/s41591-018-0213-5" target="_blank" rel="noopener noreferrer">"AI Clinician"</a>
+              learning fluid and vasopressor strategies in sepsis.</li>
+          <li><strong>Deep learning (DL)</strong> &mdash; ML using multilayer neural networks, which
+              learn features directly from raw data (pixels, waveforms, text).
+            <ul>
+              <li>Convolutional neural networks (CNNs) &mdash; images.
+                  <em>Example:</em>
+                  <a href="https://doi.org/10.1038/nature21056" target="_blank" rel="noopener noreferrer">classifying skin lesions at dermatologist level</a>.</li>
+              <li>Recurrent neural networks (RNNs) &mdash; sequences, e.g. vital-sign trends over time.</li>
+              <li>Transformers &mdash; the architecture behind today's language models.</li>
+              <li><a href="https://www.tensorflow.org/tutorials/generative/autoencoder" target="_blank" rel="noopener noreferrer">Autoencoders</a>
+                  &mdash; compress data to its essentials, useful for denoising and anomaly detection.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Natural language processing (NLP)</strong> &mdash; the area of AI concerned with
+          understanding and generating human language: clinical notes, discharge summaries,
+          patient questions. Most modern NLP is deep learning, which is why it
+          <em>overlaps</em> ML and DL rather than sitting inside or outside them.
+          <em>Example:</em>
+          <a href="https://www.ibm.com/think/topics/natural-language-processing" target="_blank" rel="noopener noreferrer">large language models (LLMs)</a>
+          such as the ones behind chatbots and ambient scribes.</li>
+    </ul>
+
+    <p>Dive deeper into the types of AI models and the major branches of the field. These two videos map directly to the diagram above &mdash; pay attention to how machine learning, deep learning, and NLP differ.</p>
+
+    <div class="les-video-grid">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=uGsJfOvLCMk" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/uGsJfOvLCMk/hqdefault.jpg" alt="AI Industry Overview - What are Different Types of AI Models">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>What are Different Types of AI Models</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=PtUIBZ6FmgA" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/PtUIBZ6FmgA/hqdefault.jpg" alt="Major AI Disciplines Explained">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>Major AI Disciplines Explained</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+    </div>
+
+    <div class="les-case les-case--blue" style="margin-top: 24px;">
+      <div class="les-case-label les-case-label--blue">Recommended Reading</div>
+      <p><a href="https://www.heinz.cmu.edu/media/2023/July/artificial-intelligence-explained" target="_blank" rel="noopener">Artificial Intelligence Explained &mdash; CMU Heinz College</a></p>
+    </div>
+  </section>
+
+  <section class="les-section" id="data-types">
+    <h2>Data Types in Radiology AI</h2>
+    <p>AI models in radiology are only as good as the data they learn from. Different types of data feed different types of models. Explore the four major data categories below to understand what goes into building and running radiology AI.</p>
+
+    <div class="dt-explorer">
+      <div class="dt-tabs">
+        <button class="dt-tab active" data-panel="dt-images">
+          <span class="dt-tab-icon">&#9900;</span>
+          Medical Images
+        </button>
+        <button class="dt-tab" data-panel="dt-reports">
+          <span class="dt-tab-icon">&#9998;</span>
+          Reports &amp; Text
+        </button>
+        <button class="dt-tab" data-panel="dt-tabular">
+          <span class="dt-tab-icon">&#9638;</span>
+          Structured Data
+        </button>
+        <button class="dt-tab" data-panel="dt-annotations">
+          <span class="dt-tab-icon">&#9635;</span>
+          Annotations
+        </button>
+      </div>
+
+      <!-- Panel 1: Medical Images -->
+      <div class="dt-panel active" id="dt-images">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--blue">&#9900;</div>
+          <div>
+            <h3 class="dt-panel-title">Medical Images (DICOM)</h3>
+            <p class="dt-panel-subtitle">The primary input for most radiology AI</p>
+          </div>
+        </div>
+
+        <p class="dt-panel-desc">Radiology AI models predominantly work with medical images stored in <strong>DICOM format</strong> (Digital Imaging and Communications in Medicine). Each DICOM file contains both pixel data and rich metadata &mdash; patient demographics, acquisition parameters, slice thickness, and more. Convolutional neural networks (CNNs) process the pixel data, while metadata can inform pre-processing and model selection.</p>
+
+        <div class="dt-image-grid">
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9900;</div>
+            <div class="dt-image-slot-label">Chest X-ray (CXR)</div>
+          </div>
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9900;</div>
+            <div class="dt-image-slot-label">CT Axial Slice</div>
+          </div>
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9900;</div>
+            <div class="dt-image-slot-label">MRI Brain</div>
+          </div>
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9900;</div>
+            <div class="dt-image-slot-label">Ultrasound</div>
+          </div>
+        </div>
+
+        <div class="dt-badges">
+          <span class="dt-badge">CNNs</span>
+          <span class="dt-badge">Deep Learning</span>
+          <span class="dt-badge dt-badge--teal">Supervised Learning</span>
+        </div>
+
+        <div class="dt-examples">
+          <h4>Radiology Applications</h4>
+          <ul>
+            <li>Chest X-ray AI for pneumothorax, cardiomegaly, and nodule detection</li>
+            <li>CT pulmonary angiography for automated pulmonary embolism triage</li>
+            <li>MRI brain for stroke detection and large-vessel occlusion alerts</li>
+            <li>Mammography AI for breast lesion detection and density classification</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Panel 2: Reports & Text -->
+      <div class="dt-panel" id="dt-reports">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--teal">&#9998;</div>
+          <div>
+            <h3 class="dt-panel-title">Radiology Reports &amp; Clinical Text</h3>
+            <p class="dt-panel-subtitle">Free-text processed by NLP models</p>
+          </div>
+        </div>
+
+        <p class="dt-panel-desc">Radiology reports, clinical notes, and referral letters contain critical diagnostic information in <strong>unstructured free text</strong>. Natural language processing (NLP) and large language models (LLMs) can extract findings, generate impressions, flag follow-up recommendations, and convert narrative reports into structured data for downstream analytics.</p>
+
+        <div class="dt-preview dt-preview--report">
+          <strong>FINDINGS:</strong><br>
+          Heart size is normal. Lungs are clear bilaterally.<br>
+          No pleural effusion or pneumothorax.<br>
+          Mediastinal contours are within normal limits.<br>
+          No acute osseous abnormality.<br><br>
+          <strong>IMPRESSION:</strong><br>
+          No acute cardiopulmonary process.
+        </div>
+
+        <div class="dt-badges">
+          <span class="dt-badge">NLP</span>
+          <span class="dt-badge">Transformers</span>
+          <span class="dt-badge dt-badge--purple">LLMs</span>
+        </div>
+
+        <div class="dt-examples">
+          <h4>Radiology Applications</h4>
+          <ul>
+            <li>Auto-generating structured impressions from radiology report findings</li>
+            <li>Extracting follow-up recommendations (e.g., "recommend CT in 3 months")</li>
+            <li>Flagging critical or unexpected findings for radiologist review</li>
+            <li>Ambient scribes that draft reports from dictated speech in real time</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Panel 3: Structured Data -->
+      <div class="dt-panel" id="dt-tabular">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--amber">&#9638;</div>
+          <div>
+            <h3 class="dt-panel-title">Structured / Tabular Data</h3>
+            <p class="dt-panel-subtitle">Patient demographics, labs, and clinical variables</p>
+          </div>
+        </div>
+
+        <p class="dt-panel-desc"><strong>Structured data</strong> from the electronic health record (EHR) &mdash; demographics, lab values, vitals, prior diagnoses, and exam history &mdash; feeds traditional machine learning models and augments image-based AI. This data is organized in rows and columns and can be used for risk scoring, exam protocoling, and clinical decision support.</p>
+
+        <div class="dt-preview dt-preview--table">
+          <table>
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Value</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Age</td><td>67</td><td>Numeric</td></tr>
+              <tr><td>Sex</td><td>Female</td><td>Categorical</td></tr>
+              <tr><td>Creatinine</td><td>1.4 mg/dL</td><td>Numeric</td></tr>
+              <tr><td>Prior CT (90d)</td><td>Yes</td><td>Boolean</td></tr>
+              <tr><td>Clinical Indication</td><td>R/O PE</td><td>Text</td></tr>
+              <tr><td>Contrast Allergy</td><td>No</td><td>Boolean</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dt-badges">
+          <span class="dt-badge">Machine Learning</span>
+          <span class="dt-badge dt-badge--teal">Supervised Learning</span>
+          <span class="dt-badge">Logistic Regression</span>
+        </div>
+
+        <div class="dt-examples">
+          <h4>Radiology Applications</h4>
+          <ul>
+            <li>Automated exam protocoling based on clinical indication and patient history</li>
+            <li>Risk scoring for contrast-induced nephropathy using labs and prior exams</li>
+            <li>Predicting no-show rates for scheduling optimization</li>
+            <li>Integrating clinical context with image AI for multimodal diagnosis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Panel 4: Annotations -->
+      <div class="dt-panel" id="dt-annotations">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--rose">&#9635;</div>
+          <div>
+            <h3 class="dt-panel-title">Annotations &amp; Labels</h3>
+            <p class="dt-panel-subtitle">The ground truth that supervised models learn from</p>
+          </div>
+        </div>
+
+        <p class="dt-panel-desc">Before a supervised AI model can learn, it needs <strong>labeled training data</strong> &mdash; expert annotations that serve as the "answer key." In radiology, these annotations are created by radiologists and can take several forms: classification labels (normal vs. abnormal), bounding boxes around lesions, pixel-level segmentation masks, or structured measurements (e.g., RECIST). The quality and consistency of these annotations directly determines model performance.</p>
+
+        <div class="dt-image-grid">
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9635;</div>
+            <div class="dt-image-slot-label">Bounding Box &mdash; Lung Nodule</div>
+          </div>
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9635;</div>
+            <div class="dt-image-slot-label">Segmentation Mask &mdash; Liver</div>
+          </div>
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9635;</div>
+            <div class="dt-image-slot-label">Classification Label &mdash; Fracture Y/N</div>
+          </div>
+          <div class="dt-image-slot">
+            <div class="dt-image-slot-icon">&#9635;</div>
+            <div class="dt-image-slot-label">Heatmap &mdash; AI Attention Overlay</div>
+          </div>
+        </div>
+
+        <div class="dt-badges">
+          <span class="dt-badge dt-badge--teal">Supervised Learning</span>
+          <span class="dt-badge">CNNs</span>
+          <span class="dt-badge">Deep Learning</span>
+        </div>
+
+        <div class="dt-examples">
+          <h4>Radiology Applications</h4>
+          <ul>
+            <li>Radiologist-drawn ROIs used to train chest X-ray nodule detectors</li>
+            <li>Pixel-level organ segmentation for radiation therapy planning</li>
+            <li>RECIST measurement annotations for oncology treatment response tracking</li>
+            <li>Multi-reader consensus labels to reduce inter-observer variability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="lesson-1.html" class="btn btn-outline" id="les-prev">&larr; Prev: Never-Skilling</a>
+  <a href="lesson-3.html" class="btn btn-accent" id="les-next">Next: AI in Radiology &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.dt-tab');
+  var panels = document.querySelectorAll('.dt-panel');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById(tab.getAttribute('data-panel')).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

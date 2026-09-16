@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Your Track &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.cs-page { min-height: 100vh; background: var(--offwhite); }
+
+.cs-hero {
+  background: linear-gradient(170deg, #0d2240 0%, var(--primary) 40%, #091729 100%);
+  color: #fff;
+  padding: 52px 40px 40px;
+  text-align: center;
+}
+.cs-hero h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #fff;
+}
+.cs-hero p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cs-container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ── Tab-style track picker ── */
+.cs-tab-bar {
+  display: flex;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 36px;
+  border: 1px solid var(--gray-200);
+}
+
+.cs-tab {
+  flex: 1;
+  padding: 22px 24px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  background: #fff;
+  font-family: var(--heading);
+  position: relative;
+}
+
+.cs-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: transparent;
+  border-radius: 2px 2px 0 0;
+  transition: all 0.25s ease;
+}
+
+.cs-tab:first-child {
+  border-right: 1px solid var(--gray-200);
+}
+
+.cs-tab:hover {
+  background: var(--gray-100);
+}
+
+.cs-tab.active {
+  background: var(--accent-light);
+}
+
+.cs-tab.active::after {
+  background: var(--accent);
+  left: 10%;
+  right: 10%;
+}
+
+.cs-tab.dimmed {
+  opacity: 0.3;
+  background: var(--gray-100);
+}
+
+.cs-tab h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--gray-900);
+}
+
+.cs-tab.active h3 { color: var(--accent-dark); }
+
+/* ── Course overview card ── */
+.cs-overview {
+  display: none;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow);
+  animation: csFadeUp 0.3s ease;
+}
+
+.cs-overview.visible { display: block; }
+
+.cs-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+}
+
+.cs-overview-meta {
+  padding: 24px 28px;
+  border-right: 1px solid var(--gray-200);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+}
+
+.cs-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cs-meta-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-400);
+}
+
+.cs-meta-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.cs-overview-objectives {
+  padding: 24px 28px;
+}
+
+.cs-overview-objectives h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-400);
+  margin: 0 0 10px;
+}
+
+.cs-overview-objectives ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.cs-overview-objectives li {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.cs-overview-objectives li:last-child { margin-bottom: 0; }
+
+/* ── Lessons section ── */
+.cs-lessons-section {
+  display: none;
+  animation: csFadeUp 0.3s ease;
+}
+
+.cs-lessons-section.visible {
+  display: block;
+}
+
+@keyframes csFadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cs-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.cs-top-bar h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--gray-900);
+}
+
+.cs-select-all {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--heading);
+  padding: 0;
+}
+
+.cs-select-all:hover { text-decoration: underline; }
+
+/* Lesson rows — compact with color left border & dark number badge */
+.cs-lessons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.cs-lesson {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 3px solid var(--gray-200);
+}
+
+.cs-lesson:hover {
+  background: #FAFCFF;
+}
+
+.cs-lesson.checked {
+  background: #fff;
+}
+
+.cs-lesson.unchecked {
+  opacity: 0.4;
+}
+
+.cs-lesson-cb {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  font-size: 11px;
+  color: #fff;
+  order: 3;
+  margin-left: auto;
+}
+
+.cs-lesson.checked .cs-lesson-cb {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.cs-lesson-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.cs-lesson-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-lesson-info h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 1px;
+  color: var(--gray-900);
+}
+
+.cs-lesson-info p {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+/* Footer */
+.cs-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-footer .cs-count {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+.cs-begin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 32px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--heading);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cs-begin-btn:hover {
+  background: var(--accent-dark);
+}
+
+.cs-begin-btn:disabled {
+  background: var(--gray-200);
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+/* ── Research Track Section ── */
+.cs-research-section {
+  display: none;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  animation: csFadeUp 0.3s ease;
+}
+
+.cs-research-section.visible {
+  display: block;
+}
+
+.cs-research-header {
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 24px 28px;
+  color: #fff;
+}
+
+.cs-research-header h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: #fff;
+}
+
+.cs-research-header p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  margin: 0;
+  color: rgba(255,255,255,0.7);
+}
+
+.cs-research-body {
+  background: #F0FDFA;
+  border: 1px solid #CCFBF1;
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 24px 28px 28px;
+}
+
+.cs-research-desc {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.cs-research-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #CCFBF1;
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-research-toggle-row:hover {
+  background: #F7FFFE;
+}
+
+.cs-research-toggle-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.cs-research-toggle-sub {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+
+/* Toggle switch */
+.cs-toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.cs-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cs-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gray-200);
+  border-radius: 26px;
+  transition: 0.25s ease;
+}
+
+.cs-toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.25s ease;
+}
+
+.cs-toggle-switch input:checked + .cs-toggle-slider {
+  background: #0D9488;
+}
+
+.cs-toggle-switch input:checked + .cs-toggle-slider::before {
+  transform: translateX(22px);
+}
+
+/* Research modules list */
+.cs-research-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-research-module {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #CCFBF1;
+  border-radius: var(--radius);
+  border-left: 3px solid #0D9488;
+  transition: opacity 0.25s ease;
+}
+
+.cs-research-module.dimmed {
+  opacity: 0.35;
+}
+
+.cs-research-module-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #0D9488;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cs-research-module-info h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 2px;
+  color: #0F766E;
+}
+
+.cs-research-module-info p {
+  font-size: 0.72rem;
+  color: var(--gray-400);
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .cs-tab-bar { flex-direction: column; }
+  .cs-tab:first-child { border-right: none; border-bottom: 1px solid var(--gray-200); }
+  .cs-overview-grid { grid-template-columns: 1fr; }
+  .cs-overview-meta { border-right: none; border-bottom: 1px solid var(--gray-200); grid-template-columns: 1fr 1fr; }
+  .cs-research-header { padding: 20px 20px; }
+  .cs-research-body { padding: 20px 20px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="cs-page">
+
+<div class="cs-hero">
+  <h1>Choose Your Track</h1>
+  <p>Select your level, then pick which lessons to start with</p>
+</div>
+
+<div class="cs-container">
+
+  <div class="cs-tab-bar" id="cs-tabs">
+    <div class="cs-tab" data-track="student" onclick="selectTrack('student')">
+      <h3>Medical Student</h3>
+    </div>
+    <div class="cs-tab" data-track="resident" onclick="selectTrack('resident')">
+      <h3>Radiology Resident</h3>
+    </div>
+  </div>
+
+  <div class="cs-overview" id="cs-overview">
+    <div class="cs-overview-grid">
+      <div class="cs-overview-meta">
+        <div class="cs-meta-row">
+          <span class="cs-meta-label">Duration</span>
+          <span class="cs-meta-value">1.5 &ndash; 2 hours</span>
+        </div>
+        <div class="cs-meta-row">
+          <span class="cs-meta-label">Modules</span>
+          <span class="cs-meta-value">5 lessons</span>
+        </div>
+        <div class="cs-meta-row">
+          <span class="cs-meta-label">Format</span>
+          <span class="cs-meta-value">Self-paced</span>
+        </div>
+        <div class="cs-meta-row">
+          <span class="cs-meta-label">Certificate</span>
+          <span class="cs-meta-value">Yes, upon completion</span>
+        </div>
+      </div>
+      <div class="cs-overview-objectives">
+        <h4>Learning Objectives</h4>
+        <ol>
+          <li>Define never-skilling, deskilling, and mis-skilling and how each affects clinical competency</li>
+          <li>Explain core AI and machine learning concepts including deep learning, ML, and LLMs</li>
+          <li>Identify where AI integrates into the radiology workflow from acquisition through reporting</li>
+          <li>Evaluate AI tools critically using sensitivity, specificity, PPV/NPV, and bias assessment</li>
+          <li>Describe the evolving role of radiologists and the future of AI-integrated practice</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-lessons-section" id="cs-lessons-section">
+    <div class="cs-top-bar">
+      <h3>Select Lessons</h3>
+      <button class="cs-select-all" id="cs-toggle-all" onclick="toggleAll()">Deselect All</button>
+    </div>
+
+    <div class="cs-lessons" id="cs-lessons">
+      <div class="cs-lesson checked" data-lesson="1" style="border-left-color:#0B1D3A" onclick="toggleLesson(this)">
+        <div class="cs-lesson-num">1</div>
+        <div class="cs-lesson-info">
+          <h4>What is Never-Skilling?</h4>
+          <p>Never-skilling, deskilling, mis-skilling, cases</p>
+        </div>
+        <div class="cs-lesson-cb">&#10003;</div>
+      </div>
+      <div class="cs-lesson checked" data-lesson="2" style="border-left-color:#0284C7" onclick="toggleLesson(this)">
+        <div class="cs-lesson-num">2</div>
+        <div class="cs-lesson-info">
+          <h4>What is AI?</h4>
+          <p>Types of AI, deep learning, ML, LLMs, data types</p>
+        </div>
+        <div class="cs-lesson-cb">&#10003;</div>
+      </div>
+      <div class="cs-lesson checked" data-lesson="3" style="border-left-color:#0EA5E9" onclick="toggleLesson(this)">
+        <div class="cs-lesson-num">3</div>
+        <div class="cs-lesson-info">
+          <h4>How Can I Use AI in Radiology?</h4>
+          <p>Acquisition, PACS, interpretation, report, workflow AIs</p>
+        </div>
+        <div class="cs-lesson-cb">&#10003;</div>
+      </div>
+      <div class="cs-lesson checked" data-lesson="4" style="border-left-color:#7C3AED" onclick="toggleLesson(this)">
+        <div class="cs-lesson-num">4</div>
+        <div class="cs-lesson-info">
+          <h4>How Do I Evaluate AI?</h4>
+          <p>Bias, transparency, sensitivity, specificity, PPV/NPV</p>
+        </div>
+        <div class="cs-lesson-cb">&#10003;</div>
+      </div>
+      <div class="cs-lesson checked" data-lesson="5" style="border-left-color:#4F46E5" onclick="toggleLesson(this)">
+        <div class="cs-lesson-num">5</div>
+        <div class="cs-lesson-info">
+          <h4>What is the Future of Radiology and AI?</h4>
+          <p>Changing roles, training, workflow, research</p>
+        </div>
+        <div class="cs-lesson-cb">&#10003;</div>
+      </div>
+    </div>
+
+    <div class="cs-research-section" id="cs-research-section">
+      <div class="cs-research-header">
+        <h3>Research Track</h3>
+        <p>Optional hands-on modules for building AI research skills</p>
+      </div>
+      <div class="cs-research-body">
+        <p class="cs-research-desc">
+          An optional hands-on path for learners who want to go beyond clinical AI literacy.
+          These five modules walk you through setting up research tools, working with data,
+          building models, evaluating performance, and designing your own AI research project.
+        </p>
+
+        <div class="cs-research-toggle-row" id="cs-research-toggle-row" onclick="toggleResearch()">
+          <div>
+            <div class="cs-research-toggle-label">Add Research Track</div>
+            <div class="cs-research-toggle-sub">5 additional modules &mdash; appended after clinical lessons</div>
+          </div>
+          <label class="cs-toggle-switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="cs-research-cb" onchange="toggleResearch()">
+            <span class="cs-toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="cs-research-modules" id="cs-research-modules">
+          <div class="cs-research-module dimmed">
+            <div class="cs-research-module-num">1</div>
+            <div class="cs-research-module-info">
+              <h4>Getting Started with Python and GitHub</h4>
+              <p>GitHub, Google Colab, Python basics, loading data, first chart</p>
+            </div>
+          </div>
+          <div class="cs-research-module dimmed">
+            <div class="cs-research-module-num">2</div>
+            <div class="cs-research-module-info">
+              <h4>Data Science and AI Evaluation</h4>
+              <p>Evaluation metrics, confusion matrices, ROC curves, threshold trade-offs, subgroup analysis</p>
+            </div>
+          </div>
+          <div class="cs-research-module dimmed">
+            <div class="cs-research-module-num">3</div>
+            <div class="cs-research-module-info">
+              <h4>Machine Learning and Image Processing</h4>
+              <p>ML classifiers, scikit-learn, image loading, preprocessing, pre-trained models</p>
+            </div>
+          </div>
+          <div class="cs-research-module dimmed">
+            <div class="cs-research-module-num">4</div>
+            <div class="cs-research-module-info">
+              <h4>Advanced Image AI and NLP</h4>
+              <p>CNNs, transfer learning, attention maps, radiology report NLP, LLMs</p>
+            </div>
+          </div>
+          <div class="cs-research-module dimmed">
+            <div class="cs-research-module-num">5</div>
+            <div class="cs-research-module-info">
+              <h4>Mini Research Project</h4>
+              <p>Formulate a question, design an analysis, execute it, write a structured abstract</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-footer">
+      <span class="cs-count" id="cs-count">5 of 5 lessons selected</span>
+      <button class="cs-begin-btn" id="cs-begin-btn" onclick="beginCourse()">Begin Course</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+var selectedTrack = null;
+var researchEnabled = false;
+
+function selectTrack(track) {
+  selectedTrack = track;
+  document.querySelectorAll('.cs-tab').forEach(function(t) {
+    if (t.dataset.track === track) {
+      t.classList.add('active');
+      t.classList.remove('dimmed');
+    } else {
+      t.classList.remove('active');
+      t.classList.add('dimmed');
+    }
+  });
+  document.getElementById('cs-overview').classList.add('visible');
+  document.getElementById('cs-lessons-section').classList.add('visible');
+  document.getElementById('cs-research-section').classList.add('visible');
+}
+
+function toggleLesson(el) {
+  el.classList.toggle('checked');
+  el.classList.toggle('unchecked');
+  updateState();
+}
+
+function toggleAll() {
+  var lessons = document.querySelectorAll('.cs-lesson');
+  var allChecked = Array.from(lessons).every(function(l) { return l.classList.contains('checked'); });
+  lessons.forEach(function(l) {
+    if (allChecked) {
+      l.classList.remove('checked');
+      l.classList.add('unchecked');
+    } else {
+      l.classList.add('checked');
+      l.classList.remove('unchecked');
+    }
+  });
+  updateState();
+}
+
+function toggleResearch() {
+  var cb = document.getElementById('cs-research-cb');
+  // If called from the row click, toggle the checkbox
+  if (arguments.length === 0 && event && event.currentTarget && event.currentTarget.id === 'cs-research-toggle-row') {
+    cb.checked = !cb.checked;
+  }
+  researchEnabled = cb.checked;
+  var modules = document.querySelectorAll('.cs-research-module');
+  modules.forEach(function(m) {
+    if (researchEnabled) {
+      m.classList.remove('dimmed');
+    } else {
+      m.classList.add('dimmed');
+    }
+  });
+  updateState();
+}
+
+function updateState() {
+  var checked = document.querySelectorAll('.cs-lesson.checked').length;
+  var total = document.querySelectorAll('.cs-lesson').length;
+  var countText = checked + ' of ' + total + ' lessons selected';
+  if (researchEnabled) {
+    countText += ' + Research Track';
+  }
+  document.getElementById('cs-count').textContent = countText;
+  document.getElementById('cs-begin-btn').disabled = (checked === 0 && !researchEnabled);
+  var allChecked = checked === total;
+  document.getElementById('cs-toggle-all').textContent = allChecked ? 'Deselect All' : 'Select All';
+}
+
+function beginCourse() {
+  if (!selectedTrack) return;
+  var selected = [];
+  document.querySelectorAll('.cs-lesson.checked').forEach(function(l) {
+    selected.push(l.dataset.lesson);
+  });
+  var params = '?track=' + selectedTrack + '&lessons=' + selected.join(',');
+  if (researchEnabled) {
+    params += '&research=1';
+  }
+  // If no clinical lessons selected but research is on, go to research-1
+  if (selected.length === 0 && researchEnabled) {
+    window.location.href = 'lessons/research-1.html' + params;
+  } else {
+    window.location.href = 'lessons/lesson-' + selected[0] + '.html' + params;
+  }
+}
+
+// Auto-select track from URL param
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var track = params.get('track');
+  if (track === 'student' || track === 'resident') {
+    selectTrack(track);
+  }
+})();
+</script>
+</body>
+</html>

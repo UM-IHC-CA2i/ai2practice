@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiology Workflow &mdash; Content Variations</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ══════════════════════════════════════════
+   PAGE SHELL
+   ══════════════════════════════════════════ */
+.vp-header {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 48px 24px 40px;
+}
+.vp-header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
+.vp-header p { font-family: var(--serif); font-style: italic; color: var(--gray-400); font-size: 1rem; }
+.vp-body { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+.vp-section { margin-top: 52px; }
+.vp-tag { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 3px; }
+.vp-name { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.vp-hint { font-size: 0.82rem; color: var(--gray-400); margin-bottom: 18px; }
+
+.vp-box {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+/* ══════════════════════════════════════════
+   CHEVRON STRIP — shared across all variations
+   (matches V2: color-coded pastels, active = navy)
+   ══════════════════════════════════════════ */
+.ch-strip {
+  display: flex;
+  padding: 20px 20px 0;
+}
+.ch-step {
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+  user-select: none;
+}
+.ch-shape {
+  padding: 10px 6px 8px 18px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%, 13px 50%);
+  transition: all 0.2s;
+}
+.ch-step:first-child .ch-shape {
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%);
+  border-radius: 8px 0 0 8px;
+  padding-left: 12px;
+}
+.ch-step:last-child .ch-shape {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 13px 50%);
+  border-radius: 0 8px 8px 0;
+}
+/* Pastel colors */
+.ch-step:nth-child(1) .ch-shape { background: #D1E8D5; }
+.ch-step:nth-child(2) .ch-shape { background: #D1E5F7; }
+.ch-step:nth-child(3) .ch-shape { background: #DBE9F2; }
+.ch-step:nth-child(4) .ch-shape { background: #C9DFF5; }
+.ch-step:nth-child(5) .ch-shape { background: #D8D0F0; }
+.ch-step:nth-child(6) .ch-shape { background: #C9DFF5; }
+.ch-step:nth-child(7) .ch-shape { background: #D1E8D5; }
+.ch-step:hover .ch-shape { filter: brightness(0.92); }
+.ch-step.active .ch-shape { background: var(--primary) !important; filter: none; }
+.ch-step.active .ch-num { background: rgba(255,255,255,0.25); color: #fff; }
+.ch-step.active .ch-label { color: #fff; }
+
+.ch-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; font-weight: 800; color: var(--primary);
+}
+.ch-label {
+  font-size: 0.58rem; font-weight: 600; color: var(--primary);
+  text-align: center; line-height: 1.15;
+}
+
+/* ══════════════════════════════════════════
+   DETAIL PANELS — shared wrapper
+   ══════════════════════════════════════════ */
+.ch-detail {
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  max-height: 0;
+  padding: 0 24px;
+}
+.ch-detail.open {
+  max-height: 1600px;
+  padding: 24px;
+}
+
+/* ══════════════════════════════════════════
+   V-A: Two-column layout (text left, media right)
+   ══════════════════════════════════════════ */
+.va-layout { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+.va-text h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 0 0 12px; }
+.va-text p { font-size: 0.88rem; color: var(--slate); line-height: 1.75; margin: 0 0 12px; }
+.va-text p:last-child { margin-bottom: 0; }
+.va-sidebar { display: flex; flex-direction: column; gap: 12px; }
+.va-media-slot {
+  border: 2px dashed var(--gray-200); border-radius: 10px;
+  padding: 24px 16px; text-align: center; background: var(--offwhite);
+}
+.va-media-slot img, .va-media-slot video, .va-media-slot iframe { max-width: 100%; border-radius: 6px; }
+.va-media-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 6px; }
+.va-media-desc { font-size: 0.78rem; color: var(--gray-400); }
+.va-link-list { margin-top: 8px; }
+.va-link-list a {
+  display: block; font-size: 0.82rem; color: var(--accent); text-decoration: none;
+  padding: 6px 0; border-bottom: 1px solid var(--gray-100); font-weight: 500;
+}
+.va-link-list a:last-child { border-bottom: none; }
+.va-link-list a:hover { color: var(--accent-dark); }
+
+/* Interpretation sub-grid */
+.va-interp { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--gray-200); grid-column: 1 / -1; }
+.va-interp-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-dark); margin-bottom: 10px; }
+.va-interp-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.va-interp-pill {
+  padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 500;
+  background: var(--gray-100); color: var(--slate); cursor: pointer; transition: all 0.2s; border: 1px solid transparent;
+}
+.va-interp-pill:hover { background: var(--accent-light); color: var(--accent-dark); border-color: var(--accent); }
+.va-interp-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.va-interp-expand { margin-top: 12px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+.va-interp-expand.open { max-height: 400px; }
+.va-interp-expand p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; padding: 12px 16px; background: var(--offwhite); border-radius: 8px; border-left: 3px solid var(--accent); }
+
+/* ══════════════════════════════════════════
+   V-B: Full-width stacked (header strip, text, media row)
+   ══════════════════════════════════════════ */
+.vb-header-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: var(--gray-100); border-radius: 8px; margin-bottom: 16px;
+}
+.vb-step-badge {
+  padding: 3px 10px; border-radius: 12px; font-size: 0.65rem; font-weight: 700;
+  background: var(--primary); color: #fff; white-space: nowrap;
+}
+.vb-header-bar h3 { font-size: 0.95rem; font-weight: 700; color: var(--primary); margin: 0; }
+.vb-prose p { font-size: 0.88rem; color: var(--slate); line-height: 1.75; margin: 0 0 10px; }
+.vb-prose p:last-child { margin-bottom: 0; }
+.vb-media-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.vb-media-card {
+  border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; background: #fff;
+}
+.vb-media-card img, .vb-media-card video, .vb-media-card iframe { width: 100%; display: block; }
+.vb-media-placeholder {
+  padding: 28px 12px; text-align: center; background: var(--offwhite);
+}
+.vb-media-placeholder .icon { font-size: 1.4rem; color: var(--gray-300); margin-bottom: 4px; }
+.vb-media-placeholder .label { font-size: 0.72rem; color: var(--gray-400); }
+.vb-media-caption { padding: 8px 12px; font-size: 0.75rem; color: var(--gray-600); font-weight: 500; }
+.vb-links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+.vb-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 14px; border: 1px solid var(--gray-200); border-radius: 6px;
+  font-size: 0.78rem; font-weight: 500; color: var(--accent); text-decoration: none;
+  transition: all 0.2s;
+}
+.vb-link:hover { border-color: var(--accent); background: var(--accent-light); }
+
+/* Interp dropdown */
+.vb-interp { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+.vb-interp-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.vb-interp-btn {
+  padding: 10px 6px; border: 1px solid var(--gray-200); border-radius: 8px;
+  text-align: center; cursor: pointer; transition: all 0.2s; background: #fff;
+}
+.vb-interp-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+.vb-interp-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+.vb-interp-btn .num { font-size: 0.62rem; font-weight: 700; color: var(--gray-400); }
+.vb-interp-btn.active .num { color: rgba(255,255,255,0.6); }
+.vb-interp-btn .name { font-size: 0.75rem; font-weight: 600; }
+.vb-interp-info { overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+.vb-interp-info.open { max-height: 400px; }
+.vb-interp-info-inner { margin-top: 12px; padding: 16px; background: var(--offwhite); border-radius: 8px; }
+.vb-interp-info-inner h4 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin: 0 0 6px; }
+.vb-interp-info-inner p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; margin: 0; }
+
+/* ══════════════════════════════════════════
+   V-C: Tabbed card (tabs on top inside detail)
+   ══════════════════════════════════════════ */
+.vc-tabs {
+  display: flex; border-bottom: 2px solid var(--gray-200); margin-bottom: 18px;
+}
+.vc-tab {
+  padding: 10px 20px; font-size: 0.82rem; font-weight: 600; color: var(--gray-400);
+  cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s;
+}
+.vc-tab:hover { color: var(--primary); }
+.vc-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.vc-pane { display: none; }
+.vc-pane.active { display: block; }
+.vc-pane h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 0 0 10px; }
+.vc-pane p { font-size: 0.88rem; color: var(--slate); line-height: 1.75; margin: 0 0 10px; }
+.vc-pane p:last-child { margin-bottom: 0; }
+.vc-media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.vc-media-slot {
+  border: 2px dashed var(--gray-200); border-radius: 10px; padding: 20px 12px;
+  text-align: center; background: var(--offwhite); min-height: 100px;
+}
+.vc-media-slot img, .vc-media-slot video, .vc-media-slot iframe { max-width: 100%; border-radius: 6px; }
+.vc-media-slot .tag { font-size: 0.65rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.vc-media-slot .desc { font-size: 0.75rem; color: var(--gray-400); }
+.vc-link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.vc-link-row a {
+  font-size: 0.82rem; color: var(--accent); text-decoration: none; font-weight: 500;
+  padding: 4px 0; border-bottom: 1px dashed var(--accent-light);
+}
+.vc-link-row a:hover { border-bottom-color: var(--accent); }
+/* Interp: vertical list */
+.vc-interp-list { margin-top: 14px; }
+.vc-interp-row {
+  padding: 10px 14px; border: 1px solid var(--gray-200); border-radius: 8px;
+  margin-bottom: 6px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px;
+}
+.vc-interp-row:hover { border-color: var(--accent); background: var(--accent-light); }
+.vc-interp-row.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+.vc-interp-row .num { font-size: 0.65rem; font-weight: 700; color: var(--gray-400); min-width: 24px; }
+.vc-interp-row.active .num { color: rgba(255,255,255,0.6); }
+.vc-interp-row .name { font-size: 0.82rem; font-weight: 600; flex: 1; }
+.vc-interp-row .arrow { font-size: 0.6rem; color: var(--gray-300); transition: transform 0.2s; }
+.vc-interp-row.active .arrow { transform: rotate(90deg); color: rgba(255,255,255,0.6); }
+.vc-interp-body { overflow: hidden; max-height: 0; transition: max-height 0.3s; }
+.vc-interp-body.open { max-height: 300px; }
+.vc-interp-body-inner { padding: 10px 14px 10px 48px; font-size: 0.85rem; color: var(--slate); line-height: 1.65; }
+
+/* ══════════════════════════════════════════
+   V-D: Callout-style (colored left border, compact)
+   ══════════════════════════════════════════ */
+.vd-callout {
+  border-left: 4px solid var(--accent);
+  padding-left: 20px;
+}
+.vd-callout h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 0 0 6px; }
+.vd-callout .step-label { font-size: 0.68rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.vd-callout p { font-size: 0.88rem; color: var(--slate); line-height: 1.7; margin: 0 0 10px; }
+.vd-aside {
+  margin-top: 16px; padding: 14px 18px; background: var(--gray-100); border-radius: 8px;
+}
+.vd-aside-label { font-size: 0.68rem; font-weight: 700; color: var(--accent-dark); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.vd-aside p { font-size: 0.82rem; color: var(--gray-600); line-height: 1.6; margin: 0; }
+.vd-row { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+.vd-media-thumb {
+  flex: 1; min-width: 140px; border: 2px dashed var(--gray-200); border-radius: 8px;
+  padding: 18px 10px; text-align: center; background: var(--offwhite);
+}
+.vd-media-thumb img, .vd-media-thumb video, .vd-media-thumb iframe { max-width: 100%; border-radius: 6px; }
+.vd-media-thumb .tag { font-size: 0.6rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; }
+.vd-media-thumb .desc { font-size: 0.72rem; color: var(--gray-400); margin-top: 4px; }
+.vd-links { margin-top: 12px; }
+.vd-links a { font-size: 0.82rem; color: var(--accent); text-decoration: none; font-weight: 500; margin-right: 16px; }
+.vd-links a:hover { text-decoration: underline; }
+/* Interp accordion */
+.vd-interp { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--gray-200); }
+.vd-interp-header { font-size: 0.72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.vd-interp-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.vd-interp-pill {
+  padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+  background: var(--offwhite); border: 1px solid var(--gray-200); color: var(--slate);
+  cursor: pointer; transition: all 0.2s;
+}
+.vd-interp-pill:hover { border-color: var(--accent); color: var(--accent); }
+.vd-interp-pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.vd-interp-expand { overflow: hidden; max-height: 0; transition: max-height 0.3s; }
+.vd-interp-expand.open { max-height: 400px; }
+.vd-interp-expand-inner { margin-top: 10px; padding: 14px 16px; background: var(--offwhite); border-radius: 8px; border-left: 3px solid var(--primary); }
+.vd-interp-expand-inner h4 { font-size: 0.88rem; font-weight: 700; color: var(--primary); margin: 0 0 4px; }
+.vd-interp-expand-inner p { font-size: 0.82rem; color: var(--slate); line-height: 1.6; margin: 0; }
+
+/* ══════════════════════════════════════════
+   V-E: Magazine spread (big image top, columns below)
+   ══════════════════════════════════════════ */
+.ve-hero-slot {
+  width: 100%; min-height: 180px; background: var(--gray-100); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+  border: 2px dashed var(--gray-200); overflow: hidden;
+}
+.ve-hero-slot img, .ve-hero-slot video, .ve-hero-slot iframe { width: 100%; border-radius: 10px; display: block; }
+.ve-hero-slot .placeholder { text-align: center; padding: 40px; }
+.ve-hero-slot .placeholder .tag { font-size: 0.65rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; }
+.ve-hero-slot .placeholder .desc { font-size: 0.82rem; color: var(--gray-400); margin-top: 4px; }
+.ve-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ve-cols h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 0 0 8px; }
+.ve-cols p { font-size: 0.88rem; color: var(--slate); line-height: 1.75; margin: 0 0 10px; }
+.ve-cols p:last-child { margin-bottom: 0; }
+.ve-learn-more { padding: 14px 16px; background: var(--gray-100); border-radius: 8px; margin-top: 10px; }
+.ve-learn-more .lbl { font-size: 0.68rem; font-weight: 700; color: var(--accent-dark); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.ve-learn-more a { display: block; font-size: 0.82rem; color: var(--accent); text-decoration: none; margin-bottom: 4px; font-weight: 500; }
+.ve-learn-more a:hover { text-decoration: underline; }
+/* Interp: card grid */
+.ve-interp { grid-column: 1 / -1; margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+.ve-interp-label { font-size: 0.72rem; font-weight: 700; color: var(--accent-dark); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.ve-interp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ve-interp-card {
+  padding: 14px 10px; border: 1px solid var(--gray-200); border-radius: 10px;
+  text-align: center; cursor: pointer; transition: all 0.2s; background: #fff;
+}
+.ve-interp-card:hover { border-color: var(--accent); background: var(--accent-light); }
+.ve-interp-card.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ve-interp-card .num { font-size: 0.6rem; font-weight: 700; color: var(--gray-400); }
+.ve-interp-card.active .num { color: rgba(255,255,255,0.6); }
+.ve-interp-card .name { font-size: 0.75rem; font-weight: 600; margin-top: 2px; }
+.ve-interp-expand { overflow: hidden; max-height: 0; transition: max-height 0.3s; grid-column: 1/-1; }
+.ve-interp-expand.open { max-height: 400px; }
+.ve-interp-expand-inner { margin-top: 10px; padding: 16px; background: var(--offwhite); border-radius: 8px; }
+.ve-interp-expand-inner h4 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin: 0 0 6px; }
+.ve-interp-expand-inner p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; margin: 0; }
+
+/* ══════════════════════════════════════════
+   V-F: Minimal single-column (just clean prose)
+   ══════════════════════════════════════════ */
+.vf-content h3 { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin: 0 0 4px; }
+.vf-content .step-tag { font-size: 0.68rem; font-weight: 600; color: var(--accent); margin-bottom: 14px; display: block; }
+.vf-content p { font-size: 0.9rem; color: var(--slate); line-height: 1.8; margin: 0 0 14px; }
+.vf-content p:last-of-type { margin-bottom: 0; }
+.vf-divider { height: 1px; background: var(--gray-200); margin: 18px 0; }
+.vf-resources { display: flex; gap: 16px; flex-wrap: wrap; }
+.vf-res-item {
+  flex: 1; min-width: 180px;
+  border: 1px solid var(--gray-200); border-radius: 10px; padding: 16px;
+  background: #fff;
+}
+.vf-res-item .type { font-size: 0.62rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.vf-res-item .title { font-size: 0.82rem; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+.vf-res-item .desc { font-size: 0.75rem; color: var(--gray-400); line-height: 1.5; }
+.vf-res-item a { font-size: 0.78rem; color: var(--accent); text-decoration: none; font-weight: 500; display: inline-block; margin-top: 6px; }
+.vf-res-item a:hover { text-decoration: underline; }
+/* Interp: simple toggle list */
+.vf-interp { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+.vf-interp > p { font-size: 0.88rem; color: var(--slate); margin: 0 0 12px; line-height: 1.7; }
+.vf-interp-item {
+  padding: 8px 0; border-bottom: 1px solid var(--gray-100); cursor: pointer;
+  display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+}
+.vf-interp-item:hover { color: var(--accent); }
+.vf-interp-item.active { color: var(--accent); font-weight: 600; }
+.vf-interp-item .name { font-size: 0.85rem; flex: 1; }
+.vf-interp-item .toggle { font-size: 0.7rem; color: var(--gray-300); transition: transform 0.2s; }
+.vf-interp-item.active .toggle { transform: rotate(90deg); color: var(--accent); }
+.vf-interp-body { overflow: hidden; max-height: 0; transition: max-height 0.3s; }
+.vf-interp-body.open { max-height: 300px; }
+.vf-interp-body p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; padding: 8px 0 8px 20px; margin: 0; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 800px) {
+  .ch-strip { flex-wrap: wrap; gap: 4px; }
+  .ch-shape { clip-path: none !important; border-radius: 6px !important; padding: 8px 6px !important; }
+  .va-layout { grid-template-columns: 1fr; }
+  .vb-media-row { grid-template-columns: 1fr; }
+  .ve-cols { grid-template-columns: 1fr; }
+  .vb-interp-bar, .ve-interp-grid { grid-template-columns: repeat(2, 1fr); }
+  .vc-media-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="vp-header">
+  <h1>Radiology Workflow &mdash; Content Variations</h1>
+  <p>Same chevron strip, six different content panel layouts. Pick your favorite.</p>
+</div>
+
+<div class="vp-body">
+
+<!-- ══════════ A ══════════ -->
+<div class="vp-section">
+  <div class="vp-tag">Variation A</div>
+  <div class="vp-name">Two-Column: Text + Sidebar Media</div>
+  <div class="vp-hint">Text on the left, stacked image/video slots on the right. Links below media.</div>
+  <div class="vp-box" data-var="a">
+    <div class="ch-strip" data-strip="a"></div>
+    <div class="ch-detail" data-detail="a"></div>
+  </div>
+</div>
+
+<!-- ══════════ B ══════════ -->
+<div class="vp-section">
+  <div class="vp-tag">Variation B</div>
+  <div class="vp-name">Full-Width Stacked: Header Bar + Text + Media Row</div>
+  <div class="vp-hint">Colored header bar up top, prose underneath, three-column media grid at the bottom.</div>
+  <div class="vp-box" data-var="b">
+    <div class="ch-strip" data-strip="b"></div>
+    <div class="ch-detail" data-detail="b"></div>
+  </div>
+</div>
+
+<!-- ══════════ C ══════════ -->
+<div class="vp-section">
+  <div class="vp-tag">Variation C</div>
+  <div class="vp-name">Tabbed: Overview / Media / Learn More</div>
+  <div class="vp-hint">Content split into tabs so nothing feels overwhelming. Interpretation types shown as a vertical list.</div>
+  <div class="vp-box" data-var="c">
+    <div class="ch-strip" data-strip="c"></div>
+    <div class="ch-detail" data-detail="c"></div>
+  </div>
+</div>
+
+<!-- ══════════ D ══════════ -->
+<div class="vp-section">
+  <div class="vp-tag">Variation D</div>
+  <div class="vp-name">Callout Style: Colored Left Border</div>
+  <div class="vp-hint">Clean left border accent. Teaching-point aside box. Compact media thumbnails in a row.</div>
+  <div class="vp-box" data-var="d">
+    <div class="ch-strip" data-strip="d"></div>
+    <div class="ch-detail" data-detail="d"></div>
+  </div>
+</div>
+
+<!-- ══════════ E ══════════ -->
+<div class="vp-section">
+  <div class="vp-tag">Variation E</div>
+  <div class="vp-name">Magazine Spread: Big Image + Two Columns</div>
+  <div class="vp-hint">Large hero image/video slot on top, text in two columns below.</div>
+  <div class="vp-box" data-var="e">
+    <div class="ch-strip" data-strip="e"></div>
+    <div class="ch-detail" data-detail="e"></div>
+  </div>
+</div>
+
+<!-- ══════════ F ══════════ -->
+<div class="vp-section">
+  <div class="vp-tag">Variation F</div>
+  <div class="vp-name">Minimal Prose: Single Column, Clean Text</div>
+  <div class="vp-hint">Just well-written text, a thin divider, and compact resource cards. No visual clutter.</div>
+  <div class="vp-box" data-var="f">
+    <div class="ch-strip" data-strip="f"></div>
+    <div class="ch-detail" data-detail="f"></div>
+  </div>
+</div>
+
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+(function() {
+
+/* ── Data ── */
+var STEPS = [
+  {
+    name: 'Order', num: '1',
+    title: 'Placing the Order',
+    badge: 'Step 1 &mdash; Order Entry',
+    textA: 'Every imaging study starts with a clinical question. A patient comes in with chest pain, a new cough, or abdominal tenderness, and the care team needs to decide: does this patient need imaging, and if so, what kind?',
+    textB: 'Choosing the right study matters more than most students realize. A CT with contrast answers different questions than an ultrasound. Ordering the wrong one wastes time, costs money, and can expose patients to unnecessary radiation or contrast risks. Most hospitals use computerized order entry tied to clinical decision support &mdash; tools that nudge toward evidence-based choices based on the indication you enter.',
+    aside: 'The ACR Appropriateness Criteria rates imaging studies on a 1&ndash;9 scale for hundreds of clinical scenarios. Getting familiar with it early pays off.',
+    media: [
+      { type: 'IMAGE', desc: 'Order entry screen' },
+      { type: 'VIDEO', desc: 'Walkthrough: placing a radiology order' }
+    ],
+    links: [
+      { label: 'ACR Appropriateness Criteria', url: 'https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria' },
+      { label: 'Choosing Wisely &mdash; Imaging', url: 'https://www.choosingwisely.org/clinician-lists/#imaging' }
+    ]
+  },
+  {
+    name: 'Scheduling', num: '2',
+    title: 'Scheduling and Prep',
+    badge: 'Step 2 &mdash; Scheduling',
+    textA: 'Once the order goes in, the study needs to be scheduled. This sounds administrative, but there is real clinical thinking here: does the patient need to be fasting? Is contrast involved? Does the patient have metal implants that rule out MRI?',
+    textB: 'A patient who shows up unprepared gets sent home and rescheduled &mdash; delaying their diagnosis by days or weeks. Understanding prep requirements (NPO for abdominal CT, full bladder for pelvic ultrasound, MRI safety screening) is practical knowledge you will use on the wards.',
+    aside: 'MRI safety is a whole field. Ferromagnetic objects in the scanner room can become projectiles. Every patient gets screened, every time.',
+    media: [
+      { type: 'IMAGE', desc: 'MRI safety screening form' },
+      { type: 'IMAGE', desc: 'Patient preparation checklist' }
+    ],
+    links: [
+      { label: 'MRI Safety Resources', url: '#' }
+    ]
+  },
+  {
+    name: 'Triage', num: '3',
+    title: 'Protocoling and Triage',
+    badge: 'Step 3 &mdash; Triage',
+    textA: 'Before the scanner runs, a radiologist or radiology PA reviews the order and decides exactly how the study should be performed. This is called protocoling. For a CT scan, that means choosing whether to use IV contrast, what phases to acquire, and what body region to cover.',
+    textB: 'Triage also determines reading priority. A stat portable chest X-ray from the emergency department gets read before a routine outpatient knee MRI. The worklist is constantly being reshuffled based on clinical urgency &mdash; and getting this wrong has real consequences for patient care.',
+    aside: 'Protocoling is a skill that radiology residents spend years developing. The wrong protocol can mean repeating a study or missing a diagnosis entirely.',
+    media: [
+      { type: 'IMAGE', desc: 'CT protocol selection' },
+      { type: 'VIDEO', desc: 'How studies get protocoled' }
+    ],
+    links: [
+      { label: 'CT Protocol Basics (Radiopaedia)', url: 'https://radiopaedia.org/articles/ct-protocols' }
+    ]
+  },
+  {
+    name: 'Acquisition', num: '4',
+    title: 'Acquiring the Images',
+    badge: 'Step 4 &mdash; Acquisition',
+    textA: 'The technologist performs the study. This step varies enormously by modality &mdash; positioning a patient for a two-view chest X-ray is nothing like running a cardiac MRI sequence. The technologist\'s skill directly affects image quality, and poor images make interpretation harder or impossible.',
+    textB: 'For students, the key takeaway is understanding what each modality actually does. CT uses ionizing radiation and excels at anatomy. MRI uses magnetic fields and is better for soft tissue contrast. Ultrasound is portable, real-time, and operator-dependent. Nuclear medicine shows physiology, not anatomy. These differences drive when and why each gets ordered.',
+    aside: 'Ultrasound is uniquely operator-dependent. The same pathology can look completely different depending on who is holding the probe.',
+    media: [
+      { type: 'IMAGE', desc: 'CT scanner in operation' },
+      { type: 'VIDEO', desc: 'How a CT scan works' },
+      { type: 'IMAGE', desc: 'Modality comparison chart' }
+    ],
+    links: [
+      { label: 'Imaging Modalities Overview', url: 'https://radiopaedia.org/articles/imaging-modalities' }
+    ]
+  },
+  {
+    name: 'Interpretation', num: '5',
+    title: 'Reading the Images',
+    badge: 'Step 5 &mdash; Interpretation',
+    textA: 'This is the core of what radiologists do. A radiologist sits down at a workstation, pulls up the images, reviews the clinical history, and systematically works through the study. On a chest X-ray, that might mean checking the airway, bones, cardiac silhouette, diaphragm, and soft tissues &mdash; the ABCDE approach.',
+    textB: 'The discipline here is the systematic search. Beginners tend to jump to the obvious finding and stop looking. Experienced readers follow their checklist every time, because the second finding you miss is often the one that matters most. This is called "satisfaction of search" error, and it is one of the most common mistakes in radiology.',
+    aside: 'AI tools are increasingly used at this stage to flag findings and measure structures. Understanding what these tools do &mdash; and what they miss &mdash; is covered in the subtopics below.',
+    media: [
+      { type: 'IMAGE', desc: 'PACS workstation view' },
+      { type: 'VIDEO', desc: 'Systematic CXR reading' },
+      { type: 'IMAGE', desc: 'Satisfaction of search example' }
+    ],
+    links: [
+      { label: 'Chest X-ray Approach (Radiopaedia)', url: 'https://radiopaedia.org/articles/chest-radiograph' },
+      { label: 'Common Interpretation Errors', url: '#' }
+    ],
+    interp: [
+      { name: 'Detection', desc: 'Spotting that something is there. Is there a nodule on this chest CT? A fracture on this wrist X-ray? Detection is the first and most fundamental step &mdash; you can\'t diagnose what you don\'t see. AI detection tools highlight suspicious areas, but a reader who leans on highlights instead of learning to scan the whole image develops a blind spot that only shows up when the AI is off.' },
+      { name: 'Segmentation', desc: 'Drawing boundaries around a structure. Outlining a tumor to measure its volume, tracing the border of a cardiac chamber, or isolating a vertebral body for bone density measurement. Manual segmentation is tedious and time-consuming, so AI handles this well &mdash; but clinicians still need to know what they are measuring and why.' },
+      { name: 'Classification', desc: 'Putting a finding into a category. Is this breast lesion BI-RADS 3 or BI-RADS 4? Is this lung nodule solid or ground-glass? Classification systems standardize how findings are described and drive follow-up recommendations. The categories are only useful if you understand the criteria behind them.' },
+      { name: 'Quantification', desc: 'Measuring things. Aortic diameter. Tumor longest axis. Liver fat fraction. Ejection fraction. Quantification turns images into numbers that guide clinical decisions. AI is fast and consistent here, but the clinical interpretation of those numbers &mdash; is 4.5 cm concerning? &mdash; still requires a trained reader.' },
+      { name: 'Registration', desc: 'Lining up images from different times or modalities. Comparing today\'s CT to last year\'s CT to see if a nodule has grown, or overlaying PET onto CT to match metabolic activity with anatomy. Registration makes comparison studies reliable rather than eyeballed.' },
+      { name: 'Reconstruction', desc: 'Building better images from raw data. Deep learning reconstruction algorithms can produce diagnostic-quality CT images from lower radiation doses or faster MRI scans. The tradeoff: reconstructed images can sometimes create artificial textures that look like real findings if you are not careful.' },
+      { name: 'Enhancement', desc: 'Making images clearer after acquisition. Denoising, contrast boosting, or generating synthetic contrast-enhanced images from non-contrast scans. These are post-processing tools &mdash; they improve what you can see, but they are not a substitute for acquiring the right study in the first place.' },
+      { name: 'Prediction', desc: 'Estimating what will happen next. Which lung nodules will become cancer? Which stroke patients will benefit from thrombectomy? Predictive models extract features from images that human readers cannot quantify, and this is an area where AI can genuinely extend what is possible, not just automate what radiologists already do.' }
+    ]
+  },
+  {
+    name: 'Reporting', num: '6',
+    title: 'Writing the Report',
+    badge: 'Step 6 &mdash; Reporting',
+    textA: 'The radiologist dictates or types a report describing what they found. A good report is structured: clinical history, technique, findings organized by anatomy, and an impression that answers the clinical question. The impression is what drives clinical decisions &mdash; most referring physicians read only that section.',
+    textB: 'Learning to read radiology reports is as important as learning to read images. Reports use standardized language and classification systems (BI-RADS, Lung-RADS, TI-RADS) that dictate follow-up. If a report says "BI-RADS 4," that triggers a biopsy recommendation. Knowing what these categories mean helps you act on reports correctly.',
+    aside: 'The best reports answer the clinical question in the first sentence of the impression. Everything else is supporting detail.',
+    media: [
+      { type: 'IMAGE', desc: 'Sample structured report' },
+      { type: 'IMAGE', desc: 'Report structure breakdown' }
+    ],
+    links: [
+      { label: 'Structured Reporting Standards', url: '#' }
+    ]
+  },
+  {
+    name: 'Follow-up', num: '7',
+    title: 'Communication and Follow-up',
+    badge: 'Step 7 &mdash; Follow-up',
+    textA: 'A report sitting in the system does not help anyone if nobody reads it. Critical findings &mdash; a new pulmonary embolism, an aortic dissection, a tension pneumothorax &mdash; need to be communicated directly and immediately to the treating physician. This is not optional; it is a professional and legal responsibility.',
+    textB: 'The other half of follow-up is tracking recommendations. If a report says "recommend 3-month follow-up CT for lung nodule," someone needs to make sure that scan actually gets scheduled. Patients who fall through the cracks are a major source of diagnostic delay and malpractice claims. Closing this loop is everybody\'s job.',
+    aside: 'The ACR has formal practice parameters for communication of critical results, including documentation requirements and timeframes.',
+    media: [
+      { type: 'IMAGE', desc: 'Critical results communication flow' },
+      { type: 'VIDEO', desc: 'Closing the loop' }
+    ],
+    links: [
+      { label: 'ACR Communication Guidelines', url: 'https://www.acr.org/Clinical-Resources/Reporting-and-Data-Systems' }
+    ]
+  }
+];
+
+/* ── Render helpers ── */
+function mediaPlaceholder(m) {
+  return '<div class="tag">' + m.type + '</div><div class="desc">' + m.desc + '</div>';
+}
+
+/* ── Build variation A ── */
+function buildA(s) {
+  var html = '<div class="va-layout"><div class="va-text"><h3>' + s.title + '</h3>';
+  html += '<p>' + s.textA + '</p><p>' + s.textB + '</p>';
+  html += '<div class="va-link-list">';
+  s.links.forEach(function(l){ html += '<a href="'+l.url+'" target="_blank">'+l.label+'</a>'; });
+  html += '</div></div>';
+  html += '<div class="va-sidebar">';
+  s.media.forEach(function(m){ html += '<div class="va-media-slot">' + mediaPlaceholder(m) + '</div>'; });
+  html += '</div>';
+  if (s.interp) {
+    html += '<div class="va-interp"><div class="va-interp-label">AI in Interpretation</div>';
+    html += '<div class="va-interp-pills" data-interp-pills="a">';
+    s.interp.forEach(function(sub,i){ html += '<span class="va-interp-pill" data-idx="'+i+'">'+sub.name+'</span>'; });
+    html += '</div><div class="va-interp-expand" data-interp-expand="a"></div></div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+/* ── Build variation B ── */
+function buildB(s) {
+  var html = '<div class="vb-header-bar"><span class="vb-step-badge">' + s.badge + '</span><h3>' + s.title + '</h3></div>';
+  html += '<div class="vb-prose"><p>' + s.textA + '</p><p>' + s.textB + '</p></div>';
+  html += '<div class="vb-media-row">';
+  s.media.forEach(function(m){ html += '<div class="vb-media-card"><div class="vb-media-placeholder">' + mediaPlaceholder(m) + '</div></div>'; });
+  if (s.media.length < 3) html += '<div class="vb-media-card"><div class="vb-media-placeholder"><div class="tag">LINK</div><div class="label">Additional resource</div></div></div>';
+  html += '</div>';
+  html += '<div class="vb-links">';
+  s.links.forEach(function(l){ html += '<a class="vb-link" href="'+l.url+'" target="_blank">'+l.label+'</a>'; });
+  html += '</div>';
+  if (s.interp) {
+    html += '<div class="vb-interp"><div class="vb-interp-bar" data-interp-bar="b">';
+    s.interp.forEach(function(sub,i){ html += '<div class="vb-interp-btn" data-idx="'+i+'"><div class="num">'+(i+1)+'</div><div class="name">'+sub.name+'</div></div>'; });
+    html += '</div><div class="vb-interp-info" data-interp-info="b"></div></div>';
+  }
+  return html;
+}
+
+/* ── Build variation C ── */
+function buildC(s) {
+  var html = '<div class="vc-tabs"><span class="vc-tab active" data-tab="overview">Overview</span><span class="vc-tab" data-tab="media">Media</span><span class="vc-tab" data-tab="learn">Learn More</span></div>';
+  // Overview pane
+  html += '<div class="vc-pane active" data-pane="overview"><h3>' + s.title + '</h3><p>' + s.textA + '</p><p>' + s.textB + '</p>';
+  if (s.interp) {
+    html += '<div class="vc-interp-list" data-interp-list="c">';
+    s.interp.forEach(function(sub,i){ html += '<div class="vc-interp-row" data-idx="'+i+'"><span class="num">'+(i+1)+'</span><span class="name">'+sub.name+'</span><span class="arrow">&#9654;</span></div><div class="vc-interp-body" data-interp-body-c="'+i+'"></div>'; });
+    html += '</div>';
+  }
+  html += '</div>';
+  // Media pane
+  html += '<div class="vc-pane" data-pane="media"><div class="vc-media-grid">';
+  s.media.forEach(function(m){ html += '<div class="vc-media-slot">' + mediaPlaceholder(m) + '</div>'; });
+  html += '</div></div>';
+  // Learn more pane
+  html += '<div class="vc-pane" data-pane="learn"><div class="vc-link-row">';
+  s.links.forEach(function(l){ html += '<a href="'+l.url+'" target="_blank">'+l.label+'</a>'; });
+  html += '</div></div>';
+  return html;
+}
+
+/* ── Build variation D ── */
+function buildD(s) {
+  var html = '<div class="vd-callout"><div class="step-label">' + s.badge + '</div><h3>' + s.title + '</h3>';
+  html += '<p>' + s.textA + '</p>';
+  html += '<div class="vd-aside"><div class="vd-aside-label">Good to know</div><p>' + s.aside + '</p></div>';
+  html += '<p style="margin-top:12px;">' + s.textB + '</p>';
+  html += '<div class="vd-row">';
+  s.media.forEach(function(m){ html += '<div class="vd-media-thumb">' + mediaPlaceholder(m) + '</div>'; });
+  html += '</div>';
+  html += '<div class="vd-links">';
+  s.links.forEach(function(l){ html += '<a href="'+l.url+'" target="_blank">'+l.label+'</a>'; });
+  html += '</div>';
+  if (s.interp) {
+    html += '<div class="vd-interp"><div class="vd-interp-header">Types of AI in Interpretation</div>';
+    html += '<div class="vd-interp-pills" data-interp-pills="d">';
+    s.interp.forEach(function(sub,i){ html += '<span class="vd-interp-pill" data-idx="'+i+'">'+sub.name+'</span>'; });
+    html += '</div><div class="vd-interp-expand" data-interp-expand="d"></div></div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+/* ── Build variation E ── */
+function buildE(s) {
+  var hero = s.media[0] || { type: 'IMAGE', desc: 'Primary visual' };
+  var html = '<div class="ve-hero-slot"><div class="placeholder">' + mediaPlaceholder(hero) + '</div></div>';
+  html += '<div class="ve-cols"><div><h3>' + s.title + '</h3><p>' + s.textA + '</p></div>';
+  html += '<div><p>' + s.textB + '</p>';
+  html += '<div class="ve-learn-more"><div class="lbl">Resources</div>';
+  s.links.forEach(function(l){ html += '<a href="'+l.url+'" target="_blank">'+l.label+'</a>'; });
+  html += '</div></div>';
+  if (s.interp) {
+    html += '<div class="ve-interp"><div class="ve-interp-label">AI in Interpretation</div>';
+    html += '<div class="ve-interp-grid" data-interp-grid="e">';
+    s.interp.forEach(function(sub,i){ html += '<div class="ve-interp-card" data-idx="'+i+'"><div class="num">'+(i+1)+'</div><div class="name">'+sub.name+'</div></div>'; });
+    html += '</div><div class="ve-interp-expand" data-interp-expand="e"></div></div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+/* ── Build variation F ── */
+function buildF(s) {
+  var html = '<div class="vf-content"><h3>' + s.title + '</h3><span class="step-tag">' + s.badge + '</span>';
+  html += '<p>' + s.textA + '</p><p>' + s.textB + '</p>';
+  html += '<div class="vf-divider"></div>';
+  html += '<div class="vf-resources">';
+  s.media.forEach(function(m){
+    html += '<div class="vf-res-item"><div class="type">' + m.type + '</div><div class="title">' + m.desc + '</div><div class="desc">Placeholder &mdash; add your own content here.</div></div>';
+  });
+  s.links.forEach(function(l){
+    html += '<div class="vf-res-item"><div class="type">LINK</div><div class="title">' + l.label + '</div><a href="'+l.url+'" target="_blank">Open resource &rarr;</a></div>';
+  });
+  html += '</div>';
+  if (s.interp) {
+    html += '<div class="vf-interp"><p>AI tools are used across several subtasks within interpretation. Click any to learn more:</p>';
+    s.interp.forEach(function(sub,i){
+      html += '<div class="vf-interp-item" data-idx="'+i+'" data-interp-item="f"><span class="name">'+sub.name+'</span><span class="toggle">&#9654;</span></div>';
+      html += '<div class="vf-interp-body" data-interp-body-f="'+i+'"></div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+var BUILDERS = { a: buildA, b: buildB, c: buildC, d: buildD, e: buildE, f: buildF };
+
+/* ── Build chevron strips and wire clicks ── */
+['a','b','c','d','e','f'].forEach(function(v) {
+  var strip = document.querySelector('[data-strip="'+v+'"]');
+  var detail = document.querySelector('[data-detail="'+v+'"]');
+  var active = -1;
+
+  STEPS.forEach(function(s, i) {
+    var el = document.createElement('div');
+    el.className = 'ch-step';
+    el.innerHTML = '<div class="ch-shape"><span class="ch-num">'+s.num+'</span><span class="ch-label">'+s.name+'</span></div>';
+    el.addEventListener('click', function() {
+      strip.querySelectorAll('.ch-step').forEach(function(c){ c.classList.remove('active'); });
+      if (active === i) { detail.classList.remove('open'); detail.innerHTML = ''; active = -1; return; }
+      el.classList.add('active');
+      active = i;
+      detail.innerHTML = BUILDERS[v](s);
+      detail.classList.add('open');
+      wireInterp(detail, v, s);
+      wireTabs(detail);
+    });
+    strip.appendChild(el);
+  });
+});
+
+/* ── Wire interpretation sub-clicks ── */
+function wireInterp(container, v, step) {
+  if (!step.interp) return;
+
+  // Variation A: pills
+  var pills = container.querySelector('[data-interp-pills="a"]') || container.querySelector('[data-interp-pills="d"]');
+  var expandA = container.querySelector('[data-interp-expand="a"]') || container.querySelector('[data-interp-expand="d"]');
+  if (pills && expandA) {
+    var activeP = -1;
+    pills.querySelectorAll('[data-idx]').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        var idx = parseInt(pill.getAttribute('data-idx'));
+        pills.querySelectorAll('[data-idx]').forEach(function(p){ p.classList.remove('active'); });
+        if (activeP === idx) { expandA.classList.remove('open'); expandA.innerHTML = ''; activeP = -1; return; }
+        pill.classList.add('active');
+        activeP = idx;
+        expandA.innerHTML = '<p><strong>' + step.interp[idx].name + ':</strong> ' + step.interp[idx].desc + '</p>';
+        expandA.classList.add('open');
+      });
+    });
+  }
+
+  // Variation B: button bar
+  var bar = container.querySelector('[data-interp-bar="b"]');
+  var infoB = container.querySelector('[data-interp-info="b"]');
+  if (bar && infoB) {
+    var activeB = -1;
+    bar.querySelectorAll('[data-idx]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var idx = parseInt(btn.getAttribute('data-idx'));
+        bar.querySelectorAll('[data-idx]').forEach(function(b){ b.classList.remove('active'); });
+        if (activeB === idx) { infoB.classList.remove('open'); infoB.innerHTML = ''; activeB = -1; return; }
+        btn.classList.add('active');
+        activeB = idx;
+        infoB.innerHTML = '<div class="vb-interp-info-inner"><h4>'+step.interp[idx].name+'</h4><p>'+step.interp[idx].desc+'</p></div>';
+        infoB.classList.add('open');
+      });
+    });
+  }
+
+  // Variation C: vertical rows
+  container.querySelectorAll('.vc-interp-row').forEach(function(row) {
+    row.addEventListener('click', function() {
+      var idx = parseInt(row.getAttribute('data-idx'));
+      var body = container.querySelector('[data-interp-body-c="'+idx+'"]');
+      var wasActive = row.classList.contains('active');
+      container.querySelectorAll('.vc-interp-row').forEach(function(r){ r.classList.remove('active'); });
+      container.querySelectorAll('.vc-interp-body').forEach(function(b){ b.classList.remove('open'); b.innerHTML = ''; });
+      if (!wasActive && body) {
+        row.classList.add('active');
+        body.innerHTML = '<div class="vc-interp-body-inner">' + step.interp[idx].desc + '</div>';
+        body.classList.add('open');
+      }
+    });
+  });
+
+  // Variation E: card grid
+  var gridE = container.querySelector('[data-interp-grid="e"]');
+  var expandE = container.querySelector('[data-interp-expand="e"]');
+  if (gridE && expandE) {
+    var activeE = -1;
+    gridE.querySelectorAll('[data-idx]').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var idx = parseInt(card.getAttribute('data-idx'));
+        gridE.querySelectorAll('[data-idx]').forEach(function(c){ c.classList.remove('active'); });
+        if (activeE === idx) { expandE.classList.remove('open'); expandE.innerHTML = ''; activeE = -1; return; }
+        card.classList.add('active');
+        activeE = idx;
+        expandE.innerHTML = '<div class="ve-interp-expand-inner"><h4>'+step.interp[idx].name+'</h4><p>'+step.interp[idx].desc+'</p></div>';
+        expandE.classList.add('open');
+      });
+    });
+  }
+
+  // Variation F: simple toggle
+  container.querySelectorAll('[data-interp-item="f"]').forEach(function(item) {
+    item.addEventListener('click', function() {
+      var idx = parseInt(item.getAttribute('data-idx'));
+      var body = container.querySelector('[data-interp-body-f="'+idx+'"]');
+      var wasActive = item.classList.contains('active');
+      container.querySelectorAll('[data-interp-item="f"]').forEach(function(it){ it.classList.remove('active'); });
+      container.querySelectorAll('[data-interp-body-f]').forEach(function(b){ b.classList.remove('open'); b.innerHTML = ''; });
+      if (!wasActive && body) {
+        item.classList.add('active');
+        body.innerHTML = '<p>' + step.interp[idx].desc + '</p>';
+        body.classList.add('open');
+      }
+    });
+  });
+}
+
+/* ── Wire tabs (variation C) ── */
+function wireTabs(container) {
+  var tabs = container.querySelectorAll('.vc-tab');
+  if (!tabs.length) return;
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = tab.getAttribute('data-tab');
+      container.querySelectorAll('.vc-tab').forEach(function(t){ t.classList.remove('active'); });
+      container.querySelectorAll('.vc-pane').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var pane = container.querySelector('[data-pane="'+target+'"]');
+      if (pane) pane.classList.add('active');
+    });
+  });
+}
+
+})();
+</script>
+</body>
+</html>

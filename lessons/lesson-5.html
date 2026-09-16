@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 5: The Future of AI in Radiology &mdash; AI-Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="lessons.css">
+<style>
+/* ── Section question headers ── */
+.fu-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.fu-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.fu-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+.fu-header p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* ── Image figure ── */
+.fu-figure {
+  margin: 28px 0;
+  text-align: center;
+}
+.fu-figure img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.fu-figure-caption {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  font-family: var(--serif);
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* ── Placeholder ── */
+.fu-placeholder {
+  border: 2px dashed var(--gray-300);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  margin: 24px 0;
+  background: var(--offwhite);
+}
+.fu-placeholder-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-400);
+  margin-bottom: 6px;
+}
+.fu-placeholder-desc {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-style: italic;
+  font-family: var(--serif);
+}
+.fu-placeholder-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+@media (max-width: 600px) {
+  .fu-placeholder-row { grid-template-columns: 1fr; }
+}
+
+/* ── Tables ── */
+.fu-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.88rem;
+}
+.fu-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid;
+}
+.fu-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: top;
+  line-height: 1.6;
+  color: var(--slate);
+}
+.fu-table tr:last-child td { border-bottom: none; }
+.fu-table .fu-metric-name {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* Indigo table variant */
+.fu-table--indigo th {
+  color: #4F46E5;
+  border-color: #4F46E5;
+  background: #EEF2FF;
+}
+.fu-table--indigo tr:hover td { background: #F8F9FF; }
+
+/* Teal table variant */
+.fu-table--teal th {
+  color: #0D9488;
+  border-color: #0D9488;
+  background: #F0FDFA;
+}
+.fu-table--teal tr:hover td { background: #F8FFFE; }
+
+/* ── Colored section dividers ── */
+.fu-section--indigo { border-top: 4px solid #4F46E5; padding-top: 32px; }
+.fu-section--blue { border-top: 4px solid #0EA5E9; padding-top: 32px; }
+.fu-section--teal { border-top: 4px solid #0D9488; padding-top: 32px; }
+.fu-section--purple { border-top: 4px solid #7C3AED; padding-top: 32px; }
+.fu-section--amber { border-top: 4px solid #F59E0B; padding-top: 32px; }
+.fu-section--rose { border-top: 4px solid #F43F5E; padding-top: 32px; }
+
+/* ── Resource cards ── */
+.fu-resources {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+@media (max-width: 600px) {
+  .fu-resources { grid-template-columns: 1fr; }
+}
+.fu-resource-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px 24px;
+  background: #fff;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.fu-resource-card:hover {
+  border-color: #4F46E5;
+  box-shadow: 0 4px 16px rgba(79,70,229,0.10);
+}
+.fu-resource-card h4 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+.fu-resource-card p {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
+.fu-resource-card a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4F46E5;
+  text-decoration: none;
+}
+.fu-resource-card a:hover { text-decoration: underline; }
+
+/* ── Pipeline arrow row ── */
+.fu-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+.fu-pipeline-step {
+  flex: 1;
+  min-width: 120px;
+  padding: 14px 12px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+}
+.fu-pipeline-step:first-child { border-radius: 8px 0 0 8px; }
+.fu-pipeline-step:last-child { border-radius: 0 8px 8px 0; }
+.fu-pipeline-sub {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #4F46E5;">
+  <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
+  <div class="les-topbar-title">Lesson 5 of 5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #4F46E5;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">05</div>
+    <div>
+      <h1>The Future of AI in Radiology</h1>
+      <p>Where AI is now, where it is headed, and how to stay ahead</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <!-- ── Cartoon + Intro ── -->
+  <section class="les-section" id="intro">
+
+    <div class="fu-figure">
+      <img src="images/cartoons/radiologist-analyzes-results-patient-s-brain-mri-computer-monitor_593268-131.jpg" alt="Illustration of a radiologist analyzing results on a computer monitor">
+    </div>
+
+    <h2>Looking Ahead</h2>
+    <p>
+      In Lesson 4 you learned how to evaluate whether a specific AI tool works, generalizes, and deserves a place in clinical practice. This lesson zooms out. The landscape of AI in radiology is moving fast &mdash; new tools, new capabilities, new regulatory pathways, and new questions about the radiologist's role. Keeping up requires knowing what exists today, understanding where the technology is headed, and building habits that keep you informed.
+    </p>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 1: WHAT AI EXISTS TODAY?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section fu-section--indigo" id="what-exists">
+    <div class="fu-header">
+      <div class="fu-num" style="background: #4F46E5;">01</div>
+      <div>
+        <h2>What AI exists today?</h2>
+        <p>Explore FDA + ACR AI Central</p>
+      </div>
+    </div>
+
+    <p>
+      As of 2026, the FDA has cleared over 1,000 AI- and machine learning-enabled medical devices, with radiology accounting for the largest share by far. These tools span chest X-ray triage, mammography detection, stroke identification on CT, fracture detection, and more. But "FDA-cleared" does not mean "works everywhere" &mdash; as you learned in Lesson 4.
+    </p>
+
+    <p>
+      Two resources are essential for understanding what is currently available:
+    </p>
+
+    <div class="fu-resources">
+      <div class="fu-resource-card">
+        <h4>ACR Data Science Institute &mdash; AI Central</h4>
+        <p>The most comprehensive directory of FDA-cleared AI products in radiology. Searchable by subspecialty, modality, body area, and clinical use case. Updated regularly.</p>
+        <a href="https://aicentral.acrdsi.org/" target="_blank" rel="noopener">aicentral.acrdsi.org &rarr;</a>
+      </div>
+      <div class="fu-resource-card">
+        <h4>FDA &mdash; AI/ML-Enabled Medical Devices</h4>
+        <p>The official FDA list of all authorized AI/ML-enabled devices across all medical specialties, with regulatory details and device classification.</p>
+        <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices" target="_blank" rel="noopener">fda.gov &mdash; AI-Enabled Devices &rarr;</a>
+      </div>
+    </div>
+
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-label">Image</div>
+      <div class="fu-placeholder-desc">Screenshot or annotated view of the ACR AI Central interface</div>
+    </div>
+
+    <p>
+      Browsing these registries reveals a pattern: the majority of current AI tools are narrow &mdash; each one does a single task on a single modality. A chest X-ray AI flags pneumothorax. A CT stroke AI detects large vessel occlusion. Very few operate across modalities, integrate clinical context, or do anything beyond pattern recognition on images.
+    </p>
+
+    <div class="les-case les-case--blue">
+      <div class="les-case-label les-case-label--blue">Exercise</div>
+      <p>
+        Go to <a href="https://aicentral.acrdsi.org/" target="_blank" rel="noopener">ACR AI Central</a> and filter for your subspecialty of interest. How many FDA-cleared tools exist? What tasks do they perform? Are any of them integrated into the PACS workflows you have used? This is the starting point for building your AI awareness.
+      </p>
+    </div>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <div class="les-teaching">
+      <div class="les-teaching-label">Teaching Point</div>
+      <p>
+        Knowing what tools exist is the first step. Most radiologists and trainees cannot name more than one or two AI products in their subspecialty. A five-minute scan of ACR AI Central is one of the highest-value things you can do to orient yourself in this landscape.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 2: WHERE IS AI GOING?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section fu-section--blue" id="where-going">
+    <div class="fu-header">
+      <div class="fu-num" style="background: #0EA5E9;">02</div>
+      <div>
+        <h2>Where is AI going?</h2>
+        <p>Generative AI, multimodal AI, foundation models, and agents</p>
+      </div>
+    </div>
+
+    <p>
+      The AI tools in clinical use today are almost all <strong>narrow, task-specific models</strong> &mdash; trained to do one thing well. The next generation of AI is moving in a fundamentally different direction. Understanding these trends helps you anticipate what is coming and what skills will matter.
+    </p>
+
+    <table class="fu-table fu-table--indigo">
+      <thead>
+        <tr>
+          <th>Generation</th>
+          <th>What it does</th>
+          <th>Radiology example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fu-metric-name">Narrow AI</td>
+          <td>Single task, single modality. Trained on labeled data for a specific purpose.</td>
+          <td>Detects pneumothorax on chest X-ray; flags large vessel occlusion on CT</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Generative AI</td>
+          <td>Creates new content &mdash; text, images, structured reports &mdash; based on learned patterns.</td>
+          <td>Auto-drafts radiology reports from findings; generates synthetic training images</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Multimodal AI</td>
+          <td>Integrates multiple data types &mdash; images, text, labs, history &mdash; into a single model.</td>
+          <td>Reads a CT scan, the clinical note, and the lab values together to prioritize a differential</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Foundation Models</td>
+          <td>Large pre-trained models adapted to many tasks without task-specific retraining.</td>
+          <td>A single model that can segment organs, detect pathology, and answer questions about a scan</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">AI Agents</td>
+          <td>Autonomous systems that chain reasoning steps, use tools, and take actions in clinical workflows.</td>
+          <td>Receives an order, pulls priors, triages the study, drafts a report, and routes follow-up</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <p>
+      Each step in this progression gives AI more autonomy and broader scope. Narrow AI is a tool you use. An AI agent is a system that acts on its own. The transition from one to the other raises every question from Lesson 4 &mdash; trust, validation, accountability &mdash; at a much higher stakes level.
+    </p>
+
+    <div class="les-case les-case--amber">
+      <div class="les-case-label les-case-label--amber">Think about it</div>
+      <p>
+        A foundation model that can interpret any imaging study, read the clinical note, and draft a report sounds like the future. But how do you validate something that does hundreds of different tasks? The current FDA framework was built for narrow, single-purpose devices. A model that can do "everything" does not fit neatly into that box &mdash; and neither does the question of who is responsible when it makes a mistake on a task it was never explicitly tested for.
+      </p>
+    </div>
+
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-label">Figure</div>
+      <div class="fu-placeholder-desc">Visual timeline or progression diagram: narrow AI &rarr; generative &rarr; multimodal &rarr; foundation models &rarr; agents</div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 3: FROM DEVELOPMENT TO CLINICAL PRACTICE
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section fu-section--teal" id="dev-to-practice">
+    <div class="fu-header">
+      <div class="fu-num" style="background: #0D9488;">03</div>
+      <div>
+        <h2>From AI development to clinical practice</h2>
+        <p>Development, validation, clearance, implementation, monitoring</p>
+      </div>
+    </div>
+
+    <p>
+      Building an AI model that works in a lab is one thing. Getting it into clinical practice &mdash; safely and sustainably &mdash; is a completely different challenge. The path from idea to bedside is long, and most AI tools never make it all the way through.
+    </p>
+
+    <div class="fu-pipeline">
+      <div class="fu-pipeline-step" style="background: #1E293B;">
+        Development
+        <span class="fu-pipeline-sub">Data, architecture, training</span>
+      </div>
+      <div class="fu-pipeline-step" style="background: #334155;">
+        Validation
+        <span class="fu-pipeline-sub">Internal + external testing</span>
+      </div>
+      <div class="fu-pipeline-step" style="background: #0D9488;">
+        Clearance
+        <span class="fu-pipeline-sub">FDA 510(k) / De Novo</span>
+      </div>
+      <div class="fu-pipeline-step" style="background: #0284C7;">
+        Implementation
+        <span class="fu-pipeline-sub">PACS integration, workflow</span>
+      </div>
+      <div class="fu-pipeline-step" style="background: #4F46E5;">
+        Monitoring
+        <span class="fu-pipeline-sub">Ongoing performance audit</span>
+      </div>
+    </div>
+
+    <h3>Development</h3>
+    <p>
+      An AI project starts with a clinical question and a dataset. The quality of the data &mdash; its size, diversity, labeling accuracy, and representativeness &mdash; determines the ceiling of what the model can achieve. Many promising AI tools fail not because the algorithm is bad, but because the training data was too narrow, too biased, or too small.
+    </p>
+
+    <h3>Validation</h3>
+    <p>
+      As covered in Lesson 4, internal validation (testing on held-out data from the same source) is necessary but not sufficient. External validation at independent sites is the minimum bar. Prospective validation &mdash; testing in real-time clinical workflow &mdash; remains the gold standard but is expensive, slow, and rare.
+    </p>
+
+    <h3>Regulatory Clearance</h3>
+    <p>
+      Most radiology AI tools reach the market through the FDA's 510(k) pathway (showing substantial equivalence to a predicate device) or the De Novo pathway (for novel, low-to-moderate risk devices). The FDA has also proposed a framework for "predetermined change control plans" that would allow AI tools to update their algorithms after clearance without requiring a new submission each time &mdash; a recognition that AI models evolve.
+    </p>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <h3>Implementation</h3>
+    <p>
+      Getting FDA clearance does not mean the tool is ready for clinical use. Integration into PACS, worklist routing, radiologist training, and workflow redesign are all required. Many AI tools that are technically excellent fail at this stage because they do not fit into how radiologists actually work.
+    </p>
+
+    <h3>Post-Deployment Monitoring</h3>
+    <p>
+      As discussed in Lesson 4, AI performance can degrade over time due to dataset shift &mdash; changes in scanners, protocols, or patient populations. Ongoing monitoring is essential but not yet standard practice at most institutions. Building monitoring infrastructure is one of the biggest unsolved problems in clinical AI deployment.
+    </p>
+
+    <div class="les-teaching">
+      <div class="les-teaching-label">Teaching Point</div>
+      <p>
+        The pipeline from development to monitoring is not linear &mdash; it is a cycle. When monitoring reveals performance degradation, the model needs retraining (back to development) and revalidation. Understanding this cycle helps you appreciate why "set it and forget it" is not an option for clinical AI.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 4: HOW DO I KEEP UP?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section fu-section--purple" id="keep-up">
+    <div class="fu-header">
+      <div class="fu-num" style="background: #7C3AED;">04</div>
+      <div>
+        <h2>How do I keep up?</h2>
+        <p>Build your personal AI radar</p>
+      </div>
+    </div>
+
+    <p>
+      The AI landscape changes fast enough that anything you learn today will be partially outdated in a year. The solution is not to memorize what exists now &mdash; it is to build habits and go-to resources that keep you current without consuming all your time.
+    </p>
+
+    <h3>Your AI Radar: Key Resources</h3>
+
+    <div class="fu-resources">
+      <div class="fu-resource-card">
+        <h4>ACR AI Central</h4>
+        <p>Comprehensive directory of FDA-cleared AI products in radiology. Filter by subspecialty, modality, and use case. Your first stop for "what tools exist?"</p>
+        <a href="https://aicentral.acrdsi.org/" target="_blank" rel="noopener">aicentral.acrdsi.org &rarr;</a>
+      </div>
+      <div class="fu-resource-card">
+        <h4>FDA AI/ML Device List</h4>
+        <p>Official registry of all authorized AI/ML-enabled medical devices. Updated as new clearances are granted. Covers all specialties.</p>
+        <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices" target="_blank" rel="noopener">fda.gov &mdash; AI Devices &rarr;</a>
+      </div>
+      <div class="fu-resource-card">
+        <h4>RSNA AI Resources</h4>
+        <p>The Radiological Society of North America's AI hub &mdash; educational content, research updates, and the RSNA AI journal. Strong on research trends and clinical applications.</p>
+        <a href="https://www.rsna.org/artificial-intelligence" target="_blank" rel="noopener">rsna.org/artificial-intelligence &rarr;</a>
+      </div>
+      <div class="fu-resource-card">
+        <h4>AUR Radiology Research Alliance</h4>
+        <p>The Association of University Radiologists' research collaborative. Focus on academic radiology research priorities and education &mdash; directly relevant to trainees and educators.</p>
+        <a href="https://www.aur.org/rra" target="_blank" rel="noopener">aur.org/rra &rarr;</a>
+      </div>
+    </div>
+
+    <h3>Building the Habit</h3>
+    <p>
+      You do not need to read every AI paper or attend every webinar. A sustainable approach:
+    </p>
+    <ul>
+      <li><strong>Quarterly check-in:</strong> Browse ACR AI Central for new tools in your subspecialty. Takes ten minutes.</li>
+      <li><strong>Journal scan:</strong> Follow the AI sections in <em>Radiology</em>, <em>Radiology: Artificial Intelligence</em>, and <em>Academic Radiology</em>. Read abstracts; deep-dive on papers relevant to your practice.</li>
+      <li><strong>Conference attendance:</strong> RSNA and SIIM both have dedicated AI tracks. Even reviewing the session titles gives you a snapshot of where the field is moving.</li>
+      <li><strong>Departmental discussion:</strong> Bring an interesting AI paper or product to your next journal club or case conference. Teaching is one of the best ways to learn.</li>
+    </ul>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <div class="les-case les-case--blue">
+      <div class="les-case-label les-case-label--blue">Exercise</div>
+      <p>
+        Bookmark the four resources above. Set a calendar reminder for three months from now to check ACR AI Central for new tools in your area. You now have an AI radar.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 5: HOW WILL THE RADIOLOGIST'S JOB CHANGE?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section fu-section--amber" id="job-change">
+    <div class="fu-header">
+      <div class="fu-num" style="background: #F59E0B;">05</div>
+      <div>
+        <h2>How will the radiologist's job change?</h2>
+        <p>Automation vs. augmentation vs. human expertise</p>
+      </div>
+    </div>
+
+    <p>
+      "AI will replace radiologists" has been a headline since 2016. It has not happened, and the reasons it has not happened are instructive. Understanding the spectrum from automation to augmentation helps you think clearly about what AI will and will not change about your career.
+    </p>
+
+    <table class="fu-table fu-table--teal">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>What it means</th>
+          <th>Where we see it</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fu-metric-name">Automation</td>
+          <td>AI performs the task independently, no human review required.</td>
+          <td>Rare in radiology. Some bone age assessment tools approach this, but most clinical AI still requires radiologist sign-off.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Augmentation</td>
+          <td>AI assists the radiologist by highlighting findings, prioritizing worklists, or drafting reports. Human makes the final call.</td>
+          <td>The dominant model today. Triage tools, detection aids, and report assistants all fall here.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Human Expertise</td>
+          <td>Tasks where AI adds little value &mdash; complex differential diagnosis, communication with clinicians, procedural judgment, patient interaction.</td>
+          <td>Multidisciplinary tumor boards, interventional planning, difficult consultations, teaching.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      The most likely future is not replacement but redistribution. AI will take over repetitive, high-volume, pattern-recognition tasks &mdash; freeing radiologists to spend more time on complex cases, clinical consultation, procedures, and teaching. The radiologists who thrive will be the ones who can do the things AI cannot: integrate clinical context, communicate uncertainty, exercise judgment in ambiguous situations, and maintain the skills to override AI when it is wrong.
+    </p>
+
+    <div class="les-case les-case--amber">
+      <div class="les-case-label les-case-label--amber">Think about it</div>
+      <p>
+        If AI handles the routine chest X-rays and flags the ones that need attention, the radiologist's remaining worklist is harder, not easier &mdash; it is concentrated with the cases AI could not solve. This means the skills you need do not decrease; they shift toward higher-complexity interpretation, clinical reasoning, and the ability to recognize when AI has failed. The "easy" cases are the ones AI takes. What remains requires more expertise, not less.
+      </p>
+    </div>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-label">Figure</div>
+      <div class="fu-placeholder-desc">Diagram: the radiologist's role today vs. future &mdash; shift from volume-based to complexity-based work</div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 6: WHAT PROBLEMS STILL NEED TO BE SOLVED?
+       ══════════════════════════════════════════════════════ -->
+  <section class="les-section fu-section--rose" id="unsolved">
+    <div class="fu-header">
+      <div class="fu-num" style="background: #F43F5E;">06</div>
+      <div>
+        <h2>What problems still need to be solved?</h2>
+        <p>The hard questions ahead</p>
+      </div>
+    </div>
+
+    <p>
+      For all the progress, the honest answer is that many of the hardest problems in clinical AI remain unsolved. These are not technical curiosities &mdash; they are the reasons why AI adoption in radiology is slower than the hype suggests, and why thoughtful oversight remains essential.
+    </p>
+
+    <table class="fu-table fu-table--indigo">
+      <thead>
+        <tr>
+          <th>Problem</th>
+          <th>Why it matters</th>
+          <th>Current state</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fu-metric-name">Bias</td>
+          <td>AI trained on non-representative data can systematically underperform for certain patient populations, leading to diagnostic disparities.</td>
+          <td>Recognized but not solved. Most training datasets still lack diversity.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Generalizability</td>
+          <td>Models validated at one institution often degrade at another due to differences in equipment, protocols, and demographics.</td>
+          <td>External validation is improving but not yet universal. Multi-site studies are becoming more common.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Drift</td>
+          <td>Model performance degrades over time as the clinical environment changes &mdash; new scanners, protocols, or patient populations.</td>
+          <td>Monitoring infrastructure is nascent. Most institutions do not track AI performance post-deployment.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Transparency</td>
+          <td>Many AI models are "black boxes" &mdash; they give an answer but cannot explain why. This limits clinical trust and makes errors harder to understand.</td>
+          <td>Explainability research (saliency maps, attention visualization) is active but not yet clinically mature.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Accountability</td>
+          <td>When AI contributes to a wrong diagnosis, liability is unclear. The physician signs the report, but the AI shaped the decision.</td>
+          <td>Legal frameworks are catching up slowly. No clear precedent in most jurisdictions.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Privacy</td>
+          <td>Training AI requires large datasets, which raises questions about patient consent, data de-identification, and cross-institutional data sharing.</td>
+          <td>Federated learning and synthetic data are promising approaches but not yet widely adopted.</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Cost</td>
+          <td>AI tools are expensive to develop, validate, deploy, and maintain. The return on investment is often unclear, especially for community hospitals.</td>
+          <td>Business models are still evolving. Per-study licensing, subscription models, and integrated platform approaches compete.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <div class="les-teaching">
+      <div class="les-teaching-label">Teaching Point</div>
+      <p>
+        These unsolved problems are not reasons to reject AI &mdash; they are reasons to approach it with informed skepticism. The radiologists who understand these challenges are the ones best positioned to advocate for responsible deployment, push back on premature adoption, and contribute to solutions.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ── Summary ── -->
+  <section class="les-section" id="summary">
+    <h2>Putting It All Together</h2>
+    <p>
+      The future of AI in radiology is not a single event &mdash; it is an ongoing shift. The tools will get more capable. The regulatory landscape will evolve. The radiologist's role will change, but it will not disappear. What matters is whether you are paying attention.
+    </p>
+    <ol>
+      <li><strong>Know what exists.</strong> Browse the registries. Understand what is FDA-cleared and what is not.</li>
+      <li><strong>Understand the trajectory.</strong> Narrow AI today; foundation models and agents tomorrow. Each step raises the stakes on validation and oversight.</li>
+      <li><strong>Follow the pipeline.</strong> Development, validation, clearance, implementation, monitoring &mdash; and back again.</li>
+      <li><strong>Build your radar.</strong> A few key resources, checked regularly, keep you current without drowning you.</li>
+      <li><strong>Invest in what AI cannot do.</strong> Clinical judgment, communication, procedural skill, and the ability to override AI when it fails.</li>
+      <li><strong>Engage with the hard problems.</strong> Bias, drift, transparency, accountability &mdash; these are where your voice matters.</li>
+    </ol>
+
+    <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
+
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-label">Figure</div>
+      <div class="fu-placeholder-desc">Summary infographic: the six themes of this lesson as a visual checklist or roadmap</div>
+    </div>
+  </section>
+
+  <!-- ── Track-specific callouts ── -->
+  <section class="les-section les-section--student" id="student-content">
+    <div class="les-case les-case--blue" style="margin-top: 8px;">
+      <div class="les-case-label les-case-label--blue">For Medical Students</div>
+      <p>
+        You are entering medicine at a time when AI is already part of the clinical landscape. The advantage you have over every generation before you is that you can learn <em>with</em> AI from day one &mdash; if you do it thoughtfully. Build the habit of checking what tools exist, reading about their limitations, and asking the evaluation questions from Lesson 4. By the time you reach residency, this awareness will set you apart.
+      </p>
+    </div>
+  </section>
+
+  <section class="les-section les-section--resident" id="resident-content">
+    <div class="les-case les-case--blue" style="margin-top: 8px;">
+      <div class="les-case-label les-case-label--blue">For Radiology Residents</div>
+      <p>
+        Your training years are the last time you will have protected time to develop foundational skills. AI will augment your practice, but it cannot replace the clinical reasoning and pattern recognition you build now. Use AI tools critically &mdash; as a teaching aid, not a crutch. Engage with the unsolved problems: bias, validation, and monitoring are areas where early-career radiologists can make a real contribution. The future of AI in radiology will be shaped by the people who understand both the technology and the clinical reality. That should be you.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="lesson-4.html" class="btn btn-outline" id="les-prev">&larr; Prev: Evaluate AI</a>
+  <a href="research-1.html" class="btn btn-accent" id="les-next">Research Track &rarr;</a>
+</div>
+
+<script src="../js/shared.js"></script>
+<script src="lessons.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Ready — Curriculum V3: Stacked Panels</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* V3 — Stacked Panels: colored header bar per domain, two side-by-side cards below */
+.cur-section {
+  padding: 72px 40px 80px;
+  background: #fff;
+}
+.cur-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.cur-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.cur-header h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 6px;
+}
+.cur-header p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gray-400);
+  font-size: 1.05rem;
+}
+
+/* Domain block */
+.cur-block {
+  margin-bottom: 20px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* Colored header bar */
+.cur-block-header {
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+}
+.cur-block-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.cur-block-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Domain colors */
+.cur-block[data-domain="1"] .cur-block-header { background: #0B1D3A; }
+.cur-block[data-domain="2"] .cur-block-header { background: #0EA5E9; }
+.cur-block[data-domain="3"] .cur-block-header { background: #059669; }
+.cur-block[data-domain="4"] .cur-block-header { background: #F59E0B; }
+.cur-block[data-domain="5"] .cur-block-header { background: #F43F5E; }
+.cur-block[data-domain="6"] .cur-block-header { background: #7C3AED; }
+.cur-block[data-domain="7"] .cur-block-header { background: #4F46E5; }
+.cur-block[data-domain="8"] .cur-block-header { background: #F97316; }
+
+/* Two cards below header */
+.cur-block-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #fff;
+}
+
+.cur-card {
+  padding: 18px 24px;
+  border-top: none;
+}
+.cur-card--student {
+  border-right: 1px solid var(--gray-200);
+}
+.cur-card-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.cur-card--student .cur-card-label {
+  background: rgba(11,29,58,0.08);
+  color: var(--primary);
+}
+.cur-card--resident .cur-card-label {
+  background: rgba(14,165,233,0.1);
+  color: var(--accent-dark);
+}
+
+.cur-card ul { margin: 0; padding-left: 16px; list-style: disc; }
+.cur-card li {
+  font-size: 0.85rem;
+  color: var(--gray-900);
+  line-height: 1.55;
+  margin-bottom: 2px;
+}
+.cur-card li:last-child { margin-bottom: 0; }
+
+.cur-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+@media (max-width: 640px) {
+  .cur-block-body { grid-template-columns: 1fr; }
+  .cur-card--student { border-right: none; border-bottom: 1px solid var(--gray-200); }
+}
+</style>
+</head>
+<body>
+
+<section class="cur-section" id="curriculum">
+  <div class="cur-inner">
+    <div class="cur-header">
+      <h2>AI Curriculum</h2>
+      <p>A structured path through AI literacy for medical students and radiology residents</p>
+    </div>
+
+    <div class="cur-block" data-domain="1">
+      <div class="cur-block-header">
+        <span class="cur-block-num">1</span>
+        <span class="cur-block-title">What is AI & How Does It Work?</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>AI, ML, and deep learning basics</li>
+            <li>Neural networks and CNNs</li>
+            <li>Why AI makes mistakes and overfitting</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>AI, ML, and deep learning foundations</li>
+            <li>Neural networks and CNNs</li>
+            <li>Overfitting, generalizability, and error analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="2">
+      <div class="cur-block-header">
+        <span class="cur-block-num">2</span>
+        <span class="cur-block-title">AI Development & Implementation</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>Idea &rarr; dataset &rarr; model &rarr; clinical tool</li>
+            <li>Data quality, training, and validation</li>
+            <li>Environmental and computational concerns</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>Idea &rarr; dataset &rarr; model &rarr; clinical tool</li>
+            <li>Data quality, training, and validation</li>
+            <li>Environmental and computational concerns</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="3">
+      <div class="cur-block-header">
+        <span class="cur-block-num">3</span>
+        <span class="cur-block-title">AI + Radiology Pathology</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>Detection, segmentation, and classification</li>
+            <li>Prediction, reporting, and LLMs</li>
+            <li>Overview across imaging modalities</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>Subspecialty-specific AI applications</li>
+            <li>Neuro, MSK, body, and chest examples</li>
+            <li>Reporting tools and LLM integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="4">
+      <div class="cur-block-header">
+        <span class="cur-block-num">4</span>
+        <span class="cur-block-title">AI + Radiology Workflow</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>Acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+            <li>Where AI fits in the imaging pipeline</li>
+            <li>AI in other areas of medicine</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>PACS/RIS, DICOM, and worklist integration</li>
+            <li>AI triage and reporting workflows</li>
+            <li>Human-AI collaboration models</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="5">
+      <div class="cur-block-header">
+        <span class="cur-block-num">5</span>
+        <span class="cur-block-title">Using AI Safely</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>Never-skilling, deskilling, mis-skilling</li>
+            <li>Recognizing AI errors</li>
+            <li>Appropriate skepticism</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>Never-skilling, deskilling, mis-skilling</li>
+            <li>AI failure modes and edge cases</li>
+            <li>Building safe AI habits into practice</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="6">
+      <div class="cur-block-header">
+        <span class="cur-block-num">6</span>
+        <span class="cur-block-title">Evaluating AI</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>Sensitivity, specificity, PPV, NPV</li>
+            <li>Understanding performance metrics</li>
+            <li>Interpreting AI study results</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>AUC, calibration, and model performance</li>
+            <li>External validation and generalizability</li>
+            <li>Critical appraisal of AI literature</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="7">
+      <div class="cur-block-header">
+        <span class="cur-block-num">7</span>
+        <span class="cur-block-title">AI Ethics & Professionalism</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>Bias in AI systems</li>
+            <li>Privacy and data protection</li>
+            <li>Transparency and accountability</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>Bias and explainability</li>
+            <li>Liability and accountability</li>
+            <li>Patient safety considerations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-block" data-domain="8">
+      <div class="cur-block-header">
+        <span class="cur-block-num">8</span>
+        <span class="cur-block-title">Future of AI</span>
+      </div>
+      <div class="cur-block-body">
+        <div class="cur-card cur-card--student">
+          <span class="cur-card-label">Medical Student</span>
+          <ul>
+            <li>How AI may change medicine</li>
+            <li>How AI may change radiology</li>
+            <li>Emerging AI applications</li>
+          </ul>
+        </div>
+        <div class="cur-card cur-card--resident">
+          <span class="cur-card-label">Radiology Resident</span>
+          <ul>
+            <li>The evolving radiologist's role</li>
+            <li>Impact on training, workflow, and research</li>
+            <li>IR, radiation oncology, and beyond</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cur-cta">
+      <a href="students.html" class="btn btn-accent btn-lg">Start Learning</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

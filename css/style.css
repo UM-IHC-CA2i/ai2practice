@@ -239,7 +239,6 @@ body {
 .colorblock--2 { background: var(--accent); }
 .colorblock--3 { background: var(--mint-dark); }
 .colorblock--4 { background: var(--amber); }
-.colorblock--4 h3, .colorblock--4 p { color: var(--primary-dark); }
 
 /* ══════════════════════════════════════════
    CONTENT SECTIONS
@@ -388,7 +387,7 @@ body {
   font-family: var(--serif);
   font-size: 1.02rem;
   color: var(--gray-600);
-  max-width: 540px;
+  max-width: 1000px;
   margin-bottom: 40px;
   font-style: italic;
 }

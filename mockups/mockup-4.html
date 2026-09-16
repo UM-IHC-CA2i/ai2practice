@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup 4 — Sidebar Card + Teal Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0B1D3A;
+  --accent: #0EA5E9;
+  --accent-dark: #0284C7;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-900: #0F172A;
+  --heading: 'Lexend', system-ui, sans-serif;
+  --serif: 'Lora', Georgia, serif;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --research-accent: #0D9488;
+  --research-accent-dark: #0F766E;
+  --research-bg: #F0FDFA;
+  --research-border: rgba(13,148,136,0.2);
+  --research-dot: #0D9488;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fff; color: var(--gray-900); font-family: var(--heading); font-size: 16px; line-height: 1.7; }
+
+.mock-label {
+  background: #0D9488;
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.cur-section { padding: 72px 40px 80px; background: #fff; }
+.cur-inner { max-width: 1220px; margin: 0 auto; }
+.cur-header { text-align: center; margin-bottom: 48px; }
+.cur-header h2 { font-size: 2.1rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
+.cur-header p { font-family: var(--serif); font-style: italic; color: var(--gray-400); font-size: 1.05rem; }
+
+/* Side-by-side: clinical swimlane + sidebar card with shadow */
+.cur-body { display: grid; grid-template-columns: 1fr 310px; gap: 40px; align-items: start; }
+
+/* Clinical */
+.cur-lanes-head { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 0; padding: 0 48px; }
+.cur-lane-label { text-align: center; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 10px; border-radius: var(--radius) var(--radius) 0 0; color: #fff; }
+.cur-lane-label--stu { background: var(--primary); }
+.cur-lane-label--res { background: var(--accent-dark); }
+
+.cur-flow { position: relative; padding: 0 48px; }
+.cur-flow::before {
+  content: '';
+  position: absolute;
+  left: 17px; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, #0B1D3A 0%, #0284C7 25%, #0EA5E9 50%, #7C3AED 75%, #4F46E5 100%);
+  border-radius: 2px;
+}
+
+.cur-step { position: relative; margin-bottom: 24px; }
+.cur-step:last-child { margin-bottom: 0; }
+.cur-step-dot {
+  position: absolute; left: -43px; top: 50%; transform: translateY(-38%);
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; font-size: 0.82rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2;
+}
+.cur-step-name { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; text-align: center; }
+.cur-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cur-lane { background: var(--gray-100); border-radius: var(--radius); padding: 12px 16px; }
+.cur-lane ul { margin: 0; padding-left: 16px; list-style: disc; }
+.cur-lane li { font-size: 0.8rem; line-height: 1.55; margin-bottom: 2px; }
+.cur-lane li:last-child { margin-bottom: 0; }
+
+.dot-1 { background: #0B1D3A; }
+.dot-2 { background: #0284C7; }
+.dot-3 { background: #0EA5E9; }
+.dot-4 { background: #7C3AED; }
+.dot-5 { background: #4F46E5; }
+
+/* Research sidebar — bordered card with numbered timeline inside */
+.cur-research-card {
+  border: 2px solid var(--research-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: sticky;
+  top: 24px;
+  box-shadow: 0 4px 16px rgba(13,148,136,0.08);
+}
+.cur-research-card-head {
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  color: #fff;
+  padding: 18px 20px;
+  text-align: center;
+}
+.cur-research-card-head h3 { font-size: 0.95rem; font-weight: 800; margin: 0 0 2px; }
+.cur-research-card-head p { font-size: 0.72rem; opacity: 0.8; margin: 0; font-family: var(--serif); font-style: italic; }
+
+.cur-research-list { padding: 16px 18px; background: #fff; }
+
+/* Timeline-style items */
+.cur-rstep {
+  position: relative;
+  padding-left: 32px;
+  padding-bottom: 14px;
+  margin-bottom: 0;
+}
+.cur-rstep:last-child { padding-bottom: 0; }
+.cur-rstep::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 22px;
+  bottom: 0;
+  width: 2px;
+  background: var(--research-border);
+}
+.cur-rstep:last-child::before { display: none; }
+
+.cur-rstep-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--research-dot);
+  color: #fff; font-size: 0.6rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.cur-rstep h4 {
+  font-size: 0.78rem; font-weight: 700; color: var(--research-accent-dark); margin: 0 0 3px;
+}
+.cur-rstep ul { margin: 0; padding-left: 14px; list-style: disc; }
+.cur-rstep li { font-size: 0.74rem; line-height: 1.5; margin-bottom: 1px; color: var(--gray-900); }
+.cur-rstep li:last-child { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .cur-body { grid-template-columns: 1fr; }
+  .cur-research-card { position: static; }
+  .cur-lanes-head, .cur-flow { padding: 0; }
+  .cur-flow::before, .cur-step-dot { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="mock-label">Mockup 4 &mdash; Layout D (sidebar card with inner timeline) &bull; Teal / cyan research track</div>
+
+<section class="cur-section">
+<div class="cur-inner">
+  <div class="cur-header">
+    <h2>AI Curriculum</h2>
+    <p>A structured path through AI literacy for medical students and radiology residents</p>
+  </div>
+
+  <div class="cur-body">
+
+    <div class="cur-clinical">
+      <div class="cur-lanes-head">
+        <div class="cur-lane-label cur-lane-label--stu">Medical Student</div>
+        <div class="cur-lane-label cur-lane-label--res">Radiology Resident</div>
+      </div>
+      <div class="cur-flow">
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-1">1</div>
+          <div class="cur-step-name">Never-Skilling</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Never-skilling, deskilling, mis-skilling</li>
+              <li>AI errors and appropriate skepticism</li>
+              <li>Cases</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Never-skilling, deskilling, mis-skilling</li>
+              <li>Real-world radiology examples</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-2">2</div>
+          <div class="cur-step-name">AI 101</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Types of AI: deep learning, neural networks, ML</li>
+              <li>LLM vs. image model vs. NLP</li>
+              <li>Types of data and how AI is made</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Same + classification, segmentation, object detection</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-3">3</div>
+          <div class="cur-step-name">Radiology 101</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+              <li>Cases</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Brief touch on acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
+              <li>Examples of workflow AIs</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-4">4</div>
+          <div class="cur-step-name">AI Evaluation</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>Bias and transparency</li>
+              <li>Basic sensitivity, specificity, PPV/NPV</li>
+              <li>Cases</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Use figure from Dr. Doo</li>
+              <li>Consider more advanced topics</li>
+              <li>Cases</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="cur-step">
+          <div class="cur-step-dot dot-5">5</div>
+          <div class="cur-step-name">Future of AI</div>
+          <div class="cur-lanes">
+            <div class="cur-lane"><ul>
+              <li>How AI may change medicine and radiology</li>
+              <li>How AI may change the radiologist's role</li>
+            </ul></div>
+            <div class="cur-lane"><ul>
+              <li>Impact on training, workflow, research, and practice</li>
+              <li>Explore IR, RadOnc, and beyond</li>
+            </ul></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ RESEARCH SIDEBAR CARD — Timeline style ═══ -->
+    <div class="cur-research-card">
+      <div class="cur-research-card-head">
+        <h3>Research Track</h3>
+        <p>Hands-on AI research skills</p>
+      </div>
+      <div class="cur-research-list">
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">1</div>
+          <h4>Setup</h4>
+          <ul>
+            <li>GitHub, Python, command line</li>
+            <li>Jupyter notebooks</li>
+          </ul>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">2</div>
+          <h4>Research Data</h4>
+          <ul>
+            <li>Data cleaning and visualization</li>
+            <li>Statistics, bias, leakage</li>
+            <li>Train/test splits</li>
+          </ul>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">3</div>
+          <h4>Build Your Own AI</h4>
+          <ul>
+            <li>Basic ML and neural networks</li>
+            <li>Modifying existing models</li>
+          </ul>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">4</div>
+          <h4>Image AI</h4>
+          <ul>
+            <li>Classification, segmentation, object detection</li>
+            <li>Quantification</li>
+          </ul>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">5</div>
+          <h4>Text &amp; Language</h4>
+          <ul>
+            <li>NLP and LLMs</li>
+            <li>Structured data extraction</li>
+            <li>Generative AI</li>
+          </ul>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">6</div>
+          <h4>Does It Work?</h4>
+          <ul>
+            <li>Evaluation metrics and error analysis</li>
+            <li>Bias, calibration, validation</li>
+            <li>Generalizability</li>
+          </ul>
+        </div>
+
+        <div class="cur-rstep">
+          <div class="cur-rstep-dot">7</div>
+          <h4>Design Your Project</h4>
+          <ul>
+            <li>Research questions, hypotheses, experiments</li>
+            <li>Datasets, analysis, interpretation</li>
+            <li>GitHub</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</body>
+</html>
