@@ -73,21 +73,16 @@ body {
 
 .nav-brand {
   display: flex;
-  align-items: baseline;
-  gap: 0;
+  align-items: center;
   text-decoration: none;
-  font-weight: 800;
-  font-size: 24px;
-  color: var(--primary);
-  letter-spacing: -0.02em;
 }
 
 .nav-brand:hover { text-decoration: none; }
 
-.nav-brand .brand-sub {
-  color: var(--accent);
-  font-weight: 400;
-  margin-left: 4px;
+.nav-logo {
+  height: 30px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
