@@ -23,7 +23,7 @@
     nav.innerHTML =
       '<div class="nav-inner">' +
         '<a href="index.html" class="nav-brand">' +
-          '<img src="assets/ai2practice-logo.svg" alt="AI2Practice" class="nav-logo" width="420" height="103">' +
+          '<img src="images/ai2practice-logo.svg" alt="AI2Practice" class="nav-logo" width="420" height="103">' + +
         '</a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>' +
         '<ul class="nav-links">' +
