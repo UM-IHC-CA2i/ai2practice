@@ -80,7 +80,7 @@ body {
 .nav-brand:hover { text-decoration: none; }
 
 .nav-logo {
-  height: 30px;
+  height: 24px;
   width: auto;
   display: block;
 }
@@ -2021,6 +2021,8 @@ tr:hover td { background: var(--offwhite); }
   top: 0;
   z-index: 100;
 }
+
+.cw-logo { height: 26px; width: auto; display: block; }
 
 .cw-brand {
   color: var(--white);
