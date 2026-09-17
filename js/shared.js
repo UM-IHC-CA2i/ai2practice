@@ -23,7 +23,7 @@
     nav.innerHTML =
       '<div class="nav-inner">' +
         '<a href="index.html" class="nav-brand">' +
-          'AI-Ready<span class="brand-sub"> edu</span>' +
+          '<img src="assets/ai2practice-logo.svg" alt="AI2Practice" class="nav-logo" width="420" height="103">' +
         '</a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>' +
         '<ul class="nav-links">' +
@@ -62,12 +62,13 @@
   }
 
   function buildFooter() {
+    var year = new Date().getFullYear();
     var footer = document.createElement('footer');
     footer.className = 'site-footer';
     footer.innerHTML =
       '<div class="footer-inner">' +
         '<div class="footer-text">' +
-          'AI-Ready &middot; Department of Radiology &middot; 2026' +
+          'AI2Practice &middot; Practical AI for Clinical Imaging &middot; ' + year +
         '</div>' +
         '<ul class="footer-links">' +
           '<li><a href="index.html">Home</a></li>' +
