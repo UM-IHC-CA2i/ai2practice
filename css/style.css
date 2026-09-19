@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap');
+
 :root {
-  --primary: #0B1D3A;
-  --primary-dark: #06132A;
-  --primary-mid: #12335E;
-  --accent: #0EA5E9;
-  --accent-dark: #0284C7;
-  --accent-light: #E0F2FE;
+  --primary: #17324D;
+  --primary-dark: #111B2A;
+  --primary-mid: #315F7B;
+  --accent: #3E7B78;
+  --accent-dark: #2F6865;
+  --accent-light: #E6EFEC;
   --mint: #34D399;
   --mint-dark: #059669;
   --mint-light: #D1FAE5;
@@ -15,14 +17,14 @@
   --slate: #475569;
   --slate-light: #CBD5E1;
   --white: #FFFFFF;
-  --offwhite: #F8FAFC;
+  --offwhite: #FBFAF7;
   --gray-100: #F1F5F9;
   --gray-200: #E2E8F0;
   --gray-400: #94A3B8;
   --gray-600: #475569;
   --gray-900: #0F172A;
-  --heading: 'Lexend', system-ui, sans-serif;
-  --serif: 'Lora', Georgia, serif;
+  --heading: 'Source Sans 3', 'Aptos', 'Segoe UI', system-ui, sans-serif;
+  --serif: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
   --radius: 8px;
   --radius-sm: 6px;
   --radius-lg: 14px;
@@ -2345,3 +2347,12 @@ tr:hover td { background: var(--offwhite); }
   .course-actions { flex-direction: column; align-items: stretch; }
   .course-actions .btn { text-align: center; }
 }
+
+
+/* AI2Practice 2026 visual integration */
+body { background: #FBFAF7; }
+.site-nav { background: rgba(251,250,247,.96); backdrop-filter: blur(16px); }
+.nav-links a { font-weight: 600; }
+.nav-links a.active { border-bottom-color: #3E7B78; }
+.site-footer { background: #111B2A; }
+h1, h2 { letter-spacing: -0.02em; }

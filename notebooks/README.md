@@ -1,6 +1,6 @@
 # Bootcamp: AI for Medical Imaging
 
-Starter notebooks and data for the **Research Track** of the AI-Ready Radiology Curriculum.
+Starter notebooks and data for the **Research Track** of the AI2Practice Research Track.
 
 ## Repository structure
 

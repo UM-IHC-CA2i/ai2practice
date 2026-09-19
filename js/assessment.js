@@ -165,7 +165,7 @@ var AssessmentEngine = (function() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(14);
     doc.setTextColor(100, 100, 100);
-    doc.text('AI-Ready', w / 2, 35, { align: 'center' });
+    doc.text('AI2Practice', w / 2, 35, { align: 'center' });
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(28);
@@ -194,7 +194,7 @@ var AssessmentEngine = (function() {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
     doc.setTextColor(28, 30, 33);
-    doc.text('AI-Ready: Foundations of AI-Safe Training', w / 2, 110, { align: 'center' });
+    doc.text('AI2Practice: Foundations of AI-Safe Training', w / 2, 110, { align: 'center' });
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(12);
@@ -210,7 +210,7 @@ var AssessmentEngine = (function() {
     doc.text('Based on Ke et al., "AI-induced never-skilling in medical education," Nature Medicine 2026', w / 2, 160, { align: 'center' });
     doc.text('This is an educational completion certificate, not a CME/ACCME accredited credential.', w / 2, 167, { align: 'center' });
 
-    doc.save('AI-Ready-Certificate-' + trackLabel.replace(/\s+/g, '-') + '-' + name.replace(/\s+/g, '-') + '.pdf');
+    doc.save('AI2Practice-Certificate-' + trackLabel.replace(/\s+/g, '-') + '-' + name.replace(/\s+/g, '-') + '.pdf');
   }
 
   window.generateCertificate = generateCertificate;
