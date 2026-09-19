@@ -2,12 +2,12 @@
   'use strict';
 
   var NAV_ITEMS = [
-    { href: 'index.html', label: 'Home' },
-    { href: 'course-select.html?track=student', label: 'Medical Students' },
-    { href: 'course-select.html?track=resident', label: 'Residents' },
-    { href: 'research.html', label: 'AI Research' },
-    { href: 'tracker.html', label: 'AI Tracker' },
-    { href: 'about.html', label: 'About Us' }
+    { href: 'pages/foundations.html', label: 'Foundations' },
+    { href: 'pages/clinical-practice.html', label: 'Clinical Practice' },
+    { href: 'pages/adoption-governance.html', label: 'Adoption & Governance' },
+    { href: 'pages/research-lab.html', label: 'Research Lab' },
+    { href: 'pages/educators.html', label: 'For Educators' },
+    { href: 'pages/brief.html', label: 'AI2Practice Brief' }
   ];
 
   function currentPage() {
@@ -23,24 +23,20 @@
     nav.innerHTML =
       '<div class="nav-inner">' +
         '<a href="index.html" class="nav-brand">' +
-          '<img src="images/ai2practice-logo.svg" alt="AI2Practice" class="nav-logo" width="420" height="103">' + +
+          '<img src="images/ai2practice-logo.svg" alt="AI2Practice" class="nav-logo" width="420" height="103">' +
         '</a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>' +
         '<ul class="nav-links">' +
           NAV_ITEMS.map(function(item) {
-            var isActive = cur === item.href;
-            var search = window.location.search || '';
-            if (!isActive && item.href === 'course-select.html?track=student') {
-              isActive = cur === 'students.html' || cur === 'student-cases.html' || cur === 'student-assessment.html' || (cur === 'course-select.html' && search.indexOf('track=student') !== -1);
-            }
-            if (!isActive && item.href === 'course-select.html?track=resident') {
-              isActive = cur === 'residents.html' || cur === 'resident-cases.html' || cur === 'resident-assessment.html' || (cur === 'course-select.html' && search.indexOf('track=resident') !== -1);
-            }
-            if (!isActive && item.href === 'research.html') {
+            var isActive = false;
+            if (item.href === 'pages/foundations.html') {
+              isActive = cur === 'students.html' || cur === 'residents.html' || cur === 'course-select.html';
+            } else if (item.href === 'pages/clinical-practice.html') {
+              isActive = cur === 'student-cases.html' || cur === 'resident-cases.html' || cur === 'student-assessment.html' || cur === 'resident-assessment.html';
+            } else if (item.href === 'pages/adoption-governance.html') {
+              isActive = cur === 'tracker.html';
+            } else if (item.href === 'pages/research-lab.html') {
               isActive = cur === 'research.html' || cur.indexOf('research-') === 0;
-            }
-            if (!isActive && item.href === 'about.html') {
-              isActive = cur === 'about.html';
             }
             var cls = isActive ? 'active' : '';
             return '<li><a href="' + item.href + '" class="' + cls + '">' + item.label + '</a></li>';
@@ -72,11 +68,11 @@
         '</div>' +
         '<ul class="footer-links">' +
           '<li><a href="index.html">Home</a></li>' +
-          '<li><a href="students.html">Students</a></li>' +
-          '<li><a href="residents.html">Residents</a></li>' +
-          '<li><a href="research.html">AI Research</a></li>' +
-          '<li><a href="tracker.html">AI Tracker</a></li>' +
-          '<li><a href="about.html">About Us</a></li>' +
+          '<li><a href="pages/foundations.html">Foundations</a></li>' +
+          '<li><a href="pages/clinical-practice.html">Clinical Practice</a></li>' +
+          '<li><a href="pages/adoption-governance.html">Adoption & Governance</a></li>' +
+          '<li><a href="pages/research-lab.html">Research Lab</a></li>' +
+          '<li><a href="about.html">About</a></li>' +
         '</ul>' +
       '</div>';
     document.body.appendChild(footer);

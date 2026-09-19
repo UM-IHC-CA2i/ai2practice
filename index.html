@@ -1,559 +1,185 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<style>
-/* ══════════════════════════════════════════
-   CURRICULUM SECTION — Sidebar Card Layout (Mockup 4)
-   ══════════════════════════════════════════ */
-.cur-section { padding: 72px 40px 80px; background: #fff; }
-.cur-inner { max-width: 1220px; margin: 0 auto; }
-.cur-header { text-align: center; margin-bottom: 48px; }
-.cur-header h2 { font-size: 2.1rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
-.cur-header p { font-family: var(--serif); font-style: italic; color: var(--gray-500); font-size: 1.05rem; }
-
-.cur-body { display: grid; grid-template-columns: 1fr 310px; gap: 40px; align-items: start; }
-
-.cur-lanes-head { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; padding: 0 48px; }
-.cur-lane-label { text-align: center; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 10px; border-radius: var(--radius) var(--radius) 0 0; color: #fff; }
-.cur-lane-label--stu { background: var(--primary); }
-.cur-lane-label--res { background: var(--accent-dark); }
-
-.cur-flow { position: relative; padding: 0 48px; }
-
-.cur-step { position: relative; margin-bottom: 24px; }
-.cur-step:last-child { margin-bottom: 0; }
-
-/* Vertical line segments between dots */
-.cur-step::before {
-  content: '';
-  position: absolute;
-  left: -27px;
-  top: 17px;
-  bottom: -41px;
-  width: 3px;
-  border-radius: 2px;
-  z-index: 1;
-}
-.cur-step:last-child::before { display: none; }
-.cur-step:nth-child(1)::before { background: linear-gradient(180deg, #0B1D3A, #0284C7); }
-.cur-step:nth-child(2)::before { background: linear-gradient(180deg, #0284C7, #0EA5E9); }
-.cur-step:nth-child(3)::before { background: linear-gradient(180deg, #0EA5E9, #7C3AED); }
-.cur-step:nth-child(4)::before { background: linear-gradient(180deg, #7C3AED, #4F46E5); }
-
-.cur-step-dot {
-  position: absolute; left: -43px; top: 0;
-  width: 34px; height: 34px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 0.82rem;
-  z-index: 2;
-  /* background: #fff; */
-  box-sizing: border-box;
-}
-.cur-step-name { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; text-align: center; }
-.cur-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.cur-lane { background: var(--gray-100); border-radius: var(--radius); padding: 12px 16px; }
-.cur-lane ul { margin: 0; padding-left: 16px; list-style: disc; }
-.cur-lane li { font-size: 0.8rem; line-height: 1.55; margin-bottom: 2px; color: var(--gray-600); }
-.cur-lane li:last-child { margin-bottom: 0; }
-
-/* Hollow circles with colored borders */
-.cur-step-dot--1 { background: #0B1D3A; color: #fff; border: none; }
-.cur-step-dot--2 { background: #0284C7; color: #fff; border: none; }
-.cur-step-dot--3 { background: #0EA5E9; color: #fff; border: none; }
-.cur-step-dot--4 { background: #7C3AED; color: #fff; border: none; }
-.cur-step-dot--5 { background: #4F46E5; color: #fff; border: none; }
-
-/* Research sidebar card */
-.cur-research-card {
-  border: 2px solid rgba(13,148,136,0.2);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: sticky;
-  top: 24px;
-  box-shadow: 0 4px 16px rgba(13,148,136,0.08);
-}
-.cur-research-card-head {
-  background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
-  color: #fff;
-  padding: 18px 20px;
-  text-align: center;
-}
-.cur-research-card-head h3 { font-size: 0.95rem; font-weight: 800; margin: 0 0 2px; color: #fff; }
-.cur-research-card-head p { font-size: 0.72rem; opacity: 0.8; margin: 0; font-family: var(--serif); font-style: italic; }
-
-.cur-research-list { padding: 16px 18px; background: #fff; }
-
-.cur-rstep {
-  position: relative;
-  padding-left: 32px;
-  padding-bottom: 14px;
-}
-.cur-rstep:last-child { padding-bottom: 0; }
-.cur-rstep::before {
-  content: '';
-  position: absolute;
-  left: 10px;
-  top: 22px;
-  bottom: 0;
-  width: 2px;
-  background: rgba(13,148,136,0.2);
-}
-.cur-rstep:last-child::before { display: none; }
-.cur-rstep-dot {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 22px; height: 22px; border-radius: 50%;
-  background: #0D9488;
-  color: #fff; font-size: 0.6rem; font-weight: 800;
-  display: flex; align-items: center; justify-content: center;
-}
-.cur-rstep h4 { font-size: 0.78rem; font-weight: 700; color: #0F766E; margin: 0 0 3px; }
-.cur-rstep ul { margin: 0; padding-left: 14px; list-style: disc; }
-.cur-rstep li { font-size: 0.74rem; line-height: 1.5; margin-bottom: 1px; color: var(--gray-900); }
-.cur-rstep li:last-child { margin-bottom: 0; }
-
-.cur-cta { text-align: center; margin-top: 52px; }
-
-@media (max-width: 900px) {
-  .cur-body { grid-template-columns: 1fr; }
-  .cur-research-card { position: static; }
-  .cur-lanes-head, .cur-flow { padding: 0; }
-  .cur-step-dot { display: none; }
-  .cur-step::before { display: none; }
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AI2Practice: clinical AI education, evaluation, adoption, governance, and research for radiology and healthcare." />
+  <title>AI2Practice — Clinical AI from foundations to practice</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-
-<!-- ══════════════════════════════════════════
-     HERO
-     ══════════════════════════════════════════ -->
-<section class="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-inner">
-    <a href="index.html" class="hero-brand">
-      <img src="images/ai2practice-logo-white.svg" alt="AI2Practice" width="420" height="103">
-    </a>
-    <h1>Radiology Training <br><span class="light">in the Age of AI</span></h1>
-    <p class="hero-desc">
-      Understanding how artificial intelligence changes the approach to radiology training &mdash;
-      and what educators, residents, and students can do about it.
-    </p>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="shell navbar">
+    <a class="brand" href="index.html" aria-label="AI2Practice home">AI<span class="brand-two">2</span>Practice <small>Clinical AI</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="pages/foundations.html">Foundations</a></li>
+        <li><a href="pages/clinical-practice.html">Clinical Practice</a></li>
+        <li><a href="pages/adoption-governance.html">Adoption &amp; Governance</a></li>
+        <li><a href="pages/research-lab.html">Research Lab</a></li>
+        <li><a href="pages/educators.html">For Educators</a></li>
+        <li><a class="brief-link" href="pages/brief.html">AI2Practice Brief</a></li>
+      </ul>
+    </nav>
   </div>
-</section>
+</header>
 
-<!-- ── Colorblock Row ── -->
-<div class="colorblock-row"><div class="colorblock-inner">
-  <a href="students.html" class="colorblock colorblock--1"><h3>Medical Students</h3><p>AI literacy for clinical training</p><span class="colorblock-arrow">&rarr;</span></a>
-  <a href="residents.html" class="colorblock colorblock--2"><h3>Residents</h3><p>AI integration in radiology practice</p><span class="colorblock-arrow">&rarr;</span></a>
-  <a href="research.html" class="colorblock colorblock--3"><h3>AI Research Track</h3><p>Hands-on AI research modules</p><span class="colorblock-arrow">&rarr;</span></a>
-  <a href="about.html" class="colorblock colorblock--4"><h3>About Us</h3><p>Meet the committee</p><span class="colorblock-arrow">&rarr;</span></a>
-</div></div>
-
-<!-- ══════════════════════════════════════════
-     CURRICULUM — Swimlane (V13)
-     ══════════════════════════════════════════ -->
-<section class="cur-section" id="curriculum">
-  <div class="cur-inner">
-    <div class="cur-header">
-      <h2>AI Curriculum</h2>
-      <p>A structured path through AI literacy for medical students and radiology residents</p>
-    </div>
-
-    <div class="cur-body">
-
-      <div class="cur-clinical">
-        <div class="cur-lanes-head">
-          <div class="cur-lane-label cur-lane-label--stu">Medical Student</div>
-          <div class="cur-lane-label cur-lane-label--res">Radiology Resident</div>
-        </div>
-        <div class="cur-flow">
-
-          <div class="cur-step">
-            <div class="cur-step-dot cur-step-dot--1">1</div>
-            <div class="cur-step-name">What is Never-Skilling?</div>
-            <div class="cur-lanes">
-              <div class="cur-lane"><ul>
-                <li>Never-skilling, deskilling, mis-skilling</li>
-                <!-- <li>AI errors and appropriate skepticism</li> -->
-                <li>Example cases</li>
-              </ul></div>
-              <div class="cur-lane"><ul>
-                <li>Never-skilling, deskilling, mis-skilling</li>
-                <!-- <li>Real-world radiology examples</li> -->
-                <li>Example cases</li>
-              </ul></div>
-            </div>
-          </div>
-
-          <div class="cur-step">
-            <div class="cur-step-dot cur-step-dot--2">2</div>
-            <div class="cur-step-name">What is AI?</div>
-            <div class="cur-lanes">
-              <div class="cur-lane"><ul>
-                <li>Types of AI: deep learning, neural networks, ML</li>
-                <li>How AI learns</li>
-                <!-- <li>Types of data and how AI is made</li> -->
-              </ul></div>
-              <div class="cur-lane"><ul>
-                <li>Types of AI: deep learning, neural networks, ML</li>
-                <li>How AI learns</li>
-                <li>Interpetive AI for radiology</li>
-              </ul></div>
-            </div>
-          </div>
-
-          <div class="cur-step">
-            <div class="cur-step-dot cur-step-dot--3">3</div>
-            <div class="cur-step-name">How Can I Use AI in Radiology?</div>
-            <div class="cur-lanes">
-              <div class="cur-lane"><ul>
-                <li>Acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
-                <li>Example cases</li>
-              </ul></div>
-              <div class="cur-lane"><ul>
-                <li>Review on acquisition &rarr; PACS &rarr; interpretation &rarr; report</li>
-                <li>Workflow AIs for radiology</li>
-                <li>Example cases</li>
-              </ul></div>
-            </div>
-          </div>
-
-          <div class="cur-step">
-            <div class="cur-step-dot cur-step-dot--4">4</div>
-            <div class="cur-step-name">How Do I Evaluate AI?</div>
-            <div class="cur-lanes">
-              <div class="cur-lane"><ul>
-                <li>Statistics for AI</li>
-                <li>Bias, transparency, ethics</li>
-                <!-- <li>Cases</li> -->
-              </ul></div>
-              <div class="cur-lane"><ul>
-                <li>Clinical evaluation of AI</li>
-                <li>Bias, transparency, ethics</li>
-                <!-- <li>Cases</li> -->
-              </ul></div>
-            </div>
-          </div>
-
-          <div class="cur-step">
-            <div class="cur-step-dot cur-step-dot--5">5</div>
-            <div class="cur-step-name">What is the Future of Radiology and AI?</div>
-            <div class="cur-lanes">
-              <div class="cur-lane"><ul>
-                <li>How AI may change medicine and radiology</li>
-                <li>Informational resources</li>
-              </ul></div>
-              <div class="cur-lane"><ul>
-                <li>AI on radiology training, workflow, research</li>
-                <li>Explore IR, RadOnc, and beyond</li>
-                <li>Informational resources</li>
-              </ul></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Research sidebar card -->
-      <div class="cur-research-card">
-        <div class="cur-research-card-head">
-          <h3>Research Track</h3>
-        </div>
-        <div class="cur-research-list">
-
-          <div class="cur-rstep">
-            <div class="cur-rstep-dot">1</div>
-            <h4>Setup</h4>
-            <ul>
-              <li>GitHub, Python, Google Colab</li>
-              <li>Jupyter notebooks</li>
-            </ul>
-          </div>
-
-          <div class="cur-rstep">
-            <div class="cur-rstep-dot">2</div>
-            <h4>Research Data</h4>
-            <ul>
-              <li>Data loading and cleaning</li>
-              <li>Statistics and interpretation</li>
-              <!-- <li>Train/test splits</li> -->
-            </ul>
-          </div>
-
-          <div class="cur-rstep">
-            <div class="cur-rstep-dot">3</div>
-            <h4>Image Processing</h4>
-            <ul>
-              <li>Basic ML and neural networks</li>
-              <li>Classification and segmentation</li>
-            </ul>
-          </div>
-
-          <div class="cur-rstep">
-            <div class="cur-rstep-dot">4</div>
-            <h4>Advanced AI Topics</h4>
-            <ul>
-              <li>NLP, LLM, CNN</li>
-              <li>AI applications in radiology</li>
-              <!-- <li>Generalizability</li> -->
-            </ul>
-          </div>
-
-          <div class="cur-rstep">
-            <div class="cur-rstep-dot">5</div>
-            <h4>Design Your Project</h4>
-            <ul>
-              <li>Research questions, hypotheses</li>
-              <li>Datasets, analysis, interpretation</li>
-              <li>GitHub</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="cur-cta">
-      <a href="course-select.html" class="btn btn-accent btn-lg">Start Learning</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     THE THREE RISKS
-     ══════════════════════════════════════════ -->
-<section class="section section--white" id="risks">
-  <div class="section-inner">
-    <h2 class="mt-0 section-heading--primary">Three Ways AI Compromises Clinical Competency</h2>
-    <p class="section-subdesc">
-      Drawing from <a href="https://doi.org/10.1038/s41591-026-04438-y" target="_blank">Ke et al.'s framework (<em>Nature Medicine</em>, 2026)</a>, three distinct
-      mechanisms by which AI can undermine clinical skills.
-    </p>
-
-    <div class="risk-cards">
-
-      <!-- Never-Skilling -->
-      <div class="risk-card risk-card--never">
-        <div class="risk-card-header">
-          <h3>Never-Skilling</h3>
-          <p>Skills that were never built</p>
-        </div>
-        <div class="risk-card-body">
-          <p>
-            <strong>Never-skilling</strong> is the failure to develop foundational competencies because AI
-            substitutes for the cognitive effort required to build them. The skill was never built in the first
-            place.
-          </p>
-          <p>
-            The result is <strong>false proficiency</strong> &mdash; AI-assisted performance appears adequate,
-            but unaided performance is far below standard.
-          </p>
-          <div class="risk-card-example">
-            <div class="example-title">Radiology Example</div>
-            <p>
-              An R1 uses AI nodule triage on every chest CT for six months. When the system goes down,
-              she reports a CT as normal. Due to her dependence on the AI system, she never developed the skills to catch chest nodules in the first place.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Deskilling -->
-      <div class="risk-card risk-card--de">
-        <div class="risk-card-header">
-          <h3>Deskilling</h3>
-          <p>Existing skills that erode from disuse</p>
-        </div>
-        <div class="risk-card-body">
-          <p>
-            <strong>Deskilling</strong> is the erosion of existing competencies through disuse. An established
-            skill weakens because prolonged AI reliance removes the practice needed to maintain it. Unlike
-            never-skilling, the cognitive foundation exists but has been degraded.
-          </p>
-          <p>
-            Deskilling is more easily reversible with deliberate practice because the foundational pathways
-            were already built; however, without intervention, the erosion continues.
-          </p>
-          <div class="risk-card-example">
-            <div class="example-title">Radiology Example</div>
-            <p>
-              An attending mammographer has read independently for 15 years. After 2 years of AI-assisted
-              CAD, her unassisted accuracy has dropped. Skills she once had &mdash; pattern recognition for
-              subtle architectural distortion &mdash; have weakened from disuse.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mis-Skilling -->
-      <div class="risk-card risk-card--mis">
-        <div class="risk-card-header">
-          <h3>Mis-Skilling</h3>
-          <p>Wrong patterns learned from AI errors</p>
-        </div>
-        <div class="risk-card-body">
-          <p>
-            <strong>Mis-skilling</strong> occurs when trainees develop incorrect patterns of thinking by repeatedly accepting AI errors without questioning them. Over time, these errors can become part of the trainee's own diagnostic reasoning, even when the AI is no longer being used.
-          </p>
-          <p>
-            Unlike automation bias, which occurs when a clinician accepts an AI recommendation in a specific moment, mis-skilling can persist after the AI is no longer present.
-          </p>
-          <div class="risk-card-example">
-            <div class="example-title">Radiology Example</div>
-            <p>
-              A chest AI tool that consistently overcalls cardiomegaly on CXRs. After seeing this repeatedly, a resident begins to overcall cardiomegaly on PA films as well.
-              When reviewing future CXRs without AI, the resident still overcalls cardiomegaly. The AI's error has influenced the trainee's own interpretation.
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     PROBLEM & PURPOSE
-     ══════════════════════════════════════════ -->
-<!-- <section class="section section--white" id="problem">
-  <div class="section-inner">
-    <h2 class="mt-0 section-heading--accent">Rethinking Radiology Training in the Age of AI</h2>
-
-    <div class="two-col two-col--wide-left">
+<main id="main">
+  <section class="hero">
+    <div class="shell hero-grid">
       <div>
-        <p>
-          Consider a second-year radiology resident whose department uses an AI nodule detector on every chest CT. For most of her training, the routine has been the same: open the study, check the AI flags, review the findings it identifies, and dictate the report. She does well. Her evaluations are positive, and her attending considers her above average.
-        </p>
-        <p>
-          One day, the system goes down for maintenance. Without the AI there to flag suspicious findings, she misses a 6 mm nodule she normally would have caught within her routine.
-        </p>
-        <p>
-          The resident's training and incorporation of AI has made her too dependent on the AI tool; so much so that she has not developed the clinical competencies needed to find the nodule independently.
-        </p>
-        <p>
-          This is an example of never-skilling, one of three ways AI can affect trainee development. The other two are deskilling and miss-skilling. As AI becomes a routine part of clinical practice and medical education, radiology may be particularly vulnerable to all three. When trainees rely on AI throughout their training, they may never develop certain skills in the first place—or gradually lose skills they once had.
-        </p>
-        <p>
-          That does not mean AI should be removed from training or clinical practice. Instead, clinicians and trainees especially will need to be more intentional about how and when we use it. AI can make better radiologists, but only if steps are taken to ensure trainees still have opportunities to develop the skills they will need when the AI is wrong or unavailable.
-        </p>
-      </div>
-
-      <div>
-        <div class="callout callout-teal">
-          <div class="callout-title">Why is Radiology vulnerable?</div>
-          <p>
-            Surgeons develop motor skills that AI cannot replicate. Internists rely on history-taking
-            and physical examination that remain outside AI's reach. Radiology is different because much of the specialty depends on visual pattern recognition and using those findings to develop a differential diagnosis. These are skills that AI is increasingly capable of performing.
-          </p>
-          <p>
-            Developing and utilizing these skills requires heavy cognitive load, which makes it tempting to offload some of the load onto an AI tool. Over time, this can lead to overreliance.
-          </p>
-          <p>
-            Additionally, most FDA-approved tools for AI are focused on radiology. For radiology trainees, with all of these AI tools, the concern is that they may never fully develop the clinicial skills needed to practice independently. This puts radiology trainees at particular risk of never-skilling and makes it important to think carefully about when and how AI is incorporated into training.
-          </p>
+        <p class="eyebrow">Clinical AI education for practice</p>
+        <h1>Understand AI. Evaluate it in practice. Lead its adoption.</h1>
+        <p class="lead">A practical learning and research platform for clinicians navigating artificial intelligence—from core concepts and evidence appraisal to local validation, implementation, monitoring, and governance.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="pages/foundations.html">Start with Foundations</a>
+          <a class="btn btn-secondary" href="#pathways">Explore by role</a>
         </div>
       </div>
+      <aside class="brief-card" aria-label="AI2Practice Brief">
+        <div class="kicker">Editorial front door</div>
+        <h2>AI2Practice Brief</h2>
+        <p>Short, clinically grounded interpretations of developments in medical AI—what changed, why it matters, and where it fits in practice.</p>
+        <a class="text-link" href="pages/brief.html">Read the Brief →</a>
+      </aside>
     </div>
+  </section>
+
+  <section class="section" id="learn">
+    <div class="shell">
+      <div class="section-head">
+        <div><p class="eyebrow">Learning architecture</p><h2>From first principles to real-world use</h2></div>
+        <p>The core curriculum follows the way clinical AI decisions actually mature: first understand the technology, then evaluate how it behaves in clinical practice, then build the systems needed to adopt and govern it safely.</p>
+      </div>
+      <div class="path-grid">
+        <article class="path-card">
+          <div class="num">01 / Foundations</div>
+          <h3>Foundations</h3>
+          <div class="verb">Understand AI</div>
+          <p>Build a durable mental model of how contemporary AI systems are developed, evaluated, and limited.</p>
+          <ul class="module-list">
+            <li>Models, data, and learning paradigms</li>
+            <li>Performance metrics and calibration</li>
+            <li>Generalization, bias, and failure modes</li>
+          </ul>
+          <a class="text-link" href="pages/foundations.html">Explore Foundations →</a>
+        </article>
+        <article class="path-card">
+          <div class="num">02 / Clinical Practice</div>
+          <h3>Clinical Practice</h3>
+          <div class="verb">Use and Evaluate AI</div>
+          <p>Move beyond model-level performance to the human–AI system: workflow, reliance, clinical value, and evidence quality.</p>
+          <ul class="module-list">
+            <li>Evidence appraisal and external validity</li>
+            <li>Human–AI interaction and automation bias</li>
+            <li>Workflow integration and outcome evaluation</li>
+          </ul>
+          <a class="text-link" href="pages/clinical-practice.html">Explore Clinical Practice →</a>
+        </article>
+        <article class="path-card">
+          <div class="num">03 / Adoption &amp; Governance</div>
+          <h3>Adoption &amp; Governance</h3>
+          <div class="verb">Bring AI Into Practice</div>
+          <p>Structure the operational decisions that sit between an appealing AI product and a reliable clinical deployment.</p>
+          <ul class="module-list">
+            <li>Selection and procurement</li>
+            <li>Local validation and implementation</li>
+            <li>Monitoring, safety, and governance</li>
+          </ul>
+          <a class="text-link" href="pages/adoption-governance.html">Explore Adoption &amp; Governance →</a>
+        </article>
+      </div>
+
+      <div class="curriculum-bridge" aria-label="Existing AI2Practice curriculum">
+        <div>
+          <p class="eyebrow">Interactive curriculum</p>
+          <h3>Ready to learn through cases?</h3>
+          <p>The original AI2Practice learner curriculum remains fully available, including role-specific lessons, case walkthroughs, and assessments.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="course-select.html?track=student">Medical student course</a>
+          <a class="btn btn-secondary" href="course-select.html?track=resident">Resident course</a>
+        </div>
+      </div>
+
+      <div class="lifecycle" aria-label="AI adoption lifecycle">
+        <div><span class="step">Step 1</span><b>Define the need</b><span>Start with the clinical problem, workflow, and success criteria.</span></div>
+        <div><span class="step">Step 2</span><b>Select / procure</b><span>Assess evidence, product fit, integration, cost, and contractual claims.</span></div>
+        <div><span class="step">Step 3</span><b>Validate locally</b><span>Test performance and workflow fit in the population and environment of use.</span></div>
+        <div><span class="step">Step 4</span><b>Implement</b><span>Design rollout, accountability, training, escalation, and change management.</span></div>
+        <div><span class="step">Step 5</span><b>Monitor &amp; govern</b><span>Track reliability, drift, outcomes, incidents, and ongoing value.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark" id="pathways">
+    <div class="shell">
+      <div class="section-head">
+        <div><p class="eyebrow" style="color:#9fc5bd">Choose your path</p><h2>Different roles need different depth</h2></div>
+        <p>Use the same conceptual framework at the level appropriate to your role—from foundational fluency to institutional AI leadership.</p>
+      </div>
+      <div class="role-grid">
+        <a class="role-card" href="course-select.html?track=student"><div class="role-num">Path 01</div><h3>Medical Student</h3><p>Core concepts, evidence literacy, and clinical context.</p></a>
+        <a class="role-card" href="course-select.html?track=resident"><div class="role-num">Path 02</div><h3>Resident / Fellow</h3><p>Evaluation, workflow effects, and safe clinical use.</p></a>
+        <a class="role-card" href="pages/clinical-practice.html"><div class="role-num">Path 03</div><h3>Practicing Radiologist</h3><p>Clinical value, integration, oversight, and failure recognition.</p></a>
+        <a class="role-card" href="pages/adoption-governance.html"><div class="role-num">Path 04</div><h3>Clinical AI Leader</h3><p>Selection, validation, governance, and post-deployment monitoring.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="shell">
+      <div class="section-head">
+        <div><p class="eyebrow">Beyond the core curriculum</p><h2>Research and teaching, connected to practice</h2></div>
+        <p>Research Lab and For Educators sit alongside the learning progression rather than inside the AI adoption lifecycle.</p>
+      </div>
+      <div class="split-grid">
+        <article class="feature-panel sage">
+          <p class="eyebrow">Research Lab</p>
+          <h3>Methods, datasets, and research ideas for clinical AI</h3>
+          <p>Explore work on reliability, human–AI interaction, site heterogeneity, post-market surveillance, advanced reasoning systems, and emerging evaluation methods.</p>
+          <div class="pill-row"><span class="pill">Reliability</span><span class="pill">Human–AI systems</span><span class="pill">Monitoring</span><span class="pill">Digital twins</span></div>
+          <p><a class="text-link" href="pages/research-lab.html">Enter Research Lab →</a></p>
+        </article>
+        <article class="feature-panel cream">
+          <p class="eyebrow">For Educators</p>
+          <h3>Teach clinical AI without rebuilding the curriculum from scratch</h3>
+          <p>Use modular teaching sequences, discussion prompts, learning objectives, and adaptable resources mapped to learner level and clinical role.</p>
+          <div class="pill-row"><span class="pill">Curriculum maps</span><span class="pill">Teaching modules</span><span class="pill">Cases</span><span class="pill">Assessment prompts</span></div>
+          <p><a class="text-link" href="pages/educators.html">Explore educator resources →</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <div><p class="eyebrow">AI2Practice Brief</p><h2>A small number of updates, interpreted well</h2></div>
+        <p>The Brief is the site’s single updates-and-commentary destination. It is designed for a low-volume editorial cadence: developments worth understanding, linked back to the relevant concepts and lessons.</p>
+      </div>
+      <div class="brief-list">
+        <article class="brief-item"><div class="meta">How the Brief works</div><h3>From headline to clinical interpretation</h3><p>Each entry separates the development itself from its practical significance and the evidence needed to judge it.</p><a class="text-link" href="pages/brief.html">Read more →</a></article>
+        <article class="brief-item"><div class="meta">Evidence lens</div><h3>What should change your mind?</h3><p>A consistent lens for evaluating claims, external validity, local fit, and operational consequences.</p><a class="text-link" href="pages/clinical-practice.html">Go to evidence appraisal →</a></article>
+        <article class="brief-item"><div class="meta">Practice lens</div><h3>What happens after deployment?</h3><p>Connect new tools to validation, monitoring, accountability, and post-market learning.</p><a class="text-link" href="pages/adoption-governance.html">Go to governance →</a></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="brand" style="color:white" href="index.html">AI<span class="brand-two">2</span>Practice</a><p>Clinical AI education, evaluation, adoption, governance, and research—organized around the decisions clinicians actually make.</p></div>
+      <div class="footer-col"><h4>Learn</h4><a href="pages/foundations.html">Foundations</a><a href="pages/clinical-practice.html">Clinical Practice</a><a href="pages/adoption-governance.html">Adoption &amp; Governance</a></div>
+      <div class="footer-col"><h4>Explore</h4><a href="pages/research-lab.html">Research Lab</a><a href="pages/educators.html">For Educators</a><a href="pages/brief.html">AI2Practice Brief</a></div>
+      <div class="footer-col"><h4>Site</h4><a href="about.html">About AI2Practice</a><a href="tracker.html">AI Tool Tracker</a><a href="course-select.html">Learner Courses</a></div>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year></span> AI2Practice</span><span>Educational content is not a substitute for local clinical, regulatory, or institutional guidance.</span></div>
   </div>
-</section> -->
-
-<!-- ══════════════════════════════════════════
-     ABOUT
-     ══════════════════════════════════════════ -->
-<section class="section section--blue-light" id="about">
-  <div class="section-inner-narrow">
-    <h2 class="mt-0">About This Site</h2>
-    <p> This site remains under development as of <strong>August 23, 2026</strong> and is being prepared as an educational tool and accompanying manuscript by members of the <strong>Committee on Data Science &amp; AI of the AAR/RRA</strong>. </p>
-
-    <p> Additional information about the organizers and contributors is available on our <a href="about.html">About Us &amp; Organizers</a> page. </p>
-
-    <p> A potential citation for this work is provided below: </p>
-
-    <p> <strong>Shinjer Li, BS; Committee Members (in order); Florence Doo, MD.</strong> <i>[Title variant].</i> <i>Academic Radiology.</i> </p>
-  </div>
-</section>
-
-<script src="js/shared.js"></script>
-<script>
-(function() {
-  const canvas = document.getElementById('hero-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const stars = [];
-  const STAR_COUNT = 90;
-  const CONNECT = 130;
-
-  function resize() {
-    canvas.width = canvas.offsetWidth * devicePixelRatio;
-    canvas.height = canvas.offsetHeight * devicePixelRatio;
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-  }
-
-  function init() {
-    resize();
-    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: Math.random() * cw,
-        y: Math.random() * ch,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        r: Math.random() * 2.2 + 0.8,
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.008 + Math.random() * 0.015
-      });
-    }
-  }
-
-  function draw() {
-    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
-    ctx.clearRect(0, 0, cw, ch);
-    for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
-      s.x += s.vx; s.y += s.vy; s.pulse += s.pulseSpeed;
-      if (s.x < -20) s.x = cw + 20;
-      if (s.x > cw + 20) s.x = -20;
-      if (s.y < -20) s.y = ch + 20;
-      if (s.y > ch + 20) s.y = -20;
-      for (let j = i + 1; j < stars.length; j++) {
-        const b = stars[j];
-        const dx = s.x - b.x, dy = s.y - b.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT) {
-          ctx.beginPath();
-          ctx.moveTo(s.x, s.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = 'rgba(200,210,230,' + ((1 - dist / CONNECT) * 0.15) + ')';
-          ctx.lineWidth = 0.6;
-          ctx.stroke();
-        }
-      }
-      const glow = 0.4 + Math.sin(s.pulse) * 0.25;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r + 6, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,210,230,' + (glow * 0.06) + ')';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,215,240,' + glow + ')';
-      ctx.fill();
-    }
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
-  draw();
-})();
-</script>
+</footer>
+<script src="assets/site.js"></script>
 </body>
 </html>
