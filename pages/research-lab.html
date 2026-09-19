@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AI2Practice — Research Lab." />
+  <meta name="description" content="AI2Practice Research Lab — hands-on clinical AI research curriculum, notebooks, datasets, and emerging research directions." />
   <title>Research Lab — AI2Practice</title>
   <link rel="stylesheet" href="../assets/styles.css" />
 </head>
@@ -15,26 +15,83 @@
   <nav aria-label="Primary"><ul class="nav-links editorial-nav"><li><a href="../index.html#field-guide">Field Guide</a></li><li><a href="../index.html#learning-paths">Learning Paths</a></li><li><a href="educators.html">For Educators</a></li><li><a aria-current="page" href="research-lab.html">Research Lab</a></li><li><a href="brief.html">AI2Practice Brief</a></li><li><a href="../about.html">About</a></li><li><a class="start-link" href="../course-select.html">Start learning</a></li></ul></nav>
 </div></header>
 <main id="main">
-  <section class="page-hero"><div class="shell">
+  <section class="page-hero research-page-hero"><div class="shell">
     <div class="breadcrumbs"><a href="../index.html">AI2Practice</a> / Research Lab</div>
-    <p class="eyebrow">Research Lab</p>
+    <p class="eyebrow">Parallel hands-on track</p>
     <h1>Research Lab</h1>
-    <p>A parallel space for methods, study designs, emerging architectures, and open questions in clinical AI reliability, human–AI systems, monitoring, and advanced evaluation.</p>
+    <p>Build practical research skills with the existing five-module curriculum, notebook exercises, and datasets. Research Lab runs alongside the clinical core rather than after it.</p>
   </div></section>
-  <section class="section"><div class="shell content-grid">
-    <aside class="side-nav" aria-label="On this page"><a href="#overview">Overview</a><a href="#themes">Research themes</a><a href="#workbench">Research workbench</a></aside>
-    <article class="article">
-<section id="overview"><h2>A parallel track for questions that are not yet settled</h2><p>Research Lab is intentionally separate from the core learning progression. It is a place for methods, hypotheses, datasets, study designs, and emerging architectures that can inform future clinical AI practice.</p></section>
-<section id="themes"><h2>Research themes</h2><div class="lesson-grid">
-<div class="lesson-card"><div class="label">Theme 01</div><h3>Reliability and heterogeneity</h3><p>Measure where performance varies across sites, populations, protocols, devices, and time—and how to make those differences visible.</p></div>
-<div class="lesson-card"><div class="label">Theme 02</div><h3>Human–AI systems</h3><p>Study reliance, calibration of trust, task allocation, interface effects, and the conditions under which assistance helps or harms.</p></div>
-<div class="lesson-card"><div class="label">Theme 03</div><h3>Post-market surveillance</h3><p>Develop observability, monitoring, and anomaly-detection methods for deployed clinical AI systems.</p></div>
-<div class="lesson-card"><div class="label">Theme 04</div><h3>Emerging architectures</h3><p>Explore multimodal reasoning systems, agents, predictive models, digital twins, synthetic data, and in-silico evaluation while keeping clinical validation requirements explicit.</p></div>
-</div></section>
-<section id="workbench"><h2>Research workbench</h2><p>Use this area for paper concepts, protocol sketches, measurement frameworks, reproducible methods, and curated reading lists. Mature findings can feed back into the Foundations, Clinical Practice, and Adoption &amp; Governance curriculum.</p><div class="lesson-grid">
-<a class="lesson-card linked-card" href="../research.html"><div class="label">Existing track</div><h3>Five-module AI Research Track</h3><p>Open the existing hands-on research curriculum and module sequence.</p><span class="text-link">Enter research track →</span></a>
-<a class="lesson-card linked-card" href="../notebooks/README.md"><div class="label">Research assets</div><h3>Datasets & notebooks</h3><p>Access the repository's reproducible notebook exercises and supporting datasets.</p><span class="text-link">View notebook guide →</span></a>
-</div></section></article>
+
+  <section class="section research-curriculum-section"><div class="shell content-grid research-content-grid">
+    <aside class="side-nav" aria-label="On this page"><a href="#curriculum">Research curriculum</a><a href="#assets">Notebooks &amp; data</a><a href="#directions">Emerging directions</a></aside>
+    <article class="article research-lab-article">
+      <section id="curriculum">
+        <p class="micro-label">Hands-on curriculum</p>
+        <h2>Five modules from setup to an independent project.</h2>
+        <p>The original Research Track remains the backbone of Research Lab. The sequence is cumulative: learners set up a reproducible environment, work with data, build models, explore advanced methods, and finish by designing a small project.</p>
+
+        <div class="research-progress-note">
+          <strong>Current build:</strong> Modules 1–3 include substantive exercises and notebook-supported work. Modules 4–5 are already part of the curriculum structure but remain under active development.
+        </div>
+
+        <div class="research-curriculum-list">
+          <a class="research-curriculum-step" href="../lessons/research-1.html">
+            <span class="research-step-num">1</span>
+            <span class="research-step-copy"><small>Available · notebook-supported</small><strong>Getting Started with Python &amp; GitHub</strong><em>GitHub, Google Colab, Python basics, loading data, and a first analysis.</em></span>
+            <span class="research-step-arrow">→</span>
+          </a>
+          <a class="research-curriculum-step" href="../lessons/research-2.html">
+            <span class="research-step-num">2</span>
+            <span class="research-step-copy"><small>Available · notebook-supported</small><strong>Data Science &amp; AI Evaluation</strong><em>Evaluation metrics, statistics, visualization, threshold trade-offs, and subgroup analysis.</em></span>
+            <span class="research-step-arrow">→</span>
+          </a>
+          <a class="research-curriculum-step" href="../lessons/research-3.html">
+            <span class="research-step-num">3</span>
+            <span class="research-step-copy"><small>Available · notebook-supported</small><strong>Machine Learning &amp; Image Processing</strong><em>Classifiers, image loading and preprocessing, and pre-trained models.</em></span>
+            <span class="research-step-arrow">→</span>
+          </a>
+          <a class="research-curriculum-step research-curriculum-step--developing" href="../lessons/research-4.html">
+            <span class="research-step-num">4</span>
+            <span class="research-step-copy"><small>Curriculum slot · content in development</small><strong>Advanced Image AI &amp; NLP</strong><em>CNNs, transfer learning, attention maps, radiology report NLP, and LLMs.</em></span>
+            <span class="research-step-arrow">→</span>
+          </a>
+          <a class="research-curriculum-step research-curriculum-step--developing" href="../lessons/research-5.html">
+            <span class="research-step-num">5</span>
+            <span class="research-step-copy"><small>Curriculum slot · content in development</small><strong>Mini Research Project</strong><em>Formulate a question, design an analysis, execute it, and write a structured abstract.</em></span>
+            <span class="research-step-arrow">→</span>
+          </a>
+        </div>
+
+        <div class="research-curriculum-actions">
+          <a class="btn btn-accent" href="../lessons/research-1.html">Start module 1</a>
+          <a class="btn btn-outline" href="../research.html">Open curriculum overview</a>
+        </div>
+      </section>
+
+      <section id="assets">
+        <p class="micro-label">Research workbench</p>
+        <h2>Notebooks and datasets are part of the curriculum, not a separate concept.</h2>
+        <p>The practical assets support the first three modules and remain in their original repository structure so existing exercises and links continue to work.</p>
+        <div class="research-asset-grid">
+          <a class="research-asset-card" href="../notebooks/README.md"><span>Guide</span><strong>Notebook README</strong><small>How the notebook exercises and datasets fit together.</small></a>
+          <a class="research-asset-card" href="../notebooks/Research_Module_1.ipynb"><span>Notebook 01</span><strong>Research Module 1</strong><small>Environment setup, Python basics, and first analysis.</small></a>
+          <a class="research-asset-card" href="../notebooks/Research_Module_2.ipynb"><span>Notebook 02</span><strong>Research Module 2</strong><small>Data science and AI evaluation exercises.</small></a>
+          <a class="research-asset-card" href="../notebooks/Research_Module_3.ipynb"><span>Notebook 03</span><strong>Research Module 3</strong><small>Machine learning and image-processing exercises.</small></a>
+        </div>
+      </section>
+
+      <section id="directions" class="research-directions-section">
+        <p class="micro-label">Emerging directions · not part of the five-module core</p>
+        <h2>Where Research Lab can grow next.</h2>
+        <p>These themes are better treated as future research directions than as the first thing a learner sees. They can eventually host reading lists, study designs, methods notes, or project ideas once that content exists.</p>
+        <div class="research-direction-grid">
+          <div><h3>Reliability &amp; heterogeneity</h3><p>Site, population, protocol, device, and temporal variation in clinical AI performance.</p></div>
+          <div><h3>Human–AI systems</h3><p>Reliance, calibration of trust, workflow effects, task allocation, and interface design.</p></div>
+          <div><h3>Monitoring &amp; observability</h3><p>Post-deployment measurement, drift, anomaly detection, and safety surveillance.</p></div>
+          <div><h3>Emerging architectures</h3><p>Multimodal systems, agents, predictive models, digital twins, and synthetic or in-silico evaluation.</p></div>
+        </div>
+      </section>
+    </article>
   </div></section>
 </main>
 <footer class="site-footer compact-footer"><div class="shell compact-footer-row">

@@ -2356,3 +2356,48 @@ body { background: #FBFAF7; }
 .nav-links a.active { border-bottom-color: #3E7B78; }
 .site-footer { background: #111B2A; }
 h1, h2 { letter-spacing: -0.02em; }
+
+
+/* AI2Practice information-architecture consistency */
+.page-context {
+  margin: 0 0 8px;
+  color: var(--accent-dark);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.page-context--light { color: rgba(255,255,255,.78); }
+
+.site-nav { height: 64px; }
+.nav-inner { padding: 0 24px; }
+.nav-logo { height: 21px; }
+.nav-links { gap: 4px; }
+.nav-links a {
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 4px;
+  font-size: .76rem;
+  font-weight: 650;
+}
+.nav-links a:hover, .nav-links a.active {
+  background: #EDF1EF;
+  color: var(--primary);
+  border-bottom: 0;
+}
+.nav-links a.start-link {
+  margin-left: 6px;
+  padding: 10px 14px;
+  background: #111B2A;
+  color: #fff;
+}
+.nav-links a.start-link:hover { background: #17324D; color: #fff; }
+
+.site-footer .footer-inner { max-width: var(--wide-width); }
+
+@media (max-width: 960px) {
+  .site-nav { height: 64px; }
+  .nav-links { top: 64px; }
+  .nav-links a { border-radius: 0; }
+  .nav-links a.start-link { margin: 6px 12px 12px; text-align: center; border-radius: 4px; }
+}
