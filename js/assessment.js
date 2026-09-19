@@ -207,7 +207,7 @@ var AssessmentEngine = (function() {
 
     doc.setFontSize(9);
     doc.setTextColor(140, 140, 140);
-    doc.text('Based on Ke et al., "AI-induced never-skilling in medical education," Nature Medicine 2026', w / 2, 160, { align: 'center' });
+    doc.text('AI2Practice clinical AI curriculum', w / 2, 160, { align: 'center' });
     doc.text('This is an educational completion certificate, not a CME/ACCME accredited credential.', w / 2, 167, { align: 'center' });
 
     doc.save('AI2Practice-Certificate-' + trackLabel.replace(/\s+/g, '-') + '-' + name.replace(/\s+/g, '-') + '.pdf');

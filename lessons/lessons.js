@@ -63,7 +63,7 @@
   // ── Pill Bar ──
 
   var CLINICAL = [
-    { key: 'lesson-1', file: 'lesson-1.html', label: 'Never-Skilling' },
+    { key: 'lesson-1', file: 'lesson-1.html', label: 'Expertise & AI' },
     { key: 'lesson-2', file: 'lesson-2.html', label: 'AI 101' },
     { key: 'lesson-3', file: 'lesson-3.html', label: 'Radiology 101' },
     { key: 'lesson-4', file: 'lesson-4.html', label: 'AI Evaluation' },
