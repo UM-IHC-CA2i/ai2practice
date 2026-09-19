@@ -3,181 +3,176 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AI2Practice: clinical AI education, evaluation, adoption, governance, and research for radiology and healthcare." />
-  <title>AI2Practice — Clinical AI from foundations to practice</title>
+  <meta name="description" content="AI2Practice: open clinical AI education from foundations to real-world adoption, governance, and research." />
+  <title>AI2Practice — Clinical AI education from foundations to practice</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body>
+<body class="home-page">
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
+<header class="site-header editorial-header">
   <div class="shell navbar">
-    <a class="brand" href="index.html" aria-label="AI2Practice home">AI<span class="brand-two">2</span>Practice <small>Clinical AI</small></a>
+    <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home">
+      <img src="images/ai2practice-logo.svg" alt="AI2Practice" />
+    </a>
     <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     <nav aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="pages/foundations.html">Foundations</a></li>
-        <li><a href="pages/clinical-practice.html">Clinical Practice</a></li>
-        <li><a href="pages/adoption-governance.html">Adoption &amp; Governance</a></li>
-        <li><a href="pages/research-lab.html">Research Lab</a></li>
+      <ul class="nav-links editorial-nav">
+        <li><a href="#field-guide">Field Guide</a></li>
+        <li><a href="#learning-paths">Learning Paths</a></li>
         <li><a href="pages/educators.html">For Educators</a></li>
-        <li><a class="brief-link" href="pages/brief.html">AI2Practice Brief</a></li>
+        <li><a href="pages/research-lab.html">Research Lab</a></li>
+        <li><a href="pages/brief.html">AI2Practice Brief</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="start-link" href="course-select.html">Start learning</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero">
-    <div class="shell hero-grid">
-      <div>
-        <p class="eyebrow">Clinical AI education for practice</p>
-        <h1>Understand AI. Evaluate it in practice. Lead its adoption.</h1>
-        <p class="lead">A practical learning and research platform for clinicians navigating artificial intelligence—from core concepts and evidence appraisal to local validation, implementation, monitoring, and governance.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="pages/foundations.html">Start with Foundations</a>
-          <a class="btn btn-secondary" href="#pathways">Explore by role</a>
+  <section class="editorial-hero">
+    <div class="shell editorial-hero-grid">
+      <div class="editorial-hero-copy">
+        <p class="micro-label">Open clinical AI education</p>
+        <h1>Learn the AI<br>that meets you<br>in practice.</h1>
+        <p class="hero-deck">AI2Practice connects foundational ideas to the decisions clinicians, educators, and health systems make every day—from using AI safely to bringing it responsibly into practice.</p>
+        <div class="hero-actions compact-actions">
+          <a class="btn btn-accent" href="#field-guide">Enter the Field Guide</a>
+          <a class="btn btn-outline" href="#learning-paths">Choose your path</a>
         </div>
       </div>
-      <aside class="brief-card" aria-label="AI2Practice Brief">
-        <div class="kicker">Editorial front door</div>
-        <h2>AI2Practice Brief</h2>
-        <p>Short, clinically grounded interpretations of developments in medical AI—what changed, why it matters, and where it fits in practice.</p>
-        <a class="text-link" href="pages/brief.html">Read the Brief →</a>
+
+      <aside class="brief-front" aria-label="AI2Practice Brief">
+        <div class="brief-front-head">
+          <div>
+            <p class="micro-label on-dark">Latest from the Brief</p>
+            <h2>AI2Practice Brief</h2>
+          </div>
+          <a href="pages/brief.html">View all →</a>
+        </div>
+        <a class="brief-front-item" href="pages/adoption-governance.html#lifecycle">
+          <span>Adoption &amp; governance</span>
+          <strong>Why local validation belongs after selection—not inside it</strong>
+          <small>Separate evidence review, procurement, and site-specific validation into distinct decisions.</small>
+        </a>
+        <a class="brief-front-item" href="pages/clinical-practice.html#interaction">
+          <span>Clinical practice</span>
+          <strong>After deployment: what should an AI monitoring plan actually watch?</strong>
+          <small>Performance, drift, incidents, workflow effects, and the consequences of human reliance.</small>
+        </a>
+        <a class="brief-front-item" href="pages/brief.html#format">
+          <span>Evidence &amp; interpretation</span>
+          <strong>Can I trust this AI?</strong>
+          <small>The question is less about trust than evidence, context, uncertainty, and action.</small>
+        </a>
       </aside>
     </div>
   </section>
 
-  <section class="section" id="learn">
+  <section class="field-guide" id="field-guide">
     <div class="shell">
-      <div class="section-head">
-        <div><p class="eyebrow">Learning architecture</p><h2>From first principles to real-world use</h2></div>
-        <p>The core curriculum follows the way clinical AI decisions actually mature: first understand the technology, then evaluate how it behaves in clinical practice, then build the systems needed to adopt and govern it safely.</p>
-      </div>
-      <div class="path-grid">
-        <article class="path-card">
-          <div class="num">01 / Foundations</div>
-          <h3>Foundations</h3>
-          <div class="verb">Understand AI</div>
-          <p>Build a durable mental model of how contemporary AI systems are developed, evaluated, and limited.</p>
-          <ul class="module-list">
-            <li>Models, data, and learning paradigms</li>
-            <li>Performance metrics and calibration</li>
-            <li>Generalization, bias, and failure modes</li>
-          </ul>
-          <a class="text-link" href="pages/foundations.html">Explore Foundations →</a>
-        </article>
-        <article class="path-card">
-          <div class="num">02 / Clinical Practice</div>
-          <h3>Clinical Practice</h3>
-          <div class="verb">Use and Evaluate AI</div>
-          <p>Move beyond model-level performance to the human–AI system: workflow, reliance, clinical value, and evidence quality.</p>
-          <ul class="module-list">
-            <li>Evidence appraisal and external validity</li>
-            <li>Human–AI interaction and automation bias</li>
-            <li>Workflow integration and outcome evaluation</li>
-          </ul>
-          <a class="text-link" href="pages/clinical-practice.html">Explore Clinical Practice →</a>
-        </article>
-        <article class="path-card">
-          <div class="num">03 / Adoption &amp; Governance</div>
-          <h3>Adoption &amp; Governance</h3>
-          <div class="verb">Bring AI Into Practice</div>
-          <p>Structure the operational decisions that sit between an appealing AI product and a reliable clinical deployment.</p>
-          <ul class="module-list">
-            <li>Selection and procurement</li>
-            <li>Local validation and implementation</li>
-            <li>Monitoring, safety, and governance</li>
-          </ul>
-          <a class="text-link" href="pages/adoption-governance.html">Explore Adoption &amp; Governance →</a>
-        </article>
-      </div>
-
-      <div class="curriculum-bridge" aria-label="Existing AI2Practice curriculum">
+      <div class="field-guide-head">
         <div>
-          <p class="eyebrow">Interactive curriculum</p>
-          <h3>Ready to learn through cases?</h3>
-          <p>The original AI2Practice learner curriculum remains fully available, including role-specific lessons, case walkthroughs, and assessments.</p>
+          <p class="micro-label">Learn by task</p>
+          <h2>The Clinical AI Field Guide</h2>
         </div>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="course-select.html?track=student">Medical student course</a>
-          <a class="btn btn-secondary" href="course-select.html?track=resident">Resident course</a>
+        <p>A common clinical core for everyone, with an optional leadership extension for teams responsible for adoption and oversight.</p>
+      </div>
+
+      <div class="field-guide-core">
+        <p class="section-tag">Common clinical core</p>
+        <div class="core-columns">
+          <article class="core-column">
+            <span class="core-number">01 · Foundations</span>
+            <h3>Understand AI</h3>
+            <p>Core terminology, what models learn, how models fail, performance metrics, and the informatics behind clinical AI.</p>
+            <a href="pages/foundations.html">Explore foundations →</a>
+          </article>
+          <article class="core-column">
+            <span class="core-number">02 · Clinical practice</span>
+            <h3>Use and evaluate AI</h3>
+            <p>Evidence appraisal, workflow, appropriate reliance, failure modes, human factors, and clinical competency.</p>
+            <a href="pages/clinical-practice.html">Explore clinical practice →</a>
+          </article>
         </div>
       </div>
 
-      <div class="lifecycle" aria-label="AI adoption lifecycle">
-        <div><span class="step">Step 1</span><b>Define the need</b><span>Start with the clinical problem, workflow, and success criteria.</span></div>
-        <div><span class="step">Step 2</span><b>Select / procure</b><span>Assess evidence, product fit, integration, cost, and contractual claims.</span></div>
-        <div><span class="step">Step 3</span><b>Validate locally</b><span>Test performance and workflow fit in the population and environment of use.</span></div>
-        <div><span class="step">Step 4</span><b>Implement</b><span>Design rollout, accountability, training, escalation, and change management.</span></div>
-        <div><span class="step">Step 5</span><b>Monitor &amp; govern</b><span>Track reliability, drift, outcomes, incidents, and ongoing value.</span></div>
-      </div>
-    </div>
-  </section>
+      <section class="leadership-extension" aria-labelledby="leadership-title">
+        <div class="leadership-topline">
+          <div>
+            <p class="micro-label on-dark">Leadership extension · Adoption &amp; governance</p>
+            <h3 id="leadership-title">Bring AI into practice</h3>
+          </div>
+          <p>For AI leads, imaging informatics, quality and safety leaders, medical directors, site practice or department leaders.</p>
+        </div>
+        <div class="lifecycle-rail">
+          <a href="pages/adoption-governance.html#lifecycle"><b>1 · Define the need</b><span>Use case, stakeholders, success criteria</span></a>
+          <a href="pages/adoption-governance.html#lifecycle"><b>2 · Select &amp; procure</b><span>Products, vendors, integration, cost, security</span></a>
+          <a href="pages/adoption-governance.html#lifecycle"><b>3 · Validate locally</b><span>Population, scanners, protocols, workflow, users</span></a>
+          <a href="pages/adoption-governance.html#lifecycle"><b>4 · Implement</b><span>Training, workflow, accountability, escalation</span></a>
+          <a href="pages/adoption-governance.html#governance"><b>5 · Monitor &amp; govern</b><span>Performance, drift, incidents, updates, retirement</span></a>
+        </div>
+      </section>
 
-  <section class="section dark" id="pathways">
-    <div class="shell">
-      <div class="section-head">
-        <div><p class="eyebrow" style="color:#9fc5bd">Choose your path</p><h2>Different roles need different depth</h2></div>
-        <p>Use the same conceptual framework at the level appropriate to your role—from foundational fluency to institutional AI leadership.</p>
-      </div>
-      <div class="role-grid">
-        <a class="role-card" href="course-select.html?track=student"><div class="role-num">Path 01</div><h3>Medical Student</h3><p>Core concepts, evidence literacy, and clinical context.</p></a>
-        <a class="role-card" href="course-select.html?track=resident"><div class="role-num">Path 02</div><h3>Resident / Fellow</h3><p>Evaluation, workflow effects, and safe clinical use.</p></a>
-        <a class="role-card" href="pages/clinical-practice.html"><div class="role-num">Path 03</div><h3>Practicing Radiologist</h3><p>Clinical value, integration, oversight, and failure recognition.</p></a>
-        <a class="role-card" href="pages/adoption-governance.html"><div class="role-num">Path 04</div><h3>Clinical AI Leader</h3><p>Selection, validation, governance, and post-deployment monitoring.</p></a>
-      </div>
-    </div>
-  </section>
+      <section class="learning-path-strip" id="learning-paths" aria-labelledby="paths-title">
+        <div class="learning-path-intro">
+          <h3 id="paths-title">Choose a learning path</h3>
+        </div>
+        <a href="course-select.html?track=student"><b>Medical student</b><span>AI as a radiology rotation</span></a>
+        <a href="course-select.html?track=resident"><b>Resident / fellow</b><span>Clinical AI literacy</span></a>
+        <a href="pages/clinical-practice.html"><b>Practicing radiologist</b><span>AI in my practice</span></a>
+        <a href="pages/adoption-governance.html"><b>Clinical AI leader</b><span>Adoption, validation, and governance</span></a>
+      </section>
 
-  <section class="section alt">
-    <div class="shell">
-      <div class="section-head">
-        <div><p class="eyebrow">Beyond the core curriculum</p><h2>Research and teaching, connected to practice</h2></div>
-        <p>Research Lab and For Educators sit alongside the learning progression rather than inside the AI adoption lifecycle.</p>
-      </div>
-      <div class="split-grid">
-        <article class="feature-panel sage">
-          <p class="eyebrow">Research Lab</p>
-          <h3>Methods, datasets, and research ideas for clinical AI</h3>
-          <p>Explore work on reliability, human–AI interaction, site heterogeneity, post-market surveillance, advanced reasoning systems, and emerging evaluation methods.</p>
-          <div class="pill-row"><span class="pill">Reliability</span><span class="pill">Human–AI systems</span><span class="pill">Monitoring</span><span class="pill">Digital twins</span></div>
-          <p><a class="text-link" href="pages/research-lab.html">Enter Research Lab →</a></p>
-        </article>
-        <article class="feature-panel cream">
-          <p class="eyebrow">For Educators</p>
-          <h3>Teach clinical AI without rebuilding the curriculum from scratch</h3>
-          <p>Use modular teaching sequences, discussion prompts, learning objectives, and adaptable resources mapped to learner level and clinical role.</p>
-          <div class="pill-row"><span class="pill">Curriculum maps</span><span class="pill">Teaching modules</span><span class="pill">Cases</span><span class="pill">Assessment prompts</span></div>
-          <p><a class="text-link" href="pages/educators.html">Explore educator resources →</a></p>
-        </article>
-      </div>
-    </div>
-  </section>
+      <section class="educator-band">
+        <div>
+          <p class="micro-label">For educators</p>
+          <h3>Bring AI2Practice into your program.</h3>
+          <p>Use a ready-made pathway, review learning objectives, contribute a teaching case, or ask about the initial educational pilot.</p>
+        </div>
+        <div class="band-actions">
+          <a href="pages/educators.html">Use in a rotation</a>
+          <a href="pages/educators.html">Join the pilot</a>
+          <a href="pages/educators.html">Contribute</a>
+        </div>
+      </section>
 
-  <section class="section">
-    <div class="shell">
-      <div class="section-head">
-        <div><p class="eyebrow">AI2Practice Brief</p><h2>A small number of updates, interpreted well</h2></div>
-        <p>The Brief is the site’s single updates-and-commentary destination. It is designed for a low-volume editorial cadence: developments worth understanding, linked back to the relevant concepts and lessons.</p>
-      </div>
-      <div class="brief-list">
-        <article class="brief-item"><div class="meta">How the Brief works</div><h3>From headline to clinical interpretation</h3><p>Each entry separates the development itself from its practical significance and the evidence needed to judge it.</p><a class="text-link" href="pages/brief.html">Read more →</a></article>
-        <article class="brief-item"><div class="meta">Evidence lens</div><h3>What should change your mind?</h3><p>A consistent lens for evaluating claims, external validity, local fit, and operational consequences.</p><a class="text-link" href="pages/clinical-practice.html">Go to evidence appraisal →</a></article>
-        <article class="brief-item"><div class="meta">Practice lens</div><h3>What happens after deployment?</h3><p>Connect new tools to validation, monitoring, accountability, and post-market learning.</p><a class="text-link" href="pages/adoption-governance.html">Go to governance →</a></article>
-      </div>
+      <section class="research-band">
+        <div>
+          <p class="micro-label on-dark">Separate hands-on track</p>
+          <h3>Research Lab</h3>
+          <p>For learners who want to work with data, evaluate models, and design imaging AI research. Cross-links connect relevant Field Guide lessons without making research a requirement for clinical learners.</p>
+        </div>
+        <div class="research-links">
+          <a href="lessons/research-1.html">01 · Python &amp; GitHub</a>
+          <a href="lessons/research-2.html">02 · Data science</a>
+          <a href="lessons/research-3.html">03 · Image processing</a>
+          <a href="lessons/research-4.html">04–05 · AI development</a>
+        </div>
+      </section>
+
+      <section class="featured-lessons" aria-labelledby="featured-title">
+        <div class="featured-head">
+          <h3 id="featured-title">Featured lessons and tools</h3>
+          <a href="course-select.html">Browse all →</a>
+        </div>
+        <div class="featured-grid">
+          <a href="lessons/lesson-1.html"><span>Applied · 15 min · All clinicians</span><b>Skilling in the age of AI</b><small>New-skilling, deskilling, and re-skilling, with attention to the source framework.</small></a>
+          <a href="lessons/lesson-2.html"><span>Applied · 20 min · All clinicians</span><b>Can I trust this AI?</b><small>Evaluate evidence, understand bias, and judge clinical utility.</small></a>
+          <a href="tracker.html"><span>Deep dive · Clinical AI leaders</span><b>AI Tool Tracker</b><small>Compare capabilities, evidence, integration, and risk considerations across tools.</small></a>
+        </div>
+      </section>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="shell">
-    <div class="footer-grid">
-      <div class="footer-brand"><a class="brand" style="color:white" href="index.html">AI<span class="brand-two">2</span>Practice</a><p>Clinical AI education, evaluation, adoption, governance, and research—organized around the decisions clinicians actually make.</p></div>
-      <div class="footer-col"><h4>Learn</h4><a href="pages/foundations.html">Foundations</a><a href="pages/clinical-practice.html">Clinical Practice</a><a href="pages/adoption-governance.html">Adoption &amp; Governance</a></div>
-      <div class="footer-col"><h4>Explore</h4><a href="pages/research-lab.html">Research Lab</a><a href="pages/educators.html">For Educators</a><a href="pages/brief.html">AI2Practice Brief</a></div>
-      <div class="footer-col"><h4>Site</h4><a href="about.html">About AI2Practice</a><a href="tracker.html">AI Tool Tracker</a><a href="course-select.html">Learner Courses</a></div>
+<footer class="site-footer compact-footer">
+  <div class="shell compact-footer-row">
+    <div class="footer-mini-brand">
+      <img src="images/ai2practice-logo-white.svg" alt="AI2Practice" />
+      <span>Practical, open clinical AI education</span>
     </div>
-    <div class="footer-bottom"><span>© <span data-year></span> AI2Practice</span><span>Educational content is not a substitute for local clinical, regulatory, or institutional guidance.</span></div>
+    <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
   </div>
 </footer>
 <script src="assets/site.js"></script>
