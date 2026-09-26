@@ -1,6 +1,6 @@
 /* AI2Practice v2 theme: one palette and type system for every page.
    Loaded last, after css/style.css (curriculum pages) or assets/styles.css (section pages).
-   Route colors match the home page map: main line = navy, Research Lab = rust, Leadership = blue. */
+   Route colors match the home page map: core curriculum = navy, Research Lab = rust, Leadership = blue. */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
 :root {

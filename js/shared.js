@@ -48,8 +48,7 @@
         '</a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>' +
         '<ul class="nav-links">' +
-          navLink('index.html#map', 'Route map', 'map', active) +
-          navLink('index.html#core', 'Curriculum', 'curriculum', active) +
+          navLink('index.html#map', 'Curriculum', 'curriculum', active) +
           navLink('index.html#spec', 'Specializations', 'spec', active) +
           navLink('index.html#board', 'Updates', 'board', active) +
           navLink('about.html', 'About', 'about', active) +
@@ -81,7 +80,7 @@
       '<div class="footer-inner">' +
         '<div class="footer-text">AI2Practice &middot; Practical, open clinical AI education &middot; ' + year + '</div>' +
         '<ul class="footer-links">' +
-          '<li><a href="' + siteUrl('index.html#map') + '">Route map</a></li>' +
+          '<li><a href="' + siteUrl('index.html#map') + '">Curriculum</a></li>' +
           '<li><a href="' + siteUrl('pages/research-lab.html') + '">Research Lab</a></li>' +
           '<li><a href="' + siteUrl('pages/adoption-governance.html') + '">Leadership</a></li>' +
           '<li><a href="' + siteUrl('tracker.html') + '">AI Tool Tracker</a></li>' +

@@ -1,4 +1,4 @@
-/* Home page: route map, module cards, specializations, educators, updates, discussion.
+/* Home page: curriculum map, module cards, specializations, educators, updates, discussion.
    Loaded after assets/styles.css and assets/theme.css. Colors come from the --route-* tokens in theme.css. */
 .home { color: var(--route-ink); font: 16px/1.6 var(--plex); }
 .home a { color: inherit; }
@@ -38,7 +38,7 @@ body { overflow-x: clip; }
 .home-btn--edu { background: var(--route-edu); }
 .home-btn--edu:hover { background: #325a73; }
 
-/* Route map */
+/* Curriculum map */
 .map-wrap { background: var(--route-soft); border: 1px solid var(--route-line); border-radius: 18px; margin: 16px 0 12px; padding: 18px 12px; }
 .map-wrap svg { width: 100%; height: auto; display: block; }
 .map-wrap svg text { font-family: var(--plex); }
@@ -64,7 +64,7 @@ body { overflow-x: clip; }
 .home h2 { font-family: var(--plex); font-size: 1.6rem; letter-spacing: -.02em; margin: 0 0 6px; color: var(--route-ink); }
 .lede { color: var(--route-muted); margin: 0 0 20px; }
 
-/* Main line cards */
+/* Core curriculum cards */
 .core-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 56px; }
 .cc { display: flex; flex-direction: column; border: 1px solid var(--route-line); border-top: 6px solid var(--route-core); border-radius: 14px; padding: 20px; text-decoration: none; transition: box-shadow .2s, transform .2s; }
 a.cc:hover { box-shadow: 0 10px 28px rgba(17,24,39,.08); transform: translateY(-2px); }
