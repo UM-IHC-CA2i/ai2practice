@@ -17,8 +17,8 @@
   if (trackLabel) {
     if (isResearchPage) {
       trackLabel.textContent = 'Research';
-      trackLabel.style.background = '#CCFBF1';
-      trackLabel.style.color = '#0D9488';
+      trackLabel.style.background = '#F6E6DF';
+      trackLabel.style.color = '#A8492C';
     } else {
       trackLabel.textContent = track === 'resident' ? 'Resident' : 'Medical Student';
     }

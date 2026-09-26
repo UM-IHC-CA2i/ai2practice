@@ -1,0 +1,74 @@
+/* AI2Practice v2 theme: one palette and type system for every page.
+   Loaded last, after css/style.css (curriculum pages) or assets/styles.css (section pages).
+   Route colors match the home page map: main line = navy, Research Lab = rust, Leadership = blue. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  /* Route palette (shared with assets/home.css) */
+  --route-core: #17324d;
+  --route-res: #a8492c;
+  --route-res-light: #f6e6df;
+  --route-lead: #0369a1;
+  --route-lead-light: #e0f0f9;
+  --route-edu: #3f6e8c;
+  --route-beg: #4b9b8f;
+  --route-int: #5b8db5;
+  --route-adv: #7c3aed;
+  --route-ink: #111827;
+  --route-muted: #6b7280;
+  --route-soft: #f5f6f8;
+  --route-line: #e5e7eb;
+  --plex: 'IBM Plex Sans', system-ui, sans-serif;
+  --plex-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* assets/styles.css tokens */
+  --ink: var(--route-ink);
+  --muted: var(--route-muted);
+  --paper: #ffffff;
+  --paper-2: var(--route-soft);
+  --line: var(--route-line);
+  --navy: var(--route-core);
+  --blue: var(--route-edu);
+  --teal: var(--route-lead);
+  --sans: var(--plex);
+  --serif: var(--plex);
+
+  --editorial-navy: var(--route-core);
+  --editorial-blue: var(--route-lead);
+  --editorial-cyan: var(--route-lead);
+  --editorial-teal: var(--route-res);
+  --editorial-paper: #ffffff;
+  --editorial-line: var(--route-line);
+
+  /* css/style.css tokens */
+  --primary: var(--route-core);
+  --primary-mid: var(--route-edu);
+  --accent: var(--route-lead);
+  --accent-dark: #075985;
+  --accent-light: var(--route-lead-light);
+  --offwhite: #ffffff;
+  --heading: var(--plex);
+}
+
+body { font-family: var(--plex); background: #fff; }
+h1, h2, h3, h4 { font-family: var(--plex); letter-spacing: -0.02em; }
+
+/* Header: same look on section pages (static header) and curriculum pages (shared.js nav) */
+.site-header, .site-nav { background: rgba(255,255,255,.96); border-bottom: 1px solid var(--route-line); }
+.navbar, .nav-inner { min-height: 66px; }
+.nav-links a { font-family: var(--plex); font-weight: 500; font-size: .93rem; }
+.nav-links a.login {
+  border: 1px solid var(--route-line); padding: 6px 12px; border-radius: 8px;
+}
+.nav-links a.login:hover { border-color: var(--route-core); }
+
+/* Research Lab pages use the rust route color */
+.page-hero.route-res { border-top: 6px solid var(--route-res); }
+.page-hero.route-lead { border-top: 6px solid var(--route-lead); }
+.page-hero.route-core { border-top: 6px solid var(--route-core); }
+
+/* Module landing pages */
+.module-tracks { margin: 10px 0 0; line-height: 1.9; font-size: .92rem; }
+.module-soon { border-style: dashed; opacity: .8; }
+.module-soon .label { color: var(--route-muted); }
+.module-branch { margin-top: 22px; }

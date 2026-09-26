@@ -39,6 +39,8 @@ var CaseEngine = (function() {
 
   function init(config) {
     state.config = config;
+    var level = new URLSearchParams(window.location.search).get('level');
+    config.levels.forEach(function(l) { if (l.id === level) state.skillLevel = level; });
     loadData(config.dataUrl, function(data) {
       state.allCases = data.cases;
       renderLanding();
@@ -148,13 +150,14 @@ var CaseEngine = (function() {
     h += '<p class="cw-sub">We will tailor pathology suggestions based on your experience.</p>';
     h += '<div class="option-group">';
     state.config.levels.forEach(function(l) {
-      h += '<div class="option-item" data-val="' + l.id + '"><input type="radio" name="sl" value="' + l.id + '">';
+      var sel = l.id === state.skillLevel;
+      h += '<div class="option-item' + (sel ? ' selected' : '') + '" data-val="' + l.id + '"><input type="radio" name="sl" value="' + l.id + '"' + (sel ? ' checked' : '') + '>';
       h += '<div><label><strong>' + l.name + '</strong></label>';
       h += '<div style="font-size:0.82rem;color:var(--gray-400);margin-top:2px;">' + l.desc + '</div></div></div>';
     });
     h += '</div>';
     h += '<div class="cw-actions"><button class="btn btn-outline" id="bk">Back</button>';
-    h += '<button class="btn btn-primary" id="nxt" disabled>Next</button></div>';
+    h += '<button class="btn btn-primary" id="nxt"' + (state.skillLevel ? '' : ' disabled') + '>Next</button></div>';
     el.innerHTML = h;
     bindRadio(el, 'skillLevel');
     document.getElementById('bk').addEventListener('click', function() { state.step = 1; render(); });

@@ -1067,9 +1067,9 @@
 
 /* Active — research (teal) */
 .pill-item.pill--active-teal {
-  background: #0D9488;
+  background: #A8492C;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(13,148,136,0.25);
+  box-shadow: 0 2px 8px rgba(168,73,44,0.25);
 }
 
 /* Completed — green text, check replaces number */
@@ -1101,8 +1101,8 @@
 /* Idle research — transparent with teal number */
 .pill-num--research {
   background: transparent;
-  border: 2px solid #0D9488;
-  color: #0D9488;
+  border: 2px solid #A8492C;
+  color: #A8492C;
 }
 
 .pill-item.pill--active .pill-num,
@@ -1179,7 +1179,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #0D9488;
+  background: #A8492C;
   color: #fff;
   display: flex;
   align-items: center;
@@ -1206,7 +1206,7 @@
 .ckpt-q-num {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #0D9488;
+  color: #A8492C;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 8px;
@@ -1227,7 +1227,7 @@
   padding: 1px 5px;
   font-family: 'Courier New', monospace;
   font-size: 0.85em;
-  color: #0D9488;
+  color: #A8492C;
 }
 
 .ckpt-input {
@@ -1246,7 +1246,7 @@
 
 .ckpt-input:focus {
   outline: none;
-  border-color: #0D9488;
+  border-color: #A8492C;
 }
 
 .ckpt-input--correct {
@@ -1277,7 +1277,7 @@
 
 #ckpt-submit-btn {
   padding: 12px 28px;
-  background: #0D9488;
+  background: #A8492C;
   color: #fff;
   border: none;
   border-radius: var(--radius);
@@ -1289,7 +1289,7 @@
 }
 
 #ckpt-submit-btn:hover:not(:disabled) {
-  background: #0F766E;
+  background: #8A3B23;
 }
 
 #ckpt-submit-btn:disabled {
@@ -1305,8 +1305,8 @@
 
 #ckpt-results {
   display: none;
-  background: #F0FDFA;
-  border: 1px solid #CCFBF1;
+  background: #FBF3EF;
+  border: 1px solid #F6E6DF;
   border-radius: var(--radius-lg);
   padding: 32px;
   margin: 24px 0;
@@ -1314,7 +1314,7 @@
 }
 
 #ckpt-results .quiz-score {
-  color: #0D9488;
+  color: #A8492C;
 }
 
 #ckpt-pass-msg {
@@ -1333,8 +1333,8 @@
 #ckpt-retry-btn {
   padding: 10px 24px;
   background: var(--white);
-  border: 2px solid #0D9488;
-  color: #0D9488;
+  border: 2px solid #A8492C;
+  color: #A8492C;
   border-radius: var(--radius);
   font-family: var(--heading);
   font-size: 0.88rem;
@@ -1344,7 +1344,7 @@
 }
 
 #ckpt-retry-btn:hover {
-  background: #F0FDFA;
+  background: #FBF3EF;
 }
 
 /* Locked Next button for research pages */

@@ -3,165 +3,145 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AI2Practice: open clinical AI education from foundations to real-world adoption, governance, and research." />
+  <meta name="description" content="AI2Practice: open clinical AI education. One main line through clinical AI, with optional Research Lab and Leadership specializations." />
   <title>AI2Practice — Clinical AI education from foundations to practice</title>
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="stylesheet" href="assets/home.css" />
 </head>
-<body class="home-page">
+<body class="home">
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header editorial-header">
-  <div class="shell navbar">
-    <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home">
-      <img src="images/ai2practice-logo.svg" alt="AI2Practice" />
-    </a>
-    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-    <nav aria-label="Primary">
-      <ul class="nav-links editorial-nav">
-        <li><a href="#field-guide">Field Guide</a></li>
-        <li><a href="#learning-paths">Learning Paths</a></li>
-        <li><a href="pages/educators.html">For Educators</a></li>
-        <li><a href="pages/research-lab.html">Research Lab</a></li>
-        <li><a href="pages/brief.html">AI2Practice Brief</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a class="start-link" href="course-select.html">Start learning</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<header class="site-header"><div class="shell navbar">
+  <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="#map">Route map</a></li><li><a href="#core">Curriculum</a></li><li><a href="#spec">Specializations</a></li><li><a href="#board">Updates</a></li><li><a href="about.html">About</a></li><li><a class="login" href="pages/educators.html">Educator login</a></li></ul></nav>
+</div></header>
 
-<main id="main">
-  <section class="editorial-hero">
-    <div class="shell editorial-hero-grid">
-      <div class="editorial-hero-copy">
-        <p class="micro-label">Open clinical AI education</p>
-        <h1>Learn the AI<br>that meets you<br>in practice.</h1>
-        <p class="hero-deck">AI2Practice connects foundational ideas to the decisions clinicians, educators, and health systems make every day—from using AI safely to bringing it responsibly into practice.</p>
-        <div class="hero-actions compact-actions">
-          <a class="btn btn-accent" href="#field-guide">Enter the Field Guide</a>
-          <a class="btn btn-outline" href="#learning-paths">Choose your path</a>
-        </div>
-      </div>
-
-      <aside class="brief-front" aria-label="AI2Practice Brief">
-        <div class="brief-front-head">
-          <div>
-            <p class="micro-label on-dark">Latest from the Brief</p>
-            <h2>AI2Practice Brief</h2>
-          </div>
-          <a href="pages/brief.html">View all →</a>
-        </div>
-        <a class="brief-front-item" href="pages/adoption-governance.html#lifecycle">
-          <span>Adoption &amp; governance</span>
-          <strong>Why local validation belongs after selection—not inside it</strong>
-          <small>Separate evidence review, procurement, and site-specific validation into distinct decisions.</small>
-        </a>
-        <a class="brief-front-item" href="pages/clinical-practice.html#interaction">
-          <span>Clinical practice</span>
-          <strong>After deployment: what should an AI monitoring plan actually watch?</strong>
-          <small>Performance, drift, incidents, workflow effects, and the consequences of human reliance.</small>
-        </a>
-        <a class="brief-front-item" href="pages/brief.html#format">
-          <span>Evidence &amp; interpretation</span>
-          <strong>Can I trust this AI?</strong>
-          <small>The question is less about trust than evidence, context, uncertainty, and action.</small>
-        </a>
-      </aside>
+<main id="main" class="home-shell">
+  <section class="hero">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <h1 class="hero-brand"><svg class="hero-logo" xmlns="http://www.w3.org/2000/svg" viewBox="-205.1 -939.0 5726.0 1180.0" role="img" aria-label="AI2Practice"><title>AI2Practice</title><path d="M-145.5 -753.8V-879.5H-19.9 M1293.3 -879.5H1419.0V-753.8 M-145.5 55.8V181.5H-19.9 M1293.3 181.5H1419.0V55.8" fill="none" stroke="#FFFFFF" stroke-width="39.1" stroke-linejoin="miter"/><path d="M522.0 0.0 459.0 -189.0H198.0L137.0 0.0H22.0L260.0 -698.0H402.0L640.0 0.0ZM331.0 -594.0H326.0L225.0 -286.0H431.0Z M718.0 0.0V-92.0H813.0V-606.0H718.0V-698.0H1022.0V-606.0H926.0V-92.0H1022.0V0.0Z M1825.9160000000002 0.0V-698.0H2125.916Q2222.916 -698.0 2275.916 -641.0Q2328.916 -584.0 2328.916 -488.0Q2328.916 -392.0 2275.916 -335.0Q2222.916 -278.0 2125.916 -278.0H1938.9160000000002V0.0ZM1938.9160000000002 -377.0H2118.916Q2161.916 -377.0 2185.916 -399.5Q2209.916 -422.0 2209.916 -464.0V-512.0Q2209.916 -554.0 2185.916 -576.5Q2161.916 -599.0 2118.916 -599.0H1938.9160000000002Z M2434.916 0.0V-520.0H2543.916V-420.0H2548.916Q2559.916 -460.0 2594.916 -490.0Q2629.916 -520.0 2691.916 -520.0H2720.916V-415.0H2677.916Q2612.916 -415.0 2578.416 -394.0Q2543.916 -373.0 2543.916 -332.0V0.0Z M3190.916 0.0Q3147.916 0.0 3124.916 -24.5Q3101.916 -49.0 3096.916 -87.0H3091.916Q3076.916 -38.0 3036.916 -13.0Q2996.916 12.0 2939.916 12.0Q2858.916 12.0 2815.416 -30.0Q2771.916 -72.0 2771.916 -143.0Q2771.916 -221.0 2828.416 -260.0Q2884.916 -299.0 2993.916 -299.0H3087.916V-343.0Q3087.916 -391.0 3061.916 -417.0Q3035.916 -443.0 2980.916 -443.0Q2934.916 -443.0 2905.916 -423.0Q2876.916 -403.0 2856.916 -372.0L2791.916 -431.0Q2817.916 -475.0 2864.916 -503.5Q2911.916 -532.0 2987.916 -532.0Q3088.916 -532.0 3142.916 -485.0Q3196.916 -438.0 3196.916 -350.0V-89.0H3251.916V0.0ZM2970.916 -71.0Q3021.916 -71.0 3054.916 -93.5Q3087.916 -116.0 3087.916 -154.0V-229.0H2995.916Q2882.916 -229.0 2882.916 -159.0V-141.0Q2882.916 -106.0 2906.416 -88.5Q2929.916 -71.0 2970.916 -71.0Z M3559.916 12.0Q3503.916 12.0 3459.916 -7.0Q3415.916 -26.0 3385.916 -61.5Q3355.916 -97.0 3339.916 -147.5Q3323.916 -198.0 3323.916 -260.0Q3323.916 -322.0 3339.916 -372.5Q3355.916 -423.0 3385.916 -458.5Q3415.916 -494.0 3459.916 -513.0Q3503.916 -532.0 3559.916 -532.0Q3637.916 -532.0 3687.916 -497.0Q3737.916 -462.0 3760.916 -404.0L3670.916 -362.0Q3659.916 -398.0 3632.416 -419.5Q3604.916 -441.0 3559.916 -441.0Q3499.916 -441.0 3469.416 -403.5Q3438.916 -366.0 3438.916 -306.0V-213.0Q3438.916 -153.0 3469.416 -115.5Q3499.916 -78.0 3559.916 -78.0Q3607.916 -78.0 3636.416 -101.5Q3664.916 -125.0 3681.916 -164.0L3764.916 -120.0Q3738.916 -56.0 3686.916 -22.0Q3634.916 12.0 3559.916 12.0Z M4012.916 0.0Q3955.916 0.0 3926.916 -29.5Q3897.916 -59.0 3897.916 -113.0V-431.0H3816.916V-520.0H3860.916Q3887.916 -520.0 3898.416 -532.0Q3908.916 -544.0 3908.916 -571.0V-662.0H4006.916V-520.0H4115.916V-431.0H4006.916V-89.0H4107.916V0.0Z M4288.916 -613.0Q4254.916 -613.0 4239.416 -629.0Q4223.916 -645.0 4223.916 -670.0V-687.0Q4223.916 -712.0 4239.416 -728.0Q4254.916 -744.0 4288.916 -744.0Q4322.916 -744.0 4337.916 -728.0Q4352.916 -712.0 4352.916 -687.0V-670.0Q4352.916 -645.0 4337.916 -629.0Q4322.916 -613.0 4288.916 -613.0ZM4233.916 -520.0H4342.916V0.0H4233.916Z M4699.916 12.0Q4643.916 12.0 4599.916 -7.0Q4555.916 -26.0 4525.916 -61.5Q4495.916 -97.0 4479.916 -147.5Q4463.916 -198.0 4463.916 -260.0Q4463.916 -322.0 4479.916 -372.5Q4495.916 -423.0 4525.916 -458.5Q4555.916 -494.0 4599.916 -513.0Q4643.916 -532.0 4699.916 -532.0Q4777.916 -532.0 4827.916 -497.0Q4877.916 -462.0 4900.916 -404.0L4810.916 -362.0Q4799.916 -398.0 4772.416 -419.5Q4744.916 -441.0 4699.916 -441.0Q4639.916 -441.0 4609.416 -403.5Q4578.916 -366.0 4578.916 -306.0V-213.0Q4578.916 -153.0 4609.416 -115.5Q4639.916 -78.0 4699.916 -78.0Q4747.916 -78.0 4776.416 -101.5Q4804.916 -125.0 4821.916 -164.0L4904.916 -120.0Q4878.916 -56.0 4826.916 -22.0Q4774.916 12.0 4699.916 12.0Z M5206.916 12.0Q5150.916 12.0 5106.916 -7.0Q5062.916 -26.0 5031.916 -61.5Q5000.916 -97.0 4984.416 -147.5Q4967.916 -198.0 4967.916 -260.0Q4967.916 -322.0 4984.416 -372.5Q5000.916 -423.0 5031.916 -458.5Q5062.916 -494.0 5106.916 -513.0Q5150.916 -532.0 5206.916 -532.0Q5263.916 -532.0 5307.416 -512.0Q5350.916 -492.0 5379.916 -456.5Q5408.916 -421.0 5423.416 -374.0Q5437.916 -327.0 5437.916 -273.0V-232.0H5080.916V-215.0Q5080.916 -155.0 5116.416 -116.5Q5151.916 -78.0 5217.916 -78.0Q5265.916 -78.0 5298.916 -99.0Q5331.916 -120.0 5354.916 -156.0L5418.916 -93.0Q5389.916 -45.0 5334.916 -16.5Q5279.916 12.0 5206.916 12.0ZM5206.916 -447.0Q5178.916 -447.0 5155.416 -437.0Q5131.916 -427.0 5115.416 -409.0Q5098.916 -391.0 5089.916 -366.0Q5080.916 -341.0 5080.916 -311.0V-304.0H5322.916V-314.0Q5322.916 -374.0 5291.916 -410.5Q5260.916 -447.0 5206.916 -447.0Z" fill="#FFFFFF"/><g transform="translate(1164.23 -698) scale(6.98)" class="two"><path d="M16 31C17 16 29 7.5 42 7.5C56 7.5 66.7 16 66.7 29C66.7 40 61 49 54 56" fill="none" class="two-stroke" stroke-width="15.0"/><path d="M49.40 49.99 L60.01 60.60 L35.61 85.00 L73.20 85.00 L73.20 100.00 L-0.61 100.00Z"/></g></svg></h1>
+      <p class="hero-desc">Clinical AI education for radiology, from foundations to practice.</p>
+      <p class="hero-org">AAR / RRA Committee on Data Science &amp; AI</p>
+      <nav class="hero-tabs" aria-label="Quick links"><a class="hero-tab hero-c--core" href="modules/informatics.html"><b>Main line</b><small>The default curriculum</small></a><a class="hero-tab hero-c--res" href="pages/research-lab.html"><b>Research Lab</b><small>Build and evaluate models</small></a><a class="hero-tab hero-c--lead" href="pages/adoption-governance.html"><b>Leadership</b><small>Adopt and govern AI</small></a><a class="hero-tab hero-c--about" href="about.html"><b>About us</b><small>Meet the committee</small></a></nav>
     </div>
   </section>
 
-  <section class="field-guide" id="field-guide">
-    <div class="shell">
-      <div class="field-guide-head">
-        <div>
-          <p class="micro-label">Learn by task</p>
-          <h2>The Clinical AI Field Guide</h2>
-        </div>
-        <p>A two-part clinical core for everyone. Role-specific extensions sit outside the core, so learners can add them only when their work requires it.</p>
+  <div class="map-head"><h2>Route map</h2><span>Pick any stop to begin</span></div>
+
+  <div class="map-wrap" id="map">
+<svg viewBox="0 50 1160 480" role="group" aria-label="Route map. Main line: Module 1, 2, 3, then choose a Beginner, Intermediate, or Advanced finish with cases and a certificate. Optional dashed lines below: Research Lab after Module 2, Leadership after Module 3. Every stop is a link.">
+<!-- optional specializations: dashed, below the main line -->
+<path d="M607.5 470 H590 C510 470 530 180 460 180" stroke="var(--route-res)" stroke-width="12" fill="none" stroke-dasharray="25 5" stroke-dashoffset="25"/>
+<path d="M607.5 470 H1112.5" stroke="var(--route-res)" stroke-width="12" fill="none" stroke-dasharray="25 5"/>
+<path d="M817.5 350 H815 C760 350 770 180 710 180" stroke="var(--route-lead)" stroke-width="12" fill="none" stroke-dasharray="25 5" stroke-dashoffset="25"/>
+<path d="M817.5 350 H1112.5" stroke="var(--route-lead)" stroke-width="12" fill="none" stroke-dasharray="25 5"/>
+<!-- level finish: three short branches -->
+<path d="M780 180 C825 180 825 115 870 115 H925" stroke="var(--route-beg)" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M780 180 H925" stroke="var(--route-int)" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M780 180 C825 180 825 245 870 245 H925" stroke="var(--route-adv)" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M40 180 H790" stroke="var(--route-core)" stroke-width="16" stroke-linecap="round" fill="none"/>
+<!-- Stops. Add data-soon to a stop whose page does not exist yet: it shows a notice instead of a 404. -->
+<a href="modules/informatics.html" class="st"><title>Module 1: Radiology Informatics</title><circle class="hit" cx="150" cy="180" r="32"/><circle cx="150" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="150" y="140" text-anchor="middle" class="mL">1 &middot; Radiology Informatics</text><text x="150" y="234" text-anchor="middle" class="mS">Imaging data, PACS, workflow</text></a>
+<a href="modules/ai-fundamentals.html" class="st"><title>Module 2: Fundamentals of AI</title><circle class="hit" cx="400" cy="180" r="32"/><circle cx="400" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="400" y="140" text-anchor="middle" class="mL">2 &middot; Fundamentals of AI</text><text x="400" y="234" text-anchor="middle" class="mS">Learn, perform, fail</text></a>
+<a href="modules/clinical-practice.html" class="st"><title>Module 3: AI in Clinical Practice</title><circle class="hit" cx="650" cy="180" r="32"/><circle cx="650" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="650" y="140" text-anchor="middle" class="mL">3 &middot; AI in Clinical Practice</text><text x="650" y="234" text-anchor="middle" class="mS">Evidence, bias, reliance</text></a>
+<text x="911" y="83" class="mT">CASES &amp; CERTIFICATE</text>
+<a href="student-cases.html?level=medical_student" class="st"><title>Cases &amp; certificate: Beginner</title><circle class="hit" cx="965" cy="115" r="28"/><circle cx="925" cy="115" r="14" fill="#fff" stroke="var(--route-beg)" stroke-width="5"/><text x="951" y="121" class="mL">Beginner</text></a>
+<a href="resident-cases.html?level=radiology_resident" class="st"><title>Cases &amp; certificate: Intermediate</title><circle class="hit" cx="965" cy="180" r="28"/><circle cx="925" cy="180" r="14" fill="#fff" stroke="var(--route-int)" stroke-width="5"/><text x="951" y="186" class="mL">Intermediate</text></a>
+<a href="resident-cases.html?level=attending" class="st"><title>Cases &amp; certificate: Advanced</title><circle class="hit" cx="965" cy="245" r="28"/><circle cx="925" cy="245" r="14" fill="#fff" stroke="var(--route-adv)" stroke-width="5"/><text x="951" y="251" class="mL">Advanced</text></a>
+<a href="pages/research-lab.html" class="st mini"><title>Research Lab overview</title><text x="592" y="438" class="mL" style="fill:var(--route-res)">Research Lab <tspan class="mS">optional</tspan></text></a>
+<a href="pages/adoption-governance.html" class="st mini"><title>Leadership overview</title><text x="818" y="394" class="mL" style="fill:var(--route-lead)">Leadership <tspan class="mS">optional</tspan></text></a>
+<g class="mS">
+<a href="lessons/research-1.html?research=1" class="st mini"><title>Research Lab: Python &amp; GitHub</title><circle class="hit" cx="620" cy="478" r="20"/><circle cx="620" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="620" y="504" text-anchor="middle">Python</text></a>
+<a href="lessons/research-2.html?research=1" class="st mini"><title>Research Lab: Data science &amp; evaluation</title><circle class="hit" cx="740" cy="478" r="20"/><circle cx="740" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="740" y="504" text-anchor="middle">Data science</text></a>
+<a href="lessons/research-3.html?research=1" class="st mini"><title>Research Lab: ML &amp; image processing</title><circle class="hit" cx="860" cy="478" r="20"/><circle cx="860" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="860" y="504" text-anchor="middle">ML &amp; imaging</text></a>
+<a href="lessons/research-4.html?research=1" class="st mini"><title>Research Lab: Advanced AI &amp; NLP</title><circle class="hit" cx="980" cy="478" r="20"/><circle cx="980" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="980" y="504" text-anchor="middle">NLP</text></a>
+<a href="lessons/research-5.html?research=1" class="st mini"><title>Research Lab: Mini research project</title><circle class="hit" cx="1100" cy="478" r="20"/><circle cx="1100" cy="470" r="12" fill="var(--route-res)"/><text x="1100" y="504" text-anchor="middle">Project</text></a>
+<a href="pages/adoption-governance.html#stage-select" class="st mini"><title>Leadership: Select</title><circle class="hit" cx="830" cy="342" r="20"/><circle cx="830" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="830" y="328" text-anchor="middle">Select</text></a>
+<a href="pages/adoption-governance.html#stage-validate" class="st mini"><title>Leadership: Validate</title><circle class="hit" cx="920" cy="342" r="20"/><circle cx="920" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="920" y="328" text-anchor="middle">Validate</text></a>
+<a href="pages/adoption-governance.html#stage-implement" class="st mini"><title>Leadership: Deploy</title><circle class="hit" cx="1010" cy="342" r="20"/><circle cx="1010" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="1010" y="328" text-anchor="middle">Deploy</text></a>
+<a href="pages/adoption-governance.html#stage-monitor" class="st mini"><title>Leadership: Monitor</title><circle class="hit" cx="1100" cy="342" r="20"/><circle cx="1100" cy="350" r="12" fill="var(--route-lead)"/><text x="1100" y="328" text-anchor="middle">Monitor</text></a>
+</g>
+</svg>
+    <ul class="mobile-map">
+      <li style="--c:var(--route-core)"><a href="modules/informatics.html"><b>1 &middot; Radiology Informatics</b></a></li>
+      <li style="--c:var(--route-core)"><a href="modules/ai-fundamentals.html"><b>2 &middot; Fundamentals of AI</b></a></li>
+      <li class="opt" style="--c:var(--route-res)"><a href="pages/research-lab.html">Branch: Research Lab (optional)</a></li>
+      <li style="--c:var(--route-core)"><a href="modules/clinical-practice.html"><b>3 &middot; AI in Clinical Practice</b></a></li>
+      <li class="opt" style="--c:var(--route-lead)"><a href="pages/adoption-governance.html">Branch: Leadership (optional)</a></li>
+      <li style="--c:var(--route-core)"><b>Cases &amp; certificate</b><br><small><a href="student-cases.html?level=medical_student">Beginner</a> &middot; <a href="resident-cases.html?level=radiology_resident">Intermediate</a> &middot; <a href="resident-cases.html?level=attending">Advanced</a></small></li>
+    </ul>
+  </div>
+  <div class="legend"><span><i style="background:var(--route-core)"></i>Main line: the default curriculum</span><span><i class="dash" style="color:var(--route-res)"></i>Research Lab (optional)</span><span><i class="dash" style="color:var(--route-lead)"></i>Leadership (optional)</span></div>
+  <div class="map-start"><a class="home-btn home-btn--lg" href="modules/informatics.html">Start at Module 1 &rarr;</a></div>
+
+  <section id="core">
+    <h2>The main line</h2>
+    <p class="lede">The default AI2Practice curriculum. Every module is built from short lessons that can be taken alone, so educators can mix and match them.</p>
+    <div class="core-cards">
+      <a class="cc" href="modules/informatics.html"><b>Introduction to Radiology Informatics</b><ul><li>Imaging data &amp; DICOM</li><li>PACS, RIS &amp; the worklist</li><li>HL7 / FHIR basics</li><li>Where AI plugs in</li></ul><span class="go">Open Module 1 &rarr;</span></a>
+      <a class="cc" href="modules/ai-fundamentals.html"><b>Fundamentals of AI in Radiology</b><ul><li>How models learn</li><li>Performance beyond accuracy</li><li>Generalization &amp; bias</li><li>AI and skill development</li></ul><span class="go">Open Module 2 &rarr;</span></a>
+      <a class="cc" href="modules/clinical-practice.html"><b>AI in Clinical Radiology Practice</b><ul><li>Evaluating AI outputs</li><li>Reading the evidence</li><li>Appropriate reliance</li><li>The future of radiology</li></ul><span class="go">Open Module 3 &rarr;</span></a>
+      <div class="cc term"><b>Cases &amp; certificate</b><ul><li>Case walkthrough at your level</li><li>15-question assessment</li><li>PDF certificate</li></ul>
+        <div class="levels">
+          <a href="student-cases.html?level=medical_student" style="--c:var(--route-beg)"><i></i>Beginner</a>
+          <a href="resident-cases.html?level=radiology_resident" style="--c:var(--route-int)"><i></i>Intermediate</a>
+          <a href="resident-cases.html?level=attending" style="--c:var(--route-adv)"><i></i>Advanced</a>
+        </div></div>
+    </div>
+  </section>
+
+  <section class="spec" id="spec">
+    <div class="sp" style="--c:var(--route-res)"><span class="badge">Specialization</span><b>Research Lab</b><p>For learners who want to build and evaluate models. Best after Module 2, but open to anyone.</p>
+      <ol><li><a href="lessons/research-1.html?research=1">Python &amp; GitHub</a></li><li><a href="lessons/research-2.html?research=1">Data science &amp; evaluation</a></li><li><a href="lessons/research-3.html?research=1">ML &amp; image processing</a></li><li><a href="lessons/research-4.html?research=1">Advanced AI &amp; NLP</a></li><li><a href="lessons/research-5.html?research=1">Mini research project</a></li></ol>
+      <a class="sp-link" href="pages/research-lab.html">Open the Research Lab &rarr;</a></div>
+    <div class="sp" style="--c:var(--route-lead)"><span class="badge">Specialization</span><b>Leadership: Adoption &amp; Governance</b><p>For AI leads, informatics, and quality teams bringing a tool into practice. Best after Module 3, but open to anyone.</p>
+      <ol><li><a href="pages/adoption-governance.html#stage-select">Select</a></li><li><a href="pages/adoption-governance.html#stage-validate">Validate locally</a></li><li><a href="pages/adoption-governance.html#stage-implement">Deploy</a></li><li><a href="pages/adoption-governance.html#stage-monitor">Monitor &amp; govern</a></li></ol>
+      <a class="sp-link" href="pages/adoption-governance.html">Open Leadership &rarr;</a></div>
+  </section>
+
+  <section class="edu" id="educators">
+    <div><h2>For educators: plan the route for your learners</h2>
+      <p>Sign in as an educator to choose which lessons along the main line your learners take, add a specialization, and track their progress. You get the same curriculum, arranged for your program.</p>
+      <a class="home-btn home-btn--edu" href="pages/educators.html">Educator sign in</a></div>
+    <div class="assign" aria-label="Preview of the assignment builder">
+      <div class="row"><b>PGY-2 rotation &middot; Oct</b><span class="who">12 learners</span></div>
+      <div class="row"><label><input type="checkbox" checked>Module 1 &middot; PACS, RIS &amp; the worklist</label><span class="who">10 min</span></div>
+      <div class="row"><label><input type="checkbox">Module 1 &middot; HL7 / FHIR basics</label><span class="who">8 min</span></div>
+      <div class="row"><label><input type="checkbox" checked>Module 2 &middot; all lessons</label><span class="who">30 min</span></div>
+      <div class="row"><label><input type="checkbox" checked>Module 3 &middot; Appropriate reliance</label><span class="who">12 min</span></div>
+      <div class="row"><label><input type="checkbox" checked>Resident case set + certificate</label><span class="who">25 min</span></div>
+    </div>
+  </section>
+
+  <section class="board" id="board">
+    <div><h2>Departures: latest updates</h2>
+      <div class="depart">
+        <a href="modules/informatics.html"><span>SEP 26</span><span>Module 1: Informatics now live</span><span>MAIN</span></a>
+        <a href="resident-cases.html"><span>SEP 12</span><span>Resident case set: 4 new CXR cases</span><span>MAIN</span></a>
+        <a href="lessons/research-3.html?research=1"><span>AUG 30</span><span>Notebook 3 adds segmentation</span><span>RES</span></a>
+        <a href="pages/adoption-governance.html#stage-monitor"><span>AUG 18</span><span>What should monitoring watch?</span><span>LEAD</span></a>
       </div>
-
-      <div class="field-guide-core">
-        <p class="section-tag">Common clinical core</p>
-        <div class="core-columns">
-          <article class="core-column">
-            <span class="core-number">01 · Foundations</span>
-            <h3>Understand AI</h3>
-            <p>Core terminology, what models learn, how models fail, performance metrics, and the informatics behind clinical AI.</p>
-            <a href="pages/foundations.html">Explore foundations →</a>
-          </article>
-          <article class="core-column">
-            <span class="core-number">02 · Clinical practice</span>
-            <h3>Use and evaluate AI</h3>
-            <p>Evidence appraisal, workflow, appropriate reliance, failure modes, human factors, and clinical competency.</p>
-            <a href="pages/clinical-practice.html">Explore clinical practice →</a>
-          </article>
+      <p class="lede" style="margin-top:12px"><a href="pages/brief.html">More in the AI2Practice Brief &rarr;</a></p></div>
+    <div class="forum">
+      <div class="forum-head"><h2>Discussion</h2><span class="forum-status">Opening soon</span></div>
+      <div class="welcome">
+        <div class="avatar" aria-hidden="true">A2P</div>
+        <div>
+          <div class="who"><b>AI2Practice team</b> &middot; Sep 26 <span class="pin">PINNED</span></div>
+          <h3>Welcome aboard</h3>
+          <p>This will be the place to swap rotation plans, ask questions about cases, and suggest new lessons. We are setting it up now. More to come soon.</p>
         </div>
       </div>
-
-      <section class="leadership-extension" aria-labelledby="leadership-title">
-        <div class="leadership-topline">
-          <div>
-            <p class="micro-label on-dark">Role-specific extension · Adoption &amp; Governance</p>
-            <h3 id="leadership-title">Bring AI into practice</h3>
-          </div>
-          <p><strong>Not part of the common core.</strong> For AI leads, imaging informatics, quality and safety leaders, medical directors, and teams responsible for bringing AI into practice.</p>
-        </div>
-        <div class="lifecycle-rail">
-          <a href="pages/adoption-governance.html#lifecycle"><b>1 · Define the need</b><span>Use case, stakeholders, success criteria</span></a>
-          <a href="pages/adoption-governance.html#lifecycle"><b>2 · Select &amp; procure</b><span>Evidence, products, vendors, integration, cost, security</span></a>
-          <a href="pages/adoption-governance.html#lifecycle"><b>3 · Validate locally</b><span>Population, scanners, protocols, workflow, users</span></a>
-          <a href="pages/adoption-governance.html#lifecycle"><b>4 · Implement</b><span>Training, workflow, accountability, escalation</span></a>
-          <a href="pages/adoption-governance.html#governance"><b>5 · Monitor &amp; govern</b><span>Performance, drift, incidents, updates, retirement</span></a>
-        </div>
-      </section>
-
-      <section class="learning-path-strip" id="learning-paths" aria-labelledby="paths-title">
-        <div class="learning-path-intro">
-          <h3 id="paths-title">Choose a learning path</h3>
-        </div>
-        <a href="course-select.html?track=student"><b>Medical student</b><span>AI as a radiology rotation</span></a>
-        <a href="course-select.html?track=resident"><b>Resident / fellow</b><span>Clinical AI literacy</span></a>
-        <a href="pages/clinical-practice.html"><b>Practicing radiologist</b><span>AI in my practice</span></a>
-        <a href="pages/adoption-governance.html"><b>Clinical AI leader</b><span>Selection, local validation, implementation, governance</span></a>
-      </section>
-
-      <section class="educator-band">
-        <div>
-          <p class="micro-label">For educators</p>
-          <h3>Bring AI2Practice into your program.</h3>
-          <p>Use a ready-made pathway, review learning objectives, contribute a teaching case, or ask about the initial educational pilot.</p>
-        </div>
-        <div class="band-actions">
-          <a href="pages/educators.html">Use in a rotation</a>
-          <a href="pages/educators.html">Join the pilot</a>
-          <a href="pages/educators.html">Contribute</a>
-        </div>
-      </section>
-
-      <section class="research-band">
-        <div>
-          <p class="micro-label on-dark">Parallel research track</p>
-          <h3>Research Lab</h3>
-          <p>For learners who want to work with data, evaluate models, and design imaging AI research. Cross-links connect relevant Field Guide lessons without making research a requirement for clinical learners.</p>
-        </div>
-        <div class="research-links">
-          <a href="lessons/research-1.html">01 · Python &amp; GitHub</a>
-          <a href="lessons/research-2.html">02 · Data science</a>
-          <a href="lessons/research-3.html">03 · Image processing</a>
-          <a href="lessons/research-4.html">04–05 · AI development</a>
-        </div>
-      </section>
-
-      <section class="featured-lessons" aria-labelledby="featured-title">
-        <div class="featured-head">
-          <h3 id="featured-title">Featured lessons and tools</h3>
-          <a href="course-select.html">Browse all →</a>
-        </div>
-        <div class="featured-grid">
-          <a href="lessons/lesson-1.html"><span>Applied · 15 min · All clinicians</span><b>Skilling in the age of AI</b><small>New-skilling, deskilling, and re-skilling, with attention to the source framework.</small></a>
-          <a href="lessons/lesson-2.html"><span>Applied · 20 min · All clinicians</span><b>Can I trust this AI?</b><small>Evaluate evidence, understand bias, and judge clinical utility.</small></a>
-          <a href="tracker.html"><span>Deep dive · Clinical AI leaders</span><b>AI Tool Tracker</b><small>Compare capabilities, evidence, integration, and risk considerations across tools.</small></a>
-        </div>
-      </section>
+      <div class="channels">
+        <div class="ch-title">Planned channels</div>
+        <div class="channel" style="--c:var(--route-core)"><i></i>Main line &amp; cases<span>TBD</span></div>
+        <div class="channel" style="--c:var(--route-res)"><i></i>Research Lab<span>TBD</span></div>
+        <div class="channel" style="--c:var(--route-lead)"><i></i>Leadership<span>TBD</span></div>
+        <div class="channel" style="--c:var(--route-edu)"><i></i>Educators<span>TBD</span></div>
+      </div>
+      <div class="forum-foot"><span>Want a say in what we build first?</span><a class="home-btn" href="https://github.com/UM-IHC-CA2i/ai2practice">Follow on GitHub</a></div>
     </div>
   </section>
 </main>
@@ -172,9 +152,59 @@
       <img src="images/ai2practice-logo-white.svg" alt="AI2Practice" />
       <span>Practical, open clinical AI education</span>
     </div>
-    <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
+    <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
   </div>
 </footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="assets/site.js"></script>
+<script>
+(function(){
+  // Stops marked data-soon show a notice instead of a 404
+  var toast=document.getElementById('toast'),tid;
+  document.querySelector('.map-wrap svg').addEventListener('click',function(e){
+    var a=e.target.closest('a[data-soon]');if(!a)return;e.preventDefault();
+    toast.textContent=a.querySelector('title').textContent+': page coming soon';
+    toast.classList.add('show');clearTimeout(tid);tid=setTimeout(function(){toast.classList.remove('show')},2200);
+  });
+})();
+</script>
+<script>
+(function(){
+  // Hero constellation (from the original site): drifting, pulsing dots joined by faint lines when close.
+  // Dots dim toward the bottom, following the navy-to-white background fade.
+  var canvas=document.querySelector('.hero-canvas'), ctx=canvas.getContext('2d');
+  var CONNECT=130, N=90, stars=[];
+  var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){
+    canvas.width=canvas.offsetWidth*devicePixelRatio; canvas.height=canvas.offsetHeight*devicePixelRatio;
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  }
+  resize();
+  for(var i=0;i<N;i++) stars.push({x:Math.random()*canvas.offsetWidth, y:Math.random()*canvas.offsetHeight,
+    vx:(Math.random()-.5)*.15, vy:(Math.random()-.5)*.15, r:Math.random()*2.2+.8,
+    pulse:Math.random()*6.28, pulseSpeed:.008+Math.random()*.015});
+  function draw(){
+    var cw=canvas.offsetWidth, ch=canvas.offsetHeight;
+    ctx.clearRect(0,0,cw,ch); ctx.lineWidth=.6;
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i];
+      s.x+=s.vx; s.y+=s.vy; s.pulse+=s.pulseSpeed;
+      if(s.x<-20)s.x=cw+20; if(s.x>cw+20)s.x=-20; if(s.y<-20)s.y=ch+20; if(s.y>ch+20)s.y=-20;
+      var f=Math.min(1,Math.max(0,(.78-s.y/ch)/.4));
+      for(var j=i+1;j<stars.length;j++){
+        var b=stars[j], d=Math.hypot(s.x-b.x,s.y-b.y);
+        if(d<CONNECT){ ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle='rgba(200,210,230,'+((1-d/CONNECT)*.15*f)+')'; ctx.stroke(); }
+      }
+      var glow=(.4+Math.sin(s.pulse)*.25)*f;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r+6,0,6.283); ctx.fillStyle='rgba(200,210,230,'+(glow*.06)+')'; ctx.fill();
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fillStyle='rgba(200,215,240,'+glow+')'; ctx.fill();
+    }
+    if(!still) requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  draw();
+})();
+</script>
 </body>
 </html>

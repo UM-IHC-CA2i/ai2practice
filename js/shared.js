@@ -19,14 +19,14 @@
 
   function activeSection(path) {
     if (path === 'about.html') return 'about';
-    if (path === 'tracker.html') return 'field-guide';
-    if (path === 'research.html' || path.indexOf('lessons/research-') === 0) return 'research';
+    if (path === 'tracker.html') return 'curriculum';
+    if (path === 'research.html' || path.indexOf('lessons/research-') === 0) return 'spec';
     if (
       path === 'course-select.html' || path === 'students.html' || path === 'residents.html' ||
       path === 'student-cases.html' || path === 'resident-cases.html' ||
       path === 'student-assessment.html' || path === 'resident-assessment.html' ||
       path.indexOf('lessons/lesson-') === 0
-    ) return 'learning-paths';
+    ) return 'curriculum';
     return '';
   }
 
@@ -48,13 +48,12 @@
         '</a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>' +
         '<ul class="nav-links">' +
-          navLink('index.html#field-guide', 'Field Guide', 'field-guide', active) +
-          navLink('index.html#learning-paths', 'Learning Paths', 'learning-paths', active) +
-          navLink('pages/educators.html', 'For Educators', 'educators', active) +
-          navLink('pages/research-lab.html', 'Research Lab', 'research', active) +
-          navLink('pages/brief.html', 'AI2Practice Brief', 'brief', active) +
+          navLink('index.html#map', 'Route map', 'map', active) +
+          navLink('index.html#core', 'Curriculum', 'curriculum', active) +
+          navLink('index.html#spec', 'Specializations', 'spec', active) +
+          navLink('index.html#board', 'Updates', 'board', active) +
           navLink('about.html', 'About', 'about', active) +
-          '<li><a class="start-link" href="' + siteUrl('course-select.html') + '">Start learning</a></li>' +
+          '<li><a class="login" href="' + siteUrl('pages/educators.html') + '">Educator login</a></li>' +
         '</ul>' +
       '</div>';
     document.body.prepend(nav);
@@ -82,9 +81,10 @@
       '<div class="footer-inner">' +
         '<div class="footer-text">AI2Practice &middot; Practical, open clinical AI education &middot; ' + year + '</div>' +
         '<ul class="footer-links">' +
-          '<li><a href="' + siteUrl('index.html#field-guide') + '">Field Guide</a></li>' +
-          '<li><a href="' + siteUrl('index.html#learning-paths') + '">Learning Paths</a></li>' +
+          '<li><a href="' + siteUrl('index.html#map') + '">Route map</a></li>' +
           '<li><a href="' + siteUrl('pages/research-lab.html') + '">Research Lab</a></li>' +
+          '<li><a href="' + siteUrl('pages/adoption-governance.html') + '">Leadership</a></li>' +
+          '<li><a href="' + siteUrl('tracker.html') + '">AI Tool Tracker</a></li>' +
           '<li><a href="' + siteUrl('pages/brief.html') + '">AI2Practice Brief</a></li>' +
           '<li><a href="' + siteUrl('about.html') + '">About</a></li>' +
         '</ul>' +
