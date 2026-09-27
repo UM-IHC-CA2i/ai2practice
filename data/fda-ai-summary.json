@@ -1,0 +1,596 @@
+{
+  "source_page": "https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices",
+  "csv_url": "https://www.fda.gov/media/178541/download?attachment",
+  "synced_at_utc": "2026-09-27T02:17:45+00:00",
+  "latest_final_decision": "2026-06-29",
+  "total_list_entries": 1614,
+  "radiology_entries": 1230,
+  "radiology_share_pct": 76.2,
+  "display_panels": [
+    "Radiology",
+    "Cardiovascular",
+    "Neurology",
+    "Anesthesiology",
+    "Gastroenterology-Urology",
+    "Hematology",
+    "Pathology",
+    "Ophthalmic",
+    "General and Plastic Surgery",
+    "Other"
+  ],
+  "panel_totals": [
+    {
+      "panel": "Radiology",
+      "count": 1230
+    },
+    {
+      "panel": "Cardiovascular",
+      "count": 154
+    },
+    {
+      "panel": "Neurology",
+      "count": 73
+    },
+    {
+      "panel": "Anesthesiology",
+      "count": 30
+    },
+    {
+      "panel": "Gastroenterology-Urology",
+      "count": 27
+    },
+    {
+      "panel": "Hematology",
+      "count": 22
+    },
+    {
+      "panel": "Pathology",
+      "count": 10
+    },
+    {
+      "panel": "Ophthalmic",
+      "count": 10
+    },
+    {
+      "panel": "General and Plastic Surgery",
+      "count": 9
+    },
+    {
+      "panel": "Clinical Chemistry",
+      "count": 9
+    },
+    {
+      "panel": "Orthopedic",
+      "count": 8
+    },
+    {
+      "panel": "Dental",
+      "count": 7
+    },
+    {
+      "panel": "Microbiology",
+      "count": 7
+    },
+    {
+      "panel": "General Hospital",
+      "count": 6
+    },
+    {
+      "panel": "Obstetrics and Gynecology",
+      "count": 5
+    },
+    {
+      "panel": "Clinical Toxcicology",
+      "count": 5
+    },
+    {
+      "panel": "Ear Nose & Throat",
+      "count": 1
+    },
+    {
+      "panel": "Immunology",
+      "count": 1
+    }
+  ],
+  "years": [
+    {
+      "year": 1995,
+      "total": 2,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 2,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 1996,
+      "total": 0,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 1997,
+      "total": 1,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 1,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 1998,
+      "total": 2,
+      "panels": {
+        "Radiology": 2,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 1999,
+      "total": 0,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2000,
+      "total": 0,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2001,
+      "total": 2,
+      "panels": {
+        "Radiology": 1,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2002,
+      "total": 1,
+      "panels": {
+        "Radiology": 1,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2003,
+      "total": 0,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2004,
+      "total": 1,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2005,
+      "total": 1,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2006,
+      "total": 1,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2007,
+      "total": 0,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2008,
+      "total": 5,
+      "panels": {
+        "Radiology": 2,
+        "Cardiovascular": 1,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2009,
+      "total": 0,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2010,
+      "total": 2,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2011,
+      "total": 3,
+      "panels": {
+        "Radiology": 1,
+        "Cardiovascular": 0,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 1
+      }
+    },
+    {
+      "year": 2012,
+      "total": 5,
+      "panels": {
+        "Radiology": 2,
+        "Cardiovascular": 1,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 1,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2013,
+      "total": 4,
+      "panels": {
+        "Radiology": 0,
+        "Cardiovascular": 1,
+        "Neurology": 0,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 2
+      }
+    },
+    {
+      "year": 2014,
+      "total": 6,
+      "panels": {
+        "Radiology": 5,
+        "Cardiovascular": 0,
+        "Neurology": 1,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2015,
+      "total": 6,
+      "panels": {
+        "Radiology": 1,
+        "Cardiovascular": 1,
+        "Neurology": 1,
+        "Anesthesiology": 2,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2016,
+      "total": 18,
+      "panels": {
+        "Radiology": 11,
+        "Cardiovascular": 4,
+        "Neurology": 1,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 0,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 0,
+        "Other": 2
+      }
+    },
+    {
+      "year": 2017,
+      "total": 27,
+      "panels": {
+        "Radiology": 16,
+        "Cardiovascular": 7,
+        "Neurology": 0,
+        "Anesthesiology": 1,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 1,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2018,
+      "total": 65,
+      "panels": {
+        "Radiology": 40,
+        "Cardiovascular": 10,
+        "Neurology": 6,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 1,
+        "Hematology": 2,
+        "Pathology": 0,
+        "Ophthalmic": 1,
+        "General and Plastic Surgery": 0,
+        "Other": 5
+      }
+    },
+    {
+      "year": 2019,
+      "total": 80,
+      "panels": {
+        "Radiology": 51,
+        "Cardiovascular": 15,
+        "Neurology": 5,
+        "Anesthesiology": 1,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 1,
+        "Pathology": 0,
+        "Ophthalmic": 1,
+        "General and Plastic Surgery": 0,
+        "Other": 6
+      }
+    },
+    {
+      "year": 2020,
+      "total": 114,
+      "panels": {
+        "Radiology": 99,
+        "Cardiovascular": 8,
+        "Neurology": 1,
+        "Anesthesiology": 1,
+        "Gastroenterology-Urology": 0,
+        "Hematology": 3,
+        "Pathology": 0,
+        "Ophthalmic": 1,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2021,
+      "total": 129,
+      "panels": {
+        "Radiology": 110,
+        "Cardiovascular": 11,
+        "Neurology": 3,
+        "Anesthesiology": 0,
+        "Gastroenterology-Urology": 3,
+        "Hematology": 0,
+        "Pathology": 1,
+        "Ophthalmic": 1,
+        "General and Plastic Surgery": 0
+      }
+    },
+    {
+      "year": 2022,
+      "total": 162,
+      "panels": {
+        "Radiology": 138,
+        "Cardiovascular": 14,
+        "Neurology": 2,
+        "Anesthesiology": 2,
+        "Gastroenterology-Urology": 1,
+        "Hematology": 2,
+        "Pathology": 0,
+        "Ophthalmic": 2,
+        "General and Plastic Surgery": 0,
+        "Other": 1
+      }
+    },
+    {
+      "year": 2023,
+      "total": 226,
+      "panels": {
+        "Radiology": 178,
+        "Cardiovascular": 21,
+        "Neurology": 11,
+        "Anesthesiology": 5,
+        "Gastroenterology-Urology": 5,
+        "Hematology": 1,
+        "Pathology": 1,
+        "Ophthalmic": 1,
+        "General and Plastic Surgery": 0,
+        "Other": 3
+      }
+    },
+    {
+      "year": 2024,
+      "total": 235,
+      "panels": {
+        "Radiology": 183,
+        "Cardiovascular": 15,
+        "Neurology": 15,
+        "Anesthesiology": 5,
+        "Gastroenterology-Urology": 5,
+        "Hematology": 1,
+        "Pathology": 1,
+        "Ophthalmic": 2,
+        "General and Plastic Surgery": 2,
+        "Other": 6
+      }
+    },
+    {
+      "year": 2025,
+      "total": 335,
+      "panels": {
+        "Radiology": 254,
+        "Cardiovascular": 30,
+        "Neurology": 19,
+        "Anesthesiology": 8,
+        "Gastroenterology-Urology": 8,
+        "Hematology": 3,
+        "Pathology": 4,
+        "Ophthalmic": 1,
+        "General and Plastic Surgery": 2,
+        "Other": 6
+      }
+    },
+    {
+      "year": 2026,
+      "total": 181,
+      "panels": {
+        "Radiology": 135,
+        "Cardiovascular": 15,
+        "Neurology": 8,
+        "Anesthesiology": 4,
+        "Gastroenterology-Urology": 4,
+        "Hematology": 2,
+        "Pathology": 1,
+        "Ophthalmic": 0,
+        "General and Plastic Surgery": 2,
+        "Other": 10
+      }
+    }
+  ],
+  "csv_sha256": "b1efeb680371f44cae574ae5a5aa548ac8a63391e6888a007b17177d17527880",
+  "note": "FDA states that this list is updated periodically and is not comprehensive."
+}
