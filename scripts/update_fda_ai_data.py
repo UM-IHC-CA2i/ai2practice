@@ -111,6 +111,19 @@ def existing_hash() -> str | None:
         return None
 
 
+def ordered_display_panels(panel_totals: Counter[str]) -> list[str]:
+    """Radiology first, then every other FDA lead panel by descending count.
+
+    We intentionally avoid collapsing small specialties into "Other" so the slide legend can
+    show each specialty with its total count, matching the educational reference figure.
+    """
+    panels = []
+    if panel_totals.get("Radiology", 0):
+        panels.append("Radiology")
+    panels.extend([p for p, _ in panel_totals.most_common() if p != "Radiology"])
+    return panels
+
+
 def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -154,8 +167,7 @@ def main() -> None:
     radiology = panel_totals.get("Radiology", 0)
     share = round((radiology / total * 100.0), 1) if total else 0.0
 
-    ordered_panels = ["Radiology"]
-    ordered_panels += [p for p, _ in panel_totals.most_common() if p != "Radiology"][:8]
+    ordered_panels = ordered_display_panels(panel_totals)
 
     years = []
     if yearly_totals:
@@ -164,9 +176,6 @@ def main() -> None:
         for year in range(first_year, last_year + 1):
             total_year = yearly_totals.get(year, 0)
             shown = {p: yearly_panels[year].get(p, 0) for p in ordered_panels}
-            other = total_year - sum(shown.values())
-            if other:
-                shown["Other"] = other
             years.append({"year": year, "total": total_year, "panels": shown})
 
     panel_summary = [{"panel": p, "count": c} for p, c in panel_totals.most_common()]
@@ -179,7 +188,7 @@ def main() -> None:
         "total_list_entries": total,
         "radiology_entries": radiology,
         "radiology_share_pct": share,
-        "display_panels": ordered_panels + (["Other"] if any("Other" in y["panels"] for y in years) else []),
+        "display_panels": ordered_panels,
         "panel_totals": panel_summary,
         "years": years,
         "csv_sha256": csv_hash,
