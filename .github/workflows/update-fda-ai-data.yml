@@ -1,0 +1,49 @@
+name: Update FDA AI device data
+
+on:
+  schedule:
+    # FDA describes the source as updated periodically rather than on a fixed cadence.
+    # A weekly check catches new releases promptly without implying FDA updates weekly.
+    - cron: '17 10 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-fda-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install slide export dependency
+        run: python -m pip install python-pptx
+
+      - name: Download current FDA CSV and rebuild summary
+        run: python scripts/update_fda_ai_data.py
+
+      - name: Build downloadable PowerPoint slide
+        run: python scripts/build_fda_ai_slide.py
+
+      - name: Stop if FDA source and slide did not change
+        shell: bash
+        run: |
+          if git diff --quiet -- data/fda-ai-enabled-medical-devices.csv data/fda-ai-summary.json downloads/fda-ai-enabled-medical-device-list-slide.pptx; then
+            echo "No FDA data or slide changes detected."
+            exit 0
+          fi
+
+      - name: Commit updated FDA data and slide
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fda-ai-enabled-medical-devices.csv data/fda-ai-summary.json downloads/fda-ai-enabled-medical-device-list-slide.pptx
+          git commit -m "Update FDA AI device data and slide"
+          git push

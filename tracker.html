@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/fda-ai-tracker.css">
 </head>
 <body>
 
@@ -20,7 +21,44 @@
     </p>
   </div>
 </div>
-
+<!-- AI2PRACTICE FDA LANDSCAPE -->
+<section class="tracker-landscape" aria-labelledby="fdaLandscapeTitle">
+  <div class="tracker-landscape-card">
+    <div class="tracker-landscape-head">
+      <div>
+        <p class="tracker-kicker">The FDA AI landscape</p>
+        <h2 id="fdaLandscapeTitle">FDA AI-Enabled Medical Device List</h2>
+        <p class="tracker-landscape-deck">AI2Practice rebuilds this view from the FDA's downloadable AI-enabled medical-device list. Source data are credited to FDA; the visualization is adapted by AI2Practice for educational use and is not an FDA product or endorsement. The tracker below then narrows to chest radiography tools as a practical teaching example.</p>
+        <div class="tracker-actions" aria-label="FDA tracker actions">
+          <a class="tracker-button tracker-button-primary" href="downloads/fda-ai-enabled-medical-device-list-slide.pptx" download>Download slide (.pptx)</a>
+          <a class="tracker-button" href="https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices" target="_blank" rel="noopener">View FDA source</a>
+        </div>
+      </div>
+      <div class="tracker-share"><strong id="fdaRadiologyShare">â€”</strong><span>of entries in the FDA AI-Enabled Medical Device List are led by the Radiology panel</span></div>
+    </div>
+    <div class="tracker-metrics" aria-label="FDA AI device summary">
+      <div class="tracker-metric"><strong id="fdaTotalDevices">â€”</strong><span>entries in the FDA AI-Enabled Medical Device List</span></div>
+      <div class="tracker-metric"><strong id="fdaRadiologyDevices">â€”</strong><span>Radiology-panel entries</span></div>
+      <div class="tracker-metric"><strong id="fdaLatestYearCount">â€”</strong><span id="fdaLatestYearLabel">entries in latest year</span></div>
+    </div>
+    <div class="tracker-chart-block">
+      <div class="tracker-chart-head"><h3>Entries by year and FDA lead panel</h3><span id="fdaChartRange"></span></div>
+      <div class="tracker-chart-scroll"><div id="fdaStackedChart"></div></div>
+      <div id="fdaPanelLegend" class="tracker-legend" aria-label="Lead panel legend"></div>
+      <p class="tracker-data-note">Source data: <a href="https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices" target="_blank" rel="noopener">U.S. Food and Drug Administration, AI-Enabled Medical Devices List</a>. Visualization adapted by AI2Practice for educational use. FDA describes the source as updated periodically and notes that the list is not comprehensive. Latest final-decision date in the local source: <strong id="fdaLatestDecision">â€”</strong>. Last AI2Practice sync: <strong id="fdaSyncDate">â€”</strong>.</p>
+      <p id="fdaDataStatus" class="tracker-data-note tracker-data-status"></p>
+      <div class="tracker-definition">
+        <h3>What does FDA status mean?</h3>
+        <p>Not every entry on the FDA list should be described as â€œFDA-cleared.â€ Clearance, De Novo classification, and approval are distinct device pathways.</p>
+        <ul>
+          <li><strong>510(k) clearance</strong>FDA determines that a low- to moderate-risk device is substantially equivalent to an existing legally marketed predicate device.</li>
+          <li><strong>De Novo classification</strong>FDA classifies a novel low- to moderate-risk device type when there is no appropriate predicate.</li>
+          <li><strong>Premarket Approval (PMA)</strong>FDA's most stringent device pathway, used primarily for high-risk Class III devices, based on evidence supporting safety and effectiveness.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="page-content-wide">
 
   <div class="callout callout-yellow">
@@ -251,7 +289,7 @@
   </details>
 
 </div>
-
+<script src="assets/fda-ai-tracker.js"></script>
 <script src="js/shared.js"></script>
 </body>
 </html>

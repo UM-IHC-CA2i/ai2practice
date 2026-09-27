@@ -1,459 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="assets/theme.css">
-<style>
-/* ═══════════════════════════════════════════════
-   ABOUT PAGE
-   Edit this color to change the hero background.
-   Current: slightly darker than the homepage
-   About Us button green (#059669).
-   ═══════════════════════════════════════════════ */
-:root {
-  --about-hero-bg: #2E6B9E;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About AI2Practice and the team behind this open clinical AI education resource." />
+  <title>About — AI2Practice</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+  <style>
+    .about-hero { background: #eef4f5; }
+    .about-hero .about-kicker { color: var(--teal); font-size: .76rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; margin: 0 0 18px; }
+    .about-hero .about-deck { max-width: 760px; font-size: 1.13rem; color: var(--muted); }
+    .about-affiliation { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .about-affiliation > span { color: #435262; font-size: .92rem; font-weight: 600; }
+    .about-affiliation img { max-height: 44px; width: auto; object-fit: contain; }
 
-/* Hero */
-.about-hero {
-  background: var(--about-hero-bg);
-  color: var(--white);
-  padding: 88px 40px 72px;
-  position: relative;
-  overflow: hidden;
-}
+    .about-section { padding: 72px 0; }
+    .about-section + .about-section { border-top: 1px solid var(--line); }
+    .about-section-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 52px; align-items: end; margin-bottom: 34px; }
+    .about-section-head h2 { margin: 0; font-size: clamp(2.15rem,4vw,3.4rem); line-height: 1; font-weight: 500; letter-spacing: -.04em; }
+    .about-section-head p { margin: 0; color: var(--muted); max-width: 680px; }
 
-.about-hero::before {
-  content: '';
-  position: absolute;
-  right: -40px;
-  top: -60px;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
-}
+    .co-lead-panel { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow); }
+    .co-lead { display: grid; grid-template-columns: 155px 1fr; min-height: 220px; }
+    .co-lead + .co-lead { border-left: 1px solid var(--line); }
+    .lead-photo { width: 155px; height: 100%; min-height: 220px; object-fit: cover; object-position: center top; }
+    .lead-copy { padding: 28px 26px 24px; display: flex; flex-direction: column; justify-content: center; }
+    .role-label { display: inline-block; width: fit-content; margin-bottom: 15px; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .lead-copy h3 { margin: 0 0 8px; font-family: var(--serif); font-size: 1.5rem; line-height: 1.08; font-weight: 500; color: var(--navy); }
+    .lead-copy p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
 
-.about-hero::after {
-  content: '';
-  position: absolute;
-  left: 15%;
-  bottom: -80px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,.03) 0%, transparent 70%);
-}
-
-.about-hero-inner {
-  max-width: var(--wide-width);
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.about-hero-text h1 {
-  font-size: 2.6rem;
-  font-weight: 900;
-  color: var(--white);
-  margin-bottom: 4px;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-.about-hero-text .hero-acronym {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
-  margin-bottom: 16px;
-  letter-spacing: 0.02em;
-}
-
-.about-hero-text p {
-  font-family: var(--serif);
-  font-size: 1rem;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.75;
-  font-style: italic;
-  margin: 0;
-  max-width: 440px;
-}
-
-/* Hero right — AAR on top, RRA below */
-.about-hero-logos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-}
-
-.about-hero-logo-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.about-hero-logo-item img {
-  height: 140px;
-  width: auto;
-  object-fit: contain;
-  border-radius: var(--radius);
-}
-
-.about-hero-logo-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.9);
-  text-align: center;
-}
-
-/* Team */
-.section--team {
-  background: linear-gradient(180deg, #E8F0F8 0%, #F2F6FB 100%);
-}
-
-.team-intro {
-  text-align: center;
-  max-width: 660px;
-  margin: 0 auto 12px;
-}
-
-.team-intro h2 {
-  font-size: 1.5rem;
-  margin: 0 0 8px;
-  color: var(--primary);
-}
-
-.team-intro p {
-  font-size: 0.88rem;
-  color: var(--gray-400);
-}
-
-.team-headshot-note {
-  text-align: center;
-  font-size: 0.82rem;
-  color: var(--gray-400);
-  font-style: italic;
-  margin-bottom: 32px;
-}
-
-/* Roster table */
-.roster-table {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  border: 1px solid var(--gray-200);
-}
-
-.roster-table thead th {
-  background: var(--primary);
-  color: var(--white);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 14px 20px;
-  text-align: left;
-}
-
-.roster-table tbody tr {
-  transition: background var(--transition);
-}
-
-.roster-table tbody tr:hover {
-  background: #f0f5fc;
-}
-
-.roster-table tbody tr + tr td {
-  border-top: 1px solid var(--gray-100);
-}
-
-.roster-table td {
-  padding: 14px 20px;
-  font-size: 0.88rem;
-  color: var(--gray-600);
-  vertical-align: top;
-  line-height: 1.45;
-}
-
-.roster-name {
-  font-weight: 700;
-  color: var(--gray-900);
-}
-
-.roster-note {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--gray-400);
-  margin-top: 2px;
-  font-style: italic;
-}
+    .contributor-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px 22px; }
+    .contributor-card { min-width: 0; }
+    .contributor-photo { width: 92px; height: 92px; display: block; margin: 0 0 14px; border-radius: 4px; object-fit: cover; object-position: center top; background: var(--paper-2); border: 1px solid var(--line); }
+    .contributor-card h3 { margin: 0 0 5px; font-family: var(--serif); font-size: 1.06rem; line-height: 1.2; font-weight: 500; color: var(--navy); }
+    .contributor-card p { margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.4; }
+    .contributor-tag { display: inline-block; margin: 0 0 7px; padding: 3px 7px; border: 1px solid #c6d6d2; border-radius: 999px; background: #eef5f3; color: var(--teal); font-size: .62rem; line-height: 1.2; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 
 
-/* Contributing Institutions (below team) */
-.section--institutions {
-  background: var(--white);
-}
-
-.institutions-intro {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.institutions-intro h2 {
-  font-size: 1.5rem;
-  margin: 0 0 8px;
-  color: var(--primary);
-}
-
-.institutions-intro p {
-  font-size: 0.88rem;
-  color: var(--gray-400);
-}
-
-.institution-grid {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-}
-
-.institution-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 200px;
-}
-
-.institution-card img {
-  height: 100px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 12px;
-}
-
-.institution-card-placeholder {
-  width: 120px;
-  height: 100px;
-  border: 2px dashed var(--gray-200);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-400);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 8px;
-  margin-bottom: 12px;
-}
-
-.institution-card-name {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--gray-900);
-  line-height: 1.3;
-}
-
-@media (max-width: 768px) {
-  .about-hero { padding: 56px 20px 48px; }
-  .about-hero-inner { grid-template-columns: 1fr; gap: 28px; }
-  .about-hero-text h1 { font-size: 1.8rem; }
-  .about-hero-logo-item img { height: 100px; }
-  .roster-table { font-size: 0.82rem; }
-  .roster-table thead th,
-  .roster-table td { padding: 10px 12px; }
-  .institution-grid { gap: 32px; }
-  .institution-card { width: 160px; }
-  .institution-card img { height: 80px; }
-  .institution-card-placeholder { width: 100px; height: 80px; }
-}
-</style>
+    @media (max-width: 980px) {
+      .contributor-grid { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 900px) {
+      .about-section-head { grid-template-columns: 1fr; gap: 16px; }
+      .co-lead-panel { grid-template-columns: 1fr; }
+      .co-lead + .co-lead { border-left: 0; border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 700px) {
+      .contributor-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 620px) {
+      .about-section { padding: 56px 0; }
+      .co-lead { grid-template-columns: 112px 1fr; min-height: 180px; }
+      .lead-photo { width: 112px; min-height: 180px; }
+      .lead-copy { padding: 20px; }
+      .lead-copy h3 { font-size: 1.28rem; }
+      .contributor-grid { gap: 22px 18px; }
+      .contributor-photo { width: 78px; height: 78px; }
+      .about-affiliation { gap: 16px; }
+      .about-affiliation img { max-height: 36px; }
+    }
+  </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell navbar">
+  <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html#map">Curriculum</a></li><li><a href="index.html#spec">Specializations</a></li><li><a href="index.html#board">Updates</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a class="login" href="pages/educators.html">Educator login</a></li></ul></nav>
+</div></header>
 
-<div class="about-hero">
-  <div class="about-hero-inner">
-    <div class="about-hero-text">
-      <h1>About Us</h1>
-      <div class="hero-acronym">RAISE &mdash; Radiology AI Skills & Education </div>
-      <p>
-        An educational resource developed by the Committee on Data Science &amp; AI
-        of the AAR/RRA to help trainees navigate the integration of AI into radiology practice.
-      </p>
+<main id="main">
+  <section class="page-hero about-hero"><div class="shell">
+    <p class="about-kicker">About AI2Practice</p>
+    <h1>Clinical AI education built for practice.</h1>
+    <p class="about-deck">AI2Practice is an open educational resource that connects the foundations of artificial intelligence with clinical evaluation, implementation, research, and teaching in radiology.</p>
+    <div class="about-affiliation">
+      <span>An initiative of the AAR / RRA Committee on Data Science &amp; AI</span>
+      <img src="images/aar-logo.jpg" alt="Association of Academic Radiology" />
+      <img src="images/rra-logo.webp" alt="Radiology Research Alliance" />
     </div>
-    <div class="about-hero-logos">
-      <div class="about-hero-logo-item">
-        <img src="images/aar-logo.jpg" alt="Association of Academic Radiology">
-        <div class="about-hero-logo-label">Association of Academic Radiology</div>
-      </div>
-      <div class="about-hero-logo-item">
-        <img src="images/rra-logo.webp" alt="Radiology Research Alliance">
-        <div class="about-hero-logo-label">Radiology Research Alliance</div>
-      </div>
+  </div></section>
+
+  <section class="about-section"><div class="shell">
+    <div class="about-section-head"><h2>Co-leads</h2><p>AI2Practice is co-led by Shinjer Li and Florence Doo, with contributors spanning radiology, imaging informatics, AI, education, and clinical implementation.</p></div>
+    <div class="co-lead-panel">
+      <article class="co-lead">
+        <img class="lead-photo" src="images/shinjer-li.png" alt="Shinjer Li" />
+        <div class="lead-copy"><span class="role-label">Co-lead</span><h3>Shinjer Li</h3><p>Eastern Virginia Medical School at Old Dominion University</p></div>
+      </article>
+      <article class="co-lead">
+        <img class="lead-photo" src="images/florence-doo.png" alt="Florence Doo" />
+        <div class="lead-copy"><span class="role-label">Co-lead</span><h3>Florence Doo, MD, MA, CIIP</h3><p>University of Maryland Institute for Health Computing</p></div>
+      </article>
     </div>
-  </div>
-</div>
+  </div></section>
 
-<!-- Team Section -->
-<section class="section section--team">
-  <div class="section-inner">
-    <div class="team-intro">
-      <h2 class="mt-0">Committee Members</h2>
-      <p>AAR/RRA Committee on Data Science &amp; AI</p>
+  <section class="about-section"><div class="shell">
+    <div class="about-section-head"><h2>Contributors</h2><p>Committee contributors bring perspectives from academic radiology, clinical AI, imaging informatics, education, and practice leadership.</p></div>
+    <div class="contributor-grid">
+      <article class="contributor-card"><img class="contributor-photo" src="https://medschool.ucla.edu/sites/default/files/styles/box_1_1_500/public/media/images/katherine_andriole.jpg.webp?h=e9e0f3db&amp;itok=VvcAJnUK" alt="Katherine Andriole" loading="lazy" /><h3>Katherine Andriole, PhD</h3><p>UCLA David Geffen School of Medicine</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://cdn-images.kyruus.com/providermatch/ucihealth/photos/orig/chang-peter-1841530458.png" alt="Peter Chang" loading="lazy" /><h3>Peter Chang, MD</h3><p>University of California, Irvine</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://scholars.duke.edu/profile-images/full/0256542.jpg" alt="Lars Grimm" loading="lazy" /><h3>Lars Grimm, MD, MHS</h3><p>Duke University</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://aarad.memberclicks.net/assets/About/Executive-Committee/M_Heilbrun_12_22.jpg" alt="Marta Heilbrun" loading="lazy" /><h3>Marta Heilbrun, MD</h3><p>Intermountain Health</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://winshipcancer.emory.edu/profiles/_images/krupinski-e-headshot.jpg" alt="Elizabeth Krupinski" loading="lazy" /><h3>Elizabeth Krupinski, PhD</h3><p>Emory University</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://med.uoc.gr/wp-content/uploads/2025/01/klontzas-1-280x280.jpg" alt="Michail Klontzas" loading="lazy" /><h3>Michail Klontzas, MD, PhD</h3><p>University of Crete School of Medicine</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://static.wixstatic.com/media/e6e8bc_711a5e0db52a4ea68717f796fad76a89~mv2.jpg/v1/crop/x_73%2Cy_0%2Cw_413%2Ch_518/fill/w_306%2Ch_384%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Raisa%20Amiruddin.jpg" alt="Raisa Amiruddin" loading="lazy" /><h3>Raisa Amiruddin, MBBS</h3><p>MetroWest Medical Center, Massachusetts</p></article>
+      <article class="contributor-card"><img class="contributor-photo" src="https://med.emory.edu/departments/radiology/about-us/images/faculty-staff-awards/2025/kadom-nadja-2025-square.png" alt="Nadja Kadom" loading="lazy" /><span class="contributor-tag">Advisor &middot; RRA representative</span><h3>Nadja Kadom, MD</h3><p>Emory University / Children's Healthcare of Atlanta</p></article>
     </div>
-    <div class="team-headshot-note">Headshots will be added later.</div>
+  </div></section>
 
-    <table class="roster-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Institution / Position</th>
-        </tr>
-      </thead>
-      <tbody>
+</main>
 
-        <tr>
-          <td><span class="roster-name">Flo Doo</span></td>
-          <td>Chair</td>
-          <td>Univ. of Maryland Institute for Health Computing &mdash; Assistant Prof &amp; Co-Lead of AI-Enabled Medical Imaging, Center for Applied AI (CA2i)</td>
-        </tr>
-
-        <tr>
-          <td><span class="roster-name">Katherine Andriole, PhD</span></td>
-          <td>Member, TBD</td>
-          <td>UCLA (David Geffen School of Medicine) &mdash; Associate Dean for Health AI Strategy and Innovation; Director, UCLA Center for AI and SMART Health; Professor of Radiological Sciences</td>
-        </tr>
-
-        <tr>
-          <td><span class="roster-name">Peter Chang, MD</span></td>
-          <td>Member, TBD</td>
-          <td>UC Irvine &mdash; Co-Director, Center for AI in Diagnostic Medicine</td>
-        </tr>
-
-        <tr>
-          <td><span class="roster-name">Lars Grimm, MD, MHS</span></td>
-          <td>Member, TBD</td>
-          <td>Duke University &mdash; Associate Professor of Radiology</td>
-        </tr>
-
-        <tr>
-          <td><span class="roster-name">Marta Heilbrun, MD</span></td>
-          <td>Member, TBD</td>
-          <td>Intermountain Healthcare &mdash; Associate Medical Director, Imaging Services Quality &amp; Patient Safety</td>
-        </tr>
-
-        <tr>
-          <td><span class="roster-name">Elizabeth Krupinski, PhD</span></td>
-          <td>Member, TBD</td>
-          <td>Emory University &mdash; Vice Chair for Research, Radiology</td>
-        </tr>
-
-        <tr>
-          <td>
-            <span class="roster-name">Michail Klontzas, MD, PhD</span>
-            <span class="roster-note">International member; EuSoMII leader</span>
-          </td>
-          <td>Member, TBD</td>
-          <td>University of Crete (School of Medicine, Dept. of Radiology); also affiliated with Karolinska Institute</td>
-        </tr>
-
-        <tr>
-          <td>
-            <span class="roster-name">Raisa Amiruddin, MBBS</span>
-            <span class="roster-note">Trainee member; upcoming resident</span>
-          </td>
-          <td>Member, TBD</td>
-          <td>Children&rsquo;s Hospital of Philadelphia (CHOP) Research Institute &mdash; Radiology Research Scholar, Global Radiology Outreach and Education</td>
-        </tr>
-
-        <tr>
-          <td>
-            <span class="roster-name">Shinjer Li</span>
-            <span class="roster-note">Trainee member; medical student, M2</span>
-          </td>
-          <td>Member, TBD</td>
-          <td>Eastern Virginia Medical School &mdash; Medical Student (Class of 2029)</td>
-        </tr>
-
-        <tr>
-          <td><span class="roster-name">Nadja Kadom, MD</span></td>
-          <td>Observing / Guest</td>
-          <td>Emory University / CHOA &mdash; Director of Pediatric Neuroradiology (President of AAR RRA)</td>
-        </tr>
-
-      </tbody>
-    </table>
-
-  </div>
-</section>
-
-<!-- Contributing Institutions -->
-<section class="section section--institutions">
-  <div class="section-inner">
-    <div class="institutions-intro">
-      <h2 class="mt-0">Contributing Institutions</h2>
-    </div>
-    <div class="institution-grid">
-      <div class="institution-card">
-        <img src="images/aar-logo.jpg" alt="AAR">
-        <div class="institution-card-name">Association of Academic Radiology</div>
-      </div>
-      <div class="institution-card">
-        <img src="images/rra-logo.webp" alt="RRA">
-        <div class="institution-card-name">Radiology Research Alliance</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">UCLA<br>Logo</div>
-        <div class="institution-card-name">UCLA David Geffen School of Medicine</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">UCI<br>Logo</div>
-        <div class="institution-card-name">UC Irvine</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">Duke<br>Logo</div>
-        <div class="institution-card-name">Duke University</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">IHC<br>Logo</div>
-        <div class="institution-card-name">Intermountain Healthcare</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">Emory<br>Logo</div>
-        <div class="institution-card-name">Emory University</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">UoC<br>Logo</div>
-        <div class="institution-card-name">University of Crete</div>
-      </div>
-      <div class="institution-card">
-        <div class="institution-card-placeholder">CHOP<br>Logo</div>
-        <div class="institution-card-name">Children&rsquo;s Hospital of Philadelphia</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script src="js/shared.js"></script>
+<footer class="site-footer compact-footer"><div class="shell compact-footer-row">
+  <div class="footer-mini-brand"><img src="images/ai2practice-logo-white.svg" alt="AI2Practice" /><span>Practical, open clinical AI education</span></div>
+  <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
+</div></footer>
+<script src="assets/site.js"></script>
 </body>
 </html>
