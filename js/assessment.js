@@ -9,6 +9,20 @@ var AssessmentEngine = (function() {
     config: null
   };
 
+  function pathwayKey() {
+    var q = new URLSearchParams(window.location.search).get('pathway');
+    if (['beginner','intermediate','advanced'].indexOf(q) !== -1) return q;
+    return state.config && state.config.trackLabel === 'Medical Student' ? 'beginner' : 'intermediate';
+  }
+  function recordAssessment(pct, correct, total) {
+    try {
+      var p = pathwayKey(), raw=localStorage.getItem('ai2practice_assessments_v1'), data=raw?JSON.parse(raw):{};
+      if(!data||typeof data!=='object'||Array.isArray(data))data={}; var old=data[p]||{}, best=Math.max(Number(old.bestScore)||0,pct);
+      data[p]={bestScore:best,passed:!!old.passed||pct>=80,correct:correct,total:total,updatedAt:new Date().toISOString()};
+      localStorage.setItem('ai2practice_assessments_v1',JSON.stringify(data)); localStorage.setItem('ai2practice_pathway_v1',p);
+    } catch(e) {}
+  }
+
   function init(config) {
     state.config = config;
     state.total = document.querySelectorAll('.quiz-question').length;
@@ -75,6 +89,7 @@ var AssessmentEngine = (function() {
       });
 
       var pct = Math.round((correct / state.total) * 100);
+      recordAssessment(pct, correct, state.total);
       var results = document.getElementById('quiz-results');
       if (!results) return;
 
@@ -90,7 +105,8 @@ var AssessmentEngine = (function() {
       if (pct >= 80) {
         document.getElementById('quiz-status').textContent = 'Passed';
         document.getElementById('quiz-status').className = 'quiz-status passed';
-        document.getElementById('cert-section').style.display = 'block';
+        var cert = document.getElementById('cert-section');
+        if (cert) { cert.style.display = 'block'; cert.innerHTML = '<p><strong>Assessment passed.</strong> Your score is saved locally. The completion certificate unlocks when the required core lessons and pathway cases are also complete.</p><p><a class="btn btn-accent" href="progress.html?pathway=' + pathwayKey() + '">Return to Progress &amp; Completion</a></p>'; }
         document.getElementById('retry-section').style.display = 'none';
       } else {
         document.getElementById('quiz-status').textContent = 'Not Yet';

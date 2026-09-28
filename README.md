@@ -36,10 +36,10 @@ Move from model performance to the human–AI system.
 
 Topics include evidence appraisal, external validity, clinician reliance, workflow integration, automation bias, and clinical value.
 
-## Adoption & Governance
-### Bring AI Into Practice
+## Leadership
+### Lead AI Into Practice
 
-Follow the lifecycle of clinical AI adoption:
+Lead clinical AI across strategy, evidence, implementation, governance, people, infrastructure, and monitoring. The practical deployment lifecycle includes:
 
 1. **Define the need**
 2. **Select / procure**
@@ -47,7 +47,7 @@ Follow the lifecycle of clinical AI adoption:
 4. **Implement**
 5. **Monitor & govern**
 
-This section focuses on the operational and institutional work required to move from an AI product to a reliable clinical deployment.
+This section covers the operational and institutional work required to move from clinical need to reliable, monitored, and accountable AI-enabled practice.
 
 ---
 

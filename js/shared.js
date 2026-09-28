@@ -19,7 +19,8 @@
 
   function activeSection(path) {
     if (path === 'about.html') return 'about';
-    if (path === 'tracker.html') return 'curriculum';
+    if (path === 'progress.html' || path === 'certificate.html') return 'progress';
+    if (path === 'tracker.html') return 'resources';
     if (path === 'research.html' || path.indexOf('lessons/research-') === 0) return 'spec';
     if (
       path === 'course-select.html' || path === 'students.html' || path === 'residents.html' ||
@@ -43,16 +44,14 @@
     nav.setAttribute('aria-label', 'Primary');
     nav.innerHTML =
       '<div class="nav-inner">' +
-        '<a href="' + siteUrl('index.html') + '" class="nav-brand" aria-label="AI2Practice home">' +
-          '<img src="' + siteUrl('images/ai2practice-logo.svg') + '" alt="AI2Practice" class="nav-logo" width="420" height="103">' +
-        '</a>' +
+        '<a href="' + siteUrl('index.html') + '" class="nav-brand" aria-label="AI2Practice home"><img src="' + siteUrl('images/ai2practice-logo.svg') + '" alt="AI2Practice" class="nav-logo" width="420" height="103"></a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>' +
         '<ul class="nav-links">' +
           navLink('index.html#map', 'Curriculum', 'curriculum', active) +
-          navLink('index.html#spec', 'Specializations', 'spec', active) +
-          navLink('index.html#board', 'Updates', 'board', active) +
+          navLink('progress.html', 'Progress', 'progress', active) +
+          '<li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="' + siteUrl('pages/research-lab.html') + '"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="' + siteUrl('pages/adoption-governance.html') + '"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li>' +
+          '<li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="' + siteUrl('tracker.html') + '"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="' + siteUrl('pages/brief.html') + '"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="' + siteUrl('pages/educators.html') + '"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li>' +
           navLink('about.html', 'About', 'about', active) +
-          '<li><a class="login" href="' + siteUrl('pages/educators.html') + '">Educator login</a></li>' +
         '</ul>' +
       '</div>';
     document.body.prepend(nav);
@@ -62,6 +61,16 @@
     toggle.addEventListener('click', function() {
       var open = links.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    function closeDrops(except) {
+      nav.querySelectorAll('.nav-drop.open').forEach(function(d) { if (d !== except) { d.classList.remove('open'); var b=d.querySelector('.nav-drop-toggle'); if(b)b.setAttribute('aria-expanded','false'); } });
+    }
+    nav.querySelectorAll('.nav-drop').forEach(function(drop) {
+      var b=drop.querySelector('.nav-drop-toggle'); if(!b)return;
+      b.addEventListener('click',function(e){e.stopPropagation();var willOpen=!drop.classList.contains('open');closeDrops(drop);drop.classList.toggle('open',willOpen);b.setAttribute('aria-expanded',willOpen?'true':'false');});
+      drop.addEventListener('mouseenter',function(){if(window.matchMedia('(min-width: 901px)').matches){closeDrops(drop);drop.classList.add('open');b.setAttribute('aria-expanded','true');}});
+      drop.addEventListener('mouseleave',function(){if(window.matchMedia('(min-width: 901px)').matches){drop.classList.remove('open');b.setAttribute('aria-expanded','false');}});
     });
 
     document.addEventListener('click', function(e) {

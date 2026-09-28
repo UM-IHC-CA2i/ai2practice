@@ -14,7 +14,7 @@ var CheckpointQuiz = (function() {
 
   function getCompleted() {
     try {
-      var raw = sessionStorage.getItem(STORAGE_KEY);
+      var raw = localStorage.getItem(STORAGE_KEY);
       return raw ? JSON.parse(raw) : [];
     } catch(e) { return []; }
   }
@@ -23,18 +23,18 @@ var CheckpointQuiz = (function() {
     var done = getCompleted();
     if (done.indexOf(key) === -1) {
       done.push(key);
-      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
     }
   }
 
   function hasPassed(lessonKey) {
     try {
-      return sessionStorage.getItem(PASS_KEY_PREFIX + lessonKey) === '1';
+      return localStorage.getItem(PASS_KEY_PREFIX + lessonKey) === '1';
     } catch(e) { return false; }
   }
 
   function setPassed(lessonKey) {
-    try { sessionStorage.setItem(PASS_KEY_PREFIX + lessonKey, '1'); } catch(e) {}
+    try { localStorage.setItem(PASS_KEY_PREFIX + lessonKey, '1'); } catch(e) {}
   }
 
   function init(config) {

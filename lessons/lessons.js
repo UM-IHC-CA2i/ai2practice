@@ -4,10 +4,12 @@
   var params = new URLSearchParams(window.location.search);
   var track = params.get('track') || 'student';
   var lessonsRaw = params.get('lessons');
-  var lessons = (lessonsRaw !== null && lessonsRaw !== '') ? lessonsRaw : '1,2,3,4,5';
+  var lessons = (lessonsRaw !== null && lessonsRaw !== '') ? lessonsRaw : '2,3,4,1';
   var research = params.get('research') === '1';
+  var pathway = params.get('pathway');
   var qs = '?track=' + track + '&lessons=' + lessons;
   if (research) qs += '&research=1';
+  if (pathway) qs += '&pathway=' + encodeURIComponent(pathway);
 
   var trackLabel = document.getElementById('les-track');
   var path = window.location.pathname;
@@ -20,7 +22,7 @@
       trackLabel.style.background = '#F6E6DF';
       trackLabel.style.color = '#A8492C';
     } else {
-      trackLabel.textContent = track === 'resident' ? 'Resident' : 'Medical Student';
+      trackLabel.textContent = track === 'resident' ? 'Deeper radiology' : 'Concise';
     }
   }
 
@@ -63,11 +65,10 @@
   // ── Pill Bar ──
 
   var CLINICAL = [
-    { key: 'lesson-1', file: 'lesson-1.html', label: 'Expertise & AI' },
-    { key: 'lesson-2', file: 'lesson-2.html', label: 'AI 101' },
-    { key: 'lesson-3', file: 'lesson-3.html', label: 'Radiology 101' },
-    { key: 'lesson-4', file: 'lesson-4.html', label: 'AI Evaluation' },
-    { key: 'lesson-5', file: 'lesson-5.html', label: 'Future of AI' }
+    { key: 'lesson-2', file: 'lesson-2.html', label: 'AI Fundamentals' },
+    { key: 'lesson-3', file: 'lesson-3.html', label: 'Workflow' },
+    { key: 'lesson-4', file: 'lesson-4.html', label: 'Clinical Evidence' },
+    { key: 'lesson-1', file: 'lesson-1.html', label: 'Expertise & Skill' }
   ];
 
   var RESEARCH_ITEMS = [
@@ -84,7 +85,7 @@
 
   function getCompleted() {
     try {
-      var raw = sessionStorage.getItem(STORAGE_KEY);
+      var raw = localStorage.getItem(STORAGE_KEY);
       return raw ? JSON.parse(raw) : [];
     } catch(e) { return []; }
   }
@@ -93,12 +94,28 @@
     var done = getCompleted();
     if (done.indexOf(key) === -1) {
       done.push(key);
-      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
     }
   }
 
   var currentKey = file.replace('.html', '');
   var selectedLessons = lessons ? lessons.split(',') : [];
+
+  // Migrate progress from older session-only storage into persistent local browser storage.
+  try {
+    var oldDone = sessionStorage.getItem(STORAGE_KEY);
+    if (oldDone && !localStorage.getItem(STORAGE_KEY)) localStorage.setItem(STORAGE_KEY, oldDone);
+  } catch(e) {}
+
+  if (!isResearchPage) {
+    var topbar = document.querySelector('.les-topbar');
+    if (topbar && !document.querySelector('.local-progress-note')) {
+      var note = document.createElement('div');
+      note.className = 'local-progress-note';
+      note.innerHTML = 'Progress is saved locally in this browser when you continue. <a href="../progress.html">View, export, or import progress &rarr;</a>';
+      topbar.insertAdjacentElement('afterend', note);
+    }
+  }
 
   function buildPillBar() {
     var done = getCompleted();
@@ -190,9 +207,27 @@
 
   buildPillBar();
 
+  // Follow the selected curriculum order rather than legacy file numbering.
+  if (!isResearchPage && currentKey.indexOf('lesson-') === 0 && currentKey !== 'lesson-5') {
+    var currentNum = currentKey.replace('lesson-', '');
+    var idx = selectedLessons.indexOf(currentNum);
+    if (idx >= 0) {
+      if (prevLink) {
+        if (idx > 0) { prevLink.href = 'lesson-' + selectedLessons[idx-1] + '.html' + qs; prevLink.style.display = ''; }
+        else { prevLink.href = '../progress.html' + (pathway ? '?pathway=' + encodeURIComponent(pathway) : ''); prevLink.textContent = '\u2190 Progress'; }
+      }
+      if (nextLink) {
+        if (idx < selectedLessons.length - 1) nextLink.href = 'lesson-' + selectedLessons[idx+1] + '.html' + qs;
+        else nextLink.href = '../progress.html' + (pathway ? '?pathway=' + encodeURIComponent(pathway) : '');
+        nextLink.textContent = idx < selectedLessons.length - 1 ? 'Mark complete & continue \u2192' : 'Mark complete & continue to Progress \u2192';
+      }
+    }
+  }
+  if (currentKey === 'lesson-5' && nextLink) { nextLink.href = '../progress.html' + (pathway ? '?pathway=' + encodeURIComponent(pathway) : ''); nextLink.textContent = 'Return to Progress \u2192'; }
+
   if (nextLink && !isResearchPage) {
     nextLink.addEventListener('click', function() {
-      markCompleted(currentKey);
+      if (currentKey !== 'lesson-5') markCompleted(currentKey);
     });
   }
 
@@ -202,7 +237,7 @@
 
   function hasPassed(key) {
     try {
-      return sessionStorage.getItem('aiready_ckpt_' + key) === '1';
+      return localStorage.getItem('aiready_ckpt_' + key) === '1';
     } catch(e) { return false; }
   }
 })();

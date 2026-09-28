@@ -29,7 +29,7 @@
 <header class="site-header"><div class="shell navbar">
   <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  <nav aria-label="Primary"><ul class="nav-links"><li><a href="#map">Curriculum</a></li><li><a href="#spec">Specializations</a></li><li><a href="#board">Updates</a></li><li><a href="about.html">About</a></li><li><a class="login" href="pages/educators.html">Educator login</a></li></ul></nav>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html#map">Curriculum</a></li><li><a href="progress.html">Progress</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
 
 <main id="main" class="home-shell">
@@ -58,13 +58,13 @@
 <path d="M780 180 C825 180 825 245 870 245 H925" stroke="var(--route-adv)" stroke-width="10" fill="none" stroke-linecap="round"/>
 <path d="M40 180 H790" stroke="var(--route-core)" stroke-width="16" stroke-linecap="round" fill="none"/>
 <!-- Stops. Add data-soon to a stop whose page does not exist yet: it shows a notice instead of a 404. -->
-<a href="modules/ai-fundamentals.html" class="st"><title>Module 1: Fundamentals of AI</title><circle class="hit" cx="150" cy="180" r="32"/><circle cx="150" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="150" y="140" text-anchor="middle" class="mL">1 &middot; Fundamentals of AI</text><text x="150" y="234" text-anchor="middle" class="mS">Models, data, performance</text></a>
-<a href="modules/informatics.html" class="st"><title>Module 2: Radiology AI: Data, Systems &amp; Workflow</title><circle class="hit" cx="400" cy="180" r="32"/><circle cx="400" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="400" y="140" text-anchor="middle" class="mL">2 &middot; Radiology AI &amp; Workflow</text><text x="400" y="234" text-anchor="middle" class="mS">Data, systems, integration</text></a>
-<a href="modules/clinical-practice.html" class="st"><title>Module 3: AI in Clinical Practice</title><circle class="hit" cx="650" cy="180" r="32"/><circle cx="650" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="650" y="140" text-anchor="middle" class="mL">3 &middot; AI in Clinical Practice</text><text x="650" y="234" text-anchor="middle" class="mS">Evidence, workflow, reliance</text></a>
-<text x="911" y="83" class="mT">CASES &amp; CERTIFICATE</text>
-<a href="student-cases.html?level=medical_student" class="st"><title>Cases &amp; certificate: Beginner</title><circle class="hit" cx="965" cy="115" r="28"/><circle cx="925" cy="115" r="14" fill="#fff" stroke="var(--route-beg)" stroke-width="5"/><text x="951" y="121" class="mL">Beginner</text></a>
-<a href="resident-cases.html?level=radiology_resident" class="st"><title>Cases &amp; certificate: Intermediate</title><circle class="hit" cx="965" cy="180" r="28"/><circle cx="925" cy="180" r="14" fill="#fff" stroke="var(--route-int)" stroke-width="5"/><text x="951" y="186" class="mL">Intermediate</text></a>
-<a href="resident-cases.html?level=attending" class="st"><title>Cases &amp; certificate: Advanced</title><circle class="hit" cx="965" cy="245" r="28"/><circle cx="925" cy="245" r="14" fill="#fff" stroke="var(--route-adv)" stroke-width="5"/><text x="951" y="251" class="mL">Advanced</text></a>
+<a href="modules/ai-fundamentals.html" class="st map-module-stop" aria-label="Module 1: Fundamentals of AI. What is AI, and how does it work clinically?" data-map-items="What is AI?|How models learn|Performance beyond accuracy|Generalization &amp; dataset shift"><title>Module 1: Fundamentals of AI</title><circle class="hit" cx="150" cy="180" r="32"/><circle cx="150" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="150" y="140" text-anchor="middle" class="mL">1 &middot; Fundamentals of AI</text><text x="150" y="229" text-anchor="middle" class="mQ"><tspan x="150">What is AI, and how does it</tspan><tspan x="150" dy="17">work clinically?</tspan></text></a>
+<a href="modules/informatics.html" class="st map-module-stop" aria-label="Module 2: Radiology AI: Data, Systems and Workflow. Where does AI fit in the radiology workflow?" data-map-items="Imaging data &amp; DICOM|PACS, RIS &amp; interfaces|Clinical imaging workflow|Where AI plugs in"><title>Module 2: Radiology AI: Data, Systems &amp; Workflow</title><circle class="hit" cx="400" cy="180" r="32"/><circle cx="400" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="400" y="140" text-anchor="middle" class="mL">2 &middot; Radiology AI &amp; Workflow</text><text x="400" y="229" text-anchor="middle" class="mQ"><tspan x="400">Where does AI fit in the</tspan><tspan x="400" dy="17">radiology workflow?</tspan></text></a>
+<a href="modules/clinical-practice.html" class="st map-module-stop" aria-label="Module 3: AI in Clinical Practice. How does AI affect my clinical practice?" data-map-items="Clinical evidence &amp; local fit|Human-AI reading workflows|Appropriate reliance &amp; disagreement|Expertise, clinical skill &amp; value"><title>Module 3: AI in Clinical Practice</title><circle class="hit" cx="650" cy="180" r="32"/><circle cx="650" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="650" y="140" text-anchor="middle" class="mL">3 &middot; AI in Clinical Practice</text><text x="650" y="229" text-anchor="middle" class="mQ"><tspan x="650">How does AI affect my</tspan><tspan x="650" dy="17">clinical practice?</tspan></text></a>
+<text x="911" y="83" class="mT">CHOOSE LEARNING DEPTH</text>
+<a href="progress.html?pathway=beginner" class="st"><title>Beginner learning pathway</title><circle class="hit" cx="965" cy="115" r="28"/><circle cx="925" cy="115" r="14" fill="#fff" stroke="var(--route-beg)" stroke-width="5"/><text x="951" y="121" class="mL">Beginner</text></a>
+<a href="progress.html?pathway=intermediate" class="st"><title>Intermediate learning pathway</title><circle class="hit" cx="965" cy="180" r="28"/><circle cx="925" cy="180" r="14" fill="#fff" stroke="var(--route-int)" stroke-width="5"/><text x="951" y="186" class="mL">Intermediate</text></a>
+<a href="progress.html?pathway=advanced" class="st"><title>Advanced learning pathway</title><circle class="hit" cx="965" cy="245" r="28"/><circle cx="925" cy="245" r="14" fill="#fff" stroke="var(--route-adv)" stroke-width="5"/><text x="951" y="251" class="mL">Advanced</text></a>
 <a href="pages/research-lab.html" class="st mini"><title>Research Lab overview</title><text x="592" y="438" class="mL" style="fill:var(--route-res)">Research Lab <tspan class="mS">optional</tspan></text></a>
 <a href="pages/adoption-governance.html" class="st mini"><title>Leadership overview</title><text x="818" y="394" class="mL" style="fill:var(--route-lead)">Leadership <tspan class="mS">optional</tspan></text></a>
 <g class="mS">
@@ -80,14 +80,15 @@
 </g>
 </svg>
     <ul class="mobile-map">
-      <li style="--c:var(--route-core)"><a href="modules/ai-fundamentals.html"><b>1 &middot; Fundamentals of AI</b></a></li>
-      <li style="--c:var(--route-core)"><a href="modules/informatics.html"><b>2 &middot; Radiology AI: Data, Systems &amp; Workflow</b></a></li>
+      <li style="--c:var(--route-core)"><a href="modules/ai-fundamentals.html"><b>1 &middot; Fundamentals of AI</b><small>What is AI, and how does it work clinically?</small></a></li>
+      <li style="--c:var(--route-core)"><a href="modules/informatics.html"><b>2 &middot; Radiology AI: Data, Systems &amp; Workflow</b><small>Where does AI fit in the radiology workflow?</small></a></li>
       <li class="opt" style="--c:var(--route-res)"><a href="pages/research-lab.html">Branch: Research Lab (optional)</a></li>
-      <li style="--c:var(--route-core)"><a href="modules/clinical-practice.html"><b>3 &middot; AI in Clinical Practice</b></a></li>
+      <li style="--c:var(--route-core)"><a href="modules/clinical-practice.html"><b>3 &middot; AI in Clinical Practice</b><small>How does AI affect my clinical practice?</small></a></li>
       <li class="opt" style="--c:var(--route-lead)"><a href="pages/adoption-governance.html">Branch: Leadership (optional)</a></li>
-      <li style="--c:var(--route-core)"><b>Cases &amp; certificate</b><br><small><a href="student-cases.html?level=medical_student">Beginner</a> &middot; <a href="resident-cases.html?level=radiology_resident">Intermediate</a> &middot; <a href="resident-cases.html?level=attending">Advanced</a></small></li>
+      <li style="--c:var(--route-core)"><b>Choose learning depth</b><br><small><a href="progress.html?pathway=beginner">Beginner</a> &middot; <a href="progress.html?pathway=intermediate">Intermediate</a> &middot; <a href="progress.html?pathway=advanced">Advanced</a></small></li>
     </ul>
   </div>
+  <div class="map-module-tooltip" id="mapModuleTooltip" role="tooltip" aria-hidden="true"></div>
   <div class="legend"><span><i style="background:var(--route-core)"></i>Core curriculum (Modules 1&ndash;3)</span><span><i class="dash" style="color:var(--route-res)"></i>Research Lab (optional)</span><span><i class="dash" style="color:var(--route-lead)"></i>Leadership (optional)</span></div>
   <div class="map-start"><a class="home-btn home-btn--lg" href="modules/ai-fundamentals.html">Start at Module 1 &rarr;</a></div>
 
@@ -98,11 +99,11 @@
       <a class="cc" href="modules/ai-fundamentals.html"><b>Fundamentals of AI</b><span class="cc-question">What is AI, and how does it work clinically?</span><ul><li>What AI is &amp; how models learn</li><li>Performance beyond accuracy</li><li>Generalization &amp; dataset shift</li><li>Failure modes &amp; uncertainty</li></ul><span class="go">Open Module 1 &rarr;</span></a>
       <a class="cc" href="modules/informatics.html"><b>Radiology AI: Data, Systems &amp; Workflow</b><span class="cc-question">Where does AI fit in the radiology workflow?</span><ul><li>Imaging data &amp; DICOM</li><li>PACS, RIS &amp; interfaces</li><li>Clinical imaging workflow</li><li>Where AI plugs in</li></ul><span class="go">Open Module 2 &rarr;</span></a>
       <a class="cc" href="modules/clinical-practice.html"><b>AI in Clinical Practice</b><span class="cc-question">How does AI affect my clinical practice?</span><ul><li>Evidence &amp; local fit</li><li>Human-AI reading workflows</li><li>Reliance &amp; clinical skill</li><li>Clinical value</li></ul><span class="go">Open Module 3 &rarr;</span></a>
-      <div class="cc term"><b>Cases &amp; certificate</b><ul><li>Case walkthrough at your level</li><li>15-question assessment</li><li>PDF certificate</li></ul>
+      <div class="cc term"><b>Choose learning depth</b><ul><li>Beginner, Intermediate, or Advanced</li><li>Cases + assessment</li><li>Completion certificate</li></ul>
         <div class="levels">
-          <a href="student-cases.html?level=medical_student" style="--c:var(--route-beg)"><i></i>Beginner</a>
-          <a href="resident-cases.html?level=radiology_resident" style="--c:var(--route-int)"><i></i>Intermediate</a>
-          <a href="resident-cases.html?level=attending" style="--c:var(--route-adv)"><i></i>Advanced</a>
+          <a href="progress.html?pathway=beginner" style="--c:var(--route-beg)"><i></i>Beginner</a>
+          <a href="progress.html?pathway=intermediate" style="--c:var(--route-int)"><i></i>Intermediate</a>
+          <a href="progress.html?pathway=advanced" style="--c:var(--route-adv)"><i></i>Advanced</a>
         </div></div>
     </div>
     <div class="optional-finale"><div><span>Optional finale &middot; after cases &amp; certificate</span><strong>Looking Ahead: Where is radiology AI going?</strong><p>Foundation and multimodal models, agentic AI, prediction &amp; digital twins, and how clinical roles may change.</p></div><a href="lessons/lesson-5.html">Explore Looking Ahead &rarr;</a></div>
@@ -112,7 +113,7 @@
     <div class="sp" style="--c:var(--route-res)"><span class="badge">Specialization</span><b>Research Lab</b><p>For learners who want to build and evaluate models. Best after Module 1, but open to anyone. Technical topics such as AI infrastructure &amp; MLOps live here as optional deeper dives.</p>
       <ol><li><a href="lessons/research-1.html?research=1">Python &amp; GitHub</a></li><li><a href="lessons/research-2.html?research=1">Data science &amp; evaluation</a></li><li><a href="lessons/research-3.html?research=1">ML &amp; image processing</a></li><li><a href="lessons/research-4.html?research=1">Advanced AI &amp; NLP</a></li><li><a href="lessons/research-5.html?research=1">Mini research project</a></li></ol>
       <a class="sp-link" href="pages/research-lab.html">Open the Research Lab &rarr;</a></div>
-    <div class="sp" style="--c:var(--route-lead)"><span class="badge">Specialization</span><b>Leadership: Adoption &amp; Governance</b><p>For AI leads, informatics, and quality teams bringing a tool into practice. Best after Module 3, but open to anyone.</p>
+    <div class="sp" style="--c:var(--route-lead)"><span class="badge">Specialization</span><b>Leadership</b><p>For clinical, informatics, quality, education, and operational leaders responsible for evaluating, implementing, governing, and sustaining AI in practice. Core completion is recommended, not required.</p>
       <ol><li><a href="pages/adoption-governance.html#stage-define">Define the need</a></li><li><a href="pages/adoption-governance.html#stage-select">Select &amp; procure</a></li><li><a href="pages/adoption-governance.html#stage-validate">Validate locally</a></li><li><a href="pages/adoption-governance.html#stage-implement">Implement</a></li><li><a href="pages/adoption-governance.html#stage-monitor">Monitor &amp; govern</a></li></ol>
       <a class="sp-link" href="pages/adoption-governance.html">Open Leadership &rarr;</a></div>
   </section>
@@ -182,6 +183,22 @@
     toast.textContent=a.querySelector('title').textContent+': page coming soon';
     toast.classList.add('show');clearTimeout(tid);tid=setTimeout(function(){toast.classList.remove('show')},2200);
   });
+})();
+</script>
+<script>
+(function(){
+  var tooltip=document.getElementById('mapModuleTooltip'), stops=document.querySelectorAll('.map-module-stop'), hideTimer;
+  if(!tooltip||!stops.length)return;
+  function cancelHide(){clearTimeout(hideTimer);}
+  function hideSoon(){clearTimeout(hideTimer);hideTimer=setTimeout(function(){tooltip.classList.remove('show');tooltip.setAttribute('aria-hidden','true');},180);}
+  window.showMapModule=function(stop){
+    cancelHide(); var items=(stop.getAttribute('data-map-items')||'').split('|').filter(Boolean); tooltip.innerHTML='';
+    var open=document.createElement('a');open.className='map-tooltip-open';open.href=stop.getAttribute('href');open.textContent='Open '+(stop.querySelector('title')?stop.querySelector('title').textContent:'module')+' \u2192';tooltip.appendChild(open);
+    var label=document.createElement('strong');label.textContent='What you will cover';tooltip.appendChild(label);var ul=document.createElement('ul');items.forEach(function(x){var li=document.createElement('li');li.textContent=x;ul.appendChild(li);});tooltip.appendChild(ul);
+    tooltip.classList.add('show');tooltip.setAttribute('aria-hidden','false');var r=stop.getBoundingClientRect(),tw=tooltip.offsetWidth,th=tooltip.offsetHeight,left=r.left+r.width/2-tw/2;left=Math.max(12,Math.min(left,window.innerWidth-tw-12));var top=r.bottom+10;if(top+th>window.innerHeight-12)top=r.top-th-10;tooltip.style.left=left+'px';tooltip.style.top=Math.max(12,top)+'px';
+  };
+  stops.forEach(function(stop){stop.addEventListener('mouseenter',function(){window.showMapModule(stop)});stop.addEventListener('mouseleave',hideSoon);stop.addEventListener('focus',function(){window.showMapModule(stop)});stop.addEventListener('blur',hideSoon);});
+  tooltip.addEventListener('mouseenter',cancelHide);tooltip.addEventListener('mouseleave',hideSoon);window.addEventListener('resize',hideSoon);
 })();
 </script>
 <script>

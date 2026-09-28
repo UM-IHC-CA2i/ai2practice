@@ -320,8 +320,26 @@ var CaseEngine = (function() {
   }
 
   /* ── Step 5: Results ── */
+  function savePathwayCaseCompletion() {
+    try {
+      var qs = new URLSearchParams(window.location.search);
+      var pathway = qs.get('pathway');
+      if (['beginner','intermediate','advanced'].indexOf(pathway) === -1) {
+        pathway = state.skillLevel === 'attending' ? 'advanced' : (state.skillLevel === 'radiology_resident' ? 'intermediate' : 'beginner');
+      }
+      var raw = localStorage.getItem('ai2practice_cases_v1');
+      var data = raw ? JSON.parse(raw) : {};
+      if (!data || typeof data !== 'object' || Array.isArray(data)) data = {};
+      data[pathway] = { completed:true, completedAt:new Date().toISOString() };
+      localStorage.setItem('ai2practice_cases_v1', JSON.stringify(data));
+      localStorage.setItem('ai2practice_pathway_v1', pathway);
+      return pathway;
+    } catch(e) { return null; }
+  }
+
   function renderResults() {
     var el = main();
+    var completedPathway = savePathwayCaseCompletion();
     var aiOk = state.resp.ai.filter(function(r) { return r.correct; }).length;
     var noOk = state.resp.noAi.filter(function(r) { return r.correct; }).length;
     var aiT = state.resp.ai.length;
@@ -362,7 +380,8 @@ var CaseEngine = (function() {
     h += '<p class="mb-0">Skill level: <strong>' + levelName + '</strong></p></div>';
 
     h += '<div class="cw-actions"><button class="btn btn-outline" id="restart">Start Over</button>';
-    h += '<a href="' + state.config.backUrl + '" class="btn btn-primary">Back to ' + state.config.backLabel + '</a></div>';
+    if (completedPathway) h += '<a href="progress.html?pathway=' + completedPathway + '" class="btn btn-primary">Continue to Progress &amp; Completion</a></div>';
+    else h += '<a href="' + state.config.backUrl + '" class="btn btn-primary">Back to ' + state.config.backLabel + '</a></div>';
     el.innerHTML = h;
 
     document.getElementById('restart').addEventListener('click', function() {
