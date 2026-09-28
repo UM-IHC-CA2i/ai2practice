@@ -3,77 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Track AI2Practice curriculum completion locally, choose a learning-depth pathway, and continue to cases, assessment, and certificate." />
-  <meta name="robots" content="noindex,follow" />
-  <title>Progress & Completion - AI2Practice</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="stylesheet" href="assets/theme.css" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>AI2Practice progress</title>
+  <script>
+  (function(){
+    var q = new URLSearchParams(window.location.search);
+    var target = 'index.html?progress=1';
+    var p = q.get('pathway');
+    if (p === 'beginner' || p === 'intermediate' || p === 'advanced') target += '&pathway=' + encodeURIComponent(p);
+    window.location.replace(target + '#progress');
+  })();
+  </script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><div class="shell navbar">
-  <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
-  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html#map">Curriculum</a></li><li><a href="progress.html">Progress</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
-</div></header>
-<main id="main">
-  <section class="page-hero route-core"><div class="shell">
-    <div class="breadcrumbs"><a href="index.html">AI2Practice</a> / Progress</div>
-    <p class="eyebrow">Progress & completion</p>
-    <h1>Your AI2Practice progress</h1>
-    <p>Resume the core curriculum, choose a learning-depth pathway, complete cases and assessment, and generate your completion certificate.</p>
-  </div></section>
-
-  <section class="section"><div class="shell progress-shell">
-    <div class="progress-local-note">
-      <div><strong>Your progress is saved on this device.</strong><p>Completion data stay in this browser and are not uploaded to AI2Practice. Export a small progress file for backup or transfer to another device. Cross-device account sync is planned for a future version.</p></div>
-      <div class="progress-tools">
-        <button class="btn btn-outline" id="exportProgress">Export progress</button>
-        <label class="btn btn-outline" for="importProgress">Import progress</label>
-        <input id="importProgress" type="file" accept="application/json,.json" hidden />
-        <select id="importMode" aria-label="Import behavior"><option value="merge">Merge with current</option><option value="replace">Replace current progress</option></select>
-        <button class="btn btn-outline progress-reset" id="resetProgress">Reset local progress</button>
-      </div>
-      <p class="progress-import-status" id="importStatus" role="status" aria-live="polite"></p>
-    </div>
-
-    <div class="progress-summary" id="progressSummary"></div>
-
-    <section class="progress-section" id="coreProgress">
-      <div class="progress-section-head"><div><p class="micro-label">Required core</p><h2>Complete the three core modules</h2></div><p>Current completion is based on the four interactive lessons already available across the three modules. Developing lesson cards do not yet count toward the certificate.</p></div>
-      <div class="progress-core-list" id="coreList"></div>
-    </section>
-
-    <section class="progress-section" id="choosePathway">
-      <div class="progress-section-head"><div><p class="micro-label">Learning depth</p><h2>Choose a pathway</h2></div><p>Beginner, Intermediate, and Advanced describe learning depth, not professional title. AI2Practice provides a default pathway; educators and program directors may assign a different lesson/case mix for their learners.</p></div>
-      <div class="pathway-grid" id="pathwayGrid"></div>
-      <p class="progress-small-note">The current core lessons have two content-depth variants: <strong>Concise / foundational</strong> and <strong>Deeper radiology</strong>. Beginner defaults to the concise version; Intermediate and Advanced default to the deeper version. Your role does not determine which version you may take.</p>
-    </section>
-
-    <section class="progress-section" id="pathwayProgress">
-      <div class="progress-section-head"><div><p class="micro-label">Cases, assessment & certificate</p><h2 id="pathwayTitle">Complete your pathway</h2></div><p id="pathwayDescription">Choose a pathway above to see the default completion sequence.</p></div>
-      <div class="completion-steps" id="completionSteps"></div>
-    </section>
-
-    <section class="progress-section">
-      <div class="progress-section-head"><div><p class="micro-label">Optional specializations</p><h2>Go deeper by role or interest</h2></div><p>These are parallel extensions rather than higher or lower levels of the core pathway, and experienced learners may enter them directly.</p></div>
-      <div class="progress-specializations">
-        <a class="progress-specialization research" href="pages/research-lab.html"><span>Research Lab</span><strong>Build and evaluate AI systems</strong><p>Recommended after Fundamentals of AI, but direct entry is available if you already have the background.</p></a>
-        <a class="progress-specialization leadership" href="pages/adoption-governance.html"><span>Leadership</span><strong>Lead AI from need to sustained clinical value</strong><p>For clinical, informatics, quality, education, and operational leaders. Core completion is recommended, not required.</p></a>
-      </div>
-    </section>
-
-    <section class="progress-section progress-looking-ahead">
-      <div><p class="micro-label">Optional finale</p><h2>Looking Ahead</h2><p>Recommended after completing your pathway, but open anytime: foundation and multimodal models, agentic AI, prediction, digital twins, and changing clinical roles.</p></div>
-      <a class="btn btn-outline" href="lessons/lesson-5.html">Explore Looking Ahead</a>
-    </section>
-  </div></section>
-</main>
-<footer class="site-footer compact-footer"><div class="shell compact-footer-row">
-  <div class="footer-mini-brand"><img src="images/ai2practice-logo-white.svg" alt="AI2Practice" /><span>Practical, open clinical AI education</span></div>
-  <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
-</div></footer>
-<script src="assets/site.js"></script>
-<script src="assets/progress.js"></script>
+  <p>Progress now opens directly within AI2Practice. <a href="index.html?progress=1#progress">Open progress</a>.</p>
 </body>
 </html>

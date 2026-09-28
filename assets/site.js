@@ -16,3 +16,22 @@ document.querySelectorAll('.nav-drop').forEach(drop => {
 document.addEventListener('click',()=>closeDrops());
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrops();});
 document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+/* AI2PRACTICE_PROGRESS_RAIL_LOADER */
+(function(){
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    var href=a.getAttribute('href')||'';
+    if(/(^|\/)progress\.html(?:$|[?#])/.test(href)){
+      var li=a.closest('li'); if(li)li.remove();
+    }
+  });
+  if(document.querySelector('script[data-ai2-progress-loader]'))return;
+  var own=document.querySelector('script[src$="assets/site.js"],script[src$="/site.js"]');
+  if(!own||!own.src)return;
+  var s=document.createElement('script');
+  s.src=new URL('progress.js',own.src).href;
+  s.defer=true;
+  s.setAttribute('data-ai2-progress-loader','1');
+  document.body.appendChild(s);
+})();
+

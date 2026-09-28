@@ -13,11 +13,11 @@
 <header class="site-header"><div class="shell navbar">
   <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html#map">Curriculum</a></li><li><a href="progress.html">Progress</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html#map">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
 <main id="main">
   <section class="page-hero route-core"><div class="shell">
-    <div class="breadcrumbs"><a href="index.html">AI2Practice</a> / <a href="progress.html">Progress</a> / Certificate</div>
+    <div class="breadcrumbs"><a href="index.html">AI2Practice</a> / <a href="index.html?progress=1#progress">Progress</a> / Certificate</div>
     <p class="eyebrow">Completion certificate</p>
     <h1>Generate your certificate</h1>
     <p>The certificate is generated locally after the required core lessons, pathway cases, and assessment are complete.</p>
@@ -48,8 +48,8 @@
   function getJSON(k,f){try{var r=localStorage.getItem(k);return r?JSON.parse(r):f;}catch(e){return f;}}
   var done=getJSON('aiready_completed',[]), cases=getJSON('ai2practice_cases_v1',{}), assessments=getJSON('ai2practice_assessments_v1',{});
   var eligible=labels[pathway] && CORE.every(function(k){return Array.isArray(done)&&done.indexOf(k)!==-1;}) && cases[pathway]&&cases[pathway].completed && assessments[pathway]&&assessments[pathway].passed;
-  if(!labels[pathway]){ status.innerHTML='<strong>Choose a pathway first.</strong> <a href="progress.html">Return to Progress</a> and select Beginner, Intermediate, or Advanced.'; return; }
-  if(!eligible){ status.innerHTML='<strong>Certificate not yet unlocked.</strong> Complete the remaining requirements on your <a href="progress.html?pathway='+pathway+'">Progress page</a>.'; return; }
+  if(!labels[pathway]){ status.innerHTML='<strong>Choose a pathway first.</strong> <a href="index.html?progress=1#progress">Open progress</a> and select Beginner, Intermediate, or Advanced.'; return; }
+  if(!eligible){ status.innerHTML='<strong>Certificate not yet unlocked.</strong> Complete the remaining requirements on your <a href="index.html?progress=1&amp;pathway='+pathway+'#progress">progress panel</a>.'; return; }
   status.innerHTML='<strong>All '+labels[pathway]+' pathway requirements are complete.</strong> Enter your name below to generate the PDF locally.'; form.hidden=false;
   document.getElementById('generateCertificate').addEventListener('click',function(){
     var name=document.getElementById('certificateName').value.trim(); if(!name){alert('Please enter your name.');return;}

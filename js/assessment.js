@@ -20,6 +20,7 @@ var AssessmentEngine = (function() {
       if(!data||typeof data!=='object'||Array.isArray(data))data={}; var old=data[p]||{}, best=Math.max(Number(old.bestScore)||0,pct);
       data[p]={bestScore:best,passed:!!old.passed||pct>=80,correct:correct,total:total,updatedAt:new Date().toISOString()};
       localStorage.setItem('ai2practice_assessments_v1',JSON.stringify(data)); localStorage.setItem('ai2practice_pathway_v1',p);
+      try { window.dispatchEvent(new CustomEvent('ai2practice:progress-changed')); } catch(e) {}
     } catch(e) {}
   }
 
@@ -106,7 +107,7 @@ var AssessmentEngine = (function() {
         document.getElementById('quiz-status').textContent = 'Passed';
         document.getElementById('quiz-status').className = 'quiz-status passed';
         var cert = document.getElementById('cert-section');
-        if (cert) { cert.style.display = 'block'; cert.innerHTML = '<p><strong>Assessment passed.</strong> Your score is saved locally. The completion certificate unlocks when the required core lessons and pathway cases are also complete.</p><p><a class="btn btn-accent" href="progress.html?pathway=' + pathwayKey() + '">Return to Progress &amp; Completion</a></p>'; }
+        if (cert) { cert.style.display = 'block'; cert.innerHTML = '<p><strong>Assessment passed.</strong> Your score is saved locally. The completion certificate unlocks when the required core lessons and pathway cases are also complete.</p><p><a class="btn btn-accent" href="#progress" data-open-progress="true">View progress &amp; completion</a></p>'; }
         document.getElementById('retry-section').style.display = 'none';
       } else {
         document.getElementById('quiz-status').textContent = 'Not Yet';

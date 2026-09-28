@@ -1,0 +1,112 @@
+.ai2-progress-shell {
+  position: relative;
+  z-index: 88;
+  font-family: 'Source Sans 3', 'Aptos', 'Segoe UI', system-ui, sans-serif;
+  color: #172033;
+}
+.ai2-progress-rail {
+  background: #f6f8f7;
+  border-bottom: 1px solid #d8dde0;
+}
+.ai2-progress-rail-inner {
+  width: min(calc(100% - 40px), 1200px);
+  min-height: 48px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) auto auto auto;
+  align-items: center;
+  gap: 14px;
+}
+.ai2-progress-summary-copy { display: flex; gap: 8px; align-items: baseline; white-space: nowrap; }
+.ai2-progress-summary-copy span { color: #61707a; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .055em; }
+.ai2-progress-summary-copy strong { color: #17324d; font-size: .82rem; }
+.ai2-progress-meter { height: 7px; overflow: hidden; border-radius: 999px; background: #dfe5e3; }
+.ai2-progress-meter i { display: block; height: 100%; width: 0; background: #3e7b78; border-radius: inherit; transition: width .25s ease; }
+.ai2-progress-saved { color: #66717a; font-size: .74rem; white-space: nowrap; }
+.ai2-progress-action {
+  border: 0;
+  background: transparent;
+  color: #17324d;
+  padding: 7px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+}
+.ai2-progress-action:hover, .ai2-progress-action:focus-visible { background: #e7edeb; outline: none; }
+.ai2-progress-action-secondary { border: 1px solid #cbd4d1; background: #fff; }
+
+.ai2-progress-drawer { background: #fffdf8; border-bottom: 1px solid #cfd8d5; box-shadow: 0 22px 45px rgba(23,32,51,.12); }
+.ai2-progress-drawer[hidden] { display: none; }
+.ai2-progress-drawer-inner { width: min(calc(100% - 40px), 1120px); margin: 0 auto; padding: 28px 0 34px; }
+.ai2-progress-drawer-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 20px; border-bottom: 1px solid #d8dde0; }
+.ai2-progress-drawer-head h2 { margin: 2px 0 5px; font-size: clamp(1.45rem, 2.7vw, 2.05rem); line-height: 1.08; color: #17324d; }
+.ai2-progress-drawer-head p:not(.ai2-progress-kicker) { margin: 0; color: #66717a; font-size: .83rem; }
+.ai2-progress-kicker { margin: 0; color: #3e7b78; font-size: .68rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.ai2-progress-close { border: 1px solid #cbd4d1; background: #fff; color: #17324d; border-radius: 8px; padding: 8px 11px; cursor: pointer; font: inherit; font-size: .76rem; font-weight: 800; }
+.ai2-progress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+.ai2-progress-grid-secondary { margin-top: 16px; }
+.ai2-progress-card { padding: 19px; border: 1px solid #d9dfdd; background: #fff; border-radius: 12px; }
+.ai2-progress-card-head { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin-bottom: 11px; }
+.ai2-progress-card-head > span { color: #66717a; font-size: .67rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.ai2-progress-card-head > strong { color: #17324d; font-size: .82rem; text-align: right; }
+.ai2-progress-note { margin: 0 0 12px; color: #66717a; font-size: .78rem; line-height: 1.45; }
+.ai2-core-list { display: grid; gap: 6px; }
+.ai2-core-item { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid #edf0ef; color: #172033; text-decoration: none; }
+.ai2-core-item:first-child { border-top: 0; }
+.ai2-core-item small { display: block; color: #7a848b; font-size: .68rem; line-height: 1.25; }
+.ai2-core-item strong { display: block; margin-top: 2px; font-size: .79rem; line-height: 1.25; }
+.ai2-core-item b { color: #315f7b; font-size: .72rem; white-space: nowrap; }
+.ai2-progress-check { width: 20px; height: 20px; border: 1px solid #aebbb7; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: .7rem; font-weight: 800; }
+.ai2-core-item.done .ai2-progress-check, .ai2-completion-step.done .ai2-progress-check { background: #3e7b78; border-color: #3e7b78; }
+.ai2-pathway-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.ai2-pathway-card { min-height: 78px; padding: 11px; border: 1px solid #d3dbd8; background: #fafbf9; color: #17324d; border-radius: 9px; cursor: pointer; text-align: left; font: inherit; }
+.ai2-pathway-card span { display: block; font-size: .8rem; font-weight: 800; }
+.ai2-pathway-card small { display: block; margin-top: 5px; color: #6d777d; font-size: .68rem; line-height: 1.3; }
+.ai2-pathway-card.selected { border-color: #3e7b78; background: #edf5f2; box-shadow: inset 0 0 0 1px #3e7b78; }
+.ai2-progress-completion { margin-top: 16px; }
+.ai2-completion-steps { display: grid; gap: 7px; }
+.ai2-completion-step { display: grid; grid-template-columns: 24px 1fr auto; gap: 11px; align-items: center; padding: 11px 0; border-top: 1px solid #edf0ef; }
+.ai2-completion-step:first-child { border-top: 0; }
+.ai2-completion-step strong { display: block; font-size: .8rem; }
+.ai2-completion-step small { display: block; margin-top: 2px; color: #6c777d; font-size: .7rem; }
+.ai2-completion-step a, .ai2-completion-step b { color: #315f7b; font-size: .73rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.ai2-certificate-ready, .ai2-certificate-locked { margin-top: 12px; padding: 13px 15px; border-radius: 9px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.ai2-certificate-ready { background: #edf5f2; border: 1px solid #bfd5ce; }
+.ai2-certificate-locked { background: #f5f6f5; border: 1px solid #dde2e0; color: #66717a; }
+.ai2-certificate-ready span, .ai2-certificate-locked span { display: block; font-size: .69rem; }
+.ai2-certificate-ready strong, .ai2-certificate-locked strong { display: block; font-size: .8rem; }
+.ai2-certificate-ready a { padding: 8px 11px; border-radius: 7px; background: #17324d; color: #fff; text-decoration: none; font-size: .72rem; font-weight: 800; white-space: nowrap; }
+.ai2-specialization-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ai2-specialization-links a { padding: 12px; border: 1px solid #dbe1df; border-radius: 8px; color: #17324d; text-decoration: none; }
+.ai2-specialization-links span { display: block; font-size: .8rem; font-weight: 800; }
+.ai2-specialization-links small { display: block; margin-top: 4px; color: #6b777b; font-size: .68rem; line-height: 1.35; }
+.ai2-progress-inline-link { color: #315f7b; font-size: .76rem; font-weight: 800; text-decoration: none; }
+.ai2-backup-card { margin-top: 16px; background: #f9faf8; }
+.ai2-backup-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ai2-backup-actions button, .ai2-backup-actions label, .ai2-backup-actions select { border: 1px solid #cbd4d1; background: #fff; color: #17324d; border-radius: 7px; padding: 8px 10px; font: inherit; font-size: .72rem; font-weight: 750; cursor: pointer; }
+.ai2-backup-actions select { cursor: default; }
+.ai2-backup-actions .ai2-reset-progress { color: #7e3d35; }
+.ai2-import-status { min-height: 1.1em; margin: 9px 0 0; color: #3e7b78; font-size: .72rem; }
+
+@media (max-width: 900px) {
+  .ai2-progress-rail-inner { grid-template-columns: auto minmax(100px,1fr) auto auto; gap: 9px; min-height: 50px; }
+  .ai2-progress-saved { display: none; }
+  .ai2-progress-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .ai2-progress-rail-inner { width: min(calc(100% - 24px), 1200px); grid-template-columns: 1fr auto auto; padding: 7px 0; }
+  .ai2-progress-summary-copy { display: block; }
+  .ai2-progress-summary-copy span { display: block; }
+  .ai2-progress-summary-copy strong { font-size: .76rem; }
+  .ai2-progress-meter { grid-column: 1 / -1; grid-row: 2; }
+  .ai2-progress-action { padding: 6px; }
+  .ai2-progress-drawer-inner { width: min(calc(100% - 24px), 1120px); padding: 22px 0 28px; }
+  .ai2-progress-drawer-head { gap: 12px; }
+  .ai2-pathway-grid { grid-template-columns: 1fr; }
+  .ai2-core-item, .ai2-completion-step { grid-template-columns: 22px 1fr; }
+  .ai2-core-item b, .ai2-completion-step > a, .ai2-completion-step > b { grid-column: 2; }
+  .ai2-specialization-links { grid-template-columns: 1fr; }
+  .ai2-certificate-ready, .ai2-certificate-locked { align-items: flex-start; flex-direction: column; }
+}

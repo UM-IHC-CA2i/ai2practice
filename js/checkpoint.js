@@ -24,6 +24,7 @@ var CheckpointQuiz = (function() {
     if (done.indexOf(key) === -1) {
       done.push(key);
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
+      try { window.dispatchEvent(new CustomEvent('ai2practice:progress-changed')); } catch(e) {}
     }
   }
 

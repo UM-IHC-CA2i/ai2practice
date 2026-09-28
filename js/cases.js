@@ -333,6 +333,7 @@ var CaseEngine = (function() {
       data[pathway] = { completed:true, completedAt:new Date().toISOString() };
       localStorage.setItem('ai2practice_cases_v1', JSON.stringify(data));
       localStorage.setItem('ai2practice_pathway_v1', pathway);
+      try { window.dispatchEvent(new CustomEvent('ai2practice:progress-changed')); } catch(e) {}
       return pathway;
     } catch(e) { return null; }
   }
@@ -380,7 +381,7 @@ var CaseEngine = (function() {
     h += '<p class="mb-0">Skill level: <strong>' + levelName + '</strong></p></div>';
 
     h += '<div class="cw-actions"><button class="btn btn-outline" id="restart">Start Over</button>';
-    if (completedPathway) h += '<a href="progress.html?pathway=' + completedPathway + '" class="btn btn-primary">Continue to Progress &amp; Completion</a></div>';
+    if (completedPathway) h += '<a href="#progress" data-open-progress="true" class="btn btn-primary">View progress &amp; completion</a></div>';
     else h += '<a href="' + state.config.backUrl + '" class="btn btn-primary">Back to ' + state.config.backLabel + '</a></div>';
     el.innerHTML = h;
 
@@ -445,3 +446,16 @@ var CaseEngine = (function() {
 
   return { init: init };
 })();
+
+/* AI2PRACTICE_CASE_PROGRESS_RAIL_LOADER */
+(function(){
+  if(document.querySelector('script[data-ai2-progress-loader]'))return;
+  var own=document.querySelector('script[src$="js/cases.js"],script[src$="/cases.js"]');
+  if(!own||!own.src)return;
+  var s=document.createElement('script');
+  s.src=new URL('../assets/progress.js',own.src).href;
+  s.defer=true;
+  s.setAttribute('data-ai2-progress-loader','1');
+  document.body.appendChild(s);
+})();
+

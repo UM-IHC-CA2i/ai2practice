@@ -95,6 +95,7 @@
     if (done.indexOf(key) === -1) {
       done.push(key);
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
+      try { window.dispatchEvent(new CustomEvent('ai2practice:progress-changed')); } catch(e) {}
     }
   }
 
@@ -106,16 +107,6 @@
     var oldDone = sessionStorage.getItem(STORAGE_KEY);
     if (oldDone && !localStorage.getItem(STORAGE_KEY)) localStorage.setItem(STORAGE_KEY, oldDone);
   } catch(e) {}
-
-  if (!isResearchPage) {
-    var topbar = document.querySelector('.les-topbar');
-    if (topbar && !document.querySelector('.local-progress-note')) {
-      var note = document.createElement('div');
-      note.className = 'local-progress-note';
-      note.innerHTML = 'Progress is saved locally in this browser when you continue. <a href="../progress.html">View, export, or import progress &rarr;</a>';
-      topbar.insertAdjacentElement('afterend', note);
-    }
-  }
 
   function buildPillBar() {
     var done = getCompleted();
@@ -214,16 +205,21 @@
     if (idx >= 0) {
       if (prevLink) {
         if (idx > 0) { prevLink.href = 'lesson-' + selectedLessons[idx-1] + '.html' + qs; prevLink.style.display = ''; }
-        else { prevLink.href = '../progress.html' + (pathway ? '?pathway=' + encodeURIComponent(pathway) : ''); prevLink.textContent = '\u2190 Progress'; }
+        else { prevLink.href = '../index.html#map'; prevLink.textContent = '\u2190 Curriculum'; }
       }
       if (nextLink) {
-        if (idx < selectedLessons.length - 1) nextLink.href = 'lesson-' + selectedLessons[idx+1] + '.html' + qs;
-        else nextLink.href = '../progress.html' + (pathway ? '?pathway=' + encodeURIComponent(pathway) : '');
-        nextLink.textContent = idx < selectedLessons.length - 1 ? 'Mark complete & continue \u2192' : 'Mark complete & continue to Progress \u2192';
+        if (idx < selectedLessons.length - 1) {
+          nextLink.href = 'lesson-' + selectedLessons[idx+1] + '.html' + qs;
+          nextLink.removeAttribute('data-open-progress');
+        } else {
+          nextLink.href = '#progress';
+          nextLink.setAttribute('data-open-progress', 'true');
+        }
+        nextLink.textContent = idx < selectedLessons.length - 1 ? 'Mark complete & continue \u2192' : 'Mark complete & view progress \u2192';
       }
     }
   }
-  if (currentKey === 'lesson-5' && nextLink) { nextLink.href = '../progress.html' + (pathway ? '?pathway=' + encodeURIComponent(pathway) : ''); nextLink.textContent = 'Return to Progress \u2192'; }
+  if (currentKey === 'lesson-5' && nextLink) { nextLink.href = '#progress'; nextLink.setAttribute('data-open-progress', 'true'); nextLink.textContent = 'View progress \u2192'; }
 
   if (nextLink && !isResearchPage) {
     nextLink.addEventListener('click', function() {

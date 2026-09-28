@@ -19,7 +19,7 @@
 
   function activeSection(path) {
     if (path === 'about.html') return 'about';
-    if (path === 'progress.html' || path === 'certificate.html') return 'progress';
+    if (path === 'certificate.html') return 'curriculum';
     if (path === 'tracker.html') return 'resources';
     if (path === 'research.html' || path.indexOf('lessons/research-') === 0) return 'spec';
     if (
@@ -48,7 +48,6 @@
         '<button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>' +
         '<ul class="nav-links">' +
           navLink('index.html#map', 'Curriculum', 'curriculum', active) +
-          navLink('progress.html', 'Progress', 'progress', active) +
           '<li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="' + siteUrl('pages/research-lab.html') + '"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="' + siteUrl('pages/adoption-governance.html') + '"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li>' +
           '<li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="' + siteUrl('tracker.html') + '"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="' + siteUrl('pages/brief.html') + '"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="' + siteUrl('pages/educators.html') + '"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li>' +
           navLink('about.html', 'About', 'about', active) +
@@ -138,10 +137,20 @@
     });
   }
 
+  function loadProgressRail() {
+    if (document.querySelector('script[data-ai2-progress-loader]')) return;
+    var s = document.createElement('script');
+    s.src = siteUrl('assets/progress.js');
+    s.defer = true;
+    s.setAttribute('data-ai2-progress-loader', '1');
+    document.body.appendChild(s);
+  }
+
   function init() {
     buildNav();
     buildFooter();
     initScrollSpy();
+    loadProgressRail();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
