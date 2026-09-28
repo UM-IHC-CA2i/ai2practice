@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 5: The Future of AI in Radiology &mdash; AI2Practice</title>
+<title>Optional Finale: Looking Ahead &mdash; AI2Practice</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="lessons.css">
@@ -213,21 +213,33 @@
   margin-top: 2px;
 }
 </style>
+<!-- AI2PRACTICE SEO -->
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/lesson-5.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AI2Practice" />
+  <meta property="og:title" content="Optional Finale: Looking Ahead — AI2Practice" />
+  <meta property="og:description" content="Optional AI2Practice finale exploring foundation models, agentic AI, prediction, digital twins, and the future of radiology practice." />
+  <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/lesson-5.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Optional Finale: Looking Ahead — AI2Practice" />
+  <meta name="twitter:description" content="Optional AI2Practice finale exploring foundation models, agentic AI, prediction, digital twins, and the future of radiology practice." />
+<!-- /AI2PRACTICE SEO -->
 </head>
 <body>
 
 <div class="les-topbar" style="border-bottom-color: #17324D;">
   <a href="../course-select.html" class="les-back" id="les-back">&larr; Back to Lessons</a>
-  <div class="les-topbar-title">Lesson 5 of 5</div>
+  <div class="les-topbar-title">Optional finale</div>
   <div class="les-topbar-track" id="les-track"></div>
 </div>
 
 <div class="les-hero" style="background: #17324D;">
   <div class="les-hero-inner">
-    <div class="les-hero-num">05</div>
+    <div class="les-hero-num">OPT</div>
     <div>
-      <h1>The Future of AI in Radiology</h1>
-      <p>Where AI is now, where it is headed, and how to stay ahead</p>
+      <h1>Looking Ahead: The Future of AI in Radiology</h1>
+      <p>An optional closing exploration of what may come next</p>
     </div>
   </div>
 </div>
@@ -243,7 +255,7 @@
 
     <h2>Looking Ahead</h2>
     <p>
-      In Lesson 4 you learned how to evaluate whether a specific AI tool works, generalizes, and deserves a place in clinical practice. This lesson zooms out. The landscape of AI in radiology is moving fast &mdash; new tools, new capabilities, new regulatory pathways, and new questions about the radiologist's role. Keeping up requires knowing what exists today, understanding where the technology is headed, and building habits that keep you informed.
+      This optional finale zooms out from the required clinical core. The landscape of AI in radiology is moving fast &mdash; new tools, new capabilities, new regulatory pathways, and new questions about the radiologist's role. Keeping up requires knowing what exists today, understanding where the technology is headed, and building habits that keep you informed.
     </p>
 
   </section>
@@ -262,7 +274,7 @@
     </div>
 
     <p>
-      As of 2026, the FDA has cleared over 1,000 AI- and machine learning-enabled medical devices, with radiology accounting for the largest share by far. These tools span chest X-ray triage, mammography detection, stroke identification on CT, fracture detection, and more. But "FDA-cleared" does not mean "works everywhere" &mdash; as you learned in Lesson 4.
+      The FDA maintains an AI-Enabled Medical Device List spanning multiple clinical specialties and regulatory pathways. Radiology accounts for the largest share of entries. Use the AI2Practice tracker to see the current FDA-source data and then compare that market landscape with what is actually available in your own clinical environment.
     </p>
 
     <p>
@@ -294,7 +306,7 @@
     <div class="les-case les-case--blue">
       <div class="les-case-label les-case-label--blue">Exercise</div>
       <p>
-        Go to <a href="https://aicentral.acrdsi.org/" target="_blank" rel="noopener">ACR AI Central</a> and filter for your subspecialty of interest. How many FDA-cleared tools exist? What tasks do they perform? Are any of them integrated into the PACS workflows you have used? This is the starting point for building your AI awareness.
+        Open the <a href="../tracker.html">AI2Practice AI Tool Tracker</a> and ACR AI Central. What tasks are represented in your subspecialty? Which tools appear to be narrow single-task systems versus broader workflow tools? Are any integrated into workflows you have actually used?
       </p>
     </div>
 
@@ -317,7 +329,7 @@
       <div class="fu-num" style="background: #0EA5E9;">02</div>
       <div>
         <h2>Where is AI going?</h2>
-        <p>Generative AI, multimodal AI, foundation models, and agents</p>
+        <p>Foundation models, agents, prediction, digital twins, and changing clinical roles</p>
       </div>
     </div>
 
@@ -353,6 +365,11 @@
           <td class="fu-metric-name">Foundation Models</td>
           <td>Large pre-trained models adapted to many tasks without task-specific retraining.</td>
           <td>A single model that can segment organs, detect pathology, and answer questions about a scan</td>
+        </tr>
+        <tr>
+          <td class="fu-metric-name">Predictive AI &amp; Digital Twins</td>
+          <td>Models future patient states or treatment trajectories using longitudinal, multimodal observations; digital-twin approaches add an explicit patient-state or simulation layer.</td>
+          <td>Forecasts disease progression or simulates how an imaging phenotype may evolve under different interventions</td>
         </tr>
         <tr>
           <td class="fu-metric-name">AI Agents</td>
@@ -408,8 +425,8 @@
         <span class="fu-pipeline-sub">Internal + external testing</span>
       </div>
       <div class="fu-pipeline-step" style="background: #0D9488;">
-        Clearance
-        <span class="fu-pipeline-sub">FDA 510(k) / De Novo</span>
+        FDA review
+        <span class="fu-pipeline-sub">510(k) / De Novo / PMA</span>
       </div>
       <div class="fu-pipeline-step" style="background: #0284C7;">
         Implementation
@@ -431,9 +448,9 @@
       As covered in Lesson 4, internal validation (testing on held-out data from the same source) is necessary but not sufficient. External validation at independent sites is the minimum bar. Prospective validation &mdash; testing in real-time clinical workflow &mdash; remains the gold standard but is expensive, slow, and rare.
     </p>
 
-    <h3>Regulatory Clearance</h3>
+    <h3>FDA regulatory pathway</h3>
     <p>
-      Most radiology AI tools reach the market through the FDA's 510(k) pathway (showing substantial equivalence to a predicate device) or the De Novo pathway (for novel, low-to-moderate risk devices). The FDA has also proposed a framework for "predetermined change control plans" that would allow AI tools to update their algorithms after clearance without requiring a new submission each time &mdash; a recognition that AI models evolve.
+      AI-enabled medical devices may reach the U.S. market through different FDA pathways. A 510(k) is a clearance pathway based on substantial equivalence to a legally marketed predicate; De Novo classifies novel low- to moderate-risk device types without an appropriate predicate; PMA is the approval pathway used primarily for high-risk Class III devices. The FDA has also proposed a framework for "predetermined change control plans" that would allow AI tools to update their algorithms after clearance without requiring a new submission each time &mdash; a recognition that AI models evolve.
     </p>
 
     <!-- CITATION: [Author(s), "Title," Journal, Year. DOI/URL] -->
@@ -659,6 +676,11 @@
 
   <!-- ── Summary ── -->
   <section class="les-section" id="summary">
+    <div class="les-case les-case--blue">
+      <div class="les-case-label les-case-label--blue">Optional reflection</div>
+      <p><strong>Which future capability do you think will become routine first?</strong> Which would most change your own practice? Which prediction do you disagree with? And what should AI2Practice teach next?</p>
+    </div>
+
     <h2>Putting It All Together</h2>
     <p>
       The future of AI in radiology is not a single event &mdash; it is an ongoing shift. The tools will get more capable. The regulatory landscape will evolve. The radiologist's role will change, but it will not disappear. What matters is whether you are paying attention.

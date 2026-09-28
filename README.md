@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="images/ai2practice-logo.svg" alt="AI2Practice" width="420">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/ai2practice-logo-white.svg">
+    <source media="(prefers-color-scheme: light)" srcset="images/ai2practice-logo.svg">
+    <img src="images/ai2practice-logo.svg" alt="AI2Practice" width="420">
+  </picture>
 </p>
 
 <p align="center">

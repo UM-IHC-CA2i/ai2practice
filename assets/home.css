@@ -148,3 +148,14 @@ a.cc:hover { box-shadow: 0 10px 28px rgba(17,24,39,.08); transform: translateY(-
   .mobile-map li.opt { border-left-style: dashed; }
 }
 @media (max-width: 520px) { .core-cards { grid-template-columns: 1fr; } }
+
+/* AI2PRACTICE CURRICULUM QUESTIONS */
+.cc-question { display:block; margin:-2px 0 12px; color:#55606d; font-size:.83rem; line-height:1.4; font-style:italic; }
+.optional-finale { display:flex; align-items:center; justify-content:space-between; gap:28px; margin:-36px 0 56px; padding:20px 22px; border:1px solid var(--route-line); border-left:6px solid var(--route-core); border-radius:14px; background:#f8fafc; }
+.optional-finale span { display:block; margin-bottom:3px; color:var(--route-muted); font:600 .7rem var(--plex-mono); letter-spacing:.05em; text-transform:uppercase; }
+.optional-finale strong { display:block; font-size:1rem; }
+.optional-finale p { margin:4px 0 0; color:#4b5563; font-size:.86rem; }
+.optional-finale a { flex:none; font-weight:700; font-size:.86rem; text-decoration:none; color:var(--route-core); }
+.optional-finale a:hover { text-decoration:underline; }
+@media (max-width:700px){ .optional-finale{align-items:flex-start;flex-direction:column;gap:12px;} }
+/* /AI2PRACTICE CURRICULUM QUESTIONS */
