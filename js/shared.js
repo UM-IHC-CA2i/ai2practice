@@ -68,8 +68,10 @@
     nav.querySelectorAll('.nav-drop').forEach(function(drop) {
       var b=drop.querySelector('.nav-drop-toggle'); if(!b)return;
       b.addEventListener('click',function(e){e.stopPropagation();var willOpen=!drop.classList.contains('open');closeDrops(drop);drop.classList.toggle('open',willOpen);b.setAttribute('aria-expanded',willOpen?'true':'false');});
-      drop.addEventListener('mouseenter',function(){if(window.matchMedia('(min-width: 901px)').matches){closeDrops(drop);drop.classList.add('open');b.setAttribute('aria-expanded','true');}});
-      drop.addEventListener('mouseleave',function(){if(window.matchMedia('(min-width: 901px)').matches){drop.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+      // Short close delay so the pointer can travel from the button into the menu.
+      var closeTimer=null;
+      drop.addEventListener('mouseenter',function(){clearTimeout(closeTimer);if(window.matchMedia('(min-width: 901px)').matches){closeDrops(drop);drop.classList.add('open');b.setAttribute('aria-expanded','true');}});
+      drop.addEventListener('mouseleave',function(){if(window.matchMedia('(min-width: 901px)').matches){closeTimer=setTimeout(function(){drop.classList.remove('open');b.setAttribute('aria-expanded','false');},250);}});
     });
 
     document.addEventListener('click', function(e) {

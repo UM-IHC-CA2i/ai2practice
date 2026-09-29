@@ -10,8 +10,10 @@ if (toggle && nav) {
 document.querySelectorAll('.nav-drop').forEach(drop => {
   const b=drop.querySelector('.nav-drop-toggle'); if(!b)return;
   b.addEventListener('click',e=>{e.stopPropagation();const willOpen=!drop.classList.contains('open');closeDrops(drop);drop.classList.toggle('open',willOpen);b.setAttribute('aria-expanded',String(willOpen));});
-  drop.addEventListener('mouseenter',()=>{ if(window.matchMedia('(min-width: 901px)').matches){closeDrops(drop);drop.classList.add('open');b.setAttribute('aria-expanded','true');} });
-  drop.addEventListener('mouseleave',()=>{ if(window.matchMedia('(min-width: 901px)').matches){drop.classList.remove('open');b.setAttribute('aria-expanded','false');} });
+  // Short close delay so the pointer can travel from the button into the menu.
+  let closeTimer=null;
+  drop.addEventListener('mouseenter',()=>{ clearTimeout(closeTimer); if(window.matchMedia('(min-width: 901px)').matches){closeDrops(drop);drop.classList.add('open');b.setAttribute('aria-expanded','true');} });
+  drop.addEventListener('mouseleave',()=>{ if(window.matchMedia('(min-width: 901px)').matches){closeTimer=setTimeout(()=>{drop.classList.remove('open');b.setAttribute('aria-expanded','false');},250);} });
 });
 document.addEventListener('click',()=>closeDrops());
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrops();});

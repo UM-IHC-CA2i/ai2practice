@@ -204,11 +204,6 @@ var CheckpointQuiz = (function() {
           nextBtn.classList.add('ckpt-next-enabled');
           nextBtn.classList.remove('ckpt-next-locked');
         }
-
-        var pillTray = document.querySelector('.pill-tray');
-        if (pillTray) {
-          rebuildActivePill();
-        }
       } else {
         document.getElementById('ckpt-status').textContent = 'Not Yet — Try Again';
         document.getElementById('ckpt-status').className = 'quiz-status failed';
@@ -220,21 +215,6 @@ var CheckpointQuiz = (function() {
 
       results.scrollIntoView({ behavior: 'smooth' });
     });
-  }
-
-  function rebuildActivePill() {
-    var currentPill = document.querySelector('.pill-item.pill--active-teal');
-    if (!currentPill) return;
-    currentPill.classList.remove('pill--active-teal');
-    currentPill.classList.add('pill--completed');
-    var num = currentPill.querySelector('.pill-num');
-    if (num) {
-      num.classList.remove('pill-num--research');
-      num.innerHTML = '<svg class="pill-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      num.style.background = '#059669';
-      num.style.border = 'none';
-      num.style.color = '#fff';
-    }
   }
 
   function bindRetry() {

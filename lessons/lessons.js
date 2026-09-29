@@ -62,24 +62,7 @@
     }
   }
 
-  // ── Pill Bar ──
-
-  var CLINICAL = [
-    { key: 'lesson-2', file: 'lesson-2.html', label: 'AI Fundamentals' },
-    { key: 'lesson-3', file: 'lesson-3.html', label: 'Workflow' },
-    { key: 'lesson-4', file: 'lesson-4.html', label: 'Clinical Evidence' },
-    { key: 'lesson-1', file: 'lesson-1.html', label: 'Expertise & Skill' }
-  ];
-
-  var RESEARCH_ITEMS = [
-    { key: 'research-1', file: 'research-1.html', label: 'Python' },
-    { key: 'research-2', file: 'research-2.html', label: 'Data Sci' },
-    { key: 'research-3', file: 'research-3.html', label: 'ML' },
-    { key: 'research-4', file: 'research-4.html', label: 'Adv AI' },
-    { key: 'research-5', file: 'research-5.html', label: 'Project' }
-  ];
-
-  var CHECK_SVG = '<svg class="pill-check" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  // Progress for lesson pages is shown by the shared progress rail (assets/progress.js).
 
   var STORAGE_KEY = 'aiready_completed';
 
@@ -108,95 +91,6 @@
     if (oldDone && !localStorage.getItem(STORAGE_KEY)) localStorage.setItem(STORAGE_KEY, oldDone);
   } catch(e) {}
 
-  function buildPillBar() {
-    var done = getCompleted();
-
-    var tray = document.createElement('div');
-    tray.className = 'pill-tray';
-
-    CLINICAL.forEach(function(item) {
-      var lessonNum = item.key.replace('lesson-', '');
-      if (selectedLessons.length > 0 && selectedLessons.indexOf(lessonNum) === -1) return;
-      var a = document.createElement('a');
-      a.href = item.file + qs;
-      a.className = 'pill-item';
-
-      var isActive = item.key === currentKey;
-      var isCompleted = done.indexOf(item.key) !== -1;
-
-      if (isActive) {
-        a.classList.add('pill--active');
-      } else if (isCompleted) {
-        a.classList.add('pill--completed');
-      }
-
-      var num = document.createElement('span');
-      num.className = 'pill-num';
-      if (!isActive && !isCompleted) {
-        num.classList.add('pill-num--clinical');
-      }
-      if (isCompleted) {
-        num.innerHTML = CHECK_SVG;
-      } else {
-        num.textContent = item.key.replace('lesson-', '');
-      }
-
-      var label = document.createElement('span');
-      label.className = 'pill-label';
-      label.textContent = item.label;
-
-      a.appendChild(num);
-      a.appendChild(label);
-      tray.appendChild(a);
-    });
-
-    if (research) {
-      var divider = document.createElement('div');
-      divider.className = 'pill-divider';
-      tray.appendChild(divider);
-
-      RESEARCH_ITEMS.forEach(function(item) {
-        var a = document.createElement('a');
-        a.href = item.file + qs;
-        a.className = 'pill-item';
-
-        var isActive = item.key === currentKey;
-        var isCompleted = done.indexOf(item.key) !== -1;
-
-        if (isActive) {
-          a.classList.add('pill--active-teal');
-        } else if (isCompleted) {
-          a.classList.add('pill--completed');
-        }
-
-        var num = document.createElement('span');
-        num.className = 'pill-num';
-        if (!isActive && !isCompleted) {
-          num.classList.add('pill-num--research');
-        }
-        if (isCompleted) {
-          num.innerHTML = CHECK_SVG;
-        } else {
-          num.textContent = item.key.replace('research-', '');
-        }
-
-        var label = document.createElement('span');
-        label.className = 'pill-label';
-        label.textContent = item.label;
-
-        a.appendChild(num);
-        a.appendChild(label);
-        tray.appendChild(a);
-      });
-    }
-
-    var topbarTitle = document.querySelector('.les-topbar-title');
-    if (topbarTitle) {
-      topbarTitle.replaceWith(tray);
-    }
-  }
-
-  buildPillBar();
 
   // Follow the selected curriculum order rather than legacy file numbering.
   if (!isResearchPage && currentKey.indexOf('lesson-') === 0 && currentKey !== 'lesson-5') {
