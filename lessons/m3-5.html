@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 &middot; The Future of AI in Radiology &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="assets/m3.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/clinical-practice.html" class="les-back" id="les-back">&larr; Module 3 overview</a>
+  <div class="les-topbar-title">Module 3 &middot; Lesson 3.5</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">3.5</div>
+    <div>
+      <div class="les-hero-q">Will AI replace radiologists, and what should you learn now?</div>
+      <h1>The Future of AI in Radiology</h1>
+      <p>Where the technology is heading, how the radiologist's job may change, and the skills that will last</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">The last lesson of the course looks ahead. Nobody knows exactly what radiology will look like when you are in practice, but the direction is clear enough to plan for. About 15 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Explain why "AI will replace radiologists" has not come true so far.</li>
+      <li>Describe the next kinds of AI coming to radiology.</li>
+      <li>Say which parts of a radiologist's work are likely to change and which are likely to stay.</li>
+      <li>Name the skills worth building now, whatever specialty you choose.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="replace">
+    <h2>"Stop training radiologists"?</h2>
+    <p>In 2016, the AI pioneer Geoffrey Hinton said that people should stop training radiologists, because within five years deep learning would do better. Ten years later, AI is in wide use, and radiologists are busier than ever. Many countries report a shortage of radiologists, as the number of scans keeps growing faster than the number of people to read them.</p>
+    <p>Why was the prediction wrong? You now know enough to answer:</p>
+    <ul>
+      <li>Most AI tools do <strong>one narrow task</strong> (Lesson 3.1). A radiologist does hundreds, and a single scan can hold many unrelated findings, like Mr. Diaz's clot and nodule.</li>
+      <li>Accuracy on a test set is not the same as <strong>working safely at every hospital</strong> (Lesson 3.2).</li>
+      <li>Someone has to <strong>check the output, take responsibility</strong> and talk with patients and other doctors (Lesson 3.4).</li>
+      <li>Reading images is only part of the job. Radiologists also do procedures, advise on which test to order, and join tumor boards and team meetings.</li>
+    </ul>
+    <p>A common saying sums it up: AI will not replace radiologists, but radiologists who use AI well may replace those who do not.</p>
+  </section>
+
+  <section class="les-section" id="heading">
+    <h2>Where the technology is heading</h2>
+    <figure class="les-figure">
+      <img src="images/m3/ai-timeline.png" alt="Timeline: narrow AI today, then generative, multimodal, foundation models and agents, with broader capability needing more validation and oversight">
+      <figcaption>Figure 1. From narrow tools to broader ones. Each step lets a model do more, and makes it harder to test and more important to oversee.</figcaption>
+    </figure>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Generative</strong><span>Models that write: draft reports, summaries and patient letters (Lesson 3.1). Report drafting is already in use at some hospitals.</span></div>
+      <div class="m1-term"><strong>Multimodal</strong><span>Models that combine images with text and the health record, the way a radiologist reads a scan alongside the clinical history.</span></div>
+      <div class="m1-term"><strong>Foundation models</strong><span>One large model trained on huge amounts of data, then adapted to many tasks, instead of one model built for each task.</span></div>
+      <div class="m1-term"><strong>Agents</strong><span>Systems that carry out several steps on their own: pull up prior scans, compare them, and suggest a recommendation. Still early research.</span></div>
+    </div>
+    <p>One idea is already practical: <strong>opportunistic screening</strong>. Scans done for one reason contain information about other things. AI can measure bone density, calcium in the heart arteries, or liver fat on a CT done for, say, belly pain, and flag patients who may need attention. Mr. Diaz's CTPA could also be checked for heart artery calcium.</p>
+  </section>
+
+  <section class="les-section" id="role">
+    <h2>How the job may change</h2>
+    <figure class="les-figure">
+      <img src="images/m3/role-shift.png" alt="Two columns: today's volume-based radiology work and the future complexity-based work, with clinical judgment, communication, procedures and accountability constant across both">
+      <figcaption>Figure 2. Some of today's work may shift to AI, with the radiologist checking it. Judgment, communication, procedures and responsibility stay with people.</figcaption>
+    </figure>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: who will do it?</div>
+      <p class="mi-box-intro">For each task, guess how it will most likely be done in ten years. The explanations give a common expert view, but nobody knows for sure.</p>
+      <div class="mi-sort" data-choices="Mostly AI|AI and radiologist|Mostly radiologist">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Measuring a lung nodule and comparing it with last year's size.</div>
+            <div class="mi-card-why">Measuring and comparing is narrow, repetitive and easy to check, a good fit for AI, with the radiologist glancing to confirm.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Writing the report for Mr. Diaz's CTPA.</div>
+            <div class="mi-card-why">AI may draft it, but a radiologist reads the images, edits the draft, and signs. Lesson 3.1 showed why someone has to check.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">Explaining to a surgeon at a tumor board whether a tumor can be removed.</div>
+            <div class="mi-card-why">This combines images, the whole patient's story and a conversation between doctors. It stays human.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Sorting screening mammograms into "clearly normal" and "needs a careful look."</div>
+            <div class="mi-card-why">Trials like MASAI (Lesson 3.2) show AI can safely take on part of this, with radiologists reading the exams that need it.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">Doing a CT-guided biopsy of a lung nodule.</div>
+            <div class="mi-card-why">Procedures need hands, judgment in the moment and a patient's consent. AI may help plan the path, but a person does it.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">Deciding whether a new AI tool is safe to use at the hospital.</div>
+            <div class="mi-card-why">Choosing, testing and monitoring AI is a growing part of the radiologist's job (Lessons 3.2 and 3.4).</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="you">
+    <h2>What this means for you</h2>
+    <p>Whatever specialty you choose, AI will be part of it. The skills that will last are the ones this course has practiced:</p>
+    <ol>
+      <li><strong>The basics, on your own.</strong> Anatomy, how disease looks and clinical reasoning. You cannot check an AI on something you never learned (Lesson 3.3).</li>
+      <li><strong>Judging evidence.</strong> Ask what rung a claim reaches and whether it fits your patients (Lesson 3.2).</li>
+      <li><strong>Knowing how AI fails.</strong> Shortcuts, false alarms, hallucinations and bias (Modules 1 and 3).</li>
+      <li><strong>Talking with people.</strong> Explaining results and uncertainty to patients and colleagues.</li>
+      <li><strong>Owning your decisions.</strong> Using AI as a helper while staying responsible for the result.</li>
+    </ol>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Which is the best reason AI has not replaced radiologists so far?</p>
+      <button class="quiz-option">AI is not allowed in hospitals</button>
+      <button class="quiz-option">Most AI tools do one narrow task, and a radiologist's job is much broader</button>
+      <button class="quiz-option">AI tools are never accurate</button>
+      <div class="quiz-explanation"><p>Many AI tools are accurate at their one task. But a radiologist reads everything on a scan, takes responsibility, does procedures and advises other doctors.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">An AI measures bone density on a CT that was done to look for kidney stones. What is this called?</p>
+      <button class="quiz-option">Triage</button>
+      <button class="quiz-option">Automation bias</button>
+      <button class="quiz-option">Opportunistic screening</button>
+      <div class="quiz-explanation"><p>Opportunistic screening uses scans done for one reason to look for other conditions, with no extra scan or radiation.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>The 2016 prediction that AI would replace radiologists has not come true. Demand for radiologists has grown.</li>
+      <li>AI is moving from narrow tools toward generative, multimodal and foundation models. Broader tools need more testing and oversight.</li>
+      <li>Routine measuring and sorting may shift to AI. Judgment, communication, procedures and responsibility stay with people.</li>
+      <li>Build the basics without AI, learn to judge evidence, know how AI fails, and own your decisions.</li>
+    </ul>
+    <p>That completes the core course. Next, take the assessment to earn your certificate.</p>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://doi.org/10.1148/ryai.2019190058" target="_blank" rel="noopener">Langlotz, Will artificial intelligence replace radiologists?</a> <small>(Radiology: Artificial Intelligence, 2019)</small></li>
+      <li><a href="https://www.acrdsi.org/" target="_blank" rel="noopener">ACR Data Science Institute</a> <small>(news and resources on AI in radiology)</small></li>
+      <li><a href="../tracker.html">AI Tool Tracker</a> <small>(watch the numbers grow year by year)</small></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m3-4.html" class="btn btn-outline" id="les-prev">&larr; Responsibility &amp; Patients</a>
+  <a href="../assessment.html" class="btn btn-accent" id="les-next">Next: Assessment &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+</body>
+</html>

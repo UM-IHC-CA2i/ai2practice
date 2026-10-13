@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 &middot; Images as Data &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/informatics.html" class="les-back" id="les-back">&larr; Module 2 overview</a>
+  <div class="les-topbar-title">Module 2 &middot; Lesson 2.2</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">2.2</div>
+    <div>
+      <div class="les-hero-q">What is a medical image to a computer?</div>
+      <h1>Images as Data</h1>
+      <p>Pixels and CT numbers, the DICOM file format, windowing, image quality, and how images become datasets for AI</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">Mr. Diaz's CT pulmonary angiogram (CTPA) took about ten seconds. What came out of the scanner is not a picture in the everyday sense. It is a stack of files full of numbers, plus a lot of information about the patient and the scan. This lesson opens those files. It is the "data" half of everything you learned about AI in Module 1. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Explain that a digital image is a grid of numbers, and what a CT number (Hounsfield unit) means.</li>
+      <li>Describe what a DICOM file holds, and why its hidden information matters for AI.</li>
+      <li>Use windowing to show different tissues on the same CT slice.</li>
+      <li>Name common image quality problems and how they can fool a person or a model.</li>
+      <li>Explain how images are de-identified and turned into the public datasets many AI tools learn from.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="pixels">
+    <h2>An image is a grid of numbers</h2>
+    <p>Every digital image is made of tiny squares called <strong>pixels</strong> (picture elements). Each pixel holds one number, and the screen turns that number into a shade of gray. On a phone photo, each pixel has three numbers for red, green and blue. Most medical images are grayscale, so one number is enough.</p>
+
+    <figure class="les-figure">
+      <img src="images/m2/pixels.png" alt="Left: a small blurry patch of a chest CT showing dark lung, gray chest wall and a white rib. Right: the same patch as an 8 by 8 grid, each square labeled with its CT number, around -850 for lung, +40 for muscle and +700 for bone.">
+      <figcaption>Figure 1. What you see, and what the computer stores. An AI model never "sees" the picture on the left; it receives the numbers on the right.</figcaption>
+    </figure>
+
+    <p>On CT, the number in each pixel has a fixed meaning. It is a <strong>CT number</strong>, measured in <strong>Hounsfield units (HU)</strong>, named after Godfrey Hounsfield, who built the first CT scanner. The scale is pinned to two points: <strong>water is 0</strong> and <strong>air is -1000</strong>. Fat is about -100, blood and muscle about +40, contrast-filled blood around +300, and dense bone +1000 or more. That is the scale from Lesson 2.1's density figure, now with numbers attached.</p>
+    <p>Because a CT slice is a slice of a volume, each pixel actually stands for a tiny block of tissue, called a <strong>voxel</strong> (volume element), often under 1 mm on each side. A typical CT slice is 512 by 512 pixels, and a chest CT has hundreds of slices: tens of millions of numbers for one scan. X-ray and MRI pixels also hold numbers, but they have no fixed scale like HU: the same tissue can get different numbers on different machines. Remember that for the section on AI below.</p>
+
+    <div class="m2-think">
+      <div class="m1-example-label">Think about it</div>
+      <p>A doctor looks at an image. An AI model only ever receives a grid of numbers. What could change those numbers without changing the patient? (Scanner brand, settings, contrast timing, patient movement, a different hospital's software. Keep your list in mind; Lesson 1.5's "distribution shift" lives here.)</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="dicom">
+    <h2>DICOM: a letter in an envelope</h2>
+    <p>Medical images are stored in a standard format called <strong>DICOM</strong> (Digital Imaging and Communications in Medicine). Every scanner and every viewing system in the world speaks it, which is why an image from one company's scanner can be opened on another company's workstation.</p>
+    <p>A useful way to picture a DICOM file is a <strong>letter in an envelope</strong>. The letter is the pixel data: the grid of numbers. The envelope is the <strong>header</strong> (also called metadata, "data about the data"): hundreds of labeled fields saying who the patient is, which scanner made the image, how it was made and where this slice sits in the body.</p>
+
+    <figure class="les-figure">
+      <img src="images/m2/dicom-hierarchy.png" alt="Four boxes left to right: Patient (Mr. Diaz), Study (CT pulmonary angiogram, 12 March 01:40), Series (scout, thin contrast slices, lung-window slices, coronal reformats), Images (hundreds of single slices, each its own DICOM file).">
+      <figcaption>Figure 2. How DICOM organizes Mr. Diaz's scan. One <strong>study</strong> is one exam; it holds several <strong>series</strong> (sets of images made in one way); each series holds many single images.</figcaption>
+    </figure>
+
+    <p>Click through the tabs to see what is written on Mr. Diaz's "envelope." The values are made up but the field names are real.</p>
+
+    <div class="dt-explorer">
+      <div class="dt-tabs">
+        <button class="dt-tab active" data-panel="dc-patient">Patient</button>
+        <button class="dt-tab" data-panel="dc-study">Study and series</button>
+        <button class="dt-tab" data-panel="dc-scanner">Scanner and settings</button>
+        <button class="dt-tab" data-panel="dc-pixels">Pixel data</button>
+      </div>
+
+      <div class="dt-panel active" id="dc-patient">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--rose">1</div>
+          <div>
+            <h3 class="dt-panel-title">Who the patient is</h3>
+            <p class="dt-panel-subtitle">Protected health information: removed before images are shared for research</p>
+          </div>
+        </div>
+        <div class="m2-table-wrap">
+          <table class="m2-table">
+            <thead><tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Patient's Name</td><td>DIAZ^MIGUEL</td></tr>
+              <tr><td>Patient ID</td><td>MRN 00482217</td></tr>
+              <tr><td>Patient's Birth Date</td><td>19640219</td></tr>
+              <tr><td>Patient's Sex</td><td>M</td></tr>
+              <tr><td>Institution Name</td><td>CITY GENERAL HOSPITAL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="dt-panel-desc">MRN means medical record number. Dates are written year, month, day.</p>
+      </div>
+
+      <div class="dt-panel" id="dc-study">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--blue">2</div>
+          <div>
+            <h3 class="dt-panel-title">What exam this is</h3>
+            <p class="dt-panel-subtitle">Lets the viewer sort images into the right study and series</p>
+          </div>
+        </div>
+        <div class="m2-table-wrap">
+          <table class="m2-table">
+            <thead><tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Modality</td><td>CT</td></tr>
+              <tr><td>Study Description</td><td>CT ANGIO CHEST PE PROTOCOL</td></tr>
+              <tr><td>Study Date / Time</td><td>20260312 / 014012</td></tr>
+              <tr><td>Accession Number</td><td>A9917342 (the order number; links images to the order and the report)</td></tr>
+              <tr><td>Series Description</td><td>1.0mm CTA SOFT TISSUE</td></tr>
+              <tr><td>Body Part Examined</td><td>CHEST</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="dc-scanner">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--amber">3</div>
+          <div>
+            <h3 class="dt-panel-title">How the image was made</h3>
+            <p class="dt-panel-subtitle">The part people rarely look at, and AI models quietly pick up</p>
+          </div>
+        </div>
+        <div class="m2-table-wrap">
+          <table class="m2-table">
+            <thead><tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Manufacturer</td><td>(scanner company)</td></tr>
+              <tr><td>Slice Thickness</td><td>1.0 (mm)</td></tr>
+              <tr><td>KVP</td><td>100 (the X-ray tube voltage)</td></tr>
+              <tr><td>Contrast Bolus Agent</td><td>IODINATED, 70 mL</td></tr>
+              <tr><td>Window Center / Width</td><td>40 / 400 (the default display setting; see Windowing below)</td></tr>
+              <tr><td>Slice Location</td><td>-112.5 (where this slice is along the body, in mm)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="dc-pixels">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--teal">4</div>
+          <div>
+            <h3 class="dt-panel-title">The letter itself</h3>
+            <p class="dt-panel-subtitle">The grid of numbers</p>
+          </div>
+        </div>
+        <div class="m2-table-wrap">
+          <table class="m2-table">
+            <thead><tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Rows / Columns</td><td>512 / 512</td></tr>
+              <tr><td>Pixel Spacing</td><td>0.74 / 0.74 (mm per pixel)</td></tr>
+              <tr><td>Bits Stored</td><td>12 (each pixel can hold one of 4,096 values)</td></tr>
+              <tr><td>Rescale Slope / Intercept</td><td>1 / -1024 (how to turn stored values into HU)</td></tr>
+              <tr><td>Pixel Data</td><td>262,144 numbers</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="dt-panel-desc">The screen can show only about 256 shades of gray, and the eye can tell apart fewer still. That is why you need windowing.</p>
+      </div>
+    </div>
+
+    <h3>Why the envelope matters for AI</h3>
+    <p>In Lesson 1.5 you saw an AI that learned to spot the hospital instead of the disease. The header and the pixels themselves carry many such clues: the scanner brand, a "PORTABLE" label burned into the corner, the slice thickness, the hospital's name. A model can learn any pattern that happens to go along with the label. Good AI developers check which scanners and hospitals their data came from, and test on data from somewhere else. The header is also how an AI tool knows which images to look at: a chest CT tool that receives a head CT because the Body Part field was wrong may still give an answer.</p>
+  </section>
+
+  <section class="les-section" id="windowing">
+    <h2>Windowing: one slice, many pictures</h2>
+    <p>A CT slice holds values from -1000 to over +1000, but the screen can only show a limited number of grays. So the viewer shows just a slice of the range at a time, called the <strong>window</strong>:</p>
+    <ul>
+      <li>The <strong>level</strong> (or center) is the CT number in the middle of the window. It becomes mid-gray.</li>
+      <li>The <strong>width</strong> is how wide a range of CT numbers gets spread across black to white. Everything below the window is pure black; everything above it is pure white.</li>
+    </ul>
+    <p>A narrow window shows small differences between similar tissues. A wide window shows many tissues but flattens the differences. Radiologists switch windows constantly while they read.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: window a chest CT</div>
+      <p class="mi-box-intro">This is a drawn slice through a chest at the level of the heart, made for this lesson; it is not a real patient. It has a clot in one lung artery and a small nodule hiding in it, like Mr. Diaz. Try the preset windows, then move the sliders. Point at the image to read the CT number under the cursor.</p>
+      <div class="m2-window"></div>
+    </div>
+
+    <p>Notice that the clot is invisible in the lung window and the nodule is invisible in the soft-tissue window. A reader, or an AI tool, that only looks at one window can miss half the findings. Many AI models are given images in one fixed window, and some are trained on several windows stacked together, as a radiologist would read them.</p>
+
+    <div class="les-video-grid">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=KZld-5W99cI" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/KZld-5W99cI/hqdefault.jpg" alt="Understanding CT windows, levels and densities">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>Understanding CT windows, levels and densities (Petra Lewis)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+    </div>
+
+    <div class="img-needed">
+      <span class="img-needed-tag">Image needed</span>
+      <p>The same real axial chest CT slice shown three times: lung window, soft-tissue (mediastinal) window and bone window. Ideally a CTPA with a visible filling defect in a pulmonary artery.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="quality">
+    <h2>When the picture is not quite right</h2>
+    <p>Not every image is perfect. An <strong>artifact</strong> is something on the image that is not really in the patient, created by the scanner, the patient or the physics. Radiologists learn to recognize artifacts so they do not mistake them for disease, and to say in the report when image quality limits what they can see. AI models often have no idea an image is poor and give a confident answer anyway.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: spot the problem</div>
+      <p class="mi-box-intro">For each description, decide what caused the problem.</p>
+      <div class="mi-sort" data-choices="Patient moved|Metal|Positioning|Too little dose">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Blurry, doubled edges<small>A chest CT in a patient who was too short of breath to hold still. The heart and diaphragm look smeared.</small></div>
+            <div class="mi-card-why">Motion. Breathing or moving during the scan blurs edges, and on a CTPA it can create fake dark spots in arteries that look like clots.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Bright and dark streaks<small>A CT of the pelvis in a patient with a hip replacement. Streaks fan out from the hip.</small></div>
+            <div class="mi-card-why">Metal. Metal blocks almost all the X-rays, so the computer's math breaks down around it. Special software can reduce, but not remove, the streaks.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">The heart looks large<small>A chest X-ray taken in bed in the ICU, with the beam coming from the front (AP).</small></div>
+            <div class="mi-card-why">Positioning. AP films magnify the heart compared with a standard standing PA film (Lesson 2.1). Compare like with like.</div>
+          </div>
+          <div class="mi-card" data-answer="3">
+            <div class="mi-card-text">Grainy, speckled image<small>A low-dose CT in a large patient. Everything looks like it is covered in sand.</small></div>
+            <div class="mi-card-why">Noise. Too few X-rays reached the detector. Lowering the dose is good for the patient, but too low makes small things, like a nodule, hard to see. This is a real ALARA trade-off.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">Part of the lung is missing<small>A chest X-ray where the bottom of the right lung is cut off at the edge of the image.</small></div>
+            <div class="mi-card-why">Positioning. Anything outside the image cannot be read by a person or an AI. Reports should say when part of the area of interest was not included.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+
+    <div class="img-needed-row">
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>A CT with metal streak artifact from a hip replacement or dental fillings.</p>
+      </div>
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>A CT with breathing motion artifact (blurred diaphragm or heart edges).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="datasets">
+    <h2>From hospital images to AI datasets</h2>
+    <p>To train the AI models from Module 1, developers need thousands of images with labels. Hospitals hold millions of images, but they are full of private information. Before images leave the hospital they are <strong>de-identified</strong>: names, record numbers, birth dates and other identifying fields are removed or replaced in the header, and any text burned into the pixels (like a name in the corner) is blacked out. In the United States, the privacy rules come from a law called <strong>HIPAA</strong> (Health Insurance Portability and Accountability Act).</p>
+    <p>De-identification is harder than it sounds. Faces can be rebuilt from head CT and MRI, dates can identify people, and text can hide in unexpected places. Data sharing also raises the question of patient consent, which the committee and ethics boards take seriously.</p>
+    <p>Several large public chest X-ray datasets have trained many of the models you will meet:</p>
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>Dataset</th><th>Size</th><th>Where the labels came from</th></tr></thead>
+        <tbody>
+          <tr><td>MIMIC-CXR</td><td>377,110 images, 65,379 patients</td><td>Beth Israel Deaconess Medical Center, Boston. Comes with the full radiology reports.</td></tr>
+          <tr><td>CheXpert</td><td>224,316 radiographs, 65,240 patients</td><td>Stanford Hospital. 14 labels pulled from reports by a computer program.</td></tr>
+          <tr><td>NIH ChestX-ray14</td><td>112,120 images, 30,805 patients</td><td>NIH Clinical Center. 14 labels pulled from reports by a computer program.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Look at the last column. Most labels were not drawn by a radiologist looking at each image. A program read the <em>report</em> and guessed the label from words like "no pneumothorax" or "possible effusion." This is the label-quality problem from Lesson 1.3: if the report was hedged, wrong or silent about a finding, the label is too. It is one reason Lesson 2.4 spends time on how reports are written.</p>
+  </section>
+
+  <section class="les-section" id="try">
+    <h2>Try it: open real DICOM images</h2>
+    <p><a href="https://viewer.ohif.org/" target="_blank" rel="noopener">OHIF Viewer</a> is a free, open-source DICOM viewer that runs in your web browser and comes with de-identified example studies. Open a CT study and try:</p>
+    <ul>
+      <li>Scroll through the slices with the mouse wheel.</li>
+      <li>Find the window/level tool and switch between presets, as you did above.</li>
+      <li>Look for the series list: how many series does one study have?</li>
+      <li>Hover over a tissue to read its CT number, if the study is a CT.</li>
+    </ul>
+    <p>Nothing to install, no account needed. It may be slow on a phone; a laptop works best.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">On CT, a region measures about 0 HU. What is it most likely to be?</p>
+      <button class="quiz-option">Air</button>
+      <button class="quiz-option">Bone</button>
+      <button class="quiz-option">Water or simple fluid</button>
+      <div class="quiz-explanation"><p>The Hounsfield scale is set so that water is 0 and air is -1000. Bone is several hundred or more.</p></div>
+    </div>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">The radiologist reading Mr. Diaz's CTPA switches from a lung window to a soft-tissue window. What changes?</p>
+      <button class="quiz-option">The scanner takes a new set of images</button>
+      <button class="quiz-option">Only the display: which range of CT numbers is shown as shades of gray</button>
+      <button class="quiz-option">The CT numbers stored in the file</button>
+      <div class="quiz-explanation"><p>Windowing changes only how the stored numbers are shown on screen. The data stays the same, so there is no extra radiation.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">A chest X-ray AI was trained on CheXpert. Why should you be cautious about its labels?</p>
+      <button class="quiz-option">Most labels were pulled from report text by a program, not drawn on each image by a radiologist</button>
+      <button class="quiz-option">The images were not de-identified</button>
+      <button class="quiz-option">CheXpert contains CT scans, not X-rays</button>
+      <div class="quiz-explanation"><p>Report-mined labels carry every gap and hedge of the original report, plus errors from the program reading it. This is the label noise from Lesson 1.3.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>A digital image is a grid of numbers. On CT, each number is a CT number in Hounsfield units: water 0, air -1000.</li>
+      <li>DICOM files hold the pixels plus a header full of information about the patient, the exam and the scanner.</li>
+      <li>Hidden information in the header and the pixels can become shortcuts for AI.</li>
+      <li>Windowing changes only the display. Different windows show different findings.</li>
+      <li>Artifacts and poor image quality can fool readers and models; good reports say when quality limits the read.</li>
+      <li>Public datasets are de-identified, and many of their labels were mined from reports.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://viewer.ohif.org/" target="_blank" rel="noopener">OHIF Viewer</a> <small>(free DICOM viewer in the browser, with example studies)</small></li>
+      <li><a href="https://physionet.org/content/mimic-cxr/" target="_blank" rel="noopener">MIMIC-CXR on PhysioNet</a> <small>(what a real dataset page looks like, including the access rules)</small></li>
+      <li><a href="https://stanfordmlgroup.github.io/competitions/chexpert/" target="_blank" rel="noopener">CheXpert</a> <small>(Stanford: the dataset and how its labels were made)</small></li>
+      <li><a href="https://radiopaedia.org/articles/windowing-ct" target="_blank" rel="noopener">Windowing (CT)</a> and <a href="https://radiopaedia.org/articles/hounsfield-unit" target="_blank" rel="noopener">Hounsfield unit</a> <small>(Radiopaedia, a free radiology reference)</small></li>
+    </ul>
+    <p>Next lesson: the images exist and the numbers are stored. How do they get from the scanner to the radiologist's screen, and the result back to Mr. Diaz's team?</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m2-1.html" class="btn btn-outline" id="les-prev">&larr; What Radiology Is</a>
+  <a href="m2-3.html" class="btn btn-accent" id="les-next">Next: The Journey of a Scan &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

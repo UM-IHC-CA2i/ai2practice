@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 &middot; Responsibility &amp; Patients &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="assets/m3.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/clinical-practice.html" class="les-back" id="les-back">&larr; Module 3 overview</a>
+  <div class="les-topbar-title">Module 3 &middot; Lesson 3.4</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">3.4</div>
+    <div>
+      <div class="les-hero-q">When AI is part of care, who answers for it, and what do patients deserve?</div>
+      <h1>Responsibility &amp; Patients</h1>
+      <p>Who is responsible, fairness and bias, privacy, and how to talk with patients about AI</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">A tool can be accurate, tested and worth the money, and still raise hard questions. Who is at fault when it is wrong? Does it work equally well for every patient? Should patients be told it was used? This lesson covers the four questions you are most likely to meet. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Explain who is responsible when AI is used in a patient's care.</li>
+      <li>Describe how an AI tool can treat groups of patients unfairly, with a real example.</li>
+      <li>State the basic rules for patient data and AI.</li>
+      <li>Answer a patient who asks whether a computer read their scan.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="responsibility">
+    <h2>Who is responsible?</h2>
+    <p>Back to Mr. Diaz. Suppose the AI that drafts impressions had left out the nodule follow-up, the radiologist did not notice and signed the report, and the follow-up CT never happened. Who is responsible?</p>
+    <p>Today the short answer is: <strong>the clinician who signs.</strong> AI tools are treated as tools, and the radiologist who signs a report is responsible for everything in it, whoever drafted it. Others share responsibility for their own parts:</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Clinician</strong><span>Checks the AI output, uses their own judgment, and signs. Responsible for the final report or decision.</span></div>
+      <div class="m1-term"><strong>Hospital</strong><span>Chooses the tool, tests it on its own patients, trains staff, and monitors it after go-live (Lesson 3.2).</span></div>
+      <div class="m1-term"><strong>Developer</strong><span>Builds the tool, reports honestly how and on whom it was tested, and fixes known problems.</span></div>
+      <div class="m1-term"><strong>Regulator</strong><span>In the US, the FDA authorizes tools that diagnose or guide treatment and can require reporting of problems.</span></div>
+    </div>
+    <p>The law here is still developing, and it may change as AI tools do more on their own. For now, "the AI said so" is not a defense.</p>
+  </section>
+
+  <section class="les-section" id="fairness">
+    <h2>Fairness and bias</h2>
+    <p>A model learns from its training data (Lesson 1.2). If some groups of patients are missing from that data, or if the data carry an unfairness from the past, the model learns that too. This is called <strong>algorithmic bias</strong>: a tool that works worse, or makes worse recommendations, for some groups of people.</p>
+    <div class="m2-think">
+      <div class="m1-example-label">Two real examples</div>
+      <p><strong>A risk score that used cost as a stand-in for illness.</strong> A program used by US health systems to decide who got extra care predicted future health care <em>costs</em>. Because less money had historically been spent on Black patients with the same illnesses, the program rated Black patients as healthier than equally sick white patients, and fewer were offered extra care (Obermeyer et al., 2019).</p>
+      <p><strong>Chest X-ray AI that missed more disease in some groups.</strong> Models trained on large chest X-ray datasets more often labeled sick patients as "no finding" if they were female, Black, Hispanic, younger, or on Medicaid insurance (Seyyed-Kalantari et al., 2021). Those patients would be the most likely to have a diagnosis delayed.</p>
+    </div>
+    <p><strong>Questions to ask about any tool:</strong> Who was in the training data? Was performance reported separately for different groups, such as by sex, age and race? Has it been tested on patients like ours?</p>
+  </section>
+
+  <section class="les-section" id="privacy">
+    <h2>Privacy</h2>
+    <p>AI is built from patient data, and using it often means sending data somewhere. A few basics:</p>
+    <ul>
+      <li><strong>Training data</strong> is usually <strong>de-identified</strong>: names, dates, record numbers and other identifiers are removed. Even so, images can sometimes carry hidden details, such as names burned into the corner of an X-ray.</li>
+      <li><strong>Protected health information (PHI)</strong> only goes into tools your institution has approved, which have agreements about how the data is stored and used (Lesson 3.1).</li>
+      <li><strong>Using a tool</strong> may send images or notes to the developer's servers. Hospitals check where data goes before they buy.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="patients">
+    <h2>Talking with patients</h2>
+    <p>Should patients be told when AI is used in their care? Views differ. Few patients are told about every piece of software involved in a scan. But most surveys find patients want to know when AI plays a real part in their diagnosis or in messages they receive, and they want a person to stay responsible. Some laws now require it: in California, since 2025, a message to a patient written by generative AI must say so, unless a licensed clinician has reviewed it.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Try it: answer Mr. Diaz</div>
+      <p class="mi-box-intro">At his clinic visit, Mr. Diaz asks: "I read that computers read scans now. Did a computer read mine? Should I trust it?" Write two or three sentences you could say, then compare with a sample answer.</p>
+      <div class="m2-translate">
+        <label for="m3-diaz-answer">Your answer. Nothing you write is saved or sent anywhere.</label>
+        <textarea id="m3-diaz-answer" rows="4" placeholder="Type what you would say to Mr. Diaz..."></textarea>
+        <button type="button" class="mi-btn mi-btn--fill">Compare with a sample answer</button>
+        <div class="m2-model" hidden>
+          <p><strong>Sample answer:</strong> "Our hospital uses a computer program that helps flag scans that may be urgent, so yours was looked at quickly. But a radiologist, a doctor who specializes in reading scans, looked at every image and wrote your report, and they are responsible for it. The program is a helper, like a second set of eyes. I'm happy to go over what the report found."</p>
+          <p>A good answer is honest, short and free of jargon, makes clear that a person is responsible, and brings the conversation back to what matters to him: his results and what happens next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="sort">
+    <h2>Name the issue</h2>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: which question does this raise?</div>
+      <p class="mi-box-intro">Each situation mainly raises one of the four issues from this lesson. Pick the best fit.</p>
+      <div class="mi-sort" data-choices="Responsibility|Fairness|Privacy|Telling patients">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">A student pastes a discharge summary, with the patient's name, into a free chatbot to shorten it.</div>
+            <div class="mi-card-why">Protected health information has left the hospital in an unapproved tool.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">A skin-cancer app was trained almost entirely on photos of light skin.</div>
+            <div class="mi-card-why">It will likely work worse for patients with darker skin, a fairness problem that starts in the training data.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">A radiologist signs an AI-drafted report without reading it, and it contains an error.</div>
+            <div class="mi-card-why">The radiologist who signs is responsible for the whole report, whoever drafted it.</div>
+          </div>
+          <div class="mi-card" data-answer="3">
+            <div class="mi-card-text">A portal message about test results was written by an AI, and the patient thinks their doctor wrote it.</div>
+            <div class="mi-card-why">The patient was not told AI was used. In some places, such as California, this now has to be disclosed unless a clinician reviewed it.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">A tool's paper reports accuracy for all patients together, but not separately by sex, age or race.</div>
+            <div class="mi-card-why">Without results by group, nobody can tell whether the tool works worse for some patients.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">A hospital switches on a triage tool and never checks how it performs after go-live.</div>
+            <div class="mi-card-why">The hospital is responsible for testing and monitoring the tools it chooses.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">An AI drafts a radiology impression with an error, and the radiologist signs it. Today, who is mainly responsible for the report?</p>
+      <button class="quiz-option">The radiologist who signed it</button>
+      <button class="quiz-option">The company that made the AI</button>
+      <button class="quiz-option">No one, because the AI made the error</button>
+      <div class="quiz-explanation"><p>The clinician who signs is responsible for the content, whoever drafted it. The hospital and developer have their own duties, but they do not replace the signer's.</p></div>
+    </div>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Why did the health-care risk score in the Obermeyer study treat Black patients unfairly?</p>
+      <button class="quiz-option">The developers included race as an input on purpose</button>
+      <button class="quiz-option">It predicted costs, and less had historically been spent on Black patients with the same needs</button>
+      <button class="quiz-option">It had too few patients to learn from</button>
+      <div class="quiz-explanation"><p>The target the model learned, cost, carried a past unfairness. Bias can enter through what a model is asked to predict, not only through who is in the data.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A patient asks if AI read their scan. Which reply is best?</p>
+      <button class="quiz-option">"Don't worry about that, it's very technical."</button>
+      <button class="quiz-option">"Yes, the computer did the reading, so it's very accurate."</button>
+      <button class="quiz-option">"A program helped, but a radiologist reviewed every image and is responsible for the report."</button>
+      <div class="quiz-explanation"><p>Be honest, keep it simple, and make clear that a person is responsible. Dismissing the question or overstating the AI both damage trust.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>The clinician who signs is responsible. Hospitals, developers and regulators each have their own duties.</li>
+      <li>AI can be unfair when groups are missing from the training data or when the target it learns carries past unfairness. Ask for results by group.</li>
+      <li>Keep patient information in approved tools only.</li>
+      <li>Patients generally want to know when AI plays a real part in their care. Be honest, simple, and clear that a person is responsible.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://doi.org/10.1126/science.aax2342" target="_blank" rel="noopener">Obermeyer et al., Dissecting racial bias in an algorithm used to manage the health of populations</a> <small>(Science, 2019)</small></li>
+      <li><a href="https://doi.org/10.1038/s41591-021-01595-0" target="_blank" rel="noopener">Seyyed-Kalantari et al., Underdiagnosis bias of AI algorithms applied to chest radiographs</a> <small>(Nature Medicine, 2021)</small></li>
+      <li><a href="https://doi.org/10.1148/radiol.2019191586" target="_blank" rel="noopener">Geis et al., Ethics of AI in radiology: joint European and North American multisociety statement</a> <small>(Radiology, 2019)</small></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m3-3.html" class="btn btn-outline" id="les-prev">&larr; Thinking With AI</a>
+  <a href="m3-5.html" class="btn btn-accent" id="les-next">Next: The Future of AI in Radiology &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

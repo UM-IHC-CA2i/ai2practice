@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 &middot; AI in Radiology and Medicine &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="assets/m3.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/clinical-practice.html" class="les-back" id="les-back">&larr; Module 3 overview</a>
+  <div class="les-topbar-title">Module 3 &middot; Lesson 3.1</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">3.1</div>
+    <div>
+      <div class="les-hero-q">Where is AI already used, and what does it do?</div>
+      <h1>AI in Radiology and Medicine</h1>
+      <p>The AI tools that touch Mr. Diaz's scan, how they share the work with radiologists, AI in the rest of medicine, and generative AI in the clinic</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">Module 1 explained how AI works. Module 2 explained how radiology works. This module puts them together and asks what AI changes for patients and for you. We start by looking at the AI tools in use today, first in radiology, then across medicine. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Name the AI tools that can act on one CT scan, from the order to the follow-up.</li>
+      <li>Tell apart four ways AI and a radiologist can share a reading.</li>
+      <li>Give an example of AI in at least three other areas of medicine.</li>
+      <li>Explain what generative AI does well, how it fails, and the rules for using it safely.</li>
+      <li>Find out which AI tools are authorized, using the AI Tool Tracker.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="diaz">
+    <h2>Mr. Diaz's scan, with AI</h2>
+    <p>In Lesson 2.3 you followed Mr. Diaz's CT pulmonary angiogram (CTPA) from the order to the follow-up. Now imagine the same night at a hospital that uses AI. None of these tools replaces a person. Each one does one narrow job at one step.</p>
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>Step (Lesson 2.3)</th><th>AI tool</th><th>What it does for Mr. Diaz</th></tr></thead>
+        <tbody>
+          <tr><td>1 &middot; Order</td><td>Decision support</td><td>Checks the order against appropriateness guidelines and suggests CTPA for suspected PE.</td></tr>
+          <tr><td>3 &middot; Scan</td><td>Image reconstruction</td><td>Cleans up noise so a lower radiation dose still gives a clear picture.</td></tr>
+          <tr><td>5 &middot; Worklist</td><td>PE triage</td><td>Spots a likely clot within minutes and moves his scan to the top of the radiologist's list.</td></tr>
+          <tr><td>6 &middot; Read</td><td>Nodule detection</td><td>Marks the 8 mm lung nodule and measures it.</td></tr>
+          <tr><td>7 &middot; Report</td><td>Report drafting</td><td>Suggests impression wording from the radiologist's findings, and a plain-language version for the patient portal.</td></tr>
+          <tr><td>9 &middot; Follow-up</td><td>Follow-up tracker</td><td>Reads the recommendation and reminds the team if the 6-12 month CT is not booked.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="img-needed-row">
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>A radiology worklist (screenshot or mock-up, no patient details) with one CTPA flagged by a PE triage AI and moved to the top.</p>
+      </div>
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>An axial chest CT slice with a nodule-detection AI box and measurement around a small lung nodule.</p>
+      </div>
+    </div>
+    <p>Most radiology AI does one of four jobs: <strong>detect</strong> (is something there?), <strong>triage</strong> (which scans are urgent?), <strong>measure</strong> (how big, how much?) or <strong>draft</strong> (put words to it). Each tool on the list was trained and tested separately. A tool that is good at clots knows nothing about nodules.</p>
+  </section>
+
+  <section class="les-section" id="designs">
+    <h2>Who reads first? Four reading designs</h2>
+    <p>At the reading step, the same AI tool can be set up in different ways. What changes is <em>when</em> the radiologist sees the AI output, and <em>who</em> has the last word.</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Concurrent</strong><span>AI marks appear while the radiologist reads. Fast, but the marks can pull attention toward what the AI found and away from everything else.</span></div>
+      <div class="m1-term"><strong>Second reader</strong><span>The radiologist reads first and reports, then checks the AI output and reconsiders. Slower, but protects independent judgment.</span></div>
+      <div class="m1-term"><strong>Triage</strong><span>AI reorders the worklist so likely urgent scans are read sooner. The radiologist still reads every scan. Mr. Diaz's PE tool works this way.</span></div>
+      <div class="m1-term"><strong>Autonomous</strong><span>AI makes the call with no human read, for example clearing some clearly normal studies. Rare in radiology so far, and only for narrow tasks.</span></div>
+    </div>
+    <div class="m2-think">
+      <div class="m1-example-label">Think about it</div>
+      <p>The triage tool misses Mr. Diaz's clot. His scan stays in the normal queue. Does he still get a correct diagnosis? (Yes, but later: a radiologist still reads it. A miss by a triage tool costs time, not the diagnosis.)</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="medicine">
+    <h2>AI across medicine</h2>
+    <p>Radiology has the most AI tools of any specialty, but it is not the only one. The ideas from Module 1 apply everywhere: a model learned from examples, it has a sensitivity and specificity, and it can fail on patients unlike the ones it learned from.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Explore: AI beyond radiology</div>
+      <div class="dt-explorer">
+        <div class="dt-tabs">
+          <button class="dt-tab active" data-panel="med-images">Other images</button>
+          <button class="dt-tab" data-panel="med-signals">Heart signals</button>
+          <button class="dt-tab" data-panel="med-predict">Predictions</button>
+          <button class="dt-tab" data-panel="med-language">Language</button>
+        </div>
+
+        <div class="dt-panel active" id="med-images">
+          <div class="dt-panel-header">
+            <div class="dt-panel-icon dt-panel-icon--blue">1</div>
+            <div>
+              <h3 class="dt-panel-title">Images outside radiology</h3>
+              <p class="dt-panel-subtitle">Any specialty that looks at pictures</p>
+            </div>
+          </div>
+          <div class="dt-examples">
+            <ul>
+              <li><strong>Eyes:</strong> in 2018 the FDA authorized the first <em>autonomous</em> AI system, which checks retina photos for diabetic eye disease in primary care clinics with no eye doctor reading them.</li>
+              <li><strong>Pathology:</strong> microscope slides are scanned into digital images, and AI flags areas that look like cancer, for example on prostate biopsies.</li>
+              <li><strong>Skin:</strong> tools classify photos of moles and rashes. Many were trained mostly on light skin and work less well on darker skin.</li>
+              <li><strong>Colonoscopy:</strong> AI marks possible polyps on the live video during the procedure.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dt-panel" id="med-signals">
+          <div class="dt-panel-header">
+            <div class="dt-panel-icon dt-panel-icon--teal">2</div>
+            <div>
+              <h3 class="dt-panel-title">Heart signals</h3>
+              <p class="dt-panel-subtitle">ECGs and wearables</p>
+            </div>
+          </div>
+          <div class="dt-examples">
+            <ul>
+              <li><strong>12-lead ECG:</strong> models can spot a weak heart pump (low ejection fraction) from an ordinary ECG, something cardiologists cannot see by eye.</li>
+              <li><strong>Smartwatches:</strong> detect an irregular rhythm that may be atrial fibrillation and tell the wearer to see a doctor. Many alerts are false alarms in young, healthy users (recall PPV from Lesson 1.4).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dt-panel" id="med-predict">
+          <div class="dt-panel-header">
+            <div class="dt-panel-icon dt-panel-icon--amber">3</div>
+            <div>
+              <h3 class="dt-panel-title">Predictions from the health record</h3>
+              <p class="dt-panel-subtitle">Numbers in, risk scores out</p>
+            </div>
+          </div>
+          <div class="dt-examples">
+            <ul>
+              <li><strong>Sepsis alerts:</strong> scan vital signs and lab results and warn that a patient may be developing sepsis. When one widely used sepsis model was tested at an outside hospital, it missed about two thirds of sepsis cases and raised many false alarms (Wong et al., 2021). Lesson 3.2 returns to this.</li>
+              <li><strong>Deterioration and readmission:</strong> scores that predict which ward patients may need intensive care, or who may come back after discharge.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dt-panel" id="med-language">
+          <div class="dt-panel-header">
+            <div class="dt-panel-icon dt-panel-icon--rose">4</div>
+            <div>
+              <h3 class="dt-panel-title">Language tools</h3>
+              <p class="dt-panel-subtitle">Generative AI and large language models</p>
+            </div>
+          </div>
+          <div class="dt-examples">
+            <ul>
+              <li><strong>Ambient scribes:</strong> listen to a clinic visit (with the patient's consent) and draft the note. Now common in many health systems.</li>
+              <li><strong>Message drafting:</strong> suggest replies to patient portal messages for a clinician to edit.</li>
+              <li><strong>Report drafting:</strong> suggest radiology impressions, or rewrite reports in plain language.</li>
+              <li><strong>Chatbots and evidence tools:</strong> answer clinical questions. Many students already use them to study.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="genai">
+    <h2>Generative AI in the clinic</h2>
+    <p>Most of the tools above are <strong>narrow</strong>: one task, one kind of input, one kind of answer. <strong>Generative AI</strong> is different. A <strong>large language model (LLM)</strong> learned from huge amounts of text to predict the next word (Lesson 1.1), and it can write almost anything: a note, a summary, a letter, an answer to a question.</p>
+    <p>That makes it useful and risky at the same time:</p>
+    <ul>
+      <li><strong>Good at:</strong> drafting, summarizing, rewording for a patient, and explaining a topic you are learning.</li>
+      <li><strong>Hallucination:</strong> it can state things that are false, in fluent and confident sentences, including references to papers that do not exist. It does not know when it is wrong.</li>
+      <li><strong>Omission:</strong> a summary can quietly leave out the one detail that mattered.</li>
+      <li><strong>Privacy:</strong> anything typed into a public chatbot leaves the hospital. <strong>Protected health information (PHI)</strong>, meaning anything that could identify a patient, must only go into tools your institution has approved.</li>
+    </ul>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: find the errors</div>
+      <p class="mi-box-intro">An LLM wrote this plain-language summary of Mr. Diaz's CTPA report (Lesson 2.4) for the patient portal. Three of its six sentences are wrong. Click each sentence to check it against the real report: PE in the right lower lobe, no strain on the heart, 8 mm nodule, follow-up CT in 6-12 months.</p>
+      <div class="mi-shortcut m2-report">
+        <div class="m2-report-doc">
+          <div class="mi-hot" data-key="s1">Your CT scan showed a small blood clot in a blood vessel in your right lung.</div>
+          <div class="mi-hot" data-key="s2">The clot is putting strain on the right side of your heart.</div>
+          <div class="mi-hot" data-key="s3">The scan also found a small spot, about 8 mm across, in the upper part of your right lung.</div>
+          <div class="mi-hot" data-key="s4">This spot is an old scar and does not need any follow-up.</div>
+          <div class="mi-hot" data-key="s5">Your care team will talk with you about blood thinners to treat the clot.</div>
+          <div class="mi-hot" data-key="s6">This plan follows the 2024 American Thoracic Society guideline on small clots (Harmon et al., 2024).</div>
+        </div>
+        <div class="mi-shortcut-panel" aria-live="polite">
+          <div class="mi-shortcut-intro">
+            <h4>Click a sentence</h4>
+            <p>Decide in your head whether it matches the report before you click.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="s1" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Matches the report</span>
+            <h4>Correct</h4>
+            <p>A segmental pulmonary embolism in the right lower lobe, put into plain words.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="s2" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--short">Error</span>
+            <h4>The opposite of the report</h4>
+            <p>The report says "no CT evidence of right heart strain." The model may have picked up the topic of heart strain and got it backwards. This would frighten the patient and could mislead a reader who trusts the summary.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="s3" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Matches the report</span>
+            <h4>Correct</h4>
+            <p>The 8 mm right upper lobe nodule, in plain words.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="s4" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--short">Error</span>
+            <h4>Made-up reassurance, and a lost follow-up</h4>
+            <p>The report never calls the nodule a scar and recommends a follow-up CT in 6-12 months. This is the most dangerous error here: it sounds kind, and it could stop Mr. Diaz from getting the scan that would catch an early cancer.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="s5" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Reasonable</span>
+            <h4>Fine</h4>
+            <p>Not in the radiology report itself, but true to the situation and phrased so the care team decides. A good summary points to the next conversation rather than making promises.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="s6" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--short">Error</span>
+            <h4>A hallucinated reference</h4>
+            <p>This guideline and paper do not exist. LLMs can produce citations that look real, with authors and years. Look up every reference before you trust or repeat it.</p>
+          </div>
+          <p class="mi-shortcut-count"></p>
+        </div>
+      </div>
+    </div>
+
+    <p><strong>Four rules for using generative AI as a student:</strong></p>
+    <ol>
+      <li>Never paste anything that could identify a patient into a public chatbot. Use only tools your school or hospital has approved.</li>
+      <li>Check every fact against the source: the chart, the report, the guideline. Look up every reference.</li>
+      <li>You own what you submit or sign, whoever drafted it.</li>
+      <li>Think first, then ask. Lesson 3.3 explains why the order matters.</li>
+    </ol>
+  </section>
+
+  <section class="les-section" id="tools">
+    <h2>Which tools are out there?</h2>
+    <p>In the United States, AI that diagnoses or guides treatment is regulated as a medical device by the <strong>Food and Drug Administration (FDA)</strong>. The FDA keeps a public list of AI-enabled devices. By mid-2026 it held more than 1,600 devices, and about three in four were for radiology.</p>
+    <p>The AI2Practice <strong>AI Tool Tracker</strong> summarizes that list: how many tools there are, which specialties and tasks they cover, and how the numbers have grown each year. Most are narrow tools like the ones in Mr. Diaz's table. Note what the list does <em>not</em> tell you: whether a tool helps patients, or whether it works at your hospital. That is the topic of Lesson 3.2.</p>
+    <p><a href="../tracker.html" class="btn btn-accent">Open the AI Tool Tracker &rarr;</a></p>
+    <div class="m2-think">
+      <div class="m1-example-label">Try it (3 minutes)</div>
+      <p>Open the tracker and find the specialty with the second-most tools. Then pick one radiology task, such as stroke or mammography, and guess how many authorized tools do it.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A PE tool moves likely urgent scans to the top of the worklist, and the radiologist still reads every scan. Which reading design is this?</p>
+      <button class="quiz-option">Autonomous</button>
+      <button class="quiz-option">Second reader</button>
+      <button class="quiz-option">Triage</button>
+      <div class="quiz-explanation"><p>Triage changes the order of reading, not who reads. If it misses a clot, the scan is read later rather than never.</p></div>
+    </div>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">An LLM summary of a report includes a reference with authors and a year. What should you do?</p>
+      <button class="quiz-option">Trust it, because LLMs only cite real sources</button>
+      <button class="quiz-option">Look it up before you trust or repeat it</button>
+      <button class="quiz-option">Delete the summary and never use LLMs</button>
+      <div class="quiz-explanation"><p>LLMs can invent references that look real. They can still be useful drafts, as long as you check facts and citations against the source.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">Which of these is safe to paste into a free public chatbot?</p>
+      <button class="quiz-option">A general question: "What are the Fleischner guidelines for an 8 mm solid nodule?"</button>
+      <button class="quiz-option">Mr. Diaz's full report, including his name and date of birth</button>
+      <button class="quiz-option">A photo of the worklist on the PACS screen</button>
+      <div class="quiz-explanation"><p>A general question with no patient details is fine (and you should still check the answer). Reports, names, dates and screenshots are protected health information and only go into approved tools.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>AI can touch every step of a scan's journey, but each tool does one narrow job: detect, triage, measure or draft.</li>
+      <li>The reading design (concurrent, second reader, triage, autonomous) decides who sees what, when, and who has the last word.</li>
+      <li>AI is also used on eye, skin and pathology images, ECGs, health-record predictions and clinical language.</li>
+      <li>Generative AI writes fluently and can be confidently wrong. Check facts and references, and keep patient information out of unapproved tools.</li>
+      <li>The FDA list and the AI Tool Tracker show which tools are authorized, not whether they help patients.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices" target="_blank" rel="noopener">FDA: AI-enabled medical devices</a> <small>(the official list)</small></li>
+      <li><a href="https://aicentral.acrdsi.org/" target="_blank" rel="noopener">ACR AI Central</a> <small>(searchable directory of radiology AI products)</small></li>
+      <li><a href="https://doi.org/10.1001/jamainternmed.2021.2626" target="_blank" rel="noopener">Wong et al., External validation of a widely implemented sepsis prediction model</a> <small>(JAMA Internal Medicine, 2021)</small></li>
+      <li><a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener">Large Language Models explained briefly</a> <small>(3Blue1Brown, YouTube, 8 minutes)</small></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m2-4.html" class="btn btn-outline" id="les-prev">&larr; Reading a Radiology Report</a>
+  <a href="m3-2.html" class="btn btn-accent" id="les-next">Next: Does It Work, and Is It Worth It? &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

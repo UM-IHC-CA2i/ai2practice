@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 &middot; Reading a Radiology Report &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/informatics.html" class="les-back" id="les-back">&larr; Module 2 overview</a>
+  <div class="les-topbar-title">Module 2 &middot; Lesson 2.4</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">2.4</div>
+    <div>
+      <div class="les-hero-q">What does the report say, and how do you read it?</div>
+      <h1>Reading a Radiology Report</h1>
+      <p>The parts of a report, how radiologists express certainty, standard categories, and turning a report into plain language</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">For most clinicians, the report <em>is</em> the scan. Few will look at the images themselves; they act on what the radiologist wrote. Patients now often read their reports in an online portal before anyone explains them. This lesson walks through Mr. Diaz's CTPA report line by line. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Name the standard parts of a radiology report and what each is for.</li>
+      <li>Explain why you read the impression first, but never only the impression.</li>
+      <li>Interpret common hedging phrases that express how sure the radiologist is.</li>
+      <li>Recognize standard reporting categories such as BI-RADS and Lung-RADS.</li>
+      <li>Explain a simple report to a patient in plain words.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="what">
+    <h2>What a report is</h2>
+    <p>A radiology report is the radiologist's written <strong>interpretation</strong> of the images: what they saw, what they think it means, and what should happen next. It is a permanent part of the medical record and a legal document. It is also, as you saw in Lesson 2.2, the source of the labels for many AI datasets.</p>
+    <p>Most reports follow the same structure, whether the scan is a chest X-ray or a brain MRI. Many hospitals use <strong>structured report</strong> templates, with fixed headings and sometimes fixed choices, which make reports easier to read and easier for computers to process.</p>
+  </section>
+
+  <section class="les-section" id="parts">
+    <h2>Explore Mr. Diaz's report</h2>
+    <p>Click each part of the report to see what it is for and what to look for. The report is fictional but written the way real reports are.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: the parts of a report</div>
+      <div class="mi-shortcut m2-report">
+        <div class="m2-report-doc">
+          <div class="mi-hot" data-key="exam"><b>EXAM:</b> CT angiography chest (PE protocol), with IV contrast. 12 March 2026, 01:40.</div>
+          <div class="mi-hot" data-key="indication"><b>CLINICAL HISTORY:</b> 62-year-old man with sudden shortness of breath and right pleuritic chest pain after a long-haul flight. Elevated D-dimer. Evaluate for pulmonary embolism.</div>
+          <div class="mi-hot" data-key="comparison"><b>COMPARISON:</b> Chest radiograph 12 March 2026, 00:15. No prior CT.</div>
+          <div class="mi-hot" data-key="technique"><b>TECHNIQUE:</b> Thin-section axial CT images of the chest after 70 mL of IV iodinated contrast, timed to the pulmonary arteries. Coronal and sagittal reformats. Contrast opacification of the pulmonary arteries is adequate.</div>
+          <div class="mi-hot" data-key="findings"><b>FINDINGS:</b><br>
+            Pulmonary arteries: Filling defect in a segmental branch of the right lower lobe pulmonary artery, consistent with acute pulmonary embolism. No central or left-sided emboli.<br>
+            Heart: Normal size. Right ventricle to left ventricle ratio less than 1. No pericardial effusion.<br>
+            Lungs: 8 mm solid nodule in the right upper lobe (series 4, image 52). Small wedge-shaped opacity at the right lung base, likely early infarct versus atelectasis. No pneumothorax.<br>
+            Pleura: Trace right pleural effusion.<br>
+            Upper abdomen and bones: No acute abnormality.</div>
+          <div class="mi-hot" data-key="impression"><b>IMPRESSION:</b><br>
+            1. Acute segmental pulmonary embolism in the right lower lobe. No CT evidence of right heart strain.<br>
+            2. Incidental 8 mm solid right upper lobe pulmonary nodule.</div>
+          <div class="mi-hot" data-key="recommendation"><b>RECOMMENDATION:</b> Follow-up chest CT in 6-12 months for the pulmonary nodule, per Fleischner Society guidelines.</div>
+          <div class="mi-hot" data-key="communication"><b>COMMUNICATION:</b> Finding 1 was discussed by telephone with the ED physician at 02:07 on 12 March 2026, with read-back confirmation.</div>
+          <div class="mi-hot" data-key="signature">Electronically signed by: [Radiologist name], MD, 12 March 2026, 02:05.</div>
+        </div>
+
+        <div class="mi-shortcut-panel" aria-live="polite">
+          <div class="mi-shortcut-intro">
+            <h4>Click a part of the report</h4>
+            <p>Each dashed box is one standard section. Explore all nine.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="exam" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Exam</span>
+            <h4>What was done, and when</h4>
+            <p>The exam name, whether contrast was used, and the date and time. Check it matches what you ordered and the right patient. "PE protocol" tells you the contrast was timed for the lung arteries.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="indication" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Clinical history</span>
+            <h4>The question being asked</h4>
+            <p>Usually copied from the order (Lesson 2.3). It tells you what the radiologist knew when they read the scan. If the history was vague, the read may have been less focused. "Pleuritic" means the pain is worse on breathing in.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="comparison" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Comparison</span>
+            <h4>What it was compared with</h4>
+            <p>Earlier imaging is one of the radiologist's most useful tools: a nodule that has not changed in two years is much less worrying than a new one. "No prior CT" here means nobody knows yet whether the nodule is new.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="technique" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Technique</span>
+            <h4>How the scan was done</h4>
+            <p>Details of the protocol and contrast. Look for any statement on quality: "adequate opacification" means the arteries filled well with contrast, so a clot could be seen if present. If quality was poor, this is where it is said, and it limits what the report can rule out.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="findings" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Findings</span>
+            <h4>Everything seen, organ by organ</h4>
+            <p>A systematic description of what the radiologist saw, including normal things and small findings that did not make the impression, like the trace effusion and the opacity at the lung base. A <strong>filling defect</strong> is a dark gap inside a contrast-filled vessel: the clot. The series and image numbers let anyone find the nodule in PACS. The right-to-left ventricle ratio is checked because a big clot can strain the right side of the heart.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="impression" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Impression</span>
+            <h4>The bottom line</h4>
+            <p>The radiologist's conclusion, numbered, with the most important finding first. It answers the clinical question ("yes, PE") and lists anything else that needs attention. Many people read only this part. See the next section for why that is risky.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="recommendation" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Recommendation</span>
+            <h4>What should happen next</h4>
+            <p>Suggested next steps, often based on published guidelines. The <strong>Fleischner Society</strong> guidelines say how to follow lung nodules found by chance, based on their size, type and the patient's risk. This line is the one most easily lost after discharge (step 9 in Lesson 2.3).</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="communication" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Communication</span>
+            <h4>Who was told, and when</h4>
+            <p>For critical results, the report documents the direct call: who was told, at what time, and that they repeated it back ("read-back") to confirm. This protects the patient and is a legal record that the finding was passed on.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="signature" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">Signature</span>
+            <h4>Who is responsible</h4>
+            <p>The signing radiologist takes responsibility for the report. Watch for "preliminary" versus "final": overnight preliminary reads can change when finalized, and an <strong>addendum</strong> is added if something is corrected later.</p>
+          </div>
+          <p class="mi-shortcut-count"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="impression">
+    <h2>Impression first, but never only</h2>
+    <p>Reading the impression first is sensible: it gives you the answer in a few lines. But stopping there can miss things. In Mr. Diaz's report, the findings section mentions a small opacity at the lung base and a trace effusion. Neither made the impression, because the radiologist judged them less important, but they help explain his pain when he breathes. A clinician who knows the patient may find a "minor" finding matters a lot.</p>
+    <p>Speech recognition also makes mistakes. "No evidence of pneumothorax" can become "evidence of pneumothorax," and "left" can become "right." If something in the impression does not fit the findings, or the patient, phone the radiologist. They would much rather you ask.</p>
+
+    <div class="m2-think">
+      <div class="m1-example-label">Think about it</div>
+      <p>An AI tool that summarizes reports in one line would almost certainly keep the PE and might drop the nodule. What would be lost? Who would notice?</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="hedging">
+    <h2>How sure is the radiologist?</h2>
+    <p>Images rarely give a yes-or-no answer. Radiologists express how confident they are with particular phrases, sometimes called <strong>hedging</strong> language. There is no single agreed scale, and different readers interpret the same phrase differently, which is a real source of confusion. Some departments now publish a lexicon (a fixed list of phrases with approximate meanings).</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: how sure is it?</div>
+      <p class="mi-box-intro">Sort each phrase by how likely the radiologist thinks the finding is. Approximate meanings in common use; your hospital may differ.</p>
+      <div class="mi-sort" data-choices="Likely|Uncertain|Unlikely">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Consistent with pulmonary embolism"</div>
+            <div class="mi-card-why">Likely. Usually means the radiologist is very confident, about 90% or more.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Suspicious for malignancy"</div>
+            <div class="mi-card-why">Likely, enough to act on. Usually prompts a biopsy or further workup.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"Early infarct versus atelectasis"</div>
+            <div class="mi-card-why">Uncertain. Two possibilities and the image cannot tell them apart. Atelectasis means part of the lung has partly collapsed. "Versus" or "differential includes" signal a list, not an answer.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"Cannot be excluded"</div>
+            <div class="mi-card-why">Uncertain, but often leaning unlikely. The radiologist cannot say no. Often a cue that another test or clinical judgment is needed.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">"Not likely to represent ..."</div>
+            <div class="mi-card-why">Unlikely. The radiologist thinks this is probably not the cause.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">"No evidence of pneumothorax"</div>
+            <div class="mi-card-why">Unlikely to be present. A clear negative, within the limits of the scan.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+    <p>Hedged phrases are hard for AI too. When a program turns reports into training labels (Lesson 2.2), "cannot be excluded" must become yes, no or "uncertain," and different choices make different models.</p>
+  </section>
+
+  <section class="les-section" id="categories">
+    <h2>Standard categories: the RADS family</h2>
+    <p>For some common problems, radiologists use a scored category so everyone reads the same result the same way. The American College of Radiology publishes a family of these, called <strong>Reporting and Data Systems (RADS)</strong>. Each pairs a number with a risk level and a recommended next step.</p>
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>System</th><th>Used for</th><th>What the number tells you</th></tr></thead>
+        <tbody>
+          <tr><td>BI-RADS</td><td>Breast imaging (mammography, ultrasound, MRI)</td><td>0 (needs more imaging) to 6 (known cancer). 4 and 5 usually mean biopsy.</td></tr>
+          <tr><td>Lung-RADS</td><td>Lung cancer screening CT</td><td>How suspicious nodules are, and when to scan again.</td></tr>
+          <tr><td>LI-RADS</td><td>Liver lesions in people at risk of liver cancer</td><td>How likely a liver lesion is to be cancer.</td></tr>
+          <tr><td>TI-RADS</td><td>Thyroid nodules on ultrasound</td><td>Whether a nodule needs a needle biopsy or follow-up.</td></tr>
+          <tr><td>PI-RADS</td><td>Prostate MRI</td><td>How likely a significant prostate cancer is.</td></tr>
+          <tr><td>Fleischner</td><td>Lung nodules found by chance (not part of RADS)</td><td>Follow-up timing based on size, type and risk. Used for Mr. Diaz's nodule.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>You do not need to memorize the categories. Learn to spot them in a report and look up what the number means. They are also a natural target for AI, because the output is a clear category.</p>
+  </section>
+
+  <section class="les-section" id="translate">
+    <h2>Explain it to Mr. Diaz</h2>
+    <p>Mr. Diaz has read his report in the patient portal and is worried. He asks you, the medical student on the team, what it means. Explaining a report in plain words is a skill you will use for your whole career.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: translate the impression</div>
+      <div class="m2-translate">
+        <label for="m2-translate-box">Write two or three sentences for Mr. Diaz explaining the impression. Avoid medical jargon. Nothing you write is saved or sent anywhere.</label>
+        <textarea id="m2-translate-box" placeholder="Mr. Diaz, the scan showed..."></textarea>
+        <button type="button" class="mi-btn mi-btn--fill">Compare with a sample answer</button>
+        <div class="m2-model" hidden>
+          <p><strong>One way to say it:</strong> "The scan found a small blood clot in one of the blood vessels in your right lung. That explains your breathlessness and the pain when you breathe. It is not putting strain on your heart, and the blood thinners we started will treat it. The scan also showed a small spot in your lung, about the size of a pea. Most spots like this are harmless, but we will do another CT scan in 6 to 12 months to make sure it has not changed."</p>
+          <p><strong>Things to check in yours:</strong></p>
+          <ul>
+            <li>Did you answer the main question (clot: yes) first?</li>
+            <li>Did you mention the nodule, and the plan for it, without causing panic?</li>
+            <li>Did you replace words like "segmental," "embolism," "incidental" and "solid nodule"?</li>
+            <li>Did you avoid promising what you do not know (for example, "it's definitely not cancer")?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="ai">
+    <h2>Reports and AI</h2>
+    <p>Reports connect to AI in three ways you have now seen:</p>
+    <ul>
+      <li><strong>As training labels:</strong> many datasets mine labels from report text (Lesson 2.2), so unclear or hedged reports make noisy labels.</li>
+      <li><strong>As AI output:</strong> some tools now draft parts of the report from the images, or rewrite reports in plain language for patients. The radiologist who signs still owns every word.</li>
+      <li><strong>As a tracking source:</strong> software can read the recommendation section to catch follow-ups that would otherwise be lost, like Mr. Diaz's nodule.</li>
+    </ul>
+    <p>Module 3 looks at how such tools are tested and used in practice.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Which part of the report gives the radiologist's overall conclusion?</p>
+      <button class="quiz-option">Findings</button>
+      <button class="quiz-option">Impression</button>
+      <button class="quiz-option">Technique</button>
+      <div class="quiz-explanation"><p>The impression is the bottom line, ordered by importance. The findings describe everything seen, including smaller things that may not appear in the impression.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A report says "small pneumonia cannot be excluded." What does this most likely mean?</p>
+      <button class="quiz-option">The patient definitely has pneumonia</button>
+      <button class="quiz-option">The patient definitely does not have pneumonia</button>
+      <button class="quiz-option">The image cannot rule it out; clinical judgment or another test is needed</button>
+      <div class="quiz-explanation"><p>"Cannot be excluded" signals uncertainty. It often leans toward unlikely but leaves the decision to the clinical picture. If it matters, call the radiologist.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">You only read the impression of Mr. Diaz's report. Which of these would you miss?</p>
+      <button class="quiz-option">The small opacity at the right lung base and the trace pleural effusion</button>
+      <button class="quiz-option">The pulmonary embolism</button>
+      <button class="quiz-option">The lung nodule</button>
+      <div class="quiz-explanation"><p>Those findings are only in the findings section. They are minor, but they help explain his pain. Read the whole report.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>A report has standard parts: exam, clinical history, comparison, technique, findings, impression, recommendation, communication and signature.</li>
+      <li>Read the impression first, but always read the findings too.</li>
+      <li>Hedging phrases express uncertainty; readers interpret them differently, so ask when it matters.</li>
+      <li>RADS categories and the Fleischner guidelines turn findings into standard risk levels and next steps.</li>
+      <li>Explaining a report in plain words is a core skill. Reports also feed AI as labels, outputs and tracking sources.</li>
+    </ul>
+    <p>You have finished Module 2. You now know what radiology is, what an image is to a computer, how a scan moves through the hospital, and how to read the result. Module 3 asks how AI tools that work on all of this are judged and used.</p>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://radreport.org/" target="_blank" rel="noopener">RadReport.org</a> <small>(RSNA: free library of structured report templates; search for "CT pulmonary angiogram")</small></li>
+      <li><a href="https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Reporting-and-Data-Systems" target="_blank" rel="noopener">ACR Reporting and Data Systems</a> <small>(the official RADS pages)</small></li>
+      <li><a href="https://www.radiologyinfo.org/en/info/article-your-radiologist" target="_blank" rel="noopener">Your radiologist</a> <small>(RadiologyInfo.org: how patients get and understand their results)</small></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m2-3.html" class="btn btn-outline" id="les-prev">&larr; The Journey of a Scan</a>
+  <a href="m3-1.html" class="btn btn-accent" id="les-next">Next: Module 3 &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

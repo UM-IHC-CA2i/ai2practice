@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 &middot; Thinking With AI &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="assets/m3.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/clinical-practice.html" class="les-back" id="les-back">&larr; Module 3 overview</a>
+  <div class="les-topbar-title">Module 3 &middot; Lesson 3.3</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">3.3</div>
+    <div>
+      <div class="les-hero-q">What happens to your own judgment when AI is always there?</div>
+      <h1>Thinking With AI</h1>
+      <p>Automation bias, the three ways skills can go wrong, and habits that keep your judgment your own</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">So far this module has asked whether AI tools work. This lesson asks what they do to the people using them. It matters most for you: you are building your clinical skills at the same time AI is arriving in the clinic. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Define automation bias and explain why it affects experts too.</li>
+      <li>Tell apart never-skilling, deskilling and mis-skilling.</li>
+      <li>Describe the three-phase approach to learning with AI.</li>
+      <li>Use a few habits that keep your own judgment in charge.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="bias">
+    <h2>Automation bias</h2>
+    <p><strong>Automation bias</strong> is the tendency to go along with a computer's answer, even when your own evidence says otherwise, and to stop looking once the computer has spoken. It is not laziness. It happens to careful people, because most of the time the computer is right.</p>
+    <p>In one study, radiologists read mammograms with an AI that suggested a BI-RADS category (the breast imaging score from Lesson 2.4). Some suggestions were deliberately wrong. When the AI was wrong, readers at every experience level got less accurate, and the least experienced readers were affected the most (Dratsch et al., 2023).</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: commit, then reveal</div>
+      <p class="mi-box-intro">Try it yourself. PTX-Detect, the made-up pneumothorax detector from Module 1, is back.</p>
+      <div class="m3-reveal">
+        <div class="m3-stage">
+          <div class="m3-stage-label">Step 1 &middot; Your read</div>
+          <p>A 24-year-old tall, thin man has sudden sharp right-sided chest pain and mild shortness of breath. On his chest X-ray, near the top of the right lung, a thin white line runs parallel to the chest wall. Beyond the line, toward the ribs, you see no lung markings at all. There is no chest drain.</p>
+          <div class="img-needed">
+            <span class="img-needed-tag">Image needed</span>
+            <p>Frontal chest X-ray with a small right apical pneumothorax (visible pleural line), no chest drain or other devices.</p>
+          </div>
+          <p><strong>Is there a pneumothorax?</strong></p>
+          <div class="mi-choices">
+            <button class="mi-choice">Yes</button>
+            <button class="mi-choice">No</button>
+          </div>
+        </div>
+        <div class="m3-stage m3-stage--ai" hidden>
+          <div class="m3-stage-label">Step 2 &middot; The AI's answer</div>
+          <p><strong>PTX-Detect: no pneumothorax (score 0.12).</strong></p>
+          <p>Now give your final answer. Is there a pneumothorax?</p>
+          <div class="mi-choices">
+            <button class="mi-choice">Yes</button>
+            <button class="mi-choice">No</button>
+          </div>
+        </div>
+        <div class="m3-stage m3-stage--truth" hidden>
+          <div class="m3-stage-label">Step 3 &middot; The truth</div>
+          <p class="m3-summary"></p>
+          <p><strong>There is a small pneumothorax.</strong> A thin white line with no lung markings beyond it is the visceral pleural line, the edge of the collapsed lung. Tall, thin young men are the classic patients.</p>
+          <p>Why did the AI miss it? In Lesson 1.5 you saw that PTX-Detect learned a shortcut: many pneumothorax films in its training data already had a chest drain in place, so it partly learned "tube means pneumothorax." This patient has not been treated yet, so there is no drain. A low score here is the AI's known weak spot, not a reason to doubt your own eyes.</p>
+          <p>If you changed your answer after seeing the AI, that is automation bias in action. If you kept your answer, notice why: you had looked and decided first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="skills">
+    <h2>Three ways skills can go wrong</h2>
+    <p>Automation bias is about one decision. Over months and years, relying on AI can also change your skills. Ke et al. (2026) described three ways this can happen:</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Never-skilling</strong><span>A skill is never built in the first place, because AI did the work while you were supposed to be learning it. The biggest risk for students and residents.</span></div>
+      <div class="m1-term"><strong>Deskilling</strong><span>A skill you once had fades because AI now does that part for you. It affects experienced doctors, and practice can bring it back.</span></div>
+      <div class="m1-term"><strong>Mis-skilling</strong><span>You learn the wrong thing because you absorbed the AI's mistakes or biases, and you repeat them even when the AI is not there.</span></div>
+    </div>
+  </section>
+
+  <section class="les-section" id="never">
+    <h2>Never-skilling: Dr. R</h2>
+    <p>Dr. R is a second-year radiology resident who has always read bone X-rays with an AI detection tool switched on. Click through her story.</p>
+    <div id="never-skilling-slideshow" class="slideshow-wide"></div>
+    <div class="les-teaching">
+      <div class="les-teaching-label">Teaching point</div>
+      <p>Dr. R looked competent in training because the AI was always there. When she rotated to a hospital without it, she missed a finding the AI had always flagged for her. Her skill depended on the AI and had never been built on its own. Nobody noticed, because she was never tested without it.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="deskilling">
+    <h2>Deskilling: Dr. M</h2>
+    <div class="les-case les-case--blue">
+      <div class="les-case-label les-case-label--blue">Scenario</div>
+      <p>Dr. M has written chest X-ray reports for over ten years. His hospital adopts an AI that drafts the findings and impression, and he gets used to making small edits. One day, at a workstation without the AI, a resident asks for help with a report. For the first time in years he has to write it from scratch, and he struggles to put the findings into a clear impression.</p>
+    </div>
+    <p>This is not only a story. In a study at four colonoscopy centers in Poland, doctors who had been using AI to spot polyps were later observed doing colonoscopies without it. Their rate of finding precancerous polyps without AI fell from about 28% before AI was introduced to about 22% (Budzyń et al., 2025).</p>
+    <div class="les-case-image">
+      <img src="images/deskilling-cxr-challenge.png" alt="Healthcare AI Arena: a challenge to write a chest X-ray report and compare it with an AI-generated report">
+      <div class="les-case-image-caption">
+        One way to keep a skill is to practice it without AI. Healthcare AI Arena lets you write a chest X-ray report and compare it with an AI's. <a href="https://www.healthcareaiarena.org/challenge/demo" target="_blank" rel="noopener">Try the challenge &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="misskilling">
+    <h2>Mis-skilling: Dr. P</h2>
+    <div class="les-case les-case--rose">
+      <div class="les-case-label les-case-label--rose">Scenario</div>
+      <p>Dr. P is a resident learning breast imaging with an AI that tends to overcall certain calcifications as suspicious, especially in dense breasts. For months she accepts its BI-RADS 4 ("suspicious") calls without checking. Now, reading on her own, she calls these calcifications suspicious far more often than her colleagues do, even when they are clearly benign. The AI's error has become part of how she reads.</p>
+    </div>
+    <div class="les-case-image">
+      <img src="images/mis-skilling-dcis-mammogram.png" alt="Mammogram showing clustered microcalcifications in dense breast tissue">
+      <div class="les-case-image-caption">
+        Ductal carcinoma in situ (DCIS) appearing as clustered microcalcifications in dense breast tissue. Adapted from <a href="https://radiopaedia.org/articles/ductal-carcinoma-in-situ?lang=us" target="_blank" rel="noopener">Radiopaedia</a>.
+      </div>
+    </div>
+    <p>Automation bias is accepting one wrong answer. Mis-skilling is what happens when that repeats until the wrong answer becomes your own.</p>
+  </section>
+
+  <section class="les-section" id="framework">
+    <h2>Learning with AI, in three phases</h2>
+    <p>Ke et al. suggest that learners should build a skill on their own first, then learn to work with AI. Their framework has three phases:</p>
+    <figure class="les-figure">
+      <img src="images/ke-framework.png" alt="Three-phase competency-protective framework from Ke et al.">
+      <figcaption>Figure 1. The three-phase framework for learning with AI (Ke et al., 2026).</figcaption>
+    </figure>
+    <ol>
+      <li><strong>Without AI.</strong> Work through cases on your own and explain your reasoning. This builds the skill.</li>
+      <li><strong>Find the AI's mistakes.</strong> Look at AI outputs that contain deliberate errors, and practice spotting, explaining and fixing them. You did this in Lesson 3.1.</li>
+      <li><strong>With AI.</strong> Work alongside AI and decide, case by case, when to agree, when to change its answer and when to overrule it.</li>
+    </ol>
+    <div class="m2-think">
+      <div class="m1-example-label">Habits to start now</div>
+      <p><strong>Think first, then ask.</strong> Write down your own answer or differential before you look at the AI's. <strong>Compare and explain.</strong> If you disagree, work out why, and only change your mind for a reason you can say out loud. <strong>Know the weak spots.</strong> Learn what kinds of cases a tool is known to miss. <strong>Practice without it.</strong> Regularly do the task with the AI switched off.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">A student uses an AI to write every differential diagnosis during their clinical year. On the exam, without AI, they cannot build one. Which problem is this?</p>
+      <button class="quiz-option">Deskilling</button>
+      <button class="quiz-option">Never-skilling</button>
+      <button class="quiz-option">Mis-skilling</button>
+      <div class="quiz-explanation"><p>The skill was never built, because the AI did the thinking during the time meant for learning it. Deskilling would mean losing a skill they once had.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">Which habit best protects against automation bias?</p>
+      <button class="quiz-option">Only use AI tools with an AUROC above 0.95</button>
+      <button class="quiz-option">Look at the AI output first so you know where to focus</button>
+      <button class="quiz-option">Decide on your own answer before you look at the AI's</button>
+      <div class="quiz-explanation"><p>Committing first means the AI is a second opinion, not the first impression. Even very accurate tools are sometimes wrong, and looking first pulls your attention toward what the AI found.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">An experienced radiologist now reads more slowly and less accurately when the AI is down, though they used to read well without it. With practice, they recover. Which problem is this?</p>
+      <button class="quiz-option">Deskilling</button>
+      <button class="quiz-option">Never-skilling</button>
+      <button class="quiz-option">Mis-skilling</button>
+      <div class="quiz-explanation"><p>A skill they once had faded from disuse, and practice can bring it back. That is deskilling.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Automation bias, going along with the computer, affects experts too, and learners the most.</li>
+      <li>Never-skilling: the skill is never built. Deskilling: a skill fades. Mis-skilling: you learn the AI's errors.</li>
+      <li>Build a skill without AI first, then practice catching AI mistakes, then work with AI.</li>
+      <li>Think first, then ask. Change your mind only for a reason you can explain.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://pubs.rsna.org/doi/10.1148/radiol.222176" target="_blank" rel="noopener">Dratsch et al., Automation bias in mammography</a> <small>(Radiology, 2023)</small></li>
+      <li><a href="https://doi.org/10.1016/S2468-1253(25)00133-5" target="_blank" rel="noopener">Budzyń et al., Endoscopist deskilling after exposure to AI in colonoscopy</a> <small>(Lancet Gastroenterology &amp; Hepatology, 2025)</small></li>
+      <li><a href="downloads/never-skilling-case-study.pdf" target="_blank" rel="noopener">Dr. R's case study (PDF)</a></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m3-2.html" class="btn btn-outline" id="les-prev">&larr; Does It Work, and Is It Worth It?</a>
+  <a href="m3-4.html" class="btn btn-accent" id="les-next">Next: Responsibility &amp; Patients &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="../assets/js/slideshow.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m3-interactives.js"></script>
+<script>
+Slideshow.create(document.getElementById('never-skilling-slideshow'), {
+  downloadUrl: 'downloads/never-skilling-case-study.pdf',
+  slides: [
+    { src: 'images/never-skilling-case-slide-1.png', alt: 'Title slide: never-skilling case study' },
+    { src: 'images/never-skilling-case-slide-2.png', alt: 'Meet Dr. R, a second-year resident who reads with an AI bone detection tool' },
+    { src: 'images/never-skilling-case-slide-3.png', alt: 'At her home hospital, the AI highlights a crescent sign in the femoral head' },
+    { src: 'images/never-skilling-case-slide-4.png', alt: 'On an away rotation without AI, Dr. R misses avascular necrosis in both hips' }
+  ]
+});
+</script>
+</body>
+</html>

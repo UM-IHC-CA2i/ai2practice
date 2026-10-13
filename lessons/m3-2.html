@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 &middot; Does It Work, and Is It Worth It? &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="assets/m3.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/clinical-practice.html" class="les-back" id="les-back">&larr; Module 3 overview</a>
+  <div class="les-topbar-title">Module 3 &middot; Lesson 3.2</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">3.2</div>
+    <div>
+      <div class="les-hero-q">An AI tool is accurate. Does that mean it helps patients?</div>
+      <h1>Does It Work, and Is It Worth It?</h1>
+      <p>The ladder of evidence, why a tool can fail at a new hospital, and how to weigh benefits against costs</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">In Lessons 1.4 and 1.5 you learned how to measure a model: sensitivity, specificity, PPV, and the shortcuts that can fool them. Those numbers answer one question: does the tool find the disease? This lesson asks the questions that come next. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Explain why accuracy is only an early rung of evidence.</li>
+      <li>Place a claim about an AI tool on the ladder of evidence.</li>
+      <li>Give two reasons a tool that worked in a study can fail at your hospital.</li>
+      <li>List the costs and benefits a hospital should weigh before buying a tool.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="ladder">
+    <h2>The ladder of evidence</h2>
+    <p>In 1991, Fryback and Thornbury described how to judge any imaging test as a ladder. Each rung asks a harder question, and each needs a harder study to answer it. AI tools are imaging tests too, so the same ladder applies. Step through it with the nodule-detection AI from Lesson 3.1.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Step through: the nodule AI, rung by rung</div>
+      <div class="mi-steps">
+        <div class="mi-steps-viewport">
+          <div class="mi-step active">
+            <div class="mi-step-head">Rung 1. Does it run properly?</div>
+            <div class="mi-step-body">
+              <div class="m3-rung"><b>1</b><span>Technical</span></div>
+              <div>
+                <p>The software opens the CT, runs in under a minute, and puts its marks in the right place on the right slice.</p>
+                <p>Needed, but says nothing about patients.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">Rung 2. Does it find nodules?</div>
+            <div class="mi-step-body">
+              <div class="m3-rung"><b>2</b><span>Accuracy</span></div>
+              <div>
+                <p>On a test set of CT scans, it finds 94% of nodules (sensitivity) and raises about one false mark per scan.</p>
+                <p>Papers often add the <strong>AUROC</strong>: one number from 0.5 (no better than a coin flip) to 1.0 (perfect) for how well a tool tells cases with and without the disease apart.</p>
+                <p>This is where most AI studies stop. Most FDA-authorized tools were cleared on evidence at this rung.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">Rung 3. Does it change the radiologist's thinking?</div>
+            <div class="mi-step-body">
+              <div class="m3-rung"><b>3</b><span>Diagnostic thinking</span></div>
+              <div>
+                <p>With the AI, radiologists report more true nodules and are more confident about them.</p>
+                <p>But this only counts if the extra nodules matter. Finding many tiny harmless nodules is not a gain.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">Rung 4. Does it change what is done?</div>
+            <div class="mi-step-body">
+              <div class="m3-rung"><b>4</b><span>Treatment decisions</span></div>
+              <div>
+                <p>More patients like Mr. Diaz get the right follow-up CT. Some also get scans, biopsies or worry they did not need.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">Rung 5. Are patients better off?</div>
+            <div class="mi-step-body">
+              <div class="m3-rung"><b>5</b><span>Patient outcomes</span></div>
+              <div>
+                <p>Are lung cancers found earlier, and do fewer people die of them? Answering this needs a large, often randomized, study that follows patients for years.</p>
+                <p>Very few AI tools have evidence at this rung.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">Rung 6. Is it worth it for society?</div>
+            <div class="mi-step-body">
+              <div class="m3-rung"><b>6</b><span>Societal value</span></div>
+              <div>
+                <p>Counting the price, the radiologists' time, and the extra scans it triggers, is the health gained worth the money compared with other ways to spend it?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>One of the highest-rung AI studies so far is the <strong>MASAI trial</strong> in Sweden (Lång et al., 2023). More than 80,000 women having screening mammograms were randomly assigned to standard double reading by two radiologists, or to AI-supported reading where AI sorted the low-risk exams to a single reader. The AI group found more cancers, with no rise in false positives, and radiologists read about 44% fewer screens. Even so, the key outcome for patients (fewer cancers found between screens, later) needed further follow-up.</p>
+  </section>
+
+  <section class="les-section" id="sort">
+    <h2>Which rung is this claim?</h2>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: place the claim</div>
+      <p class="mi-box-intro">Company websites and news headlines often make AI claims. Decide which part of the ladder each claim really reaches.</p>
+      <div class="mi-sort" data-choices="Accuracy (rungs 1-2)|Decisions (rungs 3-4)|Patients (rungs 5-6)">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Our stroke AI detects large-vessel blockages with an AUROC of 0.96."</div>
+            <div class="mi-card-why">An AUROC measures how well the tool separates blocked from not blocked on a test set. Impressive, but still accuracy.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"After the PE triage tool went live, the time from scan to treatment fell from 90 to 40 minutes."</div>
+            <div class="mi-card-why">The tool changed what the team did and when. Whether faster treatment led to fewer deaths is a further question.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">"In a randomized trial, patients whose ECGs were read with AI had fewer deaths at 90 days."</div>
+            <div class="mi-card-why">A randomized comparison of a patient outcome. This is the rung that matters most and is the hardest to reach.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Matches expert radiologists on 10,000 chest X-rays."</div>
+            <div class="mi-card-why">Agreement with experts on a fixed set of images is accuracy. Ask also where the images came from (Lesson 1.5).</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"With AI, radiologists changed their recommendation in 12% of nodule cases."</div>
+            <div class="mi-card-why">The tool changed decisions. Whether the changes were for the better, and whether patients benefited, is not shown.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">"The screening program saved money per year of healthy life gained, after paying for the software."</div>
+            <div class="mi-card-why">Cost-effectiveness is the top rung: health gained weighed against money spent.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="here">
+    <h2>Will it work here?</h2>
+    <p>A study tells you how a tool did at the hospitals in the study. Your hospital may be different. Testing a tool on data from a place it was not built at is called <strong>external validation</strong>, and tools often do worse there. Common reasons:</p>
+    <ul>
+      <li><strong>Different machines and settings.</strong> A new CT scanner brand or a different scan protocol can change the image just enough to confuse a model.</li>
+      <li><strong>Different patients.</strong> Age, ethnicity, body size and other diseases may differ from the training data.</li>
+      <li><strong>Different prevalence.</strong> If the disease is rarer at your hospital, more of the alerts will be false alarms, even with the same sensitivity and specificity.</li>
+    </ul>
+    <figure class="les-figure">
+      <img src="images/m3/ppv-vs-prevalence.png" alt="Line chart: the same AI tool's positive predictive value falls steeply as disease prevalence falls">
+      <figcaption>Figure 1. The same tool, with the same sensitivity and specificity, at different prevalence. In a busy emergency department where the disease is common, most alerts are true. In a screening population where it is rare, most alerts are false alarms. (Recall PPV from Lesson 1.4.)</figcaption>
+    </figure>
+    <div class="m2-think">
+      <div class="m1-example-label">A real example</div>
+      <p>A sepsis prediction model built into a common health-record system was used in hundreds of hospitals. When researchers at one hospital tested it on their own patients, its AUROC was 0.63, far below what the developer reported. It missed about two thirds of sepsis cases and alerted on many patients who did not have sepsis (Wong et al., 2021). The lesson: check a tool on your own patients before trusting it, and keep checking after it goes live, because hospitals and patients change over time.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="worth">
+    <h2>Is it worth it?</h2>
+    <p>Even a tool that works has costs. Before buying one, a hospital weighs both sides.</p>
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>Possible benefits</th><th>Possible costs</th></tr></thead>
+        <tbody>
+          <tr><td>Urgent findings read sooner (Mr. Diaz's clot)</td><td>The software price, IT setup and upkeep</td></tr>
+          <tr><td>Fewer missed findings</td><td>Radiologist time spent checking false alarms</td></tr>
+          <tr><td>Less reading time on simple cases</td><td>Extra follow-up scans and biopsies for findings that did not matter</td></tr>
+          <tr><td>More consistent measurements</td><td>Staff training, and monitoring the tool after go-live</td></tr>
+          <tr><td>Follow-ups that do not get lost</td><td>Skills that fade if people stop practicing (Lesson 3.3)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Notice that the benefits and costs often fall on different people. The hospital pays for the software, the radiologist clears the false alarms, and the patient lives with the extra scan. A good decision looks at all of them.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">A company says its fracture AI is FDA-authorized and has an AUROC of 0.95. What has it shown so far?</p>
+      <button class="quiz-option">That patients have better outcomes with it</button>
+      <button class="quiz-option">That it detects fractures accurately on its test data</button>
+      <button class="quiz-option">That it will work just as well at any hospital</button>
+      <div class="quiz-explanation"><p>Authorization and AUROC show accuracy, the second rung. Patient benefit and performance at your hospital are separate questions that need separate evidence.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A tool built in a busy emergency department is moved to an outpatient screening clinic where the disease is much rarer. Sensitivity and specificity stay the same. What happens?</p>
+      <button class="quiz-option">Nothing changes</button>
+      <button class="quiz-option">More alerts are true</button>
+      <button class="quiz-option">More of the alerts are false alarms</button>
+      <div class="quiz-explanation"><p>PPV depends on prevalence. When the disease is rarer, a larger share of positive alerts are false, so the same tool creates more work for each true finding.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">Which study would best show that an AI tool helps patients?</p>
+      <button class="quiz-option">A randomized trial comparing patient outcomes with and without the tool</button>
+      <button class="quiz-option">A test on 10,000 images from the developer's own hospital</button>
+      <button class="quiz-option">A survey showing radiologists like using it</button>
+      <div class="quiz-explanation"><p>Only a study that follows patients, ideally randomized, can show a difference in outcomes. Image tests show accuracy and surveys show opinion.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Accuracy is the second of six rungs. Patient outcomes and value sit at the top, and few AI tools have reached them.</li>
+      <li>FDA authorization mostly reflects accuracy evidence, not proof of patient benefit.</li>
+      <li>Tools often do worse at new hospitals: different machines, different patients, different prevalence. Test locally and keep monitoring.</li>
+      <li>Weigh benefits against costs, including false alarms, extra scans and staff time, and notice who bears each one.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://doi.org/10.1177/0272989X9101100203" target="_blank" rel="noopener">Fryback &amp; Thornbury, The efficacy of diagnostic imaging</a> <small>(Medical Decision Making, 1991)</small></li>
+      <li><a href="https://doi.org/10.1016/S1470-2045(23)00298-X" target="_blank" rel="noopener">Lång et al., the MASAI trial of AI-supported mammography screening</a> <small>(Lancet Oncology, 2023)</small></li>
+      <li><a href="https://doi.org/10.1001/jamainternmed.2021.2626" target="_blank" rel="noopener">Wong et al., External validation of a widely implemented sepsis prediction model</a> <small>(JAMA Internal Medicine, 2021)</small></li>
+      <li><a href="../tracker.html">AI Tool Tracker</a> <small>(what is authorized, by specialty and year)</small></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m3-1.html" class="btn btn-outline" id="les-prev">&larr; AI in Radiology and Medicine</a>
+  <a href="m3-3.html" class="btn btn-accent" id="les-next">Next: Thinking With AI &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

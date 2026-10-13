@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 &middot; Measuring Performance &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/ai-fundamentals.html" class="les-back" id="les-back">&larr; Module 1 overview</a>
+  <div class="les-topbar-title">Module 1 &middot; Lesson 1.4</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">1.4</div>
+    <div>
+      <div class="les-hero-q">How good is it?</div>
+      <h1>Measuring Performance</h1>
+      <p>The 2&times;2 table, sensitivity and specificity, the accuracy trap, and thresholds</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">PTX-Detect is trained and tested. Its makers say it is "94% sensitive." What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of 100 patients. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Fill in a 2&times;2 table: true and false positives, true and false negatives.</li>
+      <li>Explain sensitivity and specificity in plain words.</li>
+      <li>Show why "99% accurate" can be useless for a rare disease.</li>
+      <li>Explain how moving the threshold trades missed cases for false alarms.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="two-by-two">
+    <h2>Four possible outcomes</h2>
+    <p>Each time PTX-Detect reads a film, it says "positive" (pneumothorax) or "negative" (no pneumothorax). The patient either has one or doesn't. That gives four possible outcomes:</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/two-by-two.png" alt="A 2 by 2 table. Columns: patient is sick, patient is healthy. Rows: AI says positive, AI says negative. Cells: true positive, false positive, false negative, true negative.">
+      <figcaption>Figure 1. The 2&times;2 table. "True" and "false" say whether the AI was right; "positive" and "negative" say what it answered.</figcaption>
+    </figure>
+
+    <div class="m1-terms">
+      <div class="m1-term"><strong>True positive</strong><span>Pneumothorax present, and PTX-Detect flagged it. Good.</span></div>
+      <div class="m1-term"><strong>False negative</strong><span>Pneumothorax present, but PTX-Detect missed it. The dangerous error: a sick patient falsely reassured.</span></div>
+      <div class="m1-term"><strong>False positive</strong><span>No pneumothorax, but PTX-Detect flagged one anyway. A false alarm: wasted time, possibly extra tests.</span></div>
+      <div class="m1-term"><strong>True negative</strong><span>No pneumothorax, and PTX-Detect cleared the film. Good.</span></div>
+    </div>
+  </section>
+
+  <section class="les-section" id="sens-spec">
+    <h2>Sensitivity and specificity</h2>
+    <p>Two numbers summarize the table. Each one looks at only one column.</p>
+    <ul>
+      <li><strong>Sensitivity</strong> looks only at patients who <em>have</em> the disease: <strong>of the sick, how many did it catch?</strong> If 100 patients have a pneumothorax and PTX-Detect flags 94, sensitivity is 94%. It missed 6.</li>
+      <li><strong>Specificity</strong> looks only at patients who <em>don't</em>: <strong>of the healthy, how many did it clear?</strong> If 1,000 patients have no pneumothorax and PTX-Detect clears 900, specificity is 90%. It raised 100 false alarms.</li>
+    </ul>
+    <p>A memory aid used by many students: a highly <strong>S</strong>e<strong>N</strong>sitive test, when <strong>N</strong>egative, helps rule <strong>out</strong> (SnNout). A highly <strong>S</strong><strong>P</strong>ecific test, when <strong>P</strong>ositive, helps rule <strong>in</strong> (SpPin).</p>
+
+    <a class="les-video-card" href="https://www.youtube.com/watch?v=vP06aMoz4v8" target="_blank" rel="noopener">
+      <div class="les-video-thumb">
+        <img src="https://img.youtube.com/vi/vP06aMoz4v8/hqdefault.jpg" alt="Sensitivity and Specificity, Clearly Explained, StatQuest">
+        <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+      </div>
+      <div class="les-video-info">
+        <div class="les-video-yt-icon"></div>
+        <span>Sensitivity and Specificity (StatQuest)</span>
+        <small>Watch on YouTube</small>
+      </div>
+    </a>
+  </section>
+
+  <section class="les-section" id="accuracy">
+    <h2>The accuracy trap</h2>
+    <p><strong>Accuracy</strong> is the share of all answers that were right. It sounds like the obvious number to report, but it hides a trap when a disease is rare.</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/accuracy-trap.png" alt="An array of 100 patient icons, one highlighted as sick. A model that always answers normal is 99% accurate but has 0% sensitivity.">
+      <figcaption>Figure 2. When only 1 in 100 patients is sick, a "model" that always says normal is 99% accurate and completely useless.</figcaption>
+    </figure>
+
+    <p>That is why you should look for sensitivity and specificity, not just accuracy, whenever you read about an AI tool. A headline like "AI is 99% accurate" tells you very little on its own.</p>
+  </section>
+
+  <section class="les-section" id="ppv">
+    <h2>When it flags a film, how often is it right?</h2>
+    <p>Sensitivity and specificity describe the tool. At the bedside, you have a different question: <strong>PTX-Detect just flagged this film. How likely is it that there really is a pneumothorax?</strong> That is the <strong>positive predictive value (PPV)</strong>: of all the alerts, the share that are real.</p>
+    <p>PPV depends heavily on how common the disease is. If pneumothorax is rare in the patients being scanned, even a good tool produces many more false alarms than true finds, simply because there are so many more healthy patients to be wrong about. You will see this in the slider below: count the pink circles against the teal ones.</p>
+    <p>Lesson 3.2 comes back to this: the same tool can be useful in an emergency department and swamp a screening clinic with false alarms.</p>
+  </section>
+
+  <section class="les-section" id="threshold">
+    <h2>Try it: the threshold dial</h2>
+    <p>PTX-Detect does not really answer yes or no. It gives each film a score from 0 to 1. Someone has to choose a <strong>threshold</strong>: films scoring above it get flagged. Move the dial and watch what happens to 100 made-up patients, 10 of whom have a pneumothorax.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive</div>
+      <div class="mi-thresh"></div>
+    </div>
+
+    <p>There is no threshold that catches every pneumothorax with no false alarms. Lowering it catches more disease and raises more false alarms; raising it does the opposite. The right setting depends on the job:</p>
+    <ul>
+      <li><strong>Screening or triage</strong> (put possible pneumothoraces at the top of the list): a missed case is costly and a radiologist checks every flag anyway, so a <strong>lower</strong> threshold makes sense.</li>
+      <li><strong>Confirming</strong> (acting on the flag with little further checking): false alarms are costly, so a <strong>higher</strong> threshold makes sense.</li>
+    </ul>
+    <p>When a company reports one sensitivity and one specificity, they were measured at one particular threshold. A hospital can often change it.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">In a test set, 40 patients have a pneumothorax. PTX-Detect flags 30 of them. What is its sensitivity?</p>
+      <button class="quiz-option">30%</button>
+      <button class="quiz-option">75%</button>
+      <button class="quiz-option">You need to know how many healthy patients there were</button>
+      <div class="quiz-explanation"><p>Sensitivity looks only at the sick: 30 caught out of 40 sick = 75%. The healthy patients don't enter into it; they are needed for specificity.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A company says its tool for a rare cancer is "99.5% accurate." The cancer occurs in 0.5% of scans. Why should you be cautious?</p>
+      <button class="quiz-option">99.5% is too high to be real</button>
+      <button class="quiz-option">Accuracy only counts the sick patients</button>
+      <button class="quiz-option">A tool that always says "no cancer" would also be 99.5% accurate</button>
+      <div class="quiz-explanation"><p>When disease is rare, accuracy is dominated by the healthy patients. Always saying "no cancer" scores 99.5% while finding nothing. Ask for sensitivity and specificity instead.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">PTX-Detect is used to move possible pneumothoraces to the top of the radiologist's list. A radiologist reads every film anyway. Which way should the threshold go?</p>
+      <button class="quiz-option">Lower, to miss fewer pneumothoraces</button>
+      <button class="quiz-option">Higher, to avoid false alarms</button>
+      <button class="quiz-option">It makes no difference</button>
+      <div class="quiz-explanation"><p>For triage, a miss means a sick patient waits; a false alarm only means a normal film is read a bit sooner. A lower threshold catches more true cases at the cost of more false alarms, which is acceptable here.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Every answer falls in one of four boxes: true positive, false positive, false negative, true negative.</li>
+      <li>Sensitivity: of the sick, how many were caught. Specificity: of the healthy, how many were cleared.</li>
+      <li>Accuracy can look excellent for a useless tool when the disease is rare.</li>
+      <li>PPV (of the alerts, how many are real) falls when the disease is rare.</li>
+      <li>The threshold trades missed cases for false alarms. Lower suits screening; higher suits confirming.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://www.youtube.com/watch?v=4jRBRDbJemM" target="_blank" rel="noopener">ROC and AUC, Clearly Explained</a> <small>(StatQuest, YouTube)</small></li>
+      <li><a href="https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall" target="_blank" rel="noopener">Accuracy, precision and recall</a> <small>(Google ML Crash Course; "recall" is another word for sensitivity, "precision" for PPV)</small></li>
+      <li><a href="m3-2.html">Lesson 3.2</a> <small>what accuracy does not tell you, and how prevalence changes PPV at a new hospital</small></li>
+    </ul>
+    <p>Next lesson: PTX-Detect scored well in testing. Why might it still fail at your hospital?</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m1-3.html" class="btn btn-outline" id="les-prev">&larr; Data &amp; Labels</a>
+  <a href="m1-5.html" class="btn btn-accent" id="les-next">Next: Limits &amp; Failures &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+</body>
+</html>

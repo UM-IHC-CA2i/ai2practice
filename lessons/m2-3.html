@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 &middot; The Journey of a Scan &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/informatics.html" class="les-back" id="les-back">&larr; Module 2 overview</a>
+  <div class="les-topbar-title">Module 2 &middot; Lesson 2.3</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">2.3</div>
+    <div>
+      <div class="les-hero-q">How does a scan get from the order to the answer?</div>
+      <h1>The Journey of a Scan</h1>
+      <p>Follow Mr. Diaz's CT through nine steps and six computer systems, and see where things can go wrong</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">A scan is not a single event. It starts with a clinician's question and ends, if all goes well, with an answer that changes the patient's care. In between, it passes through many people and several computer systems. This lesson follows Mr. Diaz's CT pulmonary angiogram (CTPA) from start to finish. Module 3 then shows where AI tools plug into this same path. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Describe the nine steps of a scan's journey, from order to follow-up.</li>
+      <li>Name the main computer systems (EHR, RIS, PACS) and what each one does.</li>
+      <li>Explain why the reason for the exam on the order matters so much.</li>
+      <li>Recognize the steps where errors and delays most often happen.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="systems">
+    <h2>The systems behind the scenes</h2>
+    <p>You will hear these names on your first day in any hospital. Each is a separate piece of software, often from a different company, and they pass messages to each other.</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>EHR (electronic health record)</strong><span>The patient's main chart: notes, medicines, lab results, orders. Where clinicians order scans and read reports.</span></div>
+      <div class="m1-term"><strong>RIS (radiology information system)</strong><span>Radiology's own scheduling and tracking system. Knows which exams are booked, done and reported.</span></div>
+      <div class="m1-term"><strong>PACS (picture archiving and communication system)</strong><span>Stores every image and shows them on the radiologist's workstation. The DICOM files from Lesson 2.2 live here.</span></div>
+      <div class="m1-term"><strong>Worklist</strong><span>The radiologist's to-do list of exams waiting to be read, sorted by urgency and time.</span></div>
+      <div class="m1-term"><strong>Reporting system</strong><span>Where the radiologist writes the report, usually by speaking into a microphone with speech recognition, using templates.</span></div>
+    </div>
+    <p>These systems talk using shared standards. <strong>DICOM</strong> carries images (Lesson 2.2). <strong>HL7</strong> (Health Level Seven) carries text messages such as orders and reports. <strong>FHIR</strong> (Fast Healthcare Interoperability Resources, said "fire") is a newer, web-style version of HL7 that many apps, and many AI tools, now use to read from the EHR.</p>
+  </section>
+
+  <section class="les-section" id="journey">
+    <h2>Follow Mr. Diaz's scan</h2>
+    <p>Step through the journey. The map shows which system is involved at each step.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: the journey of a scan</div>
+      <div class="m2-journey">
+        <svg class="m2-map" viewBox="0 0 720 230" role="img" aria-label="Map of six systems. Top row: EHR, RIS, Scanner. Bottom row: Reporting, Worklist, PACS. Arrows run EHR to RIS to Scanner, down to PACS, then PACS to Worklist to Reporting, and back up to EHR.">
+          <defs>
+            <marker id="m2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#9aa3ad"/>
+            </marker>
+          </defs>
+          <path class="flow" d="M200,52 L262,52"/>
+          <path class="flow" d="M450,52 L512,52"/>
+          <path class="flow" d="M610,86 L610,136"/>
+          <path class="flow" d="M520,172 L458,172"/>
+          <path class="flow" d="M270,172 L208,172"/>
+          <path class="flow" d="M110,138 L110,88"/>
+          <g class="sys" data-sys="ehr"><rect x="20" y="20" width="180" height="64" rx="10"/><text x="110" y="48">EHR</text><text class="sub" x="110" y="68">the patient's chart</text></g>
+          <g class="sys" data-sys="ris"><rect x="270" y="20" width="180" height="64" rx="10"/><text x="360" y="48">RIS</text><text class="sub" x="360" y="68">scheduling and tracking</text></g>
+          <g class="sys" data-sys="scanner"><rect x="520" y="20" width="180" height="64" rx="10"/><text x="610" y="48">Scanner</text><text class="sub" x="610" y="68">CT, MRI, X-ray ...</text></g>
+          <g class="sys" data-sys="reporting"><rect x="20" y="140" width="180" height="64" rx="10"/><text x="110" y="168">Reporting</text><text class="sub" x="110" y="188">speech recognition</text></g>
+          <g class="sys" data-sys="worklist"><rect x="270" y="140" width="180" height="64" rx="10"/><text x="360" y="168">Worklist</text><text class="sub" x="360" y="188">the reading queue</text></g>
+          <g class="sys" data-sys="pacs"><rect x="520" y="140" width="180" height="64" rx="10"/><text x="610" y="168">PACS</text><text class="sub" x="610" y="188">image storage and viewer</text></g>
+        </svg>
+
+        <div class="mi-steps">
+          <div class="mi-steps-viewport">
+            <div class="mi-step active" data-sys="ehr">
+              <div class="mi-step-head">1. Order</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">EHR</span>
+                <p>A clinician decides a scan is needed and enters an <strong>order</strong> in the EHR. The order names the exam and gives the <strong>reason for exam</strong> (also called the indication or clinical history): the question the scan should answer. Many EHRs now check the order against guidelines, such as the ACR Appropriateness Criteria, and flag tests that are unlikely to help. This is called <strong>clinical decision support</strong>.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the ED doctor orders "CT angiogram chest, PE protocol. Reason: sudden shortness of breath and right pleuritic chest pain after a 14-hour flight; D-dimer elevated." (A D-dimer is a blood test that is high when the body is breaking down clots.)</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="ris">
+              <div class="mi-step-head">2. Protocol and schedule</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">RIS</span>
+                <p>The order crosses to the RIS. A radiologist or technologist <strong>protocols</strong> it: chooses exactly how the scan will be done (which body part, with or without contrast, the timing of the contrast). The exam is then scheduled. Emergencies go to the front of the line.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> protocolled as a CTPA, with contrast timed to fill the lung arteries. His kidney blood test is normal and he has no contrast allergy, so the scan is cleared.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="scanner">
+              <div class="mi-step-head">3. Scan</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Scanner</span>
+                <p>The technologist checks the patient's identity with two identifiers (such as name and date of birth), confirms the exam, explains it, places an IV line if contrast is needed and runs the scan. The scanner builds the image series from Lesson 2.2.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> scanned at 01:40. The contrast injection makes him feel warm all over for a few seconds, which is normal. The scan takes about ten seconds.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="scanner pacs">
+              <div class="mi-step-head">4. Store and send</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Scanner &rarr; PACS</span>
+                <p>The scanner sends the DICOM images to PACS, where they are stored and matched to the order using the <strong>accession number</strong>. If the images are labeled with the wrong patient or order, they can end up in the wrong chart.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> about 600 images in four series arrive in PACS within a couple of minutes.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="worklist">
+              <div class="mi-step-head">5. Worklist</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Worklist</span>
+                <p>The exam appears on a radiologist's worklist. Exams are sorted by priority: <strong>STAT</strong> (urgent, now), then urgent, then routine. A busy overnight list may hold dozens of exams. Where an exam sits in the queue decides how fast it gets read.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> his exam is marked STAT from the ED and goes near the top of the overnight list.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="pacs">
+              <div class="mi-step-head">6. Read</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">PACS</span>
+                <p>The radiologist opens the study on a PACS workstation. They read the reason for exam, look at any <strong>prior</strong> (earlier) imaging for comparison, then scroll through every series in several windows, looking at <em>everything</em> on the images, not only the question asked.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the overnight radiologist sees a clot in a branch of the right lower lobe pulmonary artery. Checking the lung window, they also notice an 8 mm nodule in the right upper lobe. He has no prior CT to compare with.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="reporting">
+              <div class="mi-step-head">7. Report</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Reporting</span>
+                <p>The radiologist dictates a <strong>report</strong>, often from a template, and signs it. Overnight, a resident may write a <strong>preliminary</strong> report that an attending radiologist later confirms or corrects as the <strong>final</strong> report. Lesson 2.4 walks through this report line by line.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> report signed at 02:05: acute pulmonary embolism, no strain on the heart, and an incidental lung nodule with a recommendation for follow-up CT.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="reporting ehr">
+              <div class="mi-step-head">8. Communicate</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Reporting &rarr; EHR</span>
+                <p>The signed report goes to the EHR, where the ordering team and often the patient can read it. A <strong>critical result</strong> (a finding that needs action right away, like a PE) is not left to sit in the chart: the radiologist phones the team and documents who they spoke to and when.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the radiologist calls the ED doctor at 02:07. Blood thinners (anticoagulants) are started within the hour.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="ehr ris">
+              <div class="mi-step-head">9. Follow-up</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">EHR &rarr; RIS</span>
+                <p>Some findings need more imaging later. Someone has to read the recommendation, tell the patient, and order and schedule the next scan. This is the step most likely to be dropped, especially when the finding is <strong>incidental</strong> (not related to the reason for the scan) and the patient changes doctors or leaves the hospital.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the PE is treated, and he goes home after three days. The nodule needs a CT in 6-12 months. Will anyone remember? Many hospitals now run tracking programs, with a nurse navigator or software, to catch these.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="order-matters">
+    <h2>Why the order matters</h2>
+    <p>The reason for exam is the radiologist's only window into the patient. They usually have not met the patient and see the order long before the full chart. A good reason for exam changes how the scan is done (the protocol) and what the radiologist looks for.</p>
+
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>Weak reason for exam</th><th>Better reason for exam</th></tr></thead>
+        <tbody>
+          <tr><td>"Chest pain"</td><td>"Sudden right pleuritic chest pain and shortness of breath after a long flight; D-dimer elevated. Assess for PE."</td></tr>
+          <tr><td>"Rule out pathology"</td><td>"Right lower abdominal pain for 1 day, fever, white count 15. Appendicitis?"</td></tr>
+          <tr><td>"Headache"</td><td>"Sudden worst headache of life 2 hours ago, on blood thinners. Bleed?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The <a href="https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria" target="_blank" rel="noopener">ACR Appropriateness Criteria</a> are guidelines from the American College of Radiology that rate which test is best for a given clinical problem. They are what the decision support in step 1 is usually built on.</p>
+
+    <div class="les-video-grid">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=zBJGv2OBOUU" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/zBJGv2OBOUU/hqdefault.jpg" alt="How to Order Diagnostic Imaging">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>How to Order Diagnostic Imaging (Joseph W. Owen, MD)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=x7edw-UyBRw" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/x7edw-UyBRw/hqdefault.jpg" alt="Getting the Indication Correct">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>Getting the Indication Correct (Joseph W. Owen, MD)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="les-section" id="put-in-order">
+    <h2>Put it in order</h2>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: put the steps in order</div>
+      <p class="mi-box-intro">Drag the steps, or use the arrow buttons, to put them in the order they happen. Then check.</p>
+      <div class="m2-order">
+        <ol class="m2-order-list">
+          <li data-pos="6">The radiologist reads the images and compares with priors</li>
+          <li data-pos="2">The exam is protocolled and scheduled in the RIS</li>
+          <li data-pos="8">The radiologist phones the team about the critical result</li>
+          <li data-pos="4">The images are sent to PACS and matched to the order</li>
+          <li data-pos="1">The clinician enters an order with a reason for exam</li>
+          <li data-pos="9">A follow-up CT is booked for the lung nodule</li>
+          <li data-pos="5">The exam appears on the worklist, marked STAT</li>
+          <li data-pos="3">The technologist checks identity and runs the scan</li>
+          <li data-pos="7">The radiologist dictates and signs the report</li>
+        </ol>
+        <p class="m2-order-result" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="errors">
+    <h2>Where things go wrong</h2>
+    <p>Most imaging errors are not a radiologist missing something on the picture. Many happen before the scan or after the report. Knowing the steps helps you see where.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: what went wrong?</div>
+      <p class="mi-box-intro">Each story is a real type of error. Decide at which step it happened.</p>
+      <div class="mi-sort" data-choices="Order|Scan|Communicate|Follow-up">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Wrong side<small>A CT of the left knee is ordered, but the patient's pain is in the right knee.</small></div>
+            <div class="mi-card-why">Order. Laterality (side) errors on orders are common. Technologists confirm with the patient before scanning, which catches many.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Contrast too early<small>The CTPA images are taken before the contrast reaches the lung arteries. They are too dark to judge.</small></div>
+            <div class="mi-card-why">Scan. Poor contrast timing makes a CTPA "non-diagnostic," and the scan may need to be repeated, with more radiation and more contrast.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">Nobody called<small>A report showing a collapsed lung is signed at night, but nobody phones the team. They see it the next morning.</small></div>
+            <div class="mi-card-why">Communicate. Critical results need a direct call, documented in the report. A signed report alone is not enough.</div>
+          </div>
+          <div class="mi-card" data-answer="3">
+            <div class="mi-card-text">Lost nodule<small>A report recommends a follow-up CT for a lung nodule. The patient is discharged, and two years later the nodule is a cancer.</small></div>
+            <div class="mi-card-why">Follow-up. This is the classic dropped handoff, and the reason for tracking programs. It could happen to Mr. Diaz.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Rule out pathology"<small>A vague reason for exam leads to the wrong protocol, and the scan cannot answer the real question.</small></div>
+            <div class="mi-card-why">Order. The radiologist can only protocol and read for the question they are given.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Wrong patient<small>Two patients with the same last name; the wrong one is scanned.</small></div>
+            <div class="mi-card-why">Scan. This is why technologists use two identifiers every time.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+
+    <div class="m2-think">
+      <div class="m1-example-label">Your part as a student</div>
+      <p>On the wards you will help write orders, look up reports and chase results. Three habits help most: write a real reason for exam, read the whole report (not only the first line), and when a report recommends follow-up, make sure someone owns it before the patient leaves.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="bridge">
+    <h2>Where AI fits (a preview)</h2>
+    <p>Every step on the map is a place a computer could help, and AI tools already exist for most of them: suggesting a protocol, cleaning up noisy images, moving suspected critical findings to the top of the worklist, flagging findings during the read, drafting parts of the report, and tracking follow-up recommendations. Each one changes the journey in a different way, and each can fail in a different way. Lesson 3.1 maps these tools onto the journey you just learned.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Which system stores the images and shows them on the radiologist's workstation?</p>
+      <button class="quiz-option">EHR</button>
+      <button class="quiz-option">PACS</button>
+      <button class="quiz-option">RIS</button>
+      <div class="quiz-explanation"><p>PACS (picture archiving and communication system) stores and displays images. The EHR is the patient's chart; the RIS schedules and tracks radiology exams.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">The radiologist finds Mr. Diaz's PE at 2 a.m. What should happen besides signing the report?</p>
+      <button class="quiz-option">Nothing; the team will see the report in the EHR</button>
+      <button class="quiz-option">Send the patient a message through the portal</button>
+      <button class="quiz-option">Phone the treating team directly and document the call</button>
+      <div class="quiz-explanation"><p>A PE is a critical result. It needs direct, documented communication so treatment starts right away.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">Which step of the journey is most often where an incidental finding gets lost?</p>
+      <button class="quiz-option">Follow-up, after the report, especially when the patient leaves the hospital</button>
+      <button class="quiz-option">Store and send, when images go to PACS</button>
+      <button class="quiz-option">Protocol, when the exam is scheduled</button>
+      <div class="quiz-explanation"><p>Recommendations for later imaging depend on someone reading, owning and scheduling them. Handoffs between teams make this the weakest step.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>A scan's journey has nine steps: order, protocol and schedule, scan, store and send, worklist, read, report, communicate, follow-up.</li>
+      <li>The EHR holds the chart, the RIS schedules and tracks, PACS stores and shows images. They talk through DICOM, HL7 and FHIR.</li>
+      <li>The reason for exam shapes both how the scan is done and what the radiologist looks for.</li>
+      <li>Critical results need a direct call. Follow-up recommendations need an owner.</li>
+      <li>Many errors happen before the scan or after the report, not only during the read.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria" target="_blank" rel="noopener">ACR Appropriateness Criteria</a> <small>(look up "suspected pulmonary embolism" and see how the tests are rated)</small></li>
+      <li><a href="https://www.youtube.com/watch?v=zBJGv2OBOUU" target="_blank" rel="noopener">How to Order Diagnostic Imaging</a> <small>(Joseph W. Owen, MD, YouTube)</small></li>
+    </ul>
+    <p>Next lesson: the report is signed. What does it say, and how do you read it?</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m2-2.html" class="btn btn-outline" id="les-prev">&larr; Images as Data</a>
+  <a href="m2-4.html" class="btn btn-accent" id="les-next">Next: Reading a Radiology Report &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

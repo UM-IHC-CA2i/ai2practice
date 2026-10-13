@@ -20,44 +20,19 @@
 
 AI2Practice is a clinical AI learning, evaluation, and implementation platform designed to help clinicians move from foundational understanding to real-world use.
 
-The site is organized around three connected domains:
-
-## Foundations
-### Understand AI
-
-Build the conceptual foundation needed to interpret contemporary clinical AI systems.
-
-Topics include model development, data, performance metrics, calibration, generalization, bias, and failure modes.
-
-## Clinical Practice
-### Use and Evaluate AI
-
-Move from model performance to the human–AI system.
-
-Topics include evidence appraisal, external validity, clinician reliance, workflow integration, automation bias, and clinical value.
+Learners choose a learning depth, work through three core modules (Fundamentals of AI; Radiology AI: Data, Systems & Workflow; AI in Clinical Practice), then finish with an assessment and a certificate. Two independent tracks, **Research Lab** and **Leadership**, can be opened at any time. See [Curriculum structure](#curriculum-structure) below.
 
 ## Leadership
-### Lead AI Into Practice
 
-Lead clinical AI across strategy, evidence, implementation, governance, people, infrastructure, and monitoring. The practical deployment lifecycle includes:
-
-1. **Define the need**
-2. **Select / procure**
-3. **Validate locally**
-4. **Implement**
-5. **Monitor & govern**
-
-This section covers the operational and institutional work required to move from clinical need to reliable, monitored, and accountable AI-enabled practice.
-
----
+Lead clinical AI across strategy, evidence, implementation, governance, people, infrastructure, and monitoring. The deployment lifecycle: **Define the need**, **Select & procure**, **Validate locally**, **Implement**, **Monitor & govern**. Overview available now; lessons planned.
 
 ## Research Lab
 
-Research-oriented modules, methods, datasets, and practical exercises focused on clinical AI evaluation, reliability, human–AI interaction, site heterogeneity, monitoring, and emerging AI systems.
+Five hands-on labs with notebooks and datasets, from Python setup to a mini research project.
 
 ## For Educators
 
-Reusable curricula, cases, teaching sequences, and assessment resources for incorporating clinical AI into medical education.
+Build a plan of selected lessons and the assessment and share it as one link.
 
 ## AI2Practice Brief
 
@@ -65,26 +40,36 @@ A focused editorial section for clinically relevant developments in healthcare A
 
 ---
 
-## Existing interactive curriculum
+## Curriculum structure
 
-AI2Practice also includes role-specific learning pathways for:
+1. **Choose a learning depth:** Beginner, Intermediate, or Advanced. One depth is published today; separate depth versions are planned.
+2. **Core modules:** Fundamentals of AI (`modules/ai-fundamentals.html`), Radiology AI: Data, Systems & Workflow (`modules/informatics.html`), and AI in Clinical Practice (`modules/clinical-practice.html`). `curriculum.html` shows the whole course on one page. Lessons are `lessons/mN-N.html`; unpublished lessons are marked "In development".
+3. **Assessment and certificate:** `assessment.html`, `certificate.html`. The certificate covers published lessons only.
+4. **Independent tracks (open any time):** Research Lab (`pages/research-lab.html`, `lessons/research-1..5.html`) and Leadership (`pages/adoption-governance.html`, overview now, lessons later).
+5. **Educators:** `pages/educators.html` builds a shareable plan link.
 
-- Medical students
-- Residents and fellows
-- Practicing clinicians
-- Clinical AI leaders
-
-The repository contains interactive lessons, case walkthroughs, assessments, research exercises, and an AI tool tracker.
+The lesson registry, plans and saved progress live in `assets/js/progress.js`.
 
 ## Repository structure
 
 ```text
-index.html          Homepage
-pages/              Foundations, Clinical Practice, Adoption & Governance,
-                    Research Lab, For Educators, and AI2Practice Brief
-lessons/            Interactive educational modules
-data/               Case and assessment data
-notebooks/          Research exercises and datasets
-assets/             AI2Practice design system and site JavaScript
-css/                Existing curriculum styles
-js/                 Interactive curriculum functionality
+index.html, curriculum.html, about.html,   Top-level pages
+assessment.html, certificate.html, tracker.html
+modules/            The three core module overviews
+pages/              Leadership, Research Lab, For Educators, AI2Practice Brief
+lessons/            Lesson pages (mN-N.html, research-N.html)
+  assets/           Lesson-only CSS/JS (lessons.css/js, m1.css, knowledge checks, M1 interactives)
+  images/           Lesson figures and illustrations
+  downloads/        Lesson handouts
+assets/
+  css/              site.css + theme.css (section pages), lesson-layout.css (lesson-style pages),
+                    progress, home, curriculum, start picker, FDA tracker styles
+  js/               site.js / shared.js (header, footer), progress.js (registry, progress, outline,
+                    account menu), auth.js + firebase-config.js (sign-in), assessment, checkpoint,
+                    slideshow, start picker, FDA tracker
+images/             Logos and team photos
+data/               FDA AI device data (refreshed by the GitHub workflow)
+scripts/            FDA data refresh and slide export scripts
+downloads/          FDA device list slide
+notebooks/          Research Lab notebooks and datasets
+```

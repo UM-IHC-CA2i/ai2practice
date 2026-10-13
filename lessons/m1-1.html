@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 &middot; AI Around You &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/ai-fundamentals.html" class="les-back" id="les-back">&larr; Module 1 overview</a>
+  <div class="les-topbar-title">Module 1 &middot; Lesson 1.1</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">1.1</div>
+    <div>
+      <div class="les-hero-q">What is AI?</div>
+      <h1>AI Around You</h1>
+      <p>What AI is, how it differs from a hand-written rule, and where it already shows up in medicine</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">You do not need any background in computers for this module. In five short lessons you will learn what AI is, how it learns, what it learns from, how to tell whether it is any good, and how it fails. This first lesson sets up the vocabulary. It takes about 15 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Define AI in one sentence.</li>
+      <li>Tell a hand-written rule apart from a model that learned from examples.</li>
+      <li>Place AI, machine learning, deep learning and generative AI in one picture.</li>
+      <li>Name three AI tools already used in medicine.</li>
+    </ul>
+    <div class="m1-example">
+      <div class="m1-example-label">Running example: PTX-Detect</div>
+      <p>Throughout Module 1 we follow one made-up tool, <strong>PTX-Detect</strong>. It looks at a chest X-ray and flags a possible pneumothorax (collapsed lung) so a radiologist reads that film first. Each lesson asks one question about it: what is it, how was it trained, what did it learn from, how good is it, and when does it break?</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="already">
+    <h2>You already use AI</h2>
+    <p>Before medicine, think about your phone. Several things you use every day are AI:</p>
+    <ul>
+      <li><strong>Face unlock</strong> recognizes your face in different lighting, with or without glasses.</li>
+      <li><strong>Spam filters</strong> decide which emails are junk.</li>
+      <li><strong>Autocorrect and predictive text</strong> guess the next word you want.</li>
+      <li><strong>Maps</strong> predict how long the drive will take from current traffic.</li>
+      <li><strong>Chatbots</strong> such as ChatGPT write answers to your questions.</li>
+    </ul>
+    <p>A simple working definition: <strong>artificial intelligence (AI) is a computer system that does a task we would normally say needs human intelligence</strong>, such as recognizing a face, understanding language or spotting a pattern in an image.</p>
+
+    <p>For a friendly 12-minute overview, watch this before going on:</p>
+    <a class="les-video-card" href="https://www.youtube.com/watch?v=dx_Ruw8vufI" target="_blank" rel="noopener">
+      <div class="les-video-thumb">
+        <img src="https://img.youtube.com/vi/dx_Ruw8vufI/hqdefault.jpg" alt="AI Simply Explained in 12 Minutes">
+        <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+      </div>
+      <div class="les-video-info">
+        <div class="les-video-yt-icon"></div>
+        <span>AI Simply Explained in 12 Minutes</span>
+        <small>Watch on YouTube</small>
+      </div>
+    </a>
+  </section>
+
+  <section class="les-section" id="rules-vs-learning">
+    <h2>Rules vs learning</h2>
+    <p>There are two broad ways to get a computer to do a task.</p>
+    <p><strong>Write the rule yourself.</strong> A person decides the logic: "if temperature is above 38&nbsp;&deg;C, flag fever." The computer follows it exactly. This is predictable and easy to check, and it is how many hospital alerts work.</p>
+    <p><strong>Let it learn from examples.</strong> Some tasks are too hard to write down. Try writing a rule for "what does a pneumothorax look like on a chest X-ray?" It depends on the patient's position, the film quality, the size of the collapse and much more. Instead, you show the computer thousands of X-rays, each labeled "pneumothorax" or "no pneumothorax", and let it find the pattern itself. The result is called a <strong>model</strong>, and this approach is called <strong>machine learning</strong>.</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/rules-vs-learning.png" alt="Left: a hand-written rule turns a temperature into a fever flag. Right: 10,000 labeled chest X-rays go into training, which produces a model that labels new X-rays.">
+      <figcaption>Figure 1. A rule is written by a person. A model is learned from labeled examples.</figcaption>
+    </figure>
+
+    <div class="m1-example">
+      <div class="m1-example-label">PTX-Detect</div>
+      <p>PTX-Detect is a learned model, not a rule. Nobody wrote "look for a thin white line with no lung markings beyond it." Its makers gave it many labeled chest X-rays and it worked out its own pattern. That is its strength, and also why it can learn the wrong thing, as you will see in Lesson 1.5.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="family-tree">
+    <h2>The family tree: AI, machine learning, deep learning, generative AI</h2>
+    <p>These four terms are often used as if they mean the same thing. They don't. Each one sits inside the one before it.</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/nested-ai.png" alt="Nested ovals: artificial intelligence contains machine learning, which contains deep learning, which contains generative AI. Examples on the right for each level.">
+      <figcaption>Figure 2. Each term is a smaller group inside the one before it.</figcaption>
+    </figure>
+
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Artificial intelligence</strong><span>The whole field: any system doing a task that normally needs human intelligence. Includes hand-written rule systems.</span></div>
+      <div class="m1-term"><strong>Machine learning (ML)</strong><span>AI that learns patterns from examples instead of following rules a person wrote.</span></div>
+      <div class="m1-term"><strong>Deep learning</strong><span>Machine learning that uses neural networks with many layers. Most modern image AI, including PTX-Detect, is deep learning. Lesson 1.2 explains the layers.</span></div>
+      <div class="m1-term"><strong>Generative AI</strong><span>Deep learning models that <em>create</em> new content, such as text or images. Large language models (LLMs) like ChatGPT are generative AI.</span></div>
+    </div>
+
+    <p>So every deep learning model is machine learning, and every machine learning model is AI. The reverse is not true: a simple rule-based alert is AI but not machine learning.</p>
+    <p>Optional, if you are curious how chatbots work: <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener">Large Language Models explained briefly (3Blue1Brown, 8 min)</a>.</p>
+  </section>
+
+  <section class="les-section" id="sort">
+    <h2>Try it: AI or not?</h2>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive</div>
+      <p class="mi-box-intro">For each tool, decide how it works. Pick one answer per card to see the explanation. There are no points; this is just practice.</p>
+      <div class="mi-sort" data-choices="Fixed rule|Learned from examples">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Calculator<small>Adds, multiplies, divides.</small></div>
+            <div class="mi-card-why">A fixed rule. Arithmetic is written into it exactly; it never learned anything. It is not usually called AI at all.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Email spam filter<small>Moves junk mail out of your inbox.</small></div>
+            <div class="mi-card-why">Learned. Modern spam filters learn from millions of emails people marked as spam, and keep updating as spammers change tactics.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Basic thermostat<small>Turns the heat on below 20&nbsp;&deg;C.</small></div>
+            <div class="mi-card-why">A fixed rule: "if below 20, heat on." Some "smart" thermostats do learn your habits, but a basic one follows a single rule.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Wells score for pulmonary embolism<small>Adds points for clinical signs.</small></div>
+            <div class="mi-card-why">A fixed rule. Experts chose the items and point values from studies, and you add them up by hand or in the EHR. The computer does not learn anything new.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Face unlock<small>Opens your phone when it sees you.</small></div>
+            <div class="mi-card-why">Learned. A deep learning model trained on huge numbers of face images learned what makes faces different. Nobody wrote rules for noses and eyebrows.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">ChatGPT<small>Writes answers to your questions.</small></div>
+            <div class="mi-card-why">Learned. It is a large language model, a type of generative AI, trained on enormous amounts of text to predict the next word.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+    <p>Want to see a learned model in action? Play <a href="https://quickdraw.withgoogle.com/" target="_blank" rel="noopener">Quick, Draw!</a> for two minutes. You doodle, and a neural network guesses what you drew. It learned from millions of other people's doodles.</p>
+  </section>
+
+  <section class="les-section" id="medicine">
+    <h2>AI in medicine today</h2>
+    <p>AI is already part of daily clinical work. A few examples you may meet on rotations:</p>
+    <ul>
+      <li><strong>Triage alerts:</strong> a model flags a CT that may show a brain bleed or a large stroke, so it moves to the top of the radiologist's list.</li>
+      <li><strong>Mammography second reads:</strong> a model marks suspicious areas on a screening mammogram for the radiologist to check.</li>
+      <li><strong>Ambient scribes:</strong> a generative AI listens to a clinic visit and drafts the note.</li>
+      <li><strong>Report drafting:</strong> generative AI suggests the impression of a radiology report from the findings.</li>
+    </ul>
+    <p>Module 2 shows where these tools fit into the radiology workflow, and Module 3 covers how to judge them and use them safely.</p>
+
+    <div class="img-needed-row">
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>Screenshot of a triage alert, e.g. a worklist with an AI flag on a head CT for possible hemorrhage. De-identified or vendor image with permission.</p>
+      </div>
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>Screening mammogram with an AI mark (box or score) on a suspicious area. De-identified or openly licensed.</p>
+      </div>
+    </div>
+
+    <div class="les-case les-case--blue" style="margin-top: 24px;">
+      <div class="les-case-label les-case-label--blue">Landmark examples (optional reading)</div>
+      <p>Deep learning detecting diabetic retinopathy in retinal photos: <a href="https://doi.org/10.1001/jama.2016.17216" target="_blank" rel="noopener">Gulshan et al., <em>JAMA</em> 2016</a>. Classifying skin lesions from photos: <a href="https://doi.org/10.1038/nature21056" target="_blank" rel="noopener">Esteva et al., <em>Nature</em> 2017</a>.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="not">
+    <h2>What AI is not</h2>
+    <p>Three common misunderstandings:</p>
+    <ul>
+      <li><strong>It is not thinking.</strong> A model finds statistical patterns in data. It has no understanding of anatomy, patients or disease.</li>
+      <li><strong>It is not general.</strong> PTX-Detect finds pneumothoraces. It cannot spot a rib fracture unless it was trained to, and it will not tell you that it can't.</li>
+      <li><strong>It is not always right.</strong> Every model makes mistakes, and it can be confident while wrong. Lessons 1.4 and 1.5 show how to measure and expect those mistakes.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">Which of these learned its behavior from examples?</p>
+      <button class="quiz-option">An EHR alert that fires when potassium is above 6.0</button>
+      <button class="quiz-option">The CURB-65 pneumonia score</button>
+      <button class="quiz-option">A chest X-ray tool trained on 50,000 labeled films</button>
+      <button class="quiz-option">A drug-interaction checker using a published table</button>
+      <div class="quiz-explanation"><p>The X-ray tool was trained on labeled examples, so it is machine learning. The other three follow rules or tables that people wrote.</p></div>
+    </div>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Is every AI tool a deep learning model?</p>
+      <button class="quiz-option">Yes, AI and deep learning mean the same thing</button>
+      <button class="quiz-option">No, deep learning is one smaller part of AI</button>
+      <button class="quiz-option">No, deep learning is bigger than AI</button>
+      <div class="quiz-explanation"><p>Deep learning sits inside machine learning, which sits inside AI (Figure 2). Rule-based systems and simpler machine learning models are AI without being deep learning.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">What does "generative" mean in generative AI?</p>
+      <button class="quiz-option">It creates new content, such as text or images</button>
+      <button class="quiz-option">It was generated by another AI</button>
+      <button class="quiz-option">It works for any task in general</button>
+      <div class="quiz-explanation"><p>Generative AI produces new content: a chatbot writes text, an image model draws pictures. It is still trained for particular kinds of output and is not "general" intelligence.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>AI is a computer system doing a task that normally needs human intelligence.</li>
+      <li>A rule is written by a person; a machine learning model learns its own pattern from labeled examples.</li>
+      <li>AI &supset; machine learning &supset; deep learning &supset; generative AI.</li>
+      <li>AI is already used in triage, screening, documentation and reporting. It does not think, it is narrow, and it makes mistakes.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://www.youtube.com/watch?v=uGsJfOvLCMk" target="_blank" rel="noopener">What are Different Types of AI Models</a> <small>(YouTube)</small></li>
+      <li><a href="https://www.youtube.com/watch?v=PtUIBZ6FmgA" target="_blank" rel="noopener">Major AI Disciplines Explained</a> <small>(YouTube)</small></li>
+      <li><a href="https://www.heinz.cmu.edu/media/2023/July/artificial-intelligence-explained" target="_blank" rel="noopener">Artificial Intelligence Explained</a> <small>(CMU Heinz College, short article)</small></li>
+    </ul>
+    <p>Next lesson: how does a model like PTX-Detect actually learn?</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="../modules/ai-fundamentals.html" class="btn btn-outline" id="les-prev">&larr; Module 1 overview</a>
+  <a href="m1-2.html" class="btn btn-accent" id="les-next">Next: How Models Learn &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+</body>
+</html>

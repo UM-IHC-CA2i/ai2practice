@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 &middot; What Radiology Is &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="assets/m2.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/informatics.html" class="les-back" id="les-back">&larr; Module 2 overview</a>
+  <div class="les-topbar-title">Module 2 &middot; Lesson 2.1</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">2.1</div>
+    <div>
+      <div class="les-hero-q">What is radiology?</div>
+      <h1>What Radiology Is</h1>
+      <p>The five main imaging tools, why things look white or black, how scans are sliced, and how to think about radiation and contrast</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">Module 1 showed how AI learns from examples. Most medical AI tools so far have been built for radiology, so this module covers radiology itself: what it is, how images are made and stored, how a scan moves through the hospital, and how to read the report at the end. You do not need any radiology background. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Say what radiology is and who works in it.</li>
+      <li>Name the five main imaging tools and one strength and one limit of each.</li>
+      <li>Explain why some things look white and others black on an image.</li>
+      <li>Name the three planes used to slice the body, and know which side of the screen is the patient's left.</li>
+      <li>Describe, in plain words, the radiation and contrast questions to ask before a scan.</li>
+    </ul>
+
+    <div class="m1-example">
+      <div class="m1-example-label">Our patient for this module</div>
+      <p>Mr. Diaz is 62. He comes to the emergency department (ED) at 1 a.m. with sudden shortness of breath and pain on the right side of his chest when he breathes in. He flew home from overseas yesterday: 14 hours in a seat. The team worries about a <strong>pulmonary embolism</strong> (PE), a blood clot that has travelled to the arteries of the lungs. We will follow Mr. Diaz through all four lessons of this module, from the first scan to the report.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="what">
+    <h2>What radiology is</h2>
+    <p><strong>Radiology</strong> is the branch of medicine that uses images of the inside of the body to find and follow disease, and sometimes to treat it. Imaging lets doctors see a broken bone, a bleed in the brain or a clot in the lungs without opening the body.</p>
+    <p>A <strong>radiologist</strong> is a physician. After medical school, radiologists in the United States train for five more years (one general year and four years of radiology residency), and many add a <strong>fellowship</strong> year in one area, such as chest, brain (neuroradiology) or breast imaging. Most of their day is spent <em>interpreting</em> images: looking at them, deciding what they show, and writing a <strong>report</strong> for the doctor who asked for the scan. Lesson 2.4 shows you how to read that report.</p>
+    <p>Radiologists rarely meet the patient during a scan. The people the patient does meet are the technologists who run the scanners. You will meet the whole team at the end of this lesson.</p>
+  </section>
+
+  <section class="les-section" id="tools">
+    <h2>The five main imaging tools</h2>
+    <p>Each imaging tool is called a <strong>modality</strong>. They work in very different ways, so each is good at different things. Click through the five.</p>
+
+    <div class="dt-explorer">
+      <div class="dt-tabs">
+        <button class="dt-tab active" data-panel="mod-xray">X-ray</button>
+        <button class="dt-tab" data-panel="mod-ct">CT</button>
+        <button class="dt-tab" data-panel="mod-mri">MRI</button>
+        <button class="dt-tab" data-panel="mod-us">Ultrasound</button>
+        <button class="dt-tab" data-panel="mod-nm">Nuclear medicine</button>
+      </div>
+
+      <div class="dt-panel active" id="mod-xray">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--blue">1</div>
+          <div>
+            <h3 class="dt-panel-title">X-ray (radiograph)</h3>
+            <p class="dt-panel-subtitle">The oldest, fastest and most common imaging test</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">A machine sends a short burst of X-rays through the body onto a detector on the other side. Dense parts, like bone, block X-rays and look white. Air lets them through and looks black. The result is one flat picture, called a <strong>radiograph</strong> or "film." Because it is flat, everything in the beam's path is stacked on top of everything else, like a shadow.</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: chest X-ray</b>A normal frontal (PA) chest X-ray.</div>
+          <div class="dt-image-slot"><b>Image needed: wrist X-ray</b>A wrist X-ray with an obvious fracture.</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Good at / limits</h4>
+          <ul>
+            <li>Good at: bones, the lungs and heart outline, tubes and lines in the chest. Takes seconds, cheap, can be done at the bedside ("portable").</li>
+            <li>Limits: flat, so things overlap; poor at soft tissue such as the brain or liver. Uses a small dose of radiation.</li>
+            <li>Relatives: <strong>mammography</strong> (low-dose X-ray of the breast) and <strong>fluoroscopy</strong> (live X-ray video, for example to watch a swallow).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="mod-ct">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--teal">2</div>
+          <div>
+            <h3 class="dt-panel-title">CT (computed tomography)</h3>
+            <p class="dt-panel-subtitle">X-rays from every angle, turned into slices by a computer</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">The patient lies on a table that slides through a ring. Inside the ring, an X-ray tube spins around the body, and a computer combines the measurements from every angle into thin cross-sectional <strong>slices</strong>, like slices of a loaf of bread. Nothing overlaps, so CT shows far more than a radiograph. A whole chest takes a few seconds.</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: CT scanner</b>Photo of a CT scanner (the ring and table).</div>
+          <div class="dt-image-slot"><b>Image needed: CT slice</b>One axial chest CT slice in lung window.</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Good at / limits</h4>
+          <ul>
+            <li>Good at: emergencies. Bleeding in the brain, injuries after trauma, lung disease, kidney stones, and clots in the lung arteries (Mr. Diaz).</li>
+            <li>Limits: more radiation than an X-ray. Many CT scans need contrast dye injected into a vein (see below).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="mod-mri">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--amber">3</div>
+          <div>
+            <h3 class="dt-panel-title">MRI (magnetic resonance imaging)</h3>
+            <p class="dt-panel-subtitle">A strong magnet and radio waves, no X-rays</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">The patient lies inside a very strong magnet. Radio waves nudge the hydrogen atoms in the body's water and fat, and the scanner listens to the signals they send back as they settle. Different tissues settle at different speeds, which gives MRI its excellent soft-tissue detail. One exam is made of several <strong>sequences</strong>, each showing tissues in a different way.</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: MRI scanner</b>Photo of an MRI scanner (the tube).</div>
+          <div class="dt-image-slot"><b>Image needed: brain or knee MRI</b>One sagittal knee MRI or axial brain MRI slice.</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Good at / limits</h4>
+          <ul>
+            <li>Good at: brain, spinal cord, joints and ligaments, liver and prostate. Uses no ionizing radiation.</li>
+            <li>Limits: slow (often 20-60 minutes), loud and enclosed, expensive. The magnet is always on, so metal objects and some implants, such as certain pacemakers, are dangerous. Every patient is screened first.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="mod-us">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--rose">4</div>
+          <div>
+            <h3 class="dt-panel-title">Ultrasound</h3>
+            <p class="dt-panel-subtitle">Sound waves and their echoes, in real time</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">A handheld probe sends high-pitched sound into the body and listens for the echoes, like a ship's sonar. The picture moves live on the screen. <strong>Doppler</strong> ultrasound also shows blood flowing through vessels. The person holding the probe is usually a <strong>sonographer</strong>, and the quality of the exam depends a lot on their skill.</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: ultrasound being done</b>Photo of a probe on a patient's abdomen.</div>
+          <div class="dt-image-slot"><b>Image needed: gallbladder ultrasound</b>Gallbladder with gallstones and their shadows.</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Good at / limits</h4>
+          <ul>
+            <li>Good at: pregnancy, the gallbladder, kidneys, thyroid, the heart (echocardiography), blood flow, guiding needles. No radiation, cheap, portable.</li>
+            <li>Limits: sound cannot pass through bone or gas, so it cannot see the brain in adults or most of the lungs. Hard to repeat exactly the same way.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="mod-nm">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--blue">5</div>
+          <div>
+            <h3 class="dt-panel-title">Nuclear medicine and PET</h3>
+            <p class="dt-panel-subtitle">Shows what tissue is doing, not just its shape</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">The patient receives a tiny amount of a radioactive <strong>tracer</strong>, usually by injection. The tracer is attached to a substance the body uses, and a special camera records where it collects. <strong>PET</strong> (positron emission tomography) often uses a tracer made from sugar, which builds up in busy cells such as many cancers. PET is usually combined with a CT in the same visit (PET/CT) to match the activity to the anatomy.</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: PET/CT</b>A PET/CT image with a bright (active) spot.</div>
+          <div class="dt-image-slot"><b>Image needed: bone scan</b>A whole-body bone scan.</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Good at / limits</h4>
+          <ul>
+            <li>Good at: finding where cancer has spread, bone scans, thyroid function, blood flow to the heart muscle.</li>
+            <li>Limits: blurrier than CT or MRI; the tracer gives a radiation dose; takes time for the tracer to spread.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 20px;"><strong>Watch (optional, 4-6 minutes each):</strong> short animations from the U.S. National Institute of Biomedical Imaging and Bioengineering (NIBIB). Pick the one or two you know least about.</p>
+    <div class="les-video-grid">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=l9swbAtRRbg" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/l9swbAtRRbg/hqdefault.jpg" alt="How Does a CT Scan Work?">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>How Does a CT Scan Work? (NIBIB)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=1CGzk-nV06g" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/1CGzk-nV06g/hqdefault.jpg" alt="How Does an MRI Scan Work?">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>How Does an MRI Scan Work? (NIBIB)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=I1Bdp2tMFsY" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/I1Bdp2tMFsY/hqdefault.jpg" alt="How Does Ultrasound Work?">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>How Does Ultrasound Work? (NIBIB)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=GHLBcCv4rqk" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/GHLBcCv4rqk/hqdefault.jpg" alt="How Does a PET Scan Work?">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>How Does a PET Scan Work? (NIBIB)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="les-section" id="density">
+    <h2>Why things look white or black</h2>
+    <p>On X-ray and CT, brightness tells you how much a tissue blocks the X-rays, which mostly depends on how dense it is. There are only five basic densities to learn:</p>
+
+    <figure class="les-figure">
+      <img src="images/m2/density-scale.png" alt="Five boxes from black to white: air (lungs, bowel gas), fat, fluid and soft tissue (blood, muscle, organs), bone, and metal or contrast dye, with approximate CT numbers from about -1000 to above +1000.">
+      <figcaption>Figure 1. The five basic densities on X-ray and CT. The denser the tissue, the whiter it looks.</figcaption>
+    </figure>
+
+    <p>That is why a chest X-ray looks the way it does: black lungs (full of air), white ribs and spine (bone), and a gray heart in the middle (blood and muscle). A pneumothorax, from Module 1, shows up as a black area with no lung markings, because air has leaked outside the lung.</p>
+
+    <div class="img-needed-row">
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>A normal frontal chest X-ray with the five densities labeled (air in the lungs, fat under the skin, soft tissue of the heart, bone of the ribs, metal of an ECG lead or clip if present).</p>
+      </div>
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>One axial chest CT slice at about the same level, labeled the same way, to show that the same rule holds on CT.</p>
+      </div>
+    </div>
+
+    <p>Each modality has its own words for "brighter" and "darker." You will see these words in reports (Lesson 2.4):</p>
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>Modality</th><th>Brighter (whiter)</th><th>Darker (blacker)</th></tr></thead>
+        <tbody>
+          <tr><td>X-ray</td><td>opaque, "opacity"</td><td>lucent, "lucency"</td></tr>
+          <tr><td>CT</td><td>hyperdense</td><td>hypodense</td></tr>
+          <tr><td>MRI</td><td>hyperintense (bright signal)</td><td>hypointense (dark signal)</td></tr>
+          <tr><td>Ultrasound</td><td>hyperechoic (more echoes)</td><td>hypoechoic; anechoic means no echoes at all, as in fluid</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="les-section" id="planes">
+    <h2>Slices and planes</h2>
+    <p>CT and MRI produce stacks of slices. A slice can be cut in three directions, called <strong>planes</strong>:</p>
+
+    <figure class="les-figure">
+      <img src="images/m2/planes.png" alt="Three simple figures: axial plane cuts across the body like bread slices; coronal plane cuts from front to back; sagittal plane cuts from left to right.">
+      <figcaption>Figure 2. The three planes. Axial is the default for CT; the computer can rebuild the other two from the same data.</figcaption>
+    </figure>
+
+    <p>One rule surprises almost everyone. Images are shown as if you are <strong>facing the patient</strong>. On an axial slice you are looking up from the patient's feet. Either way, <strong>the patient's right side is on the left of your screen</strong>, and their left is on your right. A marker letter ("R" or "L") on the image confirms it. Mixing up sides is a classic and dangerous error.</p>
+    <p>For chest X-rays you will also hear <strong>PA</strong> and <strong>AP</strong>. PA (posterior to anterior) means the X-rays enter through the back and the patient stands facing the detector: the standard view. AP means the beam enters from the front, usually because the patient is lying in bed. AP films make the heart look larger, which matters when you compare them.</p>
+  </section>
+
+  <section class="les-section" id="safety">
+    <h2>Radiation and contrast: what to ask before a scan</h2>
+    <p>X-ray, CT, fluoroscopy and nuclear medicine use <strong>ionizing radiation</strong>: energy strong enough to damage DNA. At the doses used in imaging, the risk to one person is very small, but it is not zero, and it adds up over many scans. Ultrasound and MRI use no ionizing radiation.</p>
+    <p>Dose is measured in <strong>millisieverts (mSv)</strong>. A helpful way to picture it is to compare it with the natural background radiation everyone receives from the ground, the air and space, about 3 mSv a year in the United States.</p>
+
+    <figure class="les-figure">
+      <img src="images/m2/dose-chart.png" alt="Bar chart of typical doses: coast-to-coast round-trip flight 0.03 mSv, chest X-ray 0.1 mSv, CT of the brain 1.6 mSv, one year of natural background 3 mSv, chest CT 6.1 mSv, ultrasound or MRI no ionizing radiation.">
+      <figcaption>Figure 3. Typical adult doses, compared with natural background radiation. A chest X-ray is about 10 days of background; a chest CT is about 2 years.</figcaption>
+    </figure>
+
+    <p>Radiology follows a principle called <strong>ALARA</strong>: "as low as reasonably achievable." In practice it means: only scan when the answer will change what you do, choose a test without radiation when it can answer the question, and use the lowest dose that still gives a good picture. Children and pregnant patients get extra care, because they are more sensitive to radiation. A pregnancy question is asked before most scans in people who could be pregnant.</p>
+
+    <p><strong>Contrast</strong> (contrast agent, or "dye") is a substance given to make blood vessels or organs stand out. For CT it is usually <strong>iodine-based</strong>, injected into a vein; for MRI it is <strong>gadolinium-based</strong>. Mr. Diaz's scan needs contrast, because a clot only shows up as a dark gap inside a bright, contrast-filled artery. Before contrast, the team checks:</p>
+    <ul>
+      <li><strong>Kidney function</strong>, usually with a blood test (creatinine), because the kidneys clear the contrast.</li>
+      <li><strong>Prior reactions</strong> to contrast. Most reactions are mild, like hives; serious ones are rare. Patients with a past reaction may get medicine beforehand or a different test.</li>
+      <li>For MRI: <strong>metal and implants</strong>, with a safety screening form.</li>
+    </ul>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: myth or fact?</div>
+      <p class="mi-box-intro">Patients ask about these all the time. Decide whether each statement is a myth or a fact.</p>
+      <div class="mi-sort" data-choices="Myth|Fact">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"An MRI exposes you to radiation, like a CT."</div>
+            <div class="mi-card-why">Myth. MRI uses a magnet and radio waves, not ionizing radiation. Its risks are different: metal, heat, noise and the enclosed space.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"Ultrasound can't see through bone or air."</div>
+            <div class="mi-card-why">Fact. Sound bounces off bone and gas almost completely. That is why ultrasound is poor for the adult brain and most of the lungs.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"A chest X-ray is about the same dose as 10 days of natural background radiation."</div>
+            <div class="mi-card-why">Fact. About 0.1 mSv. A chest CT is roughly 60 times more.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Every CT scan needs contrast dye."</div>
+            <div class="mi-card-why">Myth. Many CTs need none. A head CT for a suspected bleed is done without contrast, because contrast could hide fresh blood, which is already bright.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">"On an axial CT, the patient's left side is on the right of the screen."</div>
+            <div class="mi-card-why">Fact. You are looking up from the patient's feet, as if facing them.</div>
+          </div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Small metal objects are fine in the MRI room as long as the scan hasn't started."</div>
+            <div class="mi-card-why">Myth. The magnet is always on, even with no scan running. Objects such as oxygen tanks, scissors or pens can fly into it, and some implants can heat or move.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="which-scan">
+    <h2>Which scan would you order?</h2>
+    <p>Choosing the right test means matching the question to the tool's strengths, while keeping radiation, cost and time in mind. Lesson 2.3 shows the guidelines doctors use. For now, use what you just learned.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: which scan?</div>
+      <p class="mi-box-intro">Pick the best first imaging test for each patient. Real choices depend on the patient and the hospital, but each of these has a usual answer.</p>
+      <div class="mi-sort" data-choices="X-ray|CT|MRI|Ultrasound">
+        <div class="mi-cards">
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">Wrist after a fall<small>A 30-year-old fell on an outstretched hand. The wrist is swollen and tender.</small></div>
+            <div class="mi-card-why">X-ray. The first test for a suspected broken bone: fast, cheap and very low dose. CT or MRI come later only if the X-ray is unclear.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Worst headache of their life<small>A 50-year-old in the ED with a sudden, severe headache.</small></div>
+            <div class="mi-card-why">CT of the head, without contrast. It takes seconds and shows bleeding well. MRI is slower and harder to get at night.</div>
+          </div>
+          <div class="mi-card" data-answer="3">
+            <div class="mi-card-text">Pain after fatty meals<small>A 40-year-old with pain under the right ribs after eating. Gallstones?</small></div>
+            <div class="mi-card-why">Ultrasound. Gallstones and an inflamed gallbladder show up very well, with no radiation.</div>
+          </div>
+          <div class="mi-card" data-answer="2">
+            <div class="mi-card-text">Twisted knee<small>A 22-year-old twisted their knee playing soccer. It now locks. Torn cartilage (meniscus)?</small></div>
+            <div class="mi-card-why">MRI. The best view of cartilage and ligaments, which X-ray cannot show.</div>
+          </div>
+          <div class="mi-card" data-answer="3">
+            <div class="mi-card-text">Pregnant, with belly pain<small>A 26-year-old who is 20 weeks pregnant has pain low on the right. Appendicitis?</small></div>
+            <div class="mi-card-why">Ultrasound first, to avoid radiation. If it does not answer the question, MRI is usually next.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Mr. Diaz<small>Sudden shortness of breath and chest pain after a long flight. A pulmonary embolism is suspected.</small></div>
+            <div class="mi-card-why">CT with contrast timed for the lung arteries: a <strong>CT pulmonary angiogram</strong> (CTPA). This is what Mr. Diaz gets. His chest X-ray earlier looked almost normal, which is common with a PE.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="team">
+    <h2>Who does what</h2>
+    <p>Many people touch every scan. These are the ones you will work with most:</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Ordering clinician</strong><span>The doctor, nurse practitioner or physician assistant who decides a scan is needed and asks a clinical question. On the wards, often you or your team.</span></div>
+      <div class="m1-term"><strong>Radiologist</strong><span>Physician who chooses how the scan is done, interprets the images and writes the report.</span></div>
+      <div class="m1-term"><strong>Radiology resident</strong><span>A doctor training to become a radiologist. Often gives the first read overnight, checked by an attending radiologist.</span></div>
+      <div class="m1-term"><strong>Radiologic technologist</strong><span>Also called a radiographer. Positions the patient and runs the X-ray, CT or MRI scanner.</span></div>
+      <div class="m1-term"><strong>Sonographer</strong><span>Performs ultrasound exams, choosing which pictures to save for the radiologist.</span></div>
+      <div class="m1-term"><strong>Interventional radiologist</strong><span>A radiologist who uses images to guide needles and thin tubes (catheters) for treatments such as draining fluid, stopping bleeding or taking biopsies.</span></div>
+    </div>
+
+    <div class="img-needed">
+      <span class="img-needed-tag">Video needed</span>
+      <p>A short (under 5 minutes) "day in the life of a radiologist" video showing the reading room, the workstation and a phone call with a clinician. Opens on YouTube in a new tab.</p>
+    </div>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Which two modalities use no ionizing radiation?</p>
+      <button class="quiz-option">CT and X-ray</button>
+      <button class="quiz-option">MRI and ultrasound</button>
+      <button class="quiz-option">Nuclear medicine and CT</button>
+      <div class="quiz-explanation"><p>MRI uses a magnet and radio waves; ultrasound uses sound. X-ray, CT, fluoroscopy and nuclear medicine all give a radiation dose.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">On a chest X-ray, why do the lungs look dark and the ribs white?</p>
+      <button class="quiz-option">Air lets X-rays pass through to the detector; bone blocks them</button>
+      <button class="quiz-option">The lungs are colored black by the computer to make them easier to find</button>
+      <button class="quiz-option">The lungs have less blood than the ribs</button>
+      <div class="quiz-explanation"><p>Brightness reflects how much X-ray gets blocked. Air blocks almost none (black), bone blocks a lot (white), and soft tissue is in between (gray).</p></div>
+    </div>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">You are looking at an axial CT slice of Mr. Diaz's chest. Where on the screen is his left lung?</p>
+      <button class="quiz-option">On the left of the screen</button>
+      <button class="quiz-option">On the right of the screen</button>
+      <button class="quiz-option">It depends on the scanner</button>
+      <div class="quiz-explanation"><p>Images are displayed as if you are facing the patient (on axial slices, looking up from the feet), so the patient's left is on your right. Always check the R or L marker.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Radiology uses images of the inside of the body to find, follow and sometimes treat disease. Radiologists are physicians who interpret images and write reports.</li>
+      <li>The five main modalities are X-ray, CT, MRI, ultrasound and nuclear medicine. Each has its own strengths and limits.</li>
+      <li>On X-ray and CT, denser tissue looks whiter: air, fat, soft tissue, bone, then metal and contrast.</li>
+      <li>Slices come in axial, coronal and sagittal planes. The patient's right is on the left of the screen.</li>
+      <li>Before a scan, ask whether it will change management, whether a test without radiation could answer it, and whether contrast is safe for this patient.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://www.radiologyinfo.org/en/info/article-your-radiologist" target="_blank" rel="noopener">Your radiologist</a> <small>(RadiologyInfo.org, from the ACR and RSNA: who radiologists are and what they do)</small></li>
+      <li><a href="https://www.radiologyinfo.org/en/info/bodyct" target="_blank" rel="noopener">CT of the body</a>, <a href="https://www.radiologyinfo.org/en/info/bodymr" target="_blank" rel="noopener">MRI of the body</a>, <a href="https://www.radiologyinfo.org/en/info/genus" target="_blank" rel="noopener">general ultrasound</a>, <a href="https://www.radiologyinfo.org/en/info/gennuclear" target="_blank" rel="noopener">nuclear medicine</a> <small>(RadiologyInfo.org patient pages, written in plain language)</small></li>
+      <li><a href="https://www.radiologyinfo.org/en/info/safety-xray" target="_blank" rel="noopener">Radiation dose in X-ray and CT exams</a> <small>(RadiologyInfo.org, with a dose table for many exams)</small></li>
+      <li><a href="https://www.radiologyinfo.org/en/info/safety-contrast" target="_blank" rel="noopener">Contrast materials</a> <small>(RadiologyInfo.org)</small></li>
+    </ul>
+    <p>Next lesson: Mr. Diaz's CT is done. What exactly did the scanner produce, and what does a computer (or an AI) actually receive?</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m1-5.html" class="btn btn-outline" id="les-prev">&larr; Limits &amp; Failures</a>
+  <a href="m2-2.html" class="btn btn-accent" id="les-next">Next: Images as Data &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+<script src="assets/m2-interactives.js"></script>
+</body>
+</html>

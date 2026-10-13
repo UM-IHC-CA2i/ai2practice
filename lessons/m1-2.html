@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 &middot; How Models Learn &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/ai-fundamentals.html" class="les-back" id="les-back">&larr; Module 1 overview</a>
+  <div class="les-topbar-title">Module 1 &middot; Lesson 1.2</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">1.2</div>
+    <div>
+      <div class="les-hero-q">How does it learn?</div>
+      <h1>How Models Learn</h1>
+      <p>The training loop, three ways to learn, neural networks, and overfitting</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">In Lesson 1.1 you saw that a machine learning model learns from examples instead of following a rule. This lesson opens the box: what "learning" means for a computer, the three main ways models learn, what a neural network is, and the most common way learning goes wrong. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Describe training as: guess, compare with the answer, adjust, repeat.</li>
+      <li>Explain supervised, unsupervised and reinforcement learning in one line each.</li>
+      <li>Describe a neural network as layers that build simple features into complex ones.</li>
+      <li>Explain overfitting with the exam-cramming analogy.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="knobs">
+    <h2>A model is a machine with knobs</h2>
+    <p>Picture a machine that takes in a chest X-ray and puts out a number between 0 and 1: how likely it is that the film shows a pneumothorax. Inside are a huge number of adjustable knobs, called <strong>parameters</strong>. Each knob changes how much attention the machine pays to some part of the image.</p>
+    <p>At the start the knobs are set randomly, so the answers are random too. <strong>Training</strong> is the process of turning the knobs, a tiny bit at a time, until the answers match the labels. PTX-Detect, like most image models, has millions of knobs. Nobody turns them by hand; the computer does it automatically.</p>
+  </section>
+
+  <section class="les-section" id="loop">
+    <h2>The training loop</h2>
+    <p>Step through how PTX-Detect is trained. The same four steps repeat thousands of times.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Step through</div>
+      <div class="mi-steps">
+        <div class="mi-steps-viewport">
+          <div class="mi-step active">
+            <div class="mi-step-head">1. Guess</div>
+            <div class="mi-step-body">
+              <div class="mi-meter">
+                <div class="mi-meter-row"><span>Model's guess</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:30%;background:#a8492c"></div></div></div>
+                <div class="mi-meter-row"><span>True label</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:100%;background:#0e8177"></div></div></div>
+              </div>
+              <div>
+                <p>The untrained model looks at an X-ray from the training set and gives a score: <strong>0.30</strong>, "probably no pneumothorax."</p>
+                <p>Its knobs are still random, so this is basically a guess.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">2. Compare with the answer</div>
+            <div class="mi-step-body">
+              <div class="mi-meter">
+                <div class="mi-meter-row"><span>Model's guess</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:30%;background:#a8492c"></div></div></div>
+                <div class="mi-meter-row"><span>Error</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:70%;background:#f0b9a6"></div></div></div>
+              </div>
+              <div>
+                <p>The label, written by a radiologist, says this film <strong>does</strong> show a pneumothorax (1.0).</p>
+                <p>The gap between guess and label is the <strong>error</strong>: 1.0 &minus; 0.30 = 0.70. Big error, big lesson.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">3. Adjust the knobs</div>
+            <div class="mi-step-body">
+              <div class="mi-meter">
+                <div class="mi-meter-row"><span>Before</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:30%;background:#a8492c"></div></div></div>
+                <div class="mi-meter-row"><span>After</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:36%;background:#006eb6"></div></div></div>
+              </div>
+              <div>
+                <p>The computer works out which knobs pushed the answer the wrong way and nudges each one slightly in the right direction.</p>
+                <p>If it saw the same film again, it would now say 0.36. A small step, on purpose: big jumps would make it forget what it learned from other films.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">4. Repeat, many times</div>
+            <div class="mi-step-body">
+              <div class="mi-meter">
+                <div class="mi-meter-row"><span>Round 1</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:50%;background:#a8492c"></div></div></div>
+                <div class="mi-meter-row"><span>Round 1,000</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:22%;background:#006eb6"></div></div></div>
+                <div class="mi-meter-row"><span>Round 50,000</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:6%;background:#0e8177"></div></div></div>
+                <small>Bars show the share of training films it gets wrong.</small>
+              </div>
+              <div>
+                <p>Next film, and the next. Guess, compare, adjust, tens of thousands of times, cycling through the whole training set again and again.</p>
+                <p>Slowly the knobs settle into a pattern that gives the right answer for most films.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-step">
+            <div class="mi-step-head">5. Check on films it has never seen</div>
+            <div class="mi-step-body">
+              <div class="mi-meter">
+                <div class="mi-meter-row"><span>Training films</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:6%;background:#0e8177"></div></div></div>
+                <div class="mi-meter-row"><span>New films</span><div class="mi-meter-bar"><div class="mi-meter-fill" style="width:11%;background:#006eb6"></div></div></div>
+              </div>
+              <div>
+                <p>Doing well on the films it practiced on proves little. The real question is how it does on <strong>new</strong> films. A bit worse is normal. Much worse means it memorized instead of learning (see overfitting below).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p><strong>Try it yourself (about 3 minutes):</strong> open <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">Teachable Machine</a>, choose "Image Project", and train a model with your webcam: for example, class 1 is you holding a pen, class 2 is you without one. Give it 30-50 pictures of each, press Train, and test it. You have just run the training loop. Keep the tab open: in Lesson 1.5 you will try to fool it.</p>
+    <p>Optional: <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener">TensorFlow Playground</a> lets you watch a small network train in your browser.</p>
+  </section>
+
+  <section class="les-section" id="three-ways">
+    <h2>Three ways to learn</h2>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Supervised learning</strong><span>Learns from examples that come with the right answer (labels). PTX-Detect is supervised: every training X-ray was labeled pneumothorax yes or no. <em>Real example:</em> <a href="https://doi.org/10.1001/jama.2016.17216" target="_blank" rel="noopener">detecting diabetic retinopathy</a> from graded retinal photos.</span></div>
+      <div class="m1-term"><strong>Unsupervised learning</strong><span>Gets data with no labels and finds groups or patterns on its own. <em>Real example:</em> grouping ICU patients into <a href="https://doi.org/10.1001/jama.2019.5791" target="_blank" rel="noopener">four sepsis phenotypes</a> that nobody had defined beforehand.</span></div>
+      <div class="m1-term"><strong>Reinforcement learning</strong><span>Learns by trial and error, getting a reward for good outcomes, like learning a game. <em>Real example:</em> the <a href="https://doi.org/10.1038/s41591-018-0213-5" target="_blank" rel="noopener">"AI Clinician"</a>, which learned fluid and vasopressor strategies in sepsis from past ICU records.</span></div>
+    </div>
+    <p>Most radiology AI you will meet is supervised. That is why labels matter so much, which is the topic of Lesson 1.3.</p>
+  </section>
+
+  <section class="les-section" id="networks">
+    <h2>Neural networks and deep learning</h2>
+    <p>A <strong>neural network</strong> is a particular design for the knob machine. It is built in layers. Each layer takes what the layer before found and combines it into something a little more complex. With images it works roughly like this:</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/network-layers.png" alt="Five stages from left to right: pixels, edges, shapes, parts such as the lung edge, and a final answer of pneumothorax with a score of 0.87.">
+      <figcaption>Figure 1. Layers build simple features into complex ones. Simplified: real networks do not label their layers this neatly.</figcaption>
+    </figure>
+
+    <p>"Deep" learning just means a network with many layers. Nobody tells the layers to look for edges or ribs; that structure emerges during training. Two names you will hear:</p>
+    <ul>
+      <li><strong>Convolutional neural networks (CNNs)</strong> are designed for images. They scan small patches across the picture, which suits X-rays, CT and MRI.</li>
+      <li><strong>Transformers</strong> are the design behind large language models such as ChatGPT, and they are now also used for images.</li>
+    </ul>
+
+    <div class="les-video-grid">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=Gv9_4yMHFhI" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/Gv9_4yMHFhI/hqdefault.jpg" alt="A Gentle Introduction to Machine Learning, StatQuest">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>A Gentle Introduction to Machine Learning (StatQuest)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img src="https://img.youtube.com/vi/aircAruvnKk/hqdefault.jpg" alt="But what is a neural network? 3Blue1Brown">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>But what is a neural network? (3Blue1Brown, optional)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+    </div>
+    <p class="les-video-guide">Watch the StatQuest video first. The 3Blue1Brown video goes deeper into how layers work; watch it if you want the full picture.</p>
+  </section>
+
+  <section class="les-section" id="overfitting">
+    <h2>Overfitting: memorizing instead of learning</h2>
+    <p>You know two kinds of exam preparation. One student understands the topic. Another memorizes the answers to last year's practice questions. Both ace the practice set. Only one passes the real exam.</p>
+    <p>Models can do the same thing. With millions of knobs, a model can memorize the exact training films, including irrelevant details, instead of learning what a pneumothorax looks like. This is called <strong>overfitting</strong>. The model looks excellent on its training data and disappoints on new patients.</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/overfitting.png" alt="Line chart: errors on training data keep falling with training time, while errors on new data fall, then rise again once the model starts memorizing.">
+      <figcaption>Figure 2. Training errors keep falling. Errors on new data fall and then rise once the model starts memorizing. Developers stop training near the lowest point of the dashed line.</figcaption>
+    </figure>
+
+    <p>This is why a model must always be tested on data it never trained on. How that data is set aside is covered in Lesson 1.3.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Which order describes one round of training?</p>
+      <button class="quiz-option">Adjust the knobs, guess, repeat, compare</button>
+      <button class="quiz-option">Guess, compare with the label, adjust the knobs, repeat</button>
+      <button class="quiz-option">Compare with the label, guess, repeat, adjust</button>
+      <div class="quiz-explanation"><p>The model first guesses, then the guess is compared with the label to get the error, then the knobs are nudged to reduce that error, and the loop repeats with the next example.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">Which type of learning needs every training example to come with the right answer?</p>
+      <button class="quiz-option">Supervised learning</button>
+      <button class="quiz-option">Unsupervised learning</button>
+      <button class="quiz-option">Reinforcement learning</button>
+      <div class="quiz-explanation"><p>Supervised learning learns from labeled examples, like PTX-Detect's X-rays marked yes or no. Unsupervised learning has no labels, and reinforcement learning learns from rewards rather than answers.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A model scores 100% on its training films but only 60% on new films. What most likely happened?</p>
+      <button class="quiz-option">It needs more knobs</button>
+      <button class="quiz-option">The new films were labeled wrong</button>
+      <button class="quiz-option">It overfit: it memorized the training films</button>
+      <div class="quiz-explanation"><p>A large gap between training and new data is the classic sign of overfitting. The model memorized its practice set instead of learning a pattern that carries over to new patients. Adding knobs usually makes this worse.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>A model is a machine with many adjustable knobs (parameters). Training turns them until its answers match the labels.</li>
+      <li>The training loop: guess, compare, adjust, repeat.</li>
+      <li>Supervised learning uses labels; unsupervised finds groups; reinforcement learns from rewards. Most radiology AI is supervised.</li>
+      <li>Neural networks build simple features into complex ones, layer by layer. "Deep" means many layers.</li>
+      <li>Overfitting is memorizing instead of learning. Only testing on new data reveals it.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://developers.google.com/machine-learning/intro-to-ml/supervised" target="_blank" rel="noopener">Supervised learning</a> <small>(Google, short article)</small></li>
+      <li><a href="https://www.youtube.com/watch?v=EuBBz3bI-aA" target="_blank" rel="noopener">Machine Learning Fundamentals: Bias and Variance</a> <small>(StatQuest, YouTube, the technical side of overfitting)</small></li>
+      <li><a href="https://playground.tensorflow.org/" target="_blank" rel="noopener">TensorFlow Playground</a> <small>(interactive)</small></li>
+    </ul>
+    <p>Next lesson: what PTX-Detect learned from, and where its labels came from.</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m1-1.html" class="btn btn-outline" id="les-prev">&larr; AI Around You</a>
+  <a href="m1-3.html" class="btn btn-accent" id="les-next">Next: Data &amp; Labels &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+</body>
+</html>

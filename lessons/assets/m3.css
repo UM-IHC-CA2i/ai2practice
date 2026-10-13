@@ -1,0 +1,45 @@
+/* Module 3 lessons (m3-1 ... m3-5). Loaded after m1.css and m2.css, which supply the
+   shared lesson pieces. This file adds the commit-then-reveal widget in
+   m3-interactives.js and the evidence ladder in 3.2. */
+
+/* ── Commit, then reveal ── */
+.m3-stage {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: var(--gray-100);
+  margin-top: 12px;
+}
+.m3-stage:first-child { margin-top: 0; }
+.m3-stage p { margin: 0 0 10px; }
+.m3-stage-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 6px;
+}
+.m3-stage--ai { background: #FFF8EB; border-color: #F5C77A; }
+.m3-stage--ai .m3-stage-label { color: #92400E; }
+.m3-stage--truth { background: var(--mint-light); border-color: var(--mint-dark); }
+.m3-stage--truth .m3-stage-label { color: var(--mint-dark); }
+.m3-stage.m3-done .mi-choice { cursor: default; opacity: 0.55; }
+.m3-stage.m3-done .mi-choice.mi-picked { opacity: 1; border-color: var(--gray-700); }
+.m3-summary { font-weight: 600; }
+.m3-stage .img-needed { margin: 0 0 10px; }
+
+/* ── Evidence ladder rung (inside .mi-step-body) ── */
+.m3-rung {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px 10px;
+  border-radius: var(--radius);
+  background: #17324D;
+  color: #fff;
+}
+.m3-rung b { font-size: 2rem; line-height: 1; }
+.m3-rung span { font-size: 0.85rem; margin-top: 6px; opacity: 0.9; }

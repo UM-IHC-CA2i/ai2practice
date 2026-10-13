@@ -3,59 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AI2Practice Module 2: Radiology AI data, systems, and workflow — DICOM, PACS/RIS, interfaces, imaging workflow, and where AI integrates." />
-  <title>Module 2: Radiology AI: Data, Systems &amp; Workflow — AI2Practice</title>
-  <link rel="stylesheet" href="../assets/styles.css" />
-  <link rel="stylesheet" href="../assets/theme.css" />
+  <meta name="description" content="AI2Practice Module 2: radiology basics for medical students — imaging modalities, images as data and DICOM, the journey of a scan through EHR, RIS and PACS, and reading a radiology report." />
+  <title>Module 2: Radiology Basics: Images, Systems &amp; Reports — AI2Practice</title>
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/curriculum.css" />
 <!-- AI2PRACTICE SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/modules/informatics.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AI2Practice" />
-  <meta property="og:title" content="Module 2: Radiology AI: Data, Systems &amp; Workflow — AI2Practice" />
-  <meta property="og:description" content="AI2Practice Module 2: Radiology AI data, systems, and workflow — DICOM, PACS/RIS, interfaces, imaging workflow, and where AI integrates." />
+  <meta property="og:title" content="Module 2: Radiology Basics: Images, Systems &amp; Reports — AI2Practice" />
+  <meta property="og:description" content="AI2Practice Module 2: radiology basics for medical students — imaging modalities, images as data and DICOM, the journey of a scan through EHR, RIS and PACS, and reading a radiology report." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/modules/informatics.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 2: Radiology AI: Data, Systems &amp; Workflow — AI2Practice" />
-  <meta name="twitter:description" content="AI2Practice Module 2: Radiology AI data, systems, and workflow — DICOM, PACS/RIS, interfaces, imaging workflow, and where AI integrates." />
+  <meta name="twitter:title" content="Module 2: Radiology Basics: Images, Systems &amp; Reports — AI2Practice" />
+  <meta name="twitter:description" content="AI2Practice Module 2: radiology basics for medical students — imaging modalities, images as data and DICOM, the journey of a scan through EHR, RIS and PACS, and reading a radiology report." />
   <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Course","name":"Radiology AI: Data, Systems & Workflow","description":"AI2Practice Module 2: Radiology AI data, systems, and workflow — DICOM, PACS/RIS, interfaces, imaging workflow, and where AI integrates.","url":"https://um-ihc-ca2i.github.io/ai2practice/modules/informatics.html","provider":{"@type":"Organization","name":"AI2Practice","url":"https://um-ihc-ca2i.github.io/ai2practice/"}}
+{"@context":"https://schema.org","@type":"Course","name":"Radiology Basics: Images, Systems & Reports","description":"AI2Practice Module 2: radiology basics for medical students — imaging modalities, images as data and DICOM, the journey of a scan through EHR, RIS and PACS, and reading a radiology report.","url":"https://um-ihc-ca2i.github.io/ai2practice/modules/informatics.html","provider":{"@type":"Organization","name":"AI2Practice","url":"https://um-ihc-ca2i.github.io/ai2practice/"}}
   </script>
 <!-- /AI2PRACTICE SEO -->
 </head>
-<body>
+<body class="cur-page">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell navbar">
   <a class="brand brand-logo" href="../index.html" aria-label="AI2Practice home"><img src="../images/ai2practice-logo.svg" alt="AI2Practice" /></a>
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  <nav aria-label="Primary"><ul class="nav-links"><li><a href="../index.html#map">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="../pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="../pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="../tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="../pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="../pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="../about.html">About</a></li></ul></nav>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="../curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="../pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="../pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="../tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="../pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="../pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="../about.html">About</a></li></ul></nav>
 </div></header>
 <main id="main">
   <section class="page-hero route-core"><div class="shell">
-    <div class="breadcrumbs"><a href="../index.html">AI2Practice</a> / <a href="../index.html#map">Core curriculum</a> / Module 2</div>
+    <div class="breadcrumbs"><a href="../index.html">AI2Practice</a> / <a href="../curriculum.html">Core curriculum</a> / Module 2</div>
     <p class="eyebrow">Core curriculum &middot; Module 2 of 3</p>
-    <h1>Radiology AI: Data, Systems &amp; Workflow</h1>
-    <p>Connect the model to the clinical environment: imaging data, radiology systems, interfaces, workflow, and the points at which AI can enter or fail.</p>
+    <h1>Radiology Basics: Images, Systems &amp; Reports</h1>
+    <p>Radiology from the ground up, for students with no radiology background: how images are made, what they are to a computer, how a scan moves through the hospital, and how to read the report. One patient&rsquo;s story runs through all four lessons.</p>
+    <ul class="cur-facts"><li><b>Core question:</b> What is radiology, and how does a scan become data?</li><li><b>4</b> lessons</li><li>15-20 min each</li><li>No radiology background needed</li></ul>
   </div></section>
-  <section class="section"><div class="shell content-grid">
-    <aside class="side-nav" aria-label="On this page"><a href="#overview">Overview</a><a href="#lessons">Lessons</a><a href="#technical">Technical deep dive</a><a href="#next">Next stop</a></aside>
-    <article class="article">
-<section id="overview"><h2>What this module covers</h2><div class="callout"><strong>Core question:</strong> Where does AI fit in the radiology workflow?</div></section>
-<section id="lessons"><h2>Lessons</h2><p>The core is clinical and conceptual rather than an engineering course. Technical implementation details are available as an optional deeper dive.</p><div class="lesson-grid">
-<div class="lesson-card"><div class="label">Available now &middot; Lesson 3</div><h3>Where AI plugs into radiology</h3><p>Acquisition, PACS, interpretation, reporting, workflow AI, and example cases across the imaging pathway.</p>
-<p class="module-tracks"><a class="text-link" href="../lessons/lesson-3.html?track=student&amp;lessons=2,3,4,1">Concise / foundational version &rarr;</a><br><a class="text-link" href="../lessons/lesson-3.html?track=resident&amp;lessons=2,3,4,1">Deeper radiology version &rarr;</a></p></div>
-<div class="lesson-card module-soon"><div class="label">Developing</div><h3>Imaging data &amp; DICOM</h3><p>Studies, series, images, pixels, metadata, acquisition parameters, and why the structure of imaging data matters to AI.</p></div>
-<div class="lesson-card module-soon"><div class="label">Developing</div><h3>PACS, RIS, worklists &amp; interfaces</h3><p>How modalities, PACS/VNA, RIS, reporting systems, HL7, FHIR, and interfaces move information through radiology.</p></div>
-<div class="lesson-card module-soon"><div class="label">Developing</div><h3>The clinical imaging workflow</h3><p>Order &rarr; acquisition &rarr; reconstruction &rarr; interpretation &rarr; report &rarr; communication, with AI touchpoints and operational failure modes.</p></div>
-</div></section>
-<section id="technical"><h2>Optional technical deeper dive</h2><div class="callout" style="border-left-color:var(--route-res)"><strong>AI infrastructure &amp; MLOps.</strong> Deployment architecture, inference, APIs, containers, cloud/on-premises environments, model versioning, observability, and technical monitoring are useful for research and implementation leaders but are not required for the clinical core. We park this topic in Research Lab and cross-link it from Adoption &amp; Governance. <a href="../pages/research-lab.html#mlops">See the technical deep dive &rarr;</a></div></section>
-<section id="next"><h2>Next stop</h2><p><a class="btn btn-primary" href="clinical-practice.html">Continue to Module 3 &middot; AI in Clinical Practice</a></p></section>
-    </article>
+  <section class="cur-section"><div class="shell">
+    <h2>Lessons</h2>
+    <p class="cur-intro">Each lesson follows Mr. Diaz, a patient with a suspected blood clot in the lungs, from the first scan to the report. Where AI plugs into this workflow is covered in Lesson 3.2.</p>
+<ol class="cur-lessons is-big">
+<li class="is-live"><span class="cur-n">2.1</span><h3 class="cur-t"><a href="../lessons/m2-1.html">What Radiology Is</a></h3><span class="cur-tag">Available</span><p class="cur-d">The five main imaging tools, why things look white or black, slices and planes, and the radiation and contrast questions to ask before a scan.</p></li>
+<li class="is-live"><span class="cur-n">2.2</span><h3 class="cur-t"><a href="../lessons/m2-2.html">Images as Data</a></h3><span class="cur-tag">Available</span><p class="cur-d">Pixels and CT numbers, the DICOM file and its header, windowing, image quality and artifacts, and how de-identified images become AI datasets.</p></li>
+<li class="is-live"><span class="cur-n">2.3</span><h3 class="cur-t"><a href="../lessons/m2-3.html">The Journey of a Scan</a></h3><span class="cur-tag">Available</span><p class="cur-d">One patient&rsquo;s CT from order to follow-up: the EHR, RIS and PACS, why the reason for exam matters, critical results, and where errors happen.</p></li>
+<li class="is-live"><span class="cur-n">2.4</span><h3 class="cur-t"><a href="../lessons/m2-4.html">Reading a Radiology Report</a></h3><span class="cur-tag">Available</span><p class="cur-d">The parts of a report, impression versus findings, hedging language, RADS categories, and explaining a report to a patient in plain words.</p></li>
+</ol>
+  </div></section>
+<section class="cur-section"><div class="shell"><h2>Going further</h2><p class="cur-intro">Optional, and not needed for the certificate.</p><div class="cur-note" style="--c:var(--route-res)"><p><strong>AI infrastructure &amp; MLOps.</strong> Deployment architecture, inference, APIs, containers, cloud and on-premises environments, model versioning and technical monitoring. Useful for research and implementation leaders; covered in the Research Lab. <a href="../pages/research-lab.html#mlops">See the technical deep dive &rarr;</a></p></div></div></section>
+  <section class="cur-section"><div class="shell">
+    <h2>Where this module fits</h2>
+    <p class="cur-intro">Three modules, then the assessment and certificate. Research Lab and Leadership are optional tracks you can open at any time.</p>
+<ol class="cur-path" style="--n:5" aria-label="Core curriculum path">
+<li><a href="../modules/ai-fundamentals.html"><span class="cur-dot">1</span><strong>Fundamentals of AI</strong><small>5 lessons</small></a></li>
+<li class="is-here" aria-current="page"><a href="../modules/informatics.html"><span class="cur-dot">2</span><strong>Radiology Basics</strong><small>4 lessons</small></a></li>
+<li><a href="../modules/clinical-practice.html"><span class="cur-dot">3</span><strong>Clinical Practice</strong><small>4 lessons</small></a></li>
+<li class="is-end"><a href="../assessment.html"><span class="cur-dot"></span><strong>Assessment</strong><small>Covers Modules 1-3</small></a></li>
+<li class="is-end"><a href="../certificate.html"><span class="cur-dot"></span><strong>Certificate</strong><small>After the assessment</small></a></li>
+</ol>
+    <nav class="cur-pager" aria-label="Modules" style="margin-top:32px"><a class="prev" href="ai-fundamentals.html"><small>&larr; Module 1</small><strong>Fundamentals of AI</strong></a><a class="next" href="clinical-practice.html"><small>Module 3 &rarr;</small><strong>AI in Clinical Practice</strong></a></nav>
   </div></section>
 </main>
 <footer class="site-footer compact-footer"><div class="shell compact-footer-row">
   <div class="footer-mini-brand"><img src="../images/ai2practice-logo-white.svg" alt="AI2Practice" /><span>Practical, open clinical AI education</span></div>
   <nav aria-label="Footer"><a href="../about.html">About</a><a href="../pages/brief.html">AI2Practice Brief</a><a href="../tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
 </div></footer>
-<script src="../assets/site.js"></script>
+<script src="../assets/js/site.js"></script>
 </body></html>

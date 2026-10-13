@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
   <title>Generate Completion Certificate - AI2Practice</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell navbar">
   <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html#map">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
 <main id="main">
   <section class="page-hero route-core"><div class="shell">
-    <div class="breadcrumbs"><a href="index.html">AI2Practice</a> / <a href="index.html?progress=1#progress">Progress</a> / Certificate</div>
+    <div class="breadcrumbs"><a href="index.html">AI2Practice</a> / <a href="#progress" data-open-progress="true">Progress</a> / Certificate</div>
     <p class="eyebrow">Completion certificate</p>
     <h1>Generate your certificate</h1>
-    <p>The certificate is generated locally after the required core lessons, pathway cases, and assessment are complete.</p>
+    <p>Generated in your browser once the required published lessons and the assessment are complete &mdash; or the items in a plan your educator assigned.</p>
   </div></section>
   <section class="section"><div class="shell certificate-shell">
     <div id="certificateStatus" class="callout"></div>
@@ -37,38 +37,51 @@
   <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
 </div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="assets/site.js"></script>
+<script src="assets/js/site.js"></script>
 <script>
 (function(){
   'use strict';
-  var CORE=['lesson-2','lesson-3','lesson-4','lesson-1'];
-  var labels={beginner:'Beginner',intermediate:'Intermediate',advanced:'Advanced'};
-  var pathway=new URLSearchParams(location.search).get('pathway');
+  // Requirements come from assets/js/progress.js (loaded by site.js): an assigned plan, or every
+  // published required lesson plus the assessment.
   var status=document.getElementById('certificateStatus'), form=document.getElementById('certificateForm');
-  function getJSON(k,f){try{var r=localStorage.getItem(k);return r?JSON.parse(r):f;}catch(e){return f;}}
-  var done=getJSON('aiready_completed',[]), cases=getJSON('ai2practice_cases_v1',{}), assessments=getJSON('ai2practice_assessments_v1',{});
-  var eligible=labels[pathway] && CORE.every(function(k){return Array.isArray(done)&&done.indexOf(k)!==-1;}) && cases[pathway]&&cases[pathway].completed && assessments[pathway]&&assessments[pathway].passed;
-  if(!labels[pathway]){ status.innerHTML='<strong>Choose a pathway first.</strong> <a href="index.html?progress=1#progress">Open progress</a> and select Beginner, Intermediate, or Advanced.'; return; }
-  if(!eligible){ status.innerHTML='<strong>Certificate not yet unlocked.</strong> Complete the remaining requirements on your <a href="index.html?progress=1&amp;pathway='+pathway+'#progress">progress panel</a>.'; return; }
-  status.innerHTML='<strong>All '+labels[pathway]+' pathway requirements are complete.</strong> Enter your name below to generate the PDF locally.'; form.hidden=false;
-  document.getElementById('generateCertificate').addEventListener('click',function(){
-    var name=document.getElementById('certificateName').value.trim(); if(!name){alert('Please enter your name.');return;}
-    if(!window.jspdf){alert('PDF library not loaded. Please check your internet connection and try again.');return;}
-    var rec=assessments[pathway]||{}, score=Number(rec.bestScore)||0;
-    var jsPDF=window.jspdf.jsPDF, doc=new jsPDF({orientation:'landscape',unit:'mm',format:'letter'}), w=doc.internal.pageSize.getWidth(), h=doc.internal.pageSize.getHeight();
-    doc.setDrawColor(23,50,77); doc.setLineWidth(1.5); doc.rect(12,12,w-24,h-24); doc.setLineWidth(.5); doc.rect(15,15,w-30,h-30);
-    doc.setFont('helvetica','normal'); doc.setFontSize(14); doc.setTextColor(90,100,110); doc.text('AI2Practice',w/2,35,{align:'center'});
-    doc.setFont('helvetica','bold'); doc.setFontSize(28); doc.setTextColor(23,50,77); doc.text('Certificate of Completion',w/2,52,{align:'center'});
-    doc.setLineWidth(.5); doc.line(w/2-50,57,w/2+50,57);
-    doc.setFont('helvetica','normal'); doc.setFontSize(13); doc.setTextColor(80,80,80); doc.text('This certifies that',w/2,72,{align:'center'});
-    doc.setFont('helvetica','bold'); doc.setFontSize(22); doc.setTextColor(28,30,33); doc.text(name,w/2,85,{align:'center'});
-    doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.setTextColor(80,80,80); doc.text('has completed the',w/2,98,{align:'center'});
-    doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.setTextColor(28,30,33); doc.text('AI2Practice Clinical AI Curriculum',w/2,110,{align:'center'});
-    doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.text(labels[pathway]+' pathway',w/2,120,{align:'center'});
-    doc.setFontSize(11); doc.text('Assessment score: '+score+'%',w/2,135,{align:'center'}); doc.text('Date: '+new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),w/2,143,{align:'center'});
-    doc.setFontSize(9); doc.setTextColor(140,140,140); doc.text('Required core lessons + pathway cases + assessment',w/2,158,{align:'center'}); doc.text('Educational completion certificate; not a CME/ACCME-accredited credential.',w/2,166,{align:'center'});
-    doc.save('AI2Practice-Certificate-'+labels[pathway]+'-'+name.replace(/[^A-Za-z0-9._-]+/g,'-')+'.pdf');
-  });
+  var started=false;
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function run(){
+    var api=window.AI2PracticeProgressRail; if(started||!api)return; started=true;
+    var cur=api.curriculum(), labels={}, titles={};
+    cur.pathways.forEach(function(p){labels[p.id]=p.label;});
+    cur.lessons.forEach(function(l){titles[l.key]=l.title;});
+    var q=new URLSearchParams(location.search).get('pathway');
+    var pathway=labels[q]?q:api.selectedPathway();
+    var R=api.requirements(), plan=R.plan;
+    if(!labels[pathway]){ status.innerHTML='<strong>Choose a learning depth first.</strong> <a href="#progress" data-open-progress="true">Open progress</a> and select Beginner, Intermediate, or Advanced.'; return; }
+    if(!api.eligible(pathway)){ status.innerHTML='<strong>Certificate not yet unlocked.</strong> Complete the remaining '+(plan?(plan.self?'chosen ':'assigned '):'')+'requirements in your <a href="#progress" data-open-progress="true">progress panel</a>.'; return; }
+    var what=plan?((plan.self?'the lessons you chose':'your assigned plan')+(plan.title?' &ldquo;'+esc(plan.title)+'&rdquo;':'')):('the published '+labels[pathway]+' core requirements');
+    status.innerHTML='<strong>All requirements for '+what+' are complete.</strong> Enter your name below to generate the PDF locally.'; form.hidden=false;
+    document.getElementById('generateCertificate').addEventListener('click',function(){
+      var name=document.getElementById('certificateName').value.trim(); if(!name){alert('Please enter your name.');return;}
+      if(!window.jspdf){alert('PDF library not loaded. Please check your internet connection and try again.');return;}
+      var rec=api.assessmentRecord(pathway)||{}, score=Number(rec.bestScore)||0;
+      var jsPDF=window.jspdf.jsPDF, doc=new jsPDF({orientation:'landscape',unit:'mm',format:'letter'}), w=doc.internal.pageSize.getWidth(), h=doc.internal.pageSize.getHeight();
+      doc.setDrawColor(23,50,77); doc.setLineWidth(1.5); doc.rect(12,12,w-24,h-24); doc.setLineWidth(.5); doc.rect(15,15,w-30,h-30);
+      doc.setFont('helvetica','normal'); doc.setFontSize(14); doc.setTextColor(90,100,110); doc.text('AI2Practice',w/2,33,{align:'center'});
+      doc.setFont('helvetica','bold'); doc.setFontSize(28); doc.setTextColor(23,50,77); doc.text('Certificate of Completion',w/2,49,{align:'center'});
+      doc.setLineWidth(.5); doc.line(w/2-50,54,w/2+50,54);
+      doc.setFont('helvetica','normal'); doc.setFontSize(13); doc.setTextColor(80,80,80); doc.text('This certifies that',w/2,67,{align:'center'});
+      doc.setFont('helvetica','bold'); doc.setFontSize(22); doc.setTextColor(28,30,33); doc.text(name,w/2,79,{align:'center'});
+      doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.setTextColor(80,80,80); doc.text(plan?(plan.self?'has completed a selected AI2Practice plan':'has completed the assigned AI2Practice plan'):'has completed the published core of the',w/2,91,{align:'center'});
+      doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.setTextColor(28,30,33); doc.text(plan?(plan.title||(plan.self?'Selected AI2Practice lessons':'AI2Practice assignment')):'AI2Practice Clinical AI Curriculum',w/2,102,{align:'center'});
+      doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.text(labels[pathway]+' learning depth',w/2,111,{align:'center'});
+      var y=123; doc.setFontSize(10); doc.setTextColor(70,70,70);
+      var items=R.lessons.map(function(k){return titles[k]||k;}); if(R.assessment)items.push('Assessment ('+score+'%)');
+      doc.splitTextToSize('Completed: '+items.join(' \u00b7 '),w-80).forEach(function(line){doc.text(line,w/2,y,{align:'center'});y+=5.5;});
+      doc.setFontSize(11); doc.text('Date: '+new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),w/2,y+6,{align:'center'});
+      doc.setFontSize(9); doc.setTextColor(140,140,140); doc.text('Covers lessons published at the time of completion. Educational completion certificate; not a CME/ACCME-accredited credential.',w/2,h-24,{align:'center'});
+      doc.save('AI2Practice-Certificate-'+labels[pathway]+'-'+name.replace(/[^A-Za-z0-9._-]+/g,'-')+'.pdf');
+    });
+  }
+  window.addEventListener('ai2practice:ready',run);
+  if(window.AI2PracticeProgressRail)run();
 })();
 </script>
 </body>

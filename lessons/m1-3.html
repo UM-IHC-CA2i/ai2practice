@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 &middot; Data &amp; Labels &mdash; AI2Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/m1.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<div class="les-topbar" style="border-bottom-color: #17324D;">
+  <a href="../modules/ai-fundamentals.html" class="les-back" id="les-back">&larr; Module 1 overview</a>
+  <div class="les-topbar-title">Module 1 &middot; Lesson 1.3</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero" style="background: #17324D;">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">1.3</div>
+    <div>
+      <div class="les-hero-q">What does it learn from?</div>
+      <h1>Data &amp; Labels</h1>
+      <p>The data radiology AI uses, where the "right answers" come from, and how data is split for testing</p>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <section class="les-section les-intro" id="overview">
+    <h2>Overview</h2>
+    <p style="color: var(--gray-900);">A supervised model can only be as good as the examples and labels it learned from. This lesson looks at what goes into a model like PTX-Detect: the kinds of data, who decides the "right answer", and how developers keep some data aside to test the model honestly. About 15-20 minutes.</p>
+    <p><strong>By the end of this lesson you can:</strong></p>
+    <ul>
+      <li>Name the four kinds of data radiology AI uses.</li>
+      <li>Explain what a label is, who makes it, and why labels can be wrong.</li>
+      <li>Explain why data is split into training, validation and test sets.</li>
+      <li>Recognize data leakage, such as the same patient in training and test.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="data-types">
+    <h2>What radiology AI learns from</h2>
+    <p>Different kinds of data feed different kinds of models. Click through the four main types.</p>
+
+    <div class="dt-explorer">
+      <div class="dt-tabs">
+        <button class="dt-tab active" data-panel="dt-images">Medical images</button>
+        <button class="dt-tab" data-panel="dt-reports">Reports &amp; text</button>
+        <button class="dt-tab" data-panel="dt-tabular">Structured data</button>
+        <button class="dt-tab" data-panel="dt-annotations">Annotations</button>
+      </div>
+
+      <div class="dt-panel active" id="dt-images">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--blue">1</div>
+          <div>
+            <h3 class="dt-panel-title">Medical images</h3>
+            <p class="dt-panel-subtitle">The main input for most radiology AI, including PTX-Detect</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">X-rays, CT, MRI, ultrasound and mammograms. To a computer, an image is a grid of numbers, one per pixel, giving its brightness. Hospital images are stored in a format called <strong>DICOM</strong>, which also carries extra information such as the scanner type and patient position (Lesson 2.2 covers DICOM in detail). Image models are usually convolutional neural networks (Lesson 1.2).</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: chest X-ray</b>Any normal frontal (PA) chest X-ray.</div>
+          <div class="dt-image-slot"><b>Image needed: CT slice</b>One axial chest or head CT image.</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Examples</h4>
+          <ul>
+            <li>Chest X-ray tools for pneumothorax, nodules or line position</li>
+            <li>CT tools that flag a pulmonary embolism or brain bleed</li>
+            <li>Mammography tools that mark suspicious areas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="dt-reports">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--teal">2</div>
+          <div>
+            <h3 class="dt-panel-title">Reports and clinical text</h3>
+            <p class="dt-panel-subtitle">Free text, handled by language models</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">Radiology reports, clinic notes and referral letters hold a lot of information in ordinary sentences. Language models (including LLMs) can pull findings out of reports, draft impressions or flag follow-up recommendations. Old reports are also a cheap source of labels for image models, as you will see below.</p>
+        <div class="dt-preview dt-preview--report">
+          <strong>FINDINGS:</strong><br>
+          Heart size is normal. Lungs are clear bilaterally.<br>
+          No pleural effusion or pneumothorax.<br>
+          No acute osseous abnormality.<br><br>
+          <strong>IMPRESSION:</strong><br>
+          No acute cardiopulmonary process.
+        </div>
+        <div class="dt-examples">
+          <h4>Examples</h4>
+          <ul>
+            <li>Drafting a report impression from the findings</li>
+            <li>Finding reports that recommend follow-up imaging</li>
+            <li>Ambient scribes that turn speech into notes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="dt-tabular">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--amber">3</div>
+          <div>
+            <h3 class="dt-panel-title">Structured data</h3>
+            <p class="dt-panel-subtitle">Rows and columns from the health record</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">Age, sex, lab values, vital signs, diagnoses and past exams, stored as a table. Simpler machine learning models often use this kind of data, and it can be combined with images.</p>
+        <div class="dt-preview dt-preview--table">
+          <table>
+            <thead><tr><th>Variable</th><th>Value</th><th>Type</th></tr></thead>
+            <tbody>
+              <tr><td>Age</td><td>67</td><td>Number</td></tr>
+              <tr><td>Sex</td><td>Female</td><td>Category</td></tr>
+              <tr><td>Creatinine</td><td>1.4 mg/dL</td><td>Number</td></tr>
+              <tr><td>Prior CT in 90 days</td><td>Yes</td><td>Yes / no</td></tr>
+              <tr><td>Reason for exam</td><td>Rule out PE</td><td>Text</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dt-examples">
+          <h4>Examples</h4>
+          <ul>
+            <li>Suggesting the right scan protocol from the reason for exam</li>
+            <li>Predicting which patients may miss their appointment</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dt-panel" id="dt-annotations">
+        <div class="dt-panel-header">
+          <div class="dt-panel-icon dt-panel-icon--rose">4</div>
+          <div>
+            <h3 class="dt-panel-title">Annotations and labels</h3>
+            <p class="dt-panel-subtitle">The answer key that supervised models learn from</p>
+          </div>
+        </div>
+        <p class="dt-panel-desc">An annotation is the "right answer" attached to an example. It can be a single word for the whole image (pneumothorax: yes or no), a box drawn around a finding, or an exact outline of it (a segmentation). More detailed labels take longer to make and teach the model more.</p>
+        <div class="dt-image-grid">
+          <div class="dt-image-slot"><b>Image needed: box label</b>Chest X-ray with a box drawn around a nodule or pneumothorax.</div>
+          <div class="dt-image-slot"><b>Image needed: outline label</b>Chest X-ray or CT with the edge of a finding traced (a segmentation).</div>
+        </div>
+        <div class="dt-examples">
+          <h4>Examples</h4>
+          <ul>
+            <li>Whole-image labels: "pneumothorax present"</li>
+            <li>Boxes around lung nodules</li>
+            <li>Outlines of organs for radiation planning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="labels">
+    <h2>Labels and "ground truth"</h2>
+    <p>For PTX-Detect, every training film needed a label: pneumothorax yes or no. The label is treated as the truth, so it is often called <strong>ground truth</strong>. But someone had to decide it, and there are several ways to do that:</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/label-sources.png" alt="Four sources of labels: expert read, consensus of several readers, labels mined from old reports, and a reference test such as CT or pathology, each with a trade-off.">
+      <figcaption>Figure 1. Where labels come from. Each source trades accuracy against cost and speed.</figcaption>
+    </figure>
+
+    <p>Labels can be wrong for many reasons. Radiologists disagree with each other on subtle films. Reports are written for clinicians, not for computers, so software that mines them misreads phrases like "no definite pneumothorax" or "pneumothorax has resolved." And sometimes the true answer is not knowable from the image alone.</p>
+    <p>If 10% of the labels are wrong, the model learns those mistakes as if they were correct, and the test score is measured against a flawed answer key.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: label it yourself</div>
+      <p class="mi-box-intro">You are one of three readers labeling films for PTX-Detect. Read each short description and choose a label. Then see how the other two readers labeled it. There is no right answer here; the point is how often readers differ.</p>
+      <div class="mi-sort" data-choices="Pneumothorax|No pneumothorax|Can't tell">
+        <div class="mi-cards">
+          <div class="mi-card">
+            <div class="mi-card-text">Film A<small>Upright chest X-ray. A clear thin white line runs along the right upper chest with no lung markings beyond it.</small></div>
+            <div class="mi-card-why">Reader 2: pneumothorax. Reader 3: pneumothorax. An obvious case: readers agree, and the label is reliable.</div>
+          </div>
+          <div class="mi-card">
+            <div class="mi-card-text">Film B<small>Portable film of a patient lying flat. The left lower chest looks a little darker than the right, with a sharp heart border. No clear line.</small></div>
+            <div class="mi-card-why">Reader 2: pneumothorax (possible "deep sulcus sign," a clue on flat films). Reader 3: no pneumothorax. Subtle films split readers, so whichever label wins is uncertain.</div>
+          </div>
+          <div class="mi-card">
+            <div class="mi-card-text">Film C<small>A chest drain is in place. The lung looks fully expanded. The report says "small residual apical pneumothorax, unchanged."</small></div>
+            <div class="mi-card-why">Reader 2: pneumothorax (follows the report). Reader 3: no pneumothorax (cannot see it). Report mining would label it "yes." Is a tiny, treated pneumothorax what we want the model to learn? Lesson 1.5 returns to this.</div>
+          </div>
+        </div>
+        <p class="mi-score"></p>
+      </div>
+    </div>
+
+    <div class="img-needed-row">
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>A normal frontal chest X-ray, to sit beside the activity.</p>
+      </div>
+      <div class="img-needed">
+        <span class="img-needed-tag">Image needed</span>
+        <p>A chest X-ray with a clear pneumothorax, ideally with the edge of the lung outlined by an expert (shows what a label looks like).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="split">
+    <h2>Training, validation and test sets</h2>
+    <p>From Lesson 1.2 you know a model must be checked on data it never trained on. So before training starts, developers split their labeled data into three parts:</p>
+
+    <figure class="les-figure">
+      <img src="images/m1/data-split.png" alt="A bar split into a training set of about 70%, a validation set of about 15% and a test set of about 15%, compared to practice questions, a mock exam and the real exam.">
+      <figcaption>Figure 2. The labeled data is split before training starts, and each patient goes into only one part.</figcaption>
+    </figure>
+
+    <ul>
+      <li><strong>Training set:</strong> the model learns from these, through the training loop.</li>
+      <li><strong>Validation set:</strong> used during development to compare versions and decide when to stop training (the low point in the overfitting figure of Lesson 1.2).</li>
+      <li><strong>Test set:</strong> kept locked away and used once, at the end, to report how good the model is. If developers keep peeking at it and tweaking, it stops being a fair exam.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="leakage">
+    <h2>Leakage and other traps</h2>
+    <p><strong>Data leakage</strong> happens when information from the test set sneaks into training, so the test becomes easier than real life. Common forms:</p>
+    <ul>
+      <li><strong>Same patient on both sides.</strong> A patient in the ICU may have 15 chest X-rays. If some are in training and some in test, the model can recognize the patient (their ribs, lines and body shape) rather than the disease.</li>
+      <li><strong>Duplicate images.</strong> The same film saved twice, once in each set.</li>
+      <li><strong>Labels that give the answer away.</strong> If every film with a pneumothorax also has a drain in it, the model can learn "drain = pneumothorax." More on this in Lesson 1.5.</li>
+    </ul>
+    <p>Leakage makes a model look better on paper than it will be in practice. When you read about an AI tool, it is fair to ask: was the test set split by patient, and did it come from a different hospital?</p>
+  </section>
+
+  <section class="les-section" id="garbage">
+    <h2>Garbage in, garbage out</h2>
+    <p>A model only learns what is in its data. If PTX-Detect was trained only on adults at one city hospital, it has never seen a child, a rural clinic's older scanner, or many patients from groups that hospital rarely serves. It may still give confident answers for them, without having learned anything about them.</p>
+    <p>So two questions to ask of any dataset: <strong>who is in it, and who is missing?</strong> Lesson 1.5 shows what happens when a model meets patients unlike the ones it learned from.</p>
+  </section>
+
+  <section class="les-section" id="check">
+    <h2>Knowledge check</h2>
+    <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
+
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Why is the test set kept separate until the very end?</p>
+      <button class="quiz-option">To save computer time during training</button>
+      <button class="quiz-option">So the final score shows how the model does on data it has never seen</button>
+      <button class="quiz-option">Because test images are lower quality</button>
+      <div class="quiz-explanation"><p>The test set is the "real exam." If the model or its developers saw it during training, the score would show how well it memorized, not how it will do on new patients.</p></div>
+    </div>
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">A team splits 20,000 chest X-rays into training and test sets at random, film by film. Many patients had several films. What is the problem?</p>
+      <button class="quiz-option">There are too few films</button>
+      <button class="quiz-option">The test set should be bigger than the training set</button>
+      <button class="quiz-option">The same patient can end up in both sets (leakage)</button>
+      <div class="quiz-explanation"><p>Splitting by film instead of by patient lets one person's films land on both sides. The model can then recognize the patient rather than the finding, and the test score comes out too high.</p></div>
+    </div>
+
+    <div class="kc" data-answer="0">
+      <p class="kc-q">Labels for a model were mined automatically from old radiology reports. What is a likely weakness?</p>
+      <button class="quiz-option">Some labels will be wrong, because reports use phrases like "no definite" or "resolved"</button>
+      <button class="quiz-option">The labels will be perfect, because radiologists wrote the reports</button>
+      <button class="quiz-option">The model cannot learn from report-based labels at all</button>
+      <div class="quiz-explanation"><p>Report mining is fast and cheap, but noisy. Hedged or negative phrases are easy to misread, and the report may describe something not visible on that particular image.</p></div>
+    </div>
+  </section>
+
+  <section class="les-section m1-takeaways" id="takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Radiology AI learns from images, report text, structured health-record data and annotations.</li>
+      <li>A label is the "right answer" for an example. It comes from expert reads, consensus, old reports or reference tests, and it can be wrong.</li>
+      <li>Data is split into training, validation and test sets, by patient, before training starts.</li>
+      <li>Leakage makes a model look better than it is. Missing groups in the data mean the model has never learned about them.</li>
+    </ul>
+  </section>
+
+  <section class="les-section" id="further">
+    <h2>Go further (optional)</h2>
+    <ul class="m1-links">
+      <li><a href="https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets" target="_blank" rel="noopener">Dividing the original dataset</a> <small>(Google ML Crash Course, short page on training/validation/test)</small></li>
+      <li><a href="m2-2.html">Lesson 2.2</a> <small>covers medical image data and DICOM in more depth</small></li>
+    </ul>
+    <p>Next lesson: once PTX-Detect is trained and tested, how do we describe how good it is?</p>
+  </section>
+
+</div>
+
+<div class="les-nav">
+  <a href="m1-2.html" class="btn btn-outline" id="les-prev">&larr; How Models Learn</a>
+  <a href="m1-4.html" class="btn btn-accent" id="les-next">Next: Measuring Performance &rarr;</a>
+</div>
+
+<script src="../assets/js/shared.js"></script>
+<script src="assets/lessons.js"></script>
+<script src="assets/knowledge-check.js"></script>
+<script src="assets/m1-interactives.js"></script>
+</body>
+</html>
