@@ -4,13 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 3 &middot; Thinking With AI &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="assets/m2.css">
-<link rel="stylesheet" href="assets/m3.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/m2.css?v=20261013k">
+<link rel="stylesheet" href="assets/m3.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -95,6 +104,26 @@
       <div class="m1-term"><strong>Deskilling</strong><span>A skill you once had fades because AI now does that part for you. It affects experienced doctors, and practice can bring it back.</span></div>
       <div class="m1-term"><strong>Mis-skilling</strong><span>You learn the wrong thing because you absorbed the AI's mistakes or biases, and you repeat them even when the AI is not there.</span></div>
     </div>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: name the risk</div>
+      <p class="mi-box-intro">Drag each story into the risk it shows. Ask: did the skill never form, did it fade, or did the person learn something wrong?</p>
+      <div class="ix-buckets">
+        <div class="ix-pool">
+          <div class="ix-chip" data-bin="never" data-why="The skill was never built: AI did the work during the years of learning." data-hint="Did this resident ever read chest X-rays without help?">A first-year resident has always read chest X-rays with AI boxes switched on. One night the AI is down, and they do not know where to start.</div>
+          <div class="ix-chip" data-bin="de" data-why="A skill that was there faded with disuse. Practice without AI can bring it back." data-hint="This radiologist was good at it before the AI arrived.">A radiologist read mammograms well for 15 years before AI. After three years with an AI tool, they miss more cancers when tested without it.</div>
+          <div class="ix-chip" data-bin="mis" data-why="The AI's error became the person's own habit, and it stays even without the AI." data-hint="The problem here is not a missing skill, but a wrong one copied from the AI.">A resident learned from an AI that measured lung nodules about 2 mm too small. Now they measure too small even by hand.</div>
+          <div class="ix-chip" data-bin="never" data-why="Building a differential is a skill students are meant to learn; here it never forms." data-hint="Has this student ever built a differential themselves?">A medical student lets a chatbot write the differential diagnosis for every case and has never built one alone.</div>
+          <div class="ix-chip" data-bin="de" data-why="An existing skill weakened because the machine took over that part of the work." data-hint="This doctor used to read ECGs closely.">An emergency doctor stopped looking closely at ECGs once the machine's reading seemed reliable. A year later they are slower and less sure without it.</div>
+          <div class="ix-chip" data-bin="mis" data-why="Copying an AI's false alarms teaches a wrong rule." data-hint="Where did this student's habit come from?">A student practiced with an AI that called many skin folds a pneumothorax. Now they call skin folds a pneumothorax too.</div>
+        </div>
+        <div class="ix-bins">
+          <div class="ix-bin ix-c-navy" data-bin="never"><div class="ix-bin-head">Never-skilling<small>never learned it</small></div></div>
+          <div class="ix-bin ix-c-teal" data-bin="de"><div class="ix-bin-head">Deskilling<small>had it, lost it</small></div></div>
+          <div class="ix-bin ix-c-rust" data-bin="mis"><div class="ix-bin-head">Mis-skilling<small>learned it wrong</small></div></div>
+        </div>
+        <p class="ix-feedback"></p>
+      </div>
+    </div>
   </section>
 
   <section class="les-section" id="never">
@@ -115,7 +144,7 @@
     </div>
     <p>This is not only a story. In a study at four colonoscopy centers in Poland, doctors who had been using AI to spot polyps were later observed doing colonoscopies without it. Their rate of finding precancerous polyps without AI fell from about 28% before AI was introduced to about 22% (Budzyń et al., 2025).</p>
     <div class="les-case-image">
-      <img src="images/deskilling-cxr-challenge.png" alt="Healthcare AI Arena: a challenge to write a chest X-ray report and compare it with an AI-generated report">
+      <img loading="lazy" decoding="async" src="images/deskilling-cxr-challenge.png" alt="Healthcare AI Arena: a challenge to write a chest X-ray report and compare it with an AI-generated report" width="1888" height="888">
       <div class="les-case-image-caption">
         One way to keep a skill is to practice it without AI. Healthcare AI Arena lets you write a chest X-ray report and compare it with an AI's. <a href="https://www.healthcareaiarena.org/challenge/demo" target="_blank" rel="noopener">Try the challenge &rarr;</a>
       </div>
@@ -129,7 +158,7 @@
       <p>Dr. P is a resident learning breast imaging with an AI that tends to overcall certain calcifications as suspicious, especially in dense breasts. For months she accepts its BI-RADS 4 ("suspicious") calls without checking. Now, reading on her own, she calls these calcifications suspicious far more often than her colleagues do, even when they are clearly benign. The AI's error has become part of how she reads.</p>
     </div>
     <div class="les-case-image">
-      <img src="images/mis-skilling-dcis-mammogram.png" alt="Mammogram showing clustered microcalcifications in dense breast tissue">
+      <img loading="lazy" decoding="async" src="images/mis-skilling-dcis-mammogram.png" alt="Mammogram showing clustered microcalcifications in dense breast tissue" width="302" height="865">
       <div class="les-case-image-caption">
         Ductal carcinoma in situ (DCIS) appearing as clustered microcalcifications in dense breast tissue. Adapted from <a href="https://radiopaedia.org/articles/ductal-carcinoma-in-situ?lang=us" target="_blank" rel="noopener">Radiopaedia</a>.
       </div>
@@ -141,7 +170,7 @@
     <h2>Learning with AI, in three phases</h2>
     <p>Ke et al. suggest that learners should build a skill on their own first, then learn to work with AI. Their framework has three phases:</p>
     <figure class="les-figure">
-      <img src="images/ke-framework.png" alt="Three-phase competency-protective framework from Ke et al.">
+      <img loading="lazy" decoding="async" src="images/ke-framework.png" alt="Three-phase competency-protective framework from Ke et al." width="487" height="486">
       <figcaption>Figure 1. The three-phase framework for learning with AI (Ke et al., 2026).</figcaption>
     </figure>
     <ol>
@@ -210,12 +239,14 @@
   <a href="m3-4.html" class="btn btn-accent" id="les-next">Next: Responsibility &amp; Patients &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="../assets/js/slideshow.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
-<script src="assets/m3-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="../assets/js/slideshow.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
+<script src="assets/m3-interactives.js?v=20261013k"></script>
 <script>
 Slideshow.create(document.getElementById('never-skilling-slideshow'), {
   downloadUrl: 'downloads/never-skilling-case-study.pdf',

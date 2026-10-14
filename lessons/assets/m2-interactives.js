@@ -3,10 +3,10 @@
 
   // In-page interactives for Module 2. Load after m1-interactives.js (sort cards,
   // step-through, tabbed explorer and the clickable report all come from there).
+  // Drag-to-order now lives in interactives.js (.ix-order).
   // Each widget finds its own markup:
   //   .m2-window     CT window explorer on a drawn chest CT slice (2.2)
   //   .m2-journey    system map that lights up with the active .mi-step (2.3)
-  //   .m2-order      put the steps in order, by dragging or with the arrow buttons (2.3)
   //   .m2-translate  write a plain-language version, then compare with a sample (2.4)
 
   function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -133,59 +133,6 @@
     var obs = new MutationObserver(sync);
     steps.forEach(function(s) { obs.observe(s, { attributes: true, attributeFilter: ['class'] }); });
     sync();
-  });
-
-  // ── Put it in order ──
-  // <div class="m2-order"> <ol class="m2-order-list"> <li data-pos="3">...</li> ... </ol>
-  //   <p class="m2-order-result"></p> </div>     data-pos is the item's correct place, from 1.
-  all('.m2-order').forEach(function(box) {
-    var list = box.querySelector('.m2-order-list');
-    var result = box.querySelector('.m2-order-result');
-    var dragged = null;
-    all('li', list).forEach(function(li) {
-      li.setAttribute('draggable', 'true');
-      li.innerHTML = '<span class="m2-order-text">' + li.innerHTML + '</span>' +
-        '<span class="m2-order-move"><button type="button" aria-label="Move up">&uarr;</button>' +
-        '<button type="button" aria-label="Move down">&darr;</button></span>';
-      var btns = li.querySelectorAll('button');
-      btns[0].addEventListener('click', function() { if (li.previousElementSibling) list.insertBefore(li, li.previousElementSibling); clear(); btns[0].focus(); });
-      btns[1].addEventListener('click', function() { if (li.nextElementSibling) list.insertBefore(li.nextElementSibling, li); clear(); btns[1].focus(); });
-      li.addEventListener('dragstart', function(e) { dragged = li; li.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', ''); } catch (err) {} });
-      li.addEventListener('dragend', function() { li.classList.remove('dragging'); dragged = null; });
-      li.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        if (!dragged || dragged === li) return;
-        var r = li.getBoundingClientRect();
-        list.insertBefore(dragged, e.clientY < r.top + r.height / 2 ? li : li.nextElementSibling);
-        clear();
-      });
-    });
-    var actions = document.createElement('div');
-    actions.className = 'm2-order-actions';
-    actions.innerHTML = '<button type="button" class="mi-btn mi-btn--fill">Check my order</button>' +
-      '<button type="button" class="mi-btn" hidden>Show the right order</button>';
-    box.insertBefore(actions, result);
-    var check = actions.children[0], show = actions.children[1];
-    function clear() { all('li', list).forEach(function(li) { li.classList.remove('ok', 'off'); }); if (result) result.textContent = ''; }
-    check.addEventListener('click', function() {
-      var items = all('li', list), right = 0;
-      items.forEach(function(li, i) {
-        var ok = +li.getAttribute('data-pos') === i + 1;
-        if (ok) right++;
-        li.classList.toggle('ok', ok);
-        li.classList.toggle('off', !ok);
-      });
-      show.hidden = right === items.length;
-      if (result) result.textContent = right === items.length
-        ? 'All ' + right + ' steps are in the right order.'
-        : right + ' of ' + items.length + ' steps are in the right place. Move the red ones and check again, or show the right order.';
-    });
-    show.addEventListener('click', function() {
-      all('li', list).sort(function(a, b) { return a.getAttribute('data-pos') - b.getAttribute('data-pos'); })
-        .forEach(function(li) { list.appendChild(li); li.classList.remove('off'); li.classList.add('ok'); });
-      show.hidden = true;
-      if (result) result.textContent = 'This is the order Mr. Diaz\'s scan followed.';
-    });
   });
 
   // ── Translate the report ──

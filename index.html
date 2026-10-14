@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="AI2Practice: open clinical AI education. A core curriculum in clinical AI, with optional Research Lab and Leadership specializations." />
   <meta name="google-site-verification" content="0oxSDFdgszBxzoXSZafMYpquNexiN31mysG15VeMEsc" />
-  <title>AI2Practice — Clinical AI education from foundations to practice</title>
-  <link rel="stylesheet" href="assets/css/site.css" />
-  <link rel="stylesheet" href="assets/css/theme.css" />
-  <link rel="stylesheet" href="assets/css/home.css" />
-  <link rel="stylesheet" href="assets/css/start-picker.css" />
+  <title>AI2Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261013k" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261013k" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20261013k" />
+  <link rel="stylesheet" href="assets/css/start-picker.css?v=20261013k" />
 <!-- AI2PRACTICE SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/" />
@@ -25,13 +28,16 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"AI2Practice","url":"https://um-ihc-ca2i.github.io/ai2practice/","description":"Open clinical AI education for radiology: fundamentals, radiology data and workflow, clinical use, research, adoption, governance, and practical tools."}
   </script>
 <!-- /AI2PRACTICE SEO -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 </head>
 <body class="home">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell navbar">
   <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  <nav aria-label="Primary"><ul class="nav-links"><li><a href="curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
 
 <main id="main" class="home-shell">
@@ -98,6 +104,7 @@
     <div class="legend-row legend-prog"><span class="legend-k">Progress</span><span><b class="lp-done"></b>Done</span><span><b class="lp-part"></b>In progress</span><span><b class="lp-here"></b>Next step</span></div>
   </div>
   <div class="map-start"><a class="home-btn home-btn--lg" href="modules/ai-fundamentals.html" data-open-picker>Start &rarr;</a><a class="home-btn home-btn--lg home-btn--ghost" href="curriculum.html">View full curriculum &rarr;</a></div>
+  <div class="map-resume" data-ai2-resume hidden></div>
 
   <section id="core">
     <h2>Core curriculum</h2>
@@ -109,7 +116,7 @@
           <a href="modules/ai-fundamentals.html?pathway=intermediate" style="--c:var(--route-int)"><i></i>Intermediate</a>
           <a href="modules/ai-fundamentals.html?pathway=advanced" style="--c:var(--route-adv)"><i></i>Advanced</a>
         </div></div>
-      <a class="cc" href="modules/ai-fundamentals.html"><b>Fundamentals of AI</b><span class="cc-question">What is AI, and how does it work clinically?</span><ul><li>What AI is &amp; how models learn</li><li>Performance beyond accuracy</li><li>Generalization &amp; dataset shift</li><li>Failure modes &amp; uncertainty</li></ul><span class="go">Open Module 1 &rarr;</span></a>
+      <a class="cc" href="modules/ai-fundamentals.html"><b>Fundamentals of AI</b><span class="cc-question">What is AI, and how does it work clinically?</span><ul><li>AI around you</li><li>How models learn</li><li>Data &amp; labels</li><li>Measuring performance</li><li>Limits &amp; failures</li></ul><span class="go">Open Module 1 &rarr;</span></a>
       <a class="cc" href="modules/informatics.html"><b>Radiology Basics: Images, Systems &amp; Reports</b><span class="cc-question">What is radiology, and how does a scan become data?</span><ul><li>What radiology is</li><li>Images as data</li><li>The journey of a scan</li><li>Reading a radiology report</li></ul><span class="go">Open Module 2 &rarr;</span></a>
       <a class="cc" href="modules/clinical-practice.html"><b>AI in Clinical Practice</b><span class="cc-question">How does AI affect my clinical practice?</span><ul><li>AI in radiology &amp; medicine</li><li>Does it work, and is it worth it?</li><li>Thinking with AI</li><li>Responsibility &amp; patients</li><li>The future of AI in radiology</li></ul><span class="go">Open Module 3 &rarr;</span></a>
     </div>
@@ -187,8 +194,8 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js"></script>
-<script src="assets/js/start-picker.js"></script>
+<script src="assets/js/site.js?v=20261013k"></script>
+<script src="assets/js/start-picker.js?v=20261013k"></script>
 <script>
 (function(){
   // Stops marked data-soon show a notice instead of a 404
@@ -219,14 +226,22 @@
 </script>
 <script>
 (function(){
+  var map=document.getElementById('map');
+  if(map && 'IntersectionObserver' in window) new IntersectionObserver(function(e){ map.classList.toggle('is-paused',!e[0].isIntersecting); }).observe(map);
+})();
+</script>
+<script>
+(function(){
   // Hero constellation (from the original site): drifting, pulsing dots joined by faint lines when close.
   // Dots dim toward the bottom, following the navy-to-white background fade.
   var canvas=document.querySelector('.hero-canvas'), ctx=canvas.getContext('2d');
   var CONNECT=130, N=90, stars=[];
   var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Runs only while the hero is on screen and the tab is visible.
+  var onScreen=true, running=false, dpr=Math.min(devicePixelRatio||1,2);
   function resize(){
-    canvas.width=canvas.offsetWidth*devicePixelRatio; canvas.height=canvas.offsetHeight*devicePixelRatio;
-    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    canvas.width=canvas.offsetWidth*dpr; canvas.height=canvas.offsetHeight*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
   }
   resize();
   for(var i=0;i<N;i++) stars.push({x:Math.random()*canvas.offsetWidth, y:Math.random()*canvas.offsetHeight,
@@ -249,10 +264,13 @@
       ctx.beginPath(); ctx.arc(s.x,s.y,s.r+6,0,6.283); ctx.fillStyle='rgba(200,210,230,'+(glow*.06)+')'; ctx.fill();
       ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fillStyle='rgba(200,215,240,'+glow+')'; ctx.fill();
     }
-    if(!still) requestAnimationFrame(draw);
+    if(!still && onScreen && !document.hidden) requestAnimationFrame(draw); else running=false;
   }
-  window.addEventListener('resize',resize);
-  draw();
+  function start(){ if(!running && !still && onScreen && !document.hidden){ running=true; requestAnimationFrame(draw); } }
+  window.addEventListener('resize',function(){ resize(); if(!running) draw(); });
+  document.addEventListener('visibilitychange',start);
+  if('IntersectionObserver' in window) new IntersectionObserver(function(e){ onScreen=e[0].isIntersecting; start(); }).observe(canvas);
+  running=true; draw();
 })();
 </script>
 </body>

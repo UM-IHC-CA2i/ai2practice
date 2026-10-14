@@ -4,11 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 1 &middot; How Models Learn &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -138,6 +147,26 @@
       <div class="m1-term"><strong>Unsupervised learning</strong><span>Gets data with no labels and finds groups or patterns on its own. <em>Real example:</em> grouping ICU patients into <a href="https://doi.org/10.1001/jama.2019.5791" target="_blank" rel="noopener">four sepsis phenotypes</a> that nobody had defined beforehand.</span></div>
       <div class="m1-term"><strong>Reinforcement learning</strong><span>Learns by trial and error, getting a reward for good outcomes, like learning a game. <em>Real example:</em> the <a href="https://doi.org/10.1038/s41591-018-0213-5" target="_blank" rel="noopener">"AI Clinician"</a>, which learned fluid and vasopressor strategies in sepsis from past ICU records.</span></div>
     </div>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: which kind of learning?</div>
+      <p class="mi-box-intro">Drag each project into the kind of learning it uses. On a phone, tap a card and then tap a box.</p>
+      <div class="ix-buckets">
+        <div class="ix-pool">
+          <div class="ix-chip" data-bin="sup" data-why="Every X-ray comes with the answer (fracture or not), so this is supervised." data-hint="Each X-ray here comes with a radiologist's answer. What do we call learning from labeled examples?">10,000 wrist X-rays, each marked "fracture" or "no fracture" by a radiologist</div>
+          <div class="ix-chip" data-bin="unsup" data-why="Nobody told the program what the groups should be; it found them in unlabeled data." data-hint="Nobody gave this program any answers. It had to find the groups itself.">Thousands of lung CT scans with no labels, sorted by the program into groups that look alike</div>
+          <div class="ix-chip" data-bin="rl" data-why="The program tries actions and is rewarded for good results: trial and error." data-hint="Look for trial and error with a reward, not examples with answers.">A program that tries different scan settings and gets a reward when the image is clear at a low radiation dose</div>
+          <div class="ix-chip" data-bin="sup" data-why="Each mammogram has a known outcome (cancer found within a year or not), which acts as the label." data-hint="Each mammogram has a known outcome. That outcome is a label.">Mammograms paired with whether the woman was diagnosed with cancer within a year</div>
+          <div class="ix-chip" data-bin="unsup" data-why="The program found patterns in health records without being told what to look for." data-hint="The program was not told what the right groups were.">Health records of 20,000 ICU patients, grouped into types nobody had defined before</div>
+          <div class="ix-chip" data-bin="rl" data-why="Like learning a game: try, see the outcome, get a score, adjust." data-hint="Think of learning a game by playing it many times.">A program that learns when to give fluids in sepsis by trying choices on past records and scoring the outcome</div>
+        </div>
+        <div class="ix-bins">
+          <div class="ix-bin" data-bin="sup"><div class="ix-bin-head">Supervised<small>examples with the right answer</small></div></div>
+          <div class="ix-bin" data-bin="unsup"><div class="ix-bin-head">Unsupervised<small>no answers; finds groups</small></div></div>
+          <div class="ix-bin" data-bin="rl"><div class="ix-bin-head">Reinforcement<small>trial, error and reward</small></div></div>
+        </div>
+        <p class="ix-feedback"></p>
+      </div>
+    </div>
     <p>Most radiology AI you will meet is supervised. That is why labels matter so much, which is the topic of Lesson 1.3.</p>
   </section>
 
@@ -146,7 +175,7 @@
     <p>A <strong>neural network</strong> is a particular design for the knob machine. It is built in layers. Each layer takes what the layer before found and combines it into something a little more complex. With images it works roughly like this:</p>
 
     <figure class="les-figure">
-      <img src="images/m1/network-layers.png" alt="Five stages from left to right: pixels, edges, shapes, parts such as the lung edge, and a final answer of pneumothorax with a score of 0.87.">
+      <img loading="lazy" decoding="async" src="images/m1/network-layers.png" alt="Five stages from left to right: pixels, edges, shapes, parts such as the lung edge, and a final answer of pneumothorax with a score of 0.87." width="3360" height="1230">
       <figcaption>Figure 1. Layers build simple features into complex ones. Simplified: real networks do not label their layers this neatly.</figcaption>
     </figure>
 
@@ -159,7 +188,7 @@
     <div class="les-video-grid">
       <a class="les-video-card" href="https://www.youtube.com/watch?v=Gv9_4yMHFhI" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/Gv9_4yMHFhI/hqdefault.jpg" alt="A Gentle Introduction to Machine Learning, StatQuest">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/Gv9_4yMHFhI/hqdefault.jpg" alt="A Gentle Introduction to Machine Learning, StatQuest">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -170,7 +199,7 @@
       </a>
       <a class="les-video-card" href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/aircAruvnKk/hqdefault.jpg" alt="But what is a neural network? 3Blue1Brown">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/aircAruvnKk/hqdefault.jpg" alt="But what is a neural network? 3Blue1Brown">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -189,7 +218,7 @@
     <p>Models can do the same thing. With millions of knobs, a model can memorize the exact training films, including irrelevant details, instead of learning what a pneumothorax looks like. This is called <strong>overfitting</strong>. The model looks excellent on its training data and disappoints on new patients.</p>
 
     <figure class="les-figure">
-      <img src="images/m1/overfitting.png" alt="Line chart: errors on training data keep falling with training time, while errors on new data fall, then rise again once the model starts memorizing.">
+      <img loading="lazy" decoding="async" src="images/m1/overfitting.png" alt="Line chart: errors on training data keep falling with training time, while errors on new data fall, then rise again once the model starts memorizing." width="1980" height="1137">
       <figcaption>Figure 2. Training errors keep falling. Errors on new data fall and then rise once the model starts memorizing. Developers stop training near the lowest point of the dashed line.</figcaption>
     </figure>
 
@@ -253,9 +282,11 @@
   <a href="m1-3.html" class="btn btn-accent" id="les-next">Next: Data &amp; Labels &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
 </body>
 </html>

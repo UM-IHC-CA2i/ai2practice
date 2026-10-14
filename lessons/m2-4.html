@@ -4,12 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 2 &middot; Reading a Radiology Report &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="assets/m2.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/m2.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -150,35 +159,22 @@
 
     <div class="mi-box">
       <div class="mi-box-title">Interactive: how sure is it?</div>
-      <p class="mi-box-intro">Sort each phrase by how likely the radiologist thinks the finding is. Approximate meanings in common use; your hospital may differ.</p>
-      <div class="mi-sort" data-choices="Likely|Uncertain|Unlikely">
-        <div class="mi-cards">
-          <div class="mi-card" data-answer="0">
-            <div class="mi-card-text">"Consistent with pulmonary embolism"</div>
-            <div class="mi-card-why">Likely. Usually means the radiologist is very confident, about 90% or more.</div>
-          </div>
-          <div class="mi-card" data-answer="0">
-            <div class="mi-card-text">"Suspicious for malignancy"</div>
-            <div class="mi-card-why">Likely, enough to act on. Usually prompts a biopsy or further workup.</div>
-          </div>
-          <div class="mi-card" data-answer="1">
-            <div class="mi-card-text">"Early infarct versus atelectasis"</div>
-            <div class="mi-card-why">Uncertain. Two possibilities and the image cannot tell them apart. Atelectasis means part of the lung has partly collapsed. "Versus" or "differential includes" signal a list, not an answer.</div>
-          </div>
-          <div class="mi-card" data-answer="1">
-            <div class="mi-card-text">"Cannot be excluded"</div>
-            <div class="mi-card-why">Uncertain, but often leaning unlikely. The radiologist cannot say no. Often a cue that another test or clinical judgment is needed.</div>
-          </div>
-          <div class="mi-card" data-answer="2">
-            <div class="mi-card-text">"Not likely to represent ..."</div>
-            <div class="mi-card-why">Unlikely. The radiologist thinks this is probably not the cause.</div>
-          </div>
-          <div class="mi-card" data-answer="2">
-            <div class="mi-card-text">"No evidence of pneumothorax"</div>
-            <div class="mi-card-why">Unlikely to be present. A clear negative, within the limits of the scan.</div>
-          </div>
+      <p class="mi-box-intro">Drag each phrase into the box for how likely the radiologist thinks the finding is. Approximate meanings in common use; your hospital may differ.</p>
+      <div class="ix-buckets">
+        <div class="ix-pool">
+          <div class="ix-chip" data-bin="likely" data-why="Usually means the radiologist is very confident, about 90% or more." data-hint="&quot;Consistent with&quot; is about as sure as radiologists usually get.">"Consistent with pulmonary embolism"</div>
+          <div class="ix-chip" data-bin="uncertain" data-why="The radiologist cannot say no. Often leans unlikely, and is a cue that another test or clinical judgment is needed." data-hint="The radiologist is not saying yes or no here.">"Cannot be excluded"</div>
+          <div class="ix-chip" data-bin="unlikely" data-why="A clear negative, within the limits of the scan." data-hint="&quot;No evidence of&quot; is a negative statement.">"No evidence of pneumothorax"</div>
+          <div class="ix-chip" data-bin="likely" data-why="Likely enough to act on. Usually prompts a biopsy or further workup." data-hint="&quot;Suspicious&quot; sounds hedged, but it usually leads to action.">"Suspicious for malignancy"</div>
+          <div class="ix-chip" data-bin="uncertain" data-why="Two possibilities the image cannot tell apart. Atelectasis means part of the lung has partly collapsed. &quot;Versus&quot; or &quot;differential includes&quot; signal a list, not an answer." data-hint="&quot;Versus&quot; means two possibilities.">"Early infarct versus atelectasis"</div>
+          <div class="ix-chip" data-bin="unlikely" data-why="The radiologist thinks this is probably not the cause." data-hint="Read the first two words again.">"Not likely to represent ..."</div>
         </div>
-        <p class="mi-score"></p>
+        <div class="ix-bins">
+          <div class="ix-bin ix-c-teal" data-bin="likely"><div class="ix-bin-head">Likely<small>the radiologist leans yes</small></div></div>
+          <div class="ix-bin ix-c-amber" data-bin="uncertain"><div class="ix-bin-head">Uncertain<small>cannot decide from the images</small></div></div>
+          <div class="ix-bin ix-c-navy" data-bin="unlikely"><div class="ix-bin-head">Unlikely<small>the radiologist leans no</small></div></div>
+        </div>
+        <p class="ix-feedback"></p>
       </div>
     </div>
     <p>Hedged phrases are hard for AI too. When a program turns reports into training labels (Lesson 2.2), "cannot be excluded" must become yes, no or "uncertain," and different choices make different models.</p>
@@ -295,10 +291,12 @@
   <a href="m3-1.html" class="btn btn-accent" id="les-next">Next: Module 3 &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
-<script src="assets/m2-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
+<script src="assets/m2-interactives.js?v=20261013k"></script>
 </body>
 </html>

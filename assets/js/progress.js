@@ -75,6 +75,8 @@
   /* ---------- Paths & storage ---------- */
 
   function siteUrl(path){ return new URL(path, siteRoot).href; }
+  // Same ?v= tag as this script, so files loaded from here refresh together after a change.
+  var VER=new URL(scriptUrl).search;
   function relativePath(){
     var rootPath = siteRoot.pathname.replace(/\/$/, '');
     var p = window.location.pathname;
@@ -93,7 +95,7 @@
     if (existing) return existing;
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = siteUrl('assets/css/progress.css');
+    link.href = siteUrl('assets/css/progress.css')+VER;
     link.setAttribute('data-ai2-progress-style','1');
     document.head.appendChild(link);
     return link;
@@ -357,7 +359,7 @@
      Every page gets the account menu in the header. The progress dialog
      (depth, steps, account) opens from either. */
 
-  var shell, lastFocus, savedTimer, olOpen={}, stepOpen={}, spyIds=[];
+  var shell, lastFocus, savedTimer, olOpen={}, stepOpen={};
   var OUTLINE_KEY = 'ai2practice_outline_v1';
   var CHEVRON = '<svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var OUTLINE_ICON = '<svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
@@ -473,12 +475,12 @@
     document.body.classList.add('ai2-has-outline');
     document.querySelectorAll('.les-topbar').forEach(function(el){ el.hidden=true; el.style.display='none'; });
     setOutline(wideScreen() && outlinePref()!=='closed', false);
+    document.documentElement.classList.remove('ai2-ol-pre-open');
     document.getElementById('ai2OutlineClose').addEventListener('click',function(){ setOutline(false,true); tab.focus({preventScroll:true}); });
     tab.addEventListener('click',function(){ setOutline(true,true); });
     scrim.addEventListener('click',function(){ setOutline(false,false); });
     aside.addEventListener('toggle',function(e){ var d=e.target; if(d.dataset && d.dataset.group) olOpen[d.dataset.group]=d.open; },true);
     aside.addEventListener('click',function(e){ if(!wideScreen() && e.target.closest('a[href^="#"]')) setOutline(false,false); });
-    window.addEventListener('scroll',function(){ requestAnimationFrame(spy); },{passive:true});
     var lastWide=wideScreen();
     window.addEventListener('resize',function(){ var w=wideScreen(); if(w!==lastWide){ lastWide=w; setOutline(w && outlinePref()!=='closed', false); } });
   }
@@ -494,16 +496,6 @@
     renderAccount();
   }
   function outlineIsOpen(){ return document.body.classList.contains('ai2-outline-open'); }
-  function pageSections(){
-    var out=[];
-    document.querySelectorAll('.les-section[id], #ckpt-section').forEach(function(s){ var h=s.querySelector('h2'); if(h) out.push({ id:s.id, title:h.textContent.trim() }); });
-    return out;
-  }
-  function sectionsHTML(){
-    var S=pageSections(); spyIds=S.map(function(s){ return s.id; });
-    if (!S.length) return '';
-    return '<ol class="ai2-ol-sections" aria-label="On this page">'+S.map(function(s){ return '<li><a href="#'+esc(s.id)+'" data-spy="'+esc(s.id)+'">'+esc(s.title)+'</a></li>'; }).join('')+'</ol>';
-  }
   function olItem(o){
     var cls='ai2-ol-item'+(o.done?' done':'')+(o.here?' here':'')+(o.soon?' soon':'');
     var mark='<span class="ai2-ol-mark" aria-hidden="true">'+(o.done?CHECK:'')+'</span>';
@@ -513,7 +505,7 @@
     var inner=o.here || !o.href
       ? '<span class="ai2-ol-link"'+(o.here?' aria-current="page"':'')+'>'+mark+label+tag+'<span class="ai2-sr">'+state+'</span></span>'
       : '<a class="ai2-ol-link" href="'+o.href+'">'+mark+label+tag+'<span class="ai2-sr">'+state+'</span></a>';
-    return '<li class="'+cls+'">'+inner+(o.here ? sectionsHTML() : '')+'</li>';
+    return '<li class="'+cls+'">'+inner+'</li>';
   }
   function olGroup(id, title, count, items, here){
     var open = id in olOpen ? olOpen[id] : here;
@@ -535,7 +527,6 @@
         return olItem({ num:l.key.replace('m','').replace('-','.'), title:l.title, href:l.published ? lessonHref(l.key) : null, done:done.indexOf(l.key)!==-1,
           here:l.key===key, soon:!l.published, tag:l.optional ? 'Optional' : '' });
       });
-      items.unshift('<li class="ai2-ol-overview"><a href="'+siteUrl(m.href)+'">Module overview</a></li>');
       html+=olGroup(m.id, 'Module '+m.n+' · '+m.label, req.length ? n+'/'+req.length : '', items, !!here && here.module===m.id);
     });
     var practice=sbody.filter(function(s){ return s.id==='assess' || s.id==='cert'; }).map(function(s){
@@ -551,18 +542,6 @@
     html+=olGroup('research','Research Lab (optional)', rn ? rn+'/5' : '', labs, research);
     html+='<div class="ai2-ol-foot"><button type="button" class="ai2-ol-more" data-open-progress="true">Progress details</button></div>';
     body.innerHTML=html;
-    spy();
-  }
-  function spy(){
-    if (!spyIds.length) return;
-    var cur=spyIds[0], line=Math.min(160, window.innerHeight*0.3);
-    for (var i=0;i<spyIds.length;i++){ var el=document.getElementById(spyIds[i]); if(el && el.getBoundingClientRect().top<=line) cur=spyIds[i]; }
-    if (window.innerHeight+window.scrollY >= document.documentElement.scrollHeight-4) cur=spyIds[spyIds.length-1];
-    document.querySelectorAll('.ai2-ol-sections a').forEach(function(a){
-      var on=a.getAttribute('data-spy')===cur;
-      a.classList.toggle('is-current',on);
-      if (on) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current');
-    });
   }
 
   /* ---------- Account menu (every page) ---------- */
@@ -737,13 +716,28 @@
 
   var GATE_LEDE='Sign in or create a free account to start the course.';
   var gate=null, gateInert=[], cfgLoaded=false, authFailed=false, pendingStart=null, startPass=null;
+  // Set while an account is signed in, so the next page skips the "Checking sign-in" cover
+  // and only shows the gate if Firebase then reports no user.
+  var SIGNED_KEY='ai2practice_signed_in_v1';
+  function signedHint(){ try { return localStorage.getItem(SIGNED_KEY)==='1'; } catch(e) { return false; } }
+  function rememberSignedIn(st){
+    try { if (st.user) localStorage.setItem(SIGNED_KEY,'1'); else if (st.ready) localStorage.removeItem(SIGNED_KEY); } catch(e) {}
+  }
   function gatedPage(){ return /^(lessons\/[^\/]+\.html|assessment\.html|certificate\.html)$/.test(relativePath()); }
   function createGate(){
     if (gate) return;
     gate=document.createElement('div'); gate.id='ai2Gate'; gate.className='ai2-gate';
     // Inline cover so the lesson can't be read before progress.css arrives.
     gate.style.cssText='position:fixed;inset:0;z-index:1300;background:#f6f8fa;';
-    gate.innerHTML='<div class="ai2-gate-card" role="dialog" aria-modal="true" aria-labelledby="ai2GateTitle" aria-describedby="ai2GateText">'+
+    // While sign-in is being checked, show a grey outline of the lesson page instead of the card.
+    gate.classList.add('is-checking');
+    var line=function(w){ return '<i style="width:'+w+'%"></i>'; };
+    gate.innerHTML='<div class="ai2-skel" aria-hidden="true">'+
+      '<div class="ai2-skel-head"><b></b><span><i></i><i></i><i></i><i></i></span></div>'+
+      '<div class="ai2-skel-body"><div class="ai2-skel-side">'+line(70)+line(90)+line(60)+line(85)+line(75)+line(90)+line(55)+'</div>'+
+      '<div class="ai2-skel-main"><em class="k"></em><em class="t"></em>'+line(100)+line(96)+line(88)+line(93)+'<em class="f"></em>'+line(100)+line(82)+'</div></div>'+
+      '<span class="ai2-sr">Checking sign-in…</span></div>'+
+      '<div class="ai2-gate-card" role="dialog" aria-modal="true" aria-labelledby="ai2GateTitle" aria-describedby="ai2GateText">'+
       '<span class="ai2-gate-brand">AI2Practice</span>'+
       '<h2 id="ai2GateTitle">Sign in to start the course</h2>'+
       '<p id="ai2GateText">Checking sign-in…</p>'+
@@ -761,12 +755,16 @@
   }
   function liftGate(){
     if (!gate) return;
-    gate.remove(); gate=null;
+    var g=gate; gate=null;
+    if (g.classList.contains('is-checking') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      g.classList.add('is-leaving'); setTimeout(function(){ g.remove(); },200);
+    } else g.remove();
     gateInert.forEach(function(el){ el.inert=false; }); gateInert=[];
   }
   function renderGate(){
-    if (!gatedPage()) return;
     var st=authState();
+    rememberSignedIn(st);
+    if (!gatedPage()) return;
     if (cfgLoaded && !authOn()) { liftGate(); return; }
     if (st.user) { liftGate(); return; }
     if (st.ready) createGate();
@@ -776,6 +774,7 @@
     else if (authFailed || (st.error && !st.ready)) { text='Sign-in could not load. Check your internet connection and try again.'; btn='Try again'; }
     else if (!st.ready) text='Checking sign-in…';
     else { text='The course needs a free account so your progress is saved and your certificate carries your name. Use '+providers()+'.'; btn='Sign in or create account'; }
+    gate.classList.toggle('is-checking', !btn);
     document.getElementById('ai2GateText').textContent=text;
     var b=document.getElementById('ai2GateBtn'), show=!!btn;
     if (show) b.textContent=btn;
@@ -807,6 +806,23 @@
     } else {
       el.innerHTML='<div><span>'+esc(n.eyebrow)+'</span><strong>'+esc(n.title)+'</strong>'+(n.note?'<small>'+esc(n.note)+'</small>':'')+'</div><a class="ai2-btn ai2-btn-primary" href="'+n.href+'">'+esc(n.label)+' &rarr;</a>';
     }
+  }
+  // [data-ai2-resume] slots (home hero, curriculum page): shown once the learner has started.
+  function renderResume(){
+    var slots=document.querySelectorAll('[data-ai2-resume]'); if(!slots.length) return;
+    var r=resumeTarget(), done=completed().filter(function(k){ return LESSON_KEYS.indexOf(k)!==-1; }).length, html='';
+    if (r) {
+      var rl=lessonByKey(r.key), num=rl ? rl.key.replace('m','').replace('-','.')+' · ' : '';
+      html='<a class="ai2-resume" href="'+siteUrl(r.path)+'#ai2-resume">'+ring(r.pct||0,'md')+
+        '<span class="ai2-resume-text"><small>Pick up where you left off'+(r.pct ? ' · '+r.pct+'% read' : '')+'</small><strong>'+esc(num+r.title)+'</strong></span>'+
+        '<span class="ai2-resume-go">Resume &rarr;</span></a>';
+    } else if (done) {
+      var n=nextStep();
+      if (!n.choose) html='<a class="ai2-resume" href="'+n.href+'">'+ring(tally().pct,'md')+
+        '<span class="ai2-resume-text"><small>'+esc(n.eyebrow)+'</small><strong>'+esc(n.title)+'</strong></span>'+
+        '<span class="ai2-resume-go">'+esc(n.label)+' &rarr;</span></a>';
+    }
+    slots.forEach(function(el){ el.innerHTML=html; el.hidden=!html; });
   }
   function renderStepList(){
     var el=document.getElementById('ai2StepList'); if(!el) return;
@@ -957,7 +973,7 @@
       card.querySelectorAll('[data-ai2-set-pathway]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-ai2-set-pathway')===p ? 'true':'false'); });
     });
   }
-  function render(){ renderOutline(); renderAccount(); renderHomeMap(); renderSummary(); renderPlan(); renderContinue(); renderStepList(); renderOptional(); renderNextTargets(); }
+  function render(){ renderOutline(); renderAccount(); renderHomeMap(); renderSummary(); renderPlan(); renderContinue(); renderStepList(); renderOptional(); renderNextTargets(); renderResume(); }
 
   /* ---------- Actions ---------- */
 
@@ -1073,7 +1089,7 @@
     var styleLink=ensureStyles();
     if (lessonKeyForPage()) { createOutline(); restoreScrollIfRequested(); }
     createAccount();
-    if (gatedPage()) createGate();
+    if (gatedPage() && !signedHint()) createGate();
     revealWhenStyled(styleLink);
     wireLessonNav();
     bind(); render();
@@ -1088,12 +1104,21 @@
     s.onload=function(){ done && done(true); }; s.onerror=function(){ done && done(false); };
     document.head.appendChild(s);
   }
+  function preload(href){
+    var l=document.createElement('link'); l.rel='preload'; l.as='script'; l.href=href;
+    document.head.appendChild(l);
+  }
   function loadAuth(){
-    loadScript(siteUrl('assets/js/firebase-config.js'), function(ok){
+    // Warm the cache for auth.js and the Firebase SDK while firebase-config.js loads.
+    if (gatedPage() || document.querySelector('[data-open-picker]')) {
+      preload(siteUrl('assets/js/auth.js')+VER);
+      ['firebase-app-compat.js','firebase-auth-compat.js','firebase-firestore-compat.js'].forEach(function(f){ preload('https://www.gstatic.com/firebasejs/10.12.2/'+f); });
+    }
+    loadScript(siteUrl('assets/js/firebase-config.js')+VER, function(ok){
       cfgLoaded=true;
       if (!ok || !authOn()) { renderGate(); return; }
       renderAccount(); renderGate();
-      loadScript(siteUrl('assets/js/auth.js'), function(ok2){ if(!ok2) { authFailed=true; renderAccount(); renderGate(); } });
+      loadScript(siteUrl('assets/js/auth.js')+VER, function(ok2){ if(!ok2) { authFailed=true; renderAccount(); renderGate(); } });
     });
   }
 

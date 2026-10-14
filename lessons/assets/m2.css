@@ -164,49 +164,6 @@
   color: var(--gray-700);
 }
 
-/* ── Put it in order (.m2-order) ── */
-.m2-order-list { list-style: none; padding: 0; margin: 0 0 14px; counter-reset: m2o; }
-.m2-order-list li {
-  counter-increment: m2o;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px 9px 12px;
-  margin-bottom: 6px;
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-sm);
-  background: var(--gray-100);
-  font-size: 0.93rem;
-  color: var(--gray-900);
-  cursor: grab;
-}
-.m2-order-list li::before {
-  content: counter(m2o);
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--gray-300);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 0.78rem; font-weight: 700; color: var(--gray-600);
-  flex-shrink: 0;
-}
-.m2-order-list li.dragging { opacity: 0.5; }
-.m2-order-list li.ok { background: var(--mint-light); border-color: var(--mint-dark); }
-.m2-order-list li.off { background: var(--rose-light); border-color: var(--rose); }
-.m2-order-text { flex: 1; }
-.m2-order-move { display: flex; gap: 4px; }
-.m2-order-move button {
-  border: 1px solid var(--gray-300);
-  background: var(--white);
-  border-radius: 4px;
-  width: 30px; height: 28px;
-  cursor: pointer;
-  color: var(--gray-700);
-  font-size: 0.85rem;
-}
-.m2-order-move button:hover { border-color: var(--accent); color: var(--accent-dark); }
-.m2-order-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.m2-order-result { font-size: 0.92rem; color: var(--gray-700); margin: 10px 0 0 !important; min-height: 1.4em; }
-
 /* ── Annotated report (.m2-report, uses the .mi-shortcut script) ── */
 .m2-report.mi-shortcut { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
 .m2-report-doc {

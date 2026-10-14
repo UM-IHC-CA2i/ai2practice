@@ -33,6 +33,9 @@ body { overflow-x: clip; }
 .map-head h2 { margin: 0; }
 .map-head span { color: var(--route-muted); font-size: .95rem; }
 .map-start { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 32px; margin: -20px 0 56px; }
+.map-resume { display: flex; justify-content: center; margin: -32px 20px 56px; }
+.map-resume .ai2-resume-go { background: #0369a1; }
+.map-resume .ai2-resume:hover .ai2-resume-go { background: #075985; }
 .home-btn--lg { padding: 14px 28px; font-size: 1.05rem; }
 
 /* Buttons */
@@ -190,6 +193,7 @@ a.cc:hover { box-shadow: 0 10px 28px rgba(17,24,39,.08); transform: translateY(-
 /* Map motion: dashes drift slowly outward along the optional branches; the current stop sends out a soft ripple. */
 .map-wrap .flow { animation: map-march 3s linear infinite; }
 .map-wrap .beacon { transform-box: fill-box; transform-origin: center; pointer-events: none; animation: map-beacon 2.4s ease-out infinite; }
+.map-wrap.is-paused .flow, .map-wrap.is-paused .beacon { animation-play-state: paused; }
 .st.depth-soon { cursor: default; }
 .st.depth-soon:hover circle:not(.hit) { stroke-width: 4; }
 .st.depth-soon:hover .mL { text-decoration: none; fill: #9ca3af; }

@@ -53,7 +53,7 @@
 }
 
 .les-hero-inner {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
@@ -89,7 +89,7 @@
 
 /* Content */
 .les-content {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 36px 40px 48px;
 }
@@ -162,7 +162,7 @@
 
 /* Navigation */
 .les-nav {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 40px 60px;
   display: flex;
@@ -311,6 +311,8 @@
 
 .les-case-image img {
   display: block;
+  width: auto;
+  height: auto;
   max-width: 100%;
   max-height: 520px;
   margin: 0 auto;

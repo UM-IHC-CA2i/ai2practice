@@ -4,13 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 3 &middot; Does It Work, and Is It Worth It? &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="assets/m2.css">
-<link rel="stylesheet" href="assets/m3.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/m2.css?v=20261013k">
+<link rel="stylesheet" href="assets/m3.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -165,9 +174,14 @@
       <li><strong>Different prevalence.</strong> If the disease is rarer at your hospital, more of the alerts will be false alarms, even with the same sensitivity and specificity.</li>
     </ul>
     <figure class="les-figure">
-      <img src="images/m3/ppv-vs-prevalence.png" alt="Line chart: the same AI tool's positive predictive value falls steeply as disease prevalence falls">
+      <img loading="lazy" decoding="async" src="images/m3/ppv-vs-prevalence.png" alt="Line chart: the same AI tool's positive predictive value falls steeply as disease prevalence falls" width="2283" height="1505">
       <figcaption>Figure 1. The same tool, with the same sensitivity and specificity, at different prevalence. In a busy emergency department where the disease is common, most alerts are true. In a screening population where it is rare, most alerts are false alarms. (Recall PPV from Lesson 1.4.)</figcaption>
     </figure>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: same tool, different hospital</div>
+      <p class="mi-box-intro">Each square is one of 1,000 patients scanned with the same AI tool. Slide from a screening clinic, where the disease is rare, to an emergency department, where it is common. Watch what happens to the false alarms.</p>
+      <div class="ix-prev" data-sens="0.9" data-spec="0.9"></div>
+    </div>
     <div class="m2-think">
       <div class="m1-example-label">A real example</div>
       <p>A sepsis prediction model built into a common health-record system was used in hundreds of hospitals. When researchers at one hospital tested it on their own patients, its AUROC was 0.63, far below what the developer reported. It missed about two thirds of sepsis cases and alerted on many patients who did not have sepsis (Wong et al., 2021). The lesson: check a tool on your own patients before trusting it, and keep checking after it goes live, because hospitals and patients change over time.</p>
@@ -244,14 +258,16 @@
 </div>
 
 <div class="les-nav">
-  <a href="m3-1.html" class="btn btn-outline" id="les-prev">&larr; AI in Radiology and Medicine</a>
+  <a href="m3-1.html" class="btn btn-outline" id="les-prev">&larr; AI in Radiology &amp; Medicine</a>
   <a href="m3-3.html" class="btn btn-accent" id="les-next">Next: Thinking With AI &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
-<script src="assets/m2-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
+<script src="assets/m2-interactives.js?v=20261013k"></script>
 </body>
 </html>

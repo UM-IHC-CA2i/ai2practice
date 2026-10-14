@@ -4,11 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 1 &middot; AI Around You &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -62,7 +71,7 @@
     <p>For a friendly 12-minute overview, watch this before going on:</p>
     <a class="les-video-card" href="https://www.youtube.com/watch?v=dx_Ruw8vufI" target="_blank" rel="noopener">
       <div class="les-video-thumb">
-        <img src="https://img.youtube.com/vi/dx_Ruw8vufI/hqdefault.jpg" alt="AI Simply Explained in 12 Minutes">
+        <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/dx_Ruw8vufI/hqdefault.jpg" alt="AI Simply Explained in 12 Minutes">
         <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
       </div>
       <div class="les-video-info">
@@ -80,7 +89,7 @@
     <p><strong>Let it learn from examples.</strong> Some tasks are too hard to write down. Try writing a rule for "what does a pneumothorax look like on a chest X-ray?" It depends on the patient's position, the film quality, the size of the collapse and much more. Instead, you show the computer thousands of X-rays, each labeled "pneumothorax" or "no pneumothorax", and let it find the pattern itself. The result is called a <strong>model</strong>, and this approach is called <strong>machine learning</strong>.</p>
 
     <figure class="les-figure">
-      <img src="images/m1/rules-vs-learning.png" alt="Left: a hand-written rule turns a temperature into a fever flag. Right: 10,000 labeled chest X-rays go into training, which produces a model that labels new X-rays.">
+      <img loading="lazy" decoding="async" src="images/m1/rules-vs-learning.png" alt="Left: a hand-written rule turns a temperature into a fever flag. Right: 10,000 labeled chest X-rays go into training, which produces a model that labels new X-rays." width="3360" height="1095">
       <figcaption>Figure 1. A rule is written by a person. A model is learned from labeled examples.</figcaption>
     </figure>
 
@@ -95,15 +104,19 @@
     <p>These four terms are often used as if they mean the same thing. They don't. Each one sits inside the one before it.</p>
 
     <figure class="les-figure">
-      <img src="images/m1/nested-ai.png" alt="Nested ovals: artificial intelligence contains machine learning, which contains deep learning, which contains generative AI. Examples on the right for each level.">
+      <img loading="lazy" decoding="async" src="images/m1/nested-ai.png" alt="Nested ovals: artificial intelligence contains machine learning, which contains deep learning, which contains generative AI. Examples on the right for each level." width="3060" height="1740">
       <figcaption>Figure 2. Each term is a smaller group inside the one before it.</figcaption>
     </figure>
 
-    <div class="m1-terms">
-      <div class="m1-term"><strong>Artificial intelligence</strong><span>The whole field: any system doing a task that normally needs human intelligence. Includes hand-written rule systems.</span></div>
-      <div class="m1-term"><strong>Machine learning (ML)</strong><span>AI that learns patterns from examples instead of following rules a person wrote.</span></div>
-      <div class="m1-term"><strong>Deep learning</strong><span>Machine learning that uses neural networks with many layers. Most modern image AI, including PTX-Detect, is deep learning. Lesson 1.2 explains the layers.</span></div>
-      <div class="m1-term"><strong>Generative AI</strong><span>Deep learning models that <em>create</em> new content, such as text or images. Large language models (LLMs) like ChatGPT are generative AI.</span></div>
+    <p>Before you turn each card over, try to say in your own words what the term means. Then flip it and compare.</p>
+    <div class="ix-flip">
+      <div class="ix-flip-grid">
+        <div class="ix-card"><div class="ix-front"><strong>Artificial intelligence</strong><span>The outermost ring</span></div><div class="ix-back"><strong>Artificial intelligence</strong>The whole field: any system doing a task that normally needs human intelligence. It includes hand-written rule systems, such as an alert when potassium is above 6.0.</div></div>
+        <div class="ix-card"><div class="ix-front"><strong>Machine learning (ML)</strong><span>Inside AI</span></div><div class="ix-back"><strong>Machine learning (ML)</strong>AI that learns patterns from examples instead of following rules a person wrote.</div></div>
+        <div class="ix-card"><div class="ix-front"><strong>Deep learning</strong><span>Inside machine learning</span></div><div class="ix-back"><strong>Deep learning</strong>Machine learning that uses neural networks with many layers. Most modern image AI, including PTX-Detect, is deep learning. Lesson 1.2 explains the layers.</div></div>
+        <div class="ix-card"><div class="ix-front"><strong>Generative AI</strong><span>The innermost ring</span></div><div class="ix-back"><strong>Generative AI</strong>Deep learning models that <em>create</em> new content, such as text or images. Large language models (LLMs) like ChatGPT are generative AI.</div></div>
+      </div>
+      <p class="ix-count"></p>
     </div>
 
     <p>So every deep learning model is machine learning, and every machine learning model is AI. The reverse is not true: a simple rule-based alert is AI but not machine learning.</p>
@@ -243,9 +256,11 @@
   <a href="m1-2.html" class="btn btn-accent" id="les-next">Next: How Models Learn &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
 </body>
 </html>

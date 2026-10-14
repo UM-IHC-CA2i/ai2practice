@@ -4,12 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 2 &middot; What Radiology Is &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="assets/m2.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/m2.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -186,7 +195,7 @@
     <div class="les-video-grid">
       <a class="les-video-card" href="https://www.youtube.com/watch?v=l9swbAtRRbg" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/l9swbAtRRbg/hqdefault.jpg" alt="How Does a CT Scan Work?">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/l9swbAtRRbg/hqdefault.jpg" alt="How Does a CT Scan Work?">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -197,7 +206,7 @@
       </a>
       <a class="les-video-card" href="https://www.youtube.com/watch?v=1CGzk-nV06g" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/1CGzk-nV06g/hqdefault.jpg" alt="How Does an MRI Scan Work?">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/1CGzk-nV06g/hqdefault.jpg" alt="How Does an MRI Scan Work?">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -208,7 +217,7 @@
       </a>
       <a class="les-video-card" href="https://www.youtube.com/watch?v=I1Bdp2tMFsY" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/I1Bdp2tMFsY/hqdefault.jpg" alt="How Does Ultrasound Work?">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/I1Bdp2tMFsY/hqdefault.jpg" alt="How Does Ultrasound Work?">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -219,7 +228,7 @@
       </a>
       <a class="les-video-card" href="https://www.youtube.com/watch?v=GHLBcCv4rqk" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/GHLBcCv4rqk/hqdefault.jpg" alt="How Does a PET Scan Work?">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/GHLBcCv4rqk/hqdefault.jpg" alt="How Does a PET Scan Work?">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -233,10 +242,27 @@
 
   <section class="les-section" id="density">
     <h2>Why things look white or black</h2>
-    <p>On X-ray and CT, brightness tells you how much a tissue blocks the X-rays, which mostly depends on how dense it is. There are only five basic densities to learn:</p>
+    <p>On X-ray and CT, brightness tells you how much a tissue blocks the X-rays, which mostly depends on how dense it is. The denser the material, the more X-rays it stops, and the whiter it looks. Before you see the scale, try to build it yourself.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: darkest to brightest</div>
+      <p class="mi-box-intro">Drag these five things into the order they appear on a CT scan, from black at the top to white at the bottom.</p>
+      <div class="ix-order" data-top="Black" data-bottom="White" data-done="From black to white: air, fat, soft tissue, bone, metal.">
+        <ol class="ix-order-list">
+          <li data-pos="4" data-why="Bone: about +1000 on CT, bright white.">A rib</li>
+          <li data-pos="2" data-why="Fat: about -100, dark gray. Less dense than water.">Fat under the skin</li>
+          <li data-pos="5" data-why="Metal stops almost all X-rays: brighter than bone, often with streaks around it.">A metal surgical clip</li>
+          <li data-pos="1" data-why="Air: -1000, the blackest thing in the body.">Air in the lungs</li>
+          <li data-pos="3" data-why="Soft tissue and blood: about +40, mid-gray, close to water (0).">The heart muscle</li>
+        </ol>
+        <p class="ix-order-result"></p>
+      </div>
+    </div>
+
+    <p>There are only five basic densities to learn:</p>
 
     <figure class="les-figure">
-      <img src="images/m2/density-scale.png" alt="Five boxes from black to white: air (lungs, bowel gas), fat, fluid and soft tissue (blood, muscle, organs), bone, and metal or contrast dye, with approximate CT numbers from about -1000 to above +1000.">
+      <img loading="lazy" decoding="async" src="images/m2/density-scale.png" alt="Five boxes from black to white: air (lungs, bowel gas), fat, fluid and soft tissue (blood, muscle, organs), bone, and metal or contrast dye, with approximate CT numbers from about -1000 to above +1000." width="3360" height="1140">
       <figcaption>Figure 1. The five basic densities on X-ray and CT. The denser the tissue, the whiter it looks.</figcaption>
     </figure>
 
@@ -272,7 +298,7 @@
     <p>CT and MRI produce stacks of slices. A slice can be cut in three directions, called <strong>planes</strong>:</p>
 
     <figure class="les-figure">
-      <img src="images/m2/planes.png" alt="Three simple figures: axial plane cuts across the body like bread slices; coronal plane cuts from front to back; sagittal plane cuts from left to right.">
+      <img loading="lazy" decoding="async" src="images/m2/planes.png" alt="Three simple figures: axial plane cuts across the body like bread slices; coronal plane cuts from front to back; sagittal plane cuts from left to right." width="3360" height="1440">
       <figcaption>Figure 2. The three planes. Axial is the default for CT; the computer can rebuild the other two from the same data.</figcaption>
     </figure>
 
@@ -286,7 +312,7 @@
     <p>Dose is measured in <strong>millisieverts (mSv)</strong>. A helpful way to picture it is to compare it with the natural background radiation everyone receives from the ground, the air and space, about 3 mSv a year in the United States.</p>
 
     <figure class="les-figure">
-      <img src="images/m2/dose-chart.png" alt="Bar chart of typical doses: coast-to-coast round-trip flight 0.03 mSv, chest X-ray 0.1 mSv, CT of the brain 1.6 mSv, one year of natural background 3 mSv, chest CT 6.1 mSv, ultrasound or MRI no ionizing radiation.">
+      <img loading="lazy" decoding="async" src="images/m2/dose-chart.png" alt="Bar chart of typical doses: coast-to-coast round-trip flight 0.03 mSv, chest X-ray 0.1 mSv, CT of the brain 1.6 mSv, one year of natural background 3 mSv, chest CT 6.1 mSv, ultrasound or MRI no ionizing radiation." width="2989" height="1171">
       <figcaption>Figure 3. Typical adult doses, compared with natural background radiation. A chest X-ray is about 10 days of background; a chest CT is about 2 years.</figcaption>
     </figure>
 
@@ -449,10 +475,12 @@
   <a href="m2-2.html" class="btn btn-accent" id="les-next">Next: Images as Data &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
-<script src="assets/m2-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
+<script src="assets/m2-interactives.js?v=20261013k"></script>
 </body>
 </html>

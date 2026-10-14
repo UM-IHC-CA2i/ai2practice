@@ -4,12 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 2 &middot; Images as Data &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="assets/m2.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/m2.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -50,7 +59,7 @@
     <p>Every digital image is made of tiny squares called <strong>pixels</strong> (picture elements). Each pixel holds one number, and the screen turns that number into a shade of gray. On a phone photo, each pixel has three numbers for red, green and blue. Most medical images are grayscale, so one number is enough.</p>
 
     <figure class="les-figure">
-      <img src="images/m2/pixels.png" alt="Left: a small blurry patch of a chest CT showing dark lung, gray chest wall and a white rib. Right: the same patch as an 8 by 8 grid, each square labeled with its CT number, around -850 for lung, +40 for muscle and +700 for bone.">
+      <img loading="lazy" decoding="async" src="images/m2/pixels.png" alt="Left: a small blurry patch of a chest CT showing dark lung, gray chest wall and a white rib. Right: the same patch as an 8 by 8 grid, each square labeled with its CT number, around -850 for lung, +40 for muscle and +700 for bone." width="3149" height="1380">
       <figcaption>Figure 1. What you see, and what the computer stores. An AI model never "sees" the picture on the left; it receives the numbers on the right.</figcaption>
     </figure>
 
@@ -69,7 +78,7 @@
     <p>A useful way to picture a DICOM file is a <strong>letter in an envelope</strong>. The letter is the pixel data: the grid of numbers. The envelope is the <strong>header</strong> (also called metadata, "data about the data"): hundreds of labeled fields saying who the patient is, which scanner made the image, how it was made and where this slice sits in the body.</p>
 
     <figure class="les-figure">
-      <img src="images/m2/dicom-hierarchy.png" alt="Four boxes left to right: Patient (Mr. Diaz), Study (CT pulmonary angiogram, 12 March 01:40), Series (scout, thin contrast slices, lung-window slices, coronal reformats), Images (hundreds of single slices, each its own DICOM file).">
+      <img loading="lazy" decoding="async" src="images/m2/dicom-hierarchy.png" alt="Four boxes left to right: Patient (Mr. Diaz), Study (CT pulmonary angiogram, 12 March 01:40), Series (scout, thin contrast slices, lung-window slices, coronal reformats), Images (hundreds of single slices, each its own DICOM file)." width="3360" height="1230">
       <figcaption>Figure 2. How DICOM organizes Mr. Diaz's scan. One <strong>study</strong> is one exam; it holds several <strong>series</strong> (sets of images made in one way); each series holds many single images.</figcaption>
     </figure>
 
@@ -200,7 +209,7 @@
     <div class="les-video-grid">
       <a class="les-video-card" href="https://www.youtube.com/watch?v=KZld-5W99cI" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img src="https://img.youtube.com/vi/KZld-5W99cI/hqdefault.jpg" alt="Understanding CT windows, levels and densities">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/KZld-5W99cI/hqdefault.jpg" alt="Understanding CT windows, levels and densities">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
@@ -352,10 +361,12 @@
   <a href="m2-3.html" class="btn btn-accent" id="les-next">Next: The Journey of a Scan &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
-<script src="assets/m2-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
+<script src="assets/m2-interactives.js?v=20261013k"></script>
 </body>
 </html>

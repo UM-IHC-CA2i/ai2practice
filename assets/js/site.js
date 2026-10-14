@@ -28,10 +28,10 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
     }
   });
   if(document.querySelector('script[data-ai2-progress-loader]'))return;
-  var own=document.querySelector('script[src$="assets/js/site.js"],script[src$="/site.js"]');
+  var own=document.querySelector('script[src*="assets/js/site.js"]');
   if(!own||!own.src)return;
   var s=document.createElement('script');
-  s.src=new URL('progress.js',own.src).href;
+  s.src=new URL('progress.js'+new URL(own.src).search,own.src).href;
   s.defer=true;
   s.setAttribute('data-ai2-progress-loader','1');
   document.body.appendChild(s);

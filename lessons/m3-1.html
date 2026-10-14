@@ -3,14 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 3 &middot; AI in Radiology and Medicine &mdash; AI2Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/lesson-layout.css">
-<link rel="stylesheet" href="assets/lessons.css">
-<link rel="stylesheet" href="assets/m1.css">
-<link rel="stylesheet" href="assets/m2.css">
-<link rel="stylesheet" href="assets/m3.css">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<title>Module 3 &middot; AI in Radiology &amp; Medicine &mdash; AI2Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261013k">
+<link rel="stylesheet" href="assets/lessons.css?v=20261013k">
+<link rel="stylesheet" href="assets/m1.css?v=20261013k">
+<link rel="stylesheet" href="assets/m2.css?v=20261013k">
+<link rel="stylesheet" href="assets/m3.css?v=20261013k">
+<link rel="stylesheet" href="assets/interactives.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261013k">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261013k" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -25,7 +34,7 @@
     <div class="les-hero-num">3.1</div>
     <div>
       <div class="les-hero-q">Where is AI already used, and what does it do?</div>
-      <h1>AI in Radiology and Medicine</h1>
+      <h1>AI in Radiology &amp; Medicine</h1>
       <p>The AI tools that touch Mr. Diaz's scan, how they share the work with radiologists, AI in the rest of medicine, and generative AI in the clinic</p>
     </div>
   </div>
@@ -78,11 +87,15 @@
   <section class="les-section" id="designs">
     <h2>Who reads first? Four reading designs</h2>
     <p>At the reading step, the same AI tool can be set up in different ways. What changes is <em>when</em> the radiologist sees the AI output, and <em>who</em> has the last word.</p>
-    <div class="m1-terms">
-      <div class="m1-term"><strong>Concurrent</strong><span>AI marks appear while the radiologist reads. Fast, but the marks can pull attention toward what the AI found and away from everything else.</span></div>
-      <div class="m1-term"><strong>Second reader</strong><span>The radiologist reads first and reports, then checks the AI output and reconsiders. Slower, but protects independent judgment.</span></div>
-      <div class="m1-term"><strong>Triage</strong><span>AI reorders the worklist so likely urgent scans are read sooner. The radiologist still reads every scan. Mr. Diaz's PE tool works this way.</span></div>
-      <div class="m1-term"><strong>Autonomous</strong><span>AI makes the call with no human read, for example clearing some clearly normal studies. Rare in radiology so far, and only for narrow tasks.</span></div>
+    <p>For each card, guess when the radiologist sees the AI's output, then flip it.</p>
+    <div class="ix-flip">
+      <div class="ix-flip-grid">
+        <div class="ix-card"><div class="ix-front"><strong>Concurrent</strong><span>AI and radiologist at the same time</span></div><div class="ix-back"><strong>Concurrent</strong>AI marks appear while the radiologist reads. Fast, but the marks can pull attention toward what the AI found and away from everything else.</div></div>
+        <div class="ix-card"><div class="ix-front"><strong>Second reader</strong><span>Radiologist first, AI after</span></div><div class="ix-back"><strong>Second reader</strong>The radiologist reads first and reports, then checks the AI output and reconsiders. Slower, but protects independent judgment.</div></div>
+        <div class="ix-card"><div class="ix-front"><strong>Triage</strong><span>AI decides the order</span></div><div class="ix-back"><strong>Triage</strong>AI reorders the worklist so likely urgent scans are read sooner. The radiologist still reads every scan. Mr. Diaz's PE tool works this way.</div></div>
+        <div class="ix-card"><div class="ix-front"><strong>Autonomous</strong><span>AI alone</span></div><div class="ix-back"><strong>Autonomous</strong>AI makes the call with no human read, for example clearing some clearly normal studies. Rare in radiology so far, and only for narrow tasks.</div></div>
+      </div>
+      <p class="ix-count"></p>
     </div>
     <div class="m2-think">
       <div class="m1-example-label">Think about it</div>
@@ -315,10 +328,12 @@
   <a href="m3-2.html" class="btn btn-accent" id="les-next">Next: Does It Work, and Is It Worth It? &rarr;</a>
 </div>
 
-<script src="../assets/js/shared.js"></script>
-<script src="assets/lessons.js"></script>
-<script src="assets/knowledge-check.js"></script>
-<script src="assets/m1-interactives.js"></script>
-<script src="assets/m2-interactives.js"></script>
+<script src="../assets/js/progress.js?v=20261013k" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261013k"></script>
+<script src="assets/lessons.js?v=20261013k"></script>
+<script src="assets/knowledge-check.js?v=20261013k"></script>
+<script src="assets/interactives.js?v=20261013k"></script>
+<script src="assets/m1-interactives.js?v=20261013k"></script>
+<script src="assets/m2-interactives.js?v=20261013k"></script>
 </body>
 </html>

@@ -18,6 +18,7 @@
   }
 
   function activeSection(path) {
+    if (path === 'index.html') return 'home';
     if (path === 'about.html') return 'about';
     if (path === 'tracker.html') return 'resources';
     if (path.indexOf('lessons/research-') === 0) return 'spec';
@@ -44,6 +45,7 @@
         '<a href="' + siteUrl('index.html') + '" class="nav-brand" aria-label="AI2Practice home"><img src="' + siteUrl('images/ai2practice-logo.svg') + '" alt="AI2Practice" class="nav-logo" width="420" height="103"></a>' +
         '<button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>' +
         '<ul class="nav-links">' +
+          navLink('index.html', 'Home', 'home', active) +
           navLink('curriculum.html', 'Curriculum', 'curriculum', active) +
           '<li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="' + siteUrl('pages/research-lab.html') + '"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="' + siteUrl('pages/adoption-governance.html') + '"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li>' +
           '<li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="' + siteUrl('tracker.html') + '"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="' + siteUrl('pages/brief.html') + '"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="' + siteUrl('pages/educators.html') + '"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li>' +
@@ -137,7 +139,7 @@
   function loadProgressRail() {
     if (document.querySelector('script[data-ai2-progress-loader]')) return;
     var s = document.createElement('script');
-    s.src = siteUrl('assets/js/progress.js');
+    s.src = siteUrl('assets/js/progress.js') + new URL(scriptUrl).search;
     s.defer = true;
     s.setAttribute('data-ai2-progress-loader', '1');
     document.body.appendChild(s);
