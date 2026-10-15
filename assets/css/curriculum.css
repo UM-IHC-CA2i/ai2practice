@@ -15,7 +15,7 @@
 .cur-facts li { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-size: .86rem; }
 .cur-facts b { font-weight: 600; }
 
-/* The path: Module 1 -> 2 -> 3 -> Assessment -> Certificate */
+/* The path: Module 1 -> 2 -> 3 -> Assessment */
 .cur-path { position: relative; display: grid; grid-template-columns: repeat(var(--n, 5), 1fr); gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: none; }
 .cur-path::before { content: ''; position: absolute; left: 10%; right: 10%; top: 17px; height: 3px; border-radius: 2px; background: var(--route-core); }
 .cur-path li { position: relative; text-align: center; }

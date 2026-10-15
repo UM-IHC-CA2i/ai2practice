@@ -107,7 +107,7 @@
       var id='sp-'+key;
       return '<label class="sp-row'+(kind==='switch'?' sp-row--switch':'')+'" for="'+id+'"><input type="checkbox" id="'+id+'" data-practice="'+key+'"'+(state[key]?' checked':'')+'><span class="'+(kind==='switch'?'sp-switch':'sp-box')+'" aria-hidden="true"></span><span class="sp-title">'+label+'</span></label>';
     }
-    return '<fieldset class="sp-mod"><legend><span>Assessment &amp; certificate</span></legend>'+row('assessment','Assessment (80% to pass)')+'</fieldset>';
+    return '<fieldset class="sp-mod"><legend><span>Assessment</span></legend>'+row('assessment','Assessment (80% to pass)')+'</fieldset>';
   }
   function tracks(){
     return '<p class="sp-tracks">Optional tracks, open any time: <a href="'+siteUrl('pages/research-lab.html')+'">Research Lab</a> &middot; <a href="'+siteUrl('pages/adoption-governance.html')+'">Leadership</a></p>';

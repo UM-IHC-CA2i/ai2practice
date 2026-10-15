@@ -23,7 +23,7 @@
     if (path === 'tracker.html') return 'resources';
     if (path.indexOf('lessons/research-') === 0) return 'spec';
     if (
-      path === 'certificate.html' || path === 'assessment.html' ||
+      path === 'assessment.html' ||
       /^lessons\/m[1-3]-[1-9]\.html$/.test(path)
     ) return 'curriculum';
     return '';

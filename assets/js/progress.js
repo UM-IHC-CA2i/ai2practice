@@ -17,7 +17,7 @@
   /* ---------- Curriculum registry ----------
      The single source of truth for core lessons. To publish a planned lesson,
      create lessons/<key>.html from a lesson template and set published:true.
-     optional:true lessons never count toward the certificate. */
+     optional:true lessons never count toward finishing the course. */
   var MODULES = [
     { id:'m1', n:1, label:'Fundamentals', name:'Module 1 · Fundamentals of AI', href:'modules/ai-fundamentals.html', q:'What is AI, and how does it work clinically?' },
     { id:'m2', n:2, label:'Radiology Basics', name:'Module 2 · Radiology Basics: Images, Systems & Reports', href:'modules/informatics.html', q:'What is radiology, and how does a scan become data?' },
@@ -187,7 +187,7 @@
     render(); notify(); return plan;
   }
 
-  // What counts toward the certificate: the assigned plan, or every published required lesson
+  // What counts toward finishing the course: the assigned plan, or every published required lesson
   // plus the assessment.
   function requirements(){
     var plan=activePlan();
@@ -223,7 +223,7 @@
   /* ---------- Pathway model ---------- */
 
   // Steps: learning depth first, then the modules (only those with required lessons),
-  // then the assessment and the certificate.
+  // then the assessment. Once every step is done, the course is complete.
   function steps(){
     var done=completed(), p=selectedPathway(), R=requirements(), plan=R.plan;
     var out=[{ id:'depth', label:'Depth', name:'Learning depth', keys:[], doneCount:p?1:0, done:!!p, depth:true,
@@ -244,9 +244,6 @@
       out.push({ id:'assess', label:'Assessment', name:'Assessment', keys:[], done:!!a.passed,
         href:siteUrl(assessmentHref(p)), note:a.passed ? 'Passed · '+score+'%' : (score!==null ? 'Best '+score+'% · pass at 80%' : 'Pass at 80% or higher') });
     }
-    var ok=eligible(p);
-    out.push({ id:'cert', label:'Certificate', name:plan ? 'Plan completion certificate' : 'Completion certificate', keys:[], done:false, ready:ok, locked:!ok,
-      href:ok ? siteUrl('certificate.html?pathway='+p) : null, note:ok ? 'Ready to generate' : (p ? 'Unlocks when every step is done' : 'Choose a learning depth first') });
     return out;
   }
   function moduleSteps(){ return steps().filter(function(s){ return /^m[1-3]$/.test(s.id); }); }
@@ -256,7 +253,6 @@
     if (m) return m[1];
     for (var i=0;i<MODULES.length;i++) if (p===MODULES[i].href) return MODULES[i].id;
     if (p==='assessment.html') return 'assess';
-    if (p==='certificate.html') return 'cert';
     return null;
   }
   function activeIndex(S){
@@ -285,12 +281,12 @@
     if (!p) return { choose:true, title:'Choose your learning depth', label:'Choose depth', eyebrow:'Start here', note:'Pick Beginner, Intermediate, or Advanced. All three share the same content for now; deeper versions are planned.' };
     for (var i=1;i<S.length;i++){
       var s=S[i];
-      if (s.done || s.id==='cert') continue;
+      if (s.done) continue;
       if (/^m[1-3]$/.test(s.id)) return { title:s.nextTitle, label:'Continue lesson', href:s.href, eyebrow:'Next: '+s.name };
       if (s.id==='assess') return { title:s.name, label:'Take assessment', href:s.href, eyebrow:'Next: assessment', note:'Pass score: 80% or higher.' };
     }
     var c=S[S.length-1];
-    return { title:'Your certificate is ready', label:'Generate certificate', href:c.href, eyebrow:'All requirements complete', done:true };
+    return { title:'Course complete', label:'Review', href:c.href, eyebrow:'All requirements complete', done:true };
   }
 
   /* ---------- Resume position (last lesson + how far in) ---------- */
@@ -529,11 +525,11 @@
       });
       html+=olGroup(m.id, 'Module '+m.n+' · '+m.label, req.length ? n+'/'+req.length : '', items, !!here && here.module===m.id);
     });
-    var practice=sbody.filter(function(s){ return s.id==='assess' || s.id==='cert'; }).map(function(s){
-      return olItem({ title:s.name, href:s.href, done:s.done, tag:s.id==='cert' ? (s.ready ? 'Ready' : 'Locked') : '' });
+    var practice=sbody.filter(function(s){ return s.id==='assess'; }).map(function(s){
+      return olItem({ title:s.name, href:s.href, done:s.done });
     });
-    if (!pr) practice.unshift('<li class="ai2-ol-note">Choose a learning depth in <a href="#progress" data-open-progress="true">progress</a> to unlock these.</li>');
-    html+=olGroup('practice','Assessment & certificate','',practice,false);
+    if (!pr) practice.unshift('<li class="ai2-ol-note">Choose a learning depth in <a href="#progress" data-open-progress="true">progress</a> to unlock this.</li>');
+    html+=olGroup('practice','Assessment','',practice,false);
     var rn=RESEARCH_KEYS.filter(function(k){ return done.indexOf(k)!==-1; }).length;
     var labs=RESEARCH.map(function(r,i){
       return olItem({ num:String(i+1), title:r.label, href:siteUrl('lessons/'+r.key+'.html'), done:done.indexOf(r.key)!==-1, here:r.key===key });
@@ -710,7 +706,7 @@
   }
 
   /* ---------- Sign-in gate ----------
-     When sign-in is on, lessons, the assessment and the certificate need an account, and the
+     When sign-in is on, lessons and the assessment need an account, and the
      Start button asks for sign-in before the depth picker opens. Overview pages stay open.
      With sign-in off (enabled:false or no config), nothing is gated. */
 
@@ -723,7 +719,7 @@
   function rememberSignedIn(st){
     try { if (st.user) localStorage.setItem(SIGNED_KEY,'1'); else if (st.ready) localStorage.removeItem(SIGNED_KEY); } catch(e) {}
   }
-  function gatedPage(){ return /^(lessons\/[^\/]+\.html|assessment\.html|certificate\.html)$/.test(relativePath()); }
+  function gatedPage(){ return /^(lessons\/[^\/]+\.html|assessment\.html)$/.test(relativePath()); }
   function createGate(){
     if (gate) return;
     gate=document.createElement('div'); gate.id='ai2Gate'; gate.className='ai2-gate';
@@ -773,7 +769,7 @@
     if (!cfgLoaded) text='Checking sign-in…';
     else if (authFailed || (st.error && !st.ready)) { text='Sign-in could not load. Check your internet connection and try again.'; btn='Try again'; }
     else if (!st.ready) text='Checking sign-in…';
-    else { text='The course needs a free account so your progress is saved and your certificate carries your name. Use '+providers()+'.'; btn='Sign in or create account'; }
+    else { text='The course needs a free account so your progress is saved. Use '+providers()+'.'; btn='Sign in or create account'; }
     gate.classList.toggle('is-checking', !btn);
     document.getElementById('ai2GateText').textContent=text;
     var b=document.getElementById('ai2GateBtn'), show=!!btn;
@@ -791,7 +787,7 @@
     var bits=[plan.lessons.length+' lesson'+(plan.lessons.length===1?'':'s')];
     if (plan.assessment) bits.push('assessment');
     el.hidden=false;
-    el.innerHTML='<div><span>'+(plan.self ? 'Your plan' : 'Assigned plan')+'</span><strong>'+esc(plan.title || (plan.self ? 'Lessons you chose' : 'Plan from your educator'))+'</strong><small>'+esc(bits.join(' · '))+(plan.depth ? ' · '+esc(PATHWAYS[plan.depth].label)+' depth' : '')+'. Your certificate covers exactly these items.</small></div><button type="button" class="ai2-plan-leave" id="ai2LeavePlan">'+(plan.self ? 'Clear plan' : 'Leave plan')+'</button>';
+    el.innerHTML='<div><span>'+(plan.self ? 'Your plan' : 'Assigned plan')+'</span><strong>'+esc(plan.title || (plan.self ? 'Lessons you chose' : 'Plan from your educator'))+'</strong><small>'+esc(bits.join(' · '))+(plan.depth ? ' · '+esc(PATHWAYS[plan.depth].label)+' depth' : '')+'. Finishing these items completes the course.</small></div><button type="button" class="ai2-plan-leave" id="ai2LeavePlan">'+(plan.self ? 'Clear plan' : 'Leave plan')+'</button>';
     document.getElementById('ai2LeavePlan').onclick=function(){
       if (window.confirm(plan.self ? 'Clear the lessons you picked? Your completed lessons stay saved; the full curriculum becomes your pathway again.' : 'Leave this assigned plan? Your completed lessons stay saved; the full curriculum becomes your pathway again.')) leavePlan();
     };
@@ -831,7 +827,6 @@
       var cls=(s.done?'done':'')+(s.locked?' locked':'')+(i===active?' is-active':'');
       var action;
       if (s.depth) action='';
-      else if (s.id==='cert' && s.ready) action='<a class="ai2-btn ai2-btn-primary" href="'+s.href+'">Generate</a>';
       else if (s.done) action='<a href="'+(s.href||'#')+'">Review</a>';
       else if (s.href) action='<a href="'+s.href+'">'+(i===active?'Continue':'Open')+' &rarr;</a>';
       else action='';
@@ -898,14 +893,13 @@
       var a=assessmentRecord(p), sc=Number(a.bestScore) ? Math.round(a.bestScore) : null;
       return { full:!!a.passed, text:a.passed ? 'Passed, '+sc+'%' : (sc!==null ? 'Best '+sc+'%, pass at 80%' : '') };
     }
-    if (id==='cert') { var ok=eligible(p); return { full:ok, text:ok ? 'Ready to generate' : '' }; }
     if (id.indexOf('research-')===0) return { full:done.indexOf(id)!==-1, text:done.indexOf(id)!==-1 ? 'Complete' : '' };
     return { full:false, text:'' };
   }
   function renderHomeMap(){
     var svg=document.querySelector('.map-wrap svg'); if(!svg) return;
     var S=steps(), p=selectedPathway(), cur=S[activeIndex(S)];
-    var here=cur.id==='depth' ? 'pre-check' : (cur.id==='cert' ? 'assess' : cur.id);
+    var here=cur.id==='depth' ? 'pre-check' : cur.id;
     svg.querySelectorAll('a[data-ai2-stop]').forEach(function(a){
       var id=a.getAttribute('data-ai2-stop'), dot=a.querySelector('circle:not(.hit):not(.beacon)'); if(!dot) return;
       ['fill','stroke','stroke-dasharray'].forEach(function(k){ var o='data-ai2-'+k; if(!dot.hasAttribute(o)) dot.setAttribute(o, dot.getAttribute(k)||''); var v=dot.getAttribute(o); if(v) dot.setAttribute(k,v); else dot.removeAttribute(k); });
@@ -945,7 +939,7 @@
     document.querySelectorAll('.mobile-map li[data-ai2-stop]').forEach(function(li){
       var id=li.getAttribute('data-ai2-stop'), st=/^m[1-3]$/.test(id) ? mapStopState(id,S,p) : null;
       var isDone=id==='depth' ? !!p : (id==='practice' ? eligible(p) : !!(st && st.full));
-      var isHere=id==='practice' ? /^(assess|cert)$/.test(cur.id) : cur.id===id;
+      var isHere=id==='practice' ? cur.id==='assess' : cur.id===id;
       li.classList.toggle('ai2-done', isDone); li.classList.toggle('ai2-here', isHere);
       if (st && st.keys.length && !st.full) li.setAttribute('data-ai2-progress', st.done.filter(function(k){ return st.keys.indexOf(k)!==-1; }).length+'/'+st.keys.length); else li.removeAttribute('data-ai2-progress');
     });
@@ -964,7 +958,7 @@
       var t=card.querySelector('[data-ai2-next-title]'), e=card.querySelector('[data-ai2-next-eyebrow]'), no=card.querySelector('[data-ai2-next-note]'), a=card.querySelector('[data-ai2-next-link]');
       if (e) e.textContent=n.eyebrow;
       if (t) t.textContent=n.title;
-      if (no) no.textContent=n.note || (p ? PATHWAYS[p].description : 'Finish the core lessons and pick a learning depth to unlock the assessment and your certificate.');
+      if (no) no.textContent=n.note || (p ? PATHWAYS[p].description : 'Finish the core lessons and pick a learning depth to unlock the assessment.');
       if (a) {
         a.innerHTML=esc(n.choose ? 'See all steps' : n.label)+' &rarr;';
         if (n.choose) { a.href='#progress'; a.setAttribute('data-open-progress','true'); }
@@ -1126,7 +1120,7 @@
     // Used by assets/js/auth.js to sync with the signed-in account.
     snapshot:snapshot, merge:function(obj){ mergeProgress(cleanSnapshot(obj)); }, openAuth:openAuth,
     open:openDrawer, render:render, setPathway:setPathway,
-    // Read-only helpers for the certificate and educator pages.
+    // Read-only helpers for the educator page.
     curriculum:function(){ return { modules:MODULES.slice(), lessons:LESSONS.map(function(l){ return Object.assign({},l); }), pathways:PATHWAY_ORDER.map(function(k){ return { id:k, label:PATHWAYS[k].label }; }) }; },
     requirements:requirements, eligible:eligible, selectedPathway:selectedPathway, completed:completed,
     assessmentRecord:assessmentRecord, activePlan:activePlan, setPlan:setPlan, leavePlan:leavePlan

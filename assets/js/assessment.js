@@ -108,15 +108,15 @@ var AssessmentEngine = (function() {
       if (pct >= 80) {
         document.getElementById('quiz-status').textContent = 'Passed';
         document.getElementById('quiz-status').className = 'quiz-status passed';
-        var cert = document.getElementById('cert-section');
-        if (cert) { cert.style.display = 'block'; cert.innerHTML = '<p><strong>Assessment passed.</strong> Your score is saved locally. The certificate unlocks once the required published lessons are also complete.</p><p><a class="btn btn-accent" href="#progress" data-open-progress="true">View progress &amp; completion</a></p>'; }
+        var pass = document.getElementById('pass-section');
+        if (pass) { pass.style.display = 'block'; pass.innerHTML = '<p><strong>Assessment passed.</strong> Your score is saved locally. Once the required published lessons are also done, the course is complete.</p><p><a class="btn btn-accent" href="#progress" data-open-progress="true">View progress &amp; completion</a></p>'; }
         var retryHide = document.getElementById('retry-section');
         if (retryHide) retryHide.style.display = 'none';
       } else {
         document.getElementById('quiz-status').textContent = 'Not Yet';
         document.getElementById('quiz-status').className = 'quiz-status failed';
-        var certHide = document.getElementById('cert-section');
-        if (certHide) certHide.style.display = 'none';
+        var passHide = document.getElementById('pass-section');
+        if (passHide) passHide.style.display = 'none';
         var retry = document.getElementById('retry-section');
         if (retry) retry.style.display = 'block';
       }

@@ -1668,33 +1668,6 @@ tr:hover td { background: var(--offwhite); }
 .quiz-status.passed { color: var(--mint-dark); }
 .quiz-status.failed { color: var(--amber); }
 
-/* ── Certificate Form ── */
-.cert-form {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.cert-form input {
-  padding: 10px 16px;
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  font-family: var(--heading);
-  color: var(--gray-900);
-  background: var(--white);
-  min-width: 240px;
-}
-
-.cert-form input:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-light);
-}
-
 /* ── Radio / Checkbox Group ── */
 .option-group {
   display: flex;
@@ -1889,8 +1862,6 @@ tr:hover td { background: var(--offwhite); }
   .card-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
-  .cert-form { flex-direction: column; }
-  .cert-form input { width: 100%; min-width: auto; }
 }
 
 @media (max-width: 480px) {
