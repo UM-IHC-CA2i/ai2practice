@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-learner="out" data-tbtn="filled" data-grain="horizon">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,11 +8,6 @@
   <title>AI2Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261013k" />
-  <link rel="stylesheet" href="assets/css/theme.css?v=20261013k" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20261013k" />
-  <link rel="stylesheet" href="assets/css/start-picker.css?v=20261013k" />
 <!-- AI2PRACTICE SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/" />
@@ -28,6 +23,11 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"AI2Practice","url":"https://um-ihc-ca2i.github.io/ai2practice/","description":"Open clinical AI education for radiology: fundamentals, radiology data and workflow, clinical use, research, adoption, governance, and practical tools."}
   </script>
 <!-- /AI2PRACTICE SEO -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261015d" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261015d" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20261015d" />
+  <script>(function(r){r.classList.add('js');try{if(sessionStorage.getItem('ai2practice_home_seen'))r.classList.add('seen');sessionStorage.setItem('ai2practice_home_seen','1');}catch(e){}})(document.documentElement);</script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -39,239 +39,516 @@
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
   <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
-
-<main id="main" class="home-shell">
-  <section class="hero">
-    <canvas class="hero-canvas" aria-hidden="true"></canvas>
-    <div class="hero-inner">
-      <h1 class="hero-brand"><svg class="hero-logo" xmlns="http://www.w3.org/2000/svg" viewBox="-205.1 -939.0 5726.0 1180.0" role="img" aria-label="AI2Practice"><title>AI2Practice</title><path d="M-145.5 -753.8V-879.5H-19.9 M1293.3 -879.5H1419.0V-753.8 M-145.5 55.8V181.5H-19.9 M1293.3 181.5H1419.0V55.8" fill="none" stroke="#FFFFFF" stroke-width="39.1" stroke-linejoin="miter"/><path d="M522.0 0.0 459.0 -189.0H198.0L137.0 0.0H22.0L260.0 -698.0H402.0L640.0 0.0ZM331.0 -594.0H326.0L225.0 -286.0H431.0Z M718.0 0.0V-92.0H813.0V-606.0H718.0V-698.0H1022.0V-606.0H926.0V-92.0H1022.0V0.0Z M1825.9160000000002 0.0V-698.0H2125.916Q2222.916 -698.0 2275.916 -641.0Q2328.916 -584.0 2328.916 -488.0Q2328.916 -392.0 2275.916 -335.0Q2222.916 -278.0 2125.916 -278.0H1938.9160000000002V0.0ZM1938.9160000000002 -377.0H2118.916Q2161.916 -377.0 2185.916 -399.5Q2209.916 -422.0 2209.916 -464.0V-512.0Q2209.916 -554.0 2185.916 -576.5Q2161.916 -599.0 2118.916 -599.0H1938.9160000000002Z M2434.916 0.0V-520.0H2543.916V-420.0H2548.916Q2559.916 -460.0 2594.916 -490.0Q2629.916 -520.0 2691.916 -520.0H2720.916V-415.0H2677.916Q2612.916 -415.0 2578.416 -394.0Q2543.916 -373.0 2543.916 -332.0V0.0Z M3190.916 0.0Q3147.916 0.0 3124.916 -24.5Q3101.916 -49.0 3096.916 -87.0H3091.916Q3076.916 -38.0 3036.916 -13.0Q2996.916 12.0 2939.916 12.0Q2858.916 12.0 2815.416 -30.0Q2771.916 -72.0 2771.916 -143.0Q2771.916 -221.0 2828.416 -260.0Q2884.916 -299.0 2993.916 -299.0H3087.916V-343.0Q3087.916 -391.0 3061.916 -417.0Q3035.916 -443.0 2980.916 -443.0Q2934.916 -443.0 2905.916 -423.0Q2876.916 -403.0 2856.916 -372.0L2791.916 -431.0Q2817.916 -475.0 2864.916 -503.5Q2911.916 -532.0 2987.916 -532.0Q3088.916 -532.0 3142.916 -485.0Q3196.916 -438.0 3196.916 -350.0V-89.0H3251.916V0.0ZM2970.916 -71.0Q3021.916 -71.0 3054.916 -93.5Q3087.916 -116.0 3087.916 -154.0V-229.0H2995.916Q2882.916 -229.0 2882.916 -159.0V-141.0Q2882.916 -106.0 2906.416 -88.5Q2929.916 -71.0 2970.916 -71.0Z M3559.916 12.0Q3503.916 12.0 3459.916 -7.0Q3415.916 -26.0 3385.916 -61.5Q3355.916 -97.0 3339.916 -147.5Q3323.916 -198.0 3323.916 -260.0Q3323.916 -322.0 3339.916 -372.5Q3355.916 -423.0 3385.916 -458.5Q3415.916 -494.0 3459.916 -513.0Q3503.916 -532.0 3559.916 -532.0Q3637.916 -532.0 3687.916 -497.0Q3737.916 -462.0 3760.916 -404.0L3670.916 -362.0Q3659.916 -398.0 3632.416 -419.5Q3604.916 -441.0 3559.916 -441.0Q3499.916 -441.0 3469.416 -403.5Q3438.916 -366.0 3438.916 -306.0V-213.0Q3438.916 -153.0 3469.416 -115.5Q3499.916 -78.0 3559.916 -78.0Q3607.916 -78.0 3636.416 -101.5Q3664.916 -125.0 3681.916 -164.0L3764.916 -120.0Q3738.916 -56.0 3686.916 -22.0Q3634.916 12.0 3559.916 12.0Z M4012.916 0.0Q3955.916 0.0 3926.916 -29.5Q3897.916 -59.0 3897.916 -113.0V-431.0H3816.916V-520.0H3860.916Q3887.916 -520.0 3898.416 -532.0Q3908.916 -544.0 3908.916 -571.0V-662.0H4006.916V-520.0H4115.916V-431.0H4006.916V-89.0H4107.916V0.0Z M4288.916 -613.0Q4254.916 -613.0 4239.416 -629.0Q4223.916 -645.0 4223.916 -670.0V-687.0Q4223.916 -712.0 4239.416 -728.0Q4254.916 -744.0 4288.916 -744.0Q4322.916 -744.0 4337.916 -728.0Q4352.916 -712.0 4352.916 -687.0V-670.0Q4352.916 -645.0 4337.916 -629.0Q4322.916 -613.0 4288.916 -613.0ZM4233.916 -520.0H4342.916V0.0H4233.916Z M4699.916 12.0Q4643.916 12.0 4599.916 -7.0Q4555.916 -26.0 4525.916 -61.5Q4495.916 -97.0 4479.916 -147.5Q4463.916 -198.0 4463.916 -260.0Q4463.916 -322.0 4479.916 -372.5Q4495.916 -423.0 4525.916 -458.5Q4555.916 -494.0 4599.916 -513.0Q4643.916 -532.0 4699.916 -532.0Q4777.916 -532.0 4827.916 -497.0Q4877.916 -462.0 4900.916 -404.0L4810.916 -362.0Q4799.916 -398.0 4772.416 -419.5Q4744.916 -441.0 4699.916 -441.0Q4639.916 -441.0 4609.416 -403.5Q4578.916 -366.0 4578.916 -306.0V-213.0Q4578.916 -153.0 4609.416 -115.5Q4639.916 -78.0 4699.916 -78.0Q4747.916 -78.0 4776.416 -101.5Q4804.916 -125.0 4821.916 -164.0L4904.916 -120.0Q4878.916 -56.0 4826.916 -22.0Q4774.916 12.0 4699.916 12.0Z M5206.916 12.0Q5150.916 12.0 5106.916 -7.0Q5062.916 -26.0 5031.916 -61.5Q5000.916 -97.0 4984.416 -147.5Q4967.916 -198.0 4967.916 -260.0Q4967.916 -322.0 4984.416 -372.5Q5000.916 -423.0 5031.916 -458.5Q5062.916 -494.0 5106.916 -513.0Q5150.916 -532.0 5206.916 -532.0Q5263.916 -532.0 5307.416 -512.0Q5350.916 -492.0 5379.916 -456.5Q5408.916 -421.0 5423.416 -374.0Q5437.916 -327.0 5437.916 -273.0V-232.0H5080.916V-215.0Q5080.916 -155.0 5116.416 -116.5Q5151.916 -78.0 5217.916 -78.0Q5265.916 -78.0 5298.916 -99.0Q5331.916 -120.0 5354.916 -156.0L5418.916 -93.0Q5389.916 -45.0 5334.916 -16.5Q5279.916 12.0 5206.916 12.0ZM5206.916 -447.0Q5178.916 -447.0 5155.416 -437.0Q5131.916 -427.0 5115.416 -409.0Q5098.916 -391.0 5089.916 -366.0Q5080.916 -341.0 5080.916 -311.0V-304.0H5322.916V-314.0Q5322.916 -374.0 5291.916 -410.5Q5260.916 -447.0 5206.916 -447.0Z" fill="#FFFFFF"/><g transform="translate(1164.23 -698) scale(6.98)" class="two"><path d="M16 31C17 16 29 7.5 42 7.5C56 7.5 66.7 16 66.7 29C66.7 40 61 49 54 56" fill="none" class="two-stroke" stroke-width="15.0"/><path d="M49.40 49.99 L60.01 60.60 L35.61 85.00 L73.20 85.00 L73.20 100.00 L-0.61 100.00Z"/></g></svg></h1>
-      <p class="hero-desc">Clinical AI education for radiology, from foundations to practice.</p>
-
-      <a class="hero-scroll" href="#map">Explore the curriculum <span aria-hidden="true">&darr;</span></a>
-    </div>
-  </section>
-
-  <div class="map-head"><h2>Curriculum map</h2><span>Pick any lesson to begin</span></div>
-
-  <div class="map-wrap" id="map">
-<svg viewBox="-10 50 1300 480" role="group" aria-label="Curriculum map. Start with a learning depth: Beginner is available, Intermediate and Advanced are coming soon. Then Module 1, 2 and 3, the assessment and the certificate. Finished stops are filled in, partly finished modules fill one slice per lesson, and your current step blinks. The Research Lab track branches off after Module 2 and the Leadership track after Module 3; both are optional and can be opened any time. Every stop is a link.">
-<!-- optional tracks branch off the core; .flow animates the dashes outward (off under reduced motion) -->
-<path class="flow" d="M615 180 C652 180 668 206 678 245 C703 342 740 470 820 470 H1228" stroke="var(--route-res)" stroke-width="12" fill="none" stroke-dasharray="25 5"/>
-<path class="flow" d="M812 180 C848 180 862 204 870 238 C890 323 925 350 960 350 H1228" stroke="var(--route-lead)" stroke-width="12" fill="none" stroke-dasharray="25 5"/>
-<!-- learning depth: Beginner is live; the others are dotted until published -->
-<path d="M150 180 H240" stroke="#cbd5e1" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="1 11"/>
-<path d="M150 245 H170 C205 245 205 180 240 180" stroke="#cbd5e1" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="1 11"/>
-<path d="M150 115 H170 C205 115 205 180 240 180" stroke="var(--route-beg)" stroke-width="10" fill="none" stroke-linecap="round"/>
-<path d="M236 180 H1200" stroke="var(--route-core)" stroke-width="16" stroke-linecap="round" fill="none"/>
-<!-- Stops. Add data-soon to a stop whose page does not exist yet: it shows a notice instead of a 404. -->
-<text x="20" y="80" class="mT">LEARNING DEPTH</text>
-<a href="modules/ai-fundamentals.html?pathway=beginner" class="st" data-ai2-stop="depth-beginner" data-open-picker data-picker-depth="beginner"><title>Beginner learning depth: choose your lessons</title><circle class="hit" cx="150" cy="115" r="28"/><circle class="beacon" cx="150" cy="115" r="16.5" fill="none" stroke="var(--route-beg)" stroke-width="2.5"/><circle cx="150" cy="115" r="14" fill="#fff" stroke="var(--route-beg)" stroke-width="5"/><text x="126" y="121" text-anchor="end" class="mL">Beginner</text></a>
-<a href="#map" class="st depth-soon" data-ai2-stop="depth-intermediate" data-soon="Intermediate depth: coming soon"><title>Intermediate learning depth (coming soon)</title><circle class="hit" cx="150" cy="180" r="28"/><circle cx="150" cy="180" r="12" fill="#fff" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="4 3"/><text x="126" y="181" text-anchor="end" class="mL" style="fill:#9ca3af">Intermediate</text><text x="126" y="198" text-anchor="end" class="mT" style="font-size:10.5px">COMING SOON</text></a>
-<a href="#map" class="st depth-soon" data-ai2-stop="depth-advanced" data-soon="Advanced depth: coming soon"><title>Advanced learning depth (coming soon)</title><circle class="hit" cx="150" cy="245" r="28"/><circle cx="150" cy="245" r="12" fill="#fff" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="4 3"/><text x="126" y="246" text-anchor="end" class="mL" style="fill:#9ca3af">Advanced</text><text x="126" y="263" text-anchor="end" class="mT" style="font-size:10.5px">COMING SOON</text></a>
-<a href="modules/ai-fundamentals.html" class="st map-module-stop" data-ai2-stop="m1" aria-label="Module 1: Fundamentals of AI. What is AI, and how does it work clinically?" data-map-items="AI around you|How models learn|Data &amp; labels|Measuring performance|Limits &amp; failures"><title>Module 1: Fundamentals of AI</title><circle class="hit" cx="340" cy="180" r="32"/><circle cx="340" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="340" y="140" text-anchor="middle" class="mL">1 &middot; Fundamentals of AI</text><text x="340" y="229" text-anchor="middle" class="mQ"><tspan x="340">What is AI, and how does it</tspan><tspan x="340" dy="17">work clinically?</tspan></text></a>
-<a href="modules/informatics.html" class="st map-module-stop" data-ai2-stop="m2" aria-label="Module 2: Radiology Basics: Images, Systems and Reports. What is radiology, and how does a scan become data?" data-map-items="What radiology is|Images as data|The journey of a scan|Reading a radiology report"><title>Module 2: Radiology Basics: Images, Systems &amp; Reports</title><circle class="hit" cx="560" cy="180" r="32"/><circle cx="560" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="560" y="140" text-anchor="middle" class="mL">2 &middot; Radiology Basics</text><text x="560" y="229" text-anchor="middle" class="mQ"><tspan x="560">What is radiology, and how</tspan><tspan x="560" dy="17">does a scan become data?</tspan></text></a>
-<a href="modules/clinical-practice.html" class="st map-module-stop" data-ai2-stop="m3" aria-label="Module 3: AI in Clinical Practice. How does AI affect my clinical practice?" data-map-items="AI in radiology &amp; medicine|Does it work, and is it worth it?|Thinking with AI|Responsibility &amp; patients|The future of AI in radiology"><title>Module 3: AI in Clinical Practice</title><circle class="hit" cx="780" cy="180" r="32"/><circle cx="780" cy="180" r="20" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="780" y="140" text-anchor="middle" class="mL">3 &middot; Clinical Practice</text><text x="780" y="229" text-anchor="middle" class="mQ"><tspan x="780">How does AI affect my</tspan><tspan x="780" dy="17">clinical practice?</tspan></text></a>
-<a href="assessment.html" class="st mini" data-ai2-stop="assess"><title>Assessment</title><circle class="hit" cx="990" cy="180" r="26"/><circle cx="990" cy="180" r="13" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="990" y="150" text-anchor="middle" class="mL" style="font-size:15px">Assessment</text></a>
-<a href="certificate.html" class="st mini" data-ai2-stop="cert"><title>Certificate</title><circle class="hit" cx="1200" cy="180" r="26"/><circle cx="1200" cy="180" r="14" fill="#fff" stroke="var(--route-core)" stroke-width="5"/><text x="1200" y="150" text-anchor="middle" class="mL" style="font-size:15px">Certificate</text></a>
-<a href="pages/research-lab.html" class="st mini"><title>Research Lab overview</title><text x="750" y="462" text-anchor="end" class="mL" style="fill:var(--route-res)">Research Lab</text><text x="750" y="482" text-anchor="end" class="mS">optional &middot; 5 labs</text></a>
-<a href="pages/adoption-governance.html" class="st mini"><title>Leadership overview</title><text x="890" y="342" text-anchor="end" class="mL" style="fill:var(--route-lead)">Leadership</text><text x="890" y="362" text-anchor="end" class="mS">optional track</text></a>
-<g class="mS">
-<a href="pages/adoption-governance.html#stage-define" class="st mini"><title>Leadership: Define the need</title><circle class="hit" cx="1000" cy="350" r="20"/><circle cx="1000" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="1000" y="328" text-anchor="middle">Define</text></a>
-<a href="pages/adoption-governance.html#stage-select" class="st mini"><title>Leadership: Select &amp; procure</title><circle class="hit" cx="1057" cy="350" r="20"/><circle cx="1057" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="1057" y="384" text-anchor="middle">Select</text></a>
-<a href="pages/adoption-governance.html#stage-validate" class="st mini"><title>Leadership: Validate locally</title><circle class="hit" cx="1114" cy="350" r="20"/><circle cx="1114" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="1114" y="328" text-anchor="middle">Validate</text></a>
-<a href="pages/adoption-governance.html#stage-implement" class="st mini"><title>Leadership: Implement</title><circle class="hit" cx="1171" cy="350" r="20"/><circle cx="1171" cy="350" r="10" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="1171" y="384" text-anchor="middle">Implement</text></a>
-<a href="pages/adoption-governance.html#stage-monitor" class="st mini"><title>Leadership: Monitor &amp; govern</title><circle class="hit" cx="1228" cy="350" r="20"/><circle cx="1228" cy="350" r="12" fill="#fff" stroke="var(--route-lead)" stroke-width="4"/><text x="1228" y="328" text-anchor="middle">Monitor</text></a>
-<a href="lessons/research-1.html" class="st mini" data-ai2-stop="research-1"><title>Research Lab 1: Python &amp; GitHub</title><circle class="hit" cx="870" cy="470" r="20"/><circle cx="870" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="870" y="504" text-anchor="middle">Python</text></a>
-<a href="lessons/research-2.html" class="st mini" data-ai2-stop="research-2"><title>Research Lab 2: Data science &amp; evaluation</title><circle class="hit" cx="960" cy="470" r="20"/><circle cx="960" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="960" y="448" text-anchor="middle">Data science</text></a>
-<a href="lessons/research-3.html" class="st mini" data-ai2-stop="research-3"><title>Research Lab 3: ML &amp; image processing</title><circle class="hit" cx="1049" cy="470" r="20"/><circle cx="1049" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="1049" y="504" text-anchor="middle">ML &amp; imaging</text></a>
-<a href="lessons/research-4.html" class="st mini" data-ai2-stop="research-4"><title>Research Lab 4: Advanced AI &amp; NLP</title><circle class="hit" cx="1139" cy="470" r="20"/><circle cx="1139" cy="470" r="10" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="1139" y="448" text-anchor="middle">NLP</text></a>
-<a href="lessons/research-5.html" class="st mini" data-ai2-stop="research-5"><title>Research Lab 5: Mini research project</title><circle class="hit" cx="1228" cy="470" r="20"/><circle cx="1228" cy="470" r="12" fill="#fff" stroke="var(--route-res)" stroke-width="4"/><text x="1228" y="504" text-anchor="middle">Project</text></a>
-</g>
-</svg>
-    <ul class="mobile-map">
-      <li style="--c:var(--route-beg)" data-ai2-stop="depth"><b>Learning depth</b><br><small><a href="modules/ai-fundamentals.html?pathway=beginner" data-open-picker data-picker-depth="beginner">Beginner</a> &middot; Intermediate (coming soon) &middot; Advanced (coming soon)</small></li>
-      <li style="--c:var(--route-core)" data-ai2-stop="m1"><a href="modules/ai-fundamentals.html"><b>1 &middot; Fundamentals of AI</b><small>What is AI, and how does it work clinically?</small></a></li>
-      <li style="--c:var(--route-core)" data-ai2-stop="m2"><a href="modules/informatics.html"><b>2 &middot; Radiology Basics: Images, Systems &amp; Reports</b><small>What is radiology, and how does a scan become data?</small></a></li>
-      <li class="opt" style="--c:var(--route-res)"><a href="pages/research-lab.html">Branch: Research Lab (optional)</a></li>
-      <li style="--c:var(--route-core)" data-ai2-stop="m3"><a href="modules/clinical-practice.html"><b>3 &middot; AI in Clinical Practice</b><small>How does AI affect my clinical practice?</small></a></li>
-      <li class="opt" style="--c:var(--route-lead)"><a href="pages/adoption-governance.html">Branch: Leadership (optional)</a></li>
-      <li style="--c:var(--route-core)" data-ai2-stop="practice"><b>Assessment &amp; certificate</b><br><small><a href="assessment.html">Assessment</a> &middot; <a href="certificate.html">Certificate</a></small></li>
-    </ul>
+<script>try{if(localStorage.getItem('ai2practice_signed_in_v1')==='1')document.documentElement.setAttribute('data-learner','new');}catch(e){}</script>
+<main id="main">
+<section class="hero">
+  <div class="deco" aria-hidden="true">
+    <i class="blob g-h" style="--c:var(--g1);--s:1100px;left:50%;margin-left:-550px;bottom:-640px;--o:.55;--t:30s;--dx:0px;--dy:-14px"></i>
+    <i class="blob g-c" style="--c:var(--g2);--s:520px;left:-200px;top:-200px;--o:.4"></i>
   </div>
-  <div class="map-module-tooltip" id="mapModuleTooltip" role="tooltip" aria-hidden="true"></div>
-  <div class="legend" aria-label="Map key">
-    <div class="legend-row"><span class="legend-k">Routes</span><span><i style="background:var(--route-beg)"></i>Learning depth</span><span><i style="background:var(--route-core)"></i>Core</span><span><i class="dash" style="color:var(--route-res)"></i>Research Lab <em>optional</em></span><span><i class="dash" style="color:var(--route-lead)"></i>Leadership <em>optional</em></span></div>
-    <div class="legend-row legend-prog"><span class="legend-k">Progress</span><span><b class="lp-done"></b>Done</span><span><b class="lp-part"></b>In progress</span><span><b class="lp-here"></b>Next step</span></div>
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <h1 class="hero-brand rv"><svg class="hero-logo" xmlns="http://www.w3.org/2000/svg" viewBox="-205.1 -939.0 5726.0 1180.0" role="img" aria-label="AI2Practice"><title>AI2Practice</title><path d="M-145.5 -753.8V-879.5H-19.9 M1293.3 -879.5H1419.0V-753.8 M-145.5 55.8V181.5H-19.9 M1293.3 181.5H1419.0V55.8" fill="none" stroke="#FFFFFF" stroke-width="39.1" stroke-linejoin="miter"/><path d="M522.0 0.0 459.0 -189.0H198.0L137.0 0.0H22.0L260.0 -698.0H402.0L640.0 0.0ZM331.0 -594.0H326.0L225.0 -286.0H431.0Z M718.0 0.0V-92.0H813.0V-606.0H718.0V-698.0H1022.0V-606.0H926.0V-92.0H1022.0V0.0Z M1825.9160000000002 0.0V-698.0H2125.916Q2222.916 -698.0 2275.916 -641.0Q2328.916 -584.0 2328.916 -488.0Q2328.916 -392.0 2275.916 -335.0Q2222.916 -278.0 2125.916 -278.0H1938.9160000000002V0.0ZM1938.9160000000002 -377.0H2118.916Q2161.916 -377.0 2185.916 -399.5Q2209.916 -422.0 2209.916 -464.0V-512.0Q2209.916 -554.0 2185.916 -576.5Q2161.916 -599.0 2118.916 -599.0H1938.9160000000002Z M2434.916 0.0V-520.0H2543.916V-420.0H2548.916Q2559.916 -460.0 2594.916 -490.0Q2629.916 -520.0 2691.916 -520.0H2720.916V-415.0H2677.916Q2612.916 -415.0 2578.416 -394.0Q2543.916 -373.0 2543.916 -332.0V0.0Z M3190.916 0.0Q3147.916 0.0 3124.916 -24.5Q3101.916 -49.0 3096.916 -87.0H3091.916Q3076.916 -38.0 3036.916 -13.0Q2996.916 12.0 2939.916 12.0Q2858.916 12.0 2815.416 -30.0Q2771.916 -72.0 2771.916 -143.0Q2771.916 -221.0 2828.416 -260.0Q2884.916 -299.0 2993.916 -299.0H3087.916V-343.0Q3087.916 -391.0 3061.916 -417.0Q3035.916 -443.0 2980.916 -443.0Q2934.916 -443.0 2905.916 -423.0Q2876.916 -403.0 2856.916 -372.0L2791.916 -431.0Q2817.916 -475.0 2864.916 -503.5Q2911.916 -532.0 2987.916 -532.0Q3088.916 -532.0 3142.916 -485.0Q3196.916 -438.0 3196.916 -350.0V-89.0H3251.916V0.0ZM2970.916 -71.0Q3021.916 -71.0 3054.916 -93.5Q3087.916 -116.0 3087.916 -154.0V-229.0H2995.916Q2882.916 -229.0 2882.916 -159.0V-141.0Q2882.916 -106.0 2906.416 -88.5Q2929.916 -71.0 2970.916 -71.0Z M3559.916 12.0Q3503.916 12.0 3459.916 -7.0Q3415.916 -26.0 3385.916 -61.5Q3355.916 -97.0 3339.916 -147.5Q3323.916 -198.0 3323.916 -260.0Q3323.916 -322.0 3339.916 -372.5Q3355.916 -423.0 3385.916 -458.5Q3415.916 -494.0 3459.916 -513.0Q3503.916 -532.0 3559.916 -532.0Q3637.916 -532.0 3687.916 -497.0Q3737.916 -462.0 3760.916 -404.0L3670.916 -362.0Q3659.916 -398.0 3632.416 -419.5Q3604.916 -441.0 3559.916 -441.0Q3499.916 -441.0 3469.416 -403.5Q3438.916 -366.0 3438.916 -306.0V-213.0Q3438.916 -153.0 3469.416 -115.5Q3499.916 -78.0 3559.916 -78.0Q3607.916 -78.0 3636.416 -101.5Q3664.916 -125.0 3681.916 -164.0L3764.916 -120.0Q3738.916 -56.0 3686.916 -22.0Q3634.916 12.0 3559.916 12.0Z M4012.916 0.0Q3955.916 0.0 3926.916 -29.5Q3897.916 -59.0 3897.916 -113.0V-431.0H3816.916V-520.0H3860.916Q3887.916 -520.0 3898.416 -532.0Q3908.916 -544.0 3908.916 -571.0V-662.0H4006.916V-520.0H4115.916V-431.0H4006.916V-89.0H4107.916V0.0Z M4288.916 -613.0Q4254.916 -613.0 4239.416 -629.0Q4223.916 -645.0 4223.916 -670.0V-687.0Q4223.916 -712.0 4239.416 -728.0Q4254.916 -744.0 4288.916 -744.0Q4322.916 -744.0 4337.916 -728.0Q4352.916 -712.0 4352.916 -687.0V-670.0Q4352.916 -645.0 4337.916 -629.0Q4322.916 -613.0 4288.916 -613.0ZM4233.916 -520.0H4342.916V0.0H4233.916Z M4699.916 12.0Q4643.916 12.0 4599.916 -7.0Q4555.916 -26.0 4525.916 -61.5Q4495.916 -97.0 4479.916 -147.5Q4463.916 -198.0 4463.916 -260.0Q4463.916 -322.0 4479.916 -372.5Q4495.916 -423.0 4525.916 -458.5Q4555.916 -494.0 4599.916 -513.0Q4643.916 -532.0 4699.916 -532.0Q4777.916 -532.0 4827.916 -497.0Q4877.916 -462.0 4900.916 -404.0L4810.916 -362.0Q4799.916 -398.0 4772.416 -419.5Q4744.916 -441.0 4699.916 -441.0Q4639.916 -441.0 4609.416 -403.5Q4578.916 -366.0 4578.916 -306.0V-213.0Q4578.916 -153.0 4609.416 -115.5Q4639.916 -78.0 4699.916 -78.0Q4747.916 -78.0 4776.416 -101.5Q4804.916 -125.0 4821.916 -164.0L4904.916 -120.0Q4878.916 -56.0 4826.916 -22.0Q4774.916 12.0 4699.916 12.0Z M5206.916 12.0Q5150.916 12.0 5106.916 -7.0Q5062.916 -26.0 5031.916 -61.5Q5000.916 -97.0 4984.416 -147.5Q4967.916 -198.0 4967.916 -260.0Q4967.916 -322.0 4984.416 -372.5Q5000.916 -423.0 5031.916 -458.5Q5062.916 -494.0 5106.916 -513.0Q5150.916 -532.0 5206.916 -532.0Q5263.916 -532.0 5307.416 -512.0Q5350.916 -492.0 5379.916 -456.5Q5408.916 -421.0 5423.416 -374.0Q5437.916 -327.0 5437.916 -273.0V-232.0H5080.916V-215.0Q5080.916 -155.0 5116.416 -116.5Q5151.916 -78.0 5217.916 -78.0Q5265.916 -78.0 5298.916 -99.0Q5331.916 -120.0 5354.916 -156.0L5418.916 -93.0Q5389.916 -45.0 5334.916 -16.5Q5279.916 12.0 5206.916 12.0ZM5206.916 -447.0Q5178.916 -447.0 5155.416 -437.0Q5131.916 -427.0 5115.416 -409.0Q5098.916 -391.0 5089.916 -366.0Q5080.916 -341.0 5080.916 -311.0V-304.0H5322.916V-314.0Q5322.916 -374.0 5291.916 -410.5Q5260.916 -447.0 5206.916 -447.0Z" fill="#FFFFFF"/><g transform="translate(1164.23 -698) scale(6.98)" class="two"><path d="M16 31C17 16 29 7.5 42 7.5C56 7.5 66.7 16 66.7 29C66.7 40 61 49 54 56" fill="none" class="two-stroke" stroke-width="15.0"/><path d="M49.40 49.99 L60.01 60.60 L35.61 85.00 L73.20 85.00 L73.20 100.00 L-0.61 100.00Z"/></g></svg></h1>
+    <p class="hero-desc rv" style="--d:90ms">Clinical AI education for radiology, from foundations to practice.</p>
+    <a class="hero-scroll rv" style="--d:170ms" href="#map">Explore the curriculum <span aria-hidden="true">&darr;</span></a>
   </div>
-  <div class="map-start"><a class="home-btn home-btn--lg" href="modules/ai-fundamentals.html" data-open-picker>Start &rarr;</a><a class="home-btn home-btn--lg home-btn--ghost" href="curriculum.html">View full curriculum &rarr;</a></div>
-  <div class="map-resume" data-ai2-resume hidden></div>
+</section>
 
-  <section id="core">
-    <h2>Core curriculum</h2>
-    <p class="lede">Choose a learning depth, then work through three modules of short lessons. An assessment and a certificate close the core. Every lesson can also be taken alone, so educators can assign exactly what they need.</p>
-    <div class="core-cards">
-      <div class="cc term"><b>1. Choose learning depth</b><ul><li>Beginner, Intermediate, or Advanced</li><li>Saved with your progress</li><li>Printed on your certificate</li></ul>
-        <div class="levels">
-          <a href="modules/ai-fundamentals.html?pathway=beginner" style="--c:var(--route-beg)"><i></i>Beginner</a>
-          <a href="modules/ai-fundamentals.html?pathway=intermediate" style="--c:var(--route-int)"><i></i>Intermediate</a>
-          <a href="modules/ai-fundamentals.html?pathway=advanced" style="--c:var(--route-adv)"><i></i>Advanced</a>
-        </div></div>
-      <a class="cc" href="modules/ai-fundamentals.html"><b>Fundamentals of AI</b><span class="cc-question">What is AI, and how does it work clinically?</span><ul><li>AI around you</li><li>How models learn</li><li>Data &amp; labels</li><li>Measuring performance</li><li>Limits &amp; failures</li></ul><span class="go">Open Module 1 &rarr;</span></a>
-      <a class="cc" href="modules/informatics.html"><b>Radiology Basics: Images, Systems &amp; Reports</b><span class="cc-question">What is radiology, and how does a scan become data?</span><ul><li>What radiology is</li><li>Images as data</li><li>The journey of a scan</li><li>Reading a radiology report</li></ul><span class="go">Open Module 2 &rarr;</span></a>
-      <a class="cc" href="modules/clinical-practice.html"><b>AI in Clinical Practice</b><span class="cc-question">How does AI affect my clinical practice?</span><ul><li>AI in radiology &amp; medicine</li><li>Does it work, and is it worth it?</li><li>Thinking with AI</li><li>Responsibility &amp; patients</li><li>The future of AI in radiology</li></ul><span class="go">Open Module 3 &rarr;</span></a>
-    </div>
-    <div class="depths" id="depths">
-      <div class="depths-head"><h3>How the learning depths will differ</h3><p><strong>One depth is published today.</strong> All three choices currently share the same lessons and assessment. Separate versions are planned, and your saved choice will carry over when they are released.</p></div>
-      <div class="depths-grid">
-        <div style="--c:var(--route-beg)"><b>Beginner</b><span>Medical students and anyone new to clinical AI</span><p>Core concepts and vocabulary, reading AI output on a study, and knowing when to ask for help. Guided cases with step-by-step feedback.</p></div>
-        <div style="--c:var(--route-int)"><b>Intermediate</b><span>Residents, fellows and clinicians who use AI</span><p>Interpreting performance metrics and evidence for real tools, choosing reading workflows, and handling AI disagreement. Mixed-difficulty cases.</p></div>
-        <div style="--c:var(--route-adv)"><b>Advanced</b><span>Attendings, AI leads and educators</span><p>Critical appraisal, local validation, monitoring and teaching others. The hardest cases, with subtle failure modes and dataset shift.</p></div>
-      </div>
-    </div>
-  </section>
+<section class="mapsec" id="map">
+  <div class="deco" aria-hidden="true">
+    <i class="blob g-c" style="--c:var(--g1);--s:420px;left:-150px;top:40px;--o:.4"></i>
+    <i class="blob g-c" style="--c:var(--g2);--s:460px;right:-170px;top:360px;--o:.34;--t:28s;--dx:-24px"></i>
+  </div>
+  <div class="hshell wide">
+    <div class="map-head"><h2>Curriculum map</h2></div>
+    <div class="mapcard rv">
+      <div class="stage">
+        <div class="map-wrap">
+        <svg viewBox="20 62 1275 498" role="group" aria-label="Curriculum map. Start with the pre-course quiz, then Modules 1, 2 and 3, and finish with the post-course quiz. The Research Lab track branches off after Module 2 and the Leadership track after Module 3; both are optional.">
+          <defs>
+            <linearGradient id="coreGrad" gradientUnits="userSpaceOnUse" x1="236" y1="0" x2="1228" y2="0">
+              <stop offset="0" style="stop-color:var(--check)"/>
+              <stop offset=".14" style="stop-color:var(--m1)"/>
+              <stop offset=".40" style="stop-color:var(--m2)"/>
+              <stop offset=".46" style="stop-color:var(--m2)"/>
+              <stop offset=".62" style="stop-color:var(--m3)"/>
+              <stop offset=".70" style="stop-color:var(--m3)"/>
+              <stop offset="1" style="stop-color:var(--core)"/>
+            </linearGradient>
+            <linearGradient id="coreSeg" gradientUnits="userSpaceOnUse" x1="236" y1="0" x2="1228" y2="0">
+              <stop offset="0" style="stop-color:var(--m1)"/><stop offset=".216" style="stop-color:var(--m1)"/>
+              <stop offset=".216" style="stop-color:var(--m2)"/><stop offset=".438" style="stop-color:var(--m2)"/>
+              <stop offset=".438" style="stop-color:var(--m3)"/><stop offset=".774" style="stop-color:var(--m3)"/>
+              <stop offset=".774" style="stop-color:var(--core)"/><stop offset="1" style="stop-color:var(--core)"/>
+            </linearGradient>
+          </defs>
+          <path class="route route-res" d="M615 180 C660 180 676 214 686 255 C711 372 744 500 824 500 H1228"/>
+          <path class="route route-lead" d="M812 180 C858 180 872 214 880 250 C900 345 928 380 962 380 H1228"/>
+          <path class="route route-check" d="M154 180 H236"/>
+          <path class="route route-core" d="M236 180 H1228" pathLength="1000"/>
 
-  <section class="spec" id="spec">
-    <div class="sp" style="--c:var(--route-res)"><span class="badge">Independent track</span><b>Research Lab</b><p>For learners who want to build and evaluate models. Open any time and separate from the core certificate; Module 1 is useful background. Technical topics such as AI infrastructure &amp; MLOps live here as optional deeper dives.</p>
-      <ol><li><a href="lessons/research-1.html">Python &amp; GitHub</a></li><li><a href="lessons/research-2.html">Data science &amp; evaluation</a></li><li><a href="lessons/research-3.html">ML &amp; image processing</a></li><li><a href="lessons/research-4.html">Advanced AI &amp; NLP</a></li><li><a href="lessons/research-5.html">Mini research project</a></li></ol>
-      <a class="sp-link" href="pages/research-lab.html">Open the Research Lab &rarr;</a></div>
-    <div class="sp" style="--c:var(--route-lead)"><span class="badge">Independent track</span><b>Leadership</b><p>For clinical, informatics, quality, education and operational leaders who evaluate, implement and govern AI. The overview is available now; lessons are coming later. Start with the <a href="tracker.html">AI Tool Tracker</a> to see what is on the market.</p>
-      <ol><li><a href="pages/adoption-governance.html#stage-define">Define the need</a></li><li><a href="pages/adoption-governance.html#stage-select">Select &amp; procure</a></li><li><a href="pages/adoption-governance.html#stage-validate">Validate locally</a></li><li><a href="pages/adoption-governance.html#stage-implement">Implement</a></li><li><a href="pages/adoption-governance.html#stage-monitor">Monitor &amp; govern</a></li></ol>
-      <a class="sp-link" href="pages/adoption-governance.html">Open Leadership &rarr;</a></div>
-  </section>
+          <a class="stop soon" data-k="pre" href="#map" data-ai2-stop="pre-check" data-soon="Pre-course quiz: coming soon" aria-label="Pre-course quiz" style="--mc:var(--check);--d:300ms">
+            <circle class="hit" cx="130" cy="180" r="34"/><circle class="ring" cx="130" cy="180" r="18" fill="#fff" stroke="var(--check)" stroke-width="5"/>
+            <text class="k tx" x="130" y="88" text-anchor="middle">Start here</text>
+            <text class="lbl" x="130" y="114" text-anchor="middle">Pre-course<tspan x="130" y="140">quiz</tspan></text>
+            <text class="sub" x="130" y="228" text-anchor="middle">15 questions</text>
+          </a>
+          <a class="stop map-module-stop" data-k="m1" href="modules/ai-fundamentals.html" data-ai2-stop="m1" aria-label="Module 1: Fundamentals of AI. What is AI, and how does it work clinically?" style="--mc:var(--m1);--d:520ms">
+            <circle class="hit" cx="340" cy="180" r="36"/><circle class="ring big" cx="340" cy="180" r="20" fill="#fff" stroke="var(--m1)" stroke-width="5"/>
+            <text class="k tx" x="340" y="88" text-anchor="middle">Module 1</text>
+            <text class="lbl" x="340" y="114" text-anchor="middle">Fundamentals<tspan x="340" y="140">of AI</tspan></text>
+            <text class="sub q" x="340" y="228" text-anchor="middle">What is AI, and how<tspan x="340" dy="21">does it work</tspan><tspan x="340" dy="21">clinically?</tspan></text>
+          </a>
+          <a class="stop map-module-stop" data-k="m2" href="modules/informatics.html" data-ai2-stop="m2" aria-label="Module 2: Radiology Basics: Images, Systems and Reports. What is radiology, and how does an image become data?" style="--mc:var(--m2);--d:720ms">
+            <circle class="hit" cx="560" cy="180" r="36"/><circle class="ring big" cx="560" cy="180" r="20" fill="#fff" stroke="var(--m2)" stroke-width="5"/>
+            <text class="k tx" x="560" y="88" text-anchor="middle">Module 2</text>
+            <text class="lbl" x="560" y="114" text-anchor="middle">Radiology<tspan x="560" y="140">Basics</tspan></text>
+            <text class="sub q" x="560" y="228" text-anchor="middle">What is radiology,<tspan x="560" dy="21">and how does an</tspan><tspan x="560" dy="21">image become data?</tspan></text>
+          </a>
+          <a class="stop map-module-stop" data-k="m3" href="modules/clinical-practice.html" data-ai2-stop="m3" aria-label="Module 3: AI in Clinical Practice. How does AI affect clinical practice?" style="--mc:var(--m3);--d:920ms">
+            <circle class="hit" cx="780" cy="180" r="36"/><circle class="ring big" cx="780" cy="180" r="20" fill="#fff" stroke="var(--m3)" stroke-width="5"/>
+            <text class="k tx" x="780" y="88" text-anchor="middle">Module 3</text>
+            <text class="lbl" x="780" y="114" text-anchor="middle">Clinical<tspan x="780" y="140">Practice</tspan></text>
+            <text class="sub q" x="780" y="228" text-anchor="middle">How does AI affect<tspan x="780" dy="21">clinical practice?</tspan></text>
+          </a>
+          <a class="stop" data-k="post" href="assessment.html" data-ai2-stop="assess" aria-label="Post-course quiz" style="--mc:var(--core);--d:1150ms">
+            <circle class="hit" cx="1228" cy="180" r="34"/><circle class="ring" cx="1228" cy="180" r="17" fill="#fff" stroke="var(--core)" stroke-width="5"/>
+            <text class="k tx" x="1262" y="88" text-anchor="end">Finish</text>
+            <text class="lbl" x="1262" y="114" text-anchor="end">Post-course<tspan x="1262" y="140">quiz</tspan></text>
+            <text class="sub" x="1262" y="228" text-anchor="end">For the certificate</text>
+          </a>
+          <g class="trk-stops" style="--mc:var(--res)">
+            <a class="stop" data-k="res" href="pages/research-lab.html" aria-label="Research Lab overview" style="--d:1250ms"><text class="lbl tx" x="750" y="492" text-anchor="end">Research Lab</text><text class="sub" x="750" y="516" text-anchor="end">optional &middot; 5 labs</text></a>
+            <a class="stop" data-k="res" href="lessons/research-1.html" data-ai2-stop="research-1" aria-label="Research Lab 1: Python and GitHub" style="--d:1250ms"><circle class="hit" cx="870" cy="500" r="22"/><circle class="dot" cx="870" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="870" y="534" text-anchor="middle">Python</text></a>
+            <a class="stop" data-k="res" href="lessons/research-2.html" data-ai2-stop="research-2" aria-label="Research Lab 2: Data science and evaluation" style="--d:1250ms"><circle class="hit" cx="960" cy="500" r="22"/><circle class="dot" cx="960" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="960" y="476" text-anchor="middle">Data science</text></a>
+            <a class="stop" data-k="res" href="lessons/research-3.html" data-ai2-stop="research-3" aria-label="Research Lab 3: ML and image processing" style="--d:1250ms"><circle class="hit" cx="1049" cy="500" r="22"/><circle class="dot" cx="1049" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1049" y="534" text-anchor="middle">ML &amp; imaging</text></a>
+            <a class="stop" data-k="res" href="lessons/research-4.html" data-ai2-stop="research-4" aria-label="Research Lab 4: Advanced AI and NLP" style="--d:1250ms"><circle class="hit" cx="1139" cy="500" r="22"/><circle class="dot" cx="1139" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1139" y="476" text-anchor="middle">NLP</text></a>
+            <a class="stop" data-k="res" href="lessons/research-5.html" data-ai2-stop="research-5" aria-label="Research Lab 5: Mini research project" style="--d:1250ms"><circle class="hit" cx="1228" cy="500" r="22"/><circle class="dot" cx="1228" cy="500" r="12" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1228" y="534" text-anchor="middle">Project</text></a>
+          </g>
+          <g class="trk-stops" style="--mc:var(--lead)">
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html" aria-label="Leadership overview" style="--d:1350ms"><text class="lbl tx" x="890" y="372" text-anchor="end">Leadership</text><text class="sub" x="890" y="396" text-anchor="end">optional track</text></a>
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-define" aria-label="Leadership: Define the need" style="--d:1350ms"><circle class="hit" cx="1000" cy="380" r="22"/><circle class="dot" cx="1000" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1000" y="356" text-anchor="middle">Define</text></a>
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-select" aria-label="Leadership: Select and procure" style="--d:1350ms"><circle class="hit" cx="1057" cy="380" r="22"/><circle class="dot" cx="1057" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1057" y="414" text-anchor="middle">Select</text></a>
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-validate" aria-label="Leadership: Validate locally" style="--d:1350ms"><circle class="hit" cx="1114" cy="380" r="22"/><circle class="dot" cx="1114" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1114" y="356" text-anchor="middle">Validate</text></a>
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-implement" aria-label="Leadership: Implement" style="--d:1350ms"><circle class="hit" cx="1171" cy="380" r="22"/><circle class="dot" cx="1171" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1171" y="414" text-anchor="middle">Implement</text></a>
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-monitor" aria-label="Leadership: Monitor and govern" style="--d:1350ms"><circle class="hit" cx="1228" cy="380" r="22"/><circle class="dot" cx="1228" cy="380" r="12" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1228" y="356" text-anchor="middle">Monitor</text></a>
+          </g>
+        </svg>
+        </div>
+        <ul class="mobile-map" aria-label="Curriculum map">
+          <li style="--mc:var(--check)" data-ai2-stop="depth"><span class="mm-t">Pre-course quiz</span><small>Start here &middot; coming soon</small></li>
+          <li style="--mc:var(--m1)" data-ai2-stop="m1"><a href="modules/ai-fundamentals.html">1 &middot; Fundamentals of AI</a><small>What is AI, and how does it work clinically?</small></li>
+          <li style="--mc:var(--m2)" data-ai2-stop="m2"><a href="modules/informatics.html">2 &middot; Radiology Basics</a><small>What is radiology, and how does an image become data?</small></li>
+          <li class="opt" style="--mc:var(--res)"><a href="pages/research-lab.html">Research Lab</a><small>Optional &middot; 5 labs</small></li>
+          <li style="--mc:var(--m3)" data-ai2-stop="m3"><a href="modules/clinical-practice.html">3 &middot; Clinical Practice</a><small>How does AI affect clinical practice?</small></li>
+          <li class="opt" style="--mc:var(--lead)"><a href="pages/adoption-governance.html">Leadership</a><small>Optional &middot; 5 steps</small></li>
+          <li style="--mc:var(--core)" data-ai2-stop="practice"><a href="assessment.html">Post-course quiz</a><small>For the certificate</small></li>
+        </ul>
 
-  <section class="edu" id="educators">
-    <div><h2>For educators: assign what your learners need</h2>
-      <p>Pick lessons and the assessment, then share one link. Learners see your plan in their progress panel, and the certificate reflects what you assigned. A live class dashboard is in planning.</p>
-      <a class="home-btn home-btn--edu" href="pages/educators.html">Open the plan builder</a></div>
-    <div class="assign" aria-hidden="true">
-      <div class="row"><b>Example plan &middot; PGY-2 rotation</b><span class="who">preview</span></div>
-      <div class="row"><label><input type="checkbox" checked disabled tabindex="-1">1.4 &middot; Measuring Performance</label><span class="who">M1</span></div>
-      <div class="row"><label><input type="checkbox" disabled tabindex="-1">3.1 &middot; AI in Radiology &amp; Medicine</label><span class="who">M3</span></div>
-      <div class="row"><label><input type="checkbox" checked disabled tabindex="-1">3.2 &middot; Does It Work, and Is It Worth It?</label><span class="who">M3</span></div>
-      <div class="row"><label><input type="checkbox" checked disabled tabindex="-1">3.3 &middot; Thinking With AI</label><span class="who">M3</span></div>
-      <div class="row"><label><input type="checkbox" checked disabled tabindex="-1">Assessment</label><span class="who">Practice</span></div>
-    </div>
-  </section>
-
-  <section class="board" id="board">
-    <div><h2>Latest updates</h2>
-      <div class="depart">
-        <a href="index.html#map"><span>OCT 09</span><span>Curriculum reorganized: depth first</span><span>CORE</span></a>
-        <a href="pages/educators.html"><span>OCT 09</span><span>New educator plan builder</span><span>EDU</span></a>
-        <a href="modules/informatics.html"><span>SEP 26</span><span>Radiology AI workflow module live</span><span>CORE</span></a>
-        <a href="lessons/research-3.html"><span>AUG 30</span><span>Notebook 3 adds segmentation</span><span>RES</span></a>
-              </div>
-      <p class="lede" style="margin-top:12px"><a href="pages/brief.html">More in the AI2Practice Brief &rarr;</a></p></div>
-    <div class="forum">
-      <div class="forum-head"><h2>Discussion</h2><span class="forum-status">Opening soon</span></div>
-      <div class="welcome">
-        <div class="avatar" aria-hidden="true">A2P</div>
-        <div>
-          <div class="who"><b>AI2Practice team</b> &middot; Sep 26 <span class="pin">PINNED</span></div>
-          <h3>Welcome aboard</h3>
-          <p>This will be the place to swap rotation plans, ask questions about cases, and suggest new lessons. We are setting it up now. More to come soon.</p>
+        <div class="hlegend" aria-hidden="true">
+          <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M3 7H43" style="fill:none;stroke:var(--check);stroke-width:4;stroke-dasharray:6 4"/></svg>Quiz</span>
+          <span><svg viewBox="0 0 46 14" aria-hidden="true"><defs><linearGradient id="lgCore" gradientUnits="userSpaceOnUse" x1="4" y1="0" x2="42" y2="0"><stop offset="0" style="stop-color:var(--m1)"/><stop offset=".5" style="stop-color:var(--m2)"/><stop offset="1" style="stop-color:var(--m3)"/></linearGradient></defs><path d="M4 7H42" style="fill:none;stroke:url(#lgCore);stroke-width:8;stroke-linecap:round"/><circle cx="23" cy="7" r="5.5" style="fill:#fff;stroke:var(--m2);stroke-width:3"/></svg>Core</span>
+          <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M3 7H43" style="fill:none;stroke:var(--res);stroke-width:6;stroke-dasharray:10 3"/><circle cx="23" cy="7" r="5" style="fill:#fff;stroke:var(--res);stroke-width:3"/></svg>Research Lab (optional)</span>
+          <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M3 7H43" style="fill:none;stroke:var(--lead);stroke-width:6;stroke-dasharray:10 3"/><circle cx="23" cy="7" r="5" style="fill:#fff;stroke:var(--lead);stroke-width:3"/></svg>Leadership (optional)</span>
         </div>
       </div>
-      <div class="channels">
-        <div class="ch-title">Planned channels</div>
-        <div class="channel" style="--c:var(--route-core)"><i></i>Core curriculum<span>TBD</span></div>
-        <div class="channel" style="--c:var(--route-res)"><i></i>Research Lab<span>TBD</span></div>
-        <div class="channel" style="--c:var(--route-lead)"><i></i>Leadership<span>TBD</span></div>
-        <div class="channel" style="--c:var(--route-edu)"><i></i>Educators<span>TBD</span></div>
-      </div>
-      <div class="forum-foot"><span>Want a say in what we build first?</span><a class="home-btn" href="https://github.com/UM-IHC-CA2i/ai2practice">Follow on GitHub</a></div>
+      <aside class="panel" id="panelBox" aria-live="polite"><div class="panel-body" id="panel"></div></aside>
     </div>
-  </section>
+    <div class="start rv">
+      <div class="start-main">
+        <div class="start-intro">
+          <h2><span class="only-out">Start the course</span><span class="only-new">Start with the pre-course check</span><span class="only-back">Welcome back</span></h2>
+          <p class="only-out">Your progress is saved to your account.</p>
+          <p class="only-new">15 ungraded questions, about 10 minutes.</p>
+        </div>
+        <div class="start-resume only-back" data-ai2-resume hidden></div>
+        <div class="start-acts">
+          <a class="cta cta-main only-out" href="#map" data-signin>Sign in to start<span class="cta-go arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="cta cta-main only-new" href="#map" data-open-picker data-soon="Pre-course check: coming soon">Start the pre-course check<span class="cta-go arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="start-link" href="curriculum.html">See the full curriculum <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="core">
+  <div class="hshell">
+    <div class="head">
+      <h2 class="h2 rv">The core lessons</h2>
+      <div class="rv" style="--d:80ms"><p>Each takes 15 to 20 minutes and has a few ungraded checks and one hands-on piece. Finish them and the post-course check for the certificate.</p></div>
+    </div>
+    <div class="ribbon rv" id="ribbon"></div>
+  </div>
+</section>
+
+<section class="blk" id="tracks">
+  <div class="hshell">
+    <div class="head">
+      <h2 class="h2 rv">Two tracks you can take on the side</h2>
+      <p class="rv" style="--d:80ms">Open any time, separate from the core certificate. Module 1 is useful background for both.</p>
+    </div>
+    <div class="trk">
+      <article class="trow rv" style="--tc:var(--res)">
+        <h3>Research Lab<small>Five hands-on notebooks &middot; open now</small></h3>
+        <div>
+          <p>Build and evaluate models yourself: write code, test a model on real data and run a small project of your own.</p>
+          <ol class="seq"><li>Python &amp; GitHub</li><li>Data science</li><li>ML &amp; imaging</li><li>Advanced AI &amp; NLP</li><li>Mini project</li></ol>
+          <div class="links"><a class="tb" href="pages/research-lab.html">Open the Research Lab <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
+        </div>
+        <figure class="trow-fig" data-fig="laptop"></figure>
+      </article>
+      <article class="trow rv" style="--tc:var(--lead)">
+        <h3>Leadership<small>Five steps &middot; overview open, lessons coming</small></h3>
+        <div>
+          <p>How a tool gets into a department, for the clinical, informatics and quality leads who choose, test and govern it.</p>
+          <ol class="seq"><li>Define the need</li><li>Select &amp; procure</li><li>Validate locally</li><li>Implement</li><li>Monitor &amp; govern</li></ol>
+          <div class="links"><a class="tb" href="pages/adoption-governance.html">Read the overview <span class="arrow" aria-hidden="true">&rarr;</span></a><a class="lnk" href="tracker.html">See cleared tools <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
+        </div>
+        <figure class="trow-fig" data-fig="building" data-scene="hospital"></figure>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="educators">
+  <div class="deco" aria-hidden="true">
+    <i class="blob g-c" style="--c:var(--g1);--s:560px;right:-120px;top:20px;--o:.34;--t:26s"></i>
+  </div>
+  <div class="shell edu">
+    <div class="rv">
+      <h2 class="h2">For educators: assign only what your learners need</h2>
+      <p>Pick lessons and the post-course check, then share one link. Learners see your plan in their progress panel, and the certificate lists what you assigned. A live class dashboard is in planning.</p>
+      <a class="hbtn hbtn-core" href="pages/educators.html">Open the plan builder <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <figure class="cxr"><img src="images/figures/cxr-pa.jpg" alt="Frontal chest radiograph" loading="lazy" /><img src="images/figures/cxr-lat.jpg" alt="Lateral chest radiograph" loading="lazy" /><figcaption>Cases come with real, openly licensed images.<span class="credit">Chest radiographs: Mikael H&auml;ggstr&ouml;m, CC0, via Wikimedia Commons</span></figcaption></figure>
+    </div>
+    <div class="sheet rv" style="--d:100ms" aria-label="Sample rotation plan">
+      <div class="sheet-head"><strong>PGY-2 &middot; Body imaging</strong><span>4 weeks &middot; sample</span></div>
+      <div class="wk"><b>Week 1</b><ul><li style="--mc:var(--m1)"><i></i>1.4 Measuring Performance<small>Module 1</small></li></ul></div>
+      <div class="wk"><b>Week 2</b><ul><li style="--mc:var(--m3)"><i></i>3.1 AI in Radiology &amp; Medicine<small>Module 3</small></li></ul></div>
+      <div class="wk"><b>Week 3</b><ul><li style="--mc:var(--m3)"><i></i>3.2 Does It Work, and Is It Worth It?<small>Module 3</small></li><li style="--mc:var(--m3)"><i></i>3.3 Thinking With AI<small>Module 3</small></li></ul></div>
+      <div class="wk"><b>Week 4</b><ul><li style="--mc:var(--check)"><i></i>Post-course check<small>Graded</small></li></ul></div>
+      <div class="sheet-foot"><span>Shared as one link</span><code>ai2practice/plan/pgy2-body</code></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="news">
+  <div class="shell brief">
+    <div class="side rv">
+      <h2 class="h2">From the Brief</h2>
+      <p>Changes to the course and notes on AI in radiology, as they happen.</p>
+      <a class="lnk" href="pages/brief.html">Read the AI2Practice Brief <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+    <ul class="ups stagger rv">
+      <li><time datetime="2026-10-09"><b>09</b><span>Oct</span></time><div><strong>Curriculum reorganized around three core modules</strong><em class="tx" style="--mc:var(--m1)">Core curriculum</em></div></li>
+      <li><time datetime="2026-10-09"><b>09</b><span>Oct</span></time><div><strong>New educator plan builder</strong><em class="tx" style="--mc:var(--check)">Educators</em></div></li>
+      <li><time datetime="2026-09-26"><b>26</b><span>Sep</span></time><div><strong>Radiology AI workflow module live</strong><em class="tx" style="--mc:var(--m2)">Core curriculum</em></div></li>
+      <li><time datetime="2026-08-30"><b>30</b><span>Aug</span></time><div><strong>Notebook 3 adds segmentation</strong><em class="tx" style="--mc:var(--res)">Research Lab</em></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="talk" id="discussion">
+  <div class="shell rv">
+    <div>
+      <h2>Discussion opens soon</h2>
+      <p>A place to swap rotation plans, ask about cases and suggest new lessons. First channels:
+        <span style="--mc:var(--m1)"><i></i>Core curriculum</span>,
+        <span style="--mc:var(--res)"><i></i>Research Lab</span>,
+        <span style="--mc:var(--lead)"><i></i>Leadership</span> and
+        <span style="--mc:var(--check)"><i></i>Educators</span>.</p>
+    </div>
+    <a class="hbtn hbtn-core" href="https://github.com/UM-IHC-CA2i/ai2practice">Follow on GitHub <span class="arrow" aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
 </main>
 
-<footer class="site-footer compact-footer">
-  <div class="shell compact-footer-row">
-    <div class="footer-mini-brand">
-      <img src="images/ai2practice-logo-white.svg" alt="AI2Practice" />
-      <span>Practical, open clinical AI education</span>
+<footer class="home-footer">
+  <div class="hshell">
+    <div class="hf-brand">
+      <img src="images/ai2practice-logo-white.svg" alt="AI2Practice" width="170" height="35" />
+      <p>Practical, open clinical AI education for radiology.</p>
     </div>
-    <nav aria-label="Footer"><a href="about.html">About</a><a href="pages/brief.html">AI2Practice Brief</a><a href="tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
+    <nav aria-label="Course"><h3>Course</h3><ul><li><a href="curriculum.html">Curriculum</a></li><li><a href="assessment.html">Post-course check</a></li><li><a href="certificate.html">Certificate</a></li></ul></nav>
+    <nav aria-label="Tracks"><h3>Tracks</h3><ul><li><a href="pages/research-lab.html">Research Lab</a></li><li><a href="pages/adoption-governance.html">Leadership</a></li></ul></nav>
+    <nav aria-label="Resources"><h3>Resources</h3><ul><li><a href="tracker.html">AI Tool Tracker</a></li><li><a href="pages/brief.html">AI2Practice Brief</a></li><li><a href="pages/educators.html">For Educators</a></li></ul></nav>
+    <nav aria-label="Project"><h3>Project</h3><ul><li><a href="about.html">About</a></li><li><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></li></ul></nav>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js?v=20261013k"></script>
-<script src="assets/js/start-picker.js?v=20261013k"></script>
+<script src="assets/js/site.js?v=20261015d"></script>
 <script>
 (function(){
-  // Stops marked data-soon show a notice instead of a 404
-  var toast=document.getElementById('toast'),tid;
-  document.querySelector('.map-wrap svg').addEventListener('click',function(e){
-    var a=e.target.closest('a[data-soon]');if(!a)return;e.preventDefault();
-    toast.textContent=a.getAttribute('data-soon')||a.querySelector('title').textContent+': page coming soon';
-    toast.classList.add('show');clearTimeout(tid);tid=setTimeout(function(){toast.classList.remove('show')},2200);
-  });
-})();
-</script>
-<script>
-(function(){
-  var tooltip=document.getElementById('mapModuleTooltip'), stops=document.querySelectorAll('.map-module-stop'), hideTimer;
-  if(!tooltip||!stops.length)return;
-  function cancelHide(){clearTimeout(hideTimer);}
-  function hideSoon(){clearTimeout(hideTimer);hideTimer=setTimeout(function(){tooltip.classList.remove('show');tooltip.setAttribute('aria-hidden','true');},180);}
-  window.showMapModule=function(stop){
-    cancelHide(); var items=(stop.getAttribute('data-map-items')||'').split('|').filter(Boolean); tooltip.innerHTML='';
-    var open=document.createElement('a');open.className='map-tooltip-open';open.href=stop.getAttribute('href');open.textContent='Open '+(stop.querySelector('title')?stop.querySelector('title').textContent:'module')+' \u2192';tooltip.appendChild(open);
-    var prog=stop.getAttribute('data-ai2-progress');if(prog){var pr=document.createElement('span');pr.className='map-tooltip-prog';pr.textContent=prog;tooltip.appendChild(pr);}
-    var label=document.createElement('strong');label.textContent='What you will cover';tooltip.appendChild(label);var ul=document.createElement('ul');items.forEach(function(x){var li=document.createElement('li');li.textContent=x;ul.appendChild(li);});tooltip.appendChild(ul);
-    tooltip.classList.add('show');tooltip.setAttribute('aria-hidden','false');var r=stop.getBoundingClientRect(),tw=tooltip.offsetWidth,th=tooltip.offsetHeight,left=r.left+r.width/2-tw/2;left=Math.max(12,Math.min(left,window.innerWidth-tw-12));var top=r.bottom+10;if(top+th>window.innerHeight-12)top=r.top-th-10;tooltip.style.left=left+'px';tooltip.style.top=Math.max(12,top)+'px';
-  };
-  stops.forEach(function(stop){stop.addEventListener('mouseenter',function(){window.showMapModule(stop)});stop.addEventListener('mouseleave',hideSoon);stop.addEventListener('focus',function(){window.showMapModule(stop)});stop.addEventListener('blur',hideSoon);});
-  tooltip.addEventListener('mouseenter',cancelHide);tooltip.addEventListener('mouseleave',hideSoon);window.addEventListener('resize',hideSoon);
-})();
-</script>
-<script>
-(function(){
-  var map=document.getElementById('map');
-  if(map && 'IntersectionObserver' in window) new IntersectionObserver(function(e){ map.classList.toggle('is-paused',!e[0].isIntersecting); }).observe(map);
-})();
-</script>
-<script>
-(function(){
-  // Hero constellation (from the original site): drifting, pulsing dots joined by faint lines when close.
-  // Dots dim toward the bottom, following the navy-to-white background fade.
-  var canvas=document.querySelector('.hero-canvas'), ctx=canvas.getContext('2d');
-  var CONNECT=130, N=90, stars=[];
-  var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Runs only while the hero is on screen and the tab is visible.
-  var onScreen=true, running=false, dpr=Math.min(devicePixelRatio||1,2);
-  function resize(){
-    canvas.width=canvas.offsetWidth*dpr; canvas.height=canvas.offsetHeight*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+  var MODS=[
+    {k:'m1',n:1,title:'Fundamentals of AI',q:'What is AI, and how does it work clinically?',href:'modules/ai-fundamentals.html',img:'lessons/images/m1/nested-ai.png',alt:'Nested circles: AI, machine learning, deep learning',items:['AI Around You','How Models Learn','Data & Labels','Measuring Performance','Limits & Failures']},
+    {k:'m2',n:2,title:'Radiology Basics',q:'What is radiology, and how does an image become data?',href:'modules/informatics.html',img:'lessons/images/m2/planes.png',alt:'The three imaging planes',items:['What Radiology Is','Images as Data','The Journey of a Scan','Reading a Radiology Report']},
+    {k:'m3',n:3,title:'AI in Clinical Practice',q:'How does AI affect clinical practice?',href:'modules/clinical-practice.html',img:'lessons/images/m3/role-shift.png',alt:'How the radiologist role shifts with AI',items:['AI in Radiology & Medicine','Does It Work, and Is It Worth It?','Thinking With AI','Responsibility & Patients','The Future of AI in Radiology']}
+  ];
+  function lessonHref(m,i){return 'lessons/'+m.k+'-'+(i+1)+'.html';}
+
+
+  /* ---- Isometric figures: boxes in three shades, drawn in the theme's own colours ---- */
+  var B;
+  function P(x,y,z){var sx=(x-y)*0.866, sy=(x+y)*0.5-z; B[0]=Math.min(B[0],sx);B[1]=Math.min(B[1],sy);B[2]=Math.max(B[2],sx);B[3]=Math.max(B[3],sy); return sx.toFixed(1)+','+sy.toFixed(1);}
+  function pts(a){return a.map(function(p){return P(p[0],p[1],p[2]);}).join(' ');}
+  function box(x,y,z,w,d,h,c){
+    var st=' style="--c:'+c+'"';
+    return '<polygon class="sd"'+st+' points="'+pts([[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]])+'"/>'+
+      '<polygon class="fr"'+st+' points="'+pts([[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]])+'"/>'+
+      '<polygon class="tp"'+st+' points="'+pts([[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]])+'"/>';
   }
+  function ln(cls,a){return '<polyline class="'+cls+'" points="'+pts(a)+'"/>';}
+  function q(cls,a){return '<polygon class="'+cls+'" points="'+pts(a)+'"/>';}
+  function topRect(cls,x,y,z,w,d){return q(cls,[[x,y,z],[x+w,y,z],[x+w,y+d,z],[x,y+d,z]]);}
+  function frontRect(cls,x,y,z,w,h){return q(cls,[[x,y,z],[x+w,y,z],[x+w,y,z+h],[x,y,z+h]]);}
+  function sideRect(cls,x,y,z,d,h){return q(cls,[[x,y,z],[x,y+d,z],[x,y+d,z+h],[x,y,z+h]]);}
+  function ell(cls,cx,cy,z,r,closed){var a=[];for(var i=0;i<=24;i++){var t=i/24*Math.PI*2;a.push([cx+r*Math.cos(t),cy+r*Math.sin(t),z]);} return closed?q(cls,a):ln(cls,a);}
+  function fl(s,d){return '<g class="fl" style="animation-delay:'+(d||0)+'s">'+s+'</g>';}
+  var W='var(--fw)', A='var(--fa)', L='var(--fb)', D='var(--fd)', PP='var(--fp)';
+  var FIGS={
+    laptop:function(){
+      var s=box(0,0,0,120,84,7,W)+topRect('dw',12,14,7,96,32)+topRect('dw',44,54,7,32,22)+box(0,0,7,120,5,82,D);
+      var rows=[[10,46,'dc'],[18,58,'dk'],[18,40,'dln'],[26,52,'dk'],[10,30,'dc'],[18,64,'dln'],[18,44,'dk']];
+      rows.forEach(function(r,i){var z=78-i*9; s+=ln(r[2],[[r[0],5,z],[r[0]+r[1],5,z]]);});
+      var chart=box(134,8,46,58,48,5,W)+topRect('dw',138,12,51,50,40);
+      [[142,10],[154,20],[166,14],[178,28]].forEach(function(b){chart+=box(b[0],26,51,8,8,b[1],A);});
+      return s+fl(chart);
+    },
+    building:function(){
+      var s=box(0,0,0,112,92,8,W)+box(14,14,8,82,62,62,A);
+      [22,40,58,76].forEach(function(x){[20,38,52].forEach(function(z){ if(!(x>=40&&x<=58&&z===20)) s+=frontRect('dw',x,76,z,10,10);});});
+      s+=frontRect('dd',47,76,8,16,20);
+      [22,40,58].forEach(function(y){[20,38,52].forEach(function(z){s+=sideRect('dw',96,y,z,10,10);});});
+      s+=q('sd',[[96,14,70],[96,76,70],[96,45,92]]).replace('class="sd"','class="sd" style="--c:'+W+'"');
+      s+=q('tp',[[14,45,92],[96,45,92],[96,76,70],[14,76,70]]).replace('class="tp"','class="tp" style="--c:'+W+'"');
+      var sh=[[132,64,98],[164,64,98],[164,64,78],[148,64,60],[132,64,78]];
+      var sh2=sh.map(function(p){return [p[0]+4,p[1]-4,p[2]];});
+      var shield=q('dd',sh2)+q('da',sh)+ln('dk',[[140,64,80],[146,64,73],[157,64,88]]);
+      return s+fl(shield);
+    },
+    checklist:function(){
+      var s=box(8,8,-12,92,112,5,PP)+box(4,4,-5,92,112,5,PP);
+      var c=box(0,0,2,92,112,6,W);
+      [14,46,78].forEach(function(y,i){
+        c+=topRect(i<2?'da':'dw',12,y,8,14,14);
+        if(i<2) c+=ln('dk',[[15,y+7,8],[19,y+11,8],[24,y+3,8]]);
+        c+=ln('dln2',[[34,y+7,8],[80,y+7,8]]);
+      });
+      return s+fl(c);
+    },
+    layers:function(){
+      var s='', N=[[22,22],[22,62],[62,22],[62,62]];
+      [[0,A],[38,L],[76,W]].forEach(function(l,i){
+        s+=box(0,0,l[0],92,92,6,l[1]);
+        var nodes=i===2?[[42,42]]:N;
+        nodes.forEach(function(n){s+=box(n[0]+1,n[1]+1,l[0]+6,8,8,8,i===2?A:W);});
+        if(i<2) N.forEach(function(n){s+=ln('dl',[[n[0]+5,n[1]+5,l[0]+14],[46,46,l[0]+38]]);});
+      });
+      return fl(s);
+    },
+    pixels:function(){
+      var s=box(0,0,0,124,124,6,W), H=[[6,10,14,8],[10,24,32,12],[14,32,44,18],[8,14,22,10]];
+      for(var i=0;i<4;i++) for(var j=0;j<4;j++){ var h=H[i][j]; s+=box(6+i*29,6+j*29,6,25,25,h,h>20?A:L); }
+      return s;
+    },
+    screen:function(){
+      var s=box(40,30,0,44,34,4,W)+box(58,44,4,8,6,22,W)+box(0,50,26,124,6,84,D);
+      s+=ell('dln',38,56,0,0)+'';
+      function lung(cx,flip){var a=[];for(var i=0;i<=20;i++){var t=i/20*Math.PI*2;a.push([cx+15*Math.cos(t)*(1+0.15*Math.sin(t)*flip),56,68+26*Math.sin(t)]);}return ln('dln',a);}
+      s+=lung(42,1)+lung(82,-1)+ln('dln',[[62,56,96],[62,56,42]]);
+      s+=ln('dc',[[72,56,52],[96,56,52],[96,56,74],[72,56,74],[72,56,52]]);
+      var tag=box(132,40,86,46,26,4,W)+ln('dl',[[138,52,90],[170,52,90]])+ln('dln2',[[138,60,90],[160,60,90]]);
+      return s+fl(tag);
+    },
+    certificate:function(){
+      var s=box(6,6,-8,120,92,4,PP);
+      var c=box(0,0,0,120,92,5,W)+ln('dl',[[14,18,5],[96,18,5]])+ln('dln2',[[14,34,5],[84,34,5]])+ln('dln2',[[14,46,5],[70,46,5]]);
+      c+=q('dd',[[84,72,5],[90,92,5],[94,86,5],[96,92,5],[100,72,5]]);
+      c+=ell('da',92,66,5,13,true)+ell('dk',92,66,5,8,false);
+      return s+fl(c);
+    }
+  };
+  function fig(name){
+    B=[1e9,1e9,-1e9,-1e9];
+    var body=FIGS[name](), p=12;
+    return '<svg class="iso" viewBox="'+(B[0]-p).toFixed(0)+' '+(B[1]-p).toFixed(0)+' '+(B[2]-B[0]+2*p).toFixed(0)+' '+(B[3]-B[1]+2*p).toFixed(0)+'" aria-hidden="true" focusable="false">'+body+'</svg>';
+  }
+  document.querySelectorAll('[data-fig]').forEach(function(f){f.insertAdjacentHTML('afterbegin','<div aria-hidden="true" style="display:contents">'+fig(f.getAttribute('data-fig'))+'</div>');});
+
+
+  var DATA={
+    pre:{pc:'--check',kicker:'Start here',title:'Pre-course quiz',fig:'checklist',
+      out:'See which lessons you already know, then plan your route through the fourteen.',
+      stats:[['15','questions, about one per lesson'],['~10','minutes, untimed'],['0','marks: it only suggests lessons you could skip']],
+      q:{t:'A model flags a nodule on 1 in 20 normal chest films. What is that error called?',o:['A false positive','A false negative','Overfitting'],a:0,x:'It called a normal film abnormal. You meet this again in lesson 1.4.'},
+      p:{f:1,n:1,s:'Done',d:'It suggested 2 lessons you could skip',next:'1.4 Measuring Performance',h:'lessons/m1-4.html'},
+      more:{t:'Coming soon',h:'#map'},soon:'Pre-course quiz: coming soon'},
+    post:{pc:'--core',kicker:'Finish',title:'Post-course quiz',fig:'certificate',
+      out:'Show what you learned. Your certificate lists the lessons you finished.',
+      stats:[['14','lessons covered, one question each'],['3','core modules it draws on'],['1','certificate naming what you finished']],
+      q:{t:'What does your certificate list?',o:['The lessons you finished','Your pre-course score','Every lesson in the course'],a:0,x:'Finish lessons and this quiz; the certificate names exactly what you completed.'},
+      p:{f:3,n:14,s:'3 of 14 lessons done',d:'Take the quiz whenever you are ready',next:'1.4 Measuring Performance',h:'lessons/m1-4.html'},
+      more:{t:'Go to the check',h:'assessment.html'}},
+    res:{pc:'--res',kicker:'Optional track · 5 labs',title:'Research Lab',fig:'laptop',
+      out:'Write Python, test a model on real data and run a small project of your own.',
+      stats:[['5','hands-on notebooks'],['1','mini project of your own'],['0','effect on the core certificate']],
+      q:{t:'You test a model on the images you trained it on. Its accuracy will look…',o:['Too good','About right','Too poor'],a:0,x:'It has seen the answers. Held-out data is the fair test; Lab 2 builds a proper split.'},
+      p:{f:1,n:5,s:'1 of 5 labs done',d:'Last opened a week ago',next:'Lab 2 · Data science & evaluation',h:'pages/research-lab.html'},
+      more:{t:'Open the Research Lab',h:'pages/research-lab.html'}},
+    lead:{pc:'--lead',kicker:'Optional track · 5 steps',title:'Leadership',fig:'building',scene:'hospital',
+      out:'Follow a tool from the department’s need through local testing to monitoring.',
+      stats:[['5','steps, from need to governance'],['Open','overview, readable now'],['Soon','a lesson for each step']],
+      q:{t:'Before buying an AI tool, what should a department check first?',o:['That it works on its own patients and scanners','The accuracy in the vendor’s paper','That it is the newest version'],a:0,x:'Local validation, step 3, catches dataset shift before patients do.'},
+      p:{f:0,n:5,s:'Not started',d:'The overview is open now',next:'Overview · How a tool gets in',h:'pages/adoption-governance.html'},
+      more:{t:'Open the overview',h:'pages/adoption-governance.html'}}
+  };
+  var EXTRA={
+    m1:{fig:'layers',scene:'cnn',out:'Explain how a model learns from labelled data, read its accuracy numbers and say where it fails.',
+      q:{t:'A model trained at one hospital does worse at another. The likeliest cause?',o:['The new images differ from its training data','The model forgot what it learned','The second hospital has fewer images'],a:0,x:'Dataset shift: scanners, patients and protocols change, and the model never saw them. Lesson 1.5.'},
+      p:{f:3,d:'Last opened 2 days ago'}},
+    m2:{fig:'pixels',scene:'ct',out:'Describe how a scan is made, why an image is a grid of numbers and how to read a report.',
+      q:{t:'On a CT image, what does each pixel’s number describe?',o:['How much the tissue absorbs X-rays','The colour of the tissue','How deep the tissue lies'],a:0,x:'Hounsfield units: air is about −1000, water 0, bone several hundred. Lesson 2.2.'},
+      p:{f:0,d:'Opens after Module 1, or skip ahead'}},
+    m3:{fig:'screen',scene:'second',out:'Judge whether an AI tool works, use it without over-trusting it and talk about it with patients.',
+      q:{t:'An AI tool calls a chest film normal, but you see a subtle opacity. What do you do?',o:['Report what you see and note the disagreement','Trust the tool; it is FDA-cleared','Leave the finding out'],a:0,x:'The tool supports the reader; the radiologist signs the report. Lesson 3.4.'},
+      p:{f:0,d:'Opens after Module 2, or skip ahead'}}
+  };
+  var TOTAL=0, START={};
+  MODS.forEach(function(m){START[m.k]=TOTAL; TOTAL+=m.items.length;});
+  MODS.forEach(function(m){
+    var e=EXTRA[m.k], n=m.items.length, f=e.p.f;
+    DATA[m.k]={pc:'--'+m.k,kicker:'Module '+m.n+' · '+n+' lessons',title:m.title,fig:e.fig,scene:e.scene,out:e.out,mod:m,
+      stats:[[String(n),'lessons, in order'],[(n*15)+'–'+(n*20),'minutes in all, 15 to 20 each'],['2–3','ungraded checks in every lesson']],
+      q:e.q,
+      p:{f:f,n:n,s:f+' of '+n+' lessons done',d:e.p.d,next:m.n+'.'+(f+1)+' '+m.items[f],h:lessonHref(m,f)},
+      more:{t:'Open Module '+m.n,h:m.href}};
+  });
+  function more(d){return '<a class="more" href="'+d.more.h+'"'+(d.soon?' data-soon="'+d.soon+'"':'')+'>'+d.more.t+' <span class="arrow" aria-hidden="true">&rarr;</span></a>';}
+  function head(d,kicker){return '<span class="panel-kicker">'+esc(kicker||d.kicker)+'</span><h3>'+esc(d.title)+'</h3>';}
+  // Module kickers carry the learner's progress, read from the map stop that progress.js marks
+  function kicker(k){
+    var d=DATA[k], st=document.querySelector('.map-module-stop[data-k="'+k+'"]'), p=st&&st.getAttribute('data-ai2-progress');
+    return d.mod&&p ? 'Module '+d.mod.n+' · '+p.split(' · ')[0] : d.kicker;
+  }
+  function render(k){var d=DATA[k];return head(d,kicker(k))+'<p class="p-out"><b>After it you can</b>'+esc(d.out)+'</p><div class="pfig"'+(d.scene?' data-scene="'+d.scene+'"':'')+'>'+fig(d.fig)+'</div>'+more(d);}
+  var panel=document.getElementById('panel'), pbox=document.getElementById('panelBox'), current=null;
+  function select(k){
+    if(k===current) return; current=k;
+    document.querySelectorAll('.mapcard [data-k]').forEach(function(el){el.classList.toggle('on',el.getAttribute('data-k')===k);});
+    pbox.style.setProperty('--pc','var('+DATA[k].pc+')');
+    if(reduce||!panel.innerHTML){fill(k);return;}
+    panel.classList.add('swap');
+    setTimeout(function(){fill(k);panel.classList.remove('swap');},140);
+  }
+  // Swap the panel and move its 3D figure, if any, to the new markup
+  function fill(k){
+    var F=window.AI2Figures3D, old=panel.querySelector('[data-scene]');
+    if(F&&old) F.unmount(old);
+    panel.innerHTML=render(k);
+    var nw=panel.querySelector('[data-scene]'); if(F&&nw) F.mount(nw);
+  }
+  // Hover or focus previews a stop in the panel; a click follows its link
+  document.querySelectorAll('.mapcard [data-k]').forEach(function(el){
+    var k=el.getAttribute('data-k');
+    if(canHover) el.addEventListener('mouseenter',function(){select(k);});
+    el.addEventListener('focus',function(){select(k);});
+  });
+  document.querySelectorAll('[data-pick]').forEach(function(a){a.addEventListener('click',function(){select(a.getAttribute('data-pick'));});});
+  function refreshKicker(){var el=current&&panel.querySelector('.panel-kicker'); if(el) el.textContent=kicker(current);}
+  window.addEventListener('ai2practice:progress-changed',refreshKicker);
+  window.addEventListener('ai2practice:ready',refreshKicker);
+  select('m1');
+
+  /* ---- Curriculum: ribbon ---- */
+  var rb='<div class="rg cap" style="--mc:var(--check)"><div class="rg-h"><small class="tx">Start</small></div><div class="rg-dots"><a class="rd" href="#map" data-pick="pre">PRE<span class="tip">Pre-course check, 15 questions</span></a></div><p>Pre-course check</p></div>';
+  MODS.forEach(function(m){
+    rb+='<div class="rg" style="--mc:var(--'+m.k+')"><div class="rg-h"><small class="tx">Module '+m.n+'</small><strong>'+esc(m.title)+'</strong></div><div class="rg-dots">'+
+      m.items.map(function(t,i){return '<a class="rd" href="'+lessonHref(m,i)+'" aria-label="Lesson '+m.n+'.'+(i+1)+', '+esc(t)+'">'+m.n+'.'+(i+1)+'<span class="tip" aria-hidden="true">'+esc(t)+'</span></a>';}).join('')+
+      '</div><ol class="rg-list">'+m.items.map(function(t,i){return '<li><b class="tx">'+m.n+'.'+(i+1)+'</b>'+esc(t)+'</li>';}).join('')+'</ol></div>';
+  });
+  rb+='<div class="rg cap" style="--mc:var(--core)"><div class="rg-h"><small class="tx">Finish</small></div><div class="rg-dots"><a class="rd" href="assessment.html">POST<span class="tip">Post-course check, graded</span></a></div><p>Post-course check</p></div>';
+  document.getElementById('ribbon').innerHTML=rb;
+
+  /* ---- Hero constellation (from the live site) ---- */
+  var canvas=document.querySelector('.hero-canvas'), ctx=canvas.getContext('2d'), star='200,215,240';
+  function readStar(){ star=getComputedStyle(root).getPropertyValue('--star').trim()||star; }
+  var CONNECT=130, N=90, stars=[], onScreen=true, running=false, dpr=Math.min(devicePixelRatio||1,1.5), lastT=0, C2=CONNECT*CONNECT;
+  function resize(){ canvas.width=canvas.offsetWidth*dpr; canvas.height=canvas.offsetHeight*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
   resize();
-  for(var i=0;i<N;i++) stars.push({x:Math.random()*canvas.offsetWidth, y:Math.random()*canvas.offsetHeight,
-    vx:(Math.random()-.5)*.15, vy:(Math.random()-.5)*.15, r:Math.random()*2.2+.8,
-    pulse:Math.random()*6.28, pulseSpeed:.008+Math.random()*.015});
-  function draw(){
+  for(var i=0;i<N;i++) stars.push({x:Math.random()*canvas.offsetWidth,y:Math.random()*canvas.offsetHeight,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*2.2+.8,pulse:Math.random()*6.28,pulseSpeed:.008+Math.random()*.015});
+  function draw(t){
+    // About 30 fps is plenty for drifting stars and halves the work
+    if(t&&t-lastT<30){ if(onScreen&&!document.hidden) requestAnimationFrame(draw); else running=false; return; }
+    lastT=t||0;
     var cw=canvas.offsetWidth, ch=canvas.offsetHeight;
     ctx.clearRect(0,0,cw,ch); ctx.lineWidth=.6;
     for(var i=0;i<stars.length;i++){
       var s=stars[i];
-      s.x+=s.vx; s.y+=s.vy; s.pulse+=s.pulseSpeed;
+      if(!reduce){ s.x+=s.vx*2; s.y+=s.vy*2; s.pulse+=s.pulseSpeed*2; }
       if(s.x<-20)s.x=cw+20; if(s.x>cw+20)s.x=-20; if(s.y<-20)s.y=ch+20; if(s.y>ch+20)s.y=-20;
-      var f=Math.min(1,Math.max(0,(.78-s.y/ch)/.4));
+      var f=Math.min(1,Math.max(0,(.72-s.y/ch)/.4));
       for(var j=i+1;j<stars.length;j++){
-        var b=stars[j], d=Math.hypot(s.x-b.x,s.y-b.y);
-        if(d<CONNECT){ ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(b.x,b.y);
-          ctx.strokeStyle='rgba(200,210,230,'+((1-d/CONNECT)*.15*f)+')'; ctx.stroke(); }
+        var b=stars[j], dx=s.x-b.x, dy=s.y-b.y, d2=dx*dx+dy*dy;
+        if(d2<C2){ var d=Math.sqrt(d2); ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(b.x,b.y); ctx.strokeStyle='rgba('+star+','+((1-d/CONNECT)*.18*f)+')'; ctx.stroke(); }
       }
-      var glow=(.4+Math.sin(s.pulse)*.25)*f;
-      ctx.beginPath(); ctx.arc(s.x,s.y,s.r+6,0,6.283); ctx.fillStyle='rgba(200,210,230,'+(glow*.06)+')'; ctx.fill();
-      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fillStyle='rgba(200,215,240,'+glow+')'; ctx.fill();
+      var glow=(.45+Math.sin(s.pulse)*.25)*f;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r+6,0,6.283); ctx.fillStyle='rgba('+star+','+(glow*.07)+')'; ctx.fill();
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fillStyle='rgba('+star+','+glow+')'; ctx.fill();
     }
-    if(!still && onScreen && !document.hidden) requestAnimationFrame(draw); else running=false;
+    if(!reduce && onScreen && !document.hidden) requestAnimationFrame(draw); else running=false;
   }
-  function start(){ if(!running && !still && onScreen && !document.hidden){ running=true; requestAnimationFrame(draw); } }
-  window.addEventListener('resize',function(){ resize(); if(!running) draw(); });
+  function start(){ if(!running && !reduce && onScreen && !document.hidden){ running=true; requestAnimationFrame(draw); } }
+  addEventListener('resize',function(){ resize(); if(!running) draw(); });
   document.addEventListener('visibilitychange',start);
   if('IntersectionObserver' in window) new IntersectionObserver(function(e){ onScreen=e[0].isIntersecting; start(); }).observe(canvas);
-  running=true; draw();
+
+
+  /* ---- Start block: signed out, new, or returning (html[data-learner]) ---- */
+  function learner(){
+    var cfg=window.AI2PRACTICE_FIREBASE, A=window.AI2PracticeAuth, st=A&&A.state?A.state():null, signed;
+    if(cfg&&!cfg.enabled) signed=true;
+    else if(st&&st.ready) signed=!!st.user;
+    else return;
+    var slot=document.querySelector('[data-ai2-resume]');
+    root.setAttribute('data-learner',!signed?'out':(slot&&!slot.hidden&&slot.innerHTML.trim()?'back':'new'));
+  }
+  ['ai2practice:auth-changed','ai2practice:ready','ai2practice:progress-changed'].forEach(function(n){window.addEventListener(n,learner);});
+  window.addEventListener('load',learner);
+  document.querySelectorAll('[data-signin]').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault();
+    var R=window.AI2PracticeProgressRail; if(R&&R.openAuth) R.openAuth('signin','Sign in or create a free account to start the course.');
+  });});
+
+  /* ---- Stops and buttons marked data-soon show a notice instead of a missing page ---- */
+  var toast=document.getElementById('toast'),tid;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-soon]'); if(!a) return; e.preventDefault();
+    toast.textContent=a.getAttribute('data-soon');
+    toast.classList.add('show'); clearTimeout(tid); tid=setTimeout(function(){toast.classList.remove('show');},2200);
+  });
+  var wrap=document.querySelector('.map-wrap');
+  if(wrap&&'IntersectionObserver' in window) new IntersectionObserver(function(e){wrap.classList.toggle('is-paused',!e[0].isIntersecting);}).observe(wrap);
+
+  /* ---- Staggered entrances ---- */
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
 })();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="module" src="assets/js/figures3d.js?v=20261015d"></script>
+<script>
+  // figures3d.js loads after the panel's first fill, so mount whatever 3D slot is already there
+  document.addEventListener('ai2practice:figures3d-ready',function(){ document.querySelectorAll('#panel [data-scene],.trow-fig[data-scene]').forEach(window.AI2Figures3D.mount); });
 </script>
 </body>
 </html>

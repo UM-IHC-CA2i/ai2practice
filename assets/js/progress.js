@@ -905,7 +905,7 @@
   function renderHomeMap(){
     var svg=document.querySelector('.map-wrap svg'); if(!svg) return;
     var S=steps(), p=selectedPathway(), cur=S[activeIndex(S)];
-    var here=cur.id==='depth' ? 'depth-beginner' : cur.id;
+    var here=cur.id==='depth' ? 'pre-check' : (cur.id==='cert' ? 'assess' : cur.id);
     svg.querySelectorAll('a[data-ai2-stop]').forEach(function(a){
       var id=a.getAttribute('data-ai2-stop'), dot=a.querySelector('circle:not(.hit):not(.beacon)'); if(!dot) return;
       ['fill','stroke','stroke-dasharray'].forEach(function(k){ var o='data-ai2-'+k; if(!dot.hasAttribute(o)) dot.setAttribute(o, dot.getAttribute(k)||''); var v=dot.getAttribute(o); if(v) dot.setAttribute(k,v); else dot.removeAttribute(k); });

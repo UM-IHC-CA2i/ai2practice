@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home page versions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0B1D3A; --muted:#4A5872; --ground:#F4F6FA; --sheet:#fff; --accent:#1F5FD1; --ease:cubic-bezier(0.23,1,0.32,1); }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.55 "IBM Plex Sans", system-ui, sans-serif; color:var(--ink); background:var(--ground); }
+  main { max-width:1120px; margin:0 auto; padding:56px 16px 80px; }
+  h1 { font-size:clamp(28px,4vw,40px); line-height:1.15; margin:0 0 12px; font-weight:600; }
+  .lead { max-width:62ch; color:var(--muted); margin:0 0 40px; }
+  ol { list-style:none; padding:0; margin:0; display:grid; gap:16px; }
+  a.v { display:grid; grid-template-columns:72px 1fr auto; gap:20px; align-items:center; padding:22px 24px; background:var(--sheet); border-radius:12px; color:inherit; text-decoration:none; transition:transform 160ms var(--ease); }
+  a.v:active { transform:scale(0.98); }
+  a.v:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+  @media (hover:hover) and (pointer:fine) { a.v:hover .go { transform:translateX(4px); } }
+  .k { font-size:32px; font-weight:600; color:var(--accent); }
+  .v h2 { font-size:20px; margin:0 0 4px; font-weight:600; }
+  .v p { margin:0; color:var(--muted); max-width:70ch; }
+  .go { font-weight:500; color:var(--accent); transition:transform 160ms var(--ease); }
+  h3 { font-size:20px; margin:48px 0 16px; font-weight:600; }
+  @media (max-width:600px) { a.v { grid-template-columns:44px 1fr; } .go { display:none; } .k { font-size:24px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Home page versions</h1>
+  <p class="lead">The home page mockup still in play. It keeps the curriculum map, the three modules, Research Lab and Leadership, and the educator, updates and discussion blocks. Updates and plans are sample content.</p>
+  <ol>
+    <li><a class="v" href="home-a4.html"><span class="k">A4</span><div><h2>A4, A3 with the picks</h2><p>A3 with the outcome panel, white background and boxed tracks fixed. The start section moves below the map with large buttons and a spot to continue where you left off; it comes in four layouts and can be shown to a new or a returning learner. The track buttons come in four styles. The whole page scales up on larger screens so it keeps its laptop proportions.</p></div><span class="go">Open</span></a></li>
+    <li><a class="v" href="figures-3d.html"><span class="k">3D</span><div><h2>3D figures for A4</h2><p>Live 3D replacements for the map and track figures: a flat CNN diagram a "learns from labelled films" scene or a simple dots-and-lines network (Module 1), a CT scanner (Module 2), an AI second reader or an AI suggestion card (Module 3) and a hospital with a CT wing (Leadership). Each comes in a soft clay look and a flat isometric look, on the panel colour or the light card.</p></div><span class="go">Open</span></a></li>
+    <li><a class="v" href="home-a3.html"><span class="k">A3</span><div><h2>A3, blue and white</h2><p>Blue and white only, with the curriculum ribbon. The map sits lower, uses the serif and has a fixed legend; its side panel shows outcomes, numbers, a sample question or sample progress. The tracks get boxed rows, a navy band or cards with drawn 3D figures, and the page gets white, banded, blocked or paper backgrounds. Choose from the bar at the bottom.</p></div><span class="go">Open</span></a></li>
+    <li><a class="v" href="home-a2.html"><span class="k">A2</span><div><h2>A2, themed</h2><p>Live header and hero, the curriculum map with the start button underneath, and a rebuilt lower half. Switch the colour theme (sunset, blue and white, plain), the curriculum block, four ways to show the two tracks and the grain from the bar at the bottom.</p></div><span class="go">Open</span></a></li>
+  </ol>
+</main>
+</body>
+</html>
