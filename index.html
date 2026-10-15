@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-learner="out" data-tbtn="filled" data-grain="horizon">
+<html lang="en" data-learner="new" data-tbtn="filled" data-grain="horizon">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,9 +24,9 @@
   </script>
 <!-- /AI2PRACTICE SEO -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261015e" />
-  <link rel="stylesheet" href="assets/css/theme.css?v=20261015e" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20261015e" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261015g" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261015g" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20261015g" />
   <script>(function(r){r.classList.add('js');try{if(sessionStorage.getItem('ai2practice_home_seen'))r.classList.add('seen');sessionStorage.setItem('ai2practice_home_seen','1');}catch(e){}})(document.documentElement);</script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
@@ -39,7 +39,6 @@
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
   <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
-<script>try{if(localStorage.getItem('ai2practice_signed_in_v1')==='1')document.documentElement.setAttribute('data-learner','new');}catch(e){}</script>
 <main id="main">
 <section class="hero">
   <div class="deco" aria-hidden="true">
@@ -157,28 +156,16 @@
     <div class="start rv">
       <div class="start-main">
         <div class="start-intro">
-          <h2><span class="only-out">Start the course</span><span class="only-new">Start with the pre-course check</span><span class="only-back">Welcome back</span></h2>
-          <p class="only-out">Your progress is saved to your account.</p>
-          <p class="only-new">15 ungraded questions, about 10 minutes.</p>
+          <h2><span class="only-new">Start with the pre-course quiz</span><span class="only-back">Welcome back</span></h2>
+          <p class="only-new">15 questions, about 3 minutes.</p>
         </div>
         <div class="start-resume only-back" data-ai2-resume hidden></div>
         <div class="start-acts">
-          <a class="cta cta-main only-out" href="#map" data-signin>Sign in to start<span class="cta-go arrow" aria-hidden="true">&rarr;</span></a>
-          <a class="cta cta-main only-new" href="#map" data-open-picker data-soon="Pre-course check: coming soon">Start the pre-course check<span class="cta-go arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="cta cta-main only-new" href="#map" data-open-picker data-soon="Pre-course quiz: coming soon">Start the quiz<span class="cta-go arrow" aria-hidden="true">&rarr;</span></a>
           <a class="start-link" href="curriculum.html">See the full curriculum <span class="arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="blk" id="core">
-  <div class="hshell">
-    <div class="head">
-      <h2 class="h2 rv">The core lessons</h2>
-      <div class="rv" style="--d:80ms"><p>Each takes 15 to 20 minutes and has a few ungraded checks and one hands-on piece. Finish with the post-course quiz.</p></div>
-    </div>
-    <div class="ribbon rv" id="ribbon"></div>
   </div>
 </section>
 
@@ -277,7 +264,7 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js?v=20261015e"></script>
+<script src="assets/js/site.js?v=20261015g"></script>
 <script>
 (function(){
   var root=document.documentElement; root.classList.add('js');
@@ -458,15 +445,6 @@
   window.addEventListener('ai2practice:ready',refreshKicker);
   select('m1');
 
-  /* ---- Curriculum: ribbon ---- */
-  var rb='<div class="rg cap" style="--mc:var(--check)"><div class="rg-h"><small class="tx">Start</small></div><div class="rg-dots"><a class="rd" href="#map" data-pick="pre">PRE<span class="tip">Pre-course check, 15 questions</span></a></div><p>Pre-course check</p></div>';
-  MODS.forEach(function(m){
-    rb+='<div class="rg" style="--mc:var(--'+m.k+')"><div class="rg-h"><small class="tx">Module '+m.n+'</small><strong>'+esc(m.title)+'</strong></div><div class="rg-dots">'+
-      m.items.map(function(t,i){return '<a class="rd" href="'+lessonHref(m,i)+'" aria-label="Lesson '+m.n+'.'+(i+1)+', '+esc(t)+'">'+m.n+'.'+(i+1)+'<span class="tip" aria-hidden="true">'+esc(t)+'</span></a>';}).join('')+
-      '</div><ol class="rg-list">'+m.items.map(function(t,i){return '<li><b class="tx">'+m.n+'.'+(i+1)+'</b>'+esc(t)+'</li>';}).join('')+'</ol></div>';
-  });
-  rb+='<div class="rg cap" style="--mc:var(--core)"><div class="rg-h"><small class="tx">Finish</small></div><div class="rg-dots"><a class="rd" href="assessment.html">POST<span class="tip">Post-course check, graded</span></a></div><p>Post-course check</p></div>';
-  document.getElementById('ribbon').innerHTML=rb;
 
   /* ---- Hero constellation (from the live site) ---- */
   var canvas=document.querySelector('.hero-canvas'), ctx=canvas.getContext('2d'), star='200,215,240';
@@ -502,21 +480,14 @@
   if('IntersectionObserver' in window) new IntersectionObserver(function(e){ onScreen=e[0].isIntersecting; start(); }).observe(canvas);
 
 
-  /* ---- Start block: signed out, new, or returning (html[data-learner]) ---- */
+  /* ---- Start block: pre-course quiz first, or pick up where you left off (html[data-learner]).
+     Sign-in lives in the header; the quiz button asks for it if needed (progress.js). ---- */
   function learner(){
-    var cfg=window.AI2PRACTICE_FIREBASE, A=window.AI2PracticeAuth, st=A&&A.state?A.state():null, signed;
-    if(cfg&&!cfg.enabled) signed=true;
-    else if(st&&st.ready) signed=!!st.user;
-    else return;
     var slot=document.querySelector('[data-ai2-resume]');
-    root.setAttribute('data-learner',!signed?'out':(slot&&!slot.hidden&&slot.innerHTML.trim()?'back':'new'));
+    root.setAttribute('data-learner',slot&&!slot.hidden&&slot.innerHTML.trim()?'back':'new');
   }
   ['ai2practice:auth-changed','ai2practice:ready','ai2practice:progress-changed'].forEach(function(n){window.addEventListener(n,learner);});
   window.addEventListener('load',learner);
-  document.querySelectorAll('[data-signin]').forEach(function(a){a.addEventListener('click',function(e){
-    e.preventDefault();
-    var R=window.AI2PracticeProgressRail; if(R&&R.openAuth) R.openAuth('signin','Sign in or create a free account to start the course.');
-  });});
 
   /* ---- Stops and buttons marked data-soon show a notice instead of a missing page ---- */
   var toast=document.getElementById('toast'),tid;
@@ -538,7 +509,7 @@
 })();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module" src="assets/js/figures3d.js?v=20261015e"></script>
+<script type="module" src="assets/js/figures3d.js?v=20261015g"></script>
 <script>
   // figures3d.js loads after the panel's first fill, so mount whatever 3D slot is already there
   document.addEventListener('ai2practice:figures3d-ready',function(){ document.querySelectorAll('#panel [data-scene],.trow-fig[data-scene]').forEach(window.AI2Figures3D.mount); });

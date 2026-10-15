@@ -91,3 +91,48 @@
   .cur-lessons .cur-d { grid-column: 2; }
   .cur-tag { grid-column: 2; justify-self: start; }
 }
+
+/* The core lessons ribbon: Start -> Modules 1-3 -> Finish. Moved from the home page; tokens kept local. */
+.cur-core .ribbon {
+  --ink: #141a24; --ink-2: #3a4250; --muted: #5d6572; --wash: #eef4fb;
+  --core: #13294a; --core-deep: #0c1c33; --check: #8ec1ee; --m1: #6aaee8; --m2: #3b82d0; --m3: #2557a5;
+  --sans: 'IBM Plex Sans', system-ui, sans-serif; --serif: 'IBM Plex Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --route: linear-gradient(90deg, var(--check), var(--m1) 22%, var(--m2) 48%, var(--m3) 74%, var(--core));
+  position: relative; display: grid; grid-template-columns: auto 5fr 4fr 5fr auto; gap: 0 10px;
+  padding: 30px 30px 26px; border-radius: 20px; background: var(--wash); color: var(--ink); font-family: var(--sans);
+}
+.cur-core .ribbon::before { content: ''; position: absolute; left: 30px; right: 30px; top: 94px; height: 14px; border-radius: 7px; background: var(--route); }
+.cur-core .tx { color: color-mix(in srgb, var(--mc) 74%, #000); }
+.cur-core .rg { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.cur-core .rg-h { height: 56px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4px 12px; }
+.cur-core .rg-h small { font-weight: 600; font-size: .84rem; }
+.cur-core .rg-h strong { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; line-height: 1.2; }
+.cur-core .rg-dots { display: flex; justify-content: space-around; align-items: center; height: 30px; }
+.cur-core .rd { position: relative; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; border: 4px solid var(--mc); font: 700 .62rem var(--mono); color: var(--ink); text-decoration: none; transition: transform .2s var(--ease-out), background-color .2s ease, color .2s ease; }
+.cur-core .rd:active { transform: scale(.94); }
+.cur-core .rd .tip { position: absolute; bottom: calc(100% + 10px); left: 50%; width: max-content; max-width: 220px; padding: 7px 11px; border-radius: 8px; background: var(--core-deep); color: #fff; font: 500 .84rem/1.3 var(--sans); text-align: center; opacity: 0; transform: translate(-50%, 4px) scale(.97); transform-origin: bottom center; pointer-events: none; transition: opacity .14s ease, transform .16s var(--ease-out); }
+.cur-core .rd:hover .tip, .cur-core .rd:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: hover) and (pointer: fine) { .cur-core .rd:hover { transform: scale(1.15); background: var(--mc); color: #fff; } }
+.cur-core .rg-list { list-style: none; margin: 14px 0 0; padding: 0 4px; font-size: .9rem; color: var(--ink-2); display: grid; gap: 3px; }
+.cur-core .rg-list li { display: grid; grid-template-columns: 30px 1fr; gap: 4px; }
+.cur-core .rg-list b { font-weight: 600; font-size: .82rem; padding-top: 1px; }
+.cur-core .rg-list a { color: inherit; text-decoration: none; }
+.cur-core .rg-list a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.cur-core .rg.cap .rg-dots { justify-content: center; }
+.cur-core .rg.cap .rd { width: 40px; height: 40px; font-size: .6rem; }
+.cur-core .rg.cap .rg-h { align-items: center; text-align: center; }
+.cur-core .rg.cap p { font-size: .84rem; color: var(--muted); text-align: center; margin: 14px auto 0; max-width: 11ch; }
+@media (max-width: 1000px) {
+  .cur-core .ribbon { grid-template-columns: 5fr 4fr 5fr; }
+  .cur-core .ribbon .rg.cap { display: none; }
+}
+@media (max-width: 700px) {
+  .cur-core .ribbon { grid-template-columns: 1fr; padding: 22px 20px 22px 58px; }
+  .cur-core .ribbon::before { left: 28px; right: auto; top: 30px; bottom: 30px; width: 10px; height: auto; background: linear-gradient(var(--m1), var(--m2), var(--m3)); }
+  .cur-core .rg { padding-bottom: 18px; }
+  .cur-core .rg-h { height: auto; padding: 0 0 6px; }
+  .cur-core .rg-dots { display: none; }
+  .cur-core .rg-list { margin-top: 4px; padding: 0; }
+  .cur-core .rg::before { content: ''; position: absolute; left: -38px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--mc); }
+}

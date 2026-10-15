@@ -323,9 +323,7 @@ body.home .edu>div>p{color:var(--ink-2);margin-top:1.125rem;max-width:46ch}
 
 /* ---------- Start: under the map. Signed out, one card asks for sign-in; signed in, it starts the check; returning, a resume card joins it ---------- */
 .start{margin:3.5rem 0 0;display:grid;gap:1.5rem;align-items:stretch}
-html[data-learner="out"] .only-in,html[data-learner="out"] .only-new,html[data-learner="out"] .only-back,
-html[data-learner="new"] .only-out,html[data-learner="new"] .only-back,
-html[data-learner="back"] .only-out,html[data-learner="back"] .only-new{display:none}
+html[data-learner="new"] .only-back,html[data-learner="back"] .only-new{display:none}
 .start-main{display:flex;align-items:center;justify-content:space-between;gap:1.25rem 2.5rem;flex-wrap:wrap;padding:1.75rem 2rem;background:#fff;border:1px solid var(--line);border-radius:1.25rem;
   box-shadow:0 1px 2px color-mix(in srgb,var(--core) 8%,transparent),0 1.625rem 3.375rem -2.125rem color-mix(in srgb,var(--core) 42%,transparent)}
 .start-intro{flex:1 1 18rem}
@@ -393,6 +391,7 @@ html[data-tbtn="figure"] .trow-fig:active .fig-btn{transform:scale(.99)}
 }
 /* ---------- Live additions: map progress (drawn by assets/js/progress.js), mobile map, toast ---------- */
 .map-wrap .ai2-map-fill{pointer-events:none}
+.stop.ai2-done .ring,.stop.ai2-done .dot{fill:var(--mc)}
 .map-wrap .beacon{stroke:var(--check)}
 .map-wrap.is-paused .route-res,.map-wrap.is-paused .route-lead,.map-wrap.is-paused .beacon{animation-play-state:paused}
 .stop.soon{cursor:default}

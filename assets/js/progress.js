@@ -554,14 +554,19 @@
     box.className='ai2-acct'; box.id='ai2Acct';
     box.innerHTML=''+
       '<button type="button" class="ai2-acct-btn" id="ai2AcctBtn" aria-expanded="false" aria-controls="ai2AcctMenu" aria-haspopup="dialog">'+
-        '<span id="ai2AcctRing"></span><span class="ai2-acct-pct" id="ai2AcctPct">0%</span>'+
+        '<span id="ai2AcctRing"></span><span class="ai2-acct-pct" id="ai2AcctPct">0%</span><span class="ai2-acct-signin" id="ai2AcctSignin" hidden>Sign in</span>'+
         '<span class="ai2-avatar" id="ai2AcctAvatar" aria-hidden="true"></span><span class="ai2-sr" id="ai2AcctSr">Your progress and account</span>'+
       '</button>'+
       '<div class="ai2-acct-menu" id="ai2AcctMenu" role="dialog" aria-label="Your progress and account" hidden></div>';
     var toggle=host.querySelector('.menu-toggle, .nav-toggle');
     host.insertBefore(box, toggle || null);
     host.classList.add('ai2-acct-host');
-    document.getElementById('ai2AcctBtn').addEventListener('click',function(e){ e.stopPropagation(); if(document.getElementById('ai2AcctMenu').hidden) openAccount(); else closeAccount(); });
+    document.getElementById('ai2AcctBtn').addEventListener('click',function(e){
+      e.stopPropagation();
+      // Signed out: the button is the sign-in button. Until sign-in has loaded it opens the menu, which says so.
+      if (signedOut() && authState().ready) { closeAccount(); openAuth('signin'); return; }
+      if(document.getElementById('ai2AcctMenu').hidden) openAccount(); else closeAccount();
+    });
     box.addEventListener('click',function(e){
       var a=e.target.closest('[data-ai2-act]'); if(!a) return;
       var act=a.getAttribute('data-ai2-act');
@@ -579,16 +584,28 @@
     var m=document.getElementById('ai2AcctMenu'); if(!m || m.hidden) return;
     m.hidden=true; document.getElementById('ai2AcctBtn').setAttribute('aria-expanded','false');
   }
+  // True when sign-in is on and nobody is signed in. While sign-in loads, the stored hint decides,
+  // so a signed-in learner doesn't see "Sign in" flash in the header.
+  function signedOut(){
+    var st=authState();
+    if (st.user || (cfgLoaded && !authOn())) return false;
+    return st.ready || !signedHint();
+  }
   function initials(u){ var s=(u.name || u.email || '?').trim(); return s.charAt(0).toUpperCase(); }
   function renderAccount(){
     var t=tally(), st=authState(), u=st.user;
     var ringEl=document.getElementById('ai2AcctRing');
     if (ringEl) {
       ringEl.innerHTML=ring(t.pct);
+      var out=signedOut();
       document.getElementById('ai2AcctPct').textContent=t.pct+'%';
+      document.getElementById('ai2AcctPct').hidden=out;
+      document.getElementById('ai2AcctSignin').hidden=!out;
+      document.getElementById('ai2AcctBtn').classList.toggle('is-out', out);
+      document.getElementById('ai2AcctBtn').setAttribute('aria-haspopup', out && st.ready ? 'false' : 'dialog');
       var av=document.getElementById('ai2AcctAvatar');
       av.textContent=u ? initials(u) : ''; av.hidden=!u;
-      document.getElementById('ai2AcctSr').textContent='Your progress: '+t.pct+'% complete'+(u ? ', signed in as '+(u.email||u.name) : '');
+      document.getElementById('ai2AcctSr').textContent=out ? 'Sign in to save your progress' : 'Your progress: '+t.pct+'% complete'+(u ? ', signed in as '+(u.email||u.name) : '');
     }
     var sub=document.getElementById('ai2DrawerSub'), box=document.getElementById('ai2DrawerAcct');
     if (sub) sub.textContent=u ? 'Saved in this browser and synced to '+(u.email||'your account')+'.' : 'Saved automatically in this browser.';
@@ -893,6 +910,8 @@
       var a=assessmentRecord(p), sc=Number(a.bestScore) ? Math.round(a.bestScore) : null;
       return { full:!!a.passed, text:a.passed ? 'Passed, '+sc+'%' : (sc!==null ? 'Best '+sc+'%, pass at 80%' : '') };
     }
+    // The pre-course quiz is the course's first step; choosing a depth stands in for it until the quiz is built.
+    if (id==='pre-check') return { full:!!p, text:p ? 'Taken' : '' };
     if (id.indexOf('research-')===0) return { full:done.indexOf(id)!==-1, text:done.indexOf(id)!==-1 ? 'Complete' : '' };
     return { full:false, text:'' };
   }
@@ -930,6 +949,7 @@
       // The ripple starts at the outer edge of the stop; the stop itself stays solid.
       if (id===here) dot.parentNode.insertBefore(svgEl('circle',{ 'class':'beacon', cx:cx, cy:cy, r:r+(+dot.getAttribute('stroke-width')||4)/2, fill:'none', stroke:color, 'stroke-width':2.5 }), dot);
       a.classList.toggle('ai2-here', id===here);
+      a.classList.toggle('ai2-done', !!state.full);
       if (!a.hasAttribute('data-ai2-name')) a.setAttribute('data-ai2-name', a.getAttribute('aria-label') || (a.querySelector('title') ? a.querySelector('title').textContent : ''));
       var bits=[state.text, id===here ? 'Your next step' : ''].filter(Boolean);
       a.setAttribute('aria-label', a.getAttribute('data-ai2-name')+(bits.length ? '. '+bits.join('. ')+'.' : ''));

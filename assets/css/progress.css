@@ -117,6 +117,8 @@ body.ai2-outline-open .ai2-ol-tab { display: none; }
 .ai2-acct-btn { display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 8px 0 7px; border: 1px solid var(--ai2-line); border-radius: 999px; background: #fff; color: var(--ai2-navy); font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; font-variant-numeric: tabular-nums; }
 .ai2-acct-btn:hover, .ai2-acct-btn[aria-expanded="true"] { border-color: var(--ai2-navy); }
 .ai2-acct-btn #ai2AcctRing { display: inline-flex; }
+.ai2-acct-btn.is-out { padding-right: 12px; }
+.ai2-acct-signin { white-space: nowrap; }
 .ai2-avatar { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ai2-navy); color: #fff; font-size: .72rem; font-weight: 700; }
 .ai2-avatar[hidden] { display: none; }
 .ai2-avatar-lg { width: 34px; height: 34px; font-size: .9rem; }
