@@ -1,0 +1,7 @@
+# AI2Practice
+User-agent: *
+Allow: /
+Disallow: /mockups/
+Disallow: /ai2practice/mockups/
+
+Sitemap: https://um-ihc-ca2i.github.io/ai2practice/sitemap.xml

@@ -11,57 +11,79 @@
   <link rel="stylesheet" href="assets/css/site.css?v=20261015g" />
   <link rel="stylesheet" href="assets/css/theme.css?v=20261015g" />
   <style>
-    .about-hero { background: #eef4f5; }
-    .about-hero .about-kicker { color: var(--teal); font-size: .76rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; margin: 0 0 18px; }
-    .about-hero .about-deck { max-width: 760px; font-size: 1.13rem; color: var(--muted); }
-    .about-affiliation { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
-    .about-affiliation > span { color: #435262; font-size: .92rem; font-weight: 600; }
-    .about-affiliation img { max-height: 44px; width: auto; object-fit: contain; }
+    .ab { --ink:#111827; --muted:#4f5967; --hair:#e3e7ec; --soft:#f6f7f9;
+      --g-prog:#0369a1; --g-prog-l:#e0f0f9; --g-liai:#a8492c; --g-liai-l:#f6e6df; --g-sen:#17324d; --g-sen-l:#e6ebf1; }
+    .ab .shell { width: min(calc(100% - 32px), 1080px); }
+    .ab ::selection { background: var(--route-lead-light); color: var(--route-core); }
 
-    .about-section { padding: 72px 0; }
-    .about-section + .about-section { border-top: 1px solid var(--line); }
-    .about-section-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 52px; align-items: end; margin-bottom: 34px; }
-    .about-section-head h2 { margin: 0; font-size: clamp(2.15rem,4vw,3.4rem); line-height: 1; font-weight: 500; letter-spacing: -.04em; }
-    .about-section-head p { margin: 0; color: var(--muted); max-width: 680px; }
+    /* hero: a soft blue wash that fades into the page */
+    .ab-hero { position: relative; padding: 84px 0 0; background:
+      radial-gradient(60% 90% at 88% 0%, rgba(3,105,161,.13), transparent 70%),
+      radial-gradient(45% 70% at 4% 10%, rgba(168,73,44,.07), transparent 70%),
+      linear-gradient(180deg, #f1f7fb 0%, #fff 100%); }
+    .ab-hero h1 { margin: 0; max-width: 18ch; font-size: clamp(2.3rem, 4.6vw, 3.6rem); line-height: 1.05; font-weight: 500; letter-spacing: -.035em; color: var(--ink); text-wrap: balance; }
+    .ab-hero h1 em { font-style: normal; color: var(--g-prog); }
+    .ab-deck { margin: 20px 0 0; max-width: 62ch; font-size: 1.08rem; line-height: 1.6; color: var(--muted); }
+    .ab-aff { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 16px; margin-top: 38px; padding: 20px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+    .ab-aff span { font-size: 1.18rem; line-height: 1.4; color: var(--muted); margin-right: auto; }
+    .ab-aff span strong { color: var(--route-core); font-weight: 600; }
+    .ab-logo { display: grid; place-items: center; height: 82px; padding: 0 6px; overflow: hidden; background: #fff; border: 1px solid var(--hair); border-radius: 10px; box-shadow: 0 2px 6px rgba(23,50,77,.06); }
+    .ab-logo img { height: 80px; width: auto; display: block; }
 
-    .co-lead-panel { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow); }
-    .co-lead { display: grid; grid-template-columns: 155px 1fr; min-height: 220px; }
-    .co-lead + .co-lead { border-left: 1px solid var(--line); }
-    .lead-photo { width: 155px; height: 100%; min-height: 220px; object-fit: cover; object-position: center top; }
-    .lead-copy { padding: 28px 26px 24px; display: flex; flex-direction: column; justify-content: center; }
-    .role-label { display: inline-block; width: fit-content; margin-bottom: 15px; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .lead-copy h3 { margin: 0 0 8px; font-family: var(--serif); font-size: 1.5rem; line-height: 1.08; font-weight: 500; color: var(--navy); }
-    .lead-copy p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+    .ab-sec { padding: 72px 0 0; }
+    .ab-sec:last-of-type { padding-bottom: 88px; }
+    .ab-sec-head { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end; margin-bottom: 28px; }
+    .ab-sec-head h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.05; font-weight: 500; letter-spacing: -.03em; color: var(--ink); }
+    .ab-sec-head p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 56ch; justify-self: end; }
 
-    .contributor-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px 22px; }
-    .contributor-card { min-width: 0; }
-    .contributor-photo { width: 92px; height: 92px; display: block; margin: 0 0 14px; border-radius: 4px; object-fit: cover; object-position: center top; background: var(--paper-2); border: 1px solid var(--line); }
-    .contributor-card h3 { margin: 0 0 5px; font-family: var(--serif); font-size: 1.06rem; line-height: 1.2; font-weight: 500; color: var(--navy); }
-    .contributor-card p { margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.4; }
-    .contributor-tag { display: inline-block; margin: 0 0 7px; padding: 3px 7px; border: 1px solid #c6d6d2; border-radius: 999px; background: #eef5f3; color: var(--teal); font-size: .62rem; line-height: 1.2; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .p-title { display: block; color: var(--g-prog); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.35; }
+    .p-name { margin: 0; color: var(--ink); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+    .p-aff { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.4; }
+    .p-photo { display: block; object-fit: cover; object-position: center top; background: var(--soft); }
 
+    /* leads: one panel, two halves */
+    .leads { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--hair); border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #fff 55%, #f1f7fb 100%); box-shadow: 0 1px 2px rgba(23,50,77,.04), 0 12px 32px -18px rgba(23,50,77,.22); }
+    .leads article { display: grid; grid-template-columns: 168px 1fr; min-height: 210px; }
+    .leads article + article { border-left: 1px solid var(--hair); }
+    .leads .p-photo { width: 100%; height: 100%; }
+    .leads .lc { padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+    .leads .p-title { width: fit-content; padding: 4px 10px; border-radius: 999px; background: var(--g-prog-l); }
+    .leads .chair .p-title { background: var(--route-core); color: #fff; }
+    .leads .p-name { font-size: 1.4rem; font-weight: 500; letter-spacing: -.02em; margin-top: 6px; }
 
-    @media (max-width: 980px) {
-      .contributor-grid { grid-template-columns: repeat(3,1fr); }
+    /* contributors: one column per group, each group owns a color */
+    .groups { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .grp { --g: var(--g-prog); --gl: var(--g-prog-l); padding: 0 26px 4px 0; border-top: 3px solid var(--g); }
+    .grp + .grp { padding-left: 26px; }
+    .grp.liai { --g: var(--g-liai); --gl: var(--g-liai-l); }
+    .grp.sen { --g: var(--g-sen); --gl: var(--g-sen-l); }
+    .grp h3 { margin: 0; padding: 18px 0 6px; color: var(--g); font-size: .98rem; font-weight: 600; letter-spacing: -.01em; }
+    .grp h3 small { display: block; margin-top: 2px; color: var(--muted); font-size: .82rem; font-weight: 400; letter-spacing: 0; }
+    .person { display: grid; grid-template-columns: 88px 1fr; gap: 16px; align-items: center; padding: 14px 0; }
+    .person + .person { border-top: 1px solid var(--hair); }
+    .person .p-photo { width: 88px; height: 88px; border-radius: 10px; background: var(--gl); box-shadow: 0 0 0 1px color-mix(in srgb, var(--g) 18%, transparent); }
+    .person > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .person .p-title { color: var(--g); }
+
+    @media (max-width: 960px) {
+      .groups { grid-template-columns: 1fr; gap: 28px; }
+      .grp, .grp + .grp { padding: 0 0 4px; }
     }
-    @media (max-width: 900px) {
-      .about-section-head { grid-template-columns: 1fr; gap: 16px; }
-      .co-lead-panel { grid-template-columns: 1fr; }
-      .co-lead + .co-lead { border-left: 0; border-top: 1px solid var(--line); }
+    @media (max-width: 820px) {
+      .ab-sec-head { grid-template-columns: 1fr; gap: 10px; }
+      .ab-sec-head p { justify-self: start; }
+      .leads { grid-template-columns: 1fr; }
+      .leads article + article { border-left: 0; border-top: 1px solid var(--hair); }
+      .ab-aff span { flex-basis: 100%; }
     }
-    @media (max-width: 700px) {
-      .contributor-grid { grid-template-columns: repeat(2,1fr); }
-    }
-    @media (max-width: 620px) {
-      .about-section { padding: 56px 0; }
-      .co-lead { grid-template-columns: 112px 1fr; min-height: 180px; }
-      .lead-photo { width: 112px; min-height: 180px; }
-      .lead-copy { padding: 20px; }
-      .lead-copy h3 { font-size: 1.28rem; }
-      .contributor-grid { gap: 22px 18px; }
-      .contributor-photo { width: 78px; height: 78px; }
-      .about-affiliation { gap: 16px; }
-      .about-affiliation img { max-height: 36px; }
+    @media (max-width: 560px) {
+      .ab-hero { padding-top: 52px; }
+      .ab-sec { padding-top: 52px; }
+      .leads article { grid-template-columns: 116px 1fr; min-height: 170px; }
+      .leads .lc { padding: 18px; }
+      .leads .p-name { font-size: 1.22rem; }
+      .ab-logo { height: 70px; }
+      .ab-logo img { height: 68px; }
     }
   </style>
 <!-- AI2PRACTICE SEO -->
@@ -88,46 +110,47 @@
   <nav aria-label="Primary"><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="about.html">About</a></li></ul></nav>
 </div></header>
 
-<main id="main">
-  <section class="page-hero about-hero"><div class="shell">
-    <p class="about-kicker">About AI2Practice</p>
-    <h1>Clinical AI education built for practice.</h1>
-    <p class="about-deck">AI2Practice is an open educational resource that connects the foundations of artificial intelligence with clinical evaluation, implementation, research, and teaching in radiology.</p>
-    <div class="about-affiliation">
-      <span>An initiative of the AAR / RRA Committee on Data Science &amp; AI</span>
-      <img src="images/aar-logo.jpg" alt="Association of Academic Radiology" />
-      <img src="images/rra-logo.webp" alt="Radiology Research Alliance" />
+<main id="main" class="ab">
+  <section class="ab-hero"><div class="shell">
+    <h1>Clinical AI education built <em>for practice</em>.</h1>
+    <p class="ab-deck">AI2Practice is a free, open course that connects the foundations of artificial intelligence with clinical evaluation, implementation, research and teaching in radiology.</p>
+    <div class="ab-aff">
+      <span>An initiative of the <strong>AAR / RRA Committee on Data Science &amp; AI</strong></span>
+      <div class="ab-logo"><img src="images/aar-logo.jpg" alt="Association of Academic Radiology" /></div>
+      <div class="ab-logo"><img src="images/rra-logo.webp" alt="Radiology Research Alliance" /></div>
     </div>
   </div></section>
 
-  <section class="about-section"><div class="shell">
-    <div class="about-section-head"><h2>Co-leads</h2><p>AI2Practice is co-led by Shinjer Li and Florence Doo, with contributors spanning radiology, imaging informatics, AI, education, and clinical implementation.</p></div>
-    <div class="co-lead-panel">
-      <article class="co-lead">
-        <img class="lead-photo" src="images/shinjer-li.png" alt="Shinjer Li" />
-        <div class="lead-copy"><span class="role-label">Co-lead</span><h3>Shinjer Li</h3><p>Eastern Virginia Medical School at Old Dominion University</p></div>
-      </article>
-      <article class="co-lead">
-        <img class="lead-photo" src="images/florence-doo.jpg" alt="Florence Doo" />
-        <div class="lead-copy"><span class="role-label">Co-lead</span><h3>Florence Doo, MD, MA, CIIP</h3><p>University of Maryland Institute for Health Computing</p></div>
-      </article>
+  <section class="ab-sec"><div class="shell">
+    <div class="ab-sec-head"><h2>Leadership</h2><p>AI2Practice is led by Florence Doo and Shinjer Li, with contributors from radiology, imaging informatics, AI, education and clinical practice.</p></div>
+    <div class="leads">
+      <article class="chair"><img class="p-photo" src="images/florence-doo.jpg" alt="Florence Doo" /><div class="lc"><span class="p-title">Committee Chair</span><p class="p-name">Florence Doo, MD, MA, CIIP</p><p class="p-aff">University of Maryland Institute for Health Computing</p></div></article>
+      <article><img class="p-photo" src="images/shinjer-li.png" alt="Shinjer Li" /><div class="lc"><span class="p-title">Medical Student Lead</span><p class="p-name">Shinjer Li</p><p class="p-aff">Eastern Virginia Medical School at Old Dominion University</p></div></article>
     </div>
   </div></section>
 
-  <section class="about-section"><div class="shell">
-    <div class="about-section-head"><h2>Contributors</h2><p>Committee contributors bring perspectives from academic radiology, clinical AI, imaging informatics, education, and practice leadership.</p></div>
-    <div class="contributor-grid">
-      <article class="contributor-card"><img class="contributor-photo" src="https://medschool.ucla.edu/sites/default/files/styles/box_1_1_500/public/media/images/katherine_andriole.jpg.webp?h=e9e0f3db&amp;itok=VvcAJnUK" alt="Katherine Andriole" loading="lazy" /><h3>Katherine Andriole, PhD</h3><p>UCLA David Geffen School of Medicine</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://cdn-images.kyruus.com/providermatch/ucihealth/photos/orig/chang-peter-1841530458.png" alt="Peter Chang" loading="lazy" /><h3>Peter Chang, MD</h3><p>University of California, Irvine</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://scholars.duke.edu/profile-images/full/0256542.jpg" alt="Lars Grimm" loading="lazy" /><h3>Lars Grimm, MD, MHS</h3><p>Duke University</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://aarad.memberclicks.net/assets/About/Executive-Committee/M_Heilbrun_12_22.jpg" alt="Marta Heilbrun" loading="lazy" /><h3>Marta Heilbrun, MD</h3><p>Intermountain Health</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://winshipcancer.emory.edu/profiles/_images/krupinski-e-headshot.jpg" alt="Elizabeth Krupinski" loading="lazy" /><h3>Elizabeth Krupinski, PhD</h3><p>Emory University</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://med.uoc.gr/wp-content/uploads/2025/01/klontzas-1-280x280.jpg" alt="Michail Klontzas" loading="lazy" /><h3>Michail Klontzas, MD, PhD</h3><p>University of Crete School of Medicine</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://static.wixstatic.com/media/e6e8bc_711a5e0db52a4ea68717f796fad76a89~mv2.jpg/v1/crop/x_73%2Cy_0%2Cw_413%2Ch_518/fill/w_306%2Ch_384%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Raisa%20Amiruddin.jpg" alt="Raisa Amiruddin" loading="lazy" /><h3>Raisa Amiruddin, MBBS</h3><p>MetroWest Medical Center, Massachusetts</p></article>
-      <article class="contributor-card"><img class="contributor-photo" src="https://med.emory.edu/departments/radiology/about-us/images/faculty-staff-awards/2025/kadom-nadja-2025-square.png" alt="Nadja Kadom" loading="lazy" /><span class="contributor-tag">Advisor &middot; RRA representative</span><h3>Nadja Kadom, MD</h3><p>Emory University / Children's Healthcare of Atlanta</p></article>
+  <section class="ab-sec"><div class="shell">
+    <div class="ab-sec-head"><h2>Contributors</h2></div>
+    <div class="groups">
+      <div class="grp prog">
+        <h3>Program leads<small>Trainee, AI and international leads</small></h3>
+        <div class="person"><img class="p-photo" src="https://static.wixstatic.com/media/e6e8bc_711a5e0db52a4ea68717f796fad76a89~mv2.jpg/v1/crop/x_73%2Cy_0%2Cw_413%2Ch_518/fill/w_306%2Ch_384%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Raisa%20Amiruddin.jpg" alt="Raisa Amiruddin" loading="lazy" /><div><span class="p-title">Resident Lead</span><p class="p-name">Raisa Amiruddin, MBBS</p><p class="p-aff">MetroWest Medical Center, Massachusetts</p></div></div>
+        <div class="person"><img class="p-photo" src="https://cdn-images.kyruus.com/providermatch/ucihealth/photos/orig/chang-peter-1841530458.png" alt="Peter Chang" loading="lazy" /><div><span class="p-title">AI Innovation Lead</span><p class="p-name">Peter Chang, MD</p><p class="p-aff">University of California, Irvine</p></div></div>
+        <div class="person"><img class="p-photo" src="https://med.uoc.gr/wp-content/uploads/2025/01/klontzas-1-280x280.jpg" alt="Michail Klontzas" loading="lazy" /><div><span class="p-title">International Lead</span><p class="p-name">Michail Klontzas, MD, PhD</p><p class="p-aff">University of Crete School of Medicine</p></div></div>
+      </div>
+      <div class="grp liai">
+        <h3>Liaisons<small>Links to partner societies and funders</small></h3>
+        <div class="person"><img class="p-photo" src="https://scholars.duke.edu/profile-images/full/0256542.jpg" alt="Lars Grimm" loading="lazy" /><div><span class="p-title">RAHSR Liaison</span><p class="p-name">Lars Grimm, MD, MHS</p><p class="p-aff">Duke University</p></div></div>
+        <div class="person"><img class="p-photo" src="https://aarad.memberclicks.net/assets/About/Executive-Committee/M_Heilbrun_12_22.jpg" alt="Marta Heilbrun" loading="lazy" /><div><span class="p-title">Inter-Society Liaison (RSNA)</span><p class="p-name">Marta Heilbrun, MD</p><p class="p-aff">Intermountain Health</p></div></div>
+        <div class="person"><img class="p-photo" src="https://winshipcancer.emory.edu/profiles/_images/krupinski-e-headshot.jpg" alt="Elizabeth Krupinski" loading="lazy" /><div><span class="p-title">Inter-Society Liaison (SIIM)</span><p class="p-name">Elizabeth Krupinski, PhD</p><p class="p-aff">Emory University</p></div></div>
+      </div>
+      <div class="grp sen">
+        <h3>Senior advisors<small>Guidance and review</small></h3>
+        <div class="person"><img class="p-photo" src="https://medschool.ucla.edu/sites/default/files/styles/box_1_1_500/public/media/images/katherine_andriole.jpg.webp?h=e9e0f3db&amp;itok=VvcAJnUK" alt="Katherine Andriole" loading="lazy" /><div><span class="p-title">Senior AI Academic Leader</span><p class="p-name">Katherine Andriole, PhD</p><p class="p-aff">UCLA David Geffen School of Medicine</p></div></div>
+        <div class="person"><img class="p-photo" src="https://med.emory.edu/departments/radiology/about-us/images/faculty-staff-awards/2025/kadom-nadja-2025-square.png" alt="Nadja Kadom" loading="lazy" /><div><span class="p-title">RRA Leadership (Guest)</span><p class="p-name">Nadja Kadom, MD</p><p class="p-aff">Emory University / Children's Healthcare of Atlanta</p></div></div>
+      </div>
     </div>
   </div></section>
-
 </main>
 
 <footer class="site-footer compact-footer"><div class="shell compact-footer-row">
