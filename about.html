@@ -47,8 +47,10 @@
     .leads article + article { border-left: 1px solid var(--hair); }
     .leads .p-photo { width: 100%; height: 100%; }
     .leads .lc { padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
-    .leads .p-title { width: fit-content; padding: 4px 10px; border-radius: 999px; background: var(--g-prog-l); }
-    .leads .chair .p-title { background: var(--route-core); color: #fff; }
+    .leads .colead { width: fit-content; padding: 4px 10px; border-radius: 999px; background: var(--route-core); color: #fff; }
+    .leads .ctitle { margin-top: 8px; }
+    .star { color: var(--g-prog); font-weight: 700; }
+    .ab-foot { margin: 22px 0 0; color: var(--muted); font-size: .85rem; line-height: 1.5; }
     .leads .p-name { font-size: 1.4rem; font-weight: 500; letter-spacing: -.02em; margin-top: 6px; }
 
     /* contributors: one column per group, each group owns a color */
@@ -122,10 +124,10 @@
   </div></section>
 
   <section class="ab-sec"><div class="shell">
-    <div class="ab-sec-head"><h2>Leadership</h2><p>AI2Practice is led by Florence Doo and Shinjer Li, with contributors from radiology, imaging informatics, AI, education and clinical practice.</p></div>
+    <div class="ab-sec-head"><h2>Co-Leads</h2><p>AI2Practice is co-led by Shinjer Li and Florence Doo, with contributors from radiology, imaging informatics, AI, education and clinical practice.</p></div>
     <div class="leads">
-      <article class="chair"><img class="p-photo" src="images/florence-doo.jpg" alt="Florence Doo" /><div class="lc"><span class="p-title">Committee Chair</span><p class="p-name">Florence Doo, MD, MA, CIIP</p><p class="p-aff">University of Maryland Institute for Health Computing</p></div></article>
-      <article><img class="p-photo" src="images/shinjer-li.png" alt="Shinjer Li" /><div class="lc"><span class="p-title">Medical Student Lead</span><p class="p-name">Shinjer Li</p><p class="p-aff">Eastern Virginia Medical School at Old Dominion University</p></div></article>
+      <article><img class="p-photo" src="images/shinjer-li.png" alt="Shinjer Li" /><div class="lc"><span class="p-title colead">Co-Lead, AI2Practice</span><p class="p-name">Shinjer Li</p><p class="p-aff">Eastern Virginia Medical School at Old Dominion University</p><span class="p-title ctitle">Medical Student Lead<span class="star">*</span></span></div></article>
+      <article><img class="p-photo" src="images/florence-doo.jpg" alt="Florence Doo" /><div class="lc"><span class="p-title colead">Co-Lead, AI2Practice</span><p class="p-name">Florence Doo, MD, MA, CIIP</p><p class="p-aff">University of Maryland Institute for Health Computing</p><span class="p-title ctitle">Committee Chair<span class="star">*</span></span></div></article>
     </div>
   </div></section>
 
@@ -134,22 +136,23 @@
     <div class="groups">
       <div class="grp prog">
         <h3>Program leads<small>Trainee, AI and international leads</small></h3>
-        <div class="person"><img class="p-photo" src="https://static.wixstatic.com/media/e6e8bc_711a5e0db52a4ea68717f796fad76a89~mv2.jpg/v1/crop/x_73%2Cy_0%2Cw_413%2Ch_518/fill/w_306%2Ch_384%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Raisa%20Amiruddin.jpg" alt="Raisa Amiruddin" loading="lazy" /><div><span class="p-title">Resident Lead</span><p class="p-name">Raisa Amiruddin, MBBS</p><p class="p-aff">MetroWest Medical Center, Massachusetts</p></div></div>
-        <div class="person"><img class="p-photo" src="https://cdn-images.kyruus.com/providermatch/ucihealth/photos/orig/chang-peter-1841530458.png" alt="Peter Chang" loading="lazy" /><div><span class="p-title">AI Innovation Lead</span><p class="p-name">Peter Chang, MD</p><p class="p-aff">University of California, Irvine</p></div></div>
-        <div class="person"><img class="p-photo" src="https://med.uoc.gr/wp-content/uploads/2025/01/klontzas-1-280x280.jpg" alt="Michail Klontzas" loading="lazy" /><div><span class="p-title">International Lead</span><p class="p-name">Michail Klontzas, MD, PhD</p><p class="p-aff">University of Crete School of Medicine</p></div></div>
+        <div class="person"><img class="p-photo" src="https://static.wixstatic.com/media/e6e8bc_711a5e0db52a4ea68717f796fad76a89~mv2.jpg/v1/crop/x_73%2Cy_0%2Cw_413%2Ch_518/fill/w_306%2Ch_384%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Raisa%20Amiruddin.jpg" alt="Raisa Amiruddin" loading="lazy" /><div><span class="p-title">Resident Lead<span class="star">*</span></span><p class="p-name">Raisa Amiruddin, MBBS</p><p class="p-aff">MetroWest Medical Center, Massachusetts</p></div></div>
+        <div class="person"><img class="p-photo" src="https://cdn-images.kyruus.com/providermatch/ucihealth/photos/orig/chang-peter-1841530458.png" alt="Peter Chang" loading="lazy" /><div><span class="p-title">AI Innovation Lead<span class="star">*</span></span><p class="p-name">Peter Chang, MD</p><p class="p-aff">University of California, Irvine</p></div></div>
+        <div class="person"><img class="p-photo" src="https://med.uoc.gr/wp-content/uploads/2025/01/klontzas-1-280x280.jpg" alt="Michail Klontzas" loading="lazy" /><div><span class="p-title">International Lead<span class="star">*</span></span><p class="p-name">Michail Klontzas, MD, PhD</p><p class="p-aff">University of Crete School of Medicine</p></div></div>
       </div>
       <div class="grp liai">
         <h3>Liaisons<small>Links to partner societies and funders</small></h3>
-        <div class="person"><img class="p-photo" src="https://scholars.duke.edu/profile-images/full/0256542.jpg" alt="Lars Grimm" loading="lazy" /><div><span class="p-title">RAHSR Liaison</span><p class="p-name">Lars Grimm, MD, MHS</p><p class="p-aff">Duke University</p></div></div>
-        <div class="person"><img class="p-photo" src="https://aarad.memberclicks.net/assets/About/Executive-Committee/M_Heilbrun_12_22.jpg" alt="Marta Heilbrun" loading="lazy" /><div><span class="p-title">Inter-Society Liaison (RSNA)</span><p class="p-name">Marta Heilbrun, MD</p><p class="p-aff">Intermountain Health</p></div></div>
-        <div class="person"><img class="p-photo" src="https://winshipcancer.emory.edu/profiles/_images/krupinski-e-headshot.jpg" alt="Elizabeth Krupinski" loading="lazy" /><div><span class="p-title">Inter-Society Liaison (SIIM)</span><p class="p-name">Elizabeth Krupinski, PhD</p><p class="p-aff">Emory University</p></div></div>
+        <div class="person"><img class="p-photo" src="https://scholars.duke.edu/profile-images/full/0256542.jpg" alt="Lars Grimm" loading="lazy" /><div><span class="p-title">RAHSR Liaison<span class="star">*</span></span><p class="p-name">Lars Grimm, MD, MHS</p><p class="p-aff">Duke University</p></div></div>
+        <div class="person"><img class="p-photo" src="https://aarad.memberclicks.net/assets/About/Executive-Committee/M_Heilbrun_12_22.jpg" alt="Marta Heilbrun" loading="lazy" /><div><span class="p-title">Inter-Society Liaison (RSNA)<span class="star">*</span></span><p class="p-name">Marta Heilbrun, MD</p><p class="p-aff">Intermountain Health</p></div></div>
+        <div class="person"><img class="p-photo" src="https://winshipcancer.emory.edu/profiles/_images/krupinski-e-headshot.jpg" alt="Elizabeth Krupinski" loading="lazy" /><div><span class="p-title">Inter-Society Liaison (SIIM)<span class="star">*</span></span><p class="p-name">Elizabeth Krupinski, PhD</p><p class="p-aff">Emory University</p></div></div>
       </div>
       <div class="grp sen">
         <h3>Senior advisors<small>Guidance and review</small></h3>
-        <div class="person"><img class="p-photo" src="https://medschool.ucla.edu/sites/default/files/styles/box_1_1_500/public/media/images/katherine_andriole.jpg.webp?h=e9e0f3db&amp;itok=VvcAJnUK" alt="Katherine Andriole" loading="lazy" /><div><span class="p-title">Senior AI Academic Leader</span><p class="p-name">Katherine Andriole, PhD</p><p class="p-aff">UCLA David Geffen School of Medicine</p></div></div>
-        <div class="person"><img class="p-photo" src="https://med.emory.edu/departments/radiology/about-us/images/faculty-staff-awards/2025/kadom-nadja-2025-square.png" alt="Nadja Kadom" loading="lazy" /><div><span class="p-title">RRA Leadership (Guest)</span><p class="p-name">Nadja Kadom, MD</p><p class="p-aff">Emory University / Children's Healthcare of Atlanta</p></div></div>
+        <div class="person"><img class="p-photo" src="https://medschool.ucla.edu/sites/default/files/styles/box_1_1_500/public/media/images/katherine_andriole.jpg.webp?h=e9e0f3db&amp;itok=VvcAJnUK" alt="Katherine Andriole" loading="lazy" /><div><span class="p-title">Senior AI Academic Leader<span class="star">*</span></span><p class="p-name">Katherine Andriole, PhD</p><p class="p-aff">UCLA David Geffen School of Medicine</p></div></div>
+        <div class="person"><img class="p-photo" src="https://med.emory.edu/departments/radiology/about-us/images/faculty-staff-awards/2025/kadom-nadja-2025-square.png" alt="Nadja Kadom" loading="lazy" /><div><span class="p-title">RRA Leadership (Guest)<span class="star">*</span></span><p class="p-name">Nadja Kadom, MD</p><p class="p-aff">Emory University / Children's Healthcare of Atlanta</p></div></div>
       </div>
     </div>
+    <p class="ab-foot"><span class="star">*</span>Role on the AAR / RRA Committee on Data Science &amp; AI.</p>
   </div></section>
 </main>
 
