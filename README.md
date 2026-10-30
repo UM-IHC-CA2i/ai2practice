@@ -48,7 +48,7 @@ AI is already reading alongside radiologists: triaging head CTs, flagging pulmon
 
 AI2Practice is a response to that risk. It starts from zero, assumes no AI or programming background, and builds the understanding a trainee needs to use AI as a check on their own reasoning rather than a replacement for it.
 
-> **Who it is for:** medical students, residents, fellows and the educators who teach them. No prior AI background is needed: every term is defined the first time it appears.
+> **Who it is for:** medical students, residents, fellows, educators who teach them, and researchers and trainees who work with medical imaging data and want to understand clinical AI. No prior AI background is needed.
 
 ## The course
 
