@@ -96,7 +96,7 @@
 .cur-core .ribbon {
   --ink: #141a24; --ink-2: #3a4250; --muted: #5d6572; --wash: #eef4fb;
   --core: #13294a; --core-deep: #0c1c33; --check: #8ec1ee; --m1: #6aaee8; --m2: #3b82d0; --m3: #2557a5;
-  --sans: 'IBM Plex Sans', system-ui, sans-serif; --serif: 'IBM Plex Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --sans: 'IBM Plex Sans', 'Plex Fallback', system-ui, sans-serif; --serif: 'IBM Plex Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
   --ease-out: cubic-bezier(.23, 1, .32, 1);
   --route: linear-gradient(90deg, var(--check), var(--m1) 22%, var(--m2) 48%, var(--m3) 74%, var(--core));
   position: relative; display: grid; grid-template-columns: auto 5fr 4fr 5fr auto; gap: 0 10px;

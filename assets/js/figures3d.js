@@ -9,8 +9,18 @@ const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
 const V3 = THREE.Vector3;
 
+// Build the scenes only after the page has loaded and gone idle, so shader setup never stalls the entrance animations
+await new Promise(res=>{
+  const idle = ()=> window.requestIdleCallback ? requestIdleCallback(res, {timeout:1500}) : setTimeout(res, 200);
+  if(document.readyState==='complete') idle(); else addEventListener('load', idle, {once:true});
+});
+
+// Software-only WebGL (no graphics card) freezes the page for seconds, so those machines keep the flat SVG figures
 let renderer;
 try{
+  const probe = document.createElement('canvas').getContext('webgl', {failIfMajorPerformanceCaveat:true});
+  const info = probe && probe.getExtension('WEBGL_debug_renderer_info');
+  if(!probe || (info && /swiftshader|llvmpipe|softpipe|software|basic render/i.test(probe.getParameter(info.UNMASKED_RENDERER_WEBGL)))) throw new Error('No hardware WebGL');
   renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, preserveDrawingBuffer:true});
 }catch(e){
   document.documentElement.classList.add('no-webgl');

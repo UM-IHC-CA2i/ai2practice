@@ -1,6 +1,12 @@
 /* AI2Practice v2 theme: one palette and type system for every page.
    Loaded last, after assets/css/lesson-layout.css (curriculum pages) or assets/css/site.css (section pages).
    Route colors match the home page map: core curriculum = navy, Research Lab = rust, Leadership = blue. */
+/* Arial sized to IBM Plex Sans, so text keeps its width while the web font loads and the header doesn't jump on swap. */
+@font-face {
+  font-family: 'Plex Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 102.8%; ascent-override: 99.7%; descent-override: 26.8%; line-gap-override: 0%;
+}
 :root {
   /* Route palette (shared with assets/css/home.css) */
   --route-core: #17324d;
@@ -16,7 +22,7 @@
   --route-muted: #6b7280;
   --route-soft: #f5f6f8;
   --route-line: #e5e7eb;
-  --plex: 'IBM Plex Sans', system-ui, sans-serif;
+  --plex: 'IBM Plex Sans', 'Plex Fallback', system-ui, sans-serif;
   --plex-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
   /* assets/css/site.css tokens */

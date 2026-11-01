@@ -40,6 +40,11 @@
 .m2-think .m1-example-label { color: #92400E; }
 .m2-think p { margin: 0; }
 
+.m2-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0; }
+.m2-rule { padding: 18px 20px; border: 1px solid var(--gray-200, #E5E7EB); border-top: 4px solid #17324D; border-radius: var(--radius); background: #fff; }
+.m2-rule-title { font-weight: 700; font-size: 1.08rem; color: #17324D; margin-bottom: 8px; }
+.m2-rule p { margin: 0; }
+
 /* ── Plain data tables (dose, categories, systems) ── */
 .m2-table-wrap { overflow-x: auto; margin: 16px 0; }
 .m2-table {

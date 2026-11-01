@@ -10,11 +10,11 @@ window.AI2PRACTICE_FIREBASE = {
   enabled: true,
   microsoft: false,
   config: {
-    apiKey: 'AIzaSyC-iWK-Np5pHg1ZxoNuvBMD_F1BRRZmyWc',
-    authDomain: 'ai2practice-cecbc.firebaseapp.com',
-    projectId: 'ai2practice-cecbc',
-    storageBucket: 'ai2practice-cecbc.firebasestorage.app',
-    messagingSenderId: '55220824447',
-    appId: '1:55220824447:web:b875442621b8773edfd24a'
+    apiKey: 'AIzaSyBl9byyiHW6FR7UmD2auFXbFcX1_LJcZ7c',
+    authDomain: 'ai2practice-22fca.firebaseapp.com',
+    projectId: 'ai2practice-22fca',
+    storageBucket: 'ai2practice-22fca.firebasestorage.app',
+    messagingSenderId: '474570609712',
+    appId: '1:474570609712:web:6260aafa756be0d05909f5'
   }
 };

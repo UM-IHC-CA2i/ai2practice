@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Research Lab — AI2Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/site.css?v=20261025d" />
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261025d" />
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+<style>
+.rl{
+  --ink:#141a24; --ink-2:#3a4250; --muted:#5d6572; --ground:#fff; --tone:#f3f6fa; --line:#e1e8f0; --wash:#eef4fb;
+  --core:#13294a; --core-deep:#0c1c33; --res:#1f8a9e; --res-soft:#e3f3f6; --done:#1f8a9e;
+  --m-write:#13294a; --m-fill:#3b82d0; --m-reuse:#1f8a9e; --m-ai:#5d55b4; --m-fix:#c08a2b; --m-read:#b6c2d1;
+  --ease-out:cubic-bezier(.23,1,.32,1); --ease-io:cubic-bezier(.77,0,.175,1);
+  --gut:clamp(1rem,4vw,2.5rem); --max:72rem;
+  font-family:'IBM Plex Sans','Plex Fallback',system-ui,sans-serif; color:var(--ink); font-size:1.0625rem; line-height:1.55; overflow-x:clip;
+}
+.rl *{box-sizing:border-box}
+.rl h1,.rl h2,.rl h3,.rl h4{margin:0;line-height:1.12;letter-spacing:-.02em;text-wrap:balance;color:var(--ink)}
+.rl p{margin:0;text-wrap:pretty}
+.rl button{font:inherit;cursor:pointer;color:inherit}
+.rl :focus-visible{outline:2px solid var(--res);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--res)}
+.sec{padding:clamp(3.5rem,8vw,6rem) 0}
+.sec-head{max-width:44rem;margin-bottom:2.5rem}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.35rem);margin-top:.6rem}
+.sec-head p{color:var(--ink-2);margin-top:.9rem}
+
+/* reveal once */
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+
+/* hero */
+.hero{background:linear-gradient(180deg,#0c1d2f 0%,#173457 30%,#2f5a8a 52%,#8fb0d4 72%,#e3edf8 88%,#fff 100%);color:#fff;padding:clamp(3.5rem,8vw,5.5rem) 0 clamp(4rem,9vw,6.5rem)}
+.hero .eyebrow{color:#9fd8e3}
+.hero h1{color:#fff;font-size:clamp(2.4rem,6vw,3.9rem);margin-top:.7rem;letter-spacing:-.03em}
+.hero-desc{max-width:38rem;font-size:clamp(1.05rem,1.6vw,1.2rem);color:#dbe6f3;margin-top:1rem}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.8rem}
+.pill{display:inline-flex;align-items:center;gap:.6rem;min-height:3rem;padding:0 1.4rem;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;border:0;transition:transform .16s var(--ease-out),box-shadow .2s ease,background-color .2s ease}
+.pill:active{transform:scale(.97)}
+.pill.solid{background:#fff;color:var(--core)}
+.pill.solid:hover{box-shadow:0 8px 24px rgba(12,28,51,.25)}
+.pill.solid .ar{transition:transform .2s var(--ease-out)}
+.pill.solid:hover .ar{transform:translateX(3px)}
+.pill.ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.pill.ghost:hover{background:rgba(255,255,255,.2)}
+.pill.dark{background:var(--core);color:#fff}
+.pill.dark:hover{box-shadow:0 8px 20px rgba(19,41,74,.22)}
+.pill.line{background:#fff;color:var(--core);box-shadow:inset 0 0 0 1px var(--line)}
+.stats{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;margin-top:2.75rem;color:var(--core);font-size:.92rem}
+.stats b{display:block;font-size:1.5rem;font-weight:600;letter-spacing:-.02em;color:var(--core-deep)}
+
+/* ---------- shared bits ---------- */
+.tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px;background:var(--tone);color:var(--muted)}
+.tag.done{background:var(--res-soft);color:#13606e}
+.tag.now{background:var(--core);color:#fff}
+.tag.opt{background:#fff;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+.q{color:var(--ink-2);font-size:.98rem}
+.parts{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.parts li{display:flex;gap:.7rem;align-items:center;font-size:.94rem;color:var(--ink-2)}
+.parts .pd{width:1.05rem;height:1.05rem;border-radius:50%;box-shadow:inset 0 0 0 2px var(--line);flex-shrink:0;display:grid;place-items:center}
+.parts li.ok .pd{background:var(--done);box-shadow:none}
+.parts li.ok .pd::after{content:"";width:.38rem;height:.2rem;border:solid #fff;border-width:0 0 2px 2px;transform:translateY(-1px) rotate(-45deg)}
+.mixbar{display:flex;height:.55rem;border-radius:999px;overflow:hidden;background:var(--tone);gap:2px}
+.mixbar i{display:block;height:100%;transform-origin:left;}
+.meta{display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+
+/* ---------- variant A: horizontal line ---------- */
+.va-track{position:relative;padding:1rem 0 0}
+.va-svg{display:block;width:100%;height:auto;overflow:visible}
+.va-stops{display:grid;grid-template-columns:repeat(6,1fr);margin-top:-.3rem}
+.va-stop{background:none;border:0;padding:.6rem .3rem;text-align:center;border-radius:.75rem;transition:background-color .2s ease}
+.va-stop:hover{background:var(--tone)}
+.va-stop .n{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--muted)}
+.va-stop strong{display:block;font-size:.95rem;font-weight:600;line-height:1.25;margin-top:.2rem}
+.va-stop small{display:block;font-size:.78rem;color:var(--muted);margin-top:.25rem}
+.va-stop[aria-selected="true"] strong{color:var(--res)}
+.dot{transition:r .25s var(--ease-out)}
+.va-panel{margin-top:1.75rem;border:1px solid var(--line);border-radius:1.25rem;padding:clamp(1.25rem,3vw,2rem);display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;background:#fff}
+.va-panel h3{font-size:1.55rem;margin:.6rem 0 .5rem}
+.va-panel .swap{animation:swap .35s var(--ease-out)}
+@keyframes swap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.mini-lbl{font-size:.8rem;font-weight:600;color:var(--muted);margin:1.1rem 0 .45rem}
+.draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.in .draw{transition:stroke-dashoffset 1.4s var(--ease-io) .15s;stroke-dashoffset:0}
+.va-svg .dot,.va-svg .ck{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.4)}
+.in .va-svg .dot,.in .va-svg .ck{opacity:1;transform:none;transition:opacity .4s ease,transform .5s var(--ease-out);transition-delay:calc(.2s + var(--i)*.2s)}
+
+/* ---------- variant B: vertical timeline ---------- */
+.vb{position:relative;max-width:50rem}
+.vb-rail{position:absolute;left:1.15rem;top:1.4rem;bottom:1.4rem;width:3px;background:var(--line);border-radius:3px}
+.vb-fill{position:absolute;inset:0 0 auto 0;height:0;background:var(--res);border-radius:3px;transition:height 1.4s var(--ease-io) .2s}
+.in .vb-fill{height:var(--h)}
+.vb-item{position:relative;padding-left:3.6rem;margin-bottom:.9rem}
+.vb-node{position:absolute;left:0;top:1.05rem;width:2.35rem;height:2.35rem;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 3px var(--line);display:grid;place-items:center;font-weight:600;font-size:.9rem;color:var(--muted);z-index:1}
+.vb-item.done .vb-node{background:var(--res);box-shadow:none;color:#fff}
+.vb-item.now .vb-node{box-shadow:inset 0 0 0 3px var(--res);color:var(--res)}
+.vb-item.opt .vb-node{box-shadow:inset 0 0 0 2px var(--muted);background:#fff;border:2px dashed #fff}
+.vb-card{border:1px solid var(--line);border-radius:1rem;background:#fff;transition:box-shadow .25s ease,border-color .25s ease,transform .25s var(--ease-out)}
+.vb-card:hover{border-color:#c9d6e4;box-shadow:0 10px 30px -14px rgba(19,41,74,.25)}
+.vb-item.opt .vb-card{border-style:dashed}
+.vb-head{width:100%;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;text-align:left;background:none;border:0;padding:1.1rem 1.3rem}
+.vb-head h3{font-size:1.15rem}
+.vb-head .q{margin-top:.3rem;font-size:.92rem}
+.chev{width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;background:var(--tone);transition:transform .3s var(--ease-out),background-color .2s}
+.vb-card[data-open="true"] .chev{transform:rotate(180deg);background:var(--res-soft)}
+.vb-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease-out)}
+.vb-card[data-open="true"] .vb-body{grid-template-rows:1fr}
+.vb-body>div{overflow:hidden}
+.vb-inner{padding:0 1.3rem 1.3rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;opacity:0;transition:opacity .3s ease}
+.vb-card[data-open="true"] .vb-inner{opacity:1;transition-delay:.1s}
+.vb-gap{position:relative;padding-left:3.6rem;margin:1.4rem 0 1.1rem;font-size:.82rem;color:var(--muted);font-weight:500}
+
+/* ---------- variant C: card row ---------- */
+.vc-rail{position:relative;height:4px;background:var(--line);border-radius:4px;margin:0 0 1.6rem}
+.vc-rail i{position:absolute;inset:0 auto 0 0;width:0;background:var(--res);border-radius:4px;transition:width 1.4s var(--ease-io) .2s}
+.in .vc-rail i{width:var(--w)}
+.vc-rail b{position:absolute;top:50%;width:.8rem;height:.8rem;margin:-.4rem 0 0 -.4rem;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--line)}
+.vc-rail b.ok{background:var(--res);box-shadow:none}
+.vc-rail b.now{box-shadow:inset 0 0 0 3px var(--res)}
+.vc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.vc-card{position:relative;display:flex;flex-direction:column;gap:.7rem;border:1px solid var(--line);border-radius:1.1rem;padding:1.35rem;background:#fff;text-align:left;transition:transform .3s var(--ease-out),box-shadow .3s ease,border-color .2s}
+.vc-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -20px rgba(19,41,74,.35);border-color:#c9d6e4}
+.vc-card.now{border-color:var(--res);box-shadow:0 0 0 3px var(--res-soft)}
+.vc-card.opt{border-style:dashed;background:var(--tone)}
+.vc-num{font-family:'IBM Plex Mono',monospace;font-size:2.1rem;font-weight:500;line-height:1;color:#c9d6e4;letter-spacing:-.04em}
+.vc-card.done .vc-num,.vc-card.now .vc-num{color:var(--res)}
+.vc-card h3{font-size:1.12rem}
+.vc-card .q{font-size:.9rem;flex:1}
+.vc-prog{height:3px;border-radius:3px;background:var(--tone);overflow:hidden}
+.vc-prog i{display:block;height:100%;background:var(--res)}
+.vc-top{display:flex;justify-content:space-between;align-items:start;gap:.5rem}
+
+/* ---------- mix ---------- */
+.mix-wrap{background:var(--tone)}
+.mix{display:grid;gap:.15rem;background:#fff;border-radius:1.25rem;padding:clamp(1rem,3vw,1.75rem) clamp(1rem,3vw,2rem);border:1px solid var(--line)}
+.mix-row{display:grid;grid-template-columns:15rem 1fr;gap:1.5rem;align-items:center;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.mix-row:last-child{border-bottom:0}
+.mix-row span{font-size:.95rem;font-weight:500}
+.mix-row span em{font-style:normal;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:.8rem;margin-right:.6rem}
+.mix-row .mixbar{height:.8rem}
+.js .mix .mixbar i{transform:scaleX(0);transition:transform .9s var(--ease-out);transition-delay:calc(var(--r)*90ms + var(--c)*40ms)}
+.js .mix.in .mixbar i{transform:none}
+.key{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.4rem}
+.key div{display:flex;gap:.55rem;align-items:baseline;font-size:.88rem;max-width:15rem}
+.key i{width:.7rem;height:.7rem;border-radius:3px;flex-shrink:0;transform:translateY(1px)}
+.key b{font-weight:600}
+.key small{display:block;color:var(--muted);font-size:.8rem}
+.mix-row:hover .mixbar{box-shadow:0 0 0 3px var(--tone)}
+
+/* ---------- start check ---------- */
+.start{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.sq{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:.95rem 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.seg{display:inline-flex;background:var(--tone);border-radius:999px;padding:3px;flex-shrink:0;position:relative}
+.seg button{border:0;background:none;padding:.35rem .95rem;border-radius:999px;font-size:.85rem;font-weight:500;color:var(--muted);position:relative;z-index:1;transition:color .2s}
+.seg button[aria-pressed="true"]{color:#fff}
+.seg .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--core);opacity:0;transition:transform .3s var(--ease-out),opacity .2s}
+.seg[data-v="1"] .knob{opacity:1}
+.seg[data-v="0"] .knob{opacity:1;transform:translateX(100%)}
+.result{border-radius:1.25rem;background:var(--core);color:#fff;padding:clamp(1.4rem,3vw,2rem);min-height:13rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:sticky;top:6rem}
+.result .eyebrow{color:#9fd8e3}
+.result h3{color:#fff;font-size:1.7rem;margin-top:.5rem}
+.result p{color:#c6d4e4;margin-top:.5rem;font-size:.95rem}
+.result .swap{animation:swap .35s var(--ease-out)}
+
+/* ---------- involved ---------- */
+.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:1.25rem;overflow:hidden}
+.inv a{background:#fff;padding:1.5rem;text-decoration:none;color:inherit;display:block;transition:background-color .2s}
+.inv a:hover{background:var(--wash)}
+.inv h4{font-size:1.02rem;display:flex;justify-content:space-between;gap:.5rem}
+.inv h4 span{color:var(--muted);transition:transform .2s var(--ease-out)}
+.inv a:hover h4 span{transform:translateX(3px);color:var(--res)}
+.inv p{font-size:.9rem;color:var(--ink-2);margin-top:.45rem}
+
+/* mockup switcher */
+.switch{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:50;display:flex;gap:4px;padding:5px;background:var(--core-deep,#0c1c33);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);font-family:'IBM Plex Sans',sans-serif}
+.switch span{color:#8fa6c2;font-size:.75rem;padding:0 .5rem 0 .7rem;align-self:center;white-space:nowrap}
+.switch a{color:#c6d4e4;text-decoration:none;font-size:.82rem;font-weight:500;padding:.45rem .9rem;border-radius:999px;white-space:nowrap}
+.switch a[aria-current="true"]{background:#fff;color:#0c1c33}
+
+@media (max-width:900px){
+  .va-panel,.vb-inner,.start{grid-template-columns:1fr}
+  .vc-grid,.inv{grid-template-columns:1fr 1fr}
+  .mix-row{grid-template-columns:1fr;gap:.45rem}
+  .result{position:static}
+}
+@media (max-width:640px){
+  .va-stops{grid-template-columns:repeat(3,1fr);row-gap:.4rem}
+  .va-svg{display:none}
+  .va-stop{box-shadow:inset 0 0 0 1px var(--line)}
+  .va-stop[aria-selected="true"]{box-shadow:inset 0 0 0 2px var(--res)}
+  .vc-grid,.inv{grid-template-columns:1fr}
+  .switch span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .rl *,.rl *::before{transition:none!important;animation:none!important}
+  .js .rv{opacity:1;transform:none}
+  .draw{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header editorial-header"><div class="shell navbar">
+  <a class="brand brand-logo" href="../index.html" aria-label="AI2Practice home"><img src="../images/ai2practice-logo.svg" alt="AI2Practice" /></a>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="../pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="../pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="../tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="../pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="../pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="../about.html">About</a></li></ul></nav>
+</div></header>
+
+<main id="main" class="rl">
+
+<section class="hero"><div class="wrap">
+  <p class="eyebrow rv">Research Lab &middot; independent track</p>
+  <h1 class="rv" style="--d:60ms">Data science for clinical AI research</h1>
+  <p class="hero-desc rv" style="--d:120ms">Six hands-on labs, from your first line of Python to a project of your own. Each one starts with a real clinical question. You work in Google Colab (free notebooks that run in your browser) and save to GitHub (a site that keeps every version of your code), so your progress becomes a portfolio.</p>
+  <div class="hero-actions rv" style="--d:180ms">
+    <a class="pill solid" href="#labs">Continue Lab 3 <span class="ar" aria-hidden="true">&rarr;</span></a>
+    <a class="pill ghost" href="#start">Where do I start?</a>
+  </div>
+  <div class="stats rv" style="--d:240ms">
+    <div><b>6</b>labs in order</div><div><b>~11 h</b>at your own pace</div><div><b>2 of 6</b>finished</div><div><b>Free</b>no install needed</div>
+  </div>
+</div></section>
+
+<section class="sec" id="labs"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">The labs</p>
+    <h2>One path, six stops</h2>
+    <p>Work through them in order. Each lab opens with a short warm-up; if it's easy, you can skip ahead. Lab 6, your own project, is optional.</p>
+  </div>
+  <div id="journey"></div>
+</div></section>
+
+<section class="sec mix-wrap"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">How you'll work with code</p>
+    <h2>Less typing from scratch, more checking</h2>
+    <p>Every notebook task is one of six kinds. Early labs build fluency by having you write code yourself. Later labs work the way research code is written now: you reuse your own earlier functions, have an AI draft code, and check it.</p>
+  </div>
+  <div class="mix rv" id="mix"></div>
+  <div class="key rv" id="key"></div>
+</div></section>
+
+<section class="sec" id="start"><div class="wrap start">
+  <div>
+    <div class="sec-head rv" style="margin-bottom:1.25rem">
+      <p class="eyebrow">Where do I start?</p>
+      <h2>Four quick questions</h2>
+      <p>Not graded and not saved. The warm-up at the start of each lab will confirm it.</p>
+    </div>
+    <div id="sq" class="rv"></div>
+  </div>
+  <div class="result rv" style="--d:100ms" id="result"></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">Getting involved</p>
+    <h2>From skills to a research position</h2>
+  </div>
+  <div class="inv rv">
+    <a href="#"><h4>Roles students fill <span>&rarr;</span></h4><p>Data cleaning, image labeling, chart review, analysis. What each involves and which lab prepares you.</p></a>
+    <a href="#"><h4>Finding a mentor <span>&rarr;</span></h4><p>Who to ask, a short email template, and what to attach from your portfolio.</p></a>
+    <a href="#"><h4>Conferences <span>&rarr;</span></h4><p>AUR, RSNA, SIIM and MIDL student abstract categories and deadlines.</p></a>
+    <a href="#"><h4>Open datasets <span>&rarr;</span></h4><p>MedMNIST, CheXpert, MIMIC-CXR and others: what's inside and how to get access.</p></a>
+    <a href="#"><h4>Challenges <span>&rarr;</span></h4><p>RSNA and Kaggle competitions worth trying after Lab 4.</p></a>
+    <a href="#"><h4>Funding <span>&rarr;</span></h4><p>Student research grants and summer programs in imaging informatics.</p></a>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer compact-footer"><div class="shell compact-footer-row">
+  <div class="footer-mini-brand"><img src="../images/ai2practice-logo-white.svg" alt="AI2Practice" /><span>Practical, open clinical AI education</span></div>
+  <nav aria-label="Footer"><a href="../about.html">About</a><a href="../pages/brief.html">AI2Practice Brief</a><a href="../tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
+</div></footer>
+
+<nav class="switch" aria-label="Mockup layout">
+  <span>Mockup layout</span>
+  <a href="?v=a" data-v="a">A &middot; Line</a><a href="?v=b" data-v="b">B &middot; Timeline</a><a href="?v=c" data-v="c">C &middot; Cards</a>
+</nav>
+
+<script>
+document.documentElement.classList.add('js');
+var MODES=[['write','Write','From an empty cell, with a hint'],['fill','Fill in','Finish partly written code'],['reuse','Reuse','Import a function you wrote earlier'],['ai','Direct the AI','Have an AI write it; a test checks it'],['fix','Fix','Find the bug in AI-written code'],['read','Read','Order lines or predict output']];
+var LABS=[
+ {name:'Python, Colab and GitHub',time:'1.5 h',q:'How many CT scans were done last month, and of which body regions?',parts:['Python basics','Loading a table','A first chart','Saving your work to GitHub'],mix:[45,30,0,0,0,25],done:4},
+ {name:'Clinical data',time:'2 h',q:'Are patients sent for CT older than those sent for MRI?',parts:['Cleaning messy data','Describing it: Table 1','Charts','Statistical tests'],mix:[40,30,10,0,0,20],done:4},
+ {name:'Evaluating an AI tool',time:'2 h',q:'A pneumothorax detector claims 94% sensitivity. What does it get on local data?',parts:['Confusion matrix','Sensitivity, specificity, PPV, NPV','Thresholds and ROC curves','Subgroups'],mix:[25,15,20,20,10,10],done:2},
+ {name:'Imaging AI',time:'2 h',q:'Can a model tell pneumonia from normal on a chest X-ray, and what is it looking at?',parts:['Images as data','Splitting by patient','A first image model (CNN)','Saliency maps and a second hospital'],mix:[10,20,20,25,20,5],done:0},
+ {name:'Reports and LLMs',time:'1.5 h',q:'How often do reports mention an incidental lung nodule, and can a large language model find them?',parts:['Reports as text data','Simple rules vs an LLM','Checking LLM output'],mix:[15,15,25,25,15,5],done:0},
+ {name:'Your project',time:'4-6 h',q:'Your own question on an open dataset, written up as a short abstract.',parts:['A question','An analysis','A structured abstract','Peer review'],mix:[20,0,40,30,0,10],done:0,opt:true}
+];
+function state(l){return l.done>=l.parts.length?'done':l.done?'now':'next'}
+function tagFor(l){var s=state(l);return s==='done'?'<span class="tag done">Finished</span>':s==='now'?'<span class="tag now">'+l.done+' of '+l.parts.length+' parts</span>':l.opt?'<span class="tag opt">Optional</span>':'<span class="tag">'+l.time+'</span>'}
+function bar(mix,r){return '<div class="mixbar" role="img" aria-label="'+mix.map(function(v,i){return v?MODES[i][1]+' '+v+'%':''}).filter(Boolean).join(', ')+'">'+mix.map(function(v,i){return v?'<i style="width:'+v+'%;background:var(--m-'+MODES[i][0]+');--r:'+(r||0)+';--c:'+i+'"></i>':''}).join('')+'</div>'}
+function parts(l){return '<ul class="parts">'+l.parts.map(function(p,i){return '<li class="'+(i<l.done?'ok':'')+'"><span class="pd"></span>'+p+'</li>'}).join('')+'</ul>'}
+function action(l,i){var s=state(l);return s==='done'?'<a class="pill line" href="#">Review</a>':s==='now'?'<a class="pill dark" href="#">Continue Lab '+(i+1)+' &rarr;</a>':'<a class="pill line" href="#">Preview</a>'}
+var esc=function(s){return s};
+var V=(new URLSearchParams(location.search).get('v')||'a').toLowerCase();
+document.querySelectorAll('.switch a').forEach(function(a){a.setAttribute('aria-current',a.dataset.v===V)});
+var J=document.getElementById('journey');
+
+if(V==='a'){
+  var sel=2, W=1000, xs=LABS.map(function(_,i){return W/12+i*W/6});
+  var s='<svg class="va-svg" viewBox="0 0 '+W+' 60" aria-hidden="true">';
+  s+='<line x1="'+xs[0]+'" x2="'+xs[5]+'" y1="30" y2="30" stroke="#e1e8f0" stroke-width="4" stroke-linecap="round"/>';
+  var progX=xs[2]+(xs[3]-xs[2])*0;
+  s+='<line class="draw" style="--len:'+(xs[2]-xs[0])+'" x1="'+xs[0]+'" x2="'+xs[2]+'" y1="30" y2="30" stroke="var(--res)" stroke-width="4" stroke-linecap="round"/>';
+  s+='<line x1="'+xs[4]+'" x2="'+xs[5]+'" y1="30" y2="30" stroke="#fff" stroke-width="5" stroke-dasharray="2 9"/>';
+  LABS.forEach(function(l,i){var st=state(l),x=xs[i];
+    s+='<g style="--i:'+i+'"><circle class="dot" cx="'+x+'" cy="30" r="'+(st==='now'?13:11)+'" fill="'+(st==='done'?'var(--res)':'#fff')+'" stroke="'+(st==='next'?(l.opt?'#9aa6b5':'#c9d6e4'):'var(--res)')+'" stroke-width="3" '+(l.opt?'stroke-dasharray="3 3"':'')+'/>';
+    if(st==='done')s+='<path class="ck" d="M'+(x-4.5)+',30 l3,3 l6,-6.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+    if(st==='now')s+='<circle class="ck" cx="'+x+'" cy="30" r="4.5" fill="var(--res)"/>';
+    s+='</g>'});
+  s+='</svg>';
+  J.innerHTML='<div class="va-track rv">'+s+'<div class="va-stops" role="tablist">'+LABS.map(function(l,i){return '<button class="va-stop" role="tab" data-i="'+i+'"><span class="n">0'+(i+1)+'</span><strong>'+l.name+'</strong><small>'+(state(l)==='done'?'Finished':state(l)==='now'?l.done+' of '+l.parts.length+' parts':l.opt?'Optional':l.time)+'</small></button>'}).join('')+'</div></div><div class="va-panel rv" id="vap"></div>';
+  function showA(i){sel=i;document.querySelectorAll('.va-stop').forEach(function(b){b.setAttribute('aria-selected',+b.dataset.i===i)});var l=LABS[i];
+    document.getElementById('vap').innerHTML='<div class="swap"><div class="meta"><span>Lab '+(i+1)+'</span><span>'+l.time+'</span>'+tagFor(l)+'</div><h3>'+l.name+'</h3><p class="q">'+l.q+'</p><div class="mini-lbl">How you\'ll work with code</div>'+bar(l.mix)+'<div style="margin-top:1.4rem">'+action(l,i)+'</div></div><div class="swap"><div class="mini-lbl" style="margin-top:0">Parts</div>'+parts(l)+'</div>'}
+  J.addEventListener('click',function(e){var b=e.target.closest('.va-stop');if(b)showA(+b.dataset.i)});
+  showA(sel);
+}
+if(V==='b'){
+  var h='<div class="vb rv"><div class="vb-rail"><div class="vb-fill" style="--h:'+(2.5/5*100)+'%"></div></div>';
+  LABS.forEach(function(l,i){var st=state(l);
+    if(l.opt)h+='<div class="vb-gap">Then, if you want a portfolio piece</div>';
+    h+='<div class="vb-item '+st+(l.opt?' opt':'')+'"><div class="vb-node">'+(st==='done'?'<svg width="14" height="14" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-6.5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>':i+1)+'</div><div class="vb-card" data-open="'+(st==='now')+'"><button class="vb-head" aria-expanded="'+(st==='now')+'"><div><div class="meta" style="margin-bottom:.35rem"><span>Lab '+(i+1)+'</span>'+tagFor(l)+'</div><h3>'+l.name+'</h3><p class="q">'+l.q+'</p></div><span class="chev" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></span></button><div class="vb-body"><div><div class="vb-inner"><div><div class="mini-lbl" style="margin-top:0">Parts</div>'+parts(l)+'</div><div><div class="mini-lbl" style="margin-top:0">How you\'ll work with code</div>'+bar(l.mix)+'<div class="meta" style="margin-top:.6rem"><span>'+l.time+'</span></div><div style="margin-top:1.2rem">'+action(l,i)+'</div></div></div></div></div></div></div>'});
+  J.innerHTML=h+'</div>';
+  J.addEventListener('click',function(e){var b=e.target.closest('.vb-head');if(!b)return;var c=b.parentElement,o=c.dataset.open!=='true';c.dataset.open=o;b.setAttribute('aria-expanded',o)});
+}
+if(V==='c'){
+  var r='<div class="meta rv" style="margin-bottom:.6rem;justify-content:space-between"><span><b style="color:var(--ink)">2 of 6</b> labs finished</span><span>Lab 3 in progress</span></div><div class="vc-rail rv" style="--w:'+(2.5/6*100)+'%"><i></i></div><div class="vc-grid">';
+  LABS.forEach(function(l,i){var st=state(l);
+    r+='<a href="#" class="vc-card rv '+st+(l.opt?' opt':'')+'" style="--d:'+(i*70)+'ms;text-decoration:none;color:inherit"><div class="vc-top"><span class="vc-num">0'+(i+1)+'</span>'+tagFor(l)+'</div><h3>'+l.name+'</h3><p class="q">'+l.q+'</p>'+(st==='now'?'<div class="vc-prog"><i style="width:'+(l.done/l.parts.length*100)+'%"></i></div>':'')+bar(l.mix)+'<div class="meta"><span>'+l.parts.length+' parts</span><span>'+l.time+'</span></div></a>'});
+  J.innerHTML=r+'</div>';
+}
+
+/* mix table */
+document.getElementById('mix').innerHTML=LABS.map(function(l,i){return '<div class="mix-row"><span><em>0'+(i+1)+'</em>'+l.name+'</span>'+bar(l.mix,i)+'</div>'}).join('');
+document.getElementById('key').innerHTML=MODES.map(function(m){return '<div><i style="background:var(--m-'+m[0]+')"></i><span><b>'+m[1]+'</b><small>'+m[2]+'</small></span></div>'}).join('');
+
+/* start check */
+var SQ=['I have written a loop or function in Python','I have cleaned or summarized a table with pandas (a Python library for tables)','I can explain the difference between sensitivity and PPV','I have trained a model on images or text'], ans=[null,null,null,null];
+document.getElementById('sq').innerHTML=SQ.map(function(q,i){return '<div class="sq"><span>'+q+'</span><span class="seg" data-i="'+i+'"><span class="knob"></span><button aria-pressed="false" data-v="1">Yes</button><button aria-pressed="false" data-v="0">No</button></span></div>'}).join('');
+function rec(){var n=ans.filter(function(a){return a!==null}).length, start=1;
+  if(ans[0]===1)start=2; if(ans[0]===1&&ans[1]===1)start=3; if(start===3&&ans[2]===1)start=4;
+  var l=LABS[start-1], el=document.getElementById('result'), txt;
+  if(!n){el.innerHTML='<div class="swap"><p class="eyebrow">Suggested start</p><h3>Answer the questions</h3><p>Most people with no coding background start at Lab 1. It assumes nothing.</p></div>';return}
+  txt=start===1?'It starts from zero: what Python is, how Colab works, and saving to GitHub.':'Take the Lab '+start+' warm-up first. If it feels easy, keep going; if not, step back one lab.';
+  if(ans[3]===1&&start>=3)txt+=' With model experience, Lab 6 (your own project) may be a good goal soon.';
+  el.innerHTML='<div class="swap"><p class="eyebrow">Suggested start</p><h3>Lab '+start+': '+l.name+'</h3><p>'+txt+'</p></div><div><a class="pill solid" href="#labs">Go to Lab '+start+' <span class="ar">&rarr;</span></a></div>'}
+document.getElementById('sq').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var seg=b.parentElement,i=+seg.dataset.i;ans[i]=+b.dataset.v;seg.dataset.v=b.dataset.v;seg.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});rec()});
+rec();
+
+/* reveal once */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+</script>
+<script src="../assets/js/site.js?v=20261025d"></script>
+</body>
+</html>

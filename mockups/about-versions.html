@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>About page versions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/site.css?v=20261015g" />
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261015g" />
+<style>
+  body { background: #fff; }
+  .ab { --ink:#111827; --muted:#545d6b; --faint:#6b7380; --hair:#e6e8ec; --soft:#f6f7f9; --navy:var(--route-core); --accent:var(--route-lead); padding-bottom: 72px; }
+  .ab .shell { width: min(calc(100% - 32px), 1080px); }
+  .ab ::selection { background: var(--route-lead-light); color: var(--navy); }
+
+  /* ---------- hero ---------- */
+  .ab-hero { padding: 84px 0 0; }
+  .ab-hero h1 { margin: 0; max-width: 18ch; font-size: clamp(2.3rem, 4.6vw, 3.6rem); line-height: 1.05; font-weight: 500; letter-spacing: -.035em; color: var(--ink); text-wrap: balance; }
+  .ab-deck { margin: 20px 0 0; max-width: 62ch; font-size: 1.08rem; line-height: 1.6; color: var(--muted); }
+  .ab-aff { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin-top: 34px; padding: 18px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+  .ab-aff span { font-size: .88rem; color: var(--muted); margin-right: auto; }
+  .ab-aff img { height: 38px; width: auto; }
+
+  .ab-sec { padding-top: 72px; }
+  .ab-sec-head { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end; margin-bottom: 28px; }
+  .ab-sec-head h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.05; font-weight: 500; letter-spacing: -.03em; color: var(--ink); }
+  .ab-sec-head p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 56ch; justify-self: end; }
+
+  /* the three lines every person shows */
+  .p-title { display: block; color: var(--accent); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.35; }
+  .p-name { margin: 0; color: var(--ink); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+  .p-aff { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.4; }
+  .p-note { margin: 0; color: var(--faint); font-size: .8rem; line-height: 1.4; }
+  .p-photo { display: block; object-fit: cover; object-position: center top; background: var(--soft); }
+
+  /* ================= LEADS ================= */
+  /* L1 Panel: the old two-up panel, tidied */
+  .l1 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; }
+  .l1 article { display: grid; grid-template-columns: 168px 1fr; min-height: 210px; }
+  .l1 article + article { border-left: 1px solid var(--hair); }
+  .l1 .p-photo { width: 100%; height: 100%; }
+  .l1 .lc { padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .l1 .p-name { font-size: 1.4rem; font-weight: 500; letter-spacing: -.02em; margin-top: 4px; }
+
+  /* L2 Portraits: tall photos, text below, no box */
+  .l2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .l2 article { display: grid; grid-template-columns: 220px 1fr; gap: 26px; align-items: end; }
+  .l2 .p-photo { width: 220px; aspect-ratio: 4/5; border-radius: 8px; }
+  .l2 .lc { display: flex; flex-direction: column; gap: 6px; padding-bottom: 6px; }
+  .l2 .p-name { font-size: 1.55rem; font-weight: 500; letter-spacing: -.025em; }
+
+  /* L3 Band: one navy band, the only color block on the page */
+  .l3 { display: grid; grid-template-columns: 1fr 1fr; background: var(--navy); border-radius: 12px; padding: 30px; gap: 30px; }
+  .l3 article { display: grid; grid-template-columns: 112px 1fr; gap: 22px; align-items: center; }
+  .l3 article + article { border-left: 1px solid rgba(255,255,255,.14); padding-left: 30px; }
+  .l3 .p-photo { width: 112px; height: 112px; border-radius: 50%; }
+  .l3 .lc { display: flex; flex-direction: column; gap: 5px; }
+  .l3 .p-title { color: #9ccbe8; }
+  .l3 .p-name { color: #fff; font-size: 1.35rem; font-weight: 500; }
+  .l3 .p-aff { color: #c9d4e0; }
+  .l3 .p-note { color: #9fb0c2; }
+
+  /* ================= CONTRIBUTORS ================= */
+  .grp-label { margin: 0 0 14px; color: var(--ink); font-size: .95rem; font-weight: 600; letter-spacing: -.01em; }
+  .grp-label small { margin-left: 10px; color: var(--faint); font-weight: 400; font-size: .85rem; }
+
+  /* C1 Grid: the old 4-up grid, now grouped and with titles */
+  .c1-group + .c1-group { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--hair); }
+  .c1-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; max-width: 900px; }
+  .c1-grid article { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .c1-grid .p-photo { width: 96px; height: 96px; border-radius: 6px; margin-bottom: 12px; }
+  .c1-grid .p-name { font-size: 1.02rem; margin-top: 2px; }
+
+  /* C2 List: rows with columns for name / title / institution */
+  .c2-group + .c2-group { margin-top: 36px; }
+  .c2-row { display: grid; grid-template-columns: 52px minmax(0,1fr) minmax(0,1fr) minmax(0,1.15fr); gap: 20px; align-items: center; padding: 14px 0; border-top: 1px solid var(--hair); }
+  .c2-group .c2-row:last-child { border-bottom: 1px solid var(--hair); }
+  .c2-row .p-photo { width: 52px; height: 52px; border-radius: 50%; }
+
+  /* C3 Columns: one column per group, side by side */
+  .c3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--hair); }
+  .c3-col { padding: 22px 26px 4px 0; }
+  .c3-col + .c3-col { padding-left: 26px; border-left: 1px solid var(--hair); }
+  .c3-p { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; padding: 14px 0; }
+  .c3-p .p-photo { width: 56px; height: 56px; border-radius: 6px; }
+  .c3-p > div { display: flex; flex-direction: column; gap: 3px; }
+
+  /* C4 Tagged grid: no group headings, the title is a colored tag */
+  .c4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; }
+  .c4 article { display: grid; grid-template-columns: 72px 1fr; gap: 18px; align-items: center; padding: 18px 0; border-top: 1px solid var(--hair); }
+  .c4 .p-photo { width: 72px; height: 72px; border-radius: 50%; }
+  .c4 article > div { display: flex; flex-direction: column; gap: 4px; align-items: start; }
+  .c4 .tag { padding: 3px 9px; border-radius: 999px; font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .c4 .tag.g0 { background: #e0f0f9; color: #075985; }
+  .c4 .tag.g1 { background: #f6e6df; color: #8a3b22; }
+  .c4 .tag.g2 { background: #eceff3; color: #17324d; }
+  .c4-key { display: flex; gap: 18px; flex-wrap: wrap; margin: 0 0 14px; font-size: .84rem; color: var(--muted); }
+  .c4-key span::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; background: var(--d); }
+
+  /* show the picked version */
+  .ab:not([data-l="1"]) .l1, .ab:not([data-l="2"]) .l2, .ab:not([data-l="3"]) .l3,
+  .ab:not([data-c="1"]) .c1, .ab:not([data-c="2"]) .c2, .ab:not([data-c="3"]) .c3, .ab:not([data-c="4"]) .c4wrap { display: none; }
+
+  @media (max-width: 960px) {
+    .c1-grid { grid-template-columns: repeat(3, 1fr); }
+    .c3 { grid-template-columns: 1fr; }
+    .c3-col, .c3-col + .c3-col { padding: 18px 0 4px; border-left: 0; }
+    .c3-col + .c3-col { border-top: 1px solid var(--hair); }
+    .l2 article { grid-template-columns: 1fr; align-items: start; }
+    .l2 .p-photo { width: 100%; max-width: 260px; }
+  }
+  @media (max-width: 820px) {
+    .ab-sec-head { grid-template-columns: 1fr; gap: 10px; }
+    .ab-sec-head p { justify-self: start; }
+    .l1, .l3 { grid-template-columns: 1fr; }
+    .l1 article + article { border-left: 0; border-top: 1px solid var(--hair); }
+    .l3 article + article { border-left: 0; padding-left: 0; border-top: 1px solid rgba(255,255,255,.14); padding-top: 26px; }
+    .c2-row { grid-template-columns: 48px 1fr; gap: 3px 16px; }
+    .c2-row .p-photo { width: 48px; height: 48px; grid-row: span 3; align-self: start; }
+    .c4 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .ab-hero { padding-top: 52px; }
+    .ab-sec { padding-top: 52px; }
+    .l1 article { grid-template-columns: 116px 1fr; min-height: 170px; }
+    .l1 .lc { padding: 18px; }
+    .l2 { grid-template-columns: 1fr; gap: 36px; }
+    .l2 article { grid-template-columns: 132px 1fr; align-items: end; gap: 18px; }
+    .l2 .p-photo { width: 132px; }
+    .l2 .p-name, .l1 .p-name { font-size: 1.22rem; }
+    .l3 { padding: 22px; }
+    .l3 article { grid-template-columns: 84px 1fr; gap: 16px; }
+    .l3 .p-photo { width: 84px; height: 84px; }
+    .c1-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+    .c1-grid .p-photo { width: 80px; height: 80px; }
+  }
+
+  /* ---------- picker bar (mockup only) ---------- */
+  .pick { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 50; display: flex; align-items: center; gap: 4px; padding: 5px; background: #111827; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.2); max-width: calc(100% - 16px); overflow-x: auto; }
+  .pick b { color: #8b95a3; font: 500 .72rem var(--plex); letter-spacing: .06em; text-transform: uppercase; padding: 0 6px 0 8px; }
+  .pick i { width: 1px; align-self: stretch; background: #2b3444; margin: 2px 6px; }
+  .pick button { border: 0; background: transparent; color: #cbd2dc; font: 500 .82rem var(--plex); padding: 7px 11px; border-radius: 7px; cursor: pointer; white-space: nowrap; transition: transform 120ms; }
+  .pick button[aria-pressed="true"] { background: #fff; color: #111827; }
+  .pick button:active { transform: scale(.97); }
+  .pick button:focus-visible { outline: 2px solid #9ccbe8; outline-offset: 1px; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="shell navbar">
+  <a class="brand brand-logo" href="../index.html" aria-label="AI2Practice home"><img src="../images/ai2practice-logo.svg" alt="AI2Practice" /></a>
+  <nav aria-label="Primary"><ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../curriculum.html">Curriculum</a></li><li><a href="#">Specializations</a></li><li><a href="#">Resources</a></li><li><a href="#">About</a></li></ul></nav>
+</div></header>
+
+<main class="ab" data-l="1" data-c="1">
+  <section class="ab-hero"><div class="shell">
+    <h1>Clinical AI education built for practice.</h1>
+    <p class="ab-deck">AI2Practice is a free, open course that connects the foundations of artificial intelligence with clinical evaluation, implementation, research and teaching in radiology.</p>
+    <div class="ab-aff">
+      <span>An initiative of the AAR / RRA Committee on Data Science &amp; AI</span>
+      <img src="../images/aar-logo.jpg" alt="Association of Academic Radiology" />
+      <img src="../images/rra-logo.webp" alt="Radiology Research Alliance" />
+    </div>
+  </div></section>
+
+  <section class="ab-sec"><div class="shell">
+    <div class="ab-sec-head"><h2>Co-leads</h2><p>AI2Practice is co-led by Shinjer Li and Florence Doo, with contributors from radiology, imaging informatics, AI, education and clinical practice.</p></div>
+    <div class="l1" id="l1"></div>
+    <div class="l2" id="l2"></div>
+    <div class="l3" id="l3"></div>
+  </div></section>
+
+  <section class="ab-sec"><div class="shell">
+    <div class="ab-sec-head"><h2>Contributors</h2><p>Each contributor's committee title is shown in blue above their name, with their home institution below.</p></div>
+    <div class="c1" id="c1"></div>
+    <div class="c2" id="c2"></div>
+    <div class="c3" id="c3"></div>
+    <div class="c4wrap" id="c4"></div>
+  </div></section>
+</main>
+
+<footer class="site-footer compact-footer"><div class="shell compact-footer-row">
+  <div class="footer-mini-brand"><img src="../images/ai2practice-logo-white.svg" alt="AI2Practice" /><span>Practical, open clinical AI education</span></div>
+  <nav aria-label="Footer"><a href="#">About</a><a href="#">AI2Practice Brief</a><a href="#">AI Tool Tracker</a><a href="#">GitHub</a></nav>
+</div></footer>
+
+<div class="pick" role="toolbar" aria-label="Choose versions">
+  <b>Leads</b>
+  <button type="button" data-k="l" data-v="1" aria-pressed="true">1 Panel</button>
+  <button type="button" data-k="l" data-v="2" aria-pressed="false">2 Portraits</button>
+  <button type="button" data-k="l" data-v="3" aria-pressed="false">3 Band</button>
+  <i></i><b>Contributors</b>
+  <button type="button" data-k="c" data-v="1" aria-pressed="true">A Grid</button>
+  <button type="button" data-k="c" data-v="2" aria-pressed="false">B List</button>
+  <button type="button" data-k="c" data-v="3" aria-pressed="false">C Columns</button>
+  <button type="button" data-k="c" data-v="4" aria-pressed="false">D Tags</button>
+</div>
+
+<script>
+  const LEADS = [
+    { name: 'Shinjer Li', title: 'Co-lead', note: 'Medical Student Lead', aff: 'Eastern Virginia Medical School at Old Dominion University', img: '../images/shinjer-li.png' },
+    { name: 'Florence Doo, MD, MA, CIIP', title: 'Co-lead', aff: 'University of Maryland Institute for Health Computing', img: '../images/florence-doo.jpg' },
+  ];
+  const GROUPS = [
+    { label: 'Program leads', hint: 'Trainee, AI and international leads', people: [
+      { name: 'Raisa Amiruddin, MBBS', title: 'Resident Lead', aff: 'MetroWest Medical Center, Massachusetts', img: 'https://static.wixstatic.com/media/e6e8bc_711a5e0db52a4ea68717f796fad76a89~mv2.jpg/v1/crop/x_73%2Cy_0%2Cw_413%2Ch_518/fill/w_306%2Ch_384%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Raisa%20Amiruddin.jpg' },
+      { name: 'Peter Chang, MD', title: 'AI Innovation Lead', aff: 'University of California, Irvine', img: 'https://cdn-images.kyruus.com/providermatch/ucihealth/photos/orig/chang-peter-1841530458.png' },
+      { name: 'Michail Klontzas, MD, PhD', title: 'International Lead', aff: 'University of Crete School of Medicine', img: 'https://med.uoc.gr/wp-content/uploads/2025/01/klontzas-1-280x280.jpg' },
+    ]},
+    { label: 'Liaisons', hint: 'Links to partner societies and funders', people: [
+      { name: 'Lars Grimm, MD, MHS', title: 'RAHSR Liaison', aff: 'Duke University', note: 'Former CERRAF; AAR grants expertise', img: 'https://scholars.duke.edu/profile-images/full/0256542.jpg' },
+      { name: 'Marta Heilbrun, MD', title: 'Inter-Society Liaison (RSNA)', aff: 'Intermountain Health', img: 'https://aarad.memberclicks.net/assets/About/Executive-Committee/M_Heilbrun_12_22.jpg' },
+      { name: 'Elizabeth Krupinski, PhD', title: 'Inter-Society Liaison (SIIM)', aff: 'Emory University', img: 'https://winshipcancer.emory.edu/profiles/_images/krupinski-e-headshot.jpg' },
+    ]},
+    { label: 'Senior advisors', hint: 'Guidance and review', people: [
+      { name: 'Katherine Andriole, PhD', title: 'Senior AI Academic Leader', aff: 'UCLA David Geffen School of Medicine', img: 'https://medschool.ucla.edu/sites/default/files/styles/box_1_1_500/public/media/images/katherine_andriole.jpg.webp?h=e9e0f3db&itok=VvcAJnUK' },
+      { name: 'Nadja Kadom, MD', title: 'RRA Leadership (Guest)', aff: "Emory University / Children's Healthcare of Atlanta", img: 'https://med.emory.edu/departments/radiology/about-us/images/faculty-staff-awards/2025/kadom-nadja-2025-square.png' },
+    ]},
+  ];
+
+  const photo = (p, lazy = true) => `<img class="p-photo" src="${p.img}" alt="${p.name.split(',')[0]}"${lazy ? ' loading="lazy"' : ''} />`;
+  const note = p => p.note ? `<p class="p-note">${p.note}</p>` : '';
+  const text = p => `<span class="p-title">${p.title}</span><p class="p-name">${p.name}</p><p class="p-aff">${p.aff}</p>${note(p)}`;
+  const leadText = p => `<span class="p-title">${p.title}${p.note ? ' &middot; ' + p.note : ''}</span><p class="p-name">${p.name}</p><p class="p-aff">${p.aff}</p>`;
+  const set = (id, html) => { document.getElementById(id).innerHTML = html; };
+
+  ['l1', 'l2', 'l3'].forEach(id => set(id, LEADS.map(p => `<article>${photo(p, false)}<div class="lc">${leadText(p)}</div></article>`).join('')));
+
+  set('c1', GROUPS.map(g => `<div class="c1-group"><p class="grp-label">${g.label}<small>${g.hint}</small></p>
+    <div class="c1-grid">${g.people.map(p => `<article>${photo(p)}${text(p)}</article>`).join('')}</div></div>`).join(''));
+
+  set('c2', GROUPS.map(g => `<div class="c2-group"><p class="grp-label">${g.label}<small>${g.hint}</small></p>
+    ${g.people.map(p => `<div class="c2-row">${photo(p)}<p class="p-name">${p.name}</p><span class="p-title">${p.title}</span><div><p class="p-aff">${p.aff}</p>${note(p)}</div></div>`).join('')}</div>`).join(''));
+
+  set('c3', GROUPS.map(g => `<div class="c3-col"><p class="grp-label">${g.label}</p>
+    ${g.people.map(p => `<div class="c3-p">${photo(p)}<div>${text(p)}</div></div>`).join('')}</div>`).join(''));
+
+  const dots = ['#0369a1', '#a8492c', '#17324d'];
+  set('c4', `<p class="c4-key">${GROUPS.map((g, i) => `<span style="--d:${dots[i]}">${g.label}</span>`).join('')}</p>
+    <div class="c4">${GROUPS.flatMap((g, i) => g.people.map(p => `<article>${photo(p)}<div><span class="tag g${i}">${p.title}</span><p class="p-name">${p.name}</p><p class="p-aff">${p.aff}</p>${note(p)}</div></article>`)).join('')}</div>`);
+
+  const main = document.querySelector('.ab');
+  document.querySelectorAll('.pick button').forEach(b => b.addEventListener('click', () => {
+    main.dataset[b.dataset.k] = b.dataset.v;
+    document.querySelectorAll(`.pick button[data-k="${b.dataset.k}"]`).forEach(x => x.setAttribute('aria-pressed', x === b));
+  }));
+</script>
+</body>
+</html>

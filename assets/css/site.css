@@ -49,6 +49,17 @@ button, input { font: inherit; }
   min-height: 76px;
   display: flex; align-items: center; justify-content: space-between; gap: 28px;
 }
+/* Desktop: the nav sits right, beside a fixed slot that progress.js fills with the
+   account button later, so nothing in the header moves when it arrives. */
+@media (min-width: 961px) {
+  .site-header .navbar { position: relative; padding-right: 140px; }
+  .site-header .navbar > nav { margin-left: auto; }
+  .site-header .navbar .ai2-acct { position: absolute; right: 0; top: 50%; transform: translateY(-50%); margin: 0; }
+}
+/* Narrow: the nav is a drop-down, so take its wrapper out of the row and the menu button stays put. */
+@media (max-width: 960px) {
+  .site-header .navbar > nav { position: absolute; }
+}
 .brand {
   text-decoration: none;
   display: inline-flex; align-items: baseline; gap: 1px;

@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261015g">
-<link rel="stylesheet" href="assets/lessons.css?v=20261015g">
-<link rel="stylesheet" href="assets/m1.css?v=20261015g">
-<link rel="stylesheet" href="assets/m2.css?v=20261015g">
-<link rel="stylesheet" href="assets/interactives.css?v=20261015g">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261015g">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261015g" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261101a">
+<link rel="stylesheet" href="assets/lessons.css?v=20261101a">
+<link rel="stylesheet" href="assets/m1.css?v=20261101a">
+<link rel="stylesheet" href="assets/m2.css?v=20261101a">
+<link rel="stylesheet" href="assets/interactives.css?v=20261101a">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261101a">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261101a" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
@@ -54,7 +54,7 @@
 
   <section class="les-section les-intro" id="overview">
     <h2>Overview</h2>
-    <p style="color: var(--gray-900);">Mr. Diaz's CT pulmonary angiogram (CTPA) took about ten seconds. What came out of the scanner is not a picture in the everyday sense. It is a stack of files full of numbers, plus a lot of information about the patient and the scan. This lesson opens those files. It is the "data" half of everything you learned about AI in Module 1. About 15-20 minutes.</p>
+    <p style="color: var(--gray-900);">Mr. Diaz's CT pulmonary angiogram (CTPA) took about ten seconds. During that time the scanner did not take a photograph. It collected a signal: measurements of how much X-ray got through his body from hundreds of angles. A computer then processed that signal into images of his chest, a step called <strong>reconstruction</strong>. The images are stored as files full of numbers, together with a lot of information about the patient and the scan. This lesson opens those files. It is the "data" half of everything you learned about AI in Module 1. We use CT as the main example, because its numbers have a fixed meaning. About 15-20 minutes. New terms are in the <a href="../pages/glossary.html" target="_blank" rel="noopener">Module 2 glossary</a> (opens in a new tab).</p>
     <p><strong>By the end of this lesson you can:</strong></p>
     <ul>
       <li>Explain that a digital image is a grid of numbers, and what a CT number (Hounsfield unit) means.</li>
@@ -76,10 +76,11 @@
 
     <p>On CT, the number in each pixel has a fixed meaning. It is a <strong>CT number</strong>, measured in <strong>Hounsfield units (HU)</strong>, named after Godfrey Hounsfield, who built the first CT scanner. The scale is pinned to two points: <strong>water is 0</strong> and <strong>air is -1000</strong>. Fat is about -100, blood and muscle about +40, contrast-filled blood around +300, and dense bone +1000 or more. That is the scale from Lesson 2.1's density figure, now with numbers attached.</p>
     <p>Because a CT slice is a slice of a volume, each pixel actually stands for a tiny block of tissue, called a <strong>voxel</strong> (volume element), often under 1 mm on each side. A typical CT slice is 512 by 512 pixels, and a chest CT has hundreds of slices: tens of millions of numbers for one scan. X-ray and MRI pixels also hold numbers, but they have no fixed scale like HU: the same tissue can get different numbers on different machines. Remember that for the section on AI below.</p>
+    <p>Reconstruction involves choices too. The same CT signal can be reconstructed into thin or thick slices, and with a sharp setting (a "kernel") that makes lung and bone edges crisp but grainy, or a smooth one that suits soft tissue. That is why one CT study usually holds several image sets, which you will meet below as <strong>series</strong>.
 
     <div class="m2-think">
       <div class="m1-example-label">Think about it</div>
-      <p>A doctor looks at an image. An AI model only ever receives a grid of numbers. What could change those numbers without changing the patient? (Scanner brand, settings, contrast timing, patient movement, a different hospital's software. Keep your list in mind; Lesson 1.5's "distribution shift" lives here.)</p>
+      <p>A doctor looks at an image. An AI model only ever receives a grid of numbers. What could change those numbers without changing the patient? (Scanner brand, settings, reconstruction kernel and slice thickness, contrast timing, patient movement, a different hospital's software. Keep your list in mind; Lesson 1.5's "distribution shift" lives here.)</p>
     </div>
   </section>
 
@@ -252,7 +253,7 @@
           </div>
           <div class="mi-card" data-answer="1">
             <div class="mi-card-text">Bright and dark streaks<small>A CT of the pelvis in a patient with a hip replacement. Streaks fan out from the hip.</small></div>
-            <div class="mi-card-why">Metal. Metal blocks almost all the X-rays, so the computer's math breaks down around it. Special software can reduce, but not remove, the streaks.</div>
+            <div class="mi-card-why">Metal. Metal blocks almost all the X-rays, so the reconstruction math breaks down around it. Special software can reduce, but not remove, the streaks.</div>
           </div>
           <div class="mi-card" data-answer="2">
             <div class="mi-card-text">The heart looks large<small>A chest X-ray taken in bed in the ICU, with the beam coming from the front (AP).</small></div>
@@ -372,12 +373,12 @@
   <a href="m2-3.html" class="btn btn-accent" id="les-next">Next: The Journey of a Scan &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261015g" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261015g"></script>
-<script src="assets/lessons.js?v=20261015g"></script>
-<script src="assets/knowledge-check.js?v=20261015g"></script>
-<script src="assets/interactives.js?v=20261015g"></script>
-<script src="assets/m1-interactives.js?v=20261015g"></script>
-<script src="assets/m2-interactives.js?v=20261015g"></script>
+<script src="../assets/js/progress.js?v=20261101a" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261101a"></script>
+<script src="assets/lessons.js?v=20261101a"></script>
+<script src="assets/knowledge-check.js?v=20261101a"></script>
+<script src="assets/interactives.js?v=20261101a"></script>
+<script src="assets/m1-interactives.js?v=20261101a"></script>
+<script src="assets/m2-interactives.js?v=20261101a"></script>
 </body>
 </html>
