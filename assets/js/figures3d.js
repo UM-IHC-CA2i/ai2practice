@@ -15,13 +15,15 @@ await new Promise(res=>{
   if(document.readyState==='complete') idle(); else addEventListener('load', idle, {once:true});
 });
 
-// Software-only WebGL (no graphics card) freezes the page for seconds, so those machines keep the flat SVG figures
-let renderer;
+// Software-only WebGL (no graphics card) is slow, so those machines draw without shadows; only no WebGL at all keeps the SVG figures
+let renderer, LITE = false;
 try{
-  const probe = document.createElement('canvas').getContext('webgl', {failIfMajorPerformanceCaveat:true});
-  const info = probe && probe.getExtension('WEBGL_debug_renderer_info');
-  if(!probe || (info && /swiftshader|llvmpipe|softpipe|software|basic render/i.test(probe.getParameter(info.UNMASKED_RENDERER_WEBGL)))) throw new Error('No hardware WebGL');
-  renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, preserveDrawingBuffer:true});
+  const probe = document.createElement('canvas').getContext('webgl');
+  if(!probe) throw new Error('No WebGL');
+  const info = probe.getExtension('WEBGL_debug_renderer_info');
+  LITE = !document.createElement('canvas').getContext('webgl', {failIfMajorPerformanceCaveat:true}) ||
+    !!(info && /swiftshader|llvmpipe|softpipe|software|basic render/i.test(probe.getParameter(info.UNMASKED_RENDERER_WEBGL)));
+  renderer = new THREE.WebGLRenderer({antialias:!LITE, alpha:true, preserveDrawingBuffer:true});
 }catch(e){
   document.documentElement.classList.add('no-webgl');
   throw e;
@@ -30,7 +32,7 @@ renderer.setPixelRatio(1);
 renderer.setClearColor(0x000000, 0);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.NeutralToneMapping;
-renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled = !LITE;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 let RW = 0, RH = 0;
 function ensure(w,h){ if(w>RW || h>RH){ RW=Math.max(w,RW); RH=Math.max(h,RH); renderer.setSize(RW,RH,false); } }
