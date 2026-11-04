@@ -1,54 +1,38 @@
-# Bootcamp: AI for Medical Imaging
+# CA2i Research Launchpad
 
-Starter notebooks and data for the **Research Track** of the AI2Practice Research Track.
+Notebooks for the **AI2Practice Research Lab**: six hands-on data science labs for clinical AI research, from your first line of Python to a project of your own. Each lab starts with a clinical question. Course pages: [AI2Practice Research Lab](https://um-ihc-ca2i.github.io/ai2practice/pages/research-lab.html).
 
-## Repository structure
+## The labs
 
-```
-data/
-  radiology_ai_findings.csv    — Dataset of 60 radiology studies
-lesson-notebooks/
-  Research_Module_1.ipynb      — Python basics and data exploration
-  Research_Module_2.ipynb      — Evaluation metrics, ROC curves, subgroup analysis
-  Research_Module_3.ipynb      — Machine learning and image processing
-  Research_Module_4.ipynb      — Advanced image AI and NLP
-  Research_Module_5.ipynb      — Mini research project
-README.md
-```
+| # | Notebook | Clinical question | Time |
+|---|---|---|---|
+| 1 | `lesson-notebooks/Lab_1_Python_Colab_GitHub.ipynb` | How many CT scans were done last month, and of which body regions? | 1.5 h |
+| 2 | `lesson-notebooks/Lab_2_Clinical_Data.ipynb` | Are patients sent for CT older than those sent for MRI? | 2 h |
+| 3 | `lesson-notebooks/Lab_3_Evaluating_an_AI_Tool.ipynb` | A pneumothorax detector claims 94% sensitivity. What does it get on local data, and is it equal at both sites? | 2 h |
+| Extra | `lesson-notebooks/Extra_Clinical_Evaluation.ipynb` | Which numbers should a department look at before trusting an AI tool? (Metrics Reloaded) | 45-60 min |
+| 4 | `lesson-notebooks/Lab_4_Imaging_AI.ipynb` | Can a model tell pneumonia from normal on a chest X-ray, and what is it looking at? | 2 h |
+| 5 | `lesson-notebooks/Lab_5_Reports_and_LLMs.ipynb` | How often do reports mention an incidental lung nodule, and can a large language model find them reliably? | 1.5 h |
+| 6 | `lesson-notebooks/Lab_6_Your_Project.ipynb` | Your own question, written up as a structured abstract (optional) | 4-6 h |
+
+`lesson-notebooks/rl_data.py` makes your personal practice data (the same every time for your GitHub username, different from everyone else's). `lesson-notebooks/toolkit.py` is your own toolkit: you add functions to it lab by lab and reuse them later. Lab 4 uses the open [MedMNIST](https://medmnist.com/) PneumoniaMNIST dataset, downloaded inside the notebook. All other data is synthetic and made for teaching.
 
 ## Getting started
 
-1. **Fork** this repository (click the "Fork" button in the top right)
-2. Open the notebook in Google Colab:
-   - Go to [colab.research.google.com](https://colab.research.google.com)
-   - Click **Open notebook**
-   - Select the **GitHub** tab
-   - Paste your fork URL (e.g., `https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging`)
-   - Click the notebook you want to open (e.g., `lesson-notebooks/Research_Module_1.ipynb`)
-3. In the notebook, replace `YOUR-USERNAME` with your GitHub username in the data loading cell
-4. Follow the instructions in the notebook
+1. **Fork** this repository (the "Fork" button at the top right). Your fork is where your work is saved.
+2. Open a lab from its page on the AI2Practice site with the **Open in Colab** button, or go to [colab.research.google.com](https://colab.research.google.com), choose **File > Open notebook > GitHub**, paste the address of your fork and pick the notebook.
+3. In the first code cell, set `GITHUB_USERNAME` to your GitHub username. That username generates your personal data.
+4. Work through the notebook. Each task is tagged with how you'll work: Write, Fill in, Reuse, Direct the AI, Fix or Read. Test cells tell you when a task is right.
 
-## How to submit your work
+## Saving your work
 
-After completing each module:
-1. In Colab, go to **File > Download > Download .ipynb**
-2. Go to your fork on GitHub (e.g., `https://github.com/YOUR-USERNAME/Bootcamp-AI-for-Medical-Imaging`)
-3. Click the **Code** tab
-4. Click **Add file > Upload files**
-5. Drag and drop your downloaded `.ipynb` file
-6. Type a commit message (e.g., `Completed Research Module 1`)
-7. Make sure "Commit directly to the main branch" is selected
-8. Click **Commit changes**
+In Colab, choose **File > Save a copy in GitHub**, pick your fork, keep the same file path and add a short message such as `Finished Lab 1`. Every save is kept as a version, so your fork becomes a record of your work and a portfolio.
 
-After all modules are complete:
-1. On your fork's main page, click **Contribute**
-2. Click **Open pull request**
-3. Add a title and click **Create pull request**
+At the end of each lab, the notebook prints two or three numbers. Enter them on the lab's page on the AI2Practice site to mark the lab finished.
 
-To withdraw your submission, close the pull request from the same page.
+## Using AI assistants
 
-## Dataset description
+Some tasks ask you to have an AI assistant write the code (Colab's built-in assistant works; any is fine). Paste the code, run the test cell, and fill in the AI-use log cell under the task: what you asked, what you changed and whether the test passed. Checking AI-written code is the skill these tasks teach.
 
-`data/radiology_ai_findings.csv` contains 60 anonymized radiology studies across 4 imaging modalities (CR, CT, MR, US) and 7 body regions. Each study records whether an AI tool flagged a finding, the AI's confidence score, and whether a radiologist confirmed the finding.
+## Older material
 
-This data is synthetic and designed for educational purposes.
+The earlier `Research_Module_1-3` notebooks and their data are in `old/`.

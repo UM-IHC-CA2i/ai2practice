@@ -3,82 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Lab 4: Advanced Image AI and NLP &mdash; AI2Practice</title>
+<title>Research Lab 4: Imaging AI &mdash; AI2Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261101a">
-<link rel="stylesheet" href="assets/lessons.css?v=20261101a">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261101a">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261101a" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104a">
+<link rel="stylesheet" href="assets/lessons.css?v=20261104a">
+<link rel="stylesheet" href="assets/interactives.css?v=20261104a">
+<link rel="stylesheet" href="assets/research-lab.css?v=20261104a">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261104a">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261104a" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <!-- AI2PRACTICE SEO -->
-  <meta name="description" content="Convolutional neural networks, transfer learning, attention maps and natural language processing applied to radiology reports." />
+  <meta name="description" content="Research Lab 4: can a model tell pneumonia from normal on a chest X-ray, and what is it looking at? Images as data, window and level, patient-level splits, a first CNN on PneumoniaMNIST, and saliency maps." />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/research-4.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI2Practice" />
-  <meta property="og:title" content="Research Lab 4: Advanced Image AI and NLP — AI2Practice" />
-  <meta property="og:description" content="Convolutional neural networks, transfer learning, attention maps and natural language processing applied to radiology reports." />
+  <meta property="og:title" content="Research Lab 4: Imaging AI — AI2Practice" />
+  <meta property="og:description" content="Research Lab 4: can a model tell pneumonia from normal on a chest X-ray, and what is it looking at? Images as data, window and level, patient-level splits, a first CNN on PneumoniaMNIST, and saliency maps." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/research-4.html" />
   <meta name="twitter:card" content="summary" />
 <!-- /AI2PRACTICE SEO -->
 </head>
-<body>
+<body class="rl-page" data-lab="4">
 
-<div class="les-topbar" style="border-bottom-color: #A8492C;">
+<div class="les-topbar">
   <a href="../pages/research-lab.html" class="les-back" id="les-back">&larr; Research Lab</a>
-  <div class="les-topbar-title">Research Lab &middot; Lab 4 of 5</div>
+  <div class="les-topbar-title">Research Lab &middot; Lab 4 of 6</div>
   <div class="les-topbar-track" id="les-track"></div>
 </div>
 
-<div class="les-hero" style="background: #A8492C;">
+<div class="les-hero">
   <div class="les-hero-inner">
-    <div class="les-hero-num">R4</div>
+    <div class="les-hero-num">L4</div>
     <div>
-      <h1>Advanced Image AI and NLP</h1>
-      <p>CNNs, transfer learning, attention maps, radiology report NLP, and LLMs</p>
+      <div class="les-hero-q">Research Lab &middot; Lab 4</div>
+      <h1>Imaging AI</h1>
+      <p>Train a first image model on chest X-rays, split the data properly, and look at what the model is looking at</p>
+      <div class="rl-facts"><span><b>About 2 hours</b>, in 4 parts</span><span>Notebook in <b>Google Colab</b></span><span>Builds on Lab 3</span><span>Helpful: <a href="m2-2.html" style="color:#fff;text-decoration:underline">lesson 2.2</a></span></div>
     </div>
   </div>
 </div>
 
 <div class="les-content">
 
-  <section class="les-section" id="overview">
-    <h2>Overview</h2>
-    <p>
-      This module goes deeper into AI architectures. You will work with convolutional neural networks (CNNs), explore transfer learning and attention maps to understand what an AI "sees," and apply natural language processing (NLP) to radiology reports. By the end, you will have experience with both image and text AI tools.
-    </p>
+  <ol class="rl-steps" aria-label="Steps in this lab">
+    <li><a href="#question"><span>1</span>The question</a></li>
+    <li><a href="#idea"><span>2</span>The idea</a></li>
+    <li><a href="#warmup"><span>3</span>Warm-up</a></li>
+    <li><a href="#notebook"><span>4</span>Notebook</a></li>
+    <li><a href="#report"><span>5</span>Report back</a></li>
+  </ol>
+
+  <section class="les-section rl-step les-intro" id="question">
+    <p class="rl-eyebrow">Step 1 &middot; The question</p>
+    <h2>The question</h2>
+    <div class="rl-question"><p>Can a model tell pneumonia from normal on a chest X-ray, and what is it looking at?</p></div>
+    <p>Pneumonia, an infection of the lung, often shows on a chest X-ray as a white area where air spaces have filled with fluid. Teaching a computer to recognize that pattern is the classic first project in imaging AI, and it teaches the lessons that matter for every later project: how an image becomes numbers, how to keep the test fair, and how to check what the model has really learned.</p>
+    <p>This lab uses <strong>PneumoniaMNIST</strong>, part of MedMNIST, a free collection of small, standardized medical image datasets made for teaching and benchmarking. It contains 5,856 chest X-rays of children from a hospital in Guangzhou, China (first published by Kermany and colleagues in 2018), each shrunk to 28 by 28 pixels and labeled pneumonia or normal. The dataset comes split into 4,708 training, 524 validation and 624 test images. Unlike Labs 1 to 3, everyone uses the same images here, so step 5 asks two fixed questions about the dataset plus your own model's accuracy, which varies from run to run.</p>
+    <p><strong>By the end of this lab you can:</strong></p>
+    <ul>
+      <li>Explain how an image is stored as numbers, and what window and level do.</li>
+      <li>Split images into training, validation and test sets without the same patient landing in two of them.</li>
+      <li>Train a small convolutional neural network and measure it with your own <code>sens_spec()</code>.</li>
+      <li>Read a saliency map, and say what changes when the model meets images from another hospital.</li>
+    </ul>
   </section>
 
-  <section class="les-section" id="content">
-    <div class="les-placeholder">
-      <p>Content for this research module goes here.</p>
-      <ul>
-        <li>Convolutional neural networks (CNNs) for image classification</li>
-        <li>Transfer learning: using pre-trained models</li>
-        <li>Attention / saliency maps: what does the AI focus on?</li>
-        <li>NLP on radiology reports: tokenization, keyword extraction</li>
-        <li>Text classification with scikit-learn or Hugging Face</li>
-        <li>Comparing AI-generated vs. human-written reports</li>
-        <li>Introduction to large language models (LLMs)</li>
-      </ul>
+  <section class="les-section rl-step" id="idea">
+    <p class="rl-eyebrow">Step 2 &middot; The idea</p>
+    <h2>An image is a grid of numbers</h2>
+    <p>A digital image is a grid of <em>pixels</em>, and each pixel is just a number. In CT, that number is in <strong>Hounsfield units (HU)</strong>, a scale fixed by physics: water is 0, air is about &minus;1000, fat about &minus;100, soft tissue and blood roughly 20 to 80, and bone several hundred and up. A CT image holds thousands of different values, but a screen shows only a few hundred shades of gray, and our eyes tell apart far fewer. So the viewer picks a <strong>window</strong>: a <em>width</em> (how wide a range of values is spread from black to white) and a <em>level</em> (the value in the middle of that range).</p>
+    <div class="mi-box" data-ix="window">
+      <div class="mi-box-title">Interactive: window and level</div>
+      <p class="mi-box-intro">A drawn, simplified chest CT slice (not a real patient). Try the three presets, then move the sliders yourself. Point at the image to read the number stored in any pixel. Can you find the small nodule in the right lung?</p>
     </div>
+    <p>Nothing about the stored numbers changed when you moved the sliders; only the mapping to gray did. The model never sees "a lung" either, only the grid of numbers. X-rays are not stored in Hounsfield units, but the idea is the same, and the PneumoniaMNIST images are already grayscale values from 0 to 255 that the notebook rescales to between 0 and 1 before training.</p>
+    <p>The model in this lab is a <strong>convolutional neural network (CNN)</strong>: a model that slides small filters across the image to pick up edges, then shapes, then larger patterns, and learns which filters help tell pneumonia from normal. It learns from the <em>training set</em>, is tuned on the <em>validation set</em>, and is judged once on the <em>test set</em>, which it has never seen. If the same patient has images in both training and test, the model can score well by recognizing the patient rather than the disease. That error is called <strong>data leakage</strong>, and splitting <em>by patient</em> prevents it.</p>
+    <p>A good test score still does not show what the model relied on. A <strong>saliency map</strong> colors the pixels that most changed the model's answer. A well-known 2018 study by Zech and colleagues found that pneumonia models had partly learned which hospital an X-ray came from, using clues such as text markers on the film, and performed worse at hospitals they had not seen. Testing on images from somewhere else, called <em>external validation</em>, is how such shortcuts come to light.</p>
+  </section>
+
+  <section class="les-section rl-step" id="warmup">
+    <p class="rl-eyebrow">Step 3 &middot; Warm-up</p>
+    <h2>Warm-up: read the code</h2>
+    <p>Two short reading checks. They are not graded and always show the explanation. They also work as a skip test: they cover what the notebook's first parts teach.</p>
+    <div class="kc" data-answer="0">
+      <p class="kc-q">What does this code print?</p>
+      <pre class="rl-pre">import numpy as np
+img = np.array([[0, 50],
+                [200, 255]])
+print(img.shape, img.max())</pre>
+      <button class="quiz-option">(2, 2) 255</button>
+      <button class="quiz-option">(4,) 255</button>
+      <button class="quiz-option">(2, 2) 200</button>
+      <div class="quiz-explanation"><p><code>img</code> is a tiny 2-by-2 image: two rows of two pixels. <code>shape</code> gives the number of rows and columns, (2, 2), and <code>max()</code> gives the brightest pixel, 255 (white in an 8-bit image, where 0 is black). A PneumoniaMNIST image has shape (28, 28). NumPy, imported here as <code>np</code>, is the library Python uses for grids of numbers.</p></div>
+    </div>
+    <div class="mi-box">
+      <div class="mi-box-title">Warm-up: put it in order</div>
+      <p class="mi-box-intro">Drag the lines into the order that builds a model, trains it and measures it on the test set. (The notebook's exact names may differ.)</p>
+      <div class="ix-order rl-order" data-top="First line" data-bottom="Last line" data-done="This is the right order.">
+        <ol class="ix-order-list">
+        <li data-pos="4">pred = (probs &gt;= 0.5).astype(int)</li>
+        <li data-pos="1">model = make_cnn()</li>
+        <li data-pos="5">accuracy = (pred == y_test).mean()</li>
+        <li data-pos="3">probs = model.predict(x_test)</li>
+        <li data-pos="2">model.fit(x_train, y_train, epochs=5)</li>
+        </ol>
+        <p class="ix-order-result"></p>
+        <div class="rl-order-explain"><p style="margin:0;font-size:inherit;line-height:inherit">Build the model, train it on the training images only (<code>fit</code>; an <em>epoch</em> is one pass through all of them), then ask it about test images it has never seen. Its outputs are probabilities, so a threshold turns them into yes or no, exactly as in Lab 3. Accuracy is the share of test images where the prediction matches the label. Training on the test images, even by accident, would make this number meaningless.</p></div>
+      </div>
+    </div>
+
+    <div class="rl-skip"><strong>Skip test.</strong> If both were easy, move quickly through Part 1. Spend your time on Parts 2 and 4: the split and the saliency maps are where imaging studies most often go wrong.</div>
+  </section>
+
+  <section class="les-section rl-step" id="notebook">
+    <p class="rl-eyebrow">Step 4 &middot; Notebook</p>
+    <h2>Do the work in Colab</h2>
+    <p>The notebook <code>Lab_4_Imaging_AI.ipynb</code> downloads PneumoniaMNIST and works through the four ideas above. Part 1 opens the images as grids of numbers and shows them under different windows. Part 2 makes a patient-level split and includes AI-written splitting code with a leak for you to fix. Part 3 trains a small CNN (switch Colab to a GPU runtime, a faster kind of processor, under <strong>Runtime &gt; Change runtime type</strong>) and measures it with the <code>sens_spec()</code> function from your toolkit. Part 4 draws saliency maps and tests the model on a second set of images standing in for another hospital.</p>
+    <label class="rl-field"><span>Your GitHub username <small>used to label your saved work; the images are the same for everyone</small></span><input class="rl-input rl-input--mono rl-user" autocomplete="username" spellcheck="false" placeholder="your-username"></label>
+    <p>Type it into the notebook's first cell, as in the earlier labs:</p>
+    <pre class="rl-pre">GITHUB_USERNAME = "<span class="rl-user-echo">your-username</span>"</pre>
+    <div class="rl-nb-head">
+      <a class="rl-colab" href="https://colab.research.google.com/github/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Lab_4_Imaging_AI.ipynb" target="_blank" rel="noopener">Open Lab 4 in Colab <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2h7v7M12 2 4.5 9.5M2 5v7h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span class="rl-nb-file">lesson-notebooks/Lab_4_Imaging_AI.ipynb &middot; <a href="https://github.com/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Lab_4_Imaging_AI.ipynb" target="_blank" rel="noopener">view on GitHub</a></span>
+    </div>
+    <p class="rl-note">Colab needs a Google account. It opens the course's copy of the notebook; follow "Save your work to GitHub" below to keep your own.</p>
+
+    <h3 class="rl-h3">The notebook's parts</h3>
+    <p>Tick each part off when you finish it. Your ticks show as progress on the Research Lab map.</p>
+    <ul class="rl-parts">
+      <li><label><input type="checkbox" data-part="0"><span><span class="rl-part-name">Part 1. Images as data</span><span class="rl-part-desc">Open X-rays as grids of numbers, look at their values, and try window and level.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="1"><span><span class="rl-part-name">Part 2. Splitting by patient</span><span class="rl-part-desc">Make training, validation and test sets with no patient in two of them, and fix an AI-written split that leaks.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="2"><span><span class="rl-part-name">Part 3. A first image model (CNN)</span><span class="rl-part-desc">Train a small convolutional neural network and measure it with your own <code>sens_spec()</code>.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="3"><span><span class="rl-part-name">Part 4. Saliency maps and a second hospital</span><span class="rl-part-desc">See which pixels drove each answer, and test the model on images from somewhere else.</span></span></label></li>
+    </ul>
+    <p class="rl-parts-count" aria-live="polite"></p>
+
+    <h3 class="rl-h3">How you'll code in this lab</h3>
+    <div class="rl-mix" data-mix="10,20,20,25,20,5"></div>
+    <details class="rl-modes">
+      <summary>What the coding modes mean</summary>
+      <p>Every task in the notebook is tagged with one mode. In <strong>Write</strong> tasks you write a few lines yourself from an empty cell, with a hint and a hidden solution. In <strong>Fill in</strong> tasks most of the code is there and you complete the blanks. <strong>Reuse</strong> tasks import a function you wrote in an earlier lab from your own <code>toolkit.py</code>, the way real projects grow. In <strong>Direct the AI</strong> tasks you ask an AI assistant (Colab's built-in one is suggested, but any is fine) to write the code, paste it in, run the test cell, and note in the AI-use log what you asked and what you had to change. <strong>Fix</strong> tasks give you code "written by an AI" with one realistic mistake to find. <strong>Read</strong> tasks ask you to put lines in order or predict what code will print before you run it.</p>
+      <p>Early labs lean on writing code yourself, because that is how the basics stick. Later labs lean on reusing your code, directing an AI and checking its work, because that is how research code is written now, and checking is the part a person must still do.</p>
+    </details>
+
+    <h3 class="rl-h3">Save your work to GitHub</h3>
+    <p>Colab runs the notebook, but it does not keep your work for you. You keep it in your own copy of the course repository on GitHub (a <em>repository</em>, or repo, is a project folder on GitHub with the full history of every saved change). The first time, you make that copy, called a <em>fork</em>; after that, you save into it whenever you finish a part.</p>
+    <ol class="rl-steps-ol">
+      <li><strong>First time only:</strong> sign in to GitHub (create a free account at <a href="https://github.com/join" target="_blank" rel="noopener">github.com/join</a> if you need one), open <a href="https://github.com/UM-IHC-CA2i/CA2i-Research-Launchpad" target="_blank" rel="noopener">the course repository</a>, click <strong>Fork</strong>, then <strong>Create fork</strong>. Your copy lives at <code>github.com/<span class="rl-user-echo">your-username</span>/CA2i-Research-Launchpad</code>.</li>
+      <li>When you finish a part, choose <strong>File &gt; Save a copy in GitHub</strong> in Colab. The first time, Colab asks for permission to use your GitHub account; allow it.</li>
+      <li>Pick your fork, <code><span class="rl-user-echo">your-username</span>/CA2i-Research-Launchpad</code>, branch <code>main</code>, and keep the file path <code>lesson-notebooks/Lab_4_Imaging_AI.ipynb</code>. Write a short note about what changed (for example "Part 2 done") and click <strong>OK</strong>.</li>
+      <li>Next time, open the notebook from your fork (in Colab: <strong>File &gt; Open notebook</strong>, then the <strong>GitHub</strong> tab) so you carry on from where you stopped.</li>
+    </ol>
+  </section>
+
+  <section class="les-section rl-step" id="report">
+    <p class="rl-eyebrow">Step 5 &middot; Report back</p>
+    <h2>Enter your numbers</h2>
+    <p>The notebook's last cell prints the numbers below, worked out from your own dataset. Enter them here. If one doesn't match, you get a hint first, then an explanation, and after a third try the answer, so you can find where your analysis went differently. Getting help is fine; the lab is then marked "finished with help".</p>
+    <div class="rl-rb">
+      <label class="rl-field"><span>Your GitHub username <small>the same one you set in the notebook's first cell</small></span><input class="rl-input rl-input--mono rl-user" autocomplete="username" spellcheck="false" placeholder="your-username"></label>
+      <p class="rl-note rl-rb-who"></p>
+      <div class="rl-rb-items"><p class="rl-wait">Loading the answer checker...</p></div>
+      <div class="rl-done" role="status"></div>
+    </div>
+    <h3 class="rl-h3">Your interpretation</h3>
+    <label class="rl-field rl-field--prompt" style="max-width:none"><span>Look at your saliency maps. In two or three sentences: is the model looking where a radiologist would, and what would you want to test before trusting it at another hospital?</span><textarea class="rl-textarea rl-note" rows="4"></textarea><p class="rl-saved" aria-live="polite"></p></label>
   </section>
 
 </div>
 
-<div class="les-nav">
-  <a href="research-3.html" class="btn btn-outline" id="les-prev">&larr; Previous</a>
-  <a href="research-5.html" class="btn btn-accent" id="les-next">Next &rarr;</a>
+<div class="les-nav rl-nav">
+  <a href="research-3.html" class="btn btn-outline" id="rl-prev">&larr; Lab 3: Evaluating an AI tool</a>
+  <a href="../pages/research-lab.html" class="rl-nav-mid">Research Lab map</a>
+  <a href="research-5.html" class="btn btn-accent" id="rl-next">Next: Lab 5, Reports and LLMs &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261101a" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261101a"></script>
-<script src="assets/lessons.js?v=20261101a"></script>
+<script src="../assets/js/progress.js?v=20261104a" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261104a"></script>
+<script src="../assets/js/rl-data.js?v=20261104a"></script>
+<script src="assets/knowledge-check.js?v=20261104a"></script>
+<script src="assets/interactives.js?v=20261104a"></script>
+<script src="assets/research-lab.js?v=20261104a"></script>
 </body>
 </html>

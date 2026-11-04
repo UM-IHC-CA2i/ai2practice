@@ -24,9 +24,9 @@
   </script>
 <!-- /AI2PRACTICE SEO -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261101a" />
-  <link rel="stylesheet" href="assets/css/theme.css?v=20261101a" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20261101a" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261104a" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261104a" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20261104a" />
   <script>(function(r){r.classList.add('js');try{if(sessionStorage.getItem('ai2practice_home_seen'))r.classList.add('seen');sessionStorage.setItem('ai2practice_home_seen','1');}catch(e){}})(document.documentElement);</script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
@@ -70,9 +70,8 @@
               <stop offset=".14" style="stop-color:var(--m1)"/>
               <stop offset=".40" style="stop-color:var(--m2)"/>
               <stop offset=".46" style="stop-color:var(--m2)"/>
-              <stop offset=".62" style="stop-color:var(--m3)"/>
-              <stop offset=".70" style="stop-color:var(--m3)"/>
-              <stop offset="1" style="stop-color:var(--core)"/>
+              <stop offset=".55" style="stop-color:var(--wip)"/>
+              <stop offset="1" style="stop-color:var(--wip)"/>
             </linearGradient>
             <linearGradient id="coreSeg" gradientUnits="userSpaceOnUse" x1="236" y1="0" x2="1228" y2="0">
               <stop offset="0" style="stop-color:var(--m1)"/><stop offset=".216" style="stop-color:var(--m1)"/>
@@ -82,15 +81,15 @@
             </linearGradient>
           </defs>
           <path class="route route-res" d="M615 180 C660 180 676 214 686 255 C711 372 744 500 824 500 H1228"/>
-          <path class="route route-lead" d="M812 180 C858 180 872 214 880 250 C900 345 928 380 962 380 H1228"/>
-          <path class="route route-check" d="M154 180 H236"/>
+          <path class="route route-lead wip" d="M812 180 C858 180 872 214 880 250 C900 345 928 380 962 380 H1228"/>
+          <path class="route route-check wip" d="M154 180 H236"/>
           <path class="route route-core" d="M236 180 H1228" pathLength="1000"/>
 
-          <a class="stop soon" data-k="pre" href="#map" data-ai2-stop="pre-check" data-soon="Pre-course quiz: coming soon" aria-label="Pre-course quiz" style="--mc:var(--check);--d:300ms">
+          <a class="stop soon wip" data-k="pre" href="#map" data-ai2-stop="pre-check" data-soon="Pre-course quiz: coming soon" aria-label="Pre-course quiz" style="--mc:var(--check);--d:300ms">
             <circle class="hit" cx="130" cy="180" r="34"/><circle class="ring" cx="130" cy="180" r="18" fill="#fff" stroke="var(--check)" stroke-width="5"/>
             <text class="k tx" x="130" y="88" text-anchor="middle">Start here</text>
             <text class="lbl" x="130" y="114" text-anchor="middle">Pre-course<tspan x="130" y="140">quiz</tspan></text>
-            <text class="sub" x="130" y="228" text-anchor="middle">15 questions</text>
+            <text class="sub" x="130" y="228" text-anchor="middle">Coming soon</text>
           </a>
           <a class="stop map-module-stop" data-k="m1" href="modules/ai-fundamentals.html" data-ai2-stop="m1" aria-label="Module 1: Fundamentals of AI. What is AI, and how does it work clinically?" style="--mc:var(--m1);--d:520ms">
             <circle class="hit" cx="340" cy="180" r="36"/><circle class="ring big" cx="340" cy="180" r="20" fill="#fff" stroke="var(--m1)" stroke-width="5"/>
@@ -104,28 +103,29 @@
             <text class="lbl" x="560" y="114" text-anchor="middle">Radiology<tspan x="560" y="140">Basics</tspan></text>
             <text class="sub q" x="560" y="228" text-anchor="middle">What is radiology,<tspan x="560" dy="21">and how does an</tspan><tspan x="560" dy="21">image become data?</tspan></text>
           </a>
-          <a class="stop map-module-stop" data-k="m3" href="modules/clinical-practice.html" data-ai2-stop="m3" aria-label="Module 3: AI in Clinical Practice. How does AI affect clinical practice?" style="--mc:var(--m3);--d:920ms">
+          <a class="stop map-module-stop wip" data-k="m3" href="modules/clinical-practice.html" data-ai2-stop="m3" aria-label="Module 3: AI in Clinical Practice. How does AI affect clinical practice?" style="--mc:var(--m3);--d:920ms">
             <circle class="hit" cx="780" cy="180" r="36"/><circle class="ring big" cx="780" cy="180" r="20" fill="#fff" stroke="var(--m3)" stroke-width="5"/>
             <text class="k tx" x="780" y="88" text-anchor="middle">Module 3</text>
             <text class="lbl" x="780" y="114" text-anchor="middle">Clinical<tspan x="780" y="140">Practice</tspan></text>
-            <text class="sub q" x="780" y="228" text-anchor="middle">How does AI affect<tspan x="780" dy="21">clinical practice?</tspan></text>
+            <text class="sub" x="780" y="228" text-anchor="middle">Coming soon</text>
           </a>
-          <a class="stop" data-k="post" href="assessment.html" data-ai2-stop="assess" aria-label="Post-course quiz" style="--mc:var(--core);--d:1150ms">
+          <a class="stop wip" data-k="post" href="assessment.html" data-ai2-stop="assess" aria-label="Post-course quiz" style="--mc:var(--core);--d:1150ms">
             <circle class="hit" cx="1228" cy="180" r="34"/><circle class="ring" cx="1228" cy="180" r="17" fill="#fff" stroke="var(--core)" stroke-width="5"/>
             <text class="k tx" x="1262" y="88" text-anchor="end">Finish</text>
             <text class="lbl" x="1262" y="114" text-anchor="end">Post-course<tspan x="1262" y="140">quiz</tspan></text>
-            <text class="sub" x="1262" y="228" text-anchor="end">15 questions</text>
+            <text class="sub" x="1262" y="228" text-anchor="end">Coming soon</text>
           </a>
           <g class="trk-stops" style="--mc:var(--res)">
-            <a class="stop" data-k="res" href="pages/research-lab.html" aria-label="Research Lab overview" style="--d:1250ms"><text class="lbl tx" x="750" y="492" text-anchor="end">Research Lab</text><text class="sub" x="750" y="516" text-anchor="end">optional &middot; 5 labs</text></a>
-            <a class="stop" data-k="res" href="lessons/research-1.html" data-ai2-stop="research-1" aria-label="Research Lab 1: Python and GitHub" style="--d:1250ms"><circle class="hit" cx="870" cy="500" r="22"/><circle class="dot" cx="870" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="870" y="534" text-anchor="middle">Python</text></a>
-            <a class="stop" data-k="res" href="lessons/research-2.html" data-ai2-stop="research-2" aria-label="Research Lab 2: Data science and evaluation" style="--d:1250ms"><circle class="hit" cx="960" cy="500" r="22"/><circle class="dot" cx="960" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="960" y="476" text-anchor="middle">Data science</text></a>
-            <a class="stop" data-k="res" href="lessons/research-3.html" data-ai2-stop="research-3" aria-label="Research Lab 3: ML and image processing" style="--d:1250ms"><circle class="hit" cx="1049" cy="500" r="22"/><circle class="dot" cx="1049" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1049" y="534" text-anchor="middle">ML &amp; imaging</text></a>
-            <a class="stop" data-k="res" href="lessons/research-4.html" data-ai2-stop="research-4" aria-label="Research Lab 4: Advanced AI and NLP" style="--d:1250ms"><circle class="hit" cx="1139" cy="500" r="22"/><circle class="dot" cx="1139" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1139" y="476" text-anchor="middle">NLP</text></a>
-            <a class="stop" data-k="res" href="lessons/research-5.html" data-ai2-stop="research-5" aria-label="Research Lab 5: Mini research project" style="--d:1250ms"><circle class="hit" cx="1228" cy="500" r="22"/><circle class="dot" cx="1228" cy="500" r="12" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1228" y="534" text-anchor="middle">Project</text></a>
+            <a class="stop" data-k="res" href="pages/research-lab.html" aria-label="Research Lab overview" style="--d:1250ms"><text class="lbl tx" x="750" y="492" text-anchor="end">Research Lab</text><text class="sub" x="750" y="516" text-anchor="end">optional &middot; 6 labs</text></a>
+            <a class="stop" data-k="res" href="lessons/research-1.html" data-ai2-stop="research-1" aria-label="Research Lab 1: Python, Colab and GitHub" style="--d:1250ms"><circle class="hit" cx="870" cy="500" r="22"/><circle class="dot" cx="870" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="870" y="534" text-anchor="middle">Python</text></a>
+            <a class="stop" data-k="res" href="lessons/research-2.html" data-ai2-stop="research-2" aria-label="Research Lab 2: Clinical data" style="--d:1250ms"><circle class="hit" cx="941.6" cy="500" r="22"/><circle class="dot" cx="941.6" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="941.6" y="476" text-anchor="middle">Clinical data</text></a>
+            <a class="stop" data-k="res" href="lessons/research-3.html" data-ai2-stop="research-3" aria-label="Research Lab 3: Evaluating an AI tool" style="--d:1250ms"><circle class="hit" cx="1013.2" cy="500" r="22"/><circle class="dot" cx="1013.2" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1013.2" y="534" text-anchor="middle">Evaluate AI</text></a>
+            <a class="stop" data-k="res" href="lessons/research-4.html" data-ai2-stop="research-4" aria-label="Research Lab 4: Imaging AI" style="--d:1250ms"><circle class="hit" cx="1084.8" cy="500" r="22"/><circle class="dot" cx="1084.8" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1084.8" y="476" text-anchor="middle">Imaging</text></a>
+            <a class="stop" data-k="res" href="lessons/research-5.html" data-ai2-stop="research-5" aria-label="Research Lab 5: Reports and LLMs" style="--d:1250ms"><circle class="hit" cx="1156.4" cy="500" r="22"/><circle class="dot" cx="1156.4" cy="500" r="10" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1156.4" y="534" text-anchor="middle">LLMs</text></a>
+            <a class="stop" data-k="res" href="lessons/research-6.html" data-ai2-stop="research-6" aria-label="Research Lab 6: Your project (optional)" style="--d:1250ms"><circle class="hit" cx="1228" cy="500" r="22"/><circle class="dot" cx="1228" cy="500" r="12" fill="#fff" stroke="var(--res)" stroke-width="4"/><text class="mini" x="1228" y="476" text-anchor="middle">Project</text></a>
           </g>
-          <g class="trk-stops" style="--mc:var(--lead)">
-            <a class="stop" data-k="lead" href="pages/adoption-governance.html" aria-label="Leadership overview" style="--d:1350ms"><text class="lbl tx" x="890" y="372" text-anchor="end">Leadership</text><text class="sub" x="890" y="396" text-anchor="end">optional track</text></a>
+          <g class="trk-stops wip" style="--mc:var(--lead)">
+            <a class="stop" data-k="lead" href="pages/adoption-governance.html" aria-label="Leadership overview" style="--d:1350ms"><text class="lbl tx" x="890" y="372" text-anchor="end">Leadership</text><text class="sub" x="890" y="396" text-anchor="end">optional</text></a>
             <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-define" aria-label="Leadership: Define the need" style="--d:1350ms"><circle class="hit" cx="1000" cy="380" r="22"/><circle class="dot" cx="1000" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1000" y="356" text-anchor="middle">Define</text></a>
             <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-select" aria-label="Leadership: Select and procure" style="--d:1350ms"><circle class="hit" cx="1057" cy="380" r="22"/><circle class="dot" cx="1057" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1057" y="414" text-anchor="middle">Select</text></a>
             <a class="stop" data-k="lead" href="pages/adoption-governance.html#stage-validate" aria-label="Leadership: Validate locally" style="--d:1350ms"><circle class="hit" cx="1114" cy="380" r="22"/><circle class="dot" cx="1114" cy="380" r="10" fill="#fff" stroke="var(--lead)" stroke-width="4"/><text class="mini" x="1114" y="356" text-anchor="middle">Validate</text></a>
@@ -135,20 +135,19 @@
         </svg>
         </div>
         <ul class="mobile-map" aria-label="Curriculum map">
-          <li style="--mc:var(--check)" data-ai2-stop="depth"><span class="mm-t">Pre-course quiz</span><small>Start here &middot; coming soon</small></li>
+          <li class="wip" style="--mc:var(--check)" data-ai2-stop="depth"><span class="mm-t">Pre-course quiz</span><small>Start here &middot; coming soon</small></li>
           <li style="--mc:var(--m1)" data-ai2-stop="m1"><a href="modules/ai-fundamentals.html">1 &middot; Fundamentals of AI</a><small>What is AI, and how does it work clinically?</small></li>
           <li style="--mc:var(--m2)" data-ai2-stop="m2"><a href="modules/informatics.html">2 &middot; Radiology Basics</a><small>What is radiology, and how does an image become data?</small></li>
-          <li class="opt" style="--mc:var(--res)"><a href="pages/research-lab.html">Research Lab</a><small>Optional &middot; 5 labs</small></li>
-          <li style="--mc:var(--m3)" data-ai2-stop="m3"><a href="modules/clinical-practice.html">3 &middot; Clinical Practice</a><small>How does AI affect clinical practice?</small></li>
-          <li class="opt" style="--mc:var(--lead)"><a href="pages/adoption-governance.html">Leadership</a><small>Optional &middot; 5 steps</small></li>
-          <li style="--mc:var(--core)" data-ai2-stop="practice"><a href="assessment.html">Post-course quiz</a><small>15 questions</small></li>
+          <li class="opt" style="--mc:var(--res)"><a href="pages/research-lab.html">Research Lab</a><small>Optional &middot; 6 labs</small></li>
+          <li class="wip" style="--mc:var(--m3)" data-ai2-stop="m3"><a href="modules/clinical-practice.html">3 &middot; Clinical Practice</a><small>Coming soon</small></li>
+          <li class="opt wip" style="--mc:var(--lead)"><a href="pages/adoption-governance.html">Leadership</a><small>Optional</small></li>
+          <li class="wip" style="--mc:var(--core)" data-ai2-stop="practice"><a href="assessment.html">Post-course quiz</a><small>Coming soon</small></li>
         </ul>
 
         <div class="hlegend" aria-hidden="true">
-          <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M3 7H43" style="fill:none;stroke:var(--check);stroke-width:4;stroke-dasharray:6 4"/></svg>Quiz</span>
           <span><svg viewBox="0 0 46 14" aria-hidden="true"><defs><linearGradient id="lgCore" gradientUnits="userSpaceOnUse" x1="4" y1="0" x2="42" y2="0"><stop offset="0" style="stop-color:var(--m1)"/><stop offset=".5" style="stop-color:var(--m2)"/><stop offset="1" style="stop-color:var(--m3)"/></linearGradient></defs><path d="M4 7H42" style="fill:none;stroke:url(#lgCore);stroke-width:8;stroke-linecap:round"/><circle cx="23" cy="7" r="5.5" style="fill:#fff;stroke:var(--m2);stroke-width:3"/></svg>Core</span>
           <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M3 7H43" style="fill:none;stroke:var(--res);stroke-width:6;stroke-dasharray:10 3"/><circle cx="23" cy="7" r="5" style="fill:#fff;stroke:var(--res);stroke-width:3"/></svg>Research Lab (optional)</span>
-          <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M3 7H43" style="fill:none;stroke:var(--lead);stroke-width:6;stroke-dasharray:10 3"/><circle cx="23" cy="7" r="5" style="fill:#fff;stroke:var(--lead);stroke-width:3"/></svg>Leadership (optional)</span>
+          <span><svg viewBox="0 0 46 14" aria-hidden="true"><path d="M4 7H42" style="fill:none;stroke:var(--wip);stroke-width:8;stroke-linecap:round"/><circle cx="23" cy="7" r="5.5" style="fill:#fff;stroke:var(--wip);stroke-width:3"/></svg>Coming soon</span>
         </div>
       </div>
       <aside class="panel" id="panelBox" aria-live="polite"><div class="panel-body" id="panel"></div></aside>
@@ -264,7 +263,7 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js?v=20261101a"></script>
+<script src="assets/js/site.js?v=20261104a"></script>
 <script>
 (function(){
   var root=document.documentElement; root.classList.add('js');
@@ -363,25 +362,25 @@
 
 
   var DATA={
-    pre:{pc:'--check',kicker:'Start here',title:'Pre-course quiz',fig:'checklist',
+    pre:{pc:'--wip-deep',wip:'Coming soon',kicker:'Start here',title:'Pre-course quiz',fig:'checklist',
       out:'See which lessons you already know, then plan your route through the fourteen.',
       stats:[['15','questions, about one per lesson'],['~10','minutes, untimed'],['0','marks: it only suggests lessons you could skip']],
       q:{t:'A model flags a nodule on 1 in 20 normal chest films. What is that error called?',o:['A false positive','A false negative','Overfitting'],a:0,x:'It called a normal film abnormal. You meet this again in lesson 1.4.'},
       p:{f:1,n:1,s:'Done',d:'It suggested 2 lessons you could skip',next:'1.4 Measuring Performance',h:'lessons/m1-4.html'},
       more:{t:'Coming soon',h:'#map'},soon:'Pre-course quiz: coming soon'},
-    post:{pc:'--core',kicker:'Finish',title:'Post-course quiz',fig:'checklist',
+    post:{pc:'--wip-deep',wip:'Coming soon',kicker:'Finish',title:'Post-course quiz',fig:'checklist',
       out:'Show what you learned across the 14 core lessons.',
       stats:[['14','lessons covered, one question each'],['3','core modules it draws on'],['15','questions in all']],
       q:{t:'What does the post-course quiz cover?',o:['The 14 core lessons','Only Module 1','The optional tracks'],a:0,x:'It closes the core course, with questions drawn from all 14 core lessons.'},
       p:{f:3,n:14,s:'3 of 14 lessons done',d:'Take the quiz whenever you are ready',next:'1.4 Measuring Performance',h:'lessons/m1-4.html'},
       more:{t:'Go to the check',h:'assessment.html'}},
-    res:{pc:'--res',kicker:'Optional track · 5 labs',title:'Research Lab',fig:'laptop',
-      out:'Write Python, test a model on real data and run a small project of your own.',
-      stats:[['5','hands-on notebooks'],['1','mini project of your own'],['0','effect on the core course']],
-      q:{t:'You test a model on the images you trained it on. Its accuracy will look…',o:['Too good','About right','Too poor'],a:0,x:'It has seen the answers. Held-out data is the fair test; Lab 2 builds a proper split.'},
-      p:{f:1,n:5,s:'1 of 5 labs done',d:'Last opened a week ago',next:'Lab 2 · Data science & evaluation',h:'pages/research-lab.html'},
+    res:{pc:'--res',kicker:'Optional track · 6 labs',title:'Research Lab',fig:'laptop',
+      out:'Write Python, analyze clinical data, test an AI tool and run a project of your own.',
+      stats:[['6','hands-on labs in Colab'],['1','project of your own, optional'],['0','effect on the core course']],
+      q:{t:'You test a model on the images you trained it on. Its accuracy will look…',o:['Too good','About right','Too poor'],a:0,x:'It has seen the answers. Held-out data is the fair test; Lab 4 builds a proper split.'},
+      p:{f:1,n:6,s:'1 of 6 labs done',d:'Last opened a week ago',next:'Lab 2 · Clinical data',h:'pages/research-lab.html'},
       more:{t:'Open the Research Lab',h:'pages/research-lab.html'}},
-    lead:{pc:'--lead',kicker:'Optional track · 5 steps',title:'Leadership',fig:'building',scene:'hospital',
+    lead:{pc:'--wip-deep',kicker:'Optional track · 5 steps',title:'Leadership',fig:'building',scene:'hospital',
       out:'Follow a tool from the department’s need through local testing to monitoring.',
       stats:[['5','steps, from need to governance'],['Open','overview, readable now'],['Soon','a lesson for each step']],
       q:{t:'Before buying an AI tool, what should a department check first?',o:['That it works on its own patients and scanners','The accuracy in the vendor’s paper','That it is the newest version'],a:0,x:'Local validation, step 3, catches dataset shift before patients do.'},
@@ -395,7 +394,7 @@
     m2:{fig:'pixels',scene:'ct',out:'Describe how a scan is made, why an image is a grid of numbers and how to read a report.',
       q:{t:'On a CT image, what does each pixel’s number describe?',o:['How much the tissue absorbs X-rays','The colour of the tissue','How deep the tissue lies'],a:0,x:'Hounsfield units: air is about −1000, water 0, bone several hundred. Lesson 2.2.'},
       p:{f:0,d:'Opens after Module 1, or skip ahead'}},
-    m3:{fig:'screen',scene:'second',out:'Judge whether an AI tool works, use it without over-trusting it and talk about it with patients.',
+    m3:{wip:'Coming soon',fig:'screen',scene:'second',out:'Judge whether an AI tool works, use it without over-trusting it and talk about it with patients.',
       q:{t:'An AI tool calls a chest film normal, but you see a subtle opacity. What do you do?',o:['Report what you see and note the disagreement','Trust the tool; it is FDA-cleared','Leave the finding out'],a:0,x:'The tool supports the reader; the radiologist signs the report. Lesson 3.4.'},
       p:{f:0,d:'Opens after Module 2, or skip ahead'}}
   };
@@ -403,7 +402,7 @@
   MODS.forEach(function(m){START[m.k]=TOTAL; TOTAL+=m.items.length;});
   MODS.forEach(function(m){
     var e=EXTRA[m.k], n=m.items.length, f=e.p.f;
-    DATA[m.k]={pc:'--'+m.k,kicker:'Module '+m.n+' · '+n+' lessons',title:m.title,fig:e.fig,scene:e.scene,out:e.out,mod:m,
+    DATA[m.k]={pc:e.wip?'--wip-deep':'--'+m.k,wip:e.wip,kicker:'Module '+m.n+' · '+n+' lessons',title:m.title,fig:e.fig,scene:e.scene,out:e.out,mod:m,
       stats:[[String(n),'lessons, in order'],[(n*15)+'–'+(n*20),'minutes in all, 15 to 20 each'],['2–3','ungraded checks in every lesson']],
       q:e.q,
       p:{f:f,n:n,s:f+' of '+n+' lessons done',d:e.p.d,next:m.n+'.'+(f+1)+' '+m.items[f],h:lessonHref(m,f)},
@@ -414,6 +413,7 @@
   // Module kickers carry the learner's progress, read from the map stop that progress.js marks
   function kicker(k){
     var d=DATA[k], st=document.querySelector('.map-module-stop[data-k="'+k+'"]'), p=st&&st.getAttribute('data-ai2-progress');
+    if(d.wip) return (d.mod?'Module '+d.mod.n:d.kicker.split(' · ')[0])+' · '+d.wip;
     return d.mod&&p ? 'Module '+d.mod.n+' · '+p.split(' · ')[0] : d.kicker;
   }
   function render(k){var d=DATA[k];return head(d,kicker(k))+'<p class="p-out"><b>After it you can</b>'+esc(d.out)+'</p><div class="pfig"'+(d.scene?' data-scene="'+d.scene+'"':'')+'>'+fig(d.fig)+'</div>'+more(d);}
@@ -509,7 +509,7 @@
 })();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module" src="assets/js/figures3d.js?v=20261101a"></script>
+<script type="module" src="assets/js/figures3d.js?v=20261104a"></script>
 <script>
   // figures3d.js loads after the panel's first fill, so mount whatever 3D slot is already there
   document.addEventListener('ai2practice:figures3d-ready',function(){ document.querySelectorAll('#panel [data-scene],.trow-fig[data-scene]').forEach(window.AI2Figures3D.mount); });

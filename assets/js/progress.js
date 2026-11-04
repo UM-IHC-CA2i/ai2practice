@@ -43,14 +43,17 @@
   // Lesson files before the module-order renumbering (October 2026).
   var LEGACY = { 'lesson-1':'m3-3', 'lesson-2':'m1-1', 'lesson-3':'m3-1', 'lesson-4':'m3-2', 'lesson-5':'m3-5' };
   var LESSON_KEYS = LESSONS.map(function(l){ return l.key; });
-  var RESEARCH_KEYS = ['research-1','research-2','research-3','research-4','research-5'];
   var RESEARCH = [
-    { key:'research-1', label:'Environment', name:'Lab 1 · Setting Up Your AI Research Environment' },
-    { key:'research-2', label:'Data Science', name:'Lab 2 · Data Science and AI Evaluation' },
-    { key:'research-3', label:'Machine Learning', name:'Lab 3 · Machine Learning and Image Processing' },
-    { key:'research-4', label:'Advanced AI', name:'Lab 4 · Advanced Image AI and NLP' },
-    { key:'research-5', label:'Project', name:'Lab 5 · Mini Research Project' }
+    { key:'research-1', label:'Python & GitHub', name:'Lab 1 · Python, Colab and GitHub', parts:4 },
+    { key:'research-2', label:'Clinical Data', name:'Lab 2 · Clinical Data', parts:4 },
+    { key:'research-3', label:'Evaluating AI', name:'Lab 3 · Evaluating an AI Tool', parts:4 },
+    { key:'research-4', label:'Imaging AI', name:'Lab 4 · Imaging AI', parts:4 },
+    { key:'research-5', label:'Reports & LLMs', name:'Lab 5 · Reports and LLMs', parts:3 },
+    { key:'research-6', label:'Your Project', name:'Lab 6 · Your Project (optional)', parts:4 }
   ];
+  var RESEARCH_KEYS = RESEARCH.map(function(r){ return r.key; });
+  // Research Lab extras: parts ticked off ({key:[0,2]}), labs finished with help, saved notes ({key:text}).
+  var LABS_KEY = 'ai2practice_labs_v1';
   var KNOWN_KEYS = LESSON_KEYS.concat(RESEARCH_KEYS);
   function lessonByKey(k){ return LESSONS.filter(function(l){ return l.key===k; })[0] || null; }
   function moduleById(id){ return MODULES.filter(function(m){ return m.id===id; })[0] || null; }
@@ -85,7 +88,7 @@
   }
   // Rail mode runs on published core lessons and Research Lab pages.
   function lessonKeyForPage(){
-    var m = relativePath().match(/^lessons\/(m[1-3]-[1-9]|research-[1-5])\.html$/);
+    var m = relativePath().match(/^lessons\/(m[1-3]-[1-9]|research-[1-6])\.html$/);
     if (!m) return null;
     var l = lessonByKey(m[1]);
     return (!l || l.published) ? m[1] : null;
@@ -322,9 +325,46 @@
   }
 
   // Keeps only known lessons, depths and valid scores from an untrusted snapshot (the signed-in account).
+  function labState(){
+    var o=safeJSON(LABS_KEY, null) || {};
+    return { parts:(o.parts&&typeof o.parts==='object')?o.parts:{}, help:Array.isArray(o.help)?o.help:[], notes:(o.notes&&typeof o.notes==='object')?o.notes:{} };
+  }
+  function cleanLabs(o){
+    var out={parts:{},help:[],notes:{}}; o=o||{};
+    RESEARCH.forEach(function(r){
+      var p=o.parts&&o.parts[r.key];
+      if(Array.isArray(p)) out.parts[r.key]=p.filter(function(i){ return i===(i|0) && i>=0 && i<r.parts; });
+      var n=o.notes&&o.notes[r.key];
+      if(typeof n==='string' && n) out.notes[r.key]=n.slice(0,4000);
+    });
+    if(Array.isArray(o.help)) out.help=o.help.filter(function(k){ return RESEARCH_KEYS.indexOf(k)!==-1; });
+    return out;
+  }
+  function setLabPart(key, i, on){
+    var st=labState(), p=(st.parts[key]||[]).filter(function(x){ return x!==i; });
+    if(on) p.push(i); p.sort(); st.parts[key]=p; store(LABS_KEY, cleanLabs(st)); notify();
+  }
+  function setLabNote(key, text){ var st=labState(); st.notes[key]=String(text||''); store(LABS_KEY, cleanLabs(st)); notify(); }
+  // Finishing the report-back completes the lab; help:true records "finished with help".
+  function completeLab(key, opts){
+    if(RESEARCH_KEYS.indexOf(key)===-1) return;
+    var done=completed(); if(done.indexOf(key)===-1){ done.push(key); store(COMPLETED_KEY, done); }
+    try { localStorage.setItem(CKPT_PREFIX+key,'1'); } catch(e) {}
+    var st=labState(), r=RESEARCH.filter(function(x){ return x.key===key; })[0];
+    st.parts[key]=Array.apply(null,{length:r.parts}).map(function(_,i){ return i; });
+    if(opts&&opts.help&&st.help.indexOf(key)===-1) st.help.push(key);
+    store(LABS_KEY, cleanLabs(st)); render(); notify();
+  }
+  function labs(){
+    var done=completed(), st=labState();
+    return RESEARCH.map(function(r){
+      return { key:r.key, label:r.label, name:r.name, parts:r.parts, partsDone:(st.parts[r.key]||[]).slice(),
+        done:done.indexOf(r.key)!==-1, help:st.help.indexOf(r.key)!==-1, note:st.notes[r.key]||'', href:siteUrl('lessons/'+r.key+'.html') };
+    });
+  }
   function cleanSnapshot(obj){
     obj=obj || {};
-    var out={completed:[],assessments:{},pathway:null};
+    var out={completed:[],assessments:{},pathway:null,labs:cleanLabs(obj.labs)};
     if(Array.isArray(obj.completed)) out.completed=migrateList(obj.completed);
     if(PATHWAYS[obj.pathway]) out.pathway=obj.pathway;
     PATHWAY_ORDER.forEach(function(k){
@@ -346,9 +386,14 @@
       as[k]={bestScore:Math.max(Number(old.bestScore)||0,inc.bestScore||0),passed:!!old.passed||!!inc.passed};
     }); store(ASSESS_KEY, as);
     if (incoming.pathway && !selectedPathway()) { try { localStorage.setItem(PATHWAY_KEY,incoming.pathway); } catch(e) {} }
+    var st=labState(), inl=incoming.labs||cleanLabs({});
+    Object.keys(inl.parts).forEach(function(k){ var p=st.parts[k]||[]; inl.parts[k].forEach(function(i){ if(p.indexOf(i)===-1) p.push(i); }); st.parts[k]=p.sort(); });
+    inl.help.forEach(function(k){ if(st.help.indexOf(k)===-1) st.help.push(k); });
+    Object.keys(inl.notes).forEach(function(k){ if(!st.notes[k]) st.notes[k]=inl.notes[k]; });
+    store(LABS_KEY, cleanLabs(st));
     render(); notify();
   }
-  function snapshot(){ return { completed:completed(), assessments:assessments(), pathway:selectedPathway() }; }
+  function snapshot(){ return { completed:completed(), assessments:assessments(), pathway:selectedPathway(), labs:cleanLabs(labState()) }; }
 
   /* ---------- Shell ----------
      Lesson and Research Lab pages get a collapsible course outline on the left.
@@ -535,7 +580,7 @@
       return olItem({ num:String(i+1), title:r.label, href:siteUrl('lessons/'+r.key+'.html'), done:done.indexOf(r.key)!==-1, here:r.key===key });
     });
     labs.unshift('<li class="ai2-ol-overview"><a href="'+siteUrl('pages/research-lab.html')+'">Research Lab overview</a></li>');
-    html+=olGroup('research','Research Lab (optional)', rn ? rn+'/5' : '', labs, research);
+    html+=olGroup('research','Research Lab (optional)', rn ? rn+'/'+RESEARCH.length : '', labs, research);
     html+='<div class="ai2-ol-foot"><button type="button" class="ai2-ol-more" data-open-progress="true">Progress details</button></div>';
     body.innerHTML=html;
   }
@@ -733,8 +778,13 @@
   // and only shows the gate if Firebase then reports no user.
   var SIGNED_KEY='ai2practice_signed_in_v1';
   function signedHint(){ try { return localStorage.getItem(SIGNED_KEY)==='1'; } catch(e) { return false; } }
+  // Signing out (here, in another tab, or by the session ending) clears this browser's progress,
+  // so a signed-out visitor always starts from an empty map. The account copy comes back on sign-in.
   function rememberSignedIn(st){
-    try { if (st.user) localStorage.setItem(SIGNED_KEY,'1'); else if (st.ready) localStorage.removeItem(SIGNED_KEY); } catch(e) {}
+    try {
+      if (st.user) localStorage.setItem(SIGNED_KEY,'1');
+      else if (st.ready && signedHint()) { localStorage.removeItem(SIGNED_KEY); clearLocalProgress(); render(); notify(); }
+    } catch(e) {}
   }
   function gatedPage(){ return /^(lessons\/[^\/]+\.html|assessment\.html)$/.test(relativePath()); }
   function createGate(){
@@ -968,7 +1018,7 @@
   function renderOptional(){
     var el=document.getElementById('ai2ResearchStatus'); if(!el)return;
     var done=completed(), n=RESEARCH_KEYS.filter(function(k){return done.indexOf(k)!==-1;}).length;
-    el.textContent=n ? n+'/5' : '';
+    el.textContent=n ? n+'/'+RESEARCH.length : '';
   }
   // Pages can include a "next step" card: [data-ai2-next] with optional
   // [data-ai2-next-eyebrow], [data-ai2-next-title], [data-ai2-next-note] and a [data-ai2-next-link].
@@ -993,9 +1043,12 @@
 
   function resetProgress(){
     if(!window.confirm('Reset all AI2Practice progress in this browser?'+(authState().user ? ' Progress saved to your account comes back the next time you sign in.' : ' This cannot be undone.')))return;
-    [COMPLETED_KEY,ASSESS_KEY,PATHWAY_KEY,RESUME_KEY].forEach(function(k){ try { localStorage.removeItem(k); } catch(e) {} });
-    try { for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k&&k.indexOf(CKPT_PREFIX)===0)localStorage.removeItem(k);} } catch(e) {}
+    clearLocalProgress();
     render(); notify(); flashSaved('Reset');
+  }
+  function clearLocalProgress(){
+    [COMPLETED_KEY,ASSESS_KEY,PATHWAY_KEY,RESUME_KEY,LABS_KEY].forEach(function(k){ try { localStorage.removeItem(k); } catch(e) {} });
+    try { for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k&&k.indexOf(CKPT_PREFIX)===0)localStorage.removeItem(k);} } catch(e) {}
   }
   function bindPanel(){
     document.getElementById('ai2CloseDrawer').addEventListener('click',closeDrawer);
@@ -1143,7 +1196,9 @@
     // Read-only helpers for the educator page.
     curriculum:function(){ return { modules:MODULES.slice(), lessons:LESSONS.map(function(l){ return Object.assign({},l); }), pathways:PATHWAY_ORDER.map(function(k){ return { id:k, label:PATHWAYS[k].label }; }) }; },
     requirements:requirements, eligible:eligible, selectedPathway:selectedPathway, completed:completed,
-    assessmentRecord:assessmentRecord, activePlan:activePlan, setPlan:setPlan, leavePlan:leavePlan
+    assessmentRecord:assessmentRecord, activePlan:activePlan, setPlan:setPlan, leavePlan:leavePlan,
+    // Research Lab: lab list with parts and status, and the writes the lab pages use.
+    labs:labs, setLabPart:setLabPart, setLabNote:setLabNote, completeLab:completeLab
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

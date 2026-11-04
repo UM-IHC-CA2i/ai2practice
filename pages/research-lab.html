@@ -3,25 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AI2Practice Research Lab — hands-on clinical AI research curriculum, notebooks, datasets, and emerging research directions." />
+  <meta name="description" content="AI2Practice Research Lab: six hands-on data science labs for clinical AI research, from your first line of Python to a project of your own, in Google Colab and GitHub." />
   <title>Research Lab — AI2Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="../assets/css/site.css?v=20261101a" />
-  <link rel="stylesheet" href="../assets/css/theme.css?v=20261101a" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20261104a" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261104a" />
+  <link rel="stylesheet" href="../assets/css/research-lab.css?v=20261104a" />
 <!-- AI2PRACTICE SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/pages/research-lab.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AI2Practice" />
   <meta property="og:title" content="Research Lab — AI2Practice" />
-  <meta property="og:description" content="AI2Practice Research Lab — hands-on clinical AI research curriculum, notebooks, datasets, and emerging research directions." />
+  <meta property="og:description" content="AI2Practice Research Lab: six hands-on data science labs for clinical AI research, from your first line of Python to a project of your own, in Google Colab and GitHub." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/pages/research-lab.html" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Research Lab — AI2Practice" />
-  <meta name="twitter:description" content="AI2Practice Research Lab — hands-on clinical AI research curriculum, notebooks, datasets, and emerging research directions." />
+  <meta name="twitter:description" content="AI2Practice Research Lab: six hands-on data science labs for clinical AI research, from your first line of Python to a project of your own, in Google Colab and GitHub." />
 <!-- /AI2PRACTICE SEO -->
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
@@ -33,91 +35,163 @@
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
   <nav aria-label="Primary"><ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../curriculum.html">Curriculum</a></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Specializations</button><div class="nav-drop-menu"><a href="../pages/research-lab.html"><strong>Research Lab</strong><small>Hands-on research &amp; technical skills</small></a><a href="../pages/adoption-governance.html"><strong>Leadership</strong><small>Strategy, evaluation, implementation &amp; stewardship</small></a></div></li><li class="nav-drop"><button type="button" class="nav-drop-toggle" aria-expanded="false">Resources</button><div class="nav-drop-menu"><a href="../tracker.html"><strong>AI Tool Tracker</strong><small>FDA-list context &amp; teaching examples</small></a><a href="../pages/brief.html"><strong>AI2Practice Brief</strong><small>Updates &amp; commentary</small></a><a href="../pages/glossary.html"><strong>Module 2 Glossary</strong><small>Radiology terms in plain words</small></a><a href="../pages/educators.html"><strong>For Educators</strong><small>Teaching paths &amp; assignments</small></a></div></li><li><a href="../about.html">About</a></li></ul></nav>
 </div></header>
-<main id="main">
-  <section class="page-hero research-page-hero"><div class="shell">
-    <div class="breadcrumbs"><a href="../index.html">AI2Practice</a> / Research Lab</div>
-    <p class="eyebrow">Independent track &middot; open any time</p>
-    <h1>Research Lab</h1>
-    <p>Build practical research skills through five hands-on labs, notebook exercises, and datasets. Research Lab is independent of the core curriculum: start it any time, and it is not required to finish the core course.</p>
-  </div></section>
+<main id="main" class="rl">
 
-  <section class="section research-curriculum-section"><div class="shell content-grid research-content-grid">
-    <aside class="side-nav" aria-label="On this page"><a href="#curriculum">Research curriculum</a><a href="#assets">Notebooks &amp; data</a><a href="#mlops">AI infrastructure &amp; MLOps</a><a href="#directions">Emerging directions</a></aside>
-    <article class="article research-lab-article">
-      <section id="curriculum">
-        <p class="micro-label">Hands-on curriculum</p>
-        <h2>Five labs from setup to an independent project.</h2>
-        <p>The labs build on each other: learners set up a reproducible environment, work with data, build models, explore advanced methods, and finish by designing a small project.</p>
-        <div class="research-progress-note"><strong>Helpful background:</strong> Module 1, Fundamentals of AI. It is not a prerequisite; if you already understand basic AI concepts, start Lab 1 directly. <a href="../modules/ai-fundamentals.html">Review Fundamentals &rarr;</a></div>
+<section class="rl-hero"><div class="wrap">
+  <div class="crumbs rv"><a href="../index.html">AI2Practice</a> / Research Lab</div>
+  <p class="eyebrow rv">Research Lab &middot; optional track</p>
+  <h1 class="rv" style="--d:60ms">Data science for clinical AI research</h1>
+  <p class="rl-hero-desc rv" style="--d:120ms">Six hands-on labs, from your first line of Python to a project of your own. Each one starts with a real clinical question. You work in Google Colab (free notebooks that run in your browser) and save to GitHub (a site that keeps every version of your code), so your progress becomes a portfolio.</p>
+  <div class="rl-actions rv" style="--d:180ms">
+    <a class="pill solid" id="rlGo" href="../lessons/research-1.html">Start Lab 1 <span class="ar" aria-hidden="true">&rarr;</span></a>
+    <a class="pill ghost" href="#start">Where do I start?</a>
+  </div>
+  <div class="rl-stats rv" style="--d:240ms">
+    <div><b>6</b>labs in order</div><div><b>~11 h</b>at your own pace</div><div><b id="rlDone">0 of 5</b>required labs finished</div><div><b>Free</b>no install needed</div>
+  </div>
+</div></section>
 
-        <div class="research-progress-note">
-          <strong>Current build:</strong> Labs 1&ndash;3 include substantive exercises and notebook-supported work. Labs 4&ndash;5 are in development.
-        </div>
+<section class="sec" id="labs"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">The labs</p>
+    <h2>One path, six stops</h2>
+    <p>Work through them in order. Each lab opens with a short warm-up; if it's easy, you can skim ahead. Lab 6, your own project, is optional. Every lab page is open to read at any time.</p>
+  </div>
+  <div id="journey"></div>
+</div></section>
 
-        <div class="research-curriculum-list">
-          <a class="research-curriculum-step" href="../lessons/research-1.html">
-            <span class="research-step-num">1</span>
-            <span class="research-step-copy"><small>Available · notebook-supported</small><strong>Getting Started with Python &amp; GitHub</strong><em>GitHub, Google Colab, Python basics, loading data, and a first analysis.</em></span>
-            <span class="research-step-arrow">→</span>
-          </a>
-          <a class="research-curriculum-step" href="../lessons/research-2.html">
-            <span class="research-step-num">2</span>
-            <span class="research-step-copy"><small>Available · notebook-supported</small><strong>Data Science &amp; AI Evaluation</strong><em>Evaluation metrics, statistics, visualization, threshold trade-offs, and subgroup analysis.</em></span>
-            <span class="research-step-arrow">→</span>
-          </a>
-          <a class="research-curriculum-step" href="../lessons/research-3.html">
-            <span class="research-step-num">3</span>
-            <span class="research-step-copy"><small>Available · notebook-supported</small><strong>Machine Learning &amp; Image Processing</strong><em>Classifiers, image loading and preprocessing, and pre-trained models.</em></span>
-            <span class="research-step-arrow">→</span>
-          </a>
-          <a class="research-curriculum-step research-curriculum-step--developing" href="../lessons/research-4.html">
-            <span class="research-step-num">4</span>
-            <span class="research-step-copy"><small>In development</small><strong>Advanced Image AI &amp; NLP</strong><em>CNNs, transfer learning, attention maps, radiology report NLP, and LLMs.</em></span>
-            <span class="research-step-arrow">→</span>
-          </a>
-          <a class="research-curriculum-step research-curriculum-step--developing" href="../lessons/research-5.html">
-            <span class="research-step-num">5</span>
-            <span class="research-step-copy"><small>In development</small><strong>Mini Research Project</strong><em>Formulate a question, design an analysis, execute it, and write a structured abstract.</em></span>
-            <span class="research-step-arrow">→</span>
-          </a>
-        </div>
+<section class="sec ce" id="clinical-evaluation"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">Clinical evaluation of AI tools</p>
+    <h2>Choosing the right numbers</h2>
+    <p>A vendor's headline accuracy rarely tells a department what it needs to know. This guide follows Metrics Reloaded, a framework built by an international group of image analysis and clinical experts to help researchers choose validation metrics (the numbers used to judge a model) that fit the clinical problem.</p>
+  </div>
+  <div class="ce-box rv">
+    <div class="ce-tabs" role="tablist" aria-label="Clinical evaluation of AI tools">
+      <button type="button" role="tab" id="ce-t1" aria-controls="ce-p1" aria-selected="true">Why it matters</button>
+      <button type="button" role="tab" id="ce-t2" aria-controls="ce-p2" aria-selected="false" tabindex="-1">Three steps</button>
+      <button type="button" role="tab" id="ce-t3" aria-controls="ce-p3" aria-selected="false" tabindex="-1">Metrics for a classifier</button>
+      <button type="button" role="tab" id="ce-t4" aria-controls="ce-p4" aria-selected="false" tabindex="-1">Try it and sources</button>
+    </div>
+    <div class="ce-panel" role="tabpanel" id="ce-p1" aria-labelledby="ce-t1">
+      <p>Suppose a pneumothorax detector is tested on 1,000 chest X-rays and 20 of them show a pneumothorax. A model that calls every image normal is right 980 times: 98% accuracy, while missing every patient who needed a chest drain. The number was correct; it was the wrong number for the question.</p>
+      <p>The Metrics Reloaded authors found that problems like this are common in published image analysis research: the metrics chosen often don't match what matters clinically, which makes it hard to know whether a tool is really better and slows its safe use in patients. Their answer is to choose metrics from a description of the problem, not from habit.</p>
+      <p>Lab 3 teaches the basic tools (the confusion matrix, sensitivity, specificity and ROC curves). This guide and its notebook show how to decide which of them, and which others, belong in a validation report.</p>
+    </div>
+    <div class="ce-panel" role="tabpanel" id="ce-p2" aria-labelledby="ce-t2" hidden>
+      <ol class="ce-steps">
+        <li><b>Describe the problem: the "problem fingerprint".</b> First name the problem category. Metrics Reloaded covers four: image-level classification (one answer per image, such as "pneumothorax or not"), object detection (finding and locating each lesion), semantic segmentation (labeling every pixel, such as outlining the lungs) and instance segmentation (outlining each separate object, such as each nodule). Then record what matters for metric choice: what the clinician cares about, how common each class is (prevalence), how small the targets are, what the model outputs (a score or a yes/no), whether a decision threshold has been set, and whether its scores need to be trustworthy probabilities (calibration).</li>
+        <li><b>Select metrics.</b> Follow the path for your category. Each answer in the fingerprint narrows the choice, and the framework warns about known pitfalls along the way.</li>
+        <li><b>Apply them.</b> Compute the chosen metrics on your data, report them together, and look at them per class and per subgroup (for example, per hospital site).</li>
+      </ol>
+      <p>The free <a href="https://metrics-reloaded.dkfz.de/" target="_blank" rel="noopener">Metrics Reloaded online tool</a> walks you through these steps with questions and suggests a set of metrics at the end.</p>
+    </div>
+    <div class="ce-panel" role="tabpanel" id="ce-p3" aria-labelledby="ce-t3" hidden>
+      <p>For image-level classification, the category most radiology AI tools fall into, the recommendations come in layers:</p>
+      <div class="ce-grid">
+        <div><h3>One overall count-based metric</h3><p><b>Expected Cost</b> when mistakes carry different costs, as in medicine, where a missed pneumothorax is worse than a false alarm. Otherwise accuracy, <b>balanced accuracy</b> (the average of sensitivity and specificity) or <b>MCC</b> (Matthews correlation coefficient), chosen by how class prevalence in your test set compares with the patients the tool will see.</p></div>
+        <div><h3>Per-class metrics, optional</h3><p>When a threshold turns scores into yes/no answers, a per-class metric such as the <b>F-beta score</b> (which combines sensitivity with positive predictive value) shows how each class fares on its own.</p></div>
+        <div><h3>A threshold-free metric, always</h3><p><b>AUROC</b> (area under the ROC curve) is the default because it doesn't depend on prevalence. <b>Average precision</b> is an alternative in some class-balance settings.</p></div>
+        <div><h3>Calibration, if it matters</h3><p>If clinicians will read the score as a probability ("82% chance of pneumothorax"), add a calibration metric such as the <b>Brier score</b>. The paper also highlights <b>Net Benefit</b>, which weighs correct detections against unnecessary follow-up, for decisions based on a cost-benefit rule.</p></div>
+      </div>
+    </div>
+    <div class="ce-panel" role="tabpanel" id="ce-p4" aria-labelledby="ce-t4" hidden>
+      <p>The companion notebook takes the pneumothorax detector from Lab 3, fills in its problem fingerprint, shows why accuracy misleads, and computes balanced accuracy, MCC, Expected Cost, AUROC, average precision, the Brier score and Net Benefit on your own data. It takes about 45 to 60 minutes; do it after Lab 3.</p>
+      <p><a class="pill dark" href="https://colab.research.google.com/github/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Extra_Clinical_Evaluation.ipynb" target="_blank" rel="noopener">Open the notebook in Colab &rarr;</a></p>
+      <p class="ce-refs-h">Sources</p>
+      <ol class="ce-refs">
+        <li>Maier-Hein L, Reinke A, Godau P, et al. Metrics reloaded: recommendations for image analysis validation. <i>Nat Methods</i>. 2024;21(2):195-212. <a href="https://doi.org/10.1038/s41592-023-02151-z" target="_blank" rel="noopener">doi:10.1038/s41592-023-02151-z</a>. <a href="https://pubmed.ncbi.nlm.nih.gov/38347141/" target="_blank" rel="noopener">PubMed 38347141</a>.</li>
+        <li>Reinke A, Tizabi MD, Baumgartner M, et al. Understanding metric-related pitfalls in image analysis validation. <i>Nat Methods</i>. 2024;21(2):182-194. <a href="https://doi.org/10.1038/s41592-023-02150-0" target="_blank" rel="noopener">doi:10.1038/s41592-023-02150-0</a>.</li>
+        <li>Metrics Reloaded online tool: <a href="https://metrics-reloaded.dkfz.de/" target="_blank" rel="noopener">metrics-reloaded.dkfz.de</a>. Python package: <a href="https://github.com/Project-MONAI/MetricsReloaded" target="_blank" rel="noopener">Project-MONAI/MetricsReloaded</a>.</li>
+      </ol>
+    </div>
+  </div>
+</div></section>
 
-        <div class="research-curriculum-actions">
-          <a class="btn btn-accent" href="../lessons/research-1.html">Start Lab 1</a>
-        </div>
-      </section>
+<section class="sec mix-wrap"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">How you'll work with code</p>
+    <h2>Less typing from scratch, more checking</h2>
+    <p>Every notebook task is one of six kinds. Early labs build fluency by having you write code yourself. Later labs work the way research code is written now: you reuse your own earlier functions, have an AI assistant draft code, and check it with a test.</p>
+  </div>
+  <div class="mix rv" id="mix"></div>
+  <div class="key rv" id="key"></div>
+</div></section>
 
-      <section id="assets">
-        <p class="micro-label">Research workbench</p>
-        <h2>Notebooks and datasets are part of the curriculum, not a separate concept.</h2>
-        <p>The practical assets support the first three labs and remain in their original repository structure so existing exercises and links continue to work.</p>
-        <div class="research-asset-grid">
-          <a class="research-asset-card" href="../notebooks/README.md"><span>Guide</span><strong>Notebook README</strong><small>How the notebook exercises and datasets fit together.</small></a>
-          <a class="research-asset-card" href="../notebooks/Research_Module_1.ipynb"><span>Notebook 01</span><strong>Research Lab 1</strong><small>Environment setup, Python basics, and first analysis.</small></a>
-          <a class="research-asset-card" href="../notebooks/Research_Module_2.ipynb"><span>Notebook 02</span><strong>Research Lab 2</strong><small>Data science and AI evaluation exercises.</small></a>
-          <a class="research-asset-card" href="../notebooks/Research_Module_3.ipynb"><span>Notebook 03</span><strong>Research Lab 3</strong><small>Machine learning and image-processing exercises.</small></a>
-        </div>
-      </section>
+<section class="sec" id="start"><div class="wrap start">
+  <div>
+    <div class="sec-head rv" style="margin-bottom:1.25rem">
+      <p class="eyebrow">Where do I start?</p>
+      <h2>Four quick questions</h2>
+      <p>Not graded and not saved. The warm-up at the start of each lab will confirm it.</p>
+    </div>
+    <div id="sq" class="rv"></div>
+  </div>
+  <div class="result rv" style="--d:100ms" id="result" aria-live="polite"></div>
+</div></section>
 
-      <section id="directions" class="research-directions-section">
-        <p class="micro-label">Emerging directions · not part of the five labs</p>
-        <h2>Where Research Lab can grow next.</h2>
-        <p>These themes are better treated as future research directions than as the first thing a learner sees. They can eventually host reading lists, study designs, methods notes, or project ideas once that content exists.</p>
-        <div class="research-direction-grid">
-          <div><h3>Reliability &amp; heterogeneity</h3><p>Site, population, protocol, device, and temporal variation in clinical AI performance.</p></div>
-          <div><h3>Human–AI systems</h3><p>Reliance, calibration of trust, workflow effects, task allocation, and interface design.</p></div>
-          <div><h3>Monitoring &amp; observability</h3><p>Post-deployment measurement, drift, anomaly detection, and safety surveillance.</p></div>
-          <div id="mlops"><h3>AI infrastructure &amp; MLOps</h3><p>Deployment architecture, inference services, APIs, containers, cloud/on-premises environments, versioning, observability, and technical monitoring. Optional technical deep dive for researchers and implementation leaders.</p></div>
-          <div><h3>Multimodal &amp; agentic systems</h3><p>Foundation models, multimodal reasoning, tool use, orchestration, autonomy, and human oversight.</p></div>
-          <div><h3>Prediction &amp; digital twins</h3><p>Longitudinal prediction, patient-state modeling, simulation, synthetic data, and in-silico evaluation as a distinct future research direction.</p></div>
-        </div>
-      </section>
-    </article>
-  </div></section>
+<section class="sec" id="involved" style="padding-top:0"><div class="wrap">
+  <div class="sec-head rv">
+    <p class="eyebrow">Getting involved</p>
+    <h2>From skills to a research position</h2>
+    <p>The labs give you skills and a portfolio. These notes cover the next step: joining a real project.</p>
+  </div>
+  <div class="inv rv">
+    <details><summary><h3>Roles students fill <span aria-hidden="true">+</span></h3><p>What each job on a project involves and which lab prepares you.</p></summary><div class="inv-body">
+      <p><strong>Data cleaning and chart review.</strong> Pulling ages, diagnoses and outcomes from records into a tidy table, and fixing what is missing or wrong. Lab 2.</p>
+      <p><strong>Analysis.</strong> Computing sensitivity, specificity and confidence intervals, comparing sites and subgroups. Lab 3.</p>
+      <p><strong>Image work.</strong> Organizing image sets, labeling findings, running and checking a model. Lab 4.</p>
+      <p><strong>Text and reports.</strong> Finding cases in report text with rules or a large language model, and checking the results. Lab 5.</p>
+      <p><strong>Literature and writing.</strong> Summarizing what is already known and drafting the abstract. Lab 6.</p>
+    </div></details>
+    <details><summary><h3>Finding a mentor <span aria-hidden="true">+</span></h3><p>Who to ask, a short email template, and what to attach.</p></summary><div class="inv-body">
+      <p>Look for radiology faculty who have published on AI or imaging informatics in the last few years, and for data science or biomedical informatics faculty who work with imaging. Your school's research office or a radiology residency program director can often point you to them.</p>
+      <p>Keep the first email short and specific:</p>
+<pre>Subject: Medical student interested in your imaging AI work
+
+Dear Dr. [Name],
+
+I am a [year] medical student at [school]. I read your paper on [topic] and was interested in [one specific point]. I have been learning Python and data analysis through the AI2Practice Research Lab; my work is at [GitHub link].
+
+Would you have 15 minutes to talk about whether there is a way I could help on a current project, for example with data cleaning or analysis?
+
+Thank you,
+[Name]</pre>
+      <p>Attach or link one thing you made, such as your Lab 6 repository and abstract. If you don't hear back in two weeks, one polite follow-up is normal.</p>
+    </div></details>
+    <details><summary><h3>Conferences <span aria-hidden="true">+</span></h3><p>Where students present imaging AI work.</p></summary><div class="inv-body">
+      <p><a href="https://www.aur.org/" target="_blank" rel="noopener">AUR</a> (Association of University Radiologists) annual meeting: education and research, with trainee sessions.</p>
+      <p><a href="https://www.rsna.org/annual-meeting" target="_blank" rel="noopener">RSNA</a> annual meeting: the largest radiology meeting, with medical student and trainee abstracts.</p>
+      <p><a href="https://siim.org/" target="_blank" rel="noopener">SIIM</a> (Society for Imaging Informatics in Medicine): informatics and AI in practice.</p>
+      <p><a href="https://www.midl.io/" target="_blank" rel="noopener">MIDL</a> (Medical Imaging with Deep Learning): a technical machine learning meeting.</p>
+      <p>Abstract deadlines often fall several months before each meeting and change every year, so check each site early.</p>
+    </div></details>
+    <details><summary><h3>Open datasets <span aria-hidden="true">+</span></h3><p>What's inside and how to get access.</p></summary><div class="inv-body">
+      <p><a href="https://medmnist.com/" target="_blank" rel="noopener">MedMNIST</a>: small, ready-to-use image sets (chest X-ray, pathology, CT and more). Free download; used in Lab 4.</p>
+      <p><a href="https://stanfordmlgroup.github.io/competitions/chexpert/" target="_blank" rel="noopener">CheXpert</a>: over 200,000 chest X-rays with report-derived labels. Free after registration.</p>
+      <p><a href="https://physionet.org/content/mimic-cxr/" target="_blank" rel="noopener">MIMIC-CXR</a>: chest X-rays with their full reports. Needs a PhysioNet account and short human-research training.</p>
+      <p><a href="https://www.cancerimagingarchive.net/" target="_blank" rel="noopener">The Cancer Imaging Archive</a>: CT, MRI and PET collections, many with clinical data.</p>
+    </div></details>
+    <details><summary><h3>Challenges <span aria-hidden="true">+</span></h3><p>Competitions worth trying after Lab 4.</p></summary><div class="inv-body">
+      <p><a href="https://www.rsna.org/rsnai/ai-image-challenge" target="_blank" rel="noopener">RSNA AI challenges</a>: a new imaging task most years, with public data and a leaderboard.</p>
+      <p><a href="https://www.kaggle.com/competitions" target="_blank" rel="noopener">Kaggle</a>: hosts the RSNA challenges and many other medical tasks; past competitions keep their data and shared notebooks, which are good to learn from.</p>
+      <p><a href="https://grand-challenge.org/" target="_blank" rel="noopener">Grand Challenge</a>: academic medical imaging challenges, often tied to MICCAI and other conferences.</p>
+      <p>Joining as a team with a resident or graduate student is a good way to learn.</p>
+    </div></details>
+    <details><summary><h3>Funding <span aria-hidden="true">+</span></h3><p>Student grants and summer programs.</p></summary><div class="inv-body">
+      <p>The <a href="https://www.rsna.org/research/funding-opportunities" target="_blank" rel="noopener">RSNA Research &amp; Education Foundation</a> offers medical student research grants, usually with a faculty mentor.</p>
+      <p>Most medical schools run summer research programs, often funded by NIH short-term training grants. Ask your research office what is open to first- and second-year students.</p>
+      <p>Specialty societies and some departments fund student travel to present an accepted abstract; ask before you submit.</p>
+    </div></details>
+  </div>
+  <p class="inv-note rv">Programs, links and deadlines change; check each site for the current details.</p>
+</div></section>
 </main>
 <footer class="site-footer compact-footer"><div class="shell compact-footer-row">
   <div class="footer-mini-brand"><img src="../images/ai2practice-logo-white.svg" alt="AI2Practice" /><span>Practical, open clinical AI education</span></div>
   <nav aria-label="Footer"><a href="../about.html">About</a><a href="brief.html">AI2Practice Brief</a><a href="../tracker.html">AI Tool Tracker</a><a href="https://github.com/UM-IHC-CA2i/ai2practice">GitHub</a></nav>
 </div></footer>
-<script src="../assets/js/site.js?v=20261101a"></script>
+<script src="../assets/js/site.js?v=20261104a"></script>
+<script src="../assets/js/research-lab-page.js?v=20261104a"></script>
+
 </body></html>

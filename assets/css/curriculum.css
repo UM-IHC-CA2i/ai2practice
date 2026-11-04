@@ -98,7 +98,8 @@
   --core: #13294a; --core-deep: #0c1c33; --check: #8ec1ee; --m1: #6aaee8; --m2: #3b82d0; --m3: #2557a5;
   --sans: 'IBM Plex Sans', 'Plex Fallback', system-ui, sans-serif; --serif: 'IBM Plex Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
   --ease-out: cubic-bezier(.23, 1, .32, 1);
-  --route: linear-gradient(90deg, var(--check), var(--m1) 22%, var(--m2) 48%, var(--m3) 74%, var(--core));
+  --wip: #b7bec8;
+  --route: linear-gradient(90deg, var(--wip), var(--wip) 5%, var(--m1) 12%, var(--m2) 48%, var(--m2) 60%, var(--wip) 66%, var(--wip));
   position: relative; display: grid; grid-template-columns: auto 5fr 4fr 5fr auto; gap: 0 10px;
   padding: 30px 30px 26px; border-radius: 20px; background: var(--wash); color: var(--ink); font-family: var(--sans);
 }
@@ -129,10 +130,20 @@
 }
 @media (max-width: 700px) {
   .cur-core .ribbon { grid-template-columns: 1fr; padding: 22px 20px 22px 58px; }
-  .cur-core .ribbon::before { left: 28px; right: auto; top: 30px; bottom: 30px; width: 10px; height: auto; background: linear-gradient(var(--m1), var(--m2), var(--m3)); }
+  .cur-core .ribbon::before { left: 28px; right: auto; top: 30px; bottom: 30px; width: 10px; height: auto; background: linear-gradient(var(--m1), var(--m2) 60%, var(--wip) 70%); }
   .cur-core .rg { padding-bottom: 18px; }
   .cur-core .rg-h { height: auto; padding: 0 0 6px; }
   .cur-core .rg-dots { display: none; }
   .cur-core .rg-list { margin-top: 4px; padding: 0; }
   .cur-core .rg::before { content: ''; position: absolute; left: -38px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--mc); }
 }
+
+/* Steps still in development (.wip) are drawn in gray. */
+.cur-path li.wip .cur-dot { border-color: #b7bec8; color: var(--muted); }
+.cur-path li.wip strong { color: var(--muted); }
+.cur-core .rg.wip { --mc: #b7bec8 !important; }
+.cur-core .rg.wip .rg-h strong, .cur-core .rg.wip .rg-list { color: var(--muted); }
+.cur-core .rg.cap p span { display: block; font-size: .78rem; }
+.cur-module.wip .cur-module-head .cur-kicker { color: var(--muted); }
+.cur-module.wip .cur-module-head h3, .cur-module.wip .cur-t a { color: var(--muted); }
+.cur-track.wip { --c: #8a94a3 !important; }

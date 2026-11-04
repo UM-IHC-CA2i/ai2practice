@@ -5,6 +5,7 @@ body.home{
   --ground:#fff; --tone:#f3f6fa; --line:#e1e8f0; --wash:#eef4fb;
   --core:#13294a; --core-deep:#0c1c33; --haccent:#6aaee8;
   --check:#8ec1ee; --m1:#6aaee8; --m2:#3b82d0; --m3:#2557a5; --res:#1f8a9e; --lead:#5d55b4;
+  --wip:#b7bec8; --wip-deep:#5f6b7a;
   --star:205,225,248; --g1:#9cc8f2; --g2:#4b7fc4; --mh:var(--core);
   --sans:'IBM Plex Sans','Plex Fallback',system-ui,sans-serif; --serif:'IBM Plex Serif',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   --ease-out:cubic-bezier(.23,1,.32,1); --ease-io:cubic-bezier(.77,0,.175,1);
@@ -395,6 +396,13 @@ html[data-tbtn="figure"] .trow-fig:active .fig-btn{transform:scale(.99)}
 .map-wrap .beacon{stroke:var(--check)}
 .map-wrap.is-paused .route-res,.map-wrap.is-paused .route-lead,.map-wrap.is-paused .beacon{animation-play-state:paused}
 .stop.soon{cursor:default}
+/* Steps still in development (.wip) are drawn in gray with muted labels. */
+.stop.wip,.trk-stops.wip{--mc:var(--wip)!important}
+.stop.wip .lbl,.trk-stops.wip .lbl,.trk-stops.wip .mini{fill:var(--muted)}
+.stop.wip .sub,.trk-stops.wip .sub{font-style:normal;fill:var(--muted)}
+.map-wrap .stop.wip .beacon{stroke:var(--wip)}
+.route-lead.wip{stroke:var(--wip)}
+.route-check.wip{stroke:var(--wip)}
 .mobile-map{display:none;list-style:none;margin:0;padding:0}
 @media (max-width:700px){
   .mobile-map{display:block;position:relative;padding-left:0.25rem}
@@ -405,6 +413,9 @@ html[data-tbtn="figure"] .trow-fig:active .fig-btn{transform:scale(.99)}
   .mobile-map small{display:block;font-size:.875rem;color:var(--muted)}
   .mobile-map li.opt{padding-left:1.375rem;grid-template-columns:1.25rem 1fr}
   .mobile-map li.opt::before{width:1.125rem;height:1.125rem;border-width:0.25rem}
+  .mobile-map::before{background:linear-gradient(180deg,var(--wip),var(--wip) 6%,var(--m1) 14%,var(--m2) 45%,var(--m2) 56%,var(--wip) 64%,var(--wip))}
+  .mobile-map li.wip{--mc:var(--wip)!important}
+  .mobile-map li.wip a,.mobile-map li.wip .mm-t{color:var(--muted)}
   .mobile-map li.ai2-done::before{background:var(--mc)}
   .mobile-map li.ai2-here::before{animation:mm-here 1.6s ease-out infinite}
   .mobile-map li[data-ai2-progress]::after{content:attr(data-ai2-progress) " done";grid-column:2;font:600 .74rem var(--mono);color:var(--muted)}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Lab 6: Your Project &mdash; AI2Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104a">
+<link rel="stylesheet" href="assets/lessons.css?v=20261104a">
+<link rel="stylesheet" href="assets/interactives.css?v=20261104a">
+<link rel="stylesheet" href="assets/research-lab.css?v=20261104a">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261104a">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261104a" data-ai2-progress-style="1">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+<!-- AI2PRACTICE SEO -->
+  <meta name="description" content="Research Lab 6 (optional): your own question on an open dataset, answered in a public GitHub repository and written up as a structured abstract you can show a mentor." />
+  <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/research-6.html" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI2Practice" />
+  <meta property="og:title" content="Research Lab 6: Your Project — AI2Practice" />
+  <meta property="og:description" content="Research Lab 6 (optional): your own question on an open dataset, answered in a public GitHub repository and written up as a structured abstract you can show a mentor." />
+  <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/research-6.html" />
+  <meta name="twitter:card" content="summary" />
+<!-- /AI2PRACTICE SEO -->
+</head>
+<body class="rl-page" data-lab="6">
+
+<div class="les-topbar">
+  <a href="../pages/research-lab.html" class="les-back" id="les-back">&larr; Research Lab</a>
+  <div class="les-topbar-title">Research Lab &middot; Lab 6 of 6</div>
+  <div class="les-topbar-track" id="les-track"></div>
+</div>
+
+<div class="les-hero">
+  <div class="les-hero-inner">
+    <div class="les-hero-num">L6</div>
+    <div>
+      <div class="les-hero-q">Research Lab &middot; Lab 6 (optional)</div>
+      <h1>Your Project</h1>
+      <p>Ask your own question of an open dataset, answer it in a public repository, and write it up as a structured abstract</p>
+      <div class="rl-facts"><span><b>About 4 to 6 hours</b>, in 4 parts</span><span>Notebook in <b>Google Colab</b></span><span>Optional</span><span>Builds on Labs 1 to 5</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="les-content">
+
+  <ol class="rl-steps" aria-label="Steps in this lab">
+    <li><a href="#question"><span>1</span>The question</a></li>
+    <li><a href="#idea"><span>2</span>The idea</a></li>
+    <li><a href="#warmup"><span>3</span>Warm-up</a></li>
+    <li><a href="#notebook"><span>4</span>Notebook</a></li>
+    <li><a href="#report"><span>5</span>Report back</a></li>
+  </ol>
+
+  <section class="les-section rl-step les-intro" id="question">
+    <p class="rl-eyebrow">Step 1 &middot; The question</p>
+    <h2>The question</h2>
+    <div class="rl-question"><p>Your own question on an open dataset, written up as a short abstract.</p></div>
+    <p>This lab is yours. You choose a question, answer it with an open dataset using what you learned in Labs 1 to 5, and write it up as a <strong>structured abstract</strong>: the 250 to 300 word summary that conferences such as AUR, RSNA and SIIM ask for, divided into fixed headings. The result is a portfolio piece: a public GitHub repository with your notebook, a short README and the abstract, something concrete to show a mentor when you ask to join a research project. With a mentor's help, it can become a real submission.</p>
+    <p>A good first question is small, can be answered with data you can actually get, and has a clinical "so what". Some that work well: how much does the Lab 4 model's accuracy drop if you train it on a quarter of the images? Does a different MedMNIST dataset, such as BreastMNIST (breast ultrasound) or OrganAMNIST (abdominal CT), behave the same way? How well does a keyword rule find another finding in the Lab 5 reports? The Research Lab page lists more open datasets. There is no personal dataset and no number to check here; step 5 collects your repository address and your abstract.</p>
+    <p><strong>By the end of this lab you can:</strong></p>
+    <ul>
+      <li>Turn an interest into a question that one dataset can answer.</li>
+      <li>Carry out and document an analysis in a public repository that someone else can rerun.</li>
+      <li>Write a structured abstract under the usual journal headings.</li>
+      <li>Give and receive peer review on GitHub.</li>
+    </ul>
+  </section>
+
+  <section class="les-section rl-step" id="idea">
+    <p class="rl-eyebrow">Step 2 &middot; The idea</p>
+    <h2>A whole study in 300 words</h2>
+    <p>A structured abstract is the shortest complete version of a study, and many readers will read nothing else. <em>Academic Radiology</em>, the journal of the Association of University Radiologists, uses four headings: <strong>Rationale and Objectives</strong> (why it matters and what you asked), <strong>Materials and Methods</strong> (data, analysis and measures), <strong>Results</strong> (the main numbers, with the counts behind them) and <strong>Conclusion</strong> (the answer, claiming no more than the results show). Writing it early is a good test of your question: if you cannot fill the Results heading with a number your analysis will produce, the question is not sharp enough yet.</p>
+    <div class="mi-box" data-ix="abstract">
+      <div class="mi-box-title">Interactive: build your abstract</div>
+      <p class="mi-box-intro">Draft each section in its own box; the word count adds them up. Look at the example if you want a model, then write your own. When it is ready, copy it into the report back below.</p>
+    </div>
+    <p>For AI studies, reviewers also look for the items in reporting checklists such as CLAIM (the Checklist for Artificial Intelligence in Medical Imaging): where the data came from, how it was split, how the reference standard was set, and how the model was tested. You do not need to tick every item for a first project, but your README should answer those questions.</p>
+    <p>Peer review is the last part. On GitHub it happens through <strong>pull requests</strong> and <em>issues</em>: a pull request proposes a change to someone's repository and lets reviewers comment on it line by line, and an issue is a comment thread about the project as a whole. Ask a classmate or mentor to review your repository, and review someone else's in return.</p>
+  </section>
+
+  <section class="les-section rl-step" id="warmup">
+    <p class="rl-eyebrow">Step 3 &middot; Warm-up</p>
+    <h2>Warm-up: read like a reviewer</h2>
+    <p>Two short checks on reading an abstract the way a reviewer does. They are not graded and always show the explanation.</p>
+    <div class="kc" data-answer="1">
+      <p class="kc-q">A project tested a model on 624 X-rays and found 86% accuracy. Which conclusion does that result support?</p>
+      <button class="quiz-option">The model is ready for clinical use.</button>
+      <button class="quiz-option">The model separated pneumonia from normal reasonably well on this test set; testing elsewhere is needed.</button>
+      <button class="quiz-option">The model is more accurate than radiologists.</button>
+      <div class="quiz-explanation"><p>One test set from one hospital supports a claim about that test set and not much more. Clinical use would need testing on other hospitals' images and in a real workflow, and a comparison with radiologists would need radiologists reading the same images. Overclaiming in the conclusion is the most common reviewer complaint about student abstracts.</p></div>
+    </div>
+    <div class="mi-box">
+      <div class="mi-box-title">Warm-up: put it in order</div>
+      <p class="mi-box-intro">Drag these four sentences into the order they appear in a structured abstract.</p>
+      <div class="ix-order rl-order rl-order--text" data-top="First" data-bottom="Last" data-done="This is the right order.">
+        <ol class="ix-order-list">
+        <li data-pos="3">Accuracy was 86% on internal and 71% on external images.</li>
+        <li data-pos="1">Pneumonia models are rarely tested on images from other hospitals; we asked how much accuracy drops on external images.</li>
+        <li data-pos="4">Performance fell on external images; local validation is needed before use.</li>
+        <li data-pos="2">We trained a CNN on 4,708 PneumoniaMNIST images and tested it on 624 internal and 500 external chest X-rays.</li>
+        </ol>
+        <p class="ix-order-result"></p>
+        <div class="rl-order-explain"><p style="margin:0;font-size:inherit;line-height:inherit">Rationale and Objectives, then Materials and Methods, then Results, then Conclusion. Each heading answers one reader question in turn: why ask, how did you look, what did you find, what does it mean. Notice that the Results sentence holds numbers only, and the Conclusion does not go beyond them. (The figures here are for illustration.)</p></div>
+      </div>
+    </div>
+
+    <div class="rl-skip"><strong>Ready?</strong> If both felt easy, go straight to choosing your question. If not, read the example abstract in step 2 once more before you start.</div>
+  </section>
+
+  <section class="les-section rl-step" id="notebook">
+    <p class="rl-eyebrow">Step 4 &middot; Notebook</p>
+    <h2>Do the work in Colab</h2>
+    <p>The notebook <code>Lab_6_Your_Project.ipynb</code> is a template rather than a lesson. It has a cell for your question and why it matters, a setup section that loads a MedMNIST dataset (or your own choice of open data), headed sections for your analysis that reuse functions from your <code>toolkit.py</code>, an AI-use log for any code an assistant wrote, and a cell that prints the numbers for your Results. Most of the work is Reuse and Direct the AI: you know the methods by now, so the skill is putting them together and checking them.</p>
+    <label class="rl-field"><span>Your GitHub username <small>your project repository will live under this account</small></span><input class="rl-input rl-input--mono rl-user" autocomplete="username" spellcheck="false" placeholder="your-username"></label>
+    <p>Type it into the template's first cell:</p>
+    <pre class="rl-pre">GITHUB_USERNAME = "<span class="rl-user-echo">your-username</span>"</pre>
+    <div class="rl-nb-head">
+      <a class="rl-colab" href="https://colab.research.google.com/github/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Lab_6_Your_Project.ipynb" target="_blank" rel="noopener">Open Lab 6 in Colab <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2h7v7M12 2 4.5 9.5M2 5v7h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span class="rl-nb-file">lesson-notebooks/Lab_6_Your_Project.ipynb &middot; <a href="https://github.com/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Lab_6_Your_Project.ipynb" target="_blank" rel="noopener">view on GitHub</a></span>
+    </div>
+    <p class="rl-note">Colab needs a Google account. It opens the course's copy of the notebook; follow "Save your work to GitHub" below to keep your own.</p>
+
+    <h3 class="rl-h3">The notebook's parts</h3>
+    <p>Tick each part off when you finish it. Your ticks show as progress on the Research Lab map.</p>
+    <ul class="rl-parts">
+      <li><label><input type="checkbox" data-part="0"><span><span class="rl-part-name">Part 1. A question</span><span class="rl-part-desc">Choose a question and a dataset, and write the question and why it matters in the first cell.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="1"><span><span class="rl-part-name">Part 2. An analysis</span><span class="rl-part-desc">Answer it in the notebook, reusing your toolkit, with a test or check for each key step.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="2"><span><span class="rl-part-name">Part 3. A structured abstract</span><span class="rl-part-desc">Write the four sections, keep them under about 300 words, and add a README to your repository.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="3"><span><span class="rl-part-name">Part 4. Peer review</span><span class="rl-part-desc">Ask someone to review your repository through a pull request or issue, review someone else's, and respond to the comments.</span></span></label></li>
+    </ul>
+    <p class="rl-parts-count" aria-live="polite"></p>
+
+    <h3 class="rl-h3">How you'll code in this lab</h3>
+    <div class="rl-mix" data-mix="20,0,40,30,0,10"></div>
+    <details class="rl-modes">
+      <summary>What the coding modes mean</summary>
+      <p>Every task in the notebook is tagged with one mode. In <strong>Write</strong> tasks you write a few lines yourself from an empty cell, with a hint and a hidden solution. In <strong>Fill in</strong> tasks most of the code is there and you complete the blanks. <strong>Reuse</strong> tasks import a function you wrote in an earlier lab from your own <code>toolkit.py</code>, the way real projects grow. In <strong>Direct the AI</strong> tasks you ask an AI assistant (Colab's built-in one is suggested, but any is fine) to write the code, paste it in, run the test cell, and note in the AI-use log what you asked and what you had to change. <strong>Fix</strong> tasks give you code "written by an AI" with one realistic mistake to find. <strong>Read</strong> tasks ask you to put lines in order or predict what code will print before you run it.</p>
+      <p>Early labs lean on writing code yourself, because that is how the basics stick. Later labs lean on reusing your code, directing an AI and checking its work, because that is how research code is written now, and checking is the part a person must still do.</p>
+    </details>
+
+    <h3 class="rl-h3">Save your work to GitHub</h3>
+    <p>Your project gets its own public repository rather than living in your fork of the course, so a mentor can see it on its own.</p>
+    <ol class="rl-steps-ol">
+      <li>On GitHub, click <strong>New repository</strong>. Give it a short, descriptive name (for example <code>pneumonia-external-validation</code>), make it <strong>Public</strong>, and tick <strong>Add a README file</strong>.</li>
+      <li>In Colab, choose <strong>File &gt; Save a copy in GitHub</strong> and pick <code><span class="rl-user-echo">your-username</span>/your-repo</code>, branch <code>main</code>. Save again whenever you finish a part.</li>
+      <li>Copy your <code>toolkit.py</code> into the new repository too (on GitHub: <strong>Add file &gt; Upload files</strong>), so the notebook runs for anyone who opens it.</li>
+      <li>Edit the README on GitHub: your question, the dataset and how to get it, how to run the notebook, and your abstract.</li>
+    </ol>
+  </section>
+
+  <section class="les-section rl-step" id="report">
+    <p class="rl-eyebrow">Step 5 &middot; Report back</p>
+    <h2>Share your project</h2>
+    <p>Enter the address of your public project repository and paste your structured abstract. Both are saved with your course progress, and the lab is marked finished on the Research Lab map. Nothing is scored; the reviewer who matters is the mentor you show it to.</p>
+    <div class="rl-rb6">
+      <label class="rl-field"><span>Your GitHub username</span><input class="rl-input rl-input--mono rl-user" autocomplete="username" spellcheck="false" placeholder="your-username"></label>
+      <label class="rl-field" style="max-width:640px"><span>Repository address <small>for example https://github.com/your-username/your-repo</small></span><input class="rl-input rl-input--mono rl-repo" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://github.com/your-username/your-repo"></label>
+      <label class="rl-field" style="max-width:none"><span>Your structured abstract <small class="rl-abs-count"></small></span><textarea class="rl-textarea rl-abstract" rows="10"></textarea></label>
+      <div class="rl-actions"><button type="button" class="mi-btn mi-btn--rl mi-btn--fill rl-finish">Finish the lab</button></div>
+      <p class="rl-error" role="alert"></p>
+      <div class="rl-done" role="status"></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="les-nav rl-nav">
+  <a href="research-5.html" class="btn btn-outline" id="rl-prev">&larr; Lab 5: Reports and LLMs</a>
+  
+  <a href="../pages/research-lab.html" class="btn btn-accent" id="rl-next">Back to the Research Lab &rarr;</a>
+</div>
+
+<script src="../assets/js/progress.js?v=20261104a" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261104a"></script>
+<script src="../assets/js/rl-data.js?v=20261104a"></script>
+<script src="assets/knowledge-check.js?v=20261104a"></script>
+<script src="assets/interactives.js?v=20261104a"></script>
+<script src="assets/research-lab.js?v=20261104a"></script>
+</body>
+</html>

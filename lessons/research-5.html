@@ -3,81 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Lab 5: Mini Research Project &mdash; AI2Practice</title>
+<title>Research Lab 5: Reports and LLMs &mdash; AI2Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261101a">
-<link rel="stylesheet" href="assets/lessons.css?v=20261101a">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261101a">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261101a" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104a">
+<link rel="stylesheet" href="assets/lessons.css?v=20261104a">
+<link rel="stylesheet" href="assets/interactives.css?v=20261104a">
+<link rel="stylesheet" href="assets/research-lab.css?v=20261104a">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261104a">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261104a" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <!-- AI2PRACTICE SEO -->
-  <meta name="description" content="Formulate a question, design an analysis, execute it, and write a structured abstract." />
+  <meta name="description" content="Research Lab 5: how often do reports mention an incidental lung nodule, and can a large language model find them reliably? Reports as text data, keyword rules versus an LLM, and how to check LLM output." />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/research-5.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI2Practice" />
-  <meta property="og:title" content="Research Lab 5: Mini Research Project — AI2Practice" />
-  <meta property="og:description" content="Formulate a question, design an analysis, execute it, and write a structured abstract." />
+  <meta property="og:title" content="Research Lab 5: Reports and LLMs — AI2Practice" />
+  <meta property="og:description" content="Research Lab 5: how often do reports mention an incidental lung nodule, and can a large language model find them reliably? Reports as text data, keyword rules versus an LLM, and how to check LLM output." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/research-5.html" />
   <meta name="twitter:card" content="summary" />
 <!-- /AI2PRACTICE SEO -->
 </head>
-<body>
+<body class="rl-page" data-lab="5">
 
-<div class="les-topbar" style="border-bottom-color: #A8492C;">
+<div class="les-topbar">
   <a href="../pages/research-lab.html" class="les-back" id="les-back">&larr; Research Lab</a>
-  <div class="les-topbar-title">Research Lab &middot; Lab 5 of 5</div>
+  <div class="les-topbar-title">Research Lab &middot; Lab 5 of 6</div>
   <div class="les-topbar-track" id="les-track"></div>
 </div>
 
-<div class="les-hero" style="background: #A8492C;">
+<div class="les-hero">
   <div class="les-hero-inner">
-    <div class="les-hero-num">R5</div>
+    <div class="les-hero-num">L5</div>
     <div>
-      <h1>Mini Research Project</h1>
-      <p>Formulate a question, design an analysis, execute it, and write a structured abstract</p>
+      <div class="les-hero-q">Research Lab &middot; Lab 5</div>
+      <h1>Reports and LLMs</h1>
+      <p>Find incidental lung nodules in report text, first with a simple rule, then with a large language model, and check both</p>
+      <div class="rl-facts"><span><b>About 1.5 hours</b>, in 3 parts</span><span>Notebook in <b>Google Colab</b></span><span>Builds on Lab 3</span><span>Helpful: <a href="m2-4.html" style="color:#fff;text-decoration:underline">lesson 2.4</a></span></div>
     </div>
   </div>
 </div>
 
 <div class="les-content">
 
-  <section class="les-section" id="overview">
-    <h2>Overview</h2>
-    <p>
-      This final module brings everything together. You will design and execute a mini research project from scratch &mdash; picking a question, analyzing data with the tools from R1&ndash;R4, and writing a structured abstract suitable for submission to a journal like Academic Radiology.
-    </p>
+  <ol class="rl-steps" aria-label="Steps in this lab">
+    <li><a href="#question"><span>1</span>The question</a></li>
+    <li><a href="#idea"><span>2</span>The idea</a></li>
+    <li><a href="#warmup"><span>3</span>Warm-up</a></li>
+    <li><a href="#notebook"><span>4</span>Notebook</a></li>
+    <li><a href="#report"><span>5</span>Report back</a></li>
+  </ol>
+
+  <section class="les-section rl-step les-intro" id="question">
+    <p class="rl-eyebrow">Step 1 &middot; The question</p>
+    <h2>The question</h2>
+    <div class="rl-question"><p>How often do reports mention an incidental lung nodule, and can a large language model find them reliably?</p></div>
+    <p>An <strong>incidental pulmonary nodule</strong> is a small round spot in the lung found on a CT done for some other reason, such as a scan for trauma or abdominal pain. Most are harmless, but a few are early lung cancers, so guidelines such as the Fleischner Society's recommend follow-up imaging for many of them, depending on size and the patient's risk. Follow-up is often missed, because the nodule is mentioned in the report but nobody tracks it. Hospitals therefore want to find these mentions in report text automatically.</p>
+    <p>Radiology reports are <em>unstructured</em> text: free sentences, not neat columns. This lab compares two ways of reading them by computer. One is a simple <strong>keyword rule</strong>. The other is a <strong>large language model (LLM)</strong>: an AI model trained on huge amounts of text to predict likely next words, which lets it answer questions about a passage. ChatGPT, Gemini and Claude are LLMs. Your table, <code>reports</code>, holds about 120 short made-up chest CT reports, generated from your username, with <code>report_id</code>, <code>text</code>, <code>truth_nodule</code> (1 if a person reading the report would say it describes a lung nodule, the reference standard) and <code>llm_nodule</code> (an LLM's saved answer to the same question). Because the LLM answers are saved, you need no account or key; an optional cell shows how to ask Colab's built-in Gemini or another model yourself.</p>
+    <p><strong>By the end of this lab you can:</strong></p>
+    <ul>
+      <li>Load report text into a table and search it with code.</li>
+      <li>Build a keyword rule, and explain why negation and synonyms break it.</li>
+      <li>Measure a rule and an LLM against labeled reports with your own <code>sens_spec()</code>.</li>
+      <li>Describe how to check LLM output before using it, and why real reports must never go into a public chatbot.</li>
+    </ul>
   </section>
 
-  <section class="les-section" id="content">
-    <div class="les-placeholder">
-      <p>Content for this research module goes here.</p>
-      <ul>
-        <li>Choosing a research question from provided options (or propose your own)</li>
-        <li>Designing your analysis plan</li>
-        <li>Executing the analysis using skills from R1&ndash;R4</li>
-        <li>Writing a structured abstract (Background / Methods / Results / Conclusion)</li>
-        <li>Downloading your completed notebook and uploading it to your GitHub fork</li>
-        <li>Submitting a pull request with all completed modules for instructor review</li>
-      </ul>
+  <section class="les-section rl-step" id="idea">
+    <p class="rl-eyebrow">Step 2 &middot; The idea</p>
+    <h2>Words are not meaning</h2>
+    <p>The obvious rule is: flag a report if it contains the word "nodule". It is easy to write, fast, and gives the same answer every time. But radiology reports are full of <em>negation</em> ("No pulmonary nodule"), <em>synonyms</em> ("opacity", "lesion") and history ("previously described nodule, now resolved"), and a keyword rule cannot tell any of these apart. An LLM reads the whole sentence, so it handles most of them, but it makes errors of its own, and its errors are harder to spot because the answer always sounds reasonable.</p>
+    <div class="mi-box" data-ix="reports">
+      <div class="mi-box-title">Interactive: rule or LLM?</div>
+      <p class="mi-box-intro">Nine report excerpts (practice data). For each one, decide whether it describes a lung nodule. Then run the keyword rule and show the saved LLM answers, and see where each goes wrong.</p>
     </div>
+    <p>On your 120 reports, the notebook measures both methods against the reference labels with the <code>sens_spec()</code> function you wrote in Lab 3. A <em>false positive</em> here is a report flagged without a nodule; a <em>false negative</em> is a nodule the method missed, which is the error that costs a patient their follow-up.</p>
+    <p>Checking LLM output is the core skill. Compare it with a sample of reports a person has labeled, read every disagreement, and remember that the same question can get a different answer if asked again or worded differently. One rule comes before all of these: real patient reports contain protected health information and must never be pasted into a public chatbot. Research on real reports uses models approved by the hospital, under its privacy rules.</p>
+  </section>
+
+  <section class="les-section rl-step" id="warmup">
+    <p class="rl-eyebrow">Step 3 &middot; Warm-up</p>
+    <h2>Warm-up: read the code</h2>
+    <p>Two short reading checks. They are not graded and always show the explanation. They also work as a skip test: they cover what the notebook's first parts teach.</p>
+    <div class="kc" data-answer="0">
+      <p class="kc-q">What does this code print?</p>
+      <pre class="rl-pre">text = &quot;No pulmonary nodule. Lungs clear.&quot;
+print(&quot;nodule&quot; in text)</pre>
+      <button class="quiz-option">True</button>
+      <button class="quiz-option">False</button>
+      <button class="quiz-option">An error</button>
+      <div class="quiz-explanation"><p><code>in</code> checks whether the letters "nodule" appear anywhere in the text, and they do. Python has no idea that "No" changes the meaning. That is the negation trap: a keyword rule flags this normal report as positive.</p></div>
+    </div>
+    <div class="mi-box">
+      <div class="mi-box-title">Warm-up: put it in order</div>
+      <p class="mi-box-intro">Drag the lines into the order that applies the keyword rule and counts the reports where it disagrees with the reference.</p>
+      <div class="ix-order rl-order" data-top="First line" data-bottom="Last line" data-done="This is the right order.">
+        <ol class="ix-order-list">
+        <li data-pos="2">df[&quot;rule&quot;] = df[&quot;text&quot;].str.contains(&quot;nodule&quot;).astype(int)</li>
+        <li data-pos="4">print(len(wrong), &quot;reports where the rule is wrong&quot;)</li>
+        <li data-pos="1">df = pd.read_csv(&quot;reports.csv&quot;)</li>
+        <li data-pos="3">wrong = df[df[&quot;rule&quot;] != df[&quot;truth_nodule&quot;]]</li>
+        </ol>
+        <p class="ix-order-result"></p>
+        <div class="rl-order-explain"><p style="margin:0;font-size:inherit;line-height:inherit"><code>str.contains</code> applies the rule to every report at once, and <code>astype(int)</code> turns True and False into 1 and 0 so they can be compared with the reference column. The rows where the two differ are the rule's errors, and reading them one by one is how you find out why it fails.</p></div>
+      </div>
+    </div>
+
+    <div class="rl-skip"><strong>Skip test.</strong> If both were easy, move quickly through Part 1 and spend your time on Part 3, checking the LLM, which is the skill this lab is really about.</div>
+  </section>
+
+  <section class="les-section rl-step" id="notebook">
+    <p class="rl-eyebrow">Step 4 &middot; Notebook</p>
+    <h2>Do the work in Colab</h2>
+    <p>The notebook <code>Lab_5_Reports_and_LLMs.ipynb</code> loads your reports. Part 1 explores them as text: how long they are, which words they use, and how often the reference labels say a nodule is present (the first half of the lab's question). Part 2 builds the keyword rule, improves it to handle negation, and compares it with the saved LLM answers using your <code>sens_spec()</code>. Part 3 checks the LLM properly: you read its errors, sort them by type, and fix AI-written checking code with a planted bug. An optional cell shows how to ask a live model yourself.</p>
+    <label class="rl-field"><span>Your GitHub username <small>your dataset is generated from it, so your numbers are your own</small></span><input class="rl-input rl-input--mono rl-user" autocomplete="username" spellcheck="false" placeholder="your-username"></label>
+    <p>Type the same name into the notebook's first cell:</p>
+    <pre class="rl-pre">GITHUB_USERNAME = "<span class="rl-user-echo">your-username</span>"</pre>
+    <div class="rl-nb-head">
+      <a class="rl-colab" href="https://colab.research.google.com/github/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Lab_5_Reports_and_LLMs.ipynb" target="_blank" rel="noopener">Open Lab 5 in Colab <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2h7v7M12 2 4.5 9.5M2 5v7h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span class="rl-nb-file">lesson-notebooks/Lab_5_Reports_and_LLMs.ipynb &middot; <a href="https://github.com/UM-IHC-CA2i/CA2i-Research-Launchpad/blob/main/lesson-notebooks/Lab_5_Reports_and_LLMs.ipynb" target="_blank" rel="noopener">view on GitHub</a></span>
+    </div>
+    <p class="rl-note">Colab needs a Google account. It opens the course's copy of the notebook; follow "Save your work to GitHub" below to keep your own.</p>
+
+    <h3 class="rl-h3">The notebook's parts</h3>
+    <p>Tick each part off when you finish it. Your ticks show as progress on the Research Lab map.</p>
+    <ul class="rl-parts">
+      <li><label><input type="checkbox" data-part="0"><span><span class="rl-part-name">Part 1. Reports as text data</span><span class="rl-part-desc">Load the reports, search and count words, and find how many describe a nodule according to the reference labels.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="1"><span><span class="rl-part-name">Part 2. Simple rules vs an LLM</span><span class="rl-part-desc">Build a keyword rule, handle negation, and compare it with the saved LLM answers using <code>sens_spec()</code>.</span></span></label></li>
+      <li><label><input type="checkbox" data-part="2"><span><span class="rl-part-name">Part 3. Checking LLM output</span><span class="rl-part-desc">Read and sort the LLM's errors, fix buggy checking code, and decide how much to trust it.</span></span></label></li>
+    </ul>
+    <p class="rl-parts-count" aria-live="polite"></p>
+
+    <h3 class="rl-h3">How you'll code in this lab</h3>
+    <div class="rl-mix" data-mix="15,15,25,25,15,5"></div>
+    <details class="rl-modes">
+      <summary>What the coding modes mean</summary>
+      <p>Every task in the notebook is tagged with one mode. In <strong>Write</strong> tasks you write a few lines yourself from an empty cell, with a hint and a hidden solution. In <strong>Fill in</strong> tasks most of the code is there and you complete the blanks. <strong>Reuse</strong> tasks import a function you wrote in an earlier lab from your own <code>toolkit.py</code>, the way real projects grow. In <strong>Direct the AI</strong> tasks you ask an AI assistant (Colab's built-in one is suggested, but any is fine) to write the code, paste it in, run the test cell, and note in the AI-use log what you asked and what you had to change. <strong>Fix</strong> tasks give you code "written by an AI" with one realistic mistake to find. <strong>Read</strong> tasks ask you to put lines in order or predict what code will print before you run it.</p>
+      <p>Early labs lean on writing code yourself, because that is how the basics stick. Later labs lean on reusing your code, directing an AI and checking its work, because that is how research code is written now, and checking is the part a person must still do.</p>
+    </details>
+
+    <h3 class="rl-h3">Save your work to GitHub</h3>
+    <p>Colab runs the notebook, but it does not keep your work for you. You keep it in your own copy of the course repository on GitHub (a <em>repository</em>, or repo, is a project folder on GitHub with the full history of every saved change). The first time, you make that copy, called a <em>fork</em>; after that, you save into it whenever you finish a part.</p>
+    <ol class="rl-steps-ol">
+      <li><strong>First time only:</strong> sign in to GitHub (create a free account at <a href="https://github.com/join" target="_blank" rel="noopener">github.com/join</a> if you need one), open <a href="https://github.com/UM-IHC-CA2i/CA2i-Research-Launchpad" target="_blank" rel="noopener">the course repository</a>, click <strong>Fork</strong>, then <strong>Create fork</strong>. Your copy lives at <code>github.com/<span class="rl-user-echo">your-username</span>/CA2i-Research-Launchpad</code>.</li>
+      <li>When you finish a part, choose <strong>File &gt; Save a copy in GitHub</strong> in Colab. The first time, Colab asks for permission to use your GitHub account; allow it.</li>
+      <li>Pick your fork, <code><span class="rl-user-echo">your-username</span>/CA2i-Research-Launchpad</code>, branch <code>main</code>, and keep the file path <code>lesson-notebooks/Lab_5_Reports_and_LLMs.ipynb</code>. Write a short note about what changed (for example "Part 2 done") and click <strong>OK</strong>.</li>
+      <li>Next time, open the notebook from your fork (in Colab: <strong>File &gt; Open notebook</strong>, then the <strong>GitHub</strong> tab) so you carry on from where you stopped.</li>
+    </ol>
+  </section>
+
+  <section class="les-section rl-step" id="report">
+    <p class="rl-eyebrow">Step 5 &middot; Report back</p>
+    <h2>Enter your numbers</h2>
+    <p>The notebook's last cell prints the numbers below, worked out from your own dataset. Enter them here. If one doesn't match, you get a hint first, then an explanation, and after a third try the answer, so you can find where your analysis went differently. Getting help is fine; the lab is then marked "finished with help".</p>
+    <div class="rl-rb">
+      <label class="rl-field"><span>Your GitHub username <small>the same one you set in the notebook's first cell</small></span><input class="rl-input rl-input--mono rl-user" autocomplete="username" spellcheck="false" placeholder="your-username"></label>
+      <p class="rl-note rl-rb-who"></p>
+      <div class="rl-rb-items"><p class="rl-wait">Loading the answer checker...</p></div>
+      <div class="rl-done" role="status"></div>
+    </div>
+    <h3 class="rl-h3">Your interpretation</h3>
+    <label class="rl-field rl-field--prompt" style="max-width:none"><span>Would you use the LLM to find incidental nodules for a follow-up program? What checks would you put in place first? Two or three sentences.</span><textarea class="rl-textarea rl-note" rows="4"></textarea><p class="rl-saved" aria-live="polite"></p></label>
   </section>
 
 </div>
 
-<div class="les-nav">
-  <a href="research-4.html" class="btn btn-outline" id="les-prev">&larr; Previous</a>
-  <a href="../pages/research-lab.html" class="btn btn-accent" id="les-next">Back to Research Lab &rarr;</a>
+<div class="les-nav rl-nav">
+  <a href="research-4.html" class="btn btn-outline" id="rl-prev">&larr; Lab 4: Imaging AI</a>
+  <a href="../pages/research-lab.html" class="rl-nav-mid">Research Lab map</a>
+  <a href="research-6.html" class="btn btn-accent" id="rl-next">Next: Lab 6, Your project &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261101a" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261101a"></script>
-<script src="assets/lessons.js?v=20261101a"></script>
+<script src="../assets/js/progress.js?v=20261104a" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261104a"></script>
+<script src="../assets/js/rl-data.js?v=20261104a"></script>
+<script src="assets/knowledge-check.js?v=20261104a"></script>
+<script src="assets/interactives.js?v=20261104a"></script>
+<script src="assets/research-lab.js?v=20261104a"></script>
 </body>
 </html>
