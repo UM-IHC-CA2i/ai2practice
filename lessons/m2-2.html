@@ -3,30 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 2 &middot; Images as Data &mdash; AI2Practice</title>
+<title>Module 2 &middot; The Journey of a Scan &mdash; AI2Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104a">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104a">
-<link rel="stylesheet" href="assets/m1.css?v=20261104a">
-<link rel="stylesheet" href="assets/m2.css?v=20261104a">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104a">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104a">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104a" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104b">
+<link rel="stylesheet" href="assets/lessons.css?v=20261104b">
+<link rel="stylesheet" href="assets/m1.css?v=20261104b">
+<link rel="stylesheet" href="assets/m2.css?v=20261104b">
+<link rel="stylesheet" href="assets/interactives.css?v=20261104b">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261104b">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261104b" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <!-- AI2PRACTICE SEO -->
-  <meta name="description" content="Pixels and CT numbers, the DICOM file format, windowing, image quality, and how images become datasets for AI." />
+  <meta name="description" content="Follow Mr. Diaz&#x27;s CT through nine steps and six computer systems, and see where things can go wrong." />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/m2-2.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI2Practice" />
-  <meta property="og:title" content="Module 2 · Images as Data — AI2Practice" />
-  <meta property="og:description" content="Pixels and CT numbers, the DICOM file format, windowing, image quality, and how images become datasets for AI." />
+  <meta property="og:title" content="Module 2 · The Journey of a Scan — AI2Practice" />
+  <meta property="og:description" content="Follow Mr. Diaz&#x27;s CT through nine steps and six computer systems, and see where things can go wrong." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/m2-2.html" />
   <meta name="twitter:card" content="summary" />
 <!-- /AI2PRACTICE SEO -->
@@ -43,9 +43,9 @@
   <div class="les-hero-inner">
     <div class="les-hero-num">2.2</div>
     <div>
-      <div class="les-hero-q">What is a medical image to a computer?</div>
-      <h1>Images as Data</h1>
-      <p>Pixels and CT numbers, the DICOM file format, windowing, image quality, and how images become datasets for AI</p>
+      <div class="les-hero-q">How does a scan get from the order to the answer?</div>
+      <h1>The Journey of a Scan</h1>
+      <p>Follow Mr. Diaz's CT through nine steps and six computer systems, and see where things can go wrong</p>
     </div>
   </div>
 </div>
@@ -54,331 +54,330 @@
 
   <section class="les-section les-intro" id="overview">
     <h2>Overview</h2>
-    <p style="color: var(--gray-900);">Mr. Diaz's CT pulmonary angiogram (CTPA) took about ten seconds. During that time the scanner did not take a photograph. It collected a signal: measurements of how much X-ray got through his body from hundreds of angles. A computer then processed that signal into images of his chest, a step called <strong>reconstruction</strong>. The images are stored as files full of numbers, together with a lot of information about the patient and the scan. This lesson opens those files. It is the "data" half of everything you learned about AI in Module 1. We use CT as the main example, because its numbers have a fixed meaning. About 15-20 minutes. New terms are in the <a href="../pages/glossary.html" target="_blank" rel="noopener">Module 2 glossary</a> (opens in a new tab).</p>
+    <p style="color: var(--gray-900);">A scan is not a single event. It starts with a clinician's question and ends, if all goes well, with an answer that changes the patient's care. In between, it passes through many people and several computer systems. This lesson follows Mr. Diaz's CT pulmonary angiogram (CTPA) from start to finish. Module 3 then shows where AI tools plug into this same path. About 15-20 minutes. New terms are in the <a href="../pages/glossary.html" target="_blank" rel="noopener">Module 2 glossary</a> (opens in a new tab).</p>
     <p><strong>By the end of this lesson you can:</strong></p>
     <ul>
-      <li>Explain that a digital image is a grid of numbers, and what a CT number (Hounsfield unit) means.</li>
-      <li>Describe what a DICOM file holds, and why its hidden information matters for AI.</li>
-      <li>Use windowing to show different tissues on the same CT slice.</li>
-      <li>Name common image quality problems and how they can fool a person or a model.</li>
-      <li>Explain how images are de-identified and turned into the public datasets many AI tools learn from.</li>
+      <li>Describe the nine steps of a scan's journey, from order to follow-up.</li>
+      <li>Name the main computer systems (EHR, RIS, PACS) and what each one does.</li>
+      <li>Explain why the reason for the exam on the order matters so much.</li>
+      <li>Recognize the steps where errors and delays most often happen.</li>
+      <li>State the two rules that close the loop: critical results need a direct call, and follow-up recommendations need an owner.</li>
     </ul>
   </section>
 
-  <section class="les-section" id="pixels">
-    <h2>An image is a grid of numbers</h2>
-    <p>Every digital image is made of tiny squares called <strong>pixels</strong> (picture elements). Each pixel holds one number, and the screen turns that number into a shade of gray. On a phone photo, each pixel has three numbers for red, green and blue. Most medical images are grayscale, so one number is enough.</p>
-
-    <figure class="les-figure">
-      <img loading="lazy" decoding="async" src="images/m2/pixels.png" alt="Left: a small blurry patch of a chest CT showing dark lung, gray chest wall and a white rib. Right: the same patch as an 8 by 8 grid, each square labeled with its CT number, around -850 for lung, +40 for muscle and +700 for bone." width="3149" height="1380">
-      <figcaption>Figure 1. What you see, and what the computer stores. An AI model never "sees" the picture on the left; it receives the numbers on the right.</figcaption>
-    </figure>
-
-    <p>On CT, the number in each pixel has a fixed meaning. It is a <strong>CT number</strong>, measured in <strong>Hounsfield units (HU)</strong>, named after Godfrey Hounsfield, who built the first CT scanner. The scale is pinned to two points: <strong>water is 0</strong> and <strong>air is -1000</strong>. Fat is about -100, blood and muscle about +40, contrast-filled blood around +300, and dense bone +1000 or more. That is the scale from Lesson 2.1's density figure, now with numbers attached.</p>
-    <p>Because a CT slice is a slice of a volume, each pixel actually stands for a tiny block of tissue, called a <strong>voxel</strong> (volume element), often under 1 mm on each side. A typical CT slice is 512 by 512 pixels, and a chest CT has hundreds of slices: tens of millions of numbers for one scan. X-ray and MRI pixels also hold numbers, but they have no fixed scale like HU: the same tissue can get different numbers on different machines. Remember that for the section on AI below.</p>
-    <p>Reconstruction involves choices too. The same CT signal can be reconstructed into thin or thick slices, and with a sharp setting (a "kernel") that makes lung and bone edges crisp but grainy, or a smooth one that suits soft tissue. That is why one CT study usually holds several image sets, which you will meet below as <strong>series</strong>.
-
-    <div class="m2-think">
-      <div class="m1-example-label">Think about it</div>
-      <p>A doctor looks at an image. An AI model only ever receives a grid of numbers. What could change those numbers without changing the patient? (Scanner brand, settings, reconstruction kernel and slice thickness, contrast timing, patient movement, a different hospital's software. Keep your list in mind; Lesson 1.5's "distribution shift" lives here.)</p>
+  <section class="les-section" id="systems">
+    <h2>Radiology informatics 101: how radiology data travels</h2>
+    <p><strong>Radiology informatics</strong> is the study and running of the computer systems that move radiology information: orders, images, reports and results. You will hear these names on your first day in any hospital. Each is a separate piece of software, often from a different company, and they pass messages to each other.</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>EHR (electronic health record)</strong><span>The patient's main chart: notes, medicines, lab results, orders. Where clinicians order scans and read reports.</span></div>
+      <div class="m1-term"><strong>RIS (radiology information system)</strong><span>Radiology's own scheduling and tracking system. Knows which exams are booked, done and reported.</span></div>
+      <div class="m1-term"><strong>PACS (picture archiving and communication system)</strong><span>Stores every image and shows them on the radiologist's workstation. The image files you meet in Lesson 2.3 live here.</span></div>
+      <div class="m1-term"><strong>Worklist</strong><span>The radiologist's to-do list of exams waiting to be read, sorted by urgency and time.</span></div>
+      <div class="m1-term"><strong>Reporting system</strong><span>Where the radiologist writes the report, usually by speaking into a microphone with speech recognition, using templates.</span></div>
     </div>
+    <p>These systems talk using shared standards. <strong>DICOM</strong> carries images (more in Lesson 2.3). <strong>HL7</strong> (Health Level Seven) carries text messages such as orders and reports. <strong>FHIR</strong> (Fast Healthcare Interoperability Resources, said "fire") is a newer, web-style version of HL7 that many apps, and many AI tools, now use to read from the EHR.</p>
+    <p>Put together, one scan's data travels in a loop. The <strong>order</strong> starts in the EHR and goes to the RIS as an HL7 message. The RIS books the exam and sends the patient's details to the scanner's own worklist, so the images are labeled with the right name and exam. The scanner sends the <strong>images</strong> to PACS as DICOM files, and the exam appears on the radiologist's worklist. The radiologist reads it in PACS, dictates the <strong>report</strong> in the reporting system, and the signed report travels back through the RIS to the EHR, where the ordering clinician and, often, the patient read it. A break at any link (a wrong name on the order, images that never reach PACS, a report that never reaches the chart) is a break in patient care.</p>
   </section>
 
-  <section class="les-section" id="dicom">
-    <h2>DICOM: a letter in an envelope</h2>
-    <p>Medical images are stored in a standard format called <strong>DICOM</strong> (Digital Imaging and Communications in Medicine). Every scanner and every viewing system in the world speaks it, which is why an image from one company's scanner can be opened on another company's workstation.</p>
-    <p>A useful way to picture a DICOM file is a <strong>letter in an envelope</strong>. The letter is the pixel data: the grid of numbers. The envelope is the <strong>header</strong> (also called metadata, "data about the data"): hundreds of labeled fields saying who the patient is, which scanner made the image, how it was made and where this slice sits in the body.</p>
-
-    <figure class="les-figure">
-      <img loading="lazy" decoding="async" src="images/m2/dicom-hierarchy.png" alt="Four boxes left to right: Patient (Mr. Diaz), Study (CT pulmonary angiogram, 12 March 01:40), Series (scout, thin contrast slices, lung-window slices, coronal reformats), Images (hundreds of single slices, each its own DICOM file)." width="3360" height="1230">
-      <figcaption>Figure 2. How DICOM organizes Mr. Diaz's scan. One <strong>study</strong> is one exam; it holds several <strong>series</strong> (sets of images made in one way); each series holds many single images.</figcaption>
-    </figure>
-
-    <p>Click through the tabs to see what is written on Mr. Diaz's "envelope." The values are made up but the field names are real.</p>
-
-    <div class="dt-explorer">
-      <div class="dt-tabs">
-        <button class="dt-tab active" data-panel="dc-patient">Patient</button>
-        <button class="dt-tab" data-panel="dc-study">Study and series</button>
-        <button class="dt-tab" data-panel="dc-scanner">Scanner and settings</button>
-        <button class="dt-tab" data-panel="dc-pixels">Pixel data</button>
-      </div>
-
-      <div class="dt-panel active" id="dc-patient">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--rose">1</div>
-          <div>
-            <h3 class="dt-panel-title">Who the patient is</h3>
-            <p class="dt-panel-subtitle">Protected health information: removed before images are shared for research</p>
-          </div>
-        </div>
-        <div class="m2-table-wrap">
-          <table class="m2-table">
-            <thead><tr><th>Field</th><th>Value</th></tr></thead>
-            <tbody>
-              <tr><td>Patient's Name</td><td>DIAZ^MIGUEL</td></tr>
-              <tr><td>Patient ID</td><td>MRN 00482217</td></tr>
-              <tr><td>Patient's Birth Date</td><td>19640219</td></tr>
-              <tr><td>Patient's Sex</td><td>M</td></tr>
-              <tr><td>Institution Name</td><td>CITY GENERAL HOSPITAL</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="dt-panel-desc">MRN means medical record number. Dates are written year, month, day.</p>
-      </div>
-
-      <div class="dt-panel" id="dc-study">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--blue">2</div>
-          <div>
-            <h3 class="dt-panel-title">What exam this is</h3>
-            <p class="dt-panel-subtitle">Lets the viewer sort images into the right study and series</p>
-          </div>
-        </div>
-        <div class="m2-table-wrap">
-          <table class="m2-table">
-            <thead><tr><th>Field</th><th>Value</th></tr></thead>
-            <tbody>
-              <tr><td>Modality</td><td>CT</td></tr>
-              <tr><td>Study Description</td><td>CT ANGIO CHEST PE PROTOCOL</td></tr>
-              <tr><td>Study Date / Time</td><td>20260312 / 014012</td></tr>
-              <tr><td>Accession Number</td><td>A9917342 (the order number; links images to the order and the report)</td></tr>
-              <tr><td>Series Description</td><td>1.0mm CTA SOFT TISSUE</td></tr>
-              <tr><td>Body Part Examined</td><td>CHEST</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="dt-panel" id="dc-scanner">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--amber">3</div>
-          <div>
-            <h3 class="dt-panel-title">How the image was made</h3>
-            <p class="dt-panel-subtitle">The part people rarely look at, and AI models quietly pick up</p>
-          </div>
-        </div>
-        <div class="m2-table-wrap">
-          <table class="m2-table">
-            <thead><tr><th>Field</th><th>Value</th></tr></thead>
-            <tbody>
-              <tr><td>Manufacturer</td><td>(scanner company)</td></tr>
-              <tr><td>Slice Thickness</td><td>1.0 (mm)</td></tr>
-              <tr><td>KVP</td><td>100 (the X-ray tube voltage)</td></tr>
-              <tr><td>Contrast Bolus Agent</td><td>IODINATED, 70 mL</td></tr>
-              <tr><td>Window Center / Width</td><td>40 / 400 (the default display setting; see Windowing below)</td></tr>
-              <tr><td>Slice Location</td><td>-112.5 (where this slice is along the body, in mm)</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="dt-panel" id="dc-pixels">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--teal">4</div>
-          <div>
-            <h3 class="dt-panel-title">The letter itself</h3>
-            <p class="dt-panel-subtitle">The grid of numbers</p>
-          </div>
-        </div>
-        <div class="m2-table-wrap">
-          <table class="m2-table">
-            <thead><tr><th>Field</th><th>Value</th></tr></thead>
-            <tbody>
-              <tr><td>Rows / Columns</td><td>512 / 512</td></tr>
-              <tr><td>Pixel Spacing</td><td>0.74 / 0.74 (mm per pixel)</td></tr>
-              <tr><td>Bits Stored</td><td>12 (each pixel can hold one of 4,096 values)</td></tr>
-              <tr><td>Rescale Slope / Intercept</td><td>1 / -1024 (how to turn stored values into HU)</td></tr>
-              <tr><td>Pixel Data</td><td>262,144 numbers</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="dt-panel-desc">The screen can show only about 256 shades of gray, and the eye can tell apart fewer still. That is why you need windowing.</p>
-      </div>
-    </div>
-
-    <h3>Why the envelope matters for AI</h3>
-    <p>In Lesson 1.5 you saw an AI that learned to spot the hospital instead of the disease. The header and the pixels themselves carry many such clues: the scanner brand, a "PORTABLE" label burned into the corner, the slice thickness, the hospital's name. A model can learn any pattern that happens to go along with the label. Good AI developers check which scanners and hospitals their data came from, and test on data from somewhere else. The header is also how an AI tool knows which images to look at: a chest CT tool that receives a head CT because the Body Part field was wrong may still give an answer.</p>
-  </section>
-
-  <section class="les-section" id="windowing">
-    <h2>Windowing: one slice, many pictures</h2>
-    <p>A CT slice holds values from -1000 to over +1000, but the screen can only show a limited number of grays. So the viewer shows just a slice of the range at a time, called the <strong>window</strong>:</p>
-    <ul>
-      <li>The <strong>level</strong> (or center) is the CT number in the middle of the window. It becomes mid-gray.</li>
-      <li>The <strong>width</strong> is how wide a range of CT numbers gets spread across black to white. Everything below the window is pure black; everything above it is pure white.</li>
-    </ul>
-    <p>A narrow window shows small differences between similar tissues. A wide window shows many tissues but flattens the differences. Radiologists switch windows constantly while they read.</p>
+  <section class="les-section" id="journey">
+    <h2>Follow Mr. Diaz's scan</h2>
+    <p>Step through the journey. The map shows which system is involved at each step.</p>
 
     <div class="mi-box">
-      <div class="mi-box-title">Interactive: window a chest CT</div>
-      <p class="mi-box-intro">This is a drawn slice through a chest at the level of the heart, made for this lesson; it is not a real patient. It has a clot in one lung artery and a small nodule hiding in it, like Mr. Diaz. Try the preset windows, then move the sliders. Point at the image to read the CT number under the cursor.</p>
-      <div class="m2-window"></div>
+      <div class="mi-box-title">Interactive: the journey of a scan</div>
+      <div class="m2-journey">
+        <svg class="m2-map" viewBox="0 0 720 230" role="img" aria-label="Map of six systems. Top row: EHR, RIS, Scanner. Bottom row: Reporting, Worklist, PACS. Arrows run EHR to RIS to Scanner, down to PACS, then PACS to Worklist to Reporting, and back up to EHR.">
+          <defs>
+            <marker id="m2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#9aa3ad"/>
+            </marker>
+          </defs>
+          <path class="flow" d="M200,52 L262,52"/>
+          <path class="flow" d="M450,52 L512,52"/>
+          <path class="flow" d="M610,86 L610,136"/>
+          <path class="flow" d="M520,172 L458,172"/>
+          <path class="flow" d="M270,172 L208,172"/>
+          <path class="flow" d="M110,138 L110,88"/>
+          <g class="sys" data-sys="ehr"><rect x="20" y="20" width="180" height="64" rx="10"/><text x="110" y="48">EHR</text><text class="sub" x="110" y="68">the patient's chart</text></g>
+          <g class="sys" data-sys="ris"><rect x="270" y="20" width="180" height="64" rx="10"/><text x="360" y="48">RIS</text><text class="sub" x="360" y="68">scheduling and tracking</text></g>
+          <g class="sys" data-sys="scanner"><rect x="520" y="20" width="180" height="64" rx="10"/><text x="610" y="48">Scanner</text><text class="sub" x="610" y="68">CT, MRI, X-ray ...</text></g>
+          <g class="sys" data-sys="reporting"><rect x="20" y="140" width="180" height="64" rx="10"/><text x="110" y="168">Reporting</text><text class="sub" x="110" y="188">speech recognition</text></g>
+          <g class="sys" data-sys="worklist"><rect x="270" y="140" width="180" height="64" rx="10"/><text x="360" y="168">Worklist</text><text class="sub" x="360" y="188">the reading queue</text></g>
+          <g class="sys" data-sys="pacs"><rect x="520" y="140" width="180" height="64" rx="10"/><text x="610" y="168">PACS</text><text class="sub" x="610" y="188">image storage and viewer</text></g>
+        </svg>
+
+        <div class="mi-steps">
+          <div class="mi-steps-viewport">
+            <div class="mi-step active" data-sys="ehr">
+              <div class="mi-step-head">1. Order</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">EHR</span>
+                <p>A clinician decides a scan is needed and enters an <strong>order</strong> in the EHR. The order names the exam and gives the <strong>reason for exam</strong> (also called the indication or clinical history): the question the scan should answer. Many EHRs now check the order against guidelines, such as the ACR Appropriateness Criteria, and flag tests that are unlikely to help. This is called <strong>clinical decision support</strong>.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the ED doctor orders "CT angiogram chest, PE protocol. Reason: sudden shortness of breath and right pleuritic chest pain after a 14-hour flight; D-dimer elevated." (A D-dimer is a blood test that is high when the body is breaking down clots.)</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="ris">
+              <div class="mi-step-head">2. Protocol and schedule</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">RIS</span>
+                <p>The order crosses to the RIS. A radiologist or technologist <strong>protocols</strong> it: chooses exactly how the scan will be done (which body part, with or without contrast, the timing of the contrast). The exam is then scheduled. Emergencies go to the front of the line.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> protocolled as a CTPA, with contrast timed to fill the lung arteries. His kidney blood test is normal and he has no contrast allergy, so the scan is cleared.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="scanner">
+              <div class="mi-step-head">3. Scan</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Scanner</span>
+                <p>The technologist checks the patient's identity with two identifiers (such as name and date of birth), confirms the exam, explains it, places an IV line if contrast is needed and runs the scan. The scanner builds a series of images (Lesson 2.3 looks inside them).</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> scanned at 01:40. The contrast injection makes him feel warm all over for a few seconds, which is normal. The scan takes about ten seconds.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="scanner pacs">
+              <div class="mi-step-head">4. Store and send</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Scanner &rarr; PACS</span>
+                <p>The scanner sends the DICOM images to PACS, where they are stored and matched to the order using the <strong>accession number</strong>. If the images are labeled with the wrong patient or order, they can end up in the wrong chart.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> about 600 images in four series arrive in PACS within a couple of minutes.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="worklist">
+              <div class="mi-step-head">5. Worklist</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Worklist</span>
+                <p>The exam appears on a radiologist's worklist. Exams are sorted by priority: <strong>STAT</strong> (urgent, now), then urgent, then routine. A busy overnight list may hold dozens of exams. Where an exam sits in the queue decides how fast it gets read.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> his exam is marked STAT from the ED and goes near the top of the overnight list.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="pacs">
+              <div class="mi-step-head">6. Read</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">PACS</span>
+                <p>The radiologist opens the study on a PACS workstation. They read the reason for exam, look at any <strong>prior</strong> (earlier) imaging for comparison, then scroll through every series in several windows, looking at <em>everything</em> on the images, not only the question asked.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the overnight radiologist sees a clot in a branch of the right lower lobe pulmonary artery. Checking the lung window, they also notice an 8 mm nodule in the right upper lobe. He has no prior CT to compare with.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="reporting">
+              <div class="mi-step-head">7. Report</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Reporting</span>
+                <p>The radiologist dictates a <strong>report</strong>, often from a template, and signs it. Overnight, a resident may write a <strong>preliminary</strong> report that an attending radiologist later confirms or corrects as the <strong>final</strong> report. Lesson 2.4 walks through this report line by line.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> report dictated by 02:05: acute pulmonary embolism, no strain on the heart, and an incidental lung nodule with a recommendation for follow-up CT. The radiologist holds the signature until after the phone call in step 8, so the call can be recorded in the report.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="reporting ehr">
+              <div class="mi-step-head">8. Communicate</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">Reporting &rarr; EHR</span>
+                <p>The signed report goes to the EHR, where the ordering team and often the patient can read it. A <strong>critical result</strong> (a finding that needs action right away, like a PE) is not left to wait in the chart: the radiologist phones the team directly, often before the report is signed, and documents who they spoke to and when.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the radiologist calls the ED doctor at 02:07, adds the call to the report and signs it at 02:10. Blood thinners (anticoagulants) are started within the hour.</div>
+              </div>
+            </div>
+            <div class="mi-step" data-sys="ehr ris">
+              <div class="mi-step-head">9. Follow-up</div>
+              <div class="mi-step-body">
+                <span class="m2-step-sys">EHR &rarr; RIS</span>
+                <p>Some findings need more imaging later. Someone has to read the recommendation, tell the patient, and order and schedule the next scan. This is the step most likely to be dropped, especially when the finding is <strong>incidental</strong> (not related to the reason for the scan) and the patient changes doctors or leaves the hospital.</p>
+                <div class="m2-step-diaz"><strong>Mr. Diaz:</strong> the PE is treated, and he goes home after three days. The nodule needs a CT in 6-12 months. Will anyone remember? Many hospitals now run tracking programs, with a nurse navigator or software, to catch these.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="les-section" id="order-matters">
+    <h2>Why the order matters</h2>
+    <p>The reason for exam is the radiologist's only window into the patient. They usually have not met the patient and see the order long before the full chart. A good reason for exam changes how the scan is done (the protocol) and what the radiologist looks for.</p>
+
+    <div class="m2-table-wrap">
+      <table class="m2-table">
+        <thead><tr><th>Weak reason for exam</th><th>Better reason for exam</th></tr></thead>
+        <tbody>
+          <tr><td>"Chest pain"</td><td>"Sudden right pleuritic chest pain and shortness of breath after a long flight; D-dimer elevated. Assess for PE."</td></tr>
+          <tr><td>"Rule out pathology"</td><td>"Right lower abdominal pain for 1 day, fever, white count 15. Appendicitis?"</td></tr>
+          <tr><td>"Headache"</td><td>"Sudden worst headache of life 2 hours ago, on blood thinners. Bleed?"</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <p>Notice that the clot is invisible in the lung window and the nodule is invisible in the soft-tissue window. A reader, or an AI tool, that only looks at one window can miss half the findings. Many AI models are given images in one fixed window, and some are trained on several windows stacked together, as a radiologist would read them.</p>
+    <p>The <a href="https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria" target="_blank" rel="noopener">ACR Appropriateness Criteria</a> are guidelines from the American College of Radiology that rate which test is best for a given clinical problem. They are what the decision support in step 1 is usually built on.</p>
 
     <div class="les-video-grid">
-      <a class="les-video-card" href="https://www.youtube.com/watch?v=KZld-5W99cI" target="_blank" rel="noopener">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=zBJGv2OBOUU" target="_blank" rel="noopener">
         <div class="les-video-thumb">
-          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/KZld-5W99cI/hqdefault.jpg" alt="Understanding CT windows, levels and densities">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/zBJGv2OBOUU/hqdefault.jpg" alt="How to Order Diagnostic Imaging">
           <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
         </div>
         <div class="les-video-info">
           <div class="les-video-yt-icon"></div>
-          <span>Understanding CT windows, levels and densities (Petra Lewis)</span>
+          <span>How to Order Diagnostic Imaging (Joseph W. Owen, MD)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=x7edw-UyBRw" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/x7edw-UyBRw/hqdefault.jpg" alt="Getting the Indication Correct">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>Getting the Indication Correct (Joseph W. Owen, MD)</span>
           <small>Watch on YouTube</small>
         </div>
       </a>
     </div>
+  </section>
 
-    <div class="img-needed">
-      <span class="img-needed-tag">Image needed</span>
-      <p>The same real axial chest CT slice shown three times: lung window, soft-tissue (mediastinal) window and bone window. Ideally a CTPA with a visible filling defect in a pulmonary artery.</p>
+  <section class="les-section" id="put-in-order">
+    <h2>Put it in order</h2>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: put the steps in order</div>
+      <p class="mi-box-intro">Drag the steps into the order they happen. Then check. (With a keyboard: focus a step and use the up and down arrows.)</p>
+      <div class="ix-order" data-top="First" data-bottom="Last" data-done="This is the order Mr. Diaz's scan followed.">
+        <ol class="ix-order-list">
+          <li data-pos="6">The radiologist reads the images and compares with priors</li>
+          <li data-pos="2">The exam is protocolled and scheduled in the RIS</li>
+          <li data-pos="8">The radiologist phones the team about the critical result, then signs the report</li>
+          <li data-pos="4">The images are sent to PACS and matched to the order</li>
+          <li data-pos="1">The clinician enters an order with a reason for exam</li>
+          <li data-pos="9">A follow-up CT is booked for the lung nodule</li>
+          <li data-pos="5">The exam appears on the worklist, marked STAT</li>
+          <li data-pos="3">The technologist checks identity and runs the scan</li>
+          <li data-pos="7">The radiologist dictates the report</li>
+        </ol>
+        <p class="ix-order-result"></p>
+      </div>
     </div>
   </section>
 
-  <section class="les-section" id="quality">
-    <h2>When the picture is not quite right</h2>
-    <p>Not every image is perfect. An <strong>artifact</strong> is something on the image that is not really in the patient, created by the scanner, the patient or the physics. Radiologists learn to recognize artifacts so they do not mistake them for disease, and to say in the report when image quality limits what they can see. AI models often have no idea an image is poor and give a confident answer anyway.</p>
+  <section class="les-section" id="errors">
+    <h2>Where things go wrong</h2>
+    <p>Most imaging errors are not a radiologist missing something on the picture. Many happen before the scan or after the report. Knowing the steps helps you see where.</p>
 
     <div class="mi-box">
-      <div class="mi-box-title">Interactive: spot the problem</div>
-      <p class="mi-box-intro">For each description, decide what caused the problem.</p>
-      <div class="mi-sort" data-choices="Patient moved|Metal|Positioning|Too little dose">
+      <div class="mi-box-title">Interactive: what went wrong?</div>
+      <p class="mi-box-intro">Each story is a real type of error. Decide at which step it happened.</p>
+      <div class="mi-sort" data-choices="Order|Scan|Communicate|Follow-up">
         <div class="mi-cards">
           <div class="mi-card" data-answer="0">
-            <div class="mi-card-text">Blurry, doubled edges<small>A chest CT in a patient who was too short of breath to hold still. The heart and diaphragm look smeared.</small></div>
-            <div class="mi-card-why">Motion. Breathing or moving during the scan blurs edges, and on a CTPA it can create fake dark spots in arteries that look like clots.</div>
+            <div class="mi-card-text">Wrong side<small>A CT of the left knee is ordered, but the patient's pain is in the right knee.</small></div>
+            <div class="mi-card-why">Order. Laterality (side) errors on orders are common. Technologists confirm with the patient before scanning, which catches many.</div>
           </div>
           <div class="mi-card" data-answer="1">
-            <div class="mi-card-text">Bright and dark streaks<small>A CT of the pelvis in a patient with a hip replacement. Streaks fan out from the hip.</small></div>
-            <div class="mi-card-why">Metal. Metal blocks almost all the X-rays, so the reconstruction math breaks down around it. Special software can reduce, but not remove, the streaks.</div>
+            <div class="mi-card-text">Contrast too early<small>The CTPA images are taken before the contrast reaches the lung arteries. They are too dark to judge.</small></div>
+            <div class="mi-card-why">Scan. Poor contrast timing makes a CTPA "non-diagnostic," and the scan may need to be repeated, with more radiation and more contrast.</div>
           </div>
           <div class="mi-card" data-answer="2">
-            <div class="mi-card-text">The heart looks large<small>A chest X-ray taken in bed in the ICU, with the beam coming from the front (AP).</small></div>
-            <div class="mi-card-why">Positioning. AP films magnify the heart compared with a standard standing PA film (Lesson 2.1). Compare like with like.</div>
+            <div class="mi-card-text">Nobody called<small>A report showing a collapsed lung is signed at night, but nobody phones the team. They see it the next morning.</small></div>
+            <div class="mi-card-why">Communicate. Critical results need a direct call, documented in the report. A signed report alone is not enough.</div>
           </div>
           <div class="mi-card" data-answer="3">
-            <div class="mi-card-text">Grainy, speckled image<small>A low-dose CT in a large patient. Everything looks like it is covered in sand.</small></div>
-            <div class="mi-card-why">Noise. Too few X-rays reached the detector. Lowering the dose is good for the patient, but too low makes small things, like a nodule, hard to see. This is a real ALARA trade-off.</div>
+            <div class="mi-card-text">Lost nodule<small>A report recommends a follow-up CT for a lung nodule. The patient is discharged, and two years later the nodule is a cancer.</small></div>
+            <div class="mi-card-why">Follow-up. This is the classic dropped handoff, and the reason for tracking programs. It could happen to Mr. Diaz.</div>
           </div>
-          <div class="mi-card" data-answer="2">
-            <div class="mi-card-text">Part of the lung is missing<small>A chest X-ray where the bottom of the right lung is cut off at the edge of the image.</small></div>
-            <div class="mi-card-why">Positioning. Anything outside the image cannot be read by a person or an AI. Reports should say when part of the area of interest was not included.</div>
+          <div class="mi-card" data-answer="0">
+            <div class="mi-card-text">"Rule out pathology"<small>A vague reason for exam leads to the wrong protocol, and the scan cannot answer the real question.</small></div>
+            <div class="mi-card-why">Order. The radiologist can only protocol and read for the question they are given.</div>
+          </div>
+          <div class="mi-card" data-answer="1">
+            <div class="mi-card-text">Wrong patient<small>Two patients with the same last name; the wrong one is scanned.</small></div>
+            <div class="mi-card-why">Scan. This is why technologists use two identifiers every time.</div>
           </div>
         </div>
         <p class="mi-score"></p>
       </div>
     </div>
 
-    <div class="img-needed-row">
-      <div class="img-needed">
-        <span class="img-needed-tag">Image needed</span>
-        <p>A CT with metal streak artifact from a hip replacement or dental fillings.</p>
+  </section>
+
+  <section class="les-section" id="close-loop">
+    <h2>Two rules that close the loop</h2>
+    <p>Two of the stories above failed after the radiologist had done the read correctly. Both failures have a simple rule against them.</p>
+    <div class="m2-rules">
+      <div class="m2-rule">
+        <div class="m2-rule-title">1. Critical results need a direct call</div>
+        <p>A finding that needs action now, such as a PE, a collapsed lung or a bleed in the brain, is never left to sit in the chart. The radiologist phones the treating clinician, the clinician repeats it back ("read-back"), and the call is written into the report: who, when and what was said. If the ordering doctor cannot be reached, the radiologist keeps going up the chain until someone who can act has been told.</p>
       </div>
-      <div class="img-needed">
-        <span class="img-needed-tag">Image needed</span>
-        <p>A CT with breathing motion artifact (blurred diaphragm or heart edges).</p>
+      <div class="m2-rule">
+        <div class="m2-rule-title">2. Follow-up recommendations need an owner</div>
+        <p>A recommendation in a report does nothing on its own. A named person has to tell the patient, order the next scan or hand the task over clearly, and put it in the discharge summary. By default that is the ordering physician's team. Tracking programs are a safety net, not a replacement for an owner.</p>
       </div>
+    </div>
+
+    <div class="m2-think">
+      <div class="m1-example-label">For the ordering physician</div>
+      <p>Three habits help most: write a real reason for exam, read the whole report (not only the first line), and when a report recommends follow-up, make sure someone owns it before the patient leaves. Make sure the radiology department can reach you, or whoever covers for you, when a critical result comes in.</p>
     </div>
   </section>
 
-  <section class="les-section" id="datasets">
-    <h2>From hospital images to AI datasets</h2>
-    <p>To train the AI models from Module 1, developers need thousands of images with labels. Hospitals hold millions of images, but they are full of private information. Before images leave the hospital they are <strong>de-identified</strong>: names, record numbers, birth dates and other identifying fields are removed or replaced in the header, and any text burned into the pixels (like a name in the corner) is blacked out. In the United States, the privacy rules come from a law called <strong>HIPAA</strong> (Health Insurance Portability and Accountability Act).</p>
-    <p>De-identification is harder than it sounds. Faces can be rebuilt from head CT and MRI, dates can identify people, and text can hide in unexpected places. Data sharing also raises the question of patient consent, which the committee and ethics boards take seriously.</p>
-    <p>Several large public chest X-ray datasets have trained many of the models you will meet:</p>
-    <div class="m2-table-wrap">
-      <table class="m2-table">
-        <thead><tr><th>Dataset</th><th>Size</th><th>Where the labels came from</th></tr></thead>
-        <tbody>
-          <tr><td>MIMIC-CXR</td><td>377,110 images, 65,379 patients</td><td>Beth Israel Deaconess Medical Center, Boston. Comes with the full radiology reports.</td></tr>
-          <tr><td>CheXpert</td><td>224,316 radiographs, 65,240 patients</td><td>Stanford Hospital. 14 labels pulled from reports by a computer program.</td></tr>
-          <tr><td>NIH ChestX-ray14</td><td>112,120 images, 30,805 patients</td><td>NIH Clinical Center. 14 labels pulled from reports by a computer program.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>Look at the last column. Most labels were not drawn by a radiologist looking at each image. A program read the <em>report</em> and guessed the label from words like "no pneumothorax" or "possible effusion." This is the label-quality problem from Lesson 1.3: if the report was hedged, wrong or silent about a finding, the label is too. It is one reason Lesson 2.4 spends time on how reports are written.</p>
-  </section>
-
-  <section class="les-section" id="try">
-    <h2>Try it: open real DICOM images</h2>
-    <p><a href="https://viewer.ohif.org/" target="_blank" rel="noopener">OHIF Viewer</a> is a free, open-source DICOM viewer that runs in your web browser and comes with de-identified example studies. Open a CT study and try:</p>
-    <ul>
-      <li>Scroll through the slices with the mouse wheel.</li>
-      <li>Find the window/level tool and switch between presets, as you did above.</li>
-      <li>Look for the series list: how many series does one study have?</li>
-      <li>Hover over a tissue to read its CT number, if the study is a CT.</li>
-    </ul>
-    <p>Nothing to install, no account needed. It may be slow on a phone; a laptop works best.</p>
+  <section class="les-section" id="bridge">
+    <h2>Where AI fits (a preview)</h2>
+    <p>Every step on the map is a place a computer could help, and AI tools already exist for most of them: suggesting a protocol, cleaning up noisy images, moving suspected critical findings to the top of the worklist, flagging findings during the read, drafting parts of the report, and tracking follow-up recommendations. Each one changes the journey in a different way, and each can fail in a different way. Lesson 3.1 maps these tools onto the journey you just learned.</p>
   </section>
 
   <section class="les-section" id="check">
     <h2>Knowledge check</h2>
     <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
 
-    <div class="kc" data-answer="2">
-      <p class="kc-q">On CT, a region measures about 0 HU. What is it most likely to be?</p>
-      <button class="quiz-option">Air</button>
-      <button class="quiz-option">Bone</button>
-      <button class="quiz-option">Water or simple fluid</button>
-      <div class="quiz-explanation"><p>The Hounsfield scale is set so that water is 0 and air is -1000. Bone is several hundred or more.</p></div>
+    <div class="kc" data-answer="1">
+      <p class="kc-q">Which system stores the images and shows them on the radiologist's workstation?</p>
+      <button class="quiz-option">EHR</button>
+      <button class="quiz-option">PACS</button>
+      <button class="quiz-option">RIS</button>
+      <div class="quiz-explanation"><p>PACS (picture archiving and communication system) stores and displays images. The EHR is the patient's chart; the RIS schedules and tracks radiology exams.</p></div>
     </div>
 
-    <div class="kc" data-answer="1">
-      <p class="kc-q">The radiologist reading Mr. Diaz's CTPA switches from a lung window to a soft-tissue window. What changes?</p>
-      <button class="quiz-option">The scanner takes a new set of images</button>
-      <button class="quiz-option">Only the display: which range of CT numbers is shown as shades of gray</button>
-      <button class="quiz-option">The CT numbers stored in the file</button>
-      <div class="quiz-explanation"><p>Windowing changes only how the stored numbers are shown on screen. The data stays the same, so there is no extra radiation.</p></div>
+    <div class="kc" data-answer="2">
+      <p class="kc-q">The radiologist finds Mr. Diaz's PE at 2 a.m. What should happen besides signing the report?</p>
+      <button class="quiz-option">Nothing; the team will see the report in the EHR</button>
+      <button class="quiz-option">Send the patient a message through the portal</button>
+      <button class="quiz-option">Phone the treating team directly and document the call</button>
+      <div class="quiz-explanation"><p>A PE is a critical result. It needs direct, documented communication so treatment starts right away.</p></div>
     </div>
 
     <div class="kc" data-answer="0">
-      <p class="kc-q">A chest X-ray AI was trained on CheXpert. Why should you be cautious about its labels?</p>
-      <button class="quiz-option">Most labels were pulled from report text by a program, not drawn on each image by a radiologist</button>
-      <button class="quiz-option">The images were not de-identified</button>
-      <button class="quiz-option">CheXpert contains CT scans, not X-rays</button>
-      <div class="quiz-explanation"><p>Report-mined labels carry every gap and hedge of the original report, plus errors from the program reading it. This is the label noise from Lesson 1.3.</p></div>
+      <p class="kc-q">Which step of the journey is most often where an incidental finding gets lost?</p>
+      <button class="quiz-option">Follow-up, after the report, especially when the patient leaves the hospital</button>
+      <button class="quiz-option">Store and send, when images go to PACS</button>
+      <button class="quiz-option">Protocol, when the exam is scheduled</button>
+      <div class="quiz-explanation"><p>Recommendations for later imaging depend on someone reading, owning and scheduling them. Handoffs between teams make this the weakest step.</p></div>
     </div>
   </section>
 
   <section class="les-section m1-takeaways" id="takeaways">
     <h2>Key takeaways</h2>
     <ul>
-      <li>A digital image is a grid of numbers. On CT, each number is a CT number in Hounsfield units: water 0, air -1000.</li>
-      <li>DICOM files hold the pixels plus a header full of information about the patient, the exam and the scanner.</li>
-      <li>Hidden information in the header and the pixels can become shortcuts for AI.</li>
-      <li>Windowing changes only the display. Different windows show different findings.</li>
-      <li>Artifacts and poor image quality can fool readers and models; good reports say when quality limits the read.</li>
-      <li>Public datasets are de-identified, and many of their labels were mined from reports.</li>
+      <li>A scan's journey has nine steps: order, protocol and schedule, scan, store and send, worklist, read, report, communicate, follow-up.</li>
+      <li>The EHR holds the chart, the RIS schedules and tracks, PACS stores and shows images. They talk through DICOM, HL7 and FHIR.</li>
+      <li>The reason for exam shapes both how the scan is done and what the radiologist looks for.</li>
+      <li>Critical results need a direct call. Follow-up recommendations need an owner.</li>
+      <li>Many errors happen before the scan or after the report, not only during the read.</li>
     </ul>
   </section>
 
   <section class="les-section" id="further">
     <h2>Go further (optional)</h2>
     <ul class="m1-links">
-      <li><a href="https://viewer.ohif.org/" target="_blank" rel="noopener">OHIF Viewer</a> <small>(free DICOM viewer in the browser, with example studies)</small></li>
-      <li><a href="https://physionet.org/content/mimic-cxr/" target="_blank" rel="noopener">MIMIC-CXR on PhysioNet</a> <small>(what a real dataset page looks like, including the access rules)</small></li>
-      <li><a href="https://stanfordmlgroup.github.io/competitions/chexpert/" target="_blank" rel="noopener">CheXpert</a> <small>(Stanford: the dataset and how its labels were made)</small></li>
-      <li><a href="https://radiopaedia.org/articles/windowing-ct" target="_blank" rel="noopener">Windowing (CT)</a> and <a href="https://radiopaedia.org/articles/hounsfield-unit" target="_blank" rel="noopener">Hounsfield unit</a> <small>(Radiopaedia, a free radiology reference)</small></li>
+      <li><a href="https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria" target="_blank" rel="noopener">ACR Appropriateness Criteria</a> <small>(look up "suspected pulmonary embolism" and see how the tests are rated)</small></li>
+      <li><a href="https://www.youtube.com/watch?v=zBJGv2OBOUU" target="_blank" rel="noopener">How to Order Diagnostic Imaging</a> <small>(Joseph W. Owen, MD, YouTube)</small></li>
     </ul>
-    <p>Next lesson: the images exist and the numbers are stored. How do they get from the scanner to the radiologist's screen, and the result back to Mr. Diaz's team?</p>
+    <p>Next lesson: the report is signed. What does it say, and how do you read it?</p>
   </section>
 
 </div>
 
 <div class="les-nav">
   <a href="m2-1.html" class="btn btn-outline" id="les-prev">&larr; What Radiology Is</a>
-  <a href="m2-3.html" class="btn btn-accent" id="les-next">Next: The Journey of a Scan &rarr;</a>
+  <a href="m2-3.html" class="btn btn-accent" id="les-next">Next: Images as Data &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104a" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104a"></script>
-<script src="assets/lessons.js?v=20261104a"></script>
-<script src="assets/knowledge-check.js?v=20261104a"></script>
-<script src="assets/interactives.js?v=20261104a"></script>
-<script src="assets/m1-interactives.js?v=20261104a"></script>
-<script src="assets/m2-interactives.js?v=20261104a"></script>
+<script src="../assets/js/progress.js?v=20261104b" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261104b"></script>
+<script src="assets/lessons.js?v=20261104b"></script>
+<script src="assets/knowledge-check.js?v=20261104b"></script>
+<script src="assets/interactives.js?v=20261104b"></script>
+<script src="assets/m1-interactives.js?v=20261104b"></script>
+<script src="assets/m2-interactives.js?v=20261104b"></script>
 </body>
 </html>

@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104a">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104a">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104a">
-<link rel="stylesheet" href="assets/research-lab.css?v=20261104a">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104a">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104a" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104b">
+<link rel="stylesheet" href="assets/lessons.css?v=20261104b">
+<link rel="stylesheet" href="assets/interactives.css?v=20261104b">
+<link rel="stylesheet" href="assets/research-lab.css?v=20261104b">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261104b">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261104b" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
@@ -45,7 +45,7 @@
       <div class="les-hero-q">Research Lab &middot; Lab 4</div>
       <h1>Imaging AI</h1>
       <p>Train a first image model on chest X-rays, split the data properly, and look at what the model is looking at</p>
-      <div class="rl-facts"><span><b>About 2 hours</b>, in 4 parts</span><span>Notebook in <b>Google Colab</b></span><span>Builds on Lab 3</span><span>Helpful: <a href="m2-2.html" style="color:#fff;text-decoration:underline">lesson 2.2</a></span></div>
+      <div class="rl-facts"><span><b>About 2 hours</b>, in 4 parts</span><span>Notebook in <b>Google Colab</b></span><span>Builds on Lab 3</span><span>Helpful: <a href="m2-3.html" style="color:#fff;text-decoration:underline">lesson 2.3</a></span></div>
     </div>
   </div>
 </div>
@@ -86,6 +86,9 @@
     <p>Nothing about the stored numbers changed when you moved the sliders; only the mapping to gray did. The model never sees "a lung" either, only the grid of numbers. X-rays are not stored in Hounsfield units, but the idea is the same, and the PneumoniaMNIST images are already grayscale values from 0 to 255 that the notebook rescales to between 0 and 1 before training.</p>
     <p>The model in this lab is a <strong>convolutional neural network (CNN)</strong>: a model that slides small filters across the image to pick up edges, then shapes, then larger patterns, and learns which filters help tell pneumonia from normal. It learns from the <em>training set</em>, is tuned on the <em>validation set</em>, and is judged once on the <em>test set</em>, which it has never seen. If the same patient has images in both training and test, the model can score well by recognizing the patient rather than the disease. That error is called <strong>data leakage</strong>, and splitting <em>by patient</em> prevents it.</p>
     <p>A good test score still does not show what the model relied on. A <strong>saliency map</strong> colors the pixels that most changed the model's answer. A well-known 2018 study by Zech and colleagues found that pneumonia models had partly learned which hospital an X-ray came from, using clues such as text markers on the film, and performed worse at hospitals they had not seen. Testing on images from somewhere else, called <em>external validation</em>, is how such shortcuts come to light.</p>
+    <div class="rl-extra">
+      <p><strong>From a DICOM file to numbers.</strong> PneumoniaMNIST comes already converted to small arrays, but hospital images arrive as DICOM files (Lesson 2.3). To see how a DICOM file is read in Python and turned into a NumPy array (Python's grid of numbers), work through the Kaggle notebook <a href="https://www.kaggle.com/code/dskagglemt/basic-understanding-on-dicom-convert-to-numpy" target="_blank" rel="noopener">Basic understanding of DICOM: convert to NumPy</a>. It's optional, and a good bridge to the open datasets in the <a href="../pages/research-lab.html#involved">Getting involved</a> section.</p>
+    </div>
   </section>
 
   <section class="les-section rl-step" id="warmup">
@@ -185,11 +188,11 @@ print(img.shape, img.max())</pre>
   <a href="research-5.html" class="btn btn-accent" id="rl-next">Next: Lab 5, Reports and LLMs &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104a" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104a"></script>
-<script src="../assets/js/rl-data.js?v=20261104a"></script>
-<script src="assets/knowledge-check.js?v=20261104a"></script>
-<script src="assets/interactives.js?v=20261104a"></script>
-<script src="assets/research-lab.js?v=20261104a"></script>
+<script src="../assets/js/progress.js?v=20261104b" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261104b"></script>
+<script src="../assets/js/rl-data.js?v=20261104b"></script>
+<script src="assets/knowledge-check.js?v=20261104b"></script>
+<script src="assets/interactives.js?v=20261104b"></script>
+<script src="assets/research-lab.js?v=20261104b"></script>
 </body>
 </html>

@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104a">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104a">
-<link rel="stylesheet" href="assets/m1.css?v=20261104a">
-<link rel="stylesheet" href="assets/m2.css?v=20261104a">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104a">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104a">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104a" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104b">
+<link rel="stylesheet" href="assets/lessons.css?v=20261104b">
+<link rel="stylesheet" href="assets/m1.css?v=20261104b">
+<link rel="stylesheet" href="assets/m2.css?v=20261104b">
+<link rel="stylesheet" href="assets/interactives.css?v=20261104b">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261104b">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261104b" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
@@ -67,7 +67,7 @@
 
   <section class="les-section" id="what">
     <h2>What a report is</h2>
-    <p>A radiology report is the radiologist's written <strong>interpretation</strong> of the images: what they saw, what they think it means, and what should happen next. It is a permanent part of the medical record and a legal document. It is also, as you saw in Lesson 2.2, the source of the labels for many AI datasets.</p>
+    <p>A radiology report is the radiologist's written <strong>interpretation</strong> of the images: what they saw, what they think it means, and what should happen next. It is a permanent part of the medical record and a legal document. It is also, as you saw in Lesson 2.3, the source of the labels for many AI datasets.</p>
     <p>Most reports follow the same structure, whether the scan is a chest X-ray or a brain MRI. Many hospitals use <strong>structured report</strong> templates, with fixed headings and sometimes fixed choices, which make reports easier to read and easier for computers to process.</p>
   </section>
 
@@ -110,7 +110,7 @@
           <div class="mi-shortcut-info" data-key="indication" hidden>
             <span class="mi-shortcut-tag mi-shortcut-tag--real">Clinical history</span>
             <h4>The question being asked</h4>
-            <p>Usually copied from the order (Lesson 2.3). It tells you what the radiologist knew when they read the scan. If the history was vague, the read may have been less focused. "Pleuritic" means the pain is worse on breathing in.</p>
+            <p>Usually copied from the order (Lesson 2.2). It tells you what the radiologist knew when they read the scan. If the history was vague, the read may have been less focused. "Pleuritic" means the pain is worse on breathing in.</p>
           </div>
           <div class="mi-shortcut-info" data-key="comparison" hidden>
             <span class="mi-shortcut-tag mi-shortcut-tag--real">Comparison</span>
@@ -135,7 +135,7 @@
           <div class="mi-shortcut-info" data-key="recommendation" hidden>
             <span class="mi-shortcut-tag mi-shortcut-tag--real">Recommendation</span>
             <h4>What should happen next</h4>
-            <p>Suggested next steps, often based on published guidelines. The <strong>Fleischner Society</strong> guidelines say how to follow lung nodules found by chance, based on their size, type and the patient's risk. This line is the one most easily lost after discharge (step 9 in Lesson 2.3).</p>
+            <p>Suggested next steps, often based on published guidelines. The <strong>Fleischner Society</strong> guidelines say how to follow lung nodules found by chance, based on their size, type and the patient's risk. This line is the one most easily lost after discharge (step 9 in Lesson 2.2).</p>
           </div>
           <div class="mi-shortcut-info" data-key="communication" hidden>
             <span class="mi-shortcut-tag mi-shortcut-tag--real">Communication</span>
@@ -188,7 +188,7 @@
         <p class="ix-feedback"></p>
       </div>
     </div>
-    <p>Hedged phrases are hard for AI too. When a program turns reports into training labels (Lesson 2.2), "cannot be excluded" must become yes, no or "uncertain," and different choices make different models.</p>
+    <p>Hedged phrases are hard for AI too. When a program turns reports into training labels (Lesson 2.3), "cannot be excluded" must become yes, no or "uncertain," and different choices make different models.</p>
   </section>
 
   <section class="les-section" id="categories">
@@ -238,7 +238,7 @@
     <h2>Reports and AI</h2>
     <p>Reports connect to AI in three ways you have now seen:</p>
     <ul>
-      <li><strong>As training labels:</strong> many datasets mine labels from report text (Lesson 2.2), so unclear or hedged reports make noisy labels.</li>
+      <li><strong>As training labels:</strong> many datasets mine labels from report text (Lesson 2.3), so unclear or hedged reports make noisy labels.</li>
       <li><strong>As AI output:</strong> some tools now draft parts of the report from the images, or rewrite reports in plain language for patients. The radiologist who signs still owns every word.</li>
       <li><strong>As a tracking source:</strong> software can read the recommendation section to catch follow-ups that would otherwise be lost, like Mr. Diaz's nodule.</li>
     </ul>
@@ -298,16 +298,16 @@
 </div>
 
 <div class="les-nav">
-  <a href="m2-3.html" class="btn btn-outline" id="les-prev">&larr; The Journey of a Scan</a>
+  <a href="m2-3.html" class="btn btn-outline" id="les-prev">&larr; Images as Data</a>
   <a href="m3-1.html" class="btn btn-accent" id="les-next">Next: Module 3 &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104a" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104a"></script>
-<script src="assets/lessons.js?v=20261104a"></script>
-<script src="assets/knowledge-check.js?v=20261104a"></script>
-<script src="assets/interactives.js?v=20261104a"></script>
-<script src="assets/m1-interactives.js?v=20261104a"></script>
-<script src="assets/m2-interactives.js?v=20261104a"></script>
+<script src="../assets/js/progress.js?v=20261104b" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261104b"></script>
+<script src="assets/lessons.js?v=20261104b"></script>
+<script src="assets/knowledge-check.js?v=20261104b"></script>
+<script src="assets/interactives.js?v=20261104b"></script>
+<script src="assets/m1-interactives.js?v=20261104b"></script>
+<script src="assets/m2-interactives.js?v=20261104b"></script>
 </body>
 </html>

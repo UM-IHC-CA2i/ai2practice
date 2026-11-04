@@ -24,9 +24,9 @@
   </script>
 <!-- /AI2PRACTICE SEO -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261104a" />
-  <link rel="stylesheet" href="assets/css/theme.css?v=20261104a" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20261104a" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261104b" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261104b" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20261104b" />
   <script>(function(r){r.classList.add('js');try{if(sessionStorage.getItem('ai2practice_home_seen'))r.classList.add('seen');sessionStorage.setItem('ai2practice_home_seen','1');}catch(e){}})(document.documentElement);</script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
@@ -263,7 +263,7 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js?v=20261104a"></script>
+<script src="assets/js/site.js?v=20261104b"></script>
 <script>
 (function(){
   var root=document.documentElement; root.classList.add('js');
@@ -273,7 +273,7 @@
 
   var MODS=[
     {k:'m1',n:1,title:'Fundamentals of AI',q:'What is AI, and how does it work clinically?',href:'modules/ai-fundamentals.html',img:'lessons/images/m1/nested-ai.png',alt:'Nested circles: AI, machine learning, deep learning',items:['AI Around You','How Models Learn','Data & Labels','Measuring Performance','Limits & Failures']},
-    {k:'m2',n:2,title:'Radiology Basics',q:'What is radiology, and how does an image become data?',href:'modules/informatics.html',img:'lessons/images/m2/planes.png',alt:'The three imaging planes',items:['What Radiology Is','Images as Data','The Journey of a Scan','Reading a Radiology Report']},
+    {k:'m2',n:2,title:'Radiology Basics',q:'What is radiology, and how does an image become data?',href:'modules/informatics.html',img:'lessons/images/m2/planes.png',alt:'The three imaging planes',items:['What Radiology Is','The Journey of a Scan','Images as Data','Reading a Radiology Report']},
     {k:'m3',n:3,title:'AI in Clinical Practice',q:'How does AI affect clinical practice?',href:'modules/clinical-practice.html',img:'lessons/images/m3/role-shift.png',alt:'How the radiologist role shifts with AI',items:['AI in Radiology & Medicine','Does It Work, and Is It Worth It?','Thinking With AI','Responsibility & Patients','The Future of AI in Radiology']}
   ];
   function lessonHref(m,i){return 'lessons/'+m.k+'-'+(i+1)+'.html';}
@@ -392,7 +392,7 @@
       q:{t:'A model trained at one hospital does worse at another. The likeliest cause?',o:['The new images differ from its training data','The model forgot what it learned','The second hospital has fewer images'],a:0,x:'Dataset shift: scanners, patients and protocols change, and the model never saw them. Lesson 1.5.'},
       p:{f:3,d:'Last opened 2 days ago'}},
     m2:{fig:'pixels',scene:'ct',out:'Describe how a scan is made, why an image is a grid of numbers and how to read a report.',
-      q:{t:'On a CT image, what does each pixel’s number describe?',o:['How much the tissue absorbs X-rays','The colour of the tissue','How deep the tissue lies'],a:0,x:'Hounsfield units: air is about −1000, water 0, bone several hundred. Lesson 2.2.'},
+      q:{t:'On a CT image, what does each pixel’s number describe?',o:['How much the tissue absorbs X-rays','The colour of the tissue','How deep the tissue lies'],a:0,x:'Hounsfield units: air is about −1000, water 0, bone several hundred. Lesson 2.3.'},
       p:{f:0,d:'Opens after Module 1, or skip ahead'}},
     m3:{wip:'Coming soon',fig:'screen',scene:'second',out:'Judge whether an AI tool works, use it without over-trusting it and talk about it with patients.',
       q:{t:'An AI tool calls a chest film normal, but you see a subtle opacity. What do you do?',o:['Report what you see and note the disagreement','Trust the tool; it is FDA-cleared','Leave the finding out'],a:0,x:'The tool supports the reader; the radiologist signs the report. Lesson 3.4.'},
@@ -509,7 +509,7 @@
 })();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module" src="assets/js/figures3d.js?v=20261104a"></script>
+<script type="module" src="assets/js/figures3d.js?v=20261104b"></script>
 <script>
   // figures3d.js loads after the panel's first fill, so mount whatever 3D slot is already there
   document.addEventListener('ai2practice:figures3d-ready',function(){ document.querySelectorAll('#panel [data-scene],.trow-fig[data-scene]').forEach(window.AI2Figures3D.mount); });
