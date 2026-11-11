@@ -7,25 +7,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104d">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104d">
-<link rel="stylesheet" href="assets/m1.css?v=20261104d">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104d" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261111c">
+<link rel="stylesheet" href="assets/lessons.css?v=20261111c">
+<link rel="stylesheet" href="assets/m1.css?v=20261111c">
+<link rel="stylesheet" href="assets/interactives.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261111c" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <!-- AI2PRACTICE SEO -->
-  <meta name="description" content="PTX-Detect is trained and tested. Its makers say it is &quot;94% sensitive.&quot; What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of 100 patients. About 15-20 minutes." />
+  <meta name="description" content="PTX-Detect is trained and tested. Its makers say it is &quot;94% sensitive.&quot; What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of patients.." />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/m1-4.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI2Practice" />
   <meta property="og:title" content="Module 1 · Measuring Performance — AI2Practice" />
-  <meta property="og:description" content="PTX-Detect is trained and tested. Its makers say it is &quot;94% sensitive.&quot; What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of 100 patients. About 15-20 minutes." />
+  <meta property="og:description" content="PTX-Detect is trained and tested. Its makers say it is &quot;94% sensitive.&quot; What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of patients.." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/m1-4.html" />
   <meta name="twitter:card" content="summary" />
 <!-- /AI2PRACTICE SEO -->
@@ -53,13 +53,15 @@
 
   <section class="les-section les-intro" id="overview">
     <h2>Overview</h2>
-    <p style="color: var(--gray-900);">PTX-Detect is trained and tested. Its makers say it is "94% sensitive." What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of 100 patients. About 15-20 minutes.</p>
+    <p style="color: var(--gray-900);">PTX-Detect is trained and tested. Its makers say it is "94% sensitive." What does that mean, and is it good? This lesson gives you the basic words for describing how well any test performs, AI or not. You will use the same ideas for lab tests and physical exam signs throughout medical school. No formulas to memorize; everything is shown with pictures of patients..</p>
     <p><strong>By the end of this lesson you can:</strong></p>
     <ul>
       <li>Fill in a 2&times;2 table: true and false positives, true and false negatives.</li>
       <li>Explain sensitivity and specificity in plain words.</li>
       <li>Show why "99% accurate" can be useless for a rare disease.</li>
       <li>Explain how moving the threshold trades missed cases for false alarms.</li>
+      <li>Explain why the same tool's alerts are less often right when a disease is rare.</li>
+      <li>Check a reported score: is it from the test set, and was the test set big enough?</li>
     </ul>
   </section>
 
@@ -141,16 +143,9 @@
     <p>That is why you should look for sensitivity and specificity, not just accuracy, whenever you read about an AI tool. A headline like "AI is 99% accurate" tells you very little on its own.</p>
   </section>
 
-  <section class="les-section" id="ppv">
-    <h2>When it flags a film, how often is it right?</h2>
-    <p>Sensitivity and specificity describe the tool. At the bedside, you have a different question: <strong>PTX-Detect just flagged this film. How likely is it that there really is a pneumothorax?</strong> That is the <strong>positive predictive value (PPV)</strong>: of all the alerts, the share that are real.</p>
-    <p>PPV depends heavily on how common the disease is. If pneumothorax is rare in the patients being scanned, even a good tool produces many more false alarms than true finds, simply because there are so many more healthy patients to be wrong about. You will see this in the slider below: count the pink circles against the teal ones.</p>
-    <p>Lesson 3.2 comes back to this: the same tool can be useful in an emergency department and swamp a screening clinic with false alarms.</p>
-  </section>
-
   <section class="les-section" id="threshold">
     <h2>Try it: the threshold dial</h2>
-    <p>PTX-Detect does not really answer yes or no. It gives each film a score from 0 to 1. Someone has to choose a <strong>threshold</strong>: films scoring above it get flagged. Move the dial and watch what happens to 100 made-up patients, 10 of whom have a pneumothorax.</p>
+    <p>PTX-Detect does not really answer yes or no. It gives each film a score from 0 to 1. Someone has to choose a <strong>threshold</strong>: films scoring above it get flagged. Move the dial and watch what happens to 100 made-up patients, 10 of whom have a pneumothorax. The 2&times;2 table fills in as you go.</p>
 
     <div class="mi-box">
       <div class="mi-box-title">Interactive</div>
@@ -163,6 +158,47 @@
       <li><strong>Confirming</strong> (acting on the flag with little further checking): false alarms are costly, so a <strong>higher</strong> threshold makes sense.</li>
     </ul>
     <p>When a company reports one sensitivity and one specificity, they were measured at one particular threshold. A hospital can often change it.</p>
+  </section>
+
+  <section class="les-section" id="ppv">
+    <h2>When it flags a film, how often is it right?</h2>
+    <p>Sensitivity and specificity describe the tool. At the bedside, you have a different question: <strong>PTX-Detect just flagged this film. How likely is it that there really is a pneumothorax?</strong> That is the <strong>positive predictive value (PPV)</strong>: of all the alerts, the share that are real. Its partner, the <strong>negative predictive value (NPV)</strong>, asks the opposite: of the films it cleared, the share that really are clear.</p>
+    <p>Sensitivity and specificity stay the same wherever the tool is used. PPV and NPV do not: they depend on how common the disease is in the patients being scanned, called the <strong>prevalence</strong>.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: same tool, two places</div>
+      <p class="mi-box-intro">PTX-Detect is 90% sensitive and 90% specific in both places. Each dot is one of 1,000 patients.</p>
+      <div class="mi-prev"></div>
+    </div>
+
+    <p>In the screening clinic there are so many healthy patients that even a 10% false alarm rate buries the real cases. Lesson 3.2 comes back to this when a hospital chooses where to use a tool.</p>
+  </section>
+
+  <section class="les-section" id="trust">
+    <h2>Can you trust the score?</h2>
+    <p>Every number so far came from a test set. Two quick checks tell you whether a reported score means much. (Lesson 1.5 asks a different question: will the score hold up at a new hospital?)</p>
+
+    <h3>Check 1: is it the test score?</h3>
+    <p>In Lesson 1.3 you saw that a model scores higher on films it trained on. If it keeps training too long, it starts to memorize those exact films, including their quirks, instead of learning what a pneumothorax looks like. This is called <strong>overfitting</strong>. Its training score keeps climbing while its test score stalls or falls.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: train too long</div>
+      <p class="mi-box-intro">Drag the slider to keep training PTX-Detect. Watch the gap between the two lines.</p>
+      <div class="mi-overfit"></div>
+    </div>
+
+    <p>So when you read about a tool, find the score on the <strong>test set</strong>. A score on the training data says little, and a big gap between the two is a warning sign.</p>
+
+    <h3>Check 2: how many patients was it tested on?</h3>
+    <p>A score from a small test set is shaky. If a tool catches 9 of 10 pneumothoraces, its sensitivity is 90%, but with only 10 patients the true value could easily be much lower or higher. Studies show this with a <strong>95% confidence interval</strong>: a range that very likely contains the tool's true value. Narrow range, more trust.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive: test set size</div>
+      <p class="mi-box-intro">Each test catches 90% of the pneumothoraces. Pick how many patients with a pneumothorax were in the test set.</p>
+      <div class="mi-ci"></div>
+    </div>
+
+    <p>When a company says "90% sensitive", ask: on the test set, with how many sick patients, and what is the range?</p>
   </section>
 
   <section class="les-section" id="check">
@@ -200,8 +236,10 @@
       <li>Every answer falls in one of four boxes: true positive, false positive, false negative, true negative.</li>
       <li>Sensitivity: of the sick, how many were caught. Specificity: of the healthy, how many were cleared.</li>
       <li>Accuracy can look excellent for a useless tool when the disease is rare.</li>
-      <li>PPV (of the alerts, how many are real) falls when the disease is rare.</li>
+      <li>PPV (of the alerts, how many are real) falls when the disease is rare; NPV (of the cleared, how many are clear) rises.</li>
       <li>The threshold trades missed cases for false alarms. Lower suits screening; higher suits confirming.</li>
+      <li>Trust test-set scores, not training scores. A big gap between them means overfitting.</li>
+      <li>A small test set gives a wide confidence interval: the true score could be far from the reported one.</li>
     </ul>
   </section>
 
@@ -218,15 +256,15 @@
 </div>
 
 <div class="les-nav">
-  <a href="m1-3.html" class="btn btn-outline" id="les-prev">&larr; Data &amp; Labels</a>
+  <a href="m1-3.html" class="btn btn-outline" id="les-prev">&larr; How Models Learn</a>
   <a href="m1-5.html" class="btn btn-accent" id="les-next">Next: Limits &amp; Failures &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104d" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104d"></script>
-<script src="assets/lessons.js?v=20261104d"></script>
-<script src="assets/knowledge-check.js?v=20261104d"></script>
-<script src="assets/interactives.js?v=20261104d"></script>
-<script src="assets/m1-interactives.js?v=20261104d"></script>
+<script src="../assets/js/progress.js?v=20261111c" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261111c"></script>
+<script src="assets/lessons.js?v=20261111c"></script>
+<script src="assets/knowledge-check.js?v=20261111c"></script>
+<script src="assets/interactives.js?v=20261111c"></script>
+<script src="assets/m1-interactives.js?v=20261111c"></script>
 </body>
 </html>

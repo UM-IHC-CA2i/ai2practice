@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104d">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104d">
-<link rel="stylesheet" href="assets/m1.css?v=20261104d">
-<link rel="stylesheet" href="assets/m2.css?v=20261104d">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104d" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261111c">
+<link rel="stylesheet" href="assets/lessons.css?v=20261111c">
+<link rel="stylesheet" href="assets/m1.css?v=20261111c">
+<link rel="stylesheet" href="assets/m2.css?v=20261111c">
+<link rel="stylesheet" href="assets/interactives.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261111c" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
@@ -54,7 +54,7 @@
 
   <section class="les-section les-intro" id="overview">
     <h2>Overview</h2>
-    <p style="color: var(--gray-900);">Module 1 showed how AI learns from examples. Most medical AI tools so far have been built for radiology, so this module covers radiology itself: what it is, how images are made and stored, how a scan moves through the hospital, and how to read the report at the end. You do not need any radiology background. About 15-20 minutes.</p>
+    <p style="color: var(--gray-900);">Module 1 showed how AI learns from examples. Most medical AI tools so far have been built for radiology, so this module covers radiology itself: what it is, how images are made and stored, how a scan moves through the hospital, and how to read the report at the end. You do not need any radiology background.</p>
     <p>This lesson tours all five main imaging tools, so you know what each is for. After that, the module goes deeper into <strong>X-ray and CT</strong>, the tools behind Mr. Diaz's workup and behind many AI tools. MRI, ultrasound and nuclear medicine work in very different ways, so when a rule only holds for X-ray and CT, we say so. New terms are collected in the <a href="../pages/glossary.html" target="_blank" rel="noopener">Module 2 glossary</a> (opens in a new tab).</p>
     <p><strong>By the end of this lesson you can:</strong></p>
     <ul>
@@ -292,7 +292,27 @@
     </div>
 
     <h3>Bright and dark mean different things on other modalities</h3>
-    <p>The density rule does not carry over to the other tools. Each modality measures something different, so bright and dark are not just described with different words: they stand for different properties of the tissue. Fluid is a good example. It is mid-gray on CT, can be dark or bright on MRI depending on the sequence, and is black on ultrasound. You will see these words in reports (Lesson 2.4):</p>
+    <p>The density rule does not carry over to the other tools. Each modality measures something different, so bright and dark are not just described with different words: they stand for different properties of the tissue. Fluid is a good example. It is mid-gray on CT, can be dark or bright on MRI depending on the sequence, and is black on ultrasound.</p>
+    <p>MRI shows this best. It measures the radio signal from hydrogen, and the scanner can be set up in different ways, each called a <strong>sequence</strong>. The same tissue can be bright on one sequence and dark on another. The two you will meet first are <strong>T1</strong>, where fat is bright and fluid is dark, and <strong>T2</strong>, where fluid is bright.</p>
+
+    <figure class="les-figure m2-tissue">
+      <div class="m2-table-wrap">
+      <table>
+        <thead><tr><th scope="col">Tissue</th><th scope="col">CT <small>and X-ray</small></th><th scope="col">MRI T1</th><th scope="col">MRI T2</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Air<small>lungs, bowel gas</small></th><td><span class="m2-sw" style="background:#000">-1000</span></td><td><span class="m2-sw" style="background:#000">black</span></td><td><span class="m2-sw" style="background:#000">black</span></td></tr>
+          <tr><th scope="row">Fat<small>under the skin</small></th><td><span class="m2-sw" style="background:#3c3c3c">about -100</span></td><td><span class="m2-sw lt" style="background:#ececec">bright</span></td><td><span class="m2-sw lt" style="background:#c8c8c8">bright</span></td></tr>
+          <tr><th scope="row">Fluid<small>CSF, urine, cysts</small></th><td><span class="m2-sw" style="background:#5f5f5f">0 to +20</span></td><td><span class="m2-sw" style="background:#262626">dark</span></td><td><span class="m2-sw lt" style="background:#f6f6f6">very bright</span></td></tr>
+          <tr><th scope="row">Soft tissue<small>muscle, liver, brain</small></th><td><span class="m2-sw" style="background:#7d7d7d">+30 to +60</span></td><td><span class="m2-sw" style="background:#6e6e6e">gray</span></td><td><span class="m2-sw" style="background:#545454">gray</span></td></tr>
+          <tr><th scope="row">Bone<small>outer layer (cortex)</small></th><td><span class="m2-sw lt" style="background:#f2f2f2">+1000</span></td><td><span class="m2-sw" style="background:#0e0e0e">black</span></td><td><span class="m2-sw" style="background:#0e0e0e">black</span></td></tr>
+          <tr><th scope="row">Metal<small>clips, implants</small></th><td><span class="m2-sw lt" style="background:#fff">brightest, streaks</span></td><td><span class="m2-sw" style="background:#000">black, no signal</span></td><td><span class="m2-sw" style="background:#000">black, no signal</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <figcaption>Figure 2. The same tissues on CT and on two MRI sequences. On CT, the numbers are CT numbers in Hounsfield units (Lesson 2.3), and denser means whiter. On MRI, brightness depends on the sequence. Gray levels are approximate.</figcaption>
+    </figure>
+
+    <p>Each modality also has its own words for bright and dark. You will see them in reports (Lesson 2.4):</p>
     <div class="m2-table-wrap">
       <table class="m2-table">
         <thead><tr><th>Modality</th><th>What brightness shows</th><th>Brighter</th><th>Darker</th></tr></thead>
@@ -312,11 +332,73 @@
     <p>CT and MRI produce stacks of slices. A slice can be cut in three directions, called <strong>planes</strong>:</p>
 
     <figure class="les-figure">
-      <img loading="lazy" decoding="async" src="images/m2/planes.png" alt="Three simple figures: axial plane cuts across the body like bread slices; coronal plane cuts from front to back; sagittal plane cuts from left to right." width="3360" height="1440">
-      <figcaption>Figure 2. The three planes. Axial is the default for CT; the computer can rebuild the other two from the same data.</figcaption>
+      <img loading="lazy" decoding="async" src="images/m2/planes-3d.png" alt="Three panels, each showing a 3D figure of a standing person with a colored plane through the body and, beside it, the outline of the slice that plane makes. Axial: a horizontal plane through the chest gives an oval slice of the chest and arms, with the front at the top and the patient's right on the left. Coronal: a vertical plane through the body from side to side gives a front-view outline of the whole body. Sagittal: a vertical plane from front to back gives a side-view outline, with the front on the left." width="3360" height="1348">
+      <figcaption>Figure 3. The three planes, and the slice each one makes. Axial is the default for CT; the computer can rebuild the other two from the same data.</figcaption>
     </figure>
 
     <p>One rule surprises almost everyone. Images are shown as if you are <strong>facing the patient</strong>. On an axial slice you are looking up from the patient's feet. Either way, <strong>the patient's right side is on the left of your screen</strong>, and their left is on your right. A marker letter ("R" or "L") on the image confirms it. Mixing up sides is a classic and dangerous error.</p>
+
+    <p>A CT or MRI scan is not one picture but a stack of slices, often hundreds of them. Radiologists read it by <strong>scrolling</strong>: moving up and down through the stack with the mouse wheel and watching each structure appear, grow, shrink and disappear. Scrolling turns a pile of flat pictures into a three-dimensional picture of the body. Below is a real head CT from a healthy adult, 34 axial slices from the base of the skull to the top of the head.</p>
+
+    <div class="mi-box m2-sv">
+      <div class="mi-box-title">Interactive: scroll through a head CT</div>
+      <p class="mi-box-intro">Scroll with the mouse wheel over the image, drag up and down, or use the slider. With a keyboard, click the image and use the arrow keys. The drawings next to the image show where the slice cuts, with the patient lying on their back as they do in the scanner.</p>
+
+      <div class="m2-sv-wrap">
+        <div class="m2-sv-view" tabindex="0" role="slider" aria-label="Head CT slice" aria-valuemin="1" aria-valuemax="34" aria-valuenow="10">
+          <canvas width="448" height="448"></canvas>
+          <div class="m2-sv-ov m2-sv-tl">HEAD CT<br>No contrast</div>
+          <div class="m2-sv-ov m2-sv-tr">Axial<br><span class="m2-sv-n">10</span> / 34</div>
+          <div class="m2-sv-ov m2-sv-bl">Brain window</div>
+          <div class="m2-sv-side m2-sv-side--r">R</div><div class="m2-sv-side m2-sv-side--l">L</div>
+          <div class="m2-sv-hint"><span>Scroll or drag on the image</span></div>
+        </div>
+
+        <div class="m2-sv-aside" aria-hidden="true">
+          <figure>
+            <svg viewBox="0 0 240 96">
+              <rect x="4" y="84" width="212" height="5" rx="2" class="m2-sv-table"/>
+              <path class="m2-sv-body" d="M90 46 L104 38 Q112 34 122 35 L168 38 Q180 40 186 46 L200 50 L203 30 Q205 25 209 27 L211 31 L210 84 L90 84 Z"/>
+              <path class="m2-sv-head" d="M80 81 C44 88 18 74 19 52 C20 34 34 23 54 23 L64 23 L70 13 Q72 11 74 14 L77 22 Q81 23 81 26 Q86 29 86 34 L98 40 L98 82 Z"/>
+              <ellipse class="m2-sv-ear" cx="56" cy="56" rx="5" ry="7"/>
+              <ellipse class="m2-sv-plane" cx="72" cy="50" rx="4" ry="34"/>
+              <path class="m2-sv-eye" d="M224 42 q8 -7 14 0 q-6 7 -14 0 z"/>
+              <circle cx="231" cy="42" r="2" class="m2-sv-pupil"/>
+              <path class="m2-sv-arrow" d="M222 56 H200 m5 -4 l-5 4 l5 4"/>
+            </svg>
+            <figcaption>Side view. The patient lies on their back. Each slice cuts straight across the head.</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 160 124">
+              <rect x="10" y="112" width="140" height="6" rx="2" class="m2-sv-table"/>
+              <path class="m2-sv-body" d="M58 64 H102 L122 112 H38 Z"/>
+              <path class="m2-sv-face" d="M80 22 l-5 -7 q5 -4 10 0 z"/>
+              <circle class="m2-sv-skull" cx="80" cy="44" r="21"/>
+              <ellipse class="m2-sv-foot" cx="60" cy="92" rx="11" ry="20"/>
+              <ellipse class="m2-sv-foot" cx="100" cy="92" rx="11" ry="20"/>
+              <text x="60" y="96" class="m2-sv-lbl">R</text>
+              <text x="100" y="96" class="m2-sv-lbl">L</text>
+              <text x="80" y="10" class="m2-sv-sm">front (nose up)</text>
+            </svg>
+            <figcaption>Your view, from the feet, toes toward you. The slice in the blue circle is what the screen shows, so the patient's right (R) is on your left.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="m2-sv-ctrl">
+        <button class="mi-btn m2-sv-play" type="button">Play</button>
+        <input class="m2-sv-range" type="range" min="1" max="34" value="10" aria-label="Slice number">
+      </div>
+
+      <div class="m2-sv-task">
+        <div class="m2-sv-steps"><i></i><i></i><i></i></div>
+        <p class="m2-sv-q"></p>
+        <button class="mi-btn mi-btn--fill m2-sv-check" type="button">This is the slice</button>
+        <button class="mi-btn m2-sv-next" type="button" hidden>Next</button>
+        <p class="m2-sv-fb" aria-live="polite"></p>
+      </div>
+      <p class="m2-sv-credit">Image: Department of Radiology, Uppsala University Hospital, via Wikimedia Commons (Mikael H&auml;ggstr&ouml;m), CC0 public domain.</p>
+    </div>
     <p>For chest X-rays you will also hear <strong>PA</strong> and <strong>AP</strong>. PA (posterior to anterior) means the X-rays enter through the back and the patient stands facing the detector: the standard view. AP means the beam enters from the front, usually because the patient is lying in bed. AP films make the heart look larger, which matters when you compare them.</p>
   </section>
 
@@ -330,7 +412,7 @@
 
     <figure class="les-figure">
       <img loading="lazy" decoding="async" src="images/m2/dose-chart.png" alt="Bar chart of typical doses: coast-to-coast round-trip flight 0.03 mSv, chest X-ray 0.1 mSv, CT of the brain 1.6 mSv, one year of natural background 3 mSv, chest CT 6.1 mSv, ultrasound or MRI no ionizing radiation." width="2989" height="1171">
-      <figcaption>Figure 3. Typical adult doses, compared with natural background radiation. A chest X-ray is about 10 days of background; a chest CT is about 2 years.</figcaption>
+      <figcaption>Figure 4. Typical adult doses, compared with natural background radiation. A chest X-ray is about 10 days of background; a chest CT is about 2 years.</figcaption>
     </figure>
 
     <p>Radiology follows a principle called <strong>ALARA</strong>: "as low as reasonably achievable." In practice it means: only scan when the scan is appropriate, choose a test without radiation when it can answer the question, and use the lowest dose that still gives a good picture. Children and pregnant patients get extra care, because they are more sensitive to radiation. A pregnancy question is asked before most scans in people who could be pregnant.</p>
@@ -495,12 +577,12 @@
   <a href="m2-2.html" class="btn btn-accent" id="les-next">Next: The Journey of a Scan &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104d" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104d"></script>
-<script src="assets/lessons.js?v=20261104d"></script>
-<script src="assets/knowledge-check.js?v=20261104d"></script>
-<script src="assets/interactives.js?v=20261104d"></script>
-<script src="assets/m1-interactives.js?v=20261104d"></script>
-<script src="assets/m2-interactives.js?v=20261104d"></script>
+<script src="../assets/js/progress.js?v=20261111c" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261111c"></script>
+<script src="assets/lessons.js?v=20261111c"></script>
+<script src="assets/knowledge-check.js?v=20261111c"></script>
+<script src="assets/interactives.js?v=20261111c"></script>
+<script src="assets/m1-interactives.js?v=20261111c"></script>
+<script src="assets/m2-interactives.js?v=20261111c"></script>
 </body>
 </html>

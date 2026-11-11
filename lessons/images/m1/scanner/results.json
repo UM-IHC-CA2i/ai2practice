@@ -1,0 +1,54 @@
+[
+ {
+  "strength": 0,
+  "scores": {
+   "Fracture": 0.029,
+   "Pneumothorax": 0.111
+  },
+  "flagged": []
+ },
+ {
+  "strength": 0.25,
+  "scores": {
+   "Fracture": 0.055,
+   "Pneumothorax": 0.122
+  },
+  "flagged": []
+ },
+ {
+  "strength": 0.5,
+  "scores": {
+   "Fracture": 0.371,
+   "Pneumothorax": 0.46
+  },
+  "flagged": [
+   "Emphysema"
+  ]
+ },
+ {
+  "strength": 0.75,
+  "scores": {
+   "Fracture": 0.528,
+   "Pneumothorax": 0.51
+  },
+  "flagged": [
+   "Fracture",
+   "Pneumothorax",
+   "Enlarged Cardiomediastinum",
+   "Emphysema",
+   "Nodule"
+  ]
+ },
+ {
+  "strength": 1,
+  "scores": {
+   "Fracture": 0.53,
+   "Pneumothorax": 0.505
+  },
+  "flagged": [
+   "Fracture",
+   "Pneumothorax",
+   "Emphysema"
+  ]
+ }
+]

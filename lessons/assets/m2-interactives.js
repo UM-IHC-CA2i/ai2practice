@@ -5,6 +5,7 @@
   // step-through, tabbed explorer and the clickable report all come from there).
   // Drag-to-order now lives in interactives.js (.ix-order).
   // Each widget finds its own markup:
+  //   .m2-sv         head CT stack scroller with find-the-slice tasks (2.1)
   //   .m2-window     CT window explorer on a drawn chest CT slice (2.2)
   //   .m2-journey    system map that lights up with the active .mi-step (2.3)
   //   .m2-translate  write a plain-language version, then compare with a sample (2.4)
@@ -152,5 +153,87 @@
       hot.addEventListener('click', mark);
       hot.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') mark(); });
     });
+  });
+  // ── Head CT scroller ──
+  // 34 real axial slices (448 x 448 each) stacked in one image strip, skull base first.
+  all('.m2-sv').forEach(function(box) {
+    var N = 34, S = 448;
+    var view = box.querySelector('.m2-sv-view'), ctx = view.querySelector('canvas').getContext('2d');
+    var range = box.querySelector('.m2-sv-range'), nEl = box.querySelector('.m2-sv-n'), hint = box.querySelector('.m2-sv-hint');
+    var plane = box.querySelector('.m2-sv-plane'), play = box.querySelector('.m2-sv-play');
+    var img = new Image(), cur = 10, timer = null;
+    img.onload = draw;
+    img.src = 'images/m2/head-ct-axial.jpg';
+
+    function draw() {
+      if (img.complete && img.naturalWidth) ctx.drawImage(img, 0, (cur - 1) * S, S, S, 0, 0, S, S);
+      nEl.textContent = cur; range.value = cur; view.setAttribute('aria-valuenow', cur);
+      // Side view: slice 1 = skull base (x 76), slice 34 = top of the head (x 24)
+      plane.setAttribute('cx', 76 - (cur - 1) * (52 / (N - 1)));
+    }
+    function go(n) { n = Math.max(1, Math.min(N, n)); if (n !== cur) { cur = n; draw(); } hint.style.opacity = 0; }
+
+    // Wheel down moves toward the feet, as in most viewers
+    var acc = 0;
+    view.addEventListener('wheel', function(e) {
+      e.preventDefault(); acc += e.deltaY;
+      var step = e.deltaMode === 1 ? 1 : 100;
+      while (Math.abs(acc) >= step) { go(cur + (acc > 0 ? -1 : 1)); acc -= step * Math.sign(acc); }
+    }, { passive: false });
+
+    var dragY = null;
+    view.addEventListener('pointerdown', function(e) { dragY = e.clientY; view.setPointerCapture(e.pointerId); view.focus(); });
+    view.addEventListener('pointermove', function(e) {
+      if (dragY === null) return;
+      var d = e.clientY - dragY;
+      if (Math.abs(d) >= 10) { go(cur + (d > 0 ? -1 : 1) * Math.floor(Math.abs(d) / 10)); dragY = e.clientY; }
+    });
+    view.addEventListener('pointerup', function() { dragY = null; });
+    view.addEventListener('pointercancel', function() { dragY = null; });
+    view.addEventListener('keydown', function(e) {
+      var m = { ArrowUp: 1, ArrowRight: 1, PageUp: 5, ArrowDown: -1, ArrowLeft: -1, PageDown: -5 };
+      if (e.key in m) { e.preventDefault(); go(cur + m[e.key]); }
+      else if (e.key === 'Home') { e.preventDefault(); go(1); }
+      else if (e.key === 'End') { e.preventDefault(); go(N); }
+    });
+    range.addEventListener('input', function() { go(+range.value); });
+
+    function stop() { clearInterval(timer); timer = null; play.textContent = 'Play'; }
+    play.addEventListener('click', function() {
+      if (timer) { stop(); return; }
+      if (cur === N) go(1);
+      play.textContent = 'Pause';
+      timer = setInterval(function() { if (cur >= N) stop(); else go(cur + 1); }, 120);
+    });
+
+    // Find-the-slice tasks. Slice ranges checked by eye on the stack.
+    var tasks = [
+      { q: 'Find a slice that shows both eyeballs.', lo: 5, hi: 9,
+        why: 'The eyeballs (globes) sit in the eye sockets near the bottom of the stack, at about slices 5 to 9. They look like two gray circles at the front, surrounded by dark fat.' },
+      { q: 'Find the lateral ventricles: the dark, fluid-filled spaces in the middle of the brain.', lo: 14, hi: 20,
+        why: 'The lateral ventricles appear at about slices 14 to 20. They are dark because they hold cerebrospinal fluid (CSF), which is close to water and darker than the brain around it.' },
+      { q: 'Find the very top of the skull.', lo: 31, hi: 34,
+        why: 'The last few slices (about 31 to 34) catch only the dome of the skull: mostly white bone, with little or no brain left inside.' }
+    ];
+    var t = 0, qEl = box.querySelector('.m2-sv-q'), fb = box.querySelector('.m2-sv-fb');
+    var chk = box.querySelector('.m2-sv-check'), nxt = box.querySelector('.m2-sv-next'), steps = all('.m2-sv-steps i', box);
+    function showTask() {
+      qEl.textContent = (t + 1) + ' of ' + tasks.length + '. ' + tasks[t].q;
+      fb.textContent = ''; fb.className = 'm2-sv-fb'; chk.hidden = false; nxt.hidden = true;
+      steps.forEach(function(s, i) { s.className = i < t ? 'done' : i === t ? 'on' : ''; });
+    }
+    chk.addEventListener('click', function() {
+      var k = tasks[t], ok = cur >= k.lo && cur <= k.hi;
+      fb.className = 'm2-sv-fb ' + (ok ? 'ok' : 'no');
+      fb.textContent = (ok ? 'Yes, slice ' + cur + '. ' : 'Not quite: you are on slice ' + cur + '. ') + k.why;
+      if (ok) {
+        chk.hidden = true; steps[t].className = 'done';
+        if (t < tasks.length - 1) nxt.hidden = false;
+        else fb.textContent += ' All three found.';
+      }
+    });
+    nxt.addEventListener('click', function() { t++; showTask(); });
+    showTask();
+    draw();
   });
 })();

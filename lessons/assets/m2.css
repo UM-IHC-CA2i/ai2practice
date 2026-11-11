@@ -227,3 +227,65 @@
   .m2-report .mi-shortcut-panel { position: static; }
   .m2-table td:first-child { white-space: normal; }
 }
+
+/* ── Head CT scroller (2.1) ── */
+.m2-sv-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 18px; align-items: start; }
+.m2-sv-view { position: relative; background: #0b0f14; border-radius: var(--radius); overflow: hidden; aspect-ratio: 1 / 1; max-width: 448px; width: 100%; justify-self: center; cursor: ns-resize; touch-action: none; }
+.m2-sv-view:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.m2-sv-view canvas { width: 100%; height: 100%; display: block; }
+.m2-sv-ov { position: absolute; color: #d1d5db; font: 500 12px/1.35 "IBM Plex Mono", monospace; pointer-events: none; text-shadow: 0 1px 2px #000; }
+.m2-sv-tl { top: 10px; left: 12px; }
+.m2-sv-tr { top: 10px; right: 12px; text-align: right; }
+.m2-sv-bl { bottom: 10px; left: 12px; }
+.m2-sv-side { position: absolute; top: 50%; transform: translateY(-50%); color: #facc15; font: 600 15px "IBM Plex Mono", monospace; pointer-events: none; }
+.m2-sv-side--r { left: 10px; }
+.m2-sv-side--l { right: 10px; }
+.m2-sv-hint { position: absolute; inset: auto 0 40px 0; text-align: center; color: #fff; font-size: 13px; pointer-events: none; transition: opacity .4s; }
+.m2-sv-hint span { background: rgba(0,0,0,.6); padding: 5px 10px; border-radius: 6px; }
+.m2-sv-aside { display: flex; flex-direction: column; gap: 16px; }
+.m2-sv-aside figure { margin: 0; }
+.m2-sv-aside svg { width: 100%; height: auto; display: block; }
+.m2-sv-aside figcaption { font-size: 0.8rem; line-height: 1.45; color: var(--gray-600); margin-top: 4px; }
+.m2-sv-table { fill: var(--gray-300); }
+.m2-sv-body { fill: var(--gray-100); stroke: var(--gray-300); stroke-width: 1.2; stroke-linejoin: round; }
+.m2-sv-head, .m2-sv-skull { fill: #fff; stroke: var(--gray-400, #9ca3af); stroke-width: 1.5; }
+.m2-sv-skull { stroke: var(--accent); stroke-width: 2.5; }
+.m2-sv-ear { fill: none; stroke: var(--gray-400, #9ca3af); stroke-width: 1.2; }
+.m2-sv-face { fill: #fff; stroke: var(--gray-400, #9ca3af); stroke-width: 1.5; stroke-linejoin: round; }
+.m2-sv-foot { fill: #fff; stroke: var(--gray-400, #9ca3af); stroke-width: 1.5; }
+.m2-sv-plane { fill: rgba(59,130,208,.15); stroke: var(--accent); stroke-width: 2.5; }
+.m2-sv-eye { fill: #fff; stroke: var(--gray-700); stroke-width: 1.3; }
+.m2-sv-pupil { fill: var(--gray-700); }
+.m2-sv-arrow { fill: none; stroke: var(--gray-600); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.m2-sv-lbl { font: 700 13px "IBM Plex Mono", monospace; fill: var(--gray-700); text-anchor: middle; }
+.m2-sv-sm { font: 500 9.5px "IBM Plex Sans", sans-serif; fill: var(--gray-600); text-anchor: middle; }
+.m2-sv-ctrl { display: flex; align-items: center; gap: 12px; margin-top: 14px; max-width: 448px; }
+.m2-sv-range { flex: 1; accent-color: var(--accent); }
+.m2-sv-task { margin-top: 18px; border-top: 1px solid var(--gray-200); padding-top: 14px; }
+.m2-sv-steps { display: flex; gap: 6px; margin-bottom: 10px; }
+.m2-sv-steps i { width: 26px; height: 5px; border-radius: 3px; background: var(--gray-200); }
+.m2-sv-steps i.on { background: var(--accent); }
+.m2-sv-steps i.done { background: #166534; }
+.m2-sv-q { font-weight: 600; color: var(--gray-900); margin: 0 0 10px; }
+.m2-sv-task .mi-btn + .mi-btn { margin-left: 6px; }
+.m2-sv-fb { margin: 10px 0 0; font-size: 0.93rem; min-height: 1.4em; }
+.m2-sv-fb.ok { color: #166534; }
+.m2-sv-fb.no { color: #a8492c; }
+.m2-sv-credit { font-size: 0.78rem !important; color: var(--gray-500, #6b7280); margin: 14px 0 0; }
+
+/* ── Same tissue on CT and MRI (2.1, Figure 2) ── */
+.m2-tissue table { width: 100%; min-width: 520px; border-collapse: separate; border-spacing: 8px 6px; font-size: 0.9rem; }
+.m2-tissue th, .m2-tissue td { background: none; border: 0; text-transform: none; letter-spacing: normal; }
+.m2-tissue thead th { text-align: left; font-weight: 600; color: var(--gray-700); padding: 0 2px 2px; font-size: 0.85rem; }
+.m2-tissue thead th small { font-weight: 400; color: var(--gray-500, #6b7280); }
+.m2-tissue tbody th { text-align: left; font-weight: 600; color: var(--gray-900); padding-right: 6px; width: 26%; }
+.m2-tissue tbody th small { display: block; font-weight: 400; color: var(--gray-600); font-size: 0.78rem; }
+.m2-tissue td { padding: 0; }
+.m2-sw { display: flex; align-items: center; height: 38px; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); color: #f3f4f6; font: 500 0.75rem "IBM Plex Mono", monospace; box-sizing: border-box; }
+.m2-sw.lt { color: #111827; }
+
+@media (max-width: 760px) {
+  .m2-sv-wrap { grid-template-columns: 1fr; }
+  .m2-sv-aside { flex-direction: row; }
+  .m2-sv-aside figure { flex: 1; min-width: 0; }
+}

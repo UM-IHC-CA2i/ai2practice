@@ -25,8 +25,8 @@
   ];
   var LESSONS = [
     { key:'m1-1', module:'m1', title:'AI Around You', published:true },
-    { key:'m1-2', module:'m1', title:'How Models Learn', published:true },
-    { key:'m1-3', module:'m1', title:'Data & Labels', published:true },
+    { key:'m1-2', module:'m1', title:'Data & Labels', published:true },
+    { key:'m1-3', module:'m1', title:'How Models Learn', published:true },
     { key:'m1-4', module:'m1', title:'Measuring Performance', published:true },
     { key:'m1-5', module:'m1', title:'Limits & Failures', published:true },
     { key:'m2-1', module:'m2', title:'What Radiology Is', published:true },

@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 1 &middot; Data &amp; Labels &mdash; AI2Practice</title>
+<title>Module 1 &middot; How Models Learn &mdash; AI2Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104d">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104d">
-<link rel="stylesheet" href="assets/m1.css?v=20261104d">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104d" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261111c">
+<link rel="stylesheet" href="assets/lessons.css?v=20261111c">
+<link rel="stylesheet" href="assets/m1.css?v=20261111c">
+<link rel="stylesheet" href="assets/interactives.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261111c" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <!-- AI2PRACTICE SEO -->
-  <meta name="description" content="The data radiology AI uses, where the &quot;right answers&quot; come from, and how data is split for testing." />
+  <meta name="description" content="From raw data to a trained model: clean the data, split it into training and test sets, choose how the model learns, train it, and see a CNN read an image." />
   <link rel="canonical" href="https://um-ihc-ca2i.github.io/ai2practice/lessons/m1-3.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI2Practice" />
-  <meta property="og:title" content="Module 1 · Data &amp; Labels — AI2Practice" />
-  <meta property="og:description" content="The data radiology AI uses, where the &quot;right answers&quot; come from, and how data is split for testing." />
+  <meta property="og:title" content="Module 1 · How Models Learn — AI2Practice" />
+  <meta property="og:description" content="From raw data to a trained model: clean the data, split it into training and test sets, choose how the model learns, train it, and see a CNN read an image." />
   <meta property="og:url" content="https://um-ihc-ca2i.github.io/ai2practice/lessons/m1-3.html" />
   <meta name="twitter:card" content="summary" />
 <!-- /AI2PRACTICE SEO -->
@@ -38,241 +38,293 @@
   <div class="les-topbar-track" id="les-track"></div>
 </div>
 
-<div class="les-hero" style="background: #17324D;">
+<div class="les-hero m1-col-hero" style="background: #17324D;">
   <div class="les-hero-inner">
     <div class="les-hero-num">1.3</div>
     <div>
-      <div class="les-hero-q">What does it learn from?</div>
-      <h1>Data &amp; Labels</h1>
-      <p>The data radiology AI uses, where the "right answers" come from, and how data is split for testing</p>
+      <div class="les-hero-q">How does it learn?</div>
+      <h1>How Models Learn</h1>
+      <p>Clean the data, split it, choose how it learns, train it, and see how imaging models read a picture</p>
     </div>
   </div>
 </div>
 
-<div class="les-content">
+<div class="les-content m1-col">
 
   <section class="les-section les-intro" id="overview">
     <h2>Overview</h2>
-    <p style="color: var(--gray-900);">A supervised model can only be as good as the examples and labels it learned from. This lesson looks at what goes into a model like PTX-Detect: the kinds of data, who decides the "right answer", and how developers keep some data aside to test the model honestly. About 15-20 minutes.</p>
+    <p style="color: var(--gray-900);">In Lesson 1.2 you saw what data is and where labels come from. This lesson follows the steps that turn that data into a working model. You will do each step yourself on handwritten digits, the classic first dataset in AI..</p>
+    <ol class="ml-flow" aria-label="Steps in this lesson">
+      <li><a href="#clean"><b>1</b>Clean the data</a></li>
+      <li><a href="#split"><b>2</b>Split it</a></li>
+      <li><a href="#three-ways"><b>3</b>Choose how it learns</a></li>
+      <li><a href="#train"><b>4</b>Train</a></li>
+      <li><a href="#cnn"><b>5</b>Read images</a></li>
+    </ol>
     <p><strong>By the end of this lesson you can:</strong></p>
     <ul>
-      <li>Name the four kinds of data radiology AI uses.</li>
-      <li>Explain what a label is, who makes it, and why labels can be wrong.</li>
-      <li>Explain why data is split into training, validation and test sets.</li>
-      <li>Recognize data leakage, such as the same patient in training and test.</li>
+      <li>Name common problems to clean out of a dataset before training.</li>
+      <li>Explain why a model is tested on data it never trained on, and why the split is made by patient.</li>
+      <li>Explain supervised, unsupervised and reinforcement learning in one line each.</li>
+      <li>Describe training as: guess, check the answer, nudge the knobs, repeat.</li>
+      <li>Describe how a CNN builds edges into shapes and parts.</li>
     </ul>
   </section>
 
-  <section class="les-section" id="data-types">
-    <h2>What radiology AI learns from</h2>
-    <p>Different kinds of data feed different kinds of models. Click through the four main types.</p>
+  <section class="les-section" id="clean">
+    <h2>Step 1: Clean the data</h2>
+    <p>Raw data is messy. Before training, someone checks it and removes examples that would teach the model the wrong thing. This is called <strong>data cleaning</strong>. A model cannot tell a good example from a bad one: it learns from all of them.</p>
+    <p>Cleaning also means making every example the same shape. These digits were all resized to 28 by 28 pixels and centered, much as X-rays are resized and adjusted before training.</p>
 
-    <div class="dt-explorer">
-      <div class="dt-tabs">
-        <button class="dt-tab active" data-panel="dt-images">Medical images</button>
-        <button class="dt-tab" data-panel="dt-reports">Reports &amp; text</button>
-        <button class="dt-tab" data-panel="dt-tabular">Structured data</button>
-        <button class="dt-tab" data-panel="dt-annotations">Annotations</button>
+    <div class="ml m1-wide" id="ml-clean">
+      <div class="controls">
+        <div class="grp">
+          <button class="ml-btn ml-primary" id="cl-check">Check</button>
+          <button class="ml-btn" id="cl-reset">Start over</button>
+        </div>
+        <div class="cl-look"><b style="color:var(--ink)">Find 7 problems:</b><span>wrong label</span><span>duplicate</span><span>too faint</span><span>cut off</span><span>not a digit</span></div>
       </div>
-
-      <div class="dt-panel active" id="dt-images">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--blue">1</div>
-          <div>
-            <h3 class="dt-panel-title">Medical images</h3>
-            <p class="dt-panel-subtitle">The main input for most radiology AI, including PTX-Detect</p>
-          </div>
-        </div>
-        <p class="dt-panel-desc">X-rays, CT, MRI, ultrasound and mammograms. To a computer, an image is a grid of numbers, one per pixel, giving its brightness. Hospital images are stored in a format called <strong>DICOM</strong>, which also carries extra information such as the scanner type and patient position (Lesson 2.3 covers DICOM in detail). Image models are usually convolutional neural networks (Lesson 1.2).</p>
-        <div class="dt-image-grid">
-          <div class="dt-image-slot"><b>Image needed: chest X-ray</b>Any normal frontal (PA) chest X-ray.</div>
-          <div class="dt-image-slot"><b>Image needed: CT slice</b>One axial chest or head CT image.</div>
-        </div>
-        <div class="dt-examples">
-          <h4>Examples</h4>
-          <ul>
-            <li>Chest X-ray tools for pneumothorax, nodules or line position</li>
-            <li>CT tools that flag a pulmonary embolism or brain bleed</li>
-            <li>Mammography tools that mark suspicious areas</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="dt-panel" id="dt-reports">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--teal">2</div>
-          <div>
-            <h3 class="dt-panel-title">Reports and clinical text</h3>
-            <p class="dt-panel-subtitle">Free text, handled by language models</p>
-          </div>
-        </div>
-        <p class="dt-panel-desc">Radiology reports, clinic notes and referral letters hold a lot of information in ordinary sentences. Language models (including LLMs) can pull findings out of reports, draft impressions or flag follow-up recommendations. Old reports are also a cheap source of labels for image models, as you will see below.</p>
-        <div class="dt-preview dt-preview--report">
-          <strong>FINDINGS:</strong><br>
-          Heart size is normal. Lungs are clear bilaterally.<br>
-          No pleural effusion or pneumothorax.<br>
-          No acute osseous abnormality.<br><br>
-          <strong>IMPRESSION:</strong><br>
-          No acute cardiopulmonary process.
-        </div>
-        <div class="dt-examples">
-          <h4>Examples</h4>
-          <ul>
-            <li>Drafting a report impression from the findings</li>
-            <li>Finding reports that recommend follow-up imaging</li>
-            <li>Ambient scribes that turn speech into notes</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="dt-panel" id="dt-tabular">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--amber">3</div>
-          <div>
-            <h3 class="dt-panel-title">Structured data</h3>
-            <p class="dt-panel-subtitle">Rows and columns from the health record</p>
-          </div>
-        </div>
-        <p class="dt-panel-desc">Age, sex, lab values, vital signs, diagnoses and past exams, stored as a table. Simpler machine learning models often use this kind of data, and it can be combined with images.</p>
-        <div class="dt-preview dt-preview--table">
-          <table>
-            <thead><tr><th>Variable</th><th>Value</th><th>Type</th></tr></thead>
-            <tbody>
-              <tr><td>Age</td><td>67</td><td>Number</td></tr>
-              <tr><td>Sex</td><td>Female</td><td>Category</td></tr>
-              <tr><td>Creatinine</td><td>1.4 mg/dL</td><td>Number</td></tr>
-              <tr><td>Prior CT in 90 days</td><td>Yes</td><td>Yes / no</td></tr>
-              <tr><td>Reason for exam</td><td>Rule out PE</td><td>Text</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="dt-examples">
-          <h4>Examples</h4>
-          <ul>
-            <li>Suggesting the right scan protocol from the reason for exam</li>
-            <li>Predicting which patients may miss their appointment</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="dt-panel" id="dt-annotations">
-        <div class="dt-panel-header">
-          <div class="dt-panel-icon dt-panel-icon--rose">4</div>
-          <div>
-            <h3 class="dt-panel-title">Annotations and labels</h3>
-            <p class="dt-panel-subtitle">The answer key that supervised models learn from</p>
-          </div>
-        </div>
-        <p class="dt-panel-desc">An annotation is the "right answer" attached to an example. It can be a single word for the whole image (pneumothorax: yes or no), a box drawn around a finding, or an exact outline of it (a segmentation). More detailed labels take longer to make and teach the model more.</p>
-        <div class="dt-image-grid">
-          <div class="dt-image-slot"><b>Image needed: box label</b>Chest X-ray with a box drawn around a nodule or pneumothorax.</div>
-          <div class="dt-image-slot"><b>Image needed: outline label</b>Chest X-ray or CT with the edge of a finding traced (a segmentation).</div>
-        </div>
-        <div class="dt-examples">
-          <h4>Examples</h4>
-          <ul>
-            <li>Whole-image labels: "pneumothorax present"</li>
-            <li>Boxes around lung nodules</li>
-            <li>Outlines of organs for radiation planning</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="les-section" id="labels">
-    <h2>Labels and "ground truth"</h2>
-    <p>For PTX-Detect, every training film needed a label: pneumothorax yes or no. The label is treated as the truth, so it is often called <strong>ground truth</strong>. But someone had to decide it, and there are several ways to do that:</p>
-
-    <figure class="les-figure">
-      <img loading="lazy" decoding="async" src="images/m1/label-sources.png" alt="Four sources of labels: expert read, consensus of several readers, labels mined from old reports, and a reference test such as CT or pathology, each with a trade-off." width="3360" height="1005">
-      <figcaption>Figure 1. Where labels come from. Each source trades accuracy against cost and speed.</figcaption>
-    </figure>
-
-    <p>Labels can be wrong for many reasons. Radiologists disagree with each other on subtle films. Reports are written for clinicians, not for computers, so software that mines them misreads phrases like "no definite pneumothorax" or "pneumothorax has resolved." And sometimes the true answer is not knowable from the image alone.</p>
-    <p>If 10% of the labels are wrong, the model learns those mistakes as if they were correct, and the test score is measured against a flawed answer key.</p>
-
-    <div class="mi-box">
-      <div class="mi-box-title">Interactive: label it yourself</div>
-      <p class="mi-box-intro">You are one of three readers labeling films for PTX-Detect. Read each short description and choose a label. Then see how the other two readers labeled it. There is no right answer here; the point is how often readers differ.</p>
-      <div class="mi-sort" data-choices="Pneumothorax|No pneumothorax|Can't tell">
-        <div class="mi-cards">
-          <div class="mi-card">
-            <div class="mi-card-text">Film A<small>Upright chest X-ray. A clear thin white line runs along the right upper chest with no lung markings beyond it.</small></div>
-            <div class="mi-card-why">Reader 2: pneumothorax. Reader 3: pneumothorax. An obvious case: readers agree, and the label is reliable.</div>
-          </div>
-          <div class="mi-card">
-            <div class="mi-card-text">Film B<small>Portable film of a patient lying flat. The left lower chest looks a little darker than the right, with a sharp heart border. No clear line.</small></div>
-            <div class="mi-card-why">Reader 2: pneumothorax (possible "deep sulcus sign," a clue on flat films). Reader 3: no pneumothorax. Subtle films split readers, so whichever label wins is uncertain.</div>
-          </div>
-          <div class="mi-card">
-            <div class="mi-card-text">Film C<small>A chest drain is in place. The lung looks fully expanded. The report says "small residual apical pneumothorax, unchanged."</small></div>
-            <div class="mi-card-why">Reader 2: pneumothorax (follows the report). Reader 3: no pneumothorax (cannot see it). Report mining would label it "yes." Is a tiny, treated pneumothorax what we want the model to learn? Lesson 1.5 returns to this.</div>
-          </div>
-        </div>
-        <p class="mi-score"></p>
-      </div>
-    </div>
-
-    <div class="img-needed-row">
-      <div class="img-needed">
-        <span class="img-needed-tag">Image needed</span>
-        <p>A normal frontal chest X-ray, to sit beside the activity.</p>
-      </div>
-      <div class="img-needed">
-        <span class="img-needed-tag">Image needed</span>
-        <p>A chest X-ray with a clear pneumothorax, ideally with the edge of the lung outlined by an expert (shows what a label looks like).</p>
-      </div>
+      <div class="cl-grid" id="cl-grid" aria-label="Training examples. Click one to mark it for removal."></div>
+      <p class="ml-muted" id="cl-sum" aria-live="polite" style="margin-top:12px">Loading the digits...</p>
+      <p class="cl-after" id="cl-after" hidden>In radiology the same problems turn up: a wrong label pulled from a report, the same study saved twice, an underexposed film, a cropped image, or a knee X-ray in a chest dataset.</p>
     </div>
   </section>
 
   <section class="les-section" id="split">
-    <h2>Training, validation and test sets</h2>
-    <p>From Lesson 1.2 you know a model must be checked on data it never trained on. So before training starts, developers split their labeled data into three parts:</p>
+    <h2>Step 2: Split the data</h2>
+    <p>Next the clean data is divided. Most of it becomes the <strong>training set</strong>: the examples the model learns from. A smaller part is locked away as the <strong>test set</strong> and used once, at the end, to see how the model does on examples it has never seen. That score predicts how it will do on new patients. Many teams also keep a third part, the <strong>validation set</strong>, to check progress while they build.</p>
+    <p>One rule matters a lot in medicine: split by <strong>patient</strong>, not by image, because one patient often has several images.</p>
 
-    <figure class="les-figure">
-      <img loading="lazy" decoding="async" src="images/m1/data-split.png" alt="A bar split into a training set of about 70%, a validation set of about 15% and a test set of about 15%, compared to practice questions, a mock exam and the real exam." width="3360" height="945">
-      <figcaption>Figure 2. The labeled data is split before training starts, and each patient goes into only one part.</figcaption>
-    </figure>
+    <div class="ml m1-wide" id="ml-split">
+      <div class="controls">
+        <div class="seg" role="group" aria-label="How to split" id="sp-mode">
+          <button data-mode="image" aria-pressed="true">Split by image</button>
+          <button data-mode="patient" aria-pressed="false">Split by patient</button>
+        </div>
+        <button class="ml-btn" id="sp-shuffle">Shuffle</button>
+        <span class="stat">Test images from patients seen in training<b id="sp-leaks">-</b></span>
+      </div>
+      <div class="sp-sets">
+        <div class="ml-card"><p class="ml-label">Training set</p><div class="sp-box" id="sp-train"></div></div>
+        <div class="ml-card"><p class="ml-label">Test set</p><div class="sp-box" id="sp-test"></div></div>
+      </div>
+      <p class="ml-muted" style="margin-top:8px">Each square is one X-ray: the letter is the patient, the number is the image.</p>
+      <p class="sp-msg" id="sp-msg" aria-live="polite"></p>
+    </div>
+    <p>The digit network in Step 4 follows the same idea: it trains on 4,000 digits and is tested on 500 it never trains on.</p>
+  </section>
 
-    <ul>
-      <li><strong>Training set:</strong> the model learns from these, through the training loop.</li>
-      <li><strong>Validation set:</strong> used during development to compare versions and decide when to stop training (the low point in the overfitting figure of Lesson 1.2).</li>
-      <li><strong>Test set:</strong> kept locked away and used once, at the end, to report how good the model is. If developers keep peeking at it and tweaking, it stops being a fair exam.</li>
-    </ul>
-
+  <section class="les-section" id="three-ways">
+    <h2>Step 3: Choose how it learns</h2>
+    <p>There are three main ways a model can learn. Which one fits depends on the data you have.</p>
+    <div class="m1-terms">
+      <div class="m1-term"><strong>Supervised learning</strong><span>Learns from examples that come with the right answer (labels). <em>Real example:</em> <a href="https://doi.org/10.1001/jama.2016.17216" target="_blank" rel="noopener">detecting diabetic retinopathy</a> from graded retinal photos.</span></div>
+      <div class="m1-term"><strong>Unsupervised learning</strong><span>Gets data with no labels and finds groups or patterns on its own. <em>Real example:</em> grouping ICU patients into <a href="https://doi.org/10.1001/jama.2019.5791" target="_blank" rel="noopener">four sepsis phenotypes</a> that nobody had defined beforehand.</span></div>
+      <div class="m1-term"><strong>Reinforcement learning</strong><span>Learns by trial and error, getting a reward for good outcomes, like learning a game. <em>Real example:</em> the <a href="https://doi.org/10.1038/s41591-018-0213-5" target="_blank" rel="noopener">"AI Clinician"</a>, which learned fluid and vasopressor strategies in sepsis from past ICU records.</span></div>
+    </div>
     <div class="mi-box">
-      <div class="mi-box-title">Interactive: from images to a tested model</div>
-      <p class="mi-box-intro">These steps are shuffled. Drag them into the order a careful team would follow, then check.</p>
-      <div class="ix-order" data-top="First" data-bottom="Last" data-done="This is the order a careful team follows.">
-        <ol class="ix-order-list">
-          <li data-pos="4" data-why="The model learns only from the training set.">Train the model on the training set</li>
-          <li data-pos="2" data-why="Labels are the answers the model learns from (supervised learning).">Label each image with the right answer</li>
-          <li data-pos="6" data-why="Used once, at the very end, so the score is fair.">Run the model once on the locked test set and report the result</li>
-          <li data-pos="1" data-why="Without data there is nothing to learn from.">Collect images from the hospital archive</li>
-          <li data-pos="5" data-why="The validation set picks the best version and when to stop training.">Compare versions on the validation set and pick the best one</li>
-          <li data-pos="3" data-why="Splitting by patient, before training, prevents leakage.">Split the patients into training, validation and test sets</li>
-        </ol>
-        <p class="ix-order-result"></p>
+      <div class="mi-box-title">Interactive: which kind of learning?</div>
+      <p class="mi-box-intro">Drag each project into the kind of learning it uses. On a phone, tap a card and then tap a box.</p>
+      <div class="ix-buckets">
+        <div class="ix-pool">
+          <div class="ix-chip" data-bin="sup" data-why="Every X-ray comes with the answer (fracture or not), so this is supervised." data-hint="Each X-ray here comes with a radiologist's answer. What do we call learning from labeled examples?">10,000 wrist X-rays, each marked "fracture" or "no fracture" by a radiologist</div>
+          <div class="ix-chip" data-bin="unsup" data-why="Nobody told the program what the groups should be; it found them in unlabeled data." data-hint="Nobody gave this program any answers. It had to find the groups itself.">Thousands of lung CT scans with no labels, sorted by the program into groups that look alike</div>
+          <div class="ix-chip" data-bin="rl" data-why="The program tries actions and is rewarded for good results: trial and error." data-hint="Look for trial and error with a reward, not examples with answers.">A program that tries different scan settings and gets a reward when the image is clear at a low radiation dose</div>
+          <div class="ix-chip" data-bin="sup" data-why="Each mammogram has a known outcome (cancer found within a year or not), which acts as the label." data-hint="Each mammogram has a known outcome. That outcome is a label.">Mammograms paired with whether the woman was diagnosed with cancer within a year</div>
+          <div class="ix-chip" data-bin="unsup" data-why="The program found patterns in health records without being told what to look for." data-hint="The program was not told what the right groups were.">Health records of 20,000 ICU patients, grouped into types nobody had defined before</div>
+          <div class="ix-chip" data-bin="rl" data-why="Like learning a game: try, see the outcome, get a score, adjust." data-hint="Think of learning a game by playing it many times.">A program that learns when to give fluids in sepsis by trying choices on past records and scoring the outcome</div>
+        </div>
+        <div class="ix-bins">
+          <div class="ix-bin" data-bin="sup"><div class="ix-bin-head">Supervised<small>examples with the right answer</small></div></div>
+          <div class="ix-bin" data-bin="unsup"><div class="ix-bin-head">Unsupervised<small>no answers; finds groups</small></div></div>
+          <div class="ix-bin" data-bin="rl"><div class="ix-bin-head">Reinforcement<small>trial, error and reward</small></div></div>
+        </div>
+        <p class="ix-feedback"></p>
       </div>
     </div>
+    <p>Most radiology AI you will meet is supervised, and so is everything below: every training digit comes with its right answer. That is why the labels from Lesson 1.2 matter so much.</p>
   </section>
 
-  <section class="les-section" id="leakage">
-    <h2>Leakage and other traps</h2>
-    <p><strong>Data leakage</strong> happens when information from the test set sneaks into training, so the test becomes easier than real life. Common forms:</p>
-    <ul>
-      <li><strong>Same patient on both sides.</strong> A patient in the ICU may have 15 chest X-rays. If some are in training and some in test, the model can recognize the patient (their ribs, lines and body shape) rather than the disease.</li>
-      <li><strong>Duplicate images.</strong> The same film saved twice, once in each set.</li>
-      <li><strong>Labels that give the answer away.</strong> If every film with a pneumothorax also has a drain in it, the model can learn "drain = pneumothorax." More on this in Lesson 1.5.</li>
-    </ul>
-    <p>Leakage makes a model look better on paper than it will be in practice. When you read about an AI tool, it is fair to ask: was the test set split by patient, and did it come from a different hospital?</p>
+  <section class="les-section" id="train">
+    <h2>Step 4: Train the model</h2>
+    <p>A model is a set of adjustable numbers called <strong>parameters</strong>; think of them as knobs. <strong>Training</strong> means: show an example, let the model guess, check the guess against the label, and nudge the knobs so the next guess is a little better. Then repeat, thousands of times.</p>
+
+    <h3>A line that learns</h3>
+    <p>The simplest model: a line with three knobs. It checks one dot at a time and moves whenever a dot is on the wrong side.</p>
+    <div class="ml m1-wide" id="ml-line">
+      <div class="controls">
+        <div class="grp">
+          <button class="ml-btn ml-primary" id="l-run">Train</button>
+          <button class="ml-btn" id="l-reset">Start over</button>
+        </div>
+        <span class="ml-muted" id="l-msg">The line starts in a random place.</span>
+      </div>
+      <div class="l-grid">
+        <div class="l-plotbox">
+          <canvas id="l-plot" width="1280" height="680" aria-label="Two groups of dots and the line the model is learning. Drag a dot to move it."></canvas>
+          <span class="chip" id="l-chip">Drag any dot</span>
+        </div>
+        <div class="l-side">
+          <div class="ml-card">
+            <p class="ml-label">Accuracy</p>
+            <div class="ml-big" id="l-acc">-</div>
+            <div class="spark"><svg viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="0" y1="6" x2="220" y2="6" stroke="#e5e7eb" stroke-dasharray="3 4"/>
+              <line x1="0" y1="66" x2="220" y2="66" stroke="#e5e7eb"/>
+              <polyline id="l-line" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke" points=""/>
+            </svg><span>100%</span><span>dots checked &rarr;</span></div>
+          </div>
+          <div class="ml-card tiles">
+            <div><small>Wrong side</small><b id="l-wrong">-</b></div>
+            <div><small>Dots checked</small><b id="l-checks">0</b></div>
+            <div><small>Nudges</small><b id="l-moves">0</b></div>
+            <div><small>Passes</small><b id="l-passes">0</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p><strong>Try:</strong> drag dots so the groups mix. No straight line can split them now, so accuracy stops short of 100%. Harder problems need more knobs.</p>
+
+    <h3>A network that learns to read</h3>
+    <p>A <strong>neural network</strong> is a model built from layers of simple units, called <strong>neurons</strong>, joined by connections. This one has 12,730 connections, each one a knob. It reads a digit, guesses, checks the label, and nudges every knob.</p>
+    <div class="ml m1-wide" id="ml-net">
+      <div class="controls">
+        <div class="grp">
+          <button class="ml-btn ml-primary" id="n-run">Train</button>
+          <button class="ml-btn" id="n-reset">Start over</button>
+        </div>
+        <div class="grp">
+          <span class="ml-muted">Nudge size (<b>learning rate</b>)</span>
+          <div class="seg" role="group" aria-label="Nudge size, the learning rate" id="n-lr">
+            <button data-lr="0.00005" aria-pressed="false">Tiny</button>
+            <button data-lr="0.01" aria-pressed="true">Just right</button>
+            <button data-lr="0.15" aria-pressed="false">Too big</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="n-grid">
+        <div class="n-left">
+          <div class="pad locked" id="n-pad">
+            <canvas width="280" height="280" aria-label="Drawing pad"></canvas><div class="guide"></div><div class="hint">Draw a digit here</div>
+            <div class="lock"><div><b>Train first</b>Then draw here to test it.</div></div>
+          </div>
+          <div class="pad-btns"><button class="ml-btn sm" data-act="clear">Clear</button></div>
+          <div class="ml-card curve">
+            <p class="ml-label">Accuracy</p>
+            <svg viewBox="0 0 240 80" aria-hidden="true">
+              <line x1="0" y1="76" x2="240" y2="76" stroke="#e5e7eb"/>
+              <line x1="0" y1="6" x2="240" y2="6" stroke="#e5e7eb" stroke-dasharray="3 4"/>
+              <line x1="0" y1="41" x2="240" y2="41" stroke="#f1f2f4"/>
+              <text x="238" y="16" text-anchor="end" font-size="9" fill="#6b7280">100%</text>
+              <text x="238" y="51" text-anchor="end" font-size="9" fill="#6b7280">50%</text>
+              <polyline id="n-pline" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4 3" stroke-linejoin="round" points=""/>
+              <polyline id="n-line" fill="none" stroke="var(--navy)" stroke-width="2.5" stroke-linejoin="round" points=""/>
+            </svg>
+            <div class="n-key"><span><i style="background:var(--navy)"></i>Test set</span><span><i style="background:#9ca3af"></i>Training set</span></div>
+          </div>
+        </div>
+        <div class="ml-card">
+          <div class="net-box"><canvas id="n-net" width="1440" height="920" aria-label="The network: input pixels, 16 hidden neurons, 10 outputs, with connection strengths"></canvas></div>
+          <div class="n-foot">
+            <p class="n-cap" id="n-cap"><span class="ml-muted">Press Train to start.</span></p>
+            <div class="tiles row">
+              <div><small>Digits read</small><b id="n-seen">0</b></div>
+              <div><small>Right, training set</small><b id="n-tacc">-</b></div>
+              <div><small>Right, test set</small><b id="n-acc">-</b></div>
+              <div><small>Best, test set</small><b id="n-best">-</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p><strong>Try:</strong> Start over with "Tiny" (barely learns) or "Too big" (the score jumps around). The size of each nudge is called the <strong>learning rate</strong>. After training, draw a digit and press "Move it right": it often fools this network.</p>
+    <p>The model usually scores a little higher on its training set than on the test set. A small gap is normal. A big gap means it memorized its examples instead of learning.</p>
+    <p>Optional: train your own image model with your webcam in <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">Teachable Machine</a> (about 3 minutes).</p>
   </section>
 
-  <section class="les-section" id="garbage">
-    <h2>Garbage in, garbage out</h2>
-    <p>A model only learns what is in its data. If PTX-Detect was trained only on adults at one city hospital, it has never seen a child, a rural clinic's older scanner, or many patients from groups that hospital rarely serves. It may still give confident answers for them, without having learned anything about them.</p>
-    <p>So two questions to ask of any dataset: <strong>who is in it, and who is missing?</strong> Lesson 1.5 shows what happens when a model meets patients unlike the ones it learned from.</p>
+  <section class="les-section" id="cnn">
+    <h2>Step 5: Models that read images</h2>
+    <p>The network above learned <em>where</em> ink usually is, so moving a digit fools it. A <strong>convolutional neural network (CNN)</strong> slides small windows across the picture to find edges, then builds edges into shapes and parts, wherever they are. CNNs are behind most imaging AI, including chest X-ray tools. "Deep learning" simply means a network with many layers. This one is already trained.</p>
+    <div class="ml m1-wide" id="ml-cnn">
+      <div class="c-top">
+        <div>
+          <div class="pad" id="c-pad"><canvas width="280" height="280" aria-label="Drawing pad"></canvas><div class="guide"></div><div class="hint">Draw a digit here</div></div>
+          <div class="pad-btns"><button class="ml-btn sm" data-act="clear">Clear</button><button class="ml-btn sm" data-act="example">Example</button></div>
+        </div>
+        <div class="ml-card">
+          <p class="ml-label">The CNN's answer</p>
+          <div class="bars" id="c-bars"></div>
+          <div class="compare" id="c-compare"></div>
+        </div>
+        <div class="ml-card">
+          <p class="ml-label">One window at work</p>
+          <p style="margin:0;font-weight:600" id="c-kname">Top edge window</p>
+          <div class="math">
+            <div><div class="g3" id="c-mpx"></div><small class="ml-muted">pixels under it</small></div>
+            <span>&times;</span>
+            <div><div class="g3" id="c-mk"></div><small class="ml-muted">window</small></div>
+            <span>=</span>
+            <div class="tot"><b id="c-mtot">0</b><small id="c-mnote">total</small></div>
+          </div>
+          <p class="ml-muted" style="margin:10px 0 0">Multiply each pixel by its number, add all nine. Big total = edge here.</p>
+          <p class="tip">Point at the small drawing below to move the window.</p>
+        </div>
+      </div>
+
+      <div class="ml-card pipe-box">
+        <div class="pipe" id="c-pipe">
+          <div class="stage" data-i="0"><div class="inbox" id="c-inbox"><canvas class="px" id="c-in" width="28" height="28"></canvas><div class="win" id="c-win"></div></div><p class="ml-label"><span class="sn">1</span>Your drawing<small>28 &times; 28 numbers</small></p></div>
+          <div class="arrow"></div>
+          <div class="stage" data-i="1"><div class="maps" id="c-l1" style="grid-template-columns:repeat(4,1fr)"><div class="mark" id="c-mark"></div></div><p class="ml-label"><span class="sn">2</span>Edges<small>8 windows</small></p></div>
+          <div class="arrow"></div>
+          <div class="stage" data-i="2"><div class="maps" id="c-l2" style="grid-template-columns:repeat(4,1fr)"></div><p class="ml-label"><span class="sn">3</span>Shapes<small>16 windows</small></p></div>
+          <div class="arrow"></div>
+          <div class="stage" data-i="3"><div class="maps" id="c-l3" style="grid-template-columns:repeat(8,1fr)"></div><p class="ml-label"><span class="sn">4</span>Parts<small>32 windows</small></p></div>
+          <div class="arrow"></div>
+          <div class="stage" data-i="4"><div class="summary" id="c-sum"></div><p class="ml-label"><span class="sn">5</span>How much of each part<small>one bar per part</small></p></div>
+          <div class="arrow"></div>
+          <div class="stage answer" data-i="5"><b id="c-ans">-</b><small id="c-ansp">&nbsp;</small><p class="ml-label"><span class="sn">6</span>Answer</p></div>
+        </div>
+      </div>
+
+      <div class="c-play">
+        <button class="ml-btn c-arrow" id="c-prev" aria-label="Previous step">&larr;</button>
+        <button class="ml-btn ml-primary c-arrow" id="c-next" aria-label="Next step">&rarr;</button>
+        <div class="cap" aria-live="polite">
+          <span class="ml-label" id="c-step"></span>
+          <p id="c-cap"></p>
+        </div>
+      </div>
+    </div>
+    <p><strong>Try:</strong> draw a digit, then use the arrows to walk it through the network one layer at a time. On a chest X-ray the same layers find edges, then ribs and the lung border, then findings.</p>
+    <p>Another design, the <strong>transformer</strong>, powers large language models such as ChatGPT and is now also used for images.</p>
+
+    <div class="les-video-grid">
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=Gv9_4yMHFhI" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/Gv9_4yMHFhI/hqdefault.jpg" alt="A Gentle Introduction to Machine Learning, StatQuest">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>A Gentle Introduction to Machine Learning (StatQuest)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+      <a class="les-video-card" href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">
+        <div class="les-video-thumb">
+          <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/aircAruvnKk/hqdefault.jpg" alt="But what is a neural network? 3Blue1Brown">
+          <div class="les-video-play"><div class="les-video-play-arrow"></div></div>
+        </div>
+        <div class="les-video-info">
+          <div class="les-video-yt-icon"></div>
+          <span>But what is a neural network? (3Blue1Brown, optional)</span>
+          <small>Watch on YouTube</small>
+        </div>
+      </a>
+    </div>
+    <p class="les-video-guide">Watch the StatQuest video first. The 3Blue1Brown video goes deeper into how layers work; watch it if you want the full picture.</p>
   </section>
 
   <section class="les-section" id="check">
@@ -280,61 +332,65 @@
     <p>Answer each question to continue. Any answer is fine; read the explanation.</p>
 
     <div class="kc" data-answer="1">
-      <p class="kc-q">Why is the test set kept separate until the very end?</p>
-      <button class="quiz-option">To save computer time during training</button>
-      <button class="quiz-option">So the final score shows how the model does on data it has never seen</button>
-      <button class="quiz-option">Because test images are lower quality</button>
-      <div class="quiz-explanation"><p>The test set is the "real exam." If the model or its developers saw it during training, the score would show how well it memorized, not how it will do on new patients.</p></div>
-    </div>
-
-    <div class="kc" data-answer="2">
-      <p class="kc-q">A team splits 20,000 chest X-rays into training and test sets at random, film by film. Many patients had several films. What is the problem?</p>
-      <button class="quiz-option">There are too few films</button>
-      <button class="quiz-option">The test set should be bigger than the training set</button>
-      <button class="quiz-option">The same patient can end up in both sets (leakage)</button>
-      <div class="quiz-explanation"><p>Splitting by film instead of by patient lets one person's films land on both sides. The model can then recognize the patient rather than the finding, and the test score comes out too high.</p></div>
+      <p class="kc-q">A hospital has three chest X-rays from each of 1,000 patients. Which split gives an honest test score?</p>
+      <button class="quiz-option">Shuffle all 3,000 images and put 20% in the test set</button>
+      <button class="quiz-option">Put all of each patient's images on one side: training or test</button>
+      <button class="quiz-option">Test on the same images the model trained on</button>
+      <div class="quiz-explanation"><p>Split by patient. If one patient's images land on both sides, the model may recognize the patient rather than the disease, and its test score will look better than it will be on new patients. Testing on training images tells you nothing about new patients.</p></div>
     </div>
 
     <div class="kc" data-answer="0">
-      <p class="kc-q">Labels for a model were mined automatically from old radiology reports. What is a likely weakness?</p>
-      <button class="quiz-option">Some labels will be wrong, because reports use phrases like "no definite" or "resolved"</button>
-      <button class="quiz-option">The labels will be perfect, because radiologists wrote the reports</button>
-      <button class="quiz-option">The model cannot learn from report-based labels at all</button>
-      <div class="quiz-explanation"><p>Report mining is fast and cheap, but noisy. Hedged or negative phrases are easy to misread, and the report may describe something not visible on that particular image.</p></div>
+      <p class="kc-q">Which type of learning needs every training example to come with the right answer?</p>
+      <button class="quiz-option">Supervised learning</button>
+      <button class="quiz-option">Unsupervised learning</button>
+      <button class="quiz-option">Reinforcement learning</button>
+      <div class="quiz-explanation"><p>Supervised learning learns from labeled examples, like X-rays each marked fracture or no fracture, or the digits in this lesson. Unsupervised learning has no labels, and reinforcement learning learns from rewards rather than answers.</p></div>
+    </div>
+
+
+    <div class="kc" data-answer="2">
+      <p class="kc-q">In the digit network, what happened when each nudge was too big?</p>
+      <button class="quiz-option">It learned faster and reached a higher score</button>
+      <button class="quiz-option">It stopped changing at all</button>
+      <button class="quiz-option">The score jumped around instead of settling</button>
+      <div class="quiz-explanation"><p>Each nudge overshoots, undoing what earlier examples taught, so the score bounces up and down. Too small a nudge barely learns. The nudge size, the learning rate, is one of the settings developers tune while building a model.</p></div>
     </div>
   </section>
 
   <section class="les-section m1-takeaways" id="takeaways">
     <h2>Key takeaways</h2>
     <ul>
-      <li>Radiology AI learns from images, report text, structured health-record data and annotations.</li>
-      <li>A label is the "right answer" for an example. It comes from expert reads, consensus, old reports or reference tests, and it can be wrong.</li>
-      <li>Data is split into training, validation and test sets, by patient, before training starts.</li>
-      <li>Leakage makes a model look better than it is. Missing groups in the data mean the model has never learned about them.</li>
+      <li>Clean the data first: a model learns from bad examples as readily as from good ones.</li>
+      <li>Train on the training set, test on a test set it never saw, and split by patient so the test is fair.</li>
+      <li>Supervised learning uses labels; unsupervised finds groups; reinforcement learns from rewards. Most radiology AI is supervised.</li>
+      <li>Training is: guess, check, nudge the knobs (parameters), repeat. The size of each nudge is the learning rate.</li>
+      <li>A CNN finds edges, then shapes, then parts, anywhere in the image. "Deep" means many layers.</li>
     </ul>
   </section>
 
   <section class="les-section" id="further">
     <h2>Go further (optional)</h2>
     <ul class="m1-links">
-      <li><a href="https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets" target="_blank" rel="noopener">Dividing the original dataset</a> <small>(Google ML Crash Course, short page on training/validation/test)</small></li>
-      <li><a href="m2-3.html">Lesson 2.3</a> <small>covers medical image data and DICOM in more depth</small></li>
+      <li><a href="https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets" target="_blank" rel="noopener">Dividing a dataset: training, validation and test sets</a> <small>(Google, short article)</small></li>
+      <li><a href="https://developers.google.com/machine-learning/intro-to-ml/supervised" target="_blank" rel="noopener">Supervised learning</a> <small>(Google, short article)</small></li>
+      <li><a href="https://playground.tensorflow.org/" target="_blank" rel="noopener">TensorFlow Playground</a> <small>(interactive: watch a small network train)</small></li>
     </ul>
-    <p>Next lesson: once PTX-Detect is trained and tested, how do we describe how good it is?</p>
+    <p>Next lesson: how to measure whether a model is good enough to use.</p>
   </section>
 
 </div>
 
 <div class="les-nav">
-  <a href="m1-2.html" class="btn btn-outline" id="les-prev">&larr; How Models Learn</a>
+  <a href="m1-2.html" class="btn btn-outline" id="les-prev">&larr; Data &amp; Labels</a>
   <a href="m1-4.html" class="btn btn-accent" id="les-next">Next: Measuring Performance &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104d" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104d"></script>
-<script src="assets/lessons.js?v=20261104d"></script>
-<script src="assets/knowledge-check.js?v=20261104d"></script>
-<script src="assets/interactives.js?v=20261104d"></script>
-<script src="assets/m1-interactives.js?v=20261104d"></script>
+<script src="../assets/js/progress.js?v=20261111c" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261111c"></script>
+<script src="assets/lessons.js?v=20261111c"></script>
+<script src="assets/knowledge-check.js?v=20261111c"></script>
+<script src="assets/interactives.js?v=20261111c"></script>
+<script src="assets/m1-interactives.js?v=20261111c"></script>
+<script src="assets/m1-learn.js?v=20261111c"></script>
 </body>
 </html>

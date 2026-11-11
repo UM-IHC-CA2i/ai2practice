@@ -99,7 +99,7 @@ The course is one route with three core modules, a quiz at each end and two opti
 
 ## Inside a lesson
 
-Each lesson takes 15 to 20 minutes and has the same rhythm: short readable sections, original figures, one light interactive and two or three knowledge checks.
+Each lesson has the same rhythm: short readable sections, original figures, one light interactive and two or three knowledge checks.
 
 <table>
   <tr valign="top">

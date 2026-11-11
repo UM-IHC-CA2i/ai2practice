@@ -24,15 +24,35 @@
   </script>
 <!-- /AI2PRACTICE SEO -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261104d" />
-  <link rel="stylesheet" href="assets/css/theme.css?v=20261104d" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20261104d" />
-  <script>(function(r){r.classList.add('js');try{if(sessionStorage.getItem('ai2practice_home_seen'))r.classList.add('seen');sessionStorage.setItem('ai2practice_home_seen','1');}catch(e){}})(document.documentElement);</script>
+  <link rel="stylesheet" href="assets/css/site.css?v=20261111c" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261111c" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20261111c" />
+  <script>(function(r){r.classList.add('js');try{if(sessionStorage.getItem('ai2practice_home_seen'))r.classList.add('seen');else r.classList.add('loading');sessionStorage.setItem('ai2practice_home_seen','1');}catch(e){}})(document.documentElement);</script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 </head>
 <body class="home">
+<div class="loader" aria-hidden="true"><i class="loader-beam"></i><img class="loader-logo" src="images/ai2practice-logo-white.svg" alt="" width="300" height="62" /></div>
+<script>
+  // First visit in a tab: a scan line reveals the logo, then the panel lifts. Always LOADER_MS long;
+  // runs longer only if the page structure or fonts aren't ready yet (gives up waiting after 8 s).
+  (function(r){
+    if(!r.classList.contains('loading')) return;
+    var LOADER_MS=1100, LIFT_MS=900;
+    var t0=Date.now(), done=false;
+    function clear(){
+      if(done) return; done=true;
+      setTimeout(function(){
+        r.classList.add('loaded');
+        setTimeout(function(){ r.classList.remove('loading','loaded'); document.dispatchEvent(new CustomEvent('ai2practice:loader-done')); },LIFT_MS);
+      },Math.max(0,LOADER_MS-(Date.now()-t0)));
+    }
+    var dom=new Promise(function(res){ if(document.readyState!=='loading') res(); else document.addEventListener('DOMContentLoaded',res); });
+    Promise.all([dom,document.fonts?document.fonts.ready:null]).then(clear);
+    setTimeout(clear,8000);
+  })(document.documentElement);
+</script>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell navbar">
   <a class="brand brand-logo" href="index.html" aria-label="AI2Practice home"><img src="images/ai2practice-logo.svg" alt="AI2Practice" /></a>
@@ -59,7 +79,7 @@
     <i class="blob g-c" style="--c:var(--g2);--s:460px;right:-170px;top:360px;--o:.34;--t:28s;--dx:-24px"></i>
   </div>
   <div class="hshell wide">
-    <div class="map-head"><h2>Curriculum map</h2></div>
+    <div class="map-head rv"><h2>Curriculum map</h2></div>
     <div class="mapcard rv">
       <div class="stage">
         <div class="map-wrap">
@@ -263,7 +283,7 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js?v=20261104d"></script>
+<script src="assets/js/site.js?v=20261111c"></script>
 <script>
 (function(){
   var root=document.documentElement; root.classList.add('js');
@@ -273,7 +293,7 @@
 
   var MODS=[
     {k:'m1',n:1,title:'Fundamentals of AI',q:'What is AI, and how does it work clinically?',href:'modules/ai-fundamentals.html',img:'lessons/images/m1/nested-ai.png',alt:'Nested circles: AI, machine learning, deep learning',items:['AI Around You','How Models Learn','Data & Labels','Measuring Performance','Limits & Failures']},
-    {k:'m2',n:2,title:'Radiology Basics',q:'What is radiology, and how does an image become data?',href:'modules/informatics.html',img:'lessons/images/m2/planes.png',alt:'The three imaging planes',items:['What Radiology Is','The Journey of a Scan','Images as Data','Reading a Radiology Report']},
+    {k:'m2',n:2,title:'Radiology Basics',q:'What is radiology, and how does an image become data?',href:'modules/informatics.html',img:'lessons/images/m2/planes-3d.png',alt:'The three imaging planes',items:['What Radiology Is','The Journey of a Scan','Images as Data','Reading a Radiology Report']},
     {k:'m3',n:3,title:'AI in Clinical Practice',q:'How does AI affect clinical practice?',href:'modules/clinical-practice.html',img:'lessons/images/m3/role-shift.png',alt:'How the radiologist role shifts with AI',items:['AI in Radiology & Medicine','Does It Work, and Is It Worth It?','Thinking With AI','Responsibility & Patients','The Future of AI in Radiology']}
   ];
   function lessonHref(m,i){return 'lessons/'+m.k+'-'+(i+1)+'.html';}
@@ -500,16 +520,21 @@
   if(wrap&&'IntersectionObserver' in window) new IntersectionObserver(function(e){wrap.classList.toggle('is-paused',!e[0].isIntersecting);}).observe(wrap);
 
   /* ---- Staggered entrances ---- */
-  var els=document.querySelectorAll('.rv');
-  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
-  },{rootMargin:'0px 0px -8% 0px'});
-  els.forEach(function(e){io.observe(e);});
+  // On a first visit they wait for the loader to lift
+  function entrances(){
+    var els=document.querySelectorAll('.rv');
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e);});
+  }
+  if(document.documentElement.classList.contains('loading')) document.addEventListener('ai2practice:loader-done',entrances,{once:true});
+  else entrances();
 })();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module" src="assets/js/figures3d.js?v=20261104d"></script>
+<script type="module" src="assets/js/figures3d.js?v=20261111c"></script>
 <script>
   // figures3d.js loads after the panel's first fill, so mount whatever 3D slot is already there
   document.addEventListener('ai2practice:figures3d-ready',function(){ document.querySelectorAll('#panel [data-scene],.trow-fig[data-scene]').forEach(window.AI2Figures3D.mount); });

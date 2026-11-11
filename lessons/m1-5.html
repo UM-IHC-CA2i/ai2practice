@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261104d">
-<link rel="stylesheet" href="assets/lessons.css?v=20261104d">
-<link rel="stylesheet" href="assets/m1.css?v=20261104d">
-<link rel="stylesheet" href="assets/interactives.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/theme.css?v=20261104d">
-<link rel="stylesheet" href="../assets/css/progress.css?v=20261104d" data-ai2-progress-style="1">
+<link rel="stylesheet" href="../assets/css/lesson-layout.css?v=20261111c">
+<link rel="stylesheet" href="assets/lessons.css?v=20261111c">
+<link rel="stylesheet" href="assets/m1.css?v=20261111c">
+<link rel="stylesheet" href="assets/interactives.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/progress.css?v=20261111c" data-ai2-progress-style="1">
 <link rel="preconnect" href="https://www.gstatic.com">
 <script>/* Hide the old top bar and make room for the course outline before first paint (progress.js builds the outline). */try{var c=document.documentElement.classList;c.add('ai2-ol-pre');if(matchMedia('(min-width: 1100px)').matches&&localStorage.getItem('ai2practice_outline_v1')!=='closed')c.add('ai2-ol-pre-open');}catch(e){}</script>
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
@@ -44,7 +44,7 @@
     <div>
       <div class="les-hero-q">When does it break?</div>
       <h1>Limits &amp; Failures</h1>
-      <p>Dataset shift, shortcut learning, hidden stratification, and confident mistakes</p>
+      <p>Dataset shift, invisible changes, bias, shortcut learning, hidden stratification, and confident mistakes</p>
     </div>
   </div>
 </div>
@@ -53,10 +53,12 @@
 
   <section class="les-section les-intro" id="overview">
     <h2>Overview</h2>
-    <p style="color: var(--gray-900);">PTX-Detect scored 94% sensitivity in testing. This lesson is about why that number may not hold when the tool reaches your hospital, the surprising things models sometimes learn instead of the disease, and the habits that keep you safe when you work alongside AI. Each failure here has happened with real, published models. About 15-20 minutes.</p>
+    <p style="color: var(--gray-900);">PTX-Detect scored 94% sensitivity in testing. This lesson is about why that number may not hold when the tool reaches your hospital, the surprising things models sometimes learn instead of the disease, and the habits that keep you safe when you work alongside AI. Each failure here has happened with real, published models.</p>
     <p><strong>By the end of this lesson you can:</strong></p>
     <ul>
       <li>Explain why a model that works at one hospital can fail at another (dataset shift).</li>
+      <li>Explain why changes you cannot see can still change a model's answer.</li>
+      <li>Explain how missing groups in the training data lead to bias.</li>
       <li>Describe shortcut learning with a real example.</li>
       <li>Recognize overconfidence and "hallucination" in AI output.</li>
       <li>Name three habits for using AI safely.</li>
@@ -72,7 +74,44 @@
       <figcaption>Figure 1. Same model, different images. A published score describes the hospital where the model was tested. (Illustrative example.)</figcaption>
     </figure>
 
-    <p>Remember from Lesson 1.2 that a model is only checked properly on data it never trained on. A test set from a <strong>different hospital</strong> (an "external" test) is a much tougher and more honest check than one from the same hospital.</p>
+    <p>Remember from Lesson 1.3 that a model is only checked properly on data it never trained on. A test set from a <strong>different hospital</strong> (an "external" test) is a much tougher and more honest check than one from the same hospital.</p>
+  </section>
+
+  <section class="les-section" id="invisible">
+    <h2>Changes you can't see</h2>
+    <p>To a computer, a photo is a grid of numbers: each pixel has a brightness from 0 (black) to 255 (white) for each color (Lesson 1.2). A person looks at shapes. A model looks at those numbers, and it can react strongly to patterns in them that no person would notice.</p>
+    <p>The demo below uses a real image model called <strong>ResNet-50</strong>, trained on 1.2 million everyday photos. Every number on it was produced by running the model on exactly the pictures you see. A <strong>targeted change</strong> means a change worked out from the model itself: you ask the model which tiny nudge to each pixel would push its answer toward a chosen wrong answer (here, "gibbon"), then apply that nudge. This is called an <strong>adversarial example</strong>.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive</div>
+      <p class="mi-box-intro">Move the slider to set how much any single pixel may change. The third panel shows the change itself, made 16 times stronger so you can see it.</p>
+      <div class="mi-adv" data-src="images/m1/adv/"></div>
+    </div>
+
+    <p>The same trick works on medical images. Researchers made changes invisible to people that flipped chest X-ray, eye and skin models from "normal" to "disease" and back (<a href="https://doi.org/10.1126/science.aaw4399" target="_blank" rel="noopener">Finlayson et al., <em>Science</em> 2019</a>). Deliberate attacks like this are rare in hospitals. The point is what it shows: a model does not see an image the way you do, so a small, ordinary difference, such as a new scanner setting or image processing step, can matter far more to it than you would expect.</p>
+
+    <h3>An ordinary difference: a new scanner</h3>
+    <p>When a department changes X-ray equipment, the patients stay the same but the images do not. The biggest difference is usually <strong>image processing</strong>: every manufacturer's software turns the raw signal from the detector into the film you see, and each uses its own contrast curve, edge sharpening and noise reduction. <strong>Exposure settings</strong> (the voltage and dose the technologist chooses) change contrast and how grainy the film looks. <strong>Resolution</strong> differs too: the size of the detector's pixels, and how the image is shrunk to the small size the model takes in. Finally, <strong>positioning</strong> matters: an upright film taken from behind (PA) and a portable film taken from the front with the patient lying down (AP) differ in heart size, where air and fluid collect and what is in the frame.</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive</div>
+      <p class="mi-box-intro">This demo uses a real chest X-ray model (DenseNet-121 from the open-source TorchXRayVision project, trained on hundreds of thousands of chest X-rays) on a normal chest X-ray. The slider applies one change: the edge sharpening and contrast curve, the part of image processing that differs most between manufacturers. Every score was produced by running the model on exactly the film you see. The strongest settings go a little beyond what a manufacturer would ship, to make the effect easy to see.</p>
+      <div class="mi-scan" data-src="images/m1/scanner/"></div>
+    </div>
+
+    <p><strong>Callback:</strong> go back to the model you trained in <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">Teachable Machine</a> in Lesson 1.3. Change the lighting, move to another room, or hold the pen at an odd angle. How quickly does it fail? That is dataset shift on your own desk.</p>
+  </section>
+
+  <section class="les-section" id="bias">
+    <h2>Who is in the data: bias</h2>
+    <p>A model learns only from the patients in its training data. If a group of patients is rare or missing, the model learns mostly from everyone else and tends to work worse for that group. In AI, this unequal performance is called <strong>bias</strong>. It does not need anyone to intend it; it comes from who was, and was not, in the data.</p>
+    <p>This is a real problem in radiology. Researchers trained chest X-ray models on sets with different mixes of male and female patients. When one sex made up too little of the training data, the models did worse on films from that sex (<a href="https://doi.org/10.1073/pnas.1919012117" target="_blank" rel="noopener">Larrazabal et al., <em>PNAS</em> 2020</a>). In a separate study, chest X-ray models trained on large public datasets more often called a film "normal" when disease was present in female, Black, Hispanic and younger patients and in patients on Medicaid (<a href="https://doi.org/10.1038/s41591-021-01595-0" target="_blank" rel="noopener">Seyyed-Kalantari et al., <em>Nature Medicine</em> 2021</a>).</p>
+
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive</div>
+      <p class="mi-box-intro">A simple nodule detector looks at one thing on each chest X-ray: how much a spot stands out from the lung around it. On many women's films, breast tissue lies over the lower lungs and makes every spot, nodule or harmless shadow, stand out less. The model trains on 200 films (live, in your browser) and ends up with a single cutoff: spots that stand out more than that are flagged as a nodule. Change how many training films come from female patients, and watch where the cutoff lands for a test group of 20 nodules and 20 harmless shadows (such as a blood vessel seen end-on) in each group. (Simulated films and a simplified mechanism made up for teaching; the pattern matches the studies above.)</p>
+      <div class="mi-bias"></div>
+    </div>
   </section>
 
   <section class="les-section" id="shortcuts">
@@ -89,86 +128,55 @@
     <h2>Try it: spot the shortcut</h2>
     <div class="mi-box">
       <div class="mi-box-title">Interactive</div>
-      <p class="mi-box-intro">This drawing shows a portable chest X-ray that PTX-Detect flagged for pneumothorax. Click each numbered region to find out whether it is the real finding or something the model might have used as a shortcut.</p>
-      <div class="mi-shortcut">
-        <svg viewBox="0 0 340 400" role="group" aria-label="Drawing of a portable chest X-ray with four clickable regions">
-          <rect width="340" height="400" fill="#0b0f14"/>
-          <rect x="145" y="0" width="50" height="80" fill="#3a4350"/>
-          <path d="M38 400 L52 150 Q66 72 170 62 Q274 72 288 150 L302 400 Z" fill="#3a4350"/>
-          <ellipse cx="114" cy="215" rx="58" ry="122" fill="#161c24"/>
-          <ellipse cx="228" cy="220" rx="55" ry="118" fill="#161c24"/>
-          <g stroke="#56606e" stroke-width="2" fill="none" opacity="0.55">
-            <path d="M60 170 Q115 140 165 168"/><path d="M58 210 Q115 180 165 208"/><path d="M58 250 Q115 220 165 248"/><path d="M60 290 Q115 262 165 288"/>
-            <path d="M178 172 Q228 142 282 170"/><path d="M178 212 Q228 182 284 210"/><path d="M178 252 Q228 222 284 250"/><path d="M178 292 Q228 264 282 290"/>
+      <p class="mi-box-intro">This is a real chest X-ray from an intensive care unit (ICU). It was taken with the patient lying flat, and it shows a pneumothorax (air between the lung and the chest wall) on the patient's left, which is the right side of the image. Imagine a pneumothorax model flagged it. Click each numbered region to find out whether it is the real finding or something the model might have used as a shortcut.</p>
+      <div class="mi-shortcut mi-shortcut--xray">
+        <svg viewBox="0 0 800 1006" role="group" aria-label="Chest X-ray of an ICU patient lying flat, with four clickable regions">
+          <image href="images/m1/supine-ptx.jpg" width="800" height="1006"/>
+          <g class="mi-hot" data-key="side" aria-label="Region 1: side marker">
+            <ellipse class="mi-hot-ring" cx="30" cy="110" rx="34" ry="40"/>
+            <circle class="mi-hot-badge" cx="80" cy="150" r="17"/><text class="mi-hot-num" x="80" y="158" text-anchor="middle">1</text>
           </g>
-          <g stroke="#3d4653" stroke-width="1" fill="none">
-            <path d="M150 230 L120 200 M150 250 L110 240 M140 280 L100 290 M150 210 L130 175"/>
-            <path d="M190 230 L225 195 M190 250 L235 245 M195 280 L240 295 M190 205 L215 160"/>
+          <g class="mi-hot" data-key="drain" aria-label="Region 2: chest drain on the patient's right">
+            <ellipse class="mi-hot-ring" cx="110" cy="490" rx="70" ry="60"/>
+            <circle class="mi-hot-badge" cx="185" cy="440" r="17"/><text class="mi-hot-num" x="185" y="448" text-anchor="middle">2</text>
           </g>
-          <path d="M70 196 Q86 128 150 120" stroke="#e5e7eb" stroke-width="1.6" fill="none"/>
-          <ellipse cx="205" cy="290" rx="55" ry="48" fill="#5a6472"/>
-          <rect x="158" y="70" width="24" height="330" fill="#4a5462"/>
-          <path d="M28 320 Q80 290 88 240 Q94 190 98 150" stroke="#e5e7eb" stroke-width="3" fill="none"/>
-          <path d="M84 262 l8 3 M88 236 l8 2 M92 210 l8 1" stroke="#0b0f14" stroke-width="2"/>
-          <text x="228" y="33" fill="#e8e8e8" font-family="monospace" font-size="15" font-weight="700">PORTABLE</text>
-          <text x="18" y="38" fill="#e8e8e8" font-family="monospace" font-size="18" font-weight="700">R</text>
-
-          <g class="mi-hot" data-key="marker" aria-label="Region 1: text marker">
-            <ellipse class="mi-hot-ring" cx="270" cy="28" rx="56" ry="20"/>
-            <circle class="mi-hot-badge" cx="316" cy="52" r="11"/><text class="mi-hot-num" x="316" y="57" text-anchor="middle">1</text>
+          <g class="mi-hot" data-key="pin" aria-label="Region 3: safety pin and tubing on the skin">
+            <ellipse class="mi-hot-ring" cx="745" cy="625" rx="42" ry="70"/>
+            <circle class="mi-hot-badge" cx="690" cy="560" r="17"/><text class="mi-hot-num" x="690" y="568" text-anchor="middle">3</text>
           </g>
-          <g class="mi-hot" data-key="drain" aria-label="Region 2: tube in the chest">
-            <ellipse class="mi-hot-ring" cx="62" cy="292" rx="34" ry="30"/>
-            <circle class="mi-hot-badge" cx="92" cy="322" r="11"/><text class="mi-hot-num" x="92" y="327" text-anchor="middle">2</text>
-          </g>
-          <g class="mi-hot" data-key="lung" aria-label="Region 3: top of the right lung">
-            <ellipse class="mi-hot-ring" cx="108" cy="140" rx="44" ry="32"/>
-            <circle class="mi-hot-badge" cx="148" cy="108" r="11"/><text class="mi-hot-num" x="148" y="113" text-anchor="middle">3</text>
-          </g>
-          <g class="mi-hot" data-key="side" aria-label="Region 4: side marker at the image edge">
-            <ellipse class="mi-hot-ring" cx="26" cy="31" rx="20" ry="20"/>
-            <circle class="mi-hot-badge" cx="50" cy="56" r="11"/><text class="mi-hot-num" x="50" y="61" text-anchor="middle">4</text>
+          <g class="mi-hot" data-key="lung" aria-label="Region 4: lower outer corner of the left chest">
+            <ellipse class="mi-hot-ring" cx="690" cy="820" rx="62" ry="100"/>
+            <circle class="mi-hot-badge" cx="610" cy="930" r="17"/><text class="mi-hot-num" x="610" y="938" text-anchor="middle">4</text>
           </g>
         </svg>
 
         <div class="mi-shortcut-panel" aria-live="polite">
           <div class="mi-shortcut-intro">
-            <h4>Where did PTX-Detect look?</h4>
-            <p>Click a numbered region on the image. Some regions are the actual finding; others are clues that have nothing to do with the lung.</p>
-          </div>
-          <div class="mi-shortcut-info" data-key="marker" hidden>
-            <span class="mi-shortcut-tag mi-shortcut-tag--short">Possible shortcut</span>
-            <h4>1. The "PORTABLE" text marker</h4>
-            <p>Portable films are taken on patients too sick to go to the X-ray department, and sicker patients have more pneumothoraces. A model can learn "PORTABLE means more likely positive" without looking at the lungs at all. This is the same kind of clue as the hospital in the Zech study.</p>
-          </div>
-          <div class="mi-shortcut-info" data-key="drain" hidden>
-            <span class="mi-shortcut-tag mi-shortcut-tag--short">Possible shortcut</span>
-            <h4>2. The chest drain</h4>
-            <p>A chest drain is the treatment for a pneumothorax. If many positive training films already had a drain in place, the model can learn "tube means pneumothorax." It then does well on patients who are already treated and poorly on the ones who still need help. See "Hidden stratification" below.</p>
-          </div>
-          <div class="mi-shortcut-info" data-key="lung" hidden>
-            <span class="mi-shortcut-tag mi-shortcut-tag--real">The real finding</span>
-            <h4>3. The edge of the collapsed lung</h4>
-            <p>The thin white line near the top of the right lung, with no lung markings beyond it, is the visceral pleural line: the edge of the partly collapsed lung. This is what a radiologist looks for, and what we hope the model learned.</p>
+            <h4>Where might the model look?</h4>
+            <p>Click a numbered region on the image. One is the actual finding; the others are clues that say more about the patient's care than about the lung.</p>
           </div>
           <div class="mi-shortcut-info" data-key="side" hidden>
             <span class="mi-shortcut-tag mi-shortcut-tag--short">Possible shortcut</span>
-            <h4>4. The side marker and image edge</h4>
-            <p>Side markers, text and the edges of the image differ between hospitals, machines and technologists. The COVID-19 models in the DeGrave study leaned on regions like these, outside the lungs, because they happened to differ between positive and negative films.</p>
+            <h4>1. The side marker</h4>
+            <p>The "R" marks the patient's right side. Its style, size and position differ between hospitals, machines and technologists, and films taken at the bedside often carry extra text such as "PORTABLE" or "SUPINE". The pneumonia model in the Zech study learned to recognize the hospital from clues like these, and the COVID-19 models in the DeGrave study leaned on text and regions outside the lungs.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="drain" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--short">Possible shortcut</span>
+            <h4>2. A chest drain</h4>
+            <p>This patient already has chest drains on both sides. A chest drain is the treatment for a pneumothorax, so if many positive training films have one, the model can learn "tube means pneumothorax." It then does well on patients who are already treated and poorly on the ones who still need help. See "Hidden stratification" below.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="pin" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--short">Possible shortcut</span>
+            <h4>3. Metal and tubing on the skin</h4>
+            <p>Safety pins, wires and tubing outside the body are common on ICU patients. Sicker patients get more of them and also have more pneumothoraces, so "lots of equipment" can become a clue for "positive" without the model ever looking at the lung.</p>
+          </div>
+          <div class="mi-shortcut-info" data-key="lung" hidden>
+            <span class="mi-shortcut-tag mi-shortcut-tag--real">The real finding</span>
+            <h4>4. The deep sulcus sign</h4>
+            <p>When a patient lies flat, free air in the chest rises to the front and lower part of the chest instead of the top. On the image this makes the outer lower corner of the chest look unusually deep and dark: the <strong>deep sulcus sign</strong>. This is what a radiologist looks for on a lying-flat film, and what we hope the model learned.</p>
           </div>
           <p class="mi-shortcut-count" style="margin-top:12px;font-size:0.85rem !important;color:var(--gray-500);"></p>
         </div>
-      </div>
-    </div>
-
-    <div class="img-needed-row">
-      <div class="img-needed">
-        <span class="img-needed-tag">Image needed</span>
-        <p>A real portable chest X-ray with a visible text marker (e.g. "PORTABLE" or "SUPINE"), to replace or sit beside the drawing.</p>
-      </div>
-      <div class="img-needed">
-        <span class="img-needed-tag">Image needed</span>
-        <p>A chest X-ray showing a pneumothorax with a chest drain in place.</p>
       </div>
     </div>
   </section>
@@ -176,37 +184,7 @@
   <section class="les-section" id="hidden">
     <h2>Hidden stratification</h2>
     <p>A single overall score can hide a group of patients the model does badly on. Researchers looked at pneumothorax models trained on a large public chest X-ray dataset. Many of the positive films already had a chest drain. The models did well on those, but much worse on pneumothoraces <em>without</em> a drain, which are exactly the untreated cases that matter most. The overall score looked good because the two groups were mixed together. (<a href="https://doi.org/10.1145/3368555.3384468" target="_blank" rel="noopener">Oakden-Rayner et al., 2020</a>)</p>
-    <p>This is called <strong>hidden stratification</strong>. The lesson: ask how a tool performs on the patients you care about, not just overall. Remember Film C from the labeling activity in Lesson 1.3.</p>
-  </section>
-
-  <section class="les-section" id="transfer">
-    <h2>Try it: will it transfer?</h2>
-    <div class="mi-box">
-      <div class="mi-box-title">Interactive</div>
-      <p class="mi-box-intro">PTX-Detect was trained and tested on upright chest X-rays of adult outpatients at one large hospital, using one brand of X-ray machine. For each new setting, decide whether you would expect its published performance to carry over.</p>
-      <div class="mi-sort" data-choices="Likely carries over|Be cautious">
-        <div class="mi-cards">
-          <div class="mi-card" data-answer="0">
-            <div class="mi-card-text">A similar hospital<small>Adult outpatients, upright films, same machine brand.</small></div>
-            <div class="mi-card-why">The closest match, so performance is most likely to hold. It is still worth checking on a sample of local films, because small differences add up.</div>
-          </div>
-          <div class="mi-card" data-answer="1">
-            <div class="mi-card-text">A children's hospital<small>Patients aged 0-16.</small></div>
-            <div class="mi-card-why">Be cautious. Children's chests look different and the model never saw one. It may still give confident answers.</div>
-          </div>
-          <div class="mi-card" data-answer="1">
-            <div class="mi-card-text">The ICU<small>Portable films, patients lying flat, many lines and tubes.</small></div>
-            <div class="mi-card-why">Be cautious. On flat films a pneumothorax looks different (air collects at the front and bottom), and tubes are a known shortcut risk.</div>
-          </div>
-          <div class="mi-card" data-answer="1">
-            <div class="mi-card-text">Same hospital, new machines<small>The department switches to a different X-ray vendor.</small></div>
-            <div class="mi-card-why">Be cautious. New equipment changes image brightness, contrast and processing. Even at the same hospital, this is dataset shift.</div>
-          </div>
-        </div>
-        <p class="mi-score"></p>
-      </div>
-    </div>
-    <p><strong>Callback:</strong> go back to the model you trained in <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">Teachable Machine</a> in Lesson 1.2. Change the lighting, move to another room, or hold the pen at an odd angle. How quickly does it fail? That is dataset shift on your own desk.</p>
+    <p>This is called <strong>hidden stratification</strong>. The lesson: ask how a tool performs on the patients you care about, not just overall. Remember Film C from the labeling activity in Lesson 1.2.</p>
   </section>
 
   <section class="les-section" id="confident">
@@ -216,9 +194,33 @@
       <li><strong>Heatmaps can mislead.</strong> Many tools show a colored overlay of "where the model looked." These maps are rough, and a map that lands on the right spot does not prove the model used the right reason. A map on the wrong spot, though, is a useful warning sign.</li>
       <li><strong>Generative AI can make things up.</strong> Chatbots and report-drafting tools can produce fluent, convincing text that is false, such as a finding that isn't there or a reference that doesn't exist. This is called <strong>hallucination</strong>. Always check generated text against the source.</li>
     </ul>
-    <div class="img-needed">
-      <span class="img-needed-tag">Image needed</span>
-      <p>An AI heatmap (colored overlay) on a chest X-ray, ideally one that highlights the wrong area, such as a tube or text marker. Could come from a published paper figure if its license allows.</p>
+    <figure class="les-figure">
+      <img loading="lazy" decoding="async" src="images/m1/heatmap.jpg" alt="Two chest X-rays with colored heatmaps for pneumothorax. Left: the lying-flat ICU film, with the hot spot on the deep sulcus at the lower right. Right: the normal film after strong processing, with the hot spot on the neck above the lungs." width="820" height="448">
+      <figcaption>Figure 2. Two heatmaps for "pneumothorax" from the same real model as the scanner demo (drawn with Grad-CAM, a common way to show which parts of the image pushed the answer). Left: the lying-flat ICU film from the shortcut activity, which does have a pneumothorax. The map lands on the real finding, the deep sulcus at the lower right, yet the score is 0.40, below the 0.5 cutoff, so the model does not flag it. Right: the normal film from the scanner demo at the strongest processing. The model flags a pneumothorax (0.51), and the map sits on the neck, above the lungs, where a pneumothorax cannot be. Neither map tells you on its own whether the answer is right.</figcaption>
+    </figure>
+  </section>
+
+  <section class="les-section" id="name">
+    <h2>Try it: name the problem</h2>
+    <div class="mi-box">
+      <div class="mi-box-title">Interactive</div>
+      <p class="mi-box-intro">Each story below describes a real kind of failure. Use the definitions to pick the problem behind each one.</p>
+      <dl class="mi-name-defs">
+        <div><dt>Too little data</dt><dd>The model saw too few examples, so it memorized them instead of learning the general pattern (overfitting, Lesson 1.4).</dd></div>
+        <div><dt>Wrong labels</dt><dd>Some answers in the training data were wrong, so the model learned the mistakes too (Lesson 1.3).</dd></div>
+        <div><dt>Bias</dt><dd>A group of patients was rare or missing in training, so the model works worse for that group.</dd></div>
+        <div><dt>New hospital</dt><dd>Dataset shift: the new images differ from the training images (scanner, settings, patients).</dd></div>
+        <div><dt>Shortcut</dt><dd>The model learned a clue that goes along with the label, such as a marker or a tube, instead of the disease.</dd></div>
+        <div><dt>Invisible change</dt><dd>A tiny change to the pixels, too small for a person to see, flips the model's answer.</dd></div>
+      </dl>
+      <div class="mi-name" data-opts="Too little data|Wrong labels|Bias|New hospital|Shortcut|Invisible change">
+        <div class="mi-name-row" data-answer="0"><p>A tool trained on 300 images is nearly perfect on those images but poor on new ones.</p></div>
+        <div class="mi-name-row" data-answer="2"><p>A chest X-ray model trained almost entirely on films from men misses more findings on films from women.</p></div>
+        <div class="mi-name-row" data-answer="3"><p>A model built on images from Scanner X loses 15 points of sensitivity on images from Scanner Y.</p></div>
+        <div class="mi-name-row" data-answer="4"><p>A fracture model learned to spot the logo printed on films from the trauma center, where fractures are common.</p></div>
+        <div class="mi-name-row" data-answer="1"><p>A third of the "normal" training labels came from reports that had missed the finding.</p></div>
+        <div class="mi-name-row" data-answer="5"><p>Researchers changed each pixel of a chest X-ray by one brightness level. The film looked the same, but the model switched from "normal" to "pneumothorax".</p></div>
+      </div>
     </div>
   </section>
 
@@ -265,6 +267,8 @@
     <h2>Key takeaways</h2>
     <ul>
       <li>A published score describes the hospital and patients where the model was tested. New scanners, patients or techniques cause dataset shift.</li>
+      <li>Models react to pixel patterns people cannot see; a targeted change too small to notice can flip the answer.</li>
+      <li>Groups that are rare or missing in the training data get worse results (bias). Ask for results by group.</li>
       <li>Models can learn shortcuts, such as text markers, tubes or the hospital itself, instead of the disease.</li>
       <li>A good overall score can hide a group the model fails on (hidden stratification).</li>
       <li>Confidence scores and heatmaps are not proof; generative AI can hallucinate.</li>
@@ -280,7 +284,13 @@
       <li><a href="https://doi.org/10.1371/journal.pmed.1002683" target="_blank" rel="noopener">Zech et al. 2018</a> <small>pneumonia model and hospital site</small></li>
       <li><a href="https://doi.org/10.1038/s42256-021-00338-7" target="_blank" rel="noopener">DeGrave et al. 2021</a> <small>COVID-19 shortcuts</small></li>
       <li><a href="https://doi.org/10.1145/3368555.3384468" target="_blank" rel="noopener">Oakden-Rayner et al. 2020</a> <small>hidden stratification</small></li>
+      <li><a href="https://arxiv.org/abs/1412.6572" target="_blank" rel="noopener">Goodfellow et al. 2015</a> <small>the original panda-to-gibbon adversarial example</small></li>
+      <li><a href="https://doi.org/10.1126/science.aaw4399" target="_blank" rel="noopener">Finlayson et al. 2019</a> <small>adversarial attacks on medical AI</small></li>
+      <li><a href="https://doi.org/10.1073/pnas.1919012117" target="_blank" rel="noopener">Larrazabal et al. 2020</a> <small>sex imbalance in chest X-ray training data</small></li>
+      <li><a href="https://github.com/mlmed/torchxrayvision" target="_blank" rel="noopener">TorchXRayVision</a> <small>the open chest X-ray models used in the scanner demo</small></li>
+      <li><a href="https://doi.org/10.1038/s41591-021-01595-0" target="_blank" rel="noopener">Seyyed-Kalantari et al. 2021</a> <small>underdiagnosis in chest X-ray AI</small></li>
     </ul>
+    <p class="m1-credits">Panda photo: "Giant panda eating bamboo" by Kevin Dooley, Wikimedia Commons, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>; cropped, resized and changed by the ResNet-50 attack described above. Chest X-ray: "Deep sulcus sign" by Hellerhoff, Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>; resized, and with a heatmap added in Figure 2. Normal chest X-ray: "Normal posteroanterior (PA) chest radiograph (X-ray)", Wikimedia Commons, CC0; cropped, resized and processed for the scanner demo and Figure 2.</p>
   </section>
 
 </div>
@@ -290,11 +300,11 @@
   <a href="../modules/ai-fundamentals.html" class="btn btn-accent" id="les-next">Back to Module 1 overview &rarr;</a>
 </div>
 
-<script src="../assets/js/progress.js?v=20261104d" data-ai2-progress-loader="1"></script>
-<script src="../assets/js/shared.js?v=20261104d"></script>
-<script src="assets/lessons.js?v=20261104d"></script>
-<script src="assets/knowledge-check.js?v=20261104d"></script>
-<script src="assets/interactives.js?v=20261104d"></script>
-<script src="assets/m1-interactives.js?v=20261104d"></script>
+<script src="../assets/js/progress.js?v=20261111c" data-ai2-progress-loader="1"></script>
+<script src="../assets/js/shared.js?v=20261111c"></script>
+<script src="assets/lessons.js?v=20261111c"></script>
+<script src="assets/knowledge-check.js?v=20261111c"></script>
+<script src="assets/interactives.js?v=20261111c"></script>
+<script src="assets/m1-interactives.js?v=20261111c"></script>
 </body>
 </html>

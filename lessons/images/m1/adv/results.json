@@ -1,0 +1,160 @@
+{
+ "amp": 16,
+ "levels": [
+  {
+   "eps": 0,
+   "targeted": [
+    [
+     "giant panda",
+     50.1
+    ],
+    [
+     "badger",
+     0.3
+    ],
+    [
+     "limousine",
+     0.2
+    ]
+   ],
+   "random": [
+    [
+     "giant panda",
+     50.1
+    ],
+    [
+     "badger",
+     0.3
+    ],
+    [
+     "limousine",
+     0.2
+    ]
+   ]
+  },
+  {
+   "eps": 1,
+   "targeted": [
+    [
+     "gibbon",
+     96.5
+    ],
+    [
+     "giant panda",
+     0.1
+    ],
+    [
+     "guenon",
+     0.1
+    ]
+   ],
+   "random": [
+    [
+     "giant panda",
+     51.0
+    ],
+    [
+     "badger",
+     0.3
+    ],
+    [
+     "lesser panda",
+     0.2
+    ]
+   ]
+  },
+  {
+   "eps": 2,
+   "targeted": [
+    [
+     "gibbon",
+     99.5
+    ],
+    [
+     "siamang",
+     0.0
+    ],
+    [
+     "guenon",
+     0.0
+    ]
+   ],
+   "random": [
+    [
+     "giant panda",
+     51.4
+    ],
+    [
+     "badger",
+     0.2
+    ],
+    [
+     "lesser panda",
+     0.2
+    ]
+   ]
+  },
+  {
+   "eps": 4,
+   "targeted": [
+    [
+     "gibbon",
+     100.0
+    ],
+    [
+     "giant panda",
+     0.0
+    ],
+    [
+     "langur",
+     0.0
+    ]
+   ],
+   "random": [
+    [
+     "giant panda",
+     51.5
+    ],
+    [
+     "limousine",
+     0.2
+    ],
+    [
+     "lesser panda",
+     0.2
+    ]
+   ]
+  },
+  {
+   "eps": 8,
+   "targeted": [
+    [
+     "gibbon",
+     100.0
+    ],
+    [
+     "siamang",
+     0.0
+    ],
+    [
+     "giant panda",
+     0.0
+    ]
+   ],
+   "random": [
+    [
+     "giant panda",
+     52.6
+    ],
+    [
+     "limousine",
+     0.2
+    ],
+    [
+     "lesser panda",
+     0.2
+    ]
+   ]
+  }
+ ]
+}
